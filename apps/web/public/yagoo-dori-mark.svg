@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title description">
+  <title id="title">Yagoo-dori park gate mark</title>
+  <desc id="description">An original abstract arch, star, and winding path.</desc>
+  <path fill="#102947" d="M12 84V38C12 19 27 8 48 8s36 11 36 30v46H68V39c0-10-8-16-20-16s-20 6-20 16v45H12Z"/>
+  <path fill="#f36d5e" d="m48 27 4.6 9.3L63 37.8l-7.5 7.3 1.8 10.3-9.3-4.9-9.3 4.9 1.8-10.3-7.5-7.3 10.4-1.5L48 27Z"/>
+  <path fill="none" stroke="#53d4d1" stroke-linecap="round" stroke-width="9" d="M25 85c1-16 12-20 23-20s20 3 23 20"/>
+</svg>

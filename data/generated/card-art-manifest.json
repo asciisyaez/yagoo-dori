@@ -1,0 +1,2043 @@
+{
+  "retrievedAt": "2026-07-30",
+  "source": {
+    "page": "https://game8.jp/hololive-dreams/800509",
+    "label": "Game8 public Member-card index"
+  },
+  "assets": [
+    {
+      "cardId": "card-03003-5-uniq-0035-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790202/59c8cb0a390a2374e118d40e5c55e901.webp/original",
+        "localPath": "/game/cards/card-03003-5-uniq-0035-00.webp",
+        "bytes": 8988,
+        "sha256": "111eeed31b2c0758d2524cbfe356a58d0e94398df42ad2d70db7db09c426b88a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791427/ce3d4e689f93bd782fca4e565ea09703.webp/show",
+        "localPath": "/game/illustrations/card-03003-5-uniq-0035-00.webp",
+        "bytes": 21544,
+        "sha256": "75b6374b36e080ab67e305024bc396669a8587985affe0aaf748a8d89777f76a"
+      }
+    },
+    {
+      "cardId": "card-00005-5-uniq-0006-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790137/1b1347b95c69006f3bbd68ae7b3fafd3.webp/original",
+        "localPath": "/game/cards/card-00005-5-uniq-0006-00.webp",
+        "bytes": 10788,
+        "sha256": "400f939ac381bf19c32b2276d588485563100672a2b8115a6b35c463af452d29"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791408/e475dcdfc0850ea6f234f803e6483673.webp/show",
+        "localPath": "/game/illustrations/card-00005-5-uniq-0006-00.webp",
+        "bytes": 27768,
+        "sha256": "f48685738ed73875744f8989b940d5dc311b9c86cd327886737234d09ee42198"
+      }
+    },
+    {
+      "cardId": "card-00004-5-uniq-0005-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790136/66b5dbcafd9c64e84a43c08bebe38166.webp/original",
+        "localPath": "/game/cards/card-00004-5-uniq-0005-00.webp",
+        "bytes": 9664,
+        "sha256": "cc72e767f5f05ae8ffae9bf6d11cfe35c0415f5435eb511068ea536c71c8231a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791391/578bf40d1318e8e7d5a6a63d97cac1ee.webp/show",
+        "localPath": "/game/illustrations/card-00004-5-uniq-0005-00.webp",
+        "bytes": 23298,
+        "sha256": "a55b497a4ee93d136ff33874ddf978481c9e9c8b2a1c611eece77fb024154435"
+      }
+    },
+    {
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790204/9a07f705bcfb26e71fa7dcb433d50843.webp/original",
+        "localPath": "/game/cards/card-03005-5-uniq-0037-00.webp",
+        "bytes": 8880,
+        "sha256": "c6acd044016b355d29cb1fb699a918124d7ab08d07da3637189dd1fa7ffa99f6"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791390/9ac84de65172417692d5b353316dcd28.webp/show",
+        "localPath": "/game/illustrations/card-03005-5-uniq-0037-00.webp",
+        "bytes": 18558,
+        "sha256": "262db466cac7c5532c09976f156dc0ee8ac643a1e94fbca88d35c110a5543950"
+      }
+    },
+    {
+      "cardId": "card-03001-5-uniq-0033-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790198/d7df76b0f5ae68b249f0c52305c65f54.webp/original",
+        "localPath": "/game/cards/card-03001-5-uniq-0033-00.webp",
+        "bytes": 10364,
+        "sha256": "2094a0d8e309b9fad7ab026b455d1ed7b5eda78524e12bee705e7e6b894a9b24"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791392/aa1e516180171fbcbeea9683c9eb8fcd.webp/show",
+        "localPath": "/game/illustrations/card-03001-5-uniq-0033-00.webp",
+        "bytes": 22530,
+        "sha256": "a3b7fbdfab724e5d2fe9ca96f2f730c8d4154836602d19111f4f054238c40027"
+      }
+    },
+    {
+      "cardId": "card-00013-5-uniq-0002-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790131/a441a82fa3c5c67250a163544d0450c7.webp/original",
+        "localPath": "/game/cards/card-00013-5-uniq-0002-00.webp",
+        "bytes": 10602,
+        "sha256": "957fc9fd3296af7f2f7a8b392fa421b66597098ea08045bb29813acb5c155ffb"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791387/9da71c1eb5f3c94e5907f5b1536a9848.webp/show",
+        "localPath": "/game/illustrations/card-00013-5-uniq-0002-00.webp",
+        "bytes": 26680,
+        "sha256": "b5b4d1a55046cf045dc0f7e71b3f7c9f22386bf2bea7387693cbe7030ccd3515"
+      }
+    },
+    {
+      "cardId": "card-04016-5-uniq-0055-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790222/2095ecb167fd7d0dbb759da7ca00f450.webp/original",
+        "localPath": "/game/cards/card-04016-5-uniq-0055-00.webp",
+        "bytes": 8758,
+        "sha256": "6045e206995ab279685a6831ba5ea990157986de5855686b2e6f1671467589f7"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791423/9b94418b4ccd3acf74d0f502701c0702.webp/show",
+        "localPath": "/game/illustrations/card-04016-5-uniq-0055-00.webp",
+        "bytes": 25250,
+        "sha256": "d0edf7ccffaa5903379f579166b683e3a3dd0326e1c50a3d49ae1e10b6231d30"
+      }
+    },
+    {
+      "cardId": "card-04012-5-uniq-0051-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790213/d7882d7c07c14bcdb21bc4dcbfe6a5cc.webp/original",
+        "localPath": "/game/cards/card-04012-5-uniq-0051-00.webp",
+        "bytes": 10790,
+        "sha256": "f3d4f2b2d8bef4f5330239b7c4a808ce84356f2971d55e729e65070b75de741f"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791396/6808a50079643069eec7160600de81c6.webp/show",
+        "localPath": "/game/illustrations/card-04012-5-uniq-0051-00.webp",
+        "bytes": 25822,
+        "sha256": "7864d3a5bd64ae02dcb2b71bb6eecdc24b8232ca65da956d3cdcb0546e919bb5"
+      }
+    },
+    {
+      "cardId": "card-00037-5-uniq-0030-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790197/2622eb17c1a6bfe2b315575e08b3d55d.webp/original",
+        "localPath": "/game/cards/card-00037-5-uniq-0030-00.webp",
+        "bytes": 10376,
+        "sha256": "c8f78c32e398a09f66fe8c744f4b996cce7f9ac95b5e728a0a4857cc496cb084"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791410/20d07a11d77882eb41070b154acc22d5.webp/show",
+        "localPath": "/game/illustrations/card-00037-5-uniq-0030-00.webp",
+        "bytes": 29456,
+        "sha256": "fdd6c1edbdd6543062b134d440b1f52ab1c8b045cdd59d139610d0deafd85105"
+      }
+    },
+    {
+      "cardId": "card-00028-5-uniq-0023-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790175/de30b6f21918c2d223f82315d1fc9958.webp/original",
+        "localPath": "/game/cards/card-00028-5-uniq-0023-00.webp",
+        "bytes": 8966,
+        "sha256": "641c12c95f480205960c3788f7d16efa29300c07c772305664d5804bab4df07a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791407/ce0ef0a9b032f881420af567806a33b3.webp/show",
+        "localPath": "/game/illustrations/card-00028-5-uniq-0023-00.webp",
+        "bytes": 23440,
+        "sha256": "31f84618911105f53a215054ec0c6d4882245541bab99c809cff711f5a878719"
+      }
+    },
+    {
+      "cardId": "card-00018-5-uniq-0004-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790138/7ce0faa8426d262f64cb838a99b285fd.webp/original",
+        "localPath": "/game/cards/card-00018-5-uniq-0004-00.webp",
+        "bytes": 10410,
+        "sha256": "cfaab5aa69f44c97b0057d8abc7d9ccdc15e38d71da0f1f2afad53865f4a6e52"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791395/4114b001e6627e22bfc440b43f823879.webp/show",
+        "localPath": "/game/illustrations/card-00018-5-uniq-0004-00.webp",
+        "bytes": 23606,
+        "sha256": "98ddbf3bcf63b99e9f5a6d0453e6f82b03c63e9367742e1ede437a482cc69a93"
+      }
+    },
+    {
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790185/028615d098ca0a9dbbd7d5e1af5cab5a.webp/original",
+        "localPath": "/game/cards/card-00023-5-uniq-0019-00.webp",
+        "bytes": 9596,
+        "sha256": "9e5bbd5bdbc2ed7c4f3d17fdf34bed9c0608d2b178757f4a4940cdd45527eaac"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791422/b74c8daf178f23cab44222a7f30e8ede.webp/show",
+        "localPath": "/game/illustrations/card-00023-5-uniq-0019-00.webp",
+        "bytes": 27702,
+        "sha256": "f3d1a589ac54678cde20af2dc6552865da0d5f1b930afa757f5af9a12745da70"
+      }
+    },
+    {
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790224/387711fabaef92a4c4a0de4d19345fd4.webp/original",
+        "localPath": "/game/cards/card-06003-5-uniq-0059-00.webp",
+        "bytes": 11484,
+        "sha256": "ad3e9a1d4ec89b8f3b19c837d2e8fd43d4e2d61cbb293caa7332f4e5465abe12"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791439/64988c8ee615de5fcc8b8145ddb5bfe8.webp/show",
+        "localPath": "/game/illustrations/card-06003-5-uniq-0059-00.webp",
+        "bytes": 26634,
+        "sha256": "15f1a4d74db4340a19a4686589fd3c52ba9bbcf2b649035a24d0bb45c7335785"
+      }
+    },
+    {
+      "cardId": "card-00017-5-uniq-0015-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790150/07fbfd06c7f9ae529582b8d20944bb5c.webp/original",
+        "localPath": "/game/cards/card-00017-5-uniq-0015-00.webp",
+        "bytes": 9634,
+        "sha256": "5d15da4f88d50b0e707b00a6b1161ab3183c1f649343e4711757cad21543bf0a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791433/03bf27ad2f84ff0fbcc53aedf187666d.webp/show",
+        "localPath": "/game/illustrations/card-00017-5-uniq-0015-00.webp",
+        "bytes": 27964,
+        "sha256": "e72ce400bf464eb695fb87aa00cfea76312645d9fd8eea725f0bdf7bfcfc4208"
+      }
+    },
+    {
+      "cardId": "card-04007-5-uniq-0047-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790211/18e953d72d714c72e7a0c73a17957f13.webp/original",
+        "localPath": "/game/cards/card-04007-5-uniq-0047-00.webp",
+        "bytes": 10450,
+        "sha256": "6023f3fca5273d2495312e466f1707e769448c97acbb811639b3a3ee0a47e63a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791417/2beb30365199f2255881bc12faf75e6f.webp/show",
+        "localPath": "/game/illustrations/card-04007-5-uniq-0047-00.webp",
+        "bytes": 28958,
+        "sha256": "339173c389bbd53312f552f1c304226138ca70bdc5de585b409f6ce94a565d9b"
+      }
+    },
+    {
+      "cardId": "card-06004-5-uniq-0060-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790228/c8554f9d7ec4b0be1f073f6a2a40848f.webp/original",
+        "localPath": "/game/cards/card-06004-5-uniq-0060-00.webp",
+        "bytes": 9994,
+        "sha256": "b36dd01bc063b408fa59783b0e678a8f8c0fc26949d895f271953e52d61034cf"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791398/c66cb05372a2846b826c4385b49cfd87.webp/show",
+        "localPath": "/game/illustrations/card-06004-5-uniq-0060-00.webp",
+        "bytes": 23562,
+        "sha256": "1bcdea9ee9c3d332a6ff220a1143b6e9c50165dd3efa5497f7fde17d299a0387"
+      }
+    },
+    {
+      "cardId": "card-03008-5-uniq-0040-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790207/54d51bc8536b4d86203b2407238b16d7.webp/original",
+        "localPath": "/game/cards/card-03008-5-uniq-0040-00.webp",
+        "bytes": 9838,
+        "sha256": "cd504669f9606a75a870471ca52eaa3ed2c60d5cafc1d396dad26d683d5395b3"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791393/65a793e03386f01811e2177f6622a52c.webp/show",
+        "localPath": "/game/illustrations/card-03008-5-uniq-0040-00.webp",
+        "bytes": 24480,
+        "sha256": "0c953091662a839fef250eeff76b22993a734832f90b79807200859a93eef07c"
+      }
+    },
+    {
+      "cardId": "card-00039-5-uniq-0032-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790195/db338e7e54952519218f65e2a48c782e.webp/original",
+        "localPath": "/game/cards/card-00039-5-uniq-0032-00.webp",
+        "bytes": 9752,
+        "sha256": "db50d8b60c4ca4a4438ceea5ea6166b1c1d4c788b68509885acb6544bb69a672"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791418/b9d97dacbe15e13a316721af1210f9bb.webp/show",
+        "localPath": "/game/illustrations/card-00039-5-uniq-0032-00.webp",
+        "bytes": 25560,
+        "sha256": "045d06d21dc90576c49eb0e72c03106892c5339317471958605059431e5523e6"
+      }
+    },
+    {
+      "cardId": "card-03009-5-uniq-0041-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790208/dc54927dfd6d653a0f8e99bf7c44a271.webp/original",
+        "localPath": "/game/cards/card-03009-5-uniq-0041-00.webp",
+        "bytes": 11710,
+        "sha256": "f96b4a490109cef00170eaf2774f2ef0a791dbf1bf84fbbc08160feb9904ab53"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791425/4e89c39b66696224ea999ab4db4331c9.webp/show",
+        "localPath": "/game/illustrations/card-03009-5-uniq-0041-00.webp",
+        "bytes": 31566,
+        "sha256": "23b9185e9a54fc292388dd2ce6179bc5d36b26325fb6e09ec056095a86d47e50"
+      }
+    },
+    {
+      "cardId": "card-04014-5-uniq-0053-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790214/a87d406e4063f1505f095c056f9132d5.webp/original",
+        "localPath": "/game/cards/card-04014-5-uniq-0053-00.webp",
+        "bytes": 11128,
+        "sha256": "b743c78031dd519d062e109acb87356cc699cd037ab32aa58f9f402403b29705"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791430/8cde018ce01e7f73ad470b241767f634.webp/show",
+        "localPath": "/game/illustrations/card-04014-5-uniq-0053-00.webp",
+        "bytes": 33426,
+        "sha256": "e7fdb09b2fb9917c731bdf5a161e6a2f10ba14da6c8047840484a859f025acdd"
+      }
+    },
+    {
+      "cardId": "card-03004-5-uniq-0036-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790203/8c99dd246105ad20741b21025a98b75f.webp/original",
+        "localPath": "/game/cards/card-03004-5-uniq-0036-00.webp",
+        "bytes": 11676,
+        "sha256": "8b79e1db4ba6cc05e5b1e04ea2697219d0113b0a372e87f4e82ea2adcdaa73c7"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791428/1ae674285ae4186caeb1646b14fbe062.webp/show",
+        "localPath": "/game/illustrations/card-03004-5-uniq-0036-00.webp",
+        "bytes": 33142,
+        "sha256": "92933fc4f4b8ead1caf018e0065259e0c84c585c7bf8986b09d2f806f340abba"
+      }
+    },
+    {
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790191/bd4c622a4e282f65410a1b35d6c71c92.webp/original",
+        "localPath": "/game/cards/card-00035-5-uniq-0028-00.webp",
+        "bytes": 9264,
+        "sha256": "4366a3d7aef397ea8d0411c2aff8fe07e7ce500fc6b178de5a1401b0cfdb8583"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791403/47f9390d635a843de886715ea2e2dd96.webp/show",
+        "localPath": "/game/illustrations/card-00035-5-uniq-0028-00.webp",
+        "bytes": 20450,
+        "sha256": "597e018af24ec12992d8bfe528f62878dfdf774bd774ae9eb1e3be89dd99d5e5"
+      }
+    },
+    {
+      "cardId": "card-04017-5-uniq-0056-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790221/507645956f17c816fdb042d70cd2c5e2.webp/original",
+        "localPath": "/game/cards/card-04017-5-uniq-0056-00.webp",
+        "bytes": 7556,
+        "sha256": "b7a0a40301803f0e848d42730f33873a9ab429aab5040b63bf20f3e4b85890c9"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791412/18440fe3e3b7ad78b30545682b6f3d42.webp/show",
+        "localPath": "/game/illustrations/card-04017-5-uniq-0056-00.webp",
+        "bytes": 23080,
+        "sha256": "f90f1c061a8991f8d736b63be84053aa0e2fe8669aa3594d0bc100a1c386866d"
+      }
+    },
+    {
+      "cardId": "card-00031-5-uniq-0025-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790177/8acf4c585f4bef22d2973266a00f869d.webp/original",
+        "localPath": "/game/cards/card-00031-5-uniq-0025-00.webp",
+        "bytes": 10378,
+        "sha256": "22efdfffc88a03864421abe1b5cf120ba2fd1fb5cc34a6f0564b7ed3bd7a14a6"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791406/176e993fe4dfc46d34a4f9a35d899dcd.webp/show",
+        "localPath": "/game/illustrations/card-00031-5-uniq-0025-00.webp",
+        "bytes": 29906,
+        "sha256": "20608bdbcdb67760817f3771edf91c8350ff9550be2576639be6b352f1b6321b"
+      }
+    },
+    {
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790196/b4eaa06cee0d9796364979956252e53b.webp/original",
+        "localPath": "/game/cards/card-03002-5-uniq-0034-00.webp",
+        "bytes": 10464,
+        "sha256": "2031aeb009b35d7b8fd0df6e000d230e1f7c8913a90d12d1d8c09cf9825cb06b"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791415/181007caaf5be8f1bc9486831c2d92e2.webp/show",
+        "localPath": "/game/illustrations/card-03002-5-uniq-0034-00.webp",
+        "bytes": 24544,
+        "sha256": "699b15fb545183fcef8b6c3762978231fb14e7189def281cbc349fb3c49dcef1"
+      }
+    },
+    {
+      "cardId": "card-04001-5-uniq-0042-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790205/ec5cad6c0dff85c4e770e6c583443381.webp/original",
+        "localPath": "/game/cards/card-04001-5-uniq-0042-00.webp",
+        "bytes": 8390,
+        "sha256": "80c4c60d5071ee1699924796f10f6b73f8f200e670656b50c3e119cb83dd27a7"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791399/b98aba2a4dbb02a88bbe107ec1012b20.webp/show",
+        "localPath": "/game/illustrations/card-04001-5-uniq-0042-00.webp",
+        "bytes": 24554,
+        "sha256": "00ece465592d82eb607c8ac5b31d9cbc4d9b3f1d86381032db14b7659cfb78d4"
+      }
+    },
+    {
+      "cardId": "card-00010-5-uniq-0010-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790143/a82ac44bc2401083e9087dda3ac6ee7b.webp/original",
+        "localPath": "/game/cards/card-00010-5-uniq-0010-00.webp",
+        "bytes": 11010,
+        "sha256": "089a1bff5b077c3b18af86253b898d1e23566a8528c6e2e949a15804baeb0684"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791435/801fcab8ae8ee25fa1d736b01efe8e5c.webp/show",
+        "localPath": "/game/illustrations/card-00010-5-uniq-0010-00.webp",
+        "bytes": 29688,
+        "sha256": "35e84fb333f5ddf408bd35f6aa7175110d296175f01cded9515606f23869b4d3"
+      }
+    },
+    {
+      "cardId": "card-00007-5-uniq-0008-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790145/2136d75416c81a05b47e055432458a52.webp/original",
+        "localPath": "/game/cards/card-00007-5-uniq-0008-00.webp",
+        "bytes": 10874,
+        "sha256": "85251d73ced128266fdfd0ceb664041d22446ff817492d94f16a43f0146fbf62"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791411/61127b9fd3658fdc42b8bacd4b137e40.webp/show",
+        "localPath": "/game/illustrations/card-00007-5-uniq-0008-00.webp",
+        "bytes": 30214,
+        "sha256": "5e606eec00ceaf3384677c5c08e44f724dcb9e8493377619bc65987bba2da371"
+      }
+    },
+    {
+      "cardId": "card-00016-5-uniq-0014-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790149/a9b84af41e8bb33ef494a4415afb86fe.webp/original",
+        "localPath": "/game/cards/card-00016-5-uniq-0014-00.webp",
+        "bytes": 9210,
+        "sha256": "dfd2b3fcd180ef328a64fa1d099cc6fbc603450b3327fdf555d87b0333c36041"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791404/65485ca63aeaf4d2ed5faa11ec90aabe.webp/show",
+        "localPath": "/game/illustrations/card-00016-5-uniq-0014-00.webp",
+        "bytes": 23688,
+        "sha256": "1953991cf963edfc2035573df8e281758ae12c4465a67137a97c11bc3db2d9cc"
+      }
+    },
+    {
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790215/b485d67d651766fbf82d3487f4ac0e6f.webp/original",
+        "localPath": "/game/cards/card-04015-5-uniq-0054-00.webp",
+        "bytes": 10332,
+        "sha256": "754bd31ebfabea79287942bdbbfae45aa9635f3732980336aea822b954a9bd6b"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791397/085b5b62741f61c3dbc2d720f7bfc54f.webp/show",
+        "localPath": "/game/illustrations/card-04015-5-uniq-0054-00.webp",
+        "bytes": 28246,
+        "sha256": "011111714e1aac3e33d6b5ae49f61513f27c3ea0e2e6af00be7d2d43cc2ac201"
+      }
+    },
+    {
+      "cardId": "card-04003-5-uniq-0044-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790210/42a50af46341d12a968d2d7a9d1cb276.webp/original",
+        "localPath": "/game/cards/card-04003-5-uniq-0044-00.webp",
+        "bytes": 9216,
+        "sha256": "d6831d1611534c7610c17eabbadb7e38a3441b69bcbe224a86b8f8ec12588ee5"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791432/b50fe7fc862e37dd52782b757cfc2c4e.webp/show",
+        "localPath": "/game/illustrations/card-04003-5-uniq-0044-00.webp",
+        "bytes": 24976,
+        "sha256": "9a5cf28462999f44eb680b62b6680cbf7edd7fe783202b0443046d4583fbf60d"
+      }
+    },
+    {
+      "cardId": "card-00034-5-uniq-0027-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790192/24a42c1e596a83688e6e48f3fde0a8ff.webp/original",
+        "localPath": "/game/cards/card-00034-5-uniq-0027-00.webp",
+        "bytes": 12658,
+        "sha256": "4676056584d0d30f3fec7fb337f9321f4638cdea74148b73150c2933d8e12a8c"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791401/f99a127a96570a2a904471b4f70f8376.webp/show",
+        "localPath": "/game/illustrations/card-00034-5-uniq-0027-00.webp",
+        "bytes": 34280,
+        "sha256": "3072bdee21aee94bb6a09a1f9d37f8539acde2e55f168f2adf9941197ad3361e"
+      }
+    },
+    {
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790151/b8e2c39e987e73104954e08ef476d428.webp/original",
+        "localPath": "/game/cards/card-00014-5-uniq-0013-00.webp",
+        "bytes": 8754,
+        "sha256": "3340ad928deb5b1626a99e37bd907d2a16fe0ecf2aa38a963ba11745186b060c"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791421/5bc0583f0b1f7eba7f6b4351f7768e2e.webp/show",
+        "localPath": "/game/illustrations/card-00014-5-uniq-0013-00.webp",
+        "bytes": 24404,
+        "sha256": "a168229f9920dcfc7b1ef35a056af85625638306b3411345d18afe2c61b31026"
+      }
+    },
+    {
+      "cardId": "card-00012-5-uniq-0012-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790146/a3873264708ad7f0206e2523e3d2a1f4.webp/original",
+        "localPath": "/game/cards/card-00012-5-uniq-0012-00.webp",
+        "bytes": 8644,
+        "sha256": "fb999b70f1723b789832c092b534f8e05063af652f5528670f299d9ab67a83d6"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791437/ebc6dee679a78726e7bff2bf608a7a5b.webp/show",
+        "localPath": "/game/illustrations/card-00012-5-uniq-0012-00.webp",
+        "bytes": 25082,
+        "sha256": "5ddeaee2fef764d0e569def1c72216c48e03bb798ec012c06ca3f6abd2f5666a"
+      }
+    },
+    {
+      "cardId": "card-00012-5-uniq-0062-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800904",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12810700/46b9c009f92daccfdd67a99e03b5efc3.webp/original",
+        "localPath": "/game/cards/card-00012-5-uniq-0062-00.webp",
+        "bytes": 6604,
+        "sha256": "7bf296b6d0e726b3a9fb0e8c6617fe164b8830082369d8a3487863e4a5a0e5a3"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12809463/c46040bb3aca8666765338376817c7df.webp/show",
+        "localPath": "/game/illustrations/card-00012-5-uniq-0062-00.webp",
+        "bytes": 33486,
+        "sha256": "e4a7831c6113e6a20f2341e8147232120590bc252a4ee9a775da9af2e7b6f937"
+      }
+    },
+    {
+      "cardId": "card-06002-5-uniq-0058-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790223/3105b7d0f3b1c2c9f73f69455b94a9cf.webp/original",
+        "localPath": "/game/cards/card-06002-5-uniq-0058-00.webp",
+        "bytes": 10626,
+        "sha256": "30d5e94129fed8f95e48346b8ad6ef28bff0660b6ec7de2ab87e812126a2bd30"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791409/3aa4c60b1c4cebcc83af7076cfc31525.webp/show",
+        "localPath": "/game/illustrations/card-06002-5-uniq-0058-00.webp",
+        "bytes": 30830,
+        "sha256": "b5f028748e4bf4ccea5ce895f8b1625f33630c094cb0869e328b3c9d359bd532"
+      }
+    },
+    {
+      "cardId": "card-06002-5-uniq-0066-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800904",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12810699/09345b620c704e4b660e301b2c8df807.webp/original",
+        "localPath": "/game/cards/card-06002-5-uniq-0066-00.webp",
+        "bytes": 6556,
+        "sha256": "259ff5647186e3cf53f610c65873ab8487e7e84e9302cbb24da3400d7c716bc0"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12809557/2a1ec7bd3af75d3873b9a40562588afd.webp/show",
+        "localPath": "/game/illustrations/card-06002-5-uniq-0066-00.webp",
+        "bytes": 28134,
+        "sha256": "da7480d2f6f8c42058afb3cc5fca9f30e618c14a6b620204e41946df3ab3a8a6"
+      }
+    },
+    {
+      "cardId": "card-04010-5-uniq-0049-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790209/6e70a762f131539e1dd2c087258e50e9.webp/original",
+        "localPath": "/game/cards/card-04010-5-uniq-0049-00.webp",
+        "bytes": 9380,
+        "sha256": "bd343547c661238c17ccb7171479af5292dcccd209a363b55ce2063bf0d7fc6d"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791413/0354ecdad484f10fb26e07d4b8a77885.webp/show",
+        "localPath": "/game/illustrations/card-04010-5-uniq-0049-00.webp",
+        "bytes": 24338,
+        "sha256": "76f3b39bc0246673851e78e3c7a9cfc3c44b59b54553c9c34f2b29236c8ec627"
+      }
+    },
+    {
+      "cardId": "card-03006-5-uniq-0038-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790201/a7d734bb0302549afcaaa2910e024cdc.webp/original",
+        "localPath": "/game/cards/card-03006-5-uniq-0038-00.webp",
+        "bytes": 9662,
+        "sha256": "89780f68809b39f09c7272c1b4ba38af685f3ca1269c018b9c4668514db2ce49"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791438/61a243521b30bbf8365e6c4a884949e9.webp/show",
+        "localPath": "/game/illustrations/card-03006-5-uniq-0038-00.webp",
+        "bytes": 26458,
+        "sha256": "fd9c44d5a5b5c3611fa17e98e51137bdb0cb8ae5cd6f73af5efab9dc5f2fe124"
+      }
+    },
+    {
+      "cardId": "card-00002-5-uniq-0001-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790130/5462f3e6cbcdd6af48081a8ff78afebf.webp/original",
+        "localPath": "/game/cards/card-00002-5-uniq-0001-00.webp",
+        "bytes": 9892,
+        "sha256": "1649dd1c1d373f25e47f4a11b0ee417d7097fc352c159d43736a4413c092b74e"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791414/9e2670cd07e27b06c99b79c8ce9ee516.webp/show",
+        "localPath": "/game/illustrations/card-00002-5-uniq-0001-00.webp",
+        "bytes": 29050,
+        "sha256": "1baa7294411ee28e03fae03989928db7a0ffbd1b70b91dec70c51fe97c0317c0"
+      }
+    },
+    {
+      "cardId": "card-00015-5-uniq-0003-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790132/7cf1b6ef955eb47de25a735d127af4b8.webp/original",
+        "localPath": "/game/cards/card-00015-5-uniq-0003-00.webp",
+        "bytes": 9222,
+        "sha256": "42c02517357e81323baeaec812efc72d9f75f1eb22ce95fe6989f01f2f5e1f48"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791389/59363e43fc04d0402e58636d32ffd5da.webp/show",
+        "localPath": "/game/illustrations/card-00015-5-uniq-0003-00.webp",
+        "bytes": 19500,
+        "sha256": "7280cd79bc15a5cbfb156293111dce772815ce126039e86112cdc363c898b330"
+      }
+    },
+    {
+      "cardId": "card-04013-5-uniq-0052-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790216/e60faf0d1e000f3351340596fde9fc49.webp/original",
+        "localPath": "/game/cards/card-04013-5-uniq-0052-00.webp",
+        "bytes": 9352,
+        "sha256": "e77d7c2ece35d655934641f2ca89fcfc1a1ab184754c945600dcf227a12c0492"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791388/8f233884d713333fdb61ae8094bb140d.webp/show",
+        "localPath": "/game/illustrations/card-04013-5-uniq-0052-00.webp",
+        "bytes": 16202,
+        "sha256": "b7a65aa2b3c3410699b81af8872687c5a82d74de39e9b243b6df4662833e82e5"
+      }
+    },
+    {
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790135/3dfdba799b26704e9265d8705152c2d8.webp/original",
+        "localPath": "/game/cards/card-00006-5-uniq-0007-00.webp",
+        "bytes": 9120,
+        "sha256": "9122085da5172cb4b99bd333c7bbd9a8742ea4bf09056ebffd6b53d88f2ba58b"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791429/68c95eb385728adfadd70aedb8accdc2.webp/show",
+        "localPath": "/game/illustrations/card-00006-5-uniq-0007-00.webp",
+        "bytes": 28104,
+        "sha256": "4557812d3591ef48056297e8106227bd53948fa4f1d9301b7253c8cfe27d2a46"
+      }
+    },
+    {
+      "cardId": "card-00021-5-uniq-0017-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790184/950d7faa41fcc5d9324006ec68cdb87a.webp/original",
+        "localPath": "/game/cards/card-00021-5-uniq-0017-00.webp",
+        "bytes": 8750,
+        "sha256": "38e143ba1da669410cda501262393fc37331e33560c27da538d4658ccd7cad29"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791419/4e58ba1691cdbb371580ff456e58fc00.webp/show",
+        "localPath": "/game/illustrations/card-00021-5-uniq-0017-00.webp",
+        "bytes": 21656,
+        "sha256": "c904ca86ca08e665d21aed28ce7467d2a751c6ed596540c50342142dce4f7c37"
+      }
+    },
+    {
+      "cardId": "card-00021-5-uniq-0064-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800904",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12810701/87ec8d34d63e8147ba54f7f6cfab7c30.webp/original",
+        "localPath": "/game/cards/card-00021-5-uniq-0064-00.webp",
+        "bytes": 5996,
+        "sha256": "d7e42061fea61e16e12f446170886645992fc8cf010592885cb117932cb93628"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12809476/6e9648c8cfad8b1f8ba2ca79b0ff6c58.webp/show",
+        "localPath": "/game/illustrations/card-00021-5-uniq-0064-00.webp",
+        "bytes": 31674,
+        "sha256": "4c81436c821085cad6eafdbe2b37b72a75e7326f0f36ca13f74865ead85d312f"
+      }
+    },
+    {
+      "cardId": "card-00022-5-uniq-0018-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790183/7cef02507f4b842324c91d571eca5de8.webp/original",
+        "localPath": "/game/cards/card-00022-5-uniq-0018-00.webp",
+        "bytes": 10676,
+        "sha256": "df123d9a1e8a856f2925be6338816c6f7ddbce25c78468df719c22182c2148e8"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791436/514453aaab1e76abcf859fedd38212fb.webp/show",
+        "localPath": "/game/illustrations/card-00022-5-uniq-0018-00.webp",
+        "bytes": 25812,
+        "sha256": "661b97b846083024fa62bf37a350b86ec30bccc52fee1a1b2c603100e14ca1e3"
+      }
+    },
+    {
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800904",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12810698/6eb78c6e9f2234ec3339f058769de58e.webp/original",
+        "localPath": "/game/cards/card-00022-5-uniq-0063-00.webp",
+        "bytes": 6210,
+        "sha256": "a595ed2904aa717847cda5fe112e5e831a583720a031c48a8c618166aaababf1"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12809493/1ef646d169f0645fa13e8937fa0efc4d.webp/show",
+        "localPath": "/game/illustrations/card-00022-5-uniq-0063-00.webp",
+        "bytes": 25122,
+        "sha256": "91da59ca8edd031a1847331d744aa5ffb9d6ee3454061ce7aafd8284ed14e53e"
+      }
+    },
+    {
+      "cardId": "card-00032-5-uniq-0026-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790189/702c46ad33b860f28f8da806423a2d1c.webp/original",
+        "localPath": "/game/cards/card-00032-5-uniq-0026-00.webp",
+        "bytes": 9008,
+        "sha256": "c2b2eb6bc2ef16cd3e134a3d9ca6dfcade49bebc75e13c64f43ad3aaf605e5ab"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791405/eb9624ed8c0823fa30fd76e0dc8fd17b.webp/show",
+        "localPath": "/game/illustrations/card-00032-5-uniq-0026-00.webp",
+        "bytes": 20120,
+        "sha256": "b8bc09fab8e56eef92a7a61a5338e54ce915bbdd0c5239024cfd3b052c15ae83"
+      }
+    },
+    {
+      "cardId": "card-04002-5-uniq-0043-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790212/692d8f82daf6c99e93c67d5fac93b212.webp/original",
+        "localPath": "/game/cards/card-04002-5-uniq-0043-00.webp",
+        "bytes": 10164,
+        "sha256": "8adc0034554d88317d936bf7a049720696a5ffa54437752f80230ec6b8ad5b33"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791434/707dfd7e3309d0c506008ed20f8db96b.webp/show",
+        "localPath": "/game/illustrations/card-04002-5-uniq-0043-00.webp",
+        "bytes": 31478,
+        "sha256": "2c4583bd3d594e5400dff219f5b0dcbe41de6d2e6de65e811868220bd557848f"
+      }
+    },
+    {
+      "cardId": "card-00036-5-uniq-0029-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790190/f3096634da9b1ece38f1fb7330ecdf14.webp/original",
+        "localPath": "/game/cards/card-00036-5-uniq-0029-00.webp",
+        "bytes": 10194,
+        "sha256": "294b29ed04f6fb32f09a655ea62549cf94eb330fc4f7ff67b03cd93482b1e9b7"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791424/215a998465b233d73f520d258d72e253.webp/show",
+        "localPath": "/game/illustrations/card-00036-5-uniq-0029-00.webp",
+        "bytes": 20382,
+        "sha256": "48a371fd4761dd9912436349e509133484304c03c1c0fd2c8f67aa685e3232ab"
+      }
+    },
+    {
+      "cardId": "card-06005-5-uniq-0061-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790229/d3d5177b158220411ef5aed4d7900c5c.webp/original",
+        "localPath": "/game/cards/card-06005-5-uniq-0061-00.webp",
+        "bytes": 8676,
+        "sha256": "7372216bd796e0938853678e091440e119e01147ded7cd3a4d1c54270f7b682e"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791400/dc82bd03ab5b1e8e78ae4eaf38dd1a46.webp/show",
+        "localPath": "/game/illustrations/card-06005-5-uniq-0061-00.webp",
+        "bytes": 20544,
+        "sha256": "2cd0f953dd112a2c205305a266cb36c24955d7195ec89dd3d39cabbacc2400fb"
+      }
+    },
+    {
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790133/9b12b3d430dd4edd4bc3bc202f7f01b5.webp/original",
+        "localPath": "/game/cards/card-00001-5-uniq-0000-00.webp",
+        "bytes": 11504,
+        "sha256": "11affb7ffb4b07e2444030ad4bc881fd6b5d80032d1d9a1654bf8be865a83827"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791394/ec554e8d7be25210f14a32d5849add4d.webp/show",
+        "localPath": "/game/illustrations/card-00001-5-uniq-0000-00.webp",
+        "bytes": 28320,
+        "sha256": "57db6904a1b378b5153b39098373bd378f0835b01899f35fb84fb1721ed5cb77"
+      }
+    },
+    {
+      "cardId": "card-00027-5-uniq-0022-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790178/d68ba9b568b68d5eeaa4c02d4e4f74b9.webp/original",
+        "localPath": "/game/cards/card-00027-5-uniq-0022-00.webp",
+        "bytes": 10098,
+        "sha256": "4a254f937c414cc803bab8130b61f5f52ee8e6ac5efc54985f753cde42a132ea"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791426/6dc00d4b99adafdab878ae04675c11c1.webp/show",
+        "localPath": "/game/illustrations/card-00027-5-uniq-0022-00.webp",
+        "bytes": 27860,
+        "sha256": "8b80aa83716f7a4aed58e4bcb91ab2dbca2e2006e1206d0a06a1fd51ce8cc3ff"
+      }
+    },
+    {
+      "cardId": "card-00026-5-uniq-0021-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790182/fce07f5d9821ce0f3593a728f2912924.webp/original",
+        "localPath": "/game/cards/card-00026-5-uniq-0021-00.webp",
+        "bytes": 10056,
+        "sha256": "d40f4a1992bbaa36a1a03206d53ac615f4d0787f2f0587813a23d83beab664ae"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791420/bcd5399e5224053fb7b9fbfb83946c74.webp/show",
+        "localPath": "/game/illustrations/card-00026-5-uniq-0021-00.webp",
+        "bytes": 25810,
+        "sha256": "4f981613c78bc63d1630a940833818f37673e9f14cdf412699a9d208d53b3094"
+      }
+    },
+    {
+      "cardId": "card-00026-5-uniq-0065-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800904",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12810702/5ce5358133f24551a4235eed64b58601.webp/original",
+        "localPath": "/game/cards/card-00026-5-uniq-0065-00.webp",
+        "bytes": 6126,
+        "sha256": "53fb54c0e145c8955d6e66c92eebd86a3e0574191d31724c8022efacf53fbb07"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12809533/89a65fb59833b97f479bc624fc9872df.webp/show",
+        "localPath": "/game/illustrations/card-00026-5-uniq-0065-00.webp",
+        "bytes": 24412,
+        "sha256": "ea4585a35e7af86fecb4d98176c695a256451ec639d54c83d9e7441818ed9ac6"
+      }
+    },
+    {
+      "cardId": "card-00019-5-uniq-0016-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790148/f82eae5e2a11e7c63d0192ce3ff6bda7.webp/original",
+        "localPath": "/game/cards/card-00019-5-uniq-0016-00.webp",
+        "bytes": 9690,
+        "sha256": "d95013754a5675ee40f845af70704772100dd3ee29927b211ad19c1fc94c6629"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791431/892068ba1c82a1fe4abfce4fdf292b60.webp/show",
+        "localPath": "/game/illustrations/card-00019-5-uniq-0016-00.webp",
+        "bytes": 30520,
+        "sha256": "1c67616bcb663c397e8e22436ecd425b59411653e4e27dfea1952475c088ebaf"
+      }
+    },
+    {
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790206/85360cbe37b91c879313f4ba98674338.webp/original",
+        "localPath": "/game/cards/card-03007-5-uniq-0039-00.webp",
+        "bytes": 10472,
+        "sha256": "6793e654b6ed34ed561084b7a243bacc51ed4406d76a678df16d24ec4b6b6a16"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791402/78847dd579e1fab7fedfea4d3c5dce0b.webp/show",
+        "localPath": "/game/illustrations/card-03007-5-uniq-0039-00.webp",
+        "bytes": 26424,
+        "sha256": "f34db147544ff2f361f604a108a43d82de2fa19aa31a43b699a09903880e971a"
+      }
+    },
+    {
+      "cardId": "card-00030-5-uniq-0024-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790176/372b72e04543195035ed4db1e7c24050.webp/original",
+        "localPath": "/game/cards/card-00030-5-uniq-0024-00.webp",
+        "bytes": 9544,
+        "sha256": "94a588f7ec2061ebf1bfdc8781f7ab8f530fc2dd41c80db58676b03c1d5a23ac"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791416/876f4eab58b37c995dba3b29c465b334.webp/show",
+        "localPath": "/game/illustrations/card-00030-5-uniq-0024-00.webp",
+        "bytes": 26652,
+        "sha256": "1123b0b23b21e5526ebb43476db3f6c83e353032d587f93e521e34f24d84a2a0"
+      }
+    },
+    {
+      "cardId": "card-00011-5-uniq-0011-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790144/dcc5571fa5b0f74b6b7f0d349d8937fa.webp/original",
+        "localPath": "/game/cards/card-00011-5-uniq-0011-00.webp",
+        "bytes": 8456,
+        "sha256": "cc4f7ab113962359edededc7577725dada878d655f9828efcc715b98d7cc07e1"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791440/3ddc0aa510321feee314052d6e76848d.webp/show",
+        "localPath": "/game/illustrations/card-00011-5-uniq-0011-00.webp",
+        "bytes": 19654,
+        "sha256": "5eae7868b379fe7c2369f7e12b5ef6c5423aa05277b9d10b7bde676cf8d1dab4"
+      }
+    },
+    {
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791056/9c56b6557c642df7237598232cf3c482.webp/original",
+        "localPath": "/game/cards/card-03003-4-cmmn-0000-00.webp",
+        "bytes": 8844,
+        "sha256": "117d793dc0497cd9e3ac9357ea4ace06905c4f5587486b3558510493d5806694"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791649/ce5c3b9654b3addea0fd68a2b6dce32f.webp/show",
+        "localPath": "/game/illustrations/card-03003-4-cmmn-0000-00.webp",
+        "bytes": 26424,
+        "sha256": "4917013ac52d055bad7f361b3eefa6d9e3d0090411b921716d369a0283f03a92"
+      }
+    },
+    {
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790987/81e0673cbb5876cf464411e6ddec2dce.webp/original",
+        "localPath": "/game/cards/card-00005-4-cmmn-0000-00.webp",
+        "bytes": 10000,
+        "sha256": "efd7178b277029ccc62f73e91c17857692671971428b12fd37856de014684891"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791642/fa66018e182aaa81bd51ac0d1fde07e2.webp/show",
+        "localPath": "/game/illustrations/card-00005-4-cmmn-0000-00.webp",
+        "bytes": 26602,
+        "sha256": "a101628b73c79bae49cdf5344f9849bf4dbc31c2baf5cca0c48132616b1f127c"
+      }
+    },
+    {
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790915/536035400d9cc2f12c43a259a0522864.webp/original",
+        "localPath": "/game/cards/card-00004-4-cmmn-0000-00.webp",
+        "bytes": 10504,
+        "sha256": "a5da1e573db85cbec6d0f3625aa37bc593700235bb43b3bdae92136adf273f0e"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791658/68c3c2ddeb0c94810a599b7f4018eb12.webp/show",
+        "localPath": "/game/illustrations/card-00004-4-cmmn-0000-00.webp",
+        "bytes": 27228,
+        "sha256": "a383911b01afe31acc8ae15256285d859fe1e4961f73f7a84dbd253bf8632fea"
+      }
+    },
+    {
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791065/7b1ad15887578202246fb36afa604b0e.webp/original",
+        "localPath": "/game/cards/card-03005-4-cmmn-0000-00.webp",
+        "bytes": 8858,
+        "sha256": "cfcd0821aef3eafb5ee7a8196e24cfb47cb2bbafa2359998b4640995b2ded0e0"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791625/51e3897ec6a581c8051334de11f3fd5d.webp/show",
+        "localPath": "/game/illustrations/card-03005-4-cmmn-0000-00.webp",
+        "bytes": 26258,
+        "sha256": "b44069d5c028aa72984d2544775f4fb3e633fb0d015f6a1d6a312e697f06d940"
+      }
+    },
+    {
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791057/77263732a9f155bea9a71b7e79c31efa.webp/original",
+        "localPath": "/game/cards/card-03001-4-cmmn-0000-00.webp",
+        "bytes": 10060,
+        "sha256": "6d7ab6008abd5815075a05b71b6ef0fb834174b5169e4c7114857edf1085c2f5"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791667/582a80a934bfb0590209efd03991b0de.webp/show",
+        "localPath": "/game/illustrations/card-03001-4-cmmn-0000-00.webp",
+        "bytes": 26210,
+        "sha256": "f15d8f9c853bc4cc2bc2d8f7ddc82a01dc79c1365cfddc198a09b5072ff22573"
+      }
+    },
+    {
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790916/197c9bcb46746e0b5987493093e2681e.webp/original",
+        "localPath": "/game/cards/card-00013-4-cmmn-0000-00.webp",
+        "bytes": 9348,
+        "sha256": "9886da084f821b032154f2b4166bef0812fdac7dbea7f26ae759959f266f1662"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791620/933a00098b1139bf7d611953751c4ac3.webp/show",
+        "localPath": "/game/illustrations/card-00013-4-cmmn-0000-00.webp",
+        "bytes": 25646,
+        "sha256": "652d631a4f4712fc4d9e5d37333290a8a617ef82df0b7df65e7f6010eef36cbc"
+      }
+    },
+    {
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791111/43dbe6131ea45d1bc2375e4ef050a2be.webp/original",
+        "localPath": "/game/cards/card-04016-4-cmmn-0000-00.webp",
+        "bytes": 10014,
+        "sha256": "8ac8b360516694c905b73d8aa9c5e2f5a413646c50124fd0b1a4960441585e03"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791663/cab44d88756849328bad8fcc6e00aa2a.webp/show",
+        "localPath": "/game/illustrations/card-04016-4-cmmn-0000-00.webp",
+        "bytes": 25350,
+        "sha256": "424ad465fa42fdba1cfc6db79e994b30dbd34d766c269602f88cdcceb98c307a"
+      }
+    },
+    {
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791108/630c7b144c24b8356dd99afb3a595e9c.webp/original",
+        "localPath": "/game/cards/card-04012-4-cmmn-0000-00.webp",
+        "bytes": 10950,
+        "sha256": "8e85df047609a3133aca059742ed8451d64411e3e29163e0774e826c02cc41d8"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791637/e7cea50f670a769f5027303769d0c92d.webp/show",
+        "localPath": "/game/illustrations/card-04012-4-cmmn-0000-00.webp",
+        "bytes": 31836,
+        "sha256": "86c986cab9f2fcae242be27004d71f0d60cfc49cca9a6b703e67b75b0f18ac9c"
+      }
+    },
+    {
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791040/8f3469c7b9cb5de122d7645b0783d155.webp/original",
+        "localPath": "/game/cards/card-00037-4-cmmn-0000-00.webp",
+        "bytes": 10076,
+        "sha256": "ff8c4b2a502b2db244538257e6cff4353b1db671dfb85af5559f8080afb1950d"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791635/bb53cc4c3fd8236df2efec69f9dd4703.webp/show",
+        "localPath": "/game/illustrations/card-00037-4-cmmn-0000-00.webp",
+        "bytes": 26012,
+        "sha256": "b8f8c23a6ca5b2009e7a0ccd327e37f2dea24440ed107b8fe5dade5f6048f3ae"
+      }
+    },
+    {
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791012/79be8342667100ba16b4b0ea2c2ded8b.webp/original",
+        "localPath": "/game/cards/card-00028-4-cmmn-0000-00.webp",
+        "bytes": 8684,
+        "sha256": "b6fb076707c6596ca63fd97bada0629b7a71a7f548869d3ef066d6288c5ee819"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791646/2f83357227f70c472707647521d2620a.webp/show",
+        "localPath": "/game/illustrations/card-00028-4-cmmn-0000-00.webp",
+        "bytes": 26604,
+        "sha256": "07f2f6ef2d7ec98593f2a3c28e118e0cc9cbd367b2d5b3547553195f82ace892"
+      }
+    },
+    {
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790917/2b96d5c945655384419636889994fcbf.webp/original",
+        "localPath": "/game/cards/card-00018-4-cmmn-0000-00.webp",
+        "bytes": 10292,
+        "sha256": "b30428f64dbba3c354324391ba6acafb11746257074045e5d6cb297a6af419c8"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791644/8218d3197f2f8f7b16444c01530c467a.webp/show",
+        "localPath": "/game/illustrations/card-00018-4-cmmn-0000-00.webp",
+        "bytes": 29636,
+        "sha256": "43718f785a76e0c61ededb0ba32a3a17ea8950db366efee6aa439d0c86041419"
+      }
+    },
+    {
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791014/5936c63c6ed9497f2a29229e0d2c6131.webp/original",
+        "localPath": "/game/cards/card-00023-4-cmmn-0000-00.webp",
+        "bytes": 9576,
+        "sha256": "7236e48a047b191e066d373fc149a98dc67985b46d6c2e755676c492f9b49079"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791665/8928084ea3583602d71944cdde98a62b.webp/show",
+        "localPath": "/game/illustrations/card-00023-4-cmmn-0000-00.webp",
+        "bytes": 26796,
+        "sha256": "55a751c9a0e59a385babbb62e98eadb190bfd1e0d04f84c0d1ddb18feed7d9a5"
+      }
+    },
+    {
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791114/dbc9a55bed9998af1fd92b9408ae4dcc.webp/original",
+        "localPath": "/game/cards/card-06003-4-cmmn-0000-00.webp",
+        "bytes": 10124,
+        "sha256": "873b8605bef873481e5ec8ce66efaf21e60453bcbe4f9207a67077d3f1ac65c2"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791639/14766191b6e6dbde2d6ac8574914475c.webp/show",
+        "localPath": "/game/illustrations/card-06003-4-cmmn-0000-00.webp",
+        "bytes": 27516,
+        "sha256": "ccdcc4a742054994c06a8dbba157cb99c392aaac6f2c318e6bb2b89dc30639ce"
+      }
+    },
+    {
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791006/6a506814f03ff884bafd1cc46cbd5529.webp/original",
+        "localPath": "/game/cards/card-00017-4-cmmn-0000-00.webp",
+        "bytes": 9874,
+        "sha256": "4bf60aa9e94109e49b8df987b6285b8257478085ab193de8c8e9c1aa30deb374"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791634/932ef6e0e11cb5b7ce3fb65c2533567a.webp/show",
+        "localPath": "/game/illustrations/card-00017-4-cmmn-0000-00.webp",
+        "bytes": 27038,
+        "sha256": "2297c11c95b68d12948d7b92e7e9bd17719bb71dee00ef0b4519dcfc45120e31"
+      }
+    },
+    {
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791107/1f1e2c30a2a0e9cb9750ce8770536e48.webp/original",
+        "localPath": "/game/cards/card-04007-4-cmmn-0000-00.webp",
+        "bytes": 10020,
+        "sha256": "6a50a7e5f71eed012d36b95e78d5e0d5f9f8ce5b9366b19b2b3b8017aaa086d9"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791659/d8473a84b05efb569f47d0ef0d50c7ff.webp/show",
+        "localPath": "/game/illustrations/card-04007-4-cmmn-0000-00.webp",
+        "bytes": 31484,
+        "sha256": "0b9d024d72df4926d8932a9c8be01e24e512a0ad0c02b238f70e24c8b183bc74"
+      }
+    },
+    {
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791116/fa224fe4881341899233088e303e5ddf.webp/original",
+        "localPath": "/game/cards/card-06004-4-cmmn-0000-00.webp",
+        "bytes": 10146,
+        "sha256": "9967fbe46d58e6ed7c77467081f9b0685cee878a6bb633eff052c1a150cb1c3b"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791666/2a1c5a4a763e4c23697e244a7b3dc060.webp/show",
+        "localPath": "/game/illustrations/card-06004-4-cmmn-0000-00.webp",
+        "bytes": 28682,
+        "sha256": "c4cf232b6cc1374b6b0045641cf00ad7f8090092608ff77381dbfee79b63a910"
+      }
+    },
+    {
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791066/e7f64ec0040bb4fc288933a9a094b2b1.webp/original",
+        "localPath": "/game/cards/card-03008-4-cmmn-0000-00.webp",
+        "bytes": 9610,
+        "sha256": "6af41ab1bc3566d2d4dc795072dbc1b503c48b412d63ae76aef3ee1dc48b4ceb"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791630/133d7ad11aa201b96bbb1f1844739e7f.webp/show",
+        "localPath": "/game/illustrations/card-03008-4-cmmn-0000-00.webp",
+        "bytes": 28696,
+        "sha256": "ccee13e12f0b88502af82542263382684baaefd8f2ad9346a8b307cb23a5ac17"
+      }
+    },
+    {
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791041/ab998468c34848eaf5060b294afbbc1e.webp/original",
+        "localPath": "/game/cards/card-00039-4-cmmn-0000-00.webp",
+        "bytes": 9318,
+        "sha256": "848c8d21a345ca60857539f443548b92019a95defa1d522f575712fadd82c3d0"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791657/0ed87b6f6cea1601af6e22128ed0ecd9.webp/show",
+        "localPath": "/game/illustrations/card-00039-4-cmmn-0000-00.webp",
+        "bytes": 24742,
+        "sha256": "a7779be9eba063a86deed1815ee484f2853b1cedb4387bbd8d2407d39833ac75"
+      }
+    },
+    {
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791075/b8aee647fd1e652d60fc3d93f468572c.webp/original",
+        "localPath": "/game/cards/card-03009-4-cmmn-0000-00.webp",
+        "bytes": 10354,
+        "sha256": "c52d9f8cacac11d7e7fd3610177fb9dd1fa936eef1262878ff2c459450b6a855"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791640/a8bd2cde390d21005f774e7f546b9129.webp/show",
+        "localPath": "/game/illustrations/card-03009-4-cmmn-0000-00.webp",
+        "bytes": 30124,
+        "sha256": "4a9cd279a5d2ef1008848e8335a6410deb84165710f69756aa3105486c700407"
+      }
+    },
+    {
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791110/bf60f777458678a406bbe190b198eb00.webp/original",
+        "localPath": "/game/cards/card-04014-4-cmmn-0000-00.webp",
+        "bytes": 11218,
+        "sha256": "dcd843b2c834c43e80e7b5238ab739ca32518165095951580c7a293a97f7bfea"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791672/2b76d4d7e819ba763bb54a232aa3ff2a.webp/show",
+        "localPath": "/game/illustrations/card-04014-4-cmmn-0000-00.webp",
+        "bytes": 31344,
+        "sha256": "598bb5cdc427beee55db45d3424387194845fed7edeb67dc832890bbc5ad408b"
+      }
+    },
+    {
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791059/7648485ef916d14a50a0a4cc46ea83da.webp/original",
+        "localPath": "/game/cards/card-03004-4-cmmn-0000-00.webp",
+        "bytes": 9864,
+        "sha256": "9341f45ca33bdee3f847513a5b8296c5f6c2bae6f13a8d4f084c652448eda07a"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791671/81f3c0a072aa0ee73a872f7dd6bff333.webp/show",
+        "localPath": "/game/illustrations/card-03004-4-cmmn-0000-00.webp",
+        "bytes": 28260,
+        "sha256": "51e1faf13de6f507fa3120af7a875f06834021583b03186e908860c39149ec6d"
+      }
+    },
+    {
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791038/e753795551f65899b546d503bd06f849.webp/original",
+        "localPath": "/game/cards/card-00035-4-cmmn-0000-00.webp",
+        "bytes": 9342,
+        "sha256": "624abfae790031314e80d80796cf66dcb6275bf4e62c30907c0467759566afbd"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791654/b5e2773b42d2b32ba7d793470c3660ff.webp/show",
+        "localPath": "/game/illustrations/card-00035-4-cmmn-0000-00.webp",
+        "bytes": 24688,
+        "sha256": "31d494c9833fa77eb56df27fa689d55a827b36a23179ddbe87e7e68c57feee79"
+      }
+    },
+    {
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791112/588c777a01f909740dbc56dadaab1abc.webp/original",
+        "localPath": "/game/cards/card-04017-4-cmmn-0000-00.webp",
+        "bytes": 9578,
+        "sha256": "052c475118293fffe18a078d905d6e9397f056609f10914a96b03da122e66618"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791624/f1918516edebffc9e1f159c81def8e1b.webp/show",
+        "localPath": "/game/illustrations/card-04017-4-cmmn-0000-00.webp",
+        "bytes": 23102,
+        "sha256": "4106890b276653e6f8c773471ad3d8815eb297ce6ba3cf38e40754c3b0cad35c"
+      }
+    },
+    {
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791023/b0ba4fd51035e5b2f807f878114dcb7d.webp/original",
+        "localPath": "/game/cards/card-00031-4-cmmn-0000-00.webp",
+        "bytes": 10282,
+        "sha256": "bc56f214841104a0a8fdae668f5fa68635be8b90243a8cc51def2efa39b2d3ba"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791623/edbd55793692efd6ff101f9a41d31eb7.webp/show",
+        "localPath": "/game/illustrations/card-00031-4-cmmn-0000-00.webp",
+        "bytes": 26124,
+        "sha256": "623b4aeba4a2b1221b27e74606bcd5193e64fdfffa4c848dcbf8b27d07b43bca"
+      }
+    },
+    {
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791058/d4bac53f4a5dd8a26853d154cfc9f9cf.webp/original",
+        "localPath": "/game/cards/card-03002-4-cmmn-0000-00.webp",
+        "bytes": 8632,
+        "sha256": "10bb71089b507ab01819ec86845b24c563a5266d12663398269627248e093fe2"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791662/e60166cd1defbddbb9a829343c0036fd.webp/show",
+        "localPath": "/game/illustrations/card-03002-4-cmmn-0000-00.webp",
+        "bytes": 26744,
+        "sha256": "e6b84c4e7ae45e87d18d2d30630342734fbbfc6128d05c680fe0c94d55b053c9"
+      }
+    },
+    {
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791074/17237b6a725b215bc36e1213be4ad528.webp/original",
+        "localPath": "/game/cards/card-04001-4-cmmn-0000-00.webp",
+        "bytes": 8564,
+        "sha256": "c3ead57f39ca7cd03aae07160cac82f1ff9d9f9e786db6a0139af98119265b5f"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791632/7190c4cb5db75f1c8aa9a444671e0453.webp/show",
+        "localPath": "/game/illustrations/card-04001-4-cmmn-0000-00.webp",
+        "bytes": 23934,
+        "sha256": "a18a312ddee196effb4480584d6ccd0c3bccd68be006be8f88b9ceeff1a6c2a6"
+      }
+    },
+    {
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790984/7b1d5bb3643e784405aae14e22a4d074.webp/original",
+        "localPath": "/game/cards/card-00010-4-cmmn-0000-00.webp",
+        "bytes": 10324,
+        "sha256": "3c9c34a991ade1fc7f463c476b2575ad9e1938de0bca1587f2b8b180deeb3307"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791655/f749cb5ed4f3f93d401c18666b00c253.webp/show",
+        "localPath": "/game/illustrations/card-00010-4-cmmn-0000-00.webp",
+        "bytes": 29816,
+        "sha256": "17d570089476f562b543f844e1544c1493f69bbf0eef33e90107654644cfc054"
+      }
+    },
+    {
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790986/16142392365295e417a6105957d94a43.webp/original",
+        "localPath": "/game/cards/card-00007-4-cmmn-0000-00.webp",
+        "bytes": 8990,
+        "sha256": "af444b699cb38a0ddd16dddfffa5d4c8a8edff889a7c10ef40d6ba89d87203ef"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791668/753458050611662d1a28210fbef8ca51.webp/show",
+        "localPath": "/game/illustrations/card-00007-4-cmmn-0000-00.webp",
+        "bytes": 25308,
+        "sha256": "2f45d0a11472999b4bd1335a4cdd48eac584015118e7584e0cb1ffac9609a44f"
+      }
+    },
+    {
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790997/db585922a25b62e4176c18233558e226.webp/original",
+        "localPath": "/game/cards/card-00016-4-cmmn-0000-00.webp",
+        "bytes": 9738,
+        "sha256": "ee45d58aaae7943b2126f3e6d536dcb699f8f47d4005288b3dc32dfbbce97f28"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791673/ee140bbc035c06e35baeac0aee30656f.webp/show",
+        "localPath": "/game/illustrations/card-00016-4-cmmn-0000-00.webp",
+        "bytes": 26516,
+        "sha256": "eae317e6d4a70a0a698e73ccfd9669e521790d5c8598718a99f5fd75d76c6567"
+      }
+    },
+    {
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791113/86e9210081dee72e2b0857b83a9ce4f3.webp/original",
+        "localPath": "/game/cards/card-04015-4-cmmn-0000-00.webp",
+        "bytes": 9942,
+        "sha256": "cc1482775c26ff2c4d25202539cc5435552bd96c1e90bb5cde91935b17429888"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791647/3daf1cf5400b5094a9fa3603c5756ef5.webp/show",
+        "localPath": "/game/illustrations/card-04015-4-cmmn-0000-00.webp",
+        "bytes": 34030,
+        "sha256": "ee86e8ffc8f1f40958d68ec4e2af9cb62d73eed21219e2aeb589a3fc8120e49b"
+      }
+    },
+    {
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791072/ed9296d2c4b9d74b0149fafdac435d77.webp/original",
+        "localPath": "/game/cards/card-04003-4-cmmn-0000-00.webp",
+        "bytes": 8394,
+        "sha256": "001abd960ed97afff2fc20eb191a59e37cfd58bd0bac9d0f4f7279db43aaad3f"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791653/274ba63cb2e97a6ef60389f666ba2a4b.webp/show",
+        "localPath": "/game/illustrations/card-04003-4-cmmn-0000-00.webp",
+        "bytes": 29310,
+        "sha256": "9095c8b4a40b532ec8b702c287813ae2634dff20043f49adf41ea25d59f23b26"
+      }
+    },
+    {
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791021/5f2366cb1bd20fa7a72b86d8ee141692.webp/original",
+        "localPath": "/game/cards/card-00034-4-cmmn-0000-00.webp",
+        "bytes": 11040,
+        "sha256": "f40b0455b47237b83689ea228c07156aad682ac66fbdf3a2665a769195de270f"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791661/842d81e17b3695065c4ba5d623c2b6a8.webp/show",
+        "localPath": "/game/illustrations/card-00034-4-cmmn-0000-00.webp",
+        "bytes": 26700,
+        "sha256": "e696633f49ec701e5c702d295832d5963f91c2f7ebe2a694cbe438491def9e07"
+      }
+    },
+    {
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790999/a5b591bc1c90992a571d02deeb9421be.webp/original",
+        "localPath": "/game/cards/card-00014-4-cmmn-0000-00.webp",
+        "bytes": 9228,
+        "sha256": "25ffa21bcb0a6ded4eb0b14c2c8f72d595001878d599835f2dd0fa5025af2b41"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791631/c4845d1b0199a2360de8b2e35c4c9271.webp/show",
+        "localPath": "/game/illustrations/card-00014-4-cmmn-0000-00.webp",
+        "bytes": 29654,
+        "sha256": "0e8d27fb701ecadac8d71b30ee69479a8d3f5f4b9af412274a62644cff90b128"
+      }
+    },
+    {
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790996/ff628fbc611782d9d46b8e1ad12d0f88.webp/original",
+        "localPath": "/game/cards/card-00012-4-cmmn-0000-00.webp",
+        "bytes": 9218,
+        "sha256": "0ad1ae2f7ea109d097c51dfb32e425ce39b322236737bdb287b0548adebb2556"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791651/e0944a0fb01dfe31ca50f9f6fe731737.webp/show",
+        "localPath": "/game/illustrations/card-00012-4-cmmn-0000-00.webp",
+        "bytes": 25026,
+        "sha256": "53be9afe32cf98f22194bd89afa0442b409b386a8b0cd0bcf3eb6bd7f6a95139"
+      }
+    },
+    {
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791117/d5d81be231a61d08b6a6c970e5a736ba.webp/original",
+        "localPath": "/game/cards/card-06002-4-cmmn-0000-00.webp",
+        "bytes": 9384,
+        "sha256": "e3ab355da444a421e1e35b85a4b1d5f1fc1924ae3f4b2cbd70f5a4c999fbde12"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791626/7606caf732300b8b95d316b4eca419fb.webp/show",
+        "localPath": "/game/illustrations/card-06002-4-cmmn-0000-00.webp",
+        "bytes": 26870,
+        "sha256": "2e23c14a9edeb341963972042ed7c1c188a45aeb488887e642cdd0058683d233"
+      }
+    },
+    {
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791106/a8640438e7f08f4084b7336959a861ac.webp/original",
+        "localPath": "/game/cards/card-04010-4-cmmn-0000-00.webp",
+        "bytes": 10354,
+        "sha256": "95dd7f01adbff0d875c43b82739eabbbfcc9072e86acdbb80e8984c859b66172"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791648/42f55712e54e7ee4b8e01cdcbb0c312e.webp/show",
+        "localPath": "/game/illustrations/card-04010-4-cmmn-0000-00.webp",
+        "bytes": 36216,
+        "sha256": "aca42b65775c7a706960daaa85174d6757ea1673c420cc384e024c7dbf4b1714"
+      }
+    },
+    {
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791067/7825bb73a1039e13b28b48cc1433ea74.webp/original",
+        "localPath": "/game/cards/card-03006-4-cmmn-0000-00.webp",
+        "bytes": 10420,
+        "sha256": "8f98d9e8c866f631d1a748ffaa31748c4d6c12d23a367997237af5b155a25a57"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791652/1b68025978dbc2e773278abd25388ebc.webp/show",
+        "localPath": "/game/illustrations/card-03006-4-cmmn-0000-00.webp",
+        "bytes": 34800,
+        "sha256": "782cc8e4bbc145d4697cdaae176f3bce49eeeffb0695750484d001d54103b8d0"
+      }
+    },
+    {
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790226/c635211c823e1781267e11879e59e836.webp/original",
+        "localPath": "/game/cards/card-00002-4-cmmn-0000-00.webp",
+        "bytes": 9690,
+        "sha256": "710ed187b7094aed39e113d9f04591493f005742eb8681589a00a52a0f981797"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791621/b15ab6a4a17fc5e613113c41b1774d15.webp/show",
+        "localPath": "/game/illustrations/card-00002-4-cmmn-0000-00.webp",
+        "bytes": 25690,
+        "sha256": "f6cfe86b0bd152f8f414a4344a23dcde48b6f37f31ef9fd92c25538abbe1935e"
+      }
+    },
+    {
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790918/9162ea070fd251dd6aab7559f96d3227.webp/original",
+        "localPath": "/game/cards/card-00015-4-cmmn-0000-00.webp",
+        "bytes": 9268,
+        "sha256": "727d08ed0c8f9f798574776bf200888d9dcea36652a7542eac8d497759287add"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791633/d3ac52adbcc7eaec954548dc13f9a465.webp/show",
+        "localPath": "/game/illustrations/card-00015-4-cmmn-0000-00.webp",
+        "bytes": 23258,
+        "sha256": "0ebf88bfbb9e26bb900151a47d7b3d776084a2a15e5936f3138ca3d359dba66e"
+      }
+    },
+    {
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791105/54530db9a47ddd078beb7d6eb8cb1068.webp/original",
+        "localPath": "/game/cards/card-04013-4-cmmn-0000-00.webp",
+        "bytes": 9782,
+        "sha256": "3e56bed4821b3f9382e167e4910f44ef618a7174c69d6948bd1a42b108eab3d9"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791660/b91645611e40d37c1bc8ec2eb9ff2267.webp/show",
+        "localPath": "/game/illustrations/card-04013-4-cmmn-0000-00.webp",
+        "bytes": 26468,
+        "sha256": "3c877b85925468796959021e215bbf10b5cae4780a27ab7adb8c177775ba4150"
+      }
+    },
+    {
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790985/0b9bef953ff1c8f4d148a1d55f834c5d.webp/original",
+        "localPath": "/game/cards/card-00006-4-cmmn-0000-00.webp",
+        "bytes": 8788,
+        "sha256": "b51429f1ee8ff89e02f2b6c5ec8c25432bace65a3f7c6f2db65ab56056a6bc72"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791645/75c4f9d35f6eabb7e3ff9195b38862b9.webp/show",
+        "localPath": "/game/illustrations/card-00006-4-cmmn-0000-00.webp",
+        "bytes": 25652,
+        "sha256": "75451b0ac4e1aad834df9ec8c2d4ee7c9a76a6094e51f9d7f2b0f662d690d706"
+      }
+    },
+    {
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791007/4d325aa9df4a7cd7fb4cda4502ea004f.webp/original",
+        "localPath": "/game/cards/card-00021-4-cmmn-0000-00.webp",
+        "bytes": 10336,
+        "sha256": "a6f6a6d823bc494ae36db719a5ad66e2248b29b6018abac02f8c71dae20334e2"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791636/7c6e76e0b0f014d3f825563e257366c1.webp/show",
+        "localPath": "/game/illustrations/card-00021-4-cmmn-0000-00.webp",
+        "bytes": 25888,
+        "sha256": "9aa60978459b9f2492381eca20a53c7975a9a8c47ecbf4a5202eab9076de3c3e"
+      }
+    },
+    {
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791004/5c9bb8db7bc69ff07a8b2dd12d58edd9.webp/original",
+        "localPath": "/game/cards/card-00022-4-cmmn-0000-00.webp",
+        "bytes": 11606,
+        "sha256": "d3c5432b734d3b2397608151638e0e273c154ed646fc3fb781bedbec3708fbf0"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791641/3603b52e6da28b30873b4ee5d6925127.webp/show",
+        "localPath": "/game/illustrations/card-00022-4-cmmn-0000-00.webp",
+        "bytes": 31154,
+        "sha256": "af1f3a4304d0bd85f65cdba5a8dcd83903d420618d6a98275e3acd9cfa75419a"
+      }
+    },
+    {
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791022/50e79696d33572b8a3b9b705701f904d.webp/original",
+        "localPath": "/game/cards/card-00032-4-cmmn-0000-00.webp",
+        "bytes": 9098,
+        "sha256": "a01dd6fa0be1b372f5158f310f289cd68eaf9c2979599d901a0a51fafa3fc886"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791650/b63682c7946da8d0a7fe2a59f62b5692.webp/show",
+        "localPath": "/game/illustrations/card-00032-4-cmmn-0000-00.webp",
+        "bytes": 21656,
+        "sha256": "adf19525c011ffb4c0fb2fa29b94105f654a1a4b9629875d956e9c8ad6f12912"
+      }
+    },
+    {
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791073/b5f70433542e556c78d056a679c1102c.webp/original",
+        "localPath": "/game/cards/card-04002-4-cmmn-0000-00.webp",
+        "bytes": 8512,
+        "sha256": "2fa4e7304a334f44c80235128508eac1c93be255c44497f85d2597d6ec61d643"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791622/5ed4c5127c54dbfa758dba4f1b02ca7c.webp/show",
+        "localPath": "/game/illustrations/card-04002-4-cmmn-0000-00.webp",
+        "bytes": 24562,
+        "sha256": "c90a2d62800d734c7939a21c1ef3cb9ba50f716db371d2dac7df605b2be866b7"
+      }
+    },
+    {
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791039/9ccbbc01226ab03a7f101b86bf3e1372.webp/original",
+        "localPath": "/game/cards/card-00036-4-cmmn-0000-00.webp",
+        "bytes": 9924,
+        "sha256": "82c8c73c1ee391faff0bf005aa8f9d07dad72043f2e2a6709e1177489db21c89"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791627/88c4cb8d461dbbe123dc4bf40d28af93.webp/show",
+        "localPath": "/game/illustrations/card-00036-4-cmmn-0000-00.webp",
+        "bytes": 26698,
+        "sha256": "6f2352139a8ec560cde7fdd990906d91ca532593503977e89b5179cadacf6bd4"
+      }
+    },
+    {
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791115/e59bca6fed2e58d970272a17088f8039.webp/original",
+        "localPath": "/game/cards/card-06005-4-cmmn-0000-00.webp",
+        "bytes": 8992,
+        "sha256": "d2f913a4aa9b7dd617c095c314403ee6ad37fbcbb0bc59fb90a9e9aa8aeb50c4"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791629/4cdde13b6e94d3a6edfb3591ecad697c.webp/show",
+        "localPath": "/game/illustrations/card-06005-4-cmmn-0000-00.webp",
+        "bytes": 25262,
+        "sha256": "62af0788ea03cffe0b60156a37c833651a982e8b10c95eac821bead264a56767"
+      }
+    },
+    {
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790227/57fdd37cf1b10112e848d7d9db931435.webp/original",
+        "localPath": "/game/cards/card-00001-4-cmmn-0000-00.webp",
+        "bytes": 10052,
+        "sha256": "1c2b0554556286720dc620012e66994617af90a0b4e095a37f3f1ee65f80d5f3"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791638/3f968365937709d21eb3fe5374927e96.webp/show",
+        "localPath": "/game/illustrations/card-00001-4-cmmn-0000-00.webp",
+        "bytes": 26572,
+        "sha256": "c2e546e84663f85f86918ebc0eead7ec79ad786c05ebc6f3c382116c57e34f5c"
+      }
+    },
+    {
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791011/8b6b7c24825d1eeff671fd2226fbdeee.webp/original",
+        "localPath": "/game/cards/card-00027-4-cmmn-0000-00.webp",
+        "bytes": 9766,
+        "sha256": "4b4c726cad395d05df169c886d31f31cddc686eb58a167f9e4afb0e38865f83b"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791656/e12cb4d305228737cf141f9fc20e92ed.webp/show",
+        "localPath": "/game/illustrations/card-00027-4-cmmn-0000-00.webp",
+        "bytes": 29712,
+        "sha256": "ff1a8d98e88e3eb05e3fd55cfef8fe3305590966a0b449e1c05d68feb5cc8d25"
+      }
+    },
+    {
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791013/ae3ce19f61c9c84e7550fd7f70381500.webp/original",
+        "localPath": "/game/cards/card-00026-4-cmmn-0000-00.webp",
+        "bytes": 9250,
+        "sha256": "6884d9ece97b3377eb4ada176bd7100cdda9e23f95f9e357024af4bef3277804"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791628/f6e778048da4ceb7246e2f46e92f8806.webp/show",
+        "localPath": "/game/illustrations/card-00026-4-cmmn-0000-00.webp",
+        "bytes": 29428,
+        "sha256": "4b35a7cec6a3ea7a3cd1b0e09dc8ff9f82d942215ba6da128d2c8fefc5da79a2"
+      }
+    },
+    {
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791005/c7d01fbc27871bbd115907194899fb67.webp/original",
+        "localPath": "/game/cards/card-00019-4-cmmn-0000-00.webp",
+        "bytes": 9268,
+        "sha256": "c430afcc2a6f26a6a7b0d9c89da102f8b2048ae2d013d387dfa6591613d8c292"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791669/0331e891e35df10964a7ffb2c4fc811d.webp/show",
+        "localPath": "/game/illustrations/card-00019-4-cmmn-0000-00.webp",
+        "bytes": 27786,
+        "sha256": "f99010f3f49cdea6f4a6d448df062dfa031d0ba5419f2d44ba10b2db13476514"
+      }
+    },
+    {
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791064/c33ff4a439a2a55cd58d78f3f3a6a3e6.webp/original",
+        "localPath": "/game/cards/card-03007-4-cmmn-0000-00.webp",
+        "bytes": 10138,
+        "sha256": "d3f97e23b9e8318e00c3e5b2c5e23987bf1ef7fc1588c135263ff0f1f1c9dc12"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791664/25e63e48ec494ce23c4301bcf7a561c7.webp/show",
+        "localPath": "/game/illustrations/card-03007-4-cmmn-0000-00.webp",
+        "bytes": 30428,
+        "sha256": "9d6e9a171d448e2cb69c099f335dca497c31ce99e664ee2c78cf1db77986a88e"
+      }
+    },
+    {
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12791024/df83e5a3a2adb15e7a4fae11ebe5f065.webp/original",
+        "localPath": "/game/cards/card-00030-4-cmmn-0000-00.webp",
+        "bytes": 9676,
+        "sha256": "26d2cbf84bbd471bbcd603f130f69d69d24547e064da42a5ab29af61b27e8403"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791643/b48b66e8a68aff9a0c9dd69a94434e42.webp/show",
+        "localPath": "/game/illustrations/card-00030-4-cmmn-0000-00.webp",
+        "bytes": 24678,
+        "sha256": "d8ef64e33481dac128e87ff531a73e106951e23eca00c41a83737ef33a7663bb"
+      }
+    },
+    {
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "status": "downloaded",
+      "sourcePage": "https://game8.jp/hololive-dreams/800509",
+      "retrievedAt": "2026-07-30",
+      "icon": {
+        "sourceUrl": "https://img.game8.jp/12790998/1e38e9ae0894feddda94390ad0fcd27f.webp/original",
+        "localPath": "/game/cards/card-00011-4-cmmn-0000-00.webp",
+        "bytes": 10710,
+        "sha256": "38ff969489c789d0f24e3088cbda0f92c0a806e21a04728197210b22a6683b2f"
+      },
+      "illustration": {
+        "sourceUrl": "https://img.game8.jp/12791670/3831396df011d0e7d093f208f172cb59.webp/show",
+        "localPath": "/game/illustrations/card-00011-4-cmmn-0000-00.webp",
+        "bytes": 28370,
+        "sha256": "407e8ba175e6e064d6699ac88c5d9c12e9412167a07b7717979a76500d928a31"
+      }
+    }
+  ]
+}

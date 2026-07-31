@@ -1,0 +1,25 @@
+{
+  "objective": "Build the most useful and accurate English hololive Dreams database, tier list, and team-building site.",
+  "ticketOrder": ["N01", "N02", "N03", "N04", "N05", "N06", "N07"],
+  "weights": {
+    "N01": 5,
+    "N02": 25,
+    "N03": 20,
+    "N04": 15,
+    "N05": 15,
+    "N06": 15,
+    "N07": 5
+  },
+  "completedSinceLastReport": [
+    "Pinned and normalized the complete 113-card 4-star and 5-star public roster with joined skills and Leader Outfits",
+    "Stored and verified 226 local card icons and illustrations with a source manifest",
+    "Replaced the rejected field-guide shell with the persistent Prydwen-density sidebar, mobile drawer, real-art homepage, and single footer disclaimer",
+    "Rebuilt cards, talents, Leader Outfits, tier contexts, skills, synergies, sources, and guides around real public data",
+    "Added real-data regressions and desktop/mobile browser coverage"
+  ],
+  "blockers": [
+    "The actual runtime score equation, target-order rules, and chart timing inputs are not yet fully validated",
+    "A calculated Yagoo-dori tier and team optimizer remain blocked on N03 mechanics evidence"
+  ],
+  "nextAction": "Review the live North-Star preview with the user, then implement and test the real mechanics model before publishing any native score or team optimizer."
+}

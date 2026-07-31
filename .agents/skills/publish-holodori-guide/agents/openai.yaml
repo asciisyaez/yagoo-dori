@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Holodori Guide"
+  short_description: "Draft exact-card guides from real game mechanics"
+  default_prompt: "Use $publish-holodori-guide to draft and preview an evidence-backed Pekora team guide without publishing it."

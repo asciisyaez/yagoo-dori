@@ -1,0 +1,26 @@
+{
+  "patchId": "patch-research-preview",
+  "methodologyVersion": "yd-m1.0.0-beta",
+  "changes": [
+    {
+      "dataset": "patches",
+      "recordId": "patch-research-preview",
+      "field": "label",
+      "proposedValue": "hololive Dreams launch research preview",
+      "sourceIds": ["source-official-launch"],
+      "upstreamVersion": "2026-07-23",
+      "retrievedAt": "2026-07-30",
+      "patchId": "patch-research-preview",
+      "verificationState": "verified",
+      "confidence": 1,
+      "reason": "new-evidence",
+      "scoreDelta": 0,
+      "attributions": [
+        {
+          "reason": "new-evidence",
+          "delta": 0
+        }
+      ]
+    }
+  ]
+}

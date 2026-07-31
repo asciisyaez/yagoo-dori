@@ -1,0 +1,99 @@
+[
+  {
+    "id": "talent-tokino-sora",
+    "slug": "tokino-sora",
+    "name": "Tokino Sora",
+    "branch": "hololive",
+    "generation": "Generation 0",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-sakura-miko",
+    "slug": "sakura-miko",
+    "name": "Sakura Miko",
+    "branch": "hololive",
+    "generation": "Generation 0",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-hoshimachi-suisei",
+    "slug": "hoshimachi-suisei",
+    "name": "Hoshimachi Suisei",
+    "branch": "hololive",
+    "generation": "Generation 0",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-shirakami-fubuki",
+    "slug": "shirakami-fubuki",
+    "name": "Shirakami Fubuki",
+    "branch": "hololive",
+    "generation": "Generation 1",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-usada-pekora",
+    "slug": "usada-pekora",
+    "name": "Usada Pekora",
+    "branch": "hololive",
+    "generation": "Generation 3",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-nekomata-okayu",
+    "slug": "nekomata-okayu",
+    "name": "Nekomata Okayu",
+    "branch": "hololive",
+    "generation": "hololive GAMERS",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-mori-calliope",
+    "slug": "mori-calliope",
+    "name": "Mori Calliope",
+    "branch": "hololive English",
+    "generation": "Myth",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  },
+  {
+    "id": "talent-kobo-kanaeru",
+    "slug": "kobo-kanaeru",
+    "name": "Kobo Kanaeru",
+    "branch": "hololive Indonesia",
+    "generation": "Generation 3",
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.4,
+    "illustrative": true
+  }
+]
+

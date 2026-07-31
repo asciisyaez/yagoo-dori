@@ -1,0 +1,31 @@
+{
+  "name": "yagoo-dori",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.14.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @yagoo-dori/web dev",
+    "build": "pnpm assets:check && pnpm data:validate && pnpm --filter @yagoo-dori/web build",
+    "start": "node scripts/start-standalone.mjs",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "test:unit": "pnpm --filter @yagoo-dori/core test",
+    "test:e2e": "playwright test",
+    "test:e2e:update": "playwright test --update-snapshots",
+    "data:validate": "pnpm --filter @yagoo-dori/core data:validate",
+    "rankings:generate": "pnpm --filter @yagoo-dori/core rankings:generate",
+    "data:sync": "node scripts/sync-public-data.mjs",
+    "assets:check": "node scripts/check-assets.mjs",
+    "project:status": "node scripts/project-status.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.0",
+    "@types/node": "26.1.2",
+    "tsx": "4.23.1",
+    "typescript": "6.0.3"
+  }
+}

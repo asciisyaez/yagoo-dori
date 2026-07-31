@@ -1,0 +1,54 @@
+[
+  {
+    "id": "leader-suisei-preview",
+    "slug": "suisei-starlight-preview",
+    "title": "Suisei starlight Leader — research slot",
+    "talentId": "talent-hoshimachi-suisei",
+    "outfitName": "Rights-pending preview Outfit",
+    "patchId": "patch-research-preview",
+    "preferredTypes": ["vocal"],
+    "synergyTags": ["vocal", "burst"],
+    "teamPowerMultiplier": 1.09,
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.2,
+    "illustrative": true,
+    "artAssetId": null
+  },
+  {
+    "id": "leader-pekora-preview",
+    "slug": "pekora-park-preview",
+    "title": "Pekora park Leader — research slot",
+    "talentId": "talent-usada-pekora",
+    "outfitName": "Rights-pending preview Outfit",
+    "patchId": "patch-research-preview",
+    "preferredTypes": ["smile"],
+    "synergyTags": ["smile", "route", "same-type"],
+    "teamPowerMultiplier": 1.085,
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.2,
+    "illustrative": true,
+    "artAssetId": null
+  },
+  {
+    "id": "leader-fubuki-preview",
+    "slug": "fubuki-wayfinder-preview",
+    "title": "Fubuki wayfinder Leader — research slot",
+    "talentId": "talent-shirakami-fubuki",
+    "outfitName": "Rights-pending preview Outfit",
+    "patchId": "patch-research-preview",
+    "preferredTypes": ["dance"],
+    "synergyTags": ["dance", "route"],
+    "teamPowerMultiplier": 1.08,
+    "sourceIds": ["source-official-system"],
+    "retrievedAt": "2026-07-29",
+    "verificationState": "research-only",
+    "confidence": 0.2,
+    "illustrative": true,
+    "artAssetId": null
+  }
+]
+

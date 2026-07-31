@@ -1,0 +1,26 @@
+{
+  "patchId": "patch-research-preview",
+  "methodologyVersion": "yd-m1.0.0-beta",
+  "changes": [
+    {
+      "dataset": "cards",
+      "recordId": "card-pekora-preview-5",
+      "field": "progression.2.power",
+      "proposedValue": 999,
+      "sourceIds": ["source-holodoridb-eng-signal"],
+      "upstreamVersion": "unlicensed-example",
+      "retrievedAt": "2026-07-30",
+      "patchId": "patch-research-preview",
+      "verificationState": "verified",
+      "confidence": 1,
+      "reason": "direct-change",
+      "scoreDelta": 10,
+      "attributions": [
+        {
+          "reason": "direct-change",
+          "delta": 10
+        }
+      ]
+    }
+  ]
+}

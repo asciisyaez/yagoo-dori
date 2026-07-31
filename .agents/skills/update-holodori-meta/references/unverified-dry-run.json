@@ -1,0 +1,19 @@
+{
+  "patchId": "patch-research-preview",
+  "methodologyVersion": "yd-m1.0.0-beta",
+  "changes": [
+    {
+      "dataset": "cards",
+      "recordId": "card-pekora-preview-5",
+      "field": "progression.2.power",
+      "proposedValue": 999,
+      "sourceIds": ["source-official-system"],
+      "upstreamVersion": "unsupported-example",
+      "retrievedAt": "2026-07-30",
+      "patchId": "patch-research-preview",
+      "verificationState": "research-only",
+      "confidence": 0.2,
+      "reason": "direct-change"
+    }
+  ]
+}
