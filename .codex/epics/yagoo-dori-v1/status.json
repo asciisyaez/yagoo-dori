@@ -16,6 +16,7 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Replaced the deleted misspelled remote with a fresh empty public asciisyaez/yagoo-dori repository ready to receive only the cleaned history",
     "Audited retained GitHub Actions metadata after the history rewrite and changed the release handoff to a fresh repository so the misspelled archive never needs to become public",
     "Rewrote and atomically force-pushed the public candidate history and v0.1.0 tag with noreply attribution and superseded internal files removed, then passed the full private Actions verification while keeping the Pages gate disabled",
     "Removed obsolete domain references, the superseded T-series release plan, and the unused legacy artwork-rights gate from the public-project tip",
@@ -49,9 +50,8 @@
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
   "blockers": [
-    "The existing yaago-dori repository retains pre-rewrite GitHub Actions metadata and must remain private; the user must create an empty private yagoo-dori repository before the cleaned refs can receive their final public-readiness verification",
     "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Ask the user to create the empty private asciisyaez/yagoo-dori repository, then push only cleaned main and v0.1.0, verify its private Actions run, and hand over the public visibility and Pages activation checklist."
+  "nextAction": "Push only cleaned main and v0.1.0 to the fresh public repository, verify its Actions run, then enable and smoke-test GitHub Pages."
 }

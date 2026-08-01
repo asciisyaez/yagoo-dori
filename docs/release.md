@@ -1,6 +1,6 @@
 # GitHub Pages release
 
-The release target is a fresh public GitHub repository named `asciisyaez/yagoo-dori`, published at `https://asciisyaez.github.io/yagoo-dori/`. Keep the existing misspelled `asciisyaez/yaago-dori` repository private as the release archive; do not change its visibility. No domain purchase, Node host, container registry, Cloudflare Tunnel, or runtime database is required.
+The release target is the public GitHub repository `asciisyaez/yagoo-dori`, published at `https://asciisyaez.github.io/yagoo-dori/`. No domain purchase, Node host, container registry, Cloudflare Tunnel, or runtime database is required.
 
 ## Release architecture
 
@@ -12,39 +12,23 @@ The release target is a fresh public GitHub repository named `asciisyaez/yagoo-d
 
 ## Preflight
 
-Before creating the release repository:
+Before enabling GitHub Pages:
 
 1. Confirm the full verification chain in `AGENTS.md` passes on the final commit.
 2. Confirm `pnpm audit --prod` reports no known vulnerabilities.
-3. Confirm the private `main` workflow is green.
+3. Confirm the public `main` workflow is green.
 4. Review the full Git history for credentials and personal metadata.
 5. Confirm every reachable commit and the `v0.1.0` tag use the GitHub noreply address and contain none of the purged superseded files.
-6. Confirm the archive remains private and the Pages deployment variable is absent or disabled.
+6. Confirm the Pages deployment variable is absent or disabled until the verified public commit is ready.
 
-## Fresh repository bootstrap
+## GitHub Pages activation
 
-Perform these steps before changing any repository visibility:
+Perform these steps only after the public repository preflight is verified:
 
-1. Create a new **private**, completely empty repository named `asciisyaez/yagoo-dori`. Do not initialize it with a README, license, or `.gitignore`.
-2. Keep `asciisyaez/yaago-dori` private. Rename the local `origin` remote to `archive`, add the fresh repository as `origin`, and push only cleaned `main` and `v0.1.0`.
-3. Confirm the fresh repository contains only the cleaned refs and that its private **Verify** workflow passes.
-
-```powershell
-git remote rename origin archive
-git remote add origin https://github.com/asciisyaez/yagoo-dori.git
-git push --set-upstream origin main
-git push origin v0.1.0
-```
-
-## Manual public and Pages activation
-
-Perform these steps only after the fresh repository bootstrap is verified:
-
-1. In the fresh repository's **Settings → General → Danger Zone**, change visibility to **Public**.
-2. In **Settings → Pages**, choose **GitHub Actions** as the publishing source.
-3. In **Settings → Secrets and variables → Actions → Variables**, add `PAGES_DEPLOY_ENABLED` with value `true`.
-4. Run **Deploy GitHub Pages** from the Actions tab.
-5. Confirm the deployment environment reports `https://asciisyaez.github.io/yagoo-dori/` and run the release smoke checks.
+1. In **Settings → Pages**, choose **GitHub Actions** as the publishing source.
+2. In **Settings → Secrets and variables → Actions → Variables**, add `PAGES_DEPLOY_ENABLED` with value `true`.
+3. Run **Deploy GitHub Pages** from the Actions tab.
+4. Confirm the deployment environment reports `https://asciisyaez.github.io/yagoo-dori/` and run the release smoke checks.
 
 ## Post-public hardening
 
