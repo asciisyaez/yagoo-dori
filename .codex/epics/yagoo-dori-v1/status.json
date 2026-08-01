@@ -24,6 +24,8 @@
     "Generated six independent Member and Leader Outfit ranking lenses across 600 matched contexts with frozen robust baselines, deterministic bootstrap confidence, tie-aware ranks, and no editorial-tier input",
     "Generated the first optimizer-backed AZKi guide with singer-matched Leaders, premium, standard, and four-star-accessible legal teams, replacements, stat calculations, skill cadence, investment order, and six rating-song comparisons",
     "Combined Member and Leader Outfit tiers into one dense URL-backed matrix and completed desktop and mobile visual QA with high-resolution local artwork",
+    "Validated the repository-scoped meta-update and exact-card guide skills for repeatable future roster, patch, ranking, and guide maintenance",
+    "Published the v0.1.0 checkpoint and current main branch to the private asciisyaez/yaago-dori GitHub repository",
     "Pinned and normalized the complete 113-card 4-star and 5-star public roster with joined skills and Leader Outfits",
     "Stored and verified 226 local card icons and illustrations with a source manifest",
     "Replaced the rejected field-guide shell with the persistent Prydwen-density sidebar, mobile drawer, real-art homepage, and single footer disclaimer",
@@ -31,9 +33,8 @@
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
   "blockers": [
-    "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so native bands and guides remain Theorycraft Beta",
-    "The full-roster guide search is deterministic and locally refined but is not yet a certified global optimum",
-    "The local v0.1.0 checkpoint cannot be pushed because this repository has no Git remote"
+    "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
+    "The full-roster guide search is deterministic and locally refined but is not yet a certified global optimum"
   ],
   "nextAction": "Validate the remaining runtime rules and replace the full-roster heuristic with a certifiable global search before claiming mathematically optimal formations."
 }
