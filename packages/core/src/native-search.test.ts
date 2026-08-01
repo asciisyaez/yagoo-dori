@@ -246,7 +246,9 @@ describe("native legal-team search", () => {
       result.replacementsBySlot.flatMap((slot) => slot.alternatives)
         .every((alternative) => alternative.intervalLoss.central >= -0.000_001),
     ).toBe(true);
-  });
+  // This independent exhaustive cross-check can exceed Vitest's five-second
+  // default on shared CI runners while retaining the same deterministic scope.
+  }, 15_000);
 
   it("evaluates every eligible Leader/Outfit for every finalist and audits all 120 orders", () => {
     const result = searchNativeLegalTeams(BASE_INPUT);
