@@ -14,6 +14,7 @@ import {
   generateNativeGuideData,
   mergeNativeGuideData,
 } from "../native-guide-generator";
+import { nativeRankingData } from "../native-ranking-data";
 import { NativeGuideDataSchema } from "../native-guide-schema";
 
 function argument(name: string): string | undefined {
@@ -48,6 +49,12 @@ const outputPath = resolve(
 const anchorCardIds = [...new Set(argumentsFor("--anchor-card-id"))].sort();
 const fixedLeaderOutfitCardId = argument("--leader-outfit-card-id");
 const replaceAll = process.argv.includes("--replace-all");
+const existingData = existsSync(outputPath)
+  ? NativeGuideDataSchema.parse(JSON.parse(readFileSync(outputPath, "utf8")))
+  : undefined;
+const existingIsStale = existingData?.guides.some(
+  (guide) => guide.snapshotId !== nativeRankingData.snapshotId,
+) ?? false;
 
 if (fixedLeaderOutfitCardId && anchorCardIds.length > 1) {
   throw new Error("A fixed Leader Outfit can only be used with one guide anchor per run");
@@ -55,7 +62,9 @@ if (fixedLeaderOutfitCardId && anchorCardIds.length > 1) {
 
 const requestedAnchorCardIds = anchorCardIds.length > 0
   ? anchorCardIds
-  : [DEFAULT_GUIDE_ANCHOR_CARD_ID];
+  : (replaceAll || existingIsStale) && existingData
+    ? existingData.guides.map((guide) => guide.anchorCardId).sort()
+    : [DEFAULT_GUIDE_ANCHOR_CARD_ID];
 
 console.log(`Generating native guide data at ${generatedAt}...`);
 const generatedData = requestedAnchorCardIds.map((anchorCardId, index) => {
@@ -65,10 +74,11 @@ const generatedData = requestedAnchorCardIds.map((anchorCardId, index) => {
     ...(fixedLeaderOutfitCardId ? { fixedLeaderOutfitCardId } : {}),
   }, (message) => console.log(message));
 });
-const existingData = !replaceAll && existsSync(outputPath)
-  ? NativeGuideDataSchema.parse(JSON.parse(readFileSync(outputPath, "utf8")))
-  : undefined;
-const data = mergeNativeGuideData(generatedAt, generatedData, existingData);
+const data = mergeNativeGuideData(
+  generatedAt,
+  generatedData,
+  replaceAll || existingIsStale ? undefined : existingData,
+);
 const json = `${JSON.stringify(data, null, 2)}\n`;
 mkdirSync(dirname(outputPath), { recursive: true });
 const temporaryPath = `${outputPath}.${process.pid}.tmp`;

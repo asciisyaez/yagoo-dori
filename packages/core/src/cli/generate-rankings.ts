@@ -17,6 +17,13 @@ import {
   type NativeBaselineKey,
   type SerializedFrozenNativeBaseline,
 } from "../native-ranking-generator";
+import {
+  generateNativeRankingChangelog,
+  NativeComparableRankingSnapshotSchema,
+  NativeRankingAttributionManifestSchema,
+  type NativeComparableRankingSnapshot,
+  type NativeRankingAttributionManifest,
+} from "../native-ranking-changelog";
 
 function argument(name: string): string | undefined {
   const inline = process.argv.find((value) => value.startsWith(`${name}=`));
@@ -35,7 +42,27 @@ const baselineDirectory = resolve(
   repositoryRoot,
   argument("--baseline-dir") ?? "data/native/baselines",
 );
+const changelogOutputPath = resolve(
+  repositoryRoot,
+  argument("--changelog-output") ?? "data/generated/native-ranking-changelog.json",
+);
+const attributionPath = argument("--attribution");
 const refreshBaselines = process.argv.includes("--refresh-baselines");
+
+function readPreviousSnapshot(): NativeComparableRankingSnapshot | null {
+  if (!existsSync(outputPath)) return null;
+  return NativeComparableRankingSnapshotSchema.parse(
+    JSON.parse(readFileSync(outputPath, "utf8")),
+  );
+}
+
+function readAttributionManifest(): NativeRankingAttributionManifest | undefined {
+  if (!attributionPath) return undefined;
+  const filename = resolve(repositoryRoot, attributionPath);
+  return NativeRankingAttributionManifestSchema.parse(
+    JSON.parse(readFileSync(filename, "utf8")),
+  );
+}
 
 function directJsonFiles(directory: string): string[] {
   if (!existsSync(directory)) return [];
@@ -82,6 +109,8 @@ function clearFrozenBaselineJsonFiles(): void {
 }
 
 console.log(`Generating native ranking snapshot at ${generatedAt}...`);
+const previousSnapshot = readPreviousSnapshot();
+const attributionManifest = readAttributionManifest();
 const frozenBaselines = readFrozenBaselines();
 if (frozenBaselines.size > 0) {
   console.log(`Reusing ${frozenBaselines.size} frozen launch baselines.`);
@@ -90,15 +119,25 @@ const generated = generateNativeRankingSnapshot(
   generatedAt,
   (message) => console.log(message),
   frozenBaselines,
+  undefined,
+  previousSnapshot,
 );
 const snapshotJson = `${JSON.stringify(generated.snapshot, null, 2)}\n`;
+const changelog = generateNativeRankingChangelog(
+  previousSnapshot,
+  generated.snapshot,
+  attributionManifest,
+);
+const changelogJson = `${JSON.stringify(changelog, null, 2)}\n`;
 
 mkdirSync(dirname(outputPath), { recursive: true });
+mkdirSync(dirname(changelogOutputPath), { recursive: true });
 mkdirSync(baselineDirectory, { recursive: true });
 // Refresh is intentionally delayed until generation succeeds, so a failed run
 // cannot destroy the last usable baseline set. Only direct JSON files are reset.
 if (refreshBaselines) clearFrozenBaselineJsonFiles();
 writeFileSync(outputPath, snapshotJson, "utf8");
+writeFileSync(changelogOutputPath, changelogJson, "utf8");
 for (const baseline of generated.baselines) {
   writeFileSync(
     resolve(baselineDirectory, `${baseline.id}.json`),
@@ -109,6 +148,7 @@ for (const baseline of generated.baselines) {
 
 const digest = createHash("sha256").update(snapshotJson).digest("hex");
 console.log(`Wrote ${outputPath}`);
+console.log(`Wrote ${changelogOutputPath} (${changelog.entries.length} attributed changes)`);
 console.log(`Wrote ${generated.baselines.length} frozen baselines to ${baselineDirectory}`);
 console.log(`Snapshot SHA-256: ${digest}`);
 console.log(
@@ -117,4 +157,3 @@ console.log(
 console.log(
   `Leader/Outfit entries: ${generated.snapshot.leaderOutfitLenses.map((lens) => `${lens.label}=${lens.entries.length}`).join(", ")}`,
 );
-console.log("Publication state: Theorycraft Beta; absolute score unavailable.");

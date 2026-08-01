@@ -6,6 +6,7 @@ import {
   type NativeGuideFormation,
 } from "./native-guide-schema";
 import { nativeRankingData } from "./native-ranking-data";
+import type { NativeRankingChangelog } from "./native-ranking-changelog";
 import { type SerializableInterval } from "./native-ranking-schema";
 import { searchNativeLegalTeams, type NativeSearchResult } from "./native-search";
 import {
@@ -384,6 +385,54 @@ export function mergeNativeGuideData(
       (left, right) =>
         left.anchorCardId.localeCompare(right.anchorCardId) || left.slug.localeCompare(right.slug),
     ),
+  });
+}
+
+/**
+ * Carry deterministic guide output to a ranking-only metadata transition.
+ * Guide search does not consume ranking tiers or indices, so a rebase is safe
+ * only when the roster, scores, and ranks are unchanged across the transition.
+ */
+export function rebaseNativeGuideDataSnapshot(
+  generatedAt: string,
+  existingInput: NativeGuideData,
+  transition: NativeRankingChangelog,
+): NativeGuideData {
+  const existing = NativeGuideDataSchema.parse(existingInput);
+  const parsedGeneratedAt = new Date(generatedAt);
+  if (Number.isNaN(parsedGeneratedAt.valueOf())) {
+    throw new Error("generatedAt must be an ISO timestamp");
+  }
+  const normalizedGeneratedAt = parsedGeneratedAt.toISOString();
+  if (!transition.from) throw new Error("Guide rebasing requires a previous ranking snapshot");
+  if (
+    transition.to.snapshotId !== nativeRankingData.snapshotId ||
+    transition.to.generatedAt !== nativeRankingData.generatedAt ||
+    transition.to.methodologyVersion !== nativeRankingData.methodologyVersion
+  ) {
+    throw new Error("Guide rebase transition does not end at the current ranking snapshot");
+  }
+  if (
+    transition.summary.added !== 0 ||
+    transition.summary.removed !== 0 ||
+    transition.summary.scoreChanged !== 0 ||
+    transition.summary.rankChanged !== 0
+  ) {
+    throw new Error("Guide rebasing requires an unchanged roster, score index, and rank order");
+  }
+  if (
+    existing.rosterCommit !== nativeRankingData.rosterCommit ||
+    existing.guides.some((guide) => guide.snapshotId !== transition.from!.snapshotId)
+  ) {
+    throw new Error("Guide data does not match the starting ranking snapshot");
+  }
+  return NativeGuideDataSchema.parse({
+    ...existing,
+    generatedAt: normalizedGeneratedAt,
+    guides: existing.guides.map((guide) => ({
+      ...guide,
+      snapshotId: nativeRankingData.snapshotId,
+    })),
   });
 }
 

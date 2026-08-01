@@ -25,10 +25,24 @@ describe("frozen Member tier calibration", () => {
       const counts = Object.fromEntries(
         ["SS", "S", "A", "B", "C", "D"].map((tier) => [
           tier,
-          lens.entries.filter((entry) => entry.tier === tier).length,
+          lens.entries.filter(
+            (entry) => memberTierForIndex(lens.investment, entry.index.central) === tier,
+          ).length,
         ]),
       );
       expect(counts).toEqual({ SS: 6, S: 12, A: 23, B: 18, C: 27, D: 27 });
+    }
+  });
+
+  it("only publishes extreme tiers when their additional confidence gates pass", () => {
+    for (const lens of nativeRankingData.lenses) {
+      const counts = Object.fromEntries(
+        ["SS", "S", "A", "B", "C", "D"].map((tier) => [
+          tier,
+          lens.entries.filter((entry) => entry.tier === tier).length,
+        ]),
+      );
+      expect(counts).toEqual({ SS: 0, S: 18, A: 23, B: 18, C: 54, D: 0 });
     }
   });
 

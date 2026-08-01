@@ -28,6 +28,7 @@
     "data:validate": "pnpm --filter @yagoo-dori/core data:validate",
     "rankings:generate": "pnpm --filter @yagoo-dori/core rankings:generate",
     "guides:generate": "pnpm --filter @yagoo-dori/core guides:generate",
+    "guides:rebase": "pnpm --filter @yagoo-dori/core guides:rebase",
     "data:sync": "pnpm data:sync:public && pnpm data:sync:mechanics && pnpm data:sync:songs",
     "data:sync:public": "node scripts/sync-public-data.mjs",
     "data:sync:mechanics": "node scripts/sync-mechanics-data.mjs",

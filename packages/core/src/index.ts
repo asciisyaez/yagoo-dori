@@ -6,6 +6,8 @@ export * from "./native-guide-data";
 export * from "./native-guide-schema";
 export * from "./native-metrics";
 export * from "./native-ranking-data";
+export * from "./native-ranking-changelog";
+export * from "./native-ranking-changelog-data";
 export * from "./native-ranking-benchmark";
 export * from "./native-ranking-generator";
 export * from "./native-ranking-scoring";

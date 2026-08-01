@@ -12,6 +12,7 @@ import {
   exactInterval,
   integerInterval,
   matchedLegalReplacementMarginal,
+  stabilizeNativeTier,
   type FrozenNativeBaseline,
   type NativeCardMetrics,
 } from "./native-metrics";
@@ -221,6 +222,22 @@ describe("tier confidence, hysteresis, and provisional behavior", () => {
         boundaryConfidencePermil: 800,
       }),
     ).toBe("S");
+  });
+
+  it("applies completeness and hysteresis to a calibrated tier candidate", () => {
+    const calibrated = {
+      candidateTier: "B" as const,
+      interval: integerInterval(98n * INDEX_SCALE, 100n * INDEX_SCALE, 102n * INDEX_SCALE),
+      samplingErrorMicro: 400_000n,
+      sourceComplete: true,
+      metricCoverageComplete: true,
+      evaluationComplete: true,
+      boundaryConfidencePermil: 799,
+      previousTier: "A" as const,
+    };
+    expect(stabilizeNativeTier(calibrated)).toBe("A");
+    expect(stabilizeNativeTier({ ...calibrated, boundaryConfidencePermil: 800 })).toBe("B");
+    expect(stabilizeNativeTier({ ...calibrated, sourceComplete: false })).toBe("Provisional");
   });
 });
 

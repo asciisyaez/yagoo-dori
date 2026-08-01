@@ -63,12 +63,12 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
   );
   await expect(page.getByText("113 cards shown", { exact: true })).toBeVisible();
   await expect(page.locator(".game-card-tile")).toHaveCount(113);
-  await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(6);
-  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(12);
+  await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(18);
   await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(23);
   await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(18);
-  await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(27);
-  await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(27);
+  await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
+  await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();

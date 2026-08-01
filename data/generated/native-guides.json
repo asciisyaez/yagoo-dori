@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-01T06:17:59.995Z",
+  "generatedAt": "2026-08-01T14:30:00.000Z",
   "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
   "guides": [
     {
@@ -9,7 +9,7 @@
       "title": "Oozora Subaru — Vibrant Sun Splash! team guide",
       "anchorCardId": "card-00012-5-uniq-0062-00",
       "anchorTalentId": "chr-00012",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -1431,7 +1431,7 @@
       "title": "AZKi — A Flower in Full Bloom team guide",
       "anchorCardId": "card-00013-5-uniq-0002-00",
       "anchorTalentId": "chr-00013",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -2829,7 +2829,7 @@
       "title": "Usada Pekora — Playful Rabbit Field team guide",
       "anchorCardId": "card-00019-5-uniq-0016-00",
       "anchorTalentId": "chr-00019",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -4112,7 +4112,7 @@
       "title": "Shiranui Flare — Sparks at Sunset team guide",
       "anchorCardId": "card-00021-5-uniq-0064-00",
       "anchorTalentId": "chr-00021",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -5526,7 +5526,7 @@
       "title": "Shirogane Noel — Serene Wave Knight team guide",
       "anchorCardId": "card-00022-5-uniq-0063-00",
       "anchorTalentId": "chr-00022",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -6864,7 +6864,7 @@
       "title": "Tsunomaki Watame — Floatie Float Time team guide",
       "anchorCardId": "card-00026-5-uniq-0065-00",
       "anchorTalentId": "chr-00026",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -8240,7 +8240,7 @@
       "title": "Otonose Kanade — Breezy Smile Chords team guide",
       "anchorCardId": "card-06002-5-uniq-0066-00",
       "anchorTalentId": "chr-06002",
-      "snapshotId": "2026-07-31-yd-native-2",
+      "snapshotId": "2026-07-31-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.1.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {

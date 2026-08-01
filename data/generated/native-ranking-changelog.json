@@ -1,0 +1,2501 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-07-31-yd-native-2@2026-07-31T16:00:00.000Z->2026-07-31-yd-native-2.1@2026-08-01T14:00:00.000Z",
+  "from": {
+    "snapshotId": "2026-07-31-yd-native-2",
+    "generatedAt": "2026-07-31T16:00:00.000Z",
+    "methodologyVersion": "yd-native-ranking-2.0.0"
+  },
+  "to": {
+    "snapshotId": "2026-07-31-yd-native-2.1",
+    "generatedAt": "2026-08-01T14:00:00.000Z",
+    "methodologyVersion": "yd-native-ranking-2.1.0"
+  },
+  "attributionPolicy": "exact-micro-index-sum-required",
+  "rankDeltaConvention": "positive-means-rank-improved",
+  "entries": [
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "D",
+        "to": "C",
+        "steps": 1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": 0,
+      "tierDelta": {
+        "from": "SS",
+        "to": "S",
+        "steps": -1
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "methodology-correction",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "scoreChanged": 0,
+    "rankChanged": 0,
+    "tierChanged": 99,
+    "stableTierChanged": 0
+  }
+}

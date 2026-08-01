@@ -1,8 +1,13 @@
-import { nativeRankingData, publicData } from "@yagoo-dori/core";
+import {
+  nativeRankingChangelogData,
+  nativeRankingData,
+  publicCardById,
+  publicData,
+} from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { SiteLink as Link } from "@/components/site-link";
 import { notFound } from "next/navigation";
-import { ArrowRight, BarChart3, DatabaseZap, ImageIcon, Layers3, Tags } from "lucide-react";
+import { ArrowRight, BarChart3, DatabaseZap, Layers3, Tags } from "lucide-react";
 
 const snapshotId = nativeRankingData.snapshotId;
 
@@ -25,32 +30,46 @@ export default async function ChangelogPage({ params }: { params: Promise<{ snap
         <div className="database-heading-icon"><DatabaseZap aria-hidden="true" /></div>
         <div>
           <p className="db-eyebrow">Changelog / {nativeRankingData.dataRetrievedAt}</p>
-          <h1>First Yagoo-dori tier snapshot</h1>
+          <h1>Tier calibration update</h1>
           <p>
-            Every current 4★ and 5★ card now has separate Member and Leader Outfit bands across
-            Standard Manual, Low Investment, and Max Ceiling.
+            SS and D placements now apply their confidence requirements after each ranking
+            view&apos;s tier calibration. Numerical scores and ranks are unchanged.
           </p>
         </div>
         <dl className="database-summary">
-          <div><dt>Evaluations</dt><dd>{publicData.counts.total * 2}</dd></div>
-          <div><dt>Lenses</dt><dd>{nativeRankingData.lenses.length}</dd></div>
-          <div><dt>Cards</dt><dd>{publicData.counts.total}</dd></div>
+          <div><dt>Tier changes</dt><dd>{nativeRankingChangelogData.summary.tierChanged}</dd></div>
+          <div><dt>Rank changes</dt><dd>{nativeRankingChangelogData.summary.rankChanged}</dd></div>
+          <div><dt>Score changes</dt><dd>{nativeRankingChangelogData.summary.scoreChanged}</dd></div>
         </dl>
       </header>
 
       <section className="snapshot-header" aria-label="Snapshot overview">
         <div><Layers3 aria-hidden="true" /><span>Roster</span><strong>{publicData.counts.total} cards</strong></div>
-        <div><BarChart3 aria-hidden="true" /><span>Ranking contexts</span><strong>Members + Outfits</strong></div>
-        <div><Tags aria-hidden="true" /><span>Tier scale</span><strong>SS through D</strong></div>
+        <div><BarChart3 aria-hidden="true" /><span>Index movement</span><strong>None</strong></div>
+        <div><Tags aria-hidden="true" /><span>Reason</span><strong>Tier confidence correction</strong></div>
       </section>
 
       <section className="change-table">
-        <header><span>Area</span><span>Included</span><span>What changed</span></header>
-        <div><strong>Member tiers</strong><span>{publicData.counts.total} cards</span><p>All current 4★ and 5★ Members are grouped into six fixed decision tiers.</p></div>
-        <div><strong>Leader Outfit tiers</strong><span>{publicData.counts.total} Outfits</span><p>Leader effects are compared in their own matched five-Member contexts instead of being mixed with Member kits.</p></div>
-        <div><strong>Investment lenses</strong><span>3 views</span><p>Standard Manual, Low Investment, and Max Ceiling can be compared without leaving the tier matrix.</p></div>
-        <div><strong>Team mechanics</strong><span>Full card kits</span><p>Performance, Technique, Sense, typing, Leader, Active, Passive, and Special skills, song context, and legal team rules contribute to placement.</p></div>
-        <div><strong>Artwork</strong><span><ImageIcon aria-hidden="true" /> {publicData.counts.art * 2} files</span><p>Card icons and full illustrations are served locally throughout the database and tier list.</p></div>
+        <header><span>Card</span><span>Ranking view</span><span>Change</span></header>
+        {nativeRankingChangelogData.entries.map((change) => {
+          const card = publicCardById.get(change.cardId);
+          if (!card) return null;
+          const context = change.entityKind === "member" ? "Member" : "Leader Outfit";
+          const lens = change.investment === "one-copy-maximum"
+            ? "Standard Manual"
+            : change.investment === "low-investment"
+              ? "Low Investment"
+              : "Max Ceiling";
+          return (
+            <div key={`${change.entityKind}-${change.investment}-${change.cardId}`}>
+              <strong><Link href={`/cards/${card.slug}`}>{card.talentName} · {card.title}</Link></strong>
+              <span>{context} · {lens}</span>
+              <p>
+                Tier {change.tierDelta.from} → {change.tierDelta.to}; score and rank unchanged.
+              </p>
+            </div>
+          );
+        })}
       </section>
 
       <div className="guide-next-actions">

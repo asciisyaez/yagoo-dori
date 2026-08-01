@@ -11,6 +11,7 @@ export const NativeLensSchema = z.enum([
 
 export const NativeRankingEntityKindSchema = z.enum(["member", "leader-outfit"]);
 export const NativeModelBandSchema = z.enum(["SS", "S", "A", "B", "C", "D"]);
+export const NATIVE_RANKING_METHODOLOGY_VERSION = "yd-native-ranking-2.1.0" as const;
 export const NativeStableTierSchema = z.enum([
   "SS",
   "S",
@@ -118,6 +119,24 @@ export const NativeRankingEntrySchema = z
         message: "A Provisional tier requires at least one concrete reason",
       });
     }
+    if (entry.stableTier !== "Provisional" && entry.provisionalReasons.length > 0) {
+      context.addIssue({
+        code: "custom",
+        path: ["provisionalReasons"],
+        message: "A stable tier cannot retain provisional reasons",
+      });
+    }
+    if (
+      entry.stableTier !== "Provisional" &&
+      entry.stableTier !== entry.tier &&
+      entry.boundaryConfidencePermil >= 800
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["stableTier"],
+        message: "A previous tier can only be retained below 80% boundary confidence",
+      });
+    }
     const expectedModelBand = gatedModelBandForIndex(entry.index.central, entry.bootstrap);
     if (entry.modelBand !== expectedModelBand) {
       context.addIssue({
@@ -175,9 +194,12 @@ export const NativeRankingLensSnapshotSchema = z
       }
     }
     for (const [entryIndex, entry] of snapshot.entries.entries()) {
-      const expectedTier = snapshot.entityKind === "member"
-        ? memberTierForIndex(snapshot.investment, entry.index.central)
-        : entry.modelBand;
+      const expectedTier = gatedNativeTierCandidate(
+        snapshot.entityKind === "member"
+          ? memberTierForIndex(snapshot.investment, entry.index.central)
+          : modelBandForIndex(entry.index.central),
+        entry.bootstrap,
+      );
       if (entry.tier !== expectedTier) {
         context.addIssue({
           code: "custom",
@@ -219,7 +241,7 @@ export const NativeRankingSnapshotSchema = z
     dataRetrievedAt: z.iso.date(),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     mechanicsVersion: z.string().min(1),
-    methodologyVersion: z.literal("yd-native-ranking-2.0.0"),
+    methodologyVersion: z.literal(NATIVE_RANKING_METHODOLOGY_VERSION),
     evaluatorVersion: z.literal("yd-native-utility-1.0.0"),
     benchmarkId: z.string().min(1),
     currentContextExtension: NativeCurrentContextExtensionSchema.nullable(),
@@ -347,7 +369,18 @@ export function gatedModelBandForIndex(
     definitelyNegativeMarginalPermil: number;
   }>,
 ): NativeModelBand {
-  const raw = modelBandForIndex(index);
+  return gatedNativeTierCandidate(modelBandForIndex(index), evidence);
+}
+
+export function gatedNativeTierCandidate(
+  raw: NativeModelBand,
+  evidence: Readonly<{
+    probabilityAbove120Permil: number;
+    probabilityTopDecilePermil: number;
+    probabilityBelow80Permil: number;
+    definitelyNegativeMarginalPermil: number;
+  }>,
+): NativeModelBand {
   if (
     raw === "SS" &&
     (evidence.probabilityAbove120Permil < 900 || evidence.probabilityTopDecilePermil < 800)

@@ -3,13 +3,18 @@ import { z } from "zod";
 import {
   applyFrozenNativeBaseline,
   buildFrozenNativeBaseline,
-  classifyNativeTier,
   integerInterval,
+  stabilizeNativeTier,
   type FrozenNativeBaseline,
   type IntegerInterval,
   type NativeCardMetrics,
   type NativeTier,
 } from "./native-metrics";
+import {
+  nativeRankingTransitionKey,
+  previousStableTierMap,
+  type NativeComparableRankingSnapshot,
+} from "./native-ranking-changelog";
 import {
   buildNativeRankingBenchmarkContexts,
   frozenCohortCardIds,
@@ -30,8 +35,10 @@ import {
 } from "./native-ranking-scoring";
 import {
   gatedModelBandForIndex,
+  gatedNativeTierCandidate,
   modelBandForIndex,
   nativeCompetitionRanks,
+  NATIVE_RANKING_METHODOLOGY_VERSION,
   NativeLensSchema,
   NativeRankingEntityKindSchema,
   NativeRankingSnapshotSchema,
@@ -613,19 +620,20 @@ function provisionalReasons(
   stableTier: NativeTier,
   index: SerializableInterval,
   samplingError: number,
+  sourceComplete: boolean,
+  metricCoverageComplete: boolean,
+  evaluationComplete: boolean,
 ): string[] {
-  const reasons = [
-    "The complete runtime score equation remains unvalidated.",
-    "Rainbow-marker timestamps are unavailable; Specials use duration coverage.",
-    "Capped recipient selection uses the guaranteed-value decision scenario.",
-  ];
-  if (stableTier === "Provisional") {
-    if (index.upper - index.lower > 10) {
-      reasons.push("The 90% matched-context index interval is wider than ten points.");
-    }
-    if (samplingError > 0.5) {
-      reasons.push("Bootstrap sampling error exceeds 0.5 index points.");
-    }
+  if (stableTier !== "Provisional") return [];
+  const reasons: string[] = [];
+  if (!sourceComplete) reasons.push("Required mechanics references are incomplete.");
+  if (!metricCoverageComplete) reasons.push("Fewer than 250 matched contexts were evaluated.");
+  if (!evaluationComplete) reasons.push("The matched-context evaluation did not complete.");
+  if (index.upper - index.lower > 10) {
+    reasons.push("The 90% matched-context index interval is wider than ten points.");
+  }
+  if (samplingError > 0.5) {
+    reasons.push("Bootstrap sampling error exceeds 0.5 index points.");
   }
   return reasons;
 }
@@ -636,6 +644,7 @@ function createEntries(
   baselines: ReadonlyMap<NativeBaselineKey, FrozenNativeBaseline>,
   bootstrapByCard: ReadonlyMap<string, BootstrapEntity>,
   lens: NativeLens,
+  previousTiers: ReadonlyMap<string, NativeTier>,
 ): InternalEntry[] {
   return rawRows.map((row) => {
     const pointMetrics = row.metricsByLens[lens];
@@ -667,37 +676,6 @@ function createEntries(
       samples.filter((sample) => sample.marginal.upper < 0n).length,
       samples.length,
     );
-    const rawBand = modelBandForIndex(pointIndex);
-    const boundaryConfidencePermil = permilFraction(
-      distribution.index.filter(
-        (value) =>
-          modelBandForIndex(value.lower) === rawBand &&
-          modelBandForIndex(value.upper) === rawBand,
-      ).length,
-      BOOTSTRAP_REPLICATES,
-    );
-    const stableTier = classifyNativeTier({
-      interval: integerInterval(
-        BigInt(Math.round(index.lower * INDEX_SCALE)),
-        BigInt(Math.round(index.central * INDEX_SCALE)),
-        BigInt(Math.round(index.upper * INDEX_SCALE)),
-      ),
-      samplingErrorMicro: BigInt(Math.round(samplingError * INDEX_SCALE)),
-      sourceComplete: mechanicsData.coverage.unresolvedReferences.length === 0,
-      metricCoverageComplete: samples.length >= 250,
-      evaluationComplete: true,
-      probabilityAbove120Permil,
-      probabilityTopDecilePermil,
-      probabilityBelow80Permil,
-      definitelyNegativeMarginalPermil,
-      boundaryConfidencePermil,
-    });
-    const metrics = {
-      G: serializeMetricDistribution(distribution.G, pointMetrics.G, "ratio"),
-      P: serializeMetricDistribution(distribution.P, pointMetrics.P, "ratio"),
-      B: serializeMetricDistribution(distribution.B, pointMetrics.B, "breadth"),
-      E: serializeMetricDistribution(distribution.E, pointMetrics.E, "ratio"),
-    };
     const bootstrap = {
       replicates: BOOTSTRAP_REPLICATES,
       confidenceLevelPermil: 900 as const,
@@ -706,6 +684,45 @@ function createEntries(
       probabilityBelow80Permil,
       definitelyNegativeMarginalPermil,
     };
+    const calibratedTier = (value: number) => gatedNativeTierCandidate(
+      entityKind === "member" ? memberTierForIndex(lens, value) : modelBandForIndex(value),
+      bootstrap,
+    );
+    const tier = calibratedTier(pointIndex);
+    const boundaryConfidencePermil = permilFraction(
+      distribution.index.filter(
+        (value) =>
+          calibratedTier(value.lower) === tier &&
+          calibratedTier(value.upper) === tier,
+      ).length,
+      BOOTSTRAP_REPLICATES,
+    );
+    const sourceComplete = mechanicsData.coverage.unresolvedReferences.length === 0;
+    const metricCoverageComplete = samples.length >= 250;
+    const evaluationComplete = true;
+    const previousTier = previousTiers.get(
+      nativeRankingTransitionKey(entityKind, lens, row.cardId),
+    );
+    const stableTier = stabilizeNativeTier({
+      candidateTier: tier,
+      interval: integerInterval(
+        BigInt(Math.round(index.lower * INDEX_SCALE)),
+        BigInt(Math.round(index.central * INDEX_SCALE)),
+        BigInt(Math.round(index.upper * INDEX_SCALE)),
+      ),
+      samplingErrorMicro: BigInt(Math.round(samplingError * INDEX_SCALE)),
+      sourceComplete,
+      metricCoverageComplete,
+      evaluationComplete,
+      boundaryConfidencePermil,
+      ...(previousTier ? { previousTier } : {}),
+    });
+    const metrics = {
+      G: serializeMetricDistribution(distribution.G, pointMetrics.G, "ratio"),
+      P: serializeMetricDistribution(distribution.P, pointMetrics.P, "ratio"),
+      B: serializeMetricDistribution(distribution.B, pointMetrics.B, "breadth"),
+      E: serializeMetricDistribution(distribution.E, pointMetrics.E, "ratio"),
+    };
     const modelBand = gatedModelBandForIndex(pointIndex, bootstrap);
     return {
       cardId: row.cardId,
@@ -713,7 +730,7 @@ function createEntries(
       entry: {
         cardId: row.cardId,
         modelBand,
-        tier: entityKind === "member" ? memberTierForIndex(lens, pointIndex) : modelBand,
+        tier,
         stableTier,
         publicationState: "theorycraft-beta" as const,
         index,
@@ -723,7 +740,14 @@ function createEntries(
         contextDispersion: contextDispersion(samples),
         bootstrap,
         evaluation: samplingSummary(entityKind, samples),
-        provisionalReasons: provisionalReasons(stableTier, index, samplingError),
+        provisionalReasons: provisionalReasons(
+          stableTier,
+          index,
+          samplingError,
+          sourceComplete,
+          metricCoverageComplete,
+          evaluationComplete,
+        ),
       },
     };
   });
@@ -740,6 +764,7 @@ export function generateNativeRankingSnapshot(
   onProgress?: (message: string) => void,
   frozenBaselines: ReadonlyMap<NativeBaselineKey, SerializedFrozenNativeBaseline> = new Map(),
   currentContextExtension?: NativeCurrentContextExtension,
+  previousSnapshot: NativeComparableRankingSnapshot | null = null,
 ): NativeRankingGeneration {
   const parsedGeneratedAt = new Date(generatedAt);
   if (Number.isNaN(parsedGeneratedAt.valueOf())) throw new Error("generatedAt must be an ISO timestamp");
@@ -762,6 +787,10 @@ export function generateNativeRankingSnapshot(
     onProgress,
     extension,
   );
+  const previousTiers = previousStableTierMap(
+    previousSnapshot,
+    NATIVE_RANKING_METHODOLOGY_VERSION,
+  );
 
   const buildLenses = (entityKind: NativeRankingEntityKind) =>
     LENSES.map((lens) => {
@@ -771,6 +800,7 @@ export function generateNativeRankingSnapshot(
         baselineState.parsed,
         bootstraps.get(entityKind)!,
         lens,
+        previousTiers,
       ).sort(
         (left, right) =>
           right.pointIndex - left.pointIndex || left.cardId.localeCompare(right.cardId),
@@ -813,12 +843,12 @@ export function generateNativeRankingSnapshot(
 
   const snapshot = NativeRankingSnapshotSchema.parse({
     schemaVersion: 2,
-    snapshotId: `${publicData.retrievedAt}-yd-native-2${extension ? `-${extension.version}` : ""}`,
+    snapshotId: `${publicData.retrievedAt}-yd-native-2.1${extension ? `-${extension.version}` : ""}`,
     generatedAt: generatedAtIso,
     dataRetrievedAt: publicData.retrievedAt,
     rosterCommit: mechanicsData.sourceSnapshot.commit,
     mechanicsVersion: mechanicsData.methodologyVersion,
-    methodologyVersion: "yd-native-ranking-2.0.0",
+    methodologyVersion: NATIVE_RANKING_METHODOLOGY_VERSION,
     evaluatorVersion: "yd-native-utility-1.0.0",
     benchmarkId: nativeRankingBenchmark.benchmarkId,
     currentContextExtension: extension ?? null,

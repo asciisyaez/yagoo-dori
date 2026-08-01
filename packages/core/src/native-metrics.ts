@@ -59,7 +59,7 @@ export type NativeBaselineApplication = Readonly<{
 }>;
 
 export type NativeTier = "SS" | "S" | "A" | "B" | "C" | "D" | "Provisional";
-type StableNativeTier = Exclude<NativeTier, "Provisional">;
+export type StableNativeTier = Exclude<NativeTier, "Provisional">;
 
 export type NativeTierInput = Readonly<{
   interval: IntegerInterval;
@@ -71,6 +71,17 @@ export type NativeTierInput = Readonly<{
   probabilityTopDecilePermil: number;
   probabilityBelow80Permil: number;
   definitelyNegativeMarginalPermil: number;
+  boundaryConfidencePermil: number;
+  previousTier?: NativeTier;
+}>;
+
+export type NativeTierStabilityInput = Readonly<{
+  candidateTier: StableNativeTier;
+  interval: IntegerInterval;
+  samplingErrorMicro: bigint;
+  sourceComplete: boolean;
+  metricCoverageComplete: boolean;
+  evaluationComplete: boolean;
   boundaryConfidencePermil: number;
   previousTier?: NativeTier;
 }>;
@@ -481,8 +492,19 @@ export function classifyNativeTier(input: NativeTierInput): NativeTier {
   validatePermil(input.probabilityBelow80Permil, "Probability below 80");
   validatePermil(input.definitelyNegativeMarginalPermil, "Negative marginal fraction");
   validatePermil(input.boundaryConfidencePermil, "Boundary confidence");
-  if (input.samplingErrorMicro < 0n) throw new Error("Sampling error cannot be negative");
+  return stabilizeNativeTier({
+    ...input,
+    candidateTier: candidateTier(input.interval.central, input),
+  });
+}
 
+/**
+ * Apply publication completeness and hysteresis to a tier candidate that was
+ * derived from the correct frozen calibration for its ranking context.
+ */
+export function stabilizeNativeTier(input: NativeTierStabilityInput): NativeTier {
+  validatePermil(input.boundaryConfidencePermil, "Boundary confidence");
+  if (input.samplingErrorMicro < 0n) throw new Error("Sampling error cannot be negative");
   if (
     !input.sourceComplete ||
     !input.metricCoverageComplete ||
@@ -493,16 +515,15 @@ export function classifyNativeTier(input: NativeTierInput): NativeTier {
     return "Provisional";
   }
 
-  const candidate = candidateTier(input.interval.central, input);
   if (
     input.previousTier &&
     input.previousTier !== "Provisional" &&
-    input.previousTier !== candidate &&
+    input.previousTier !== input.candidateTier &&
     input.boundaryConfidencePermil < 800
   ) {
     return input.previousTier;
   }
-  return candidate;
+  return input.candidateTier;
 }
 
 export function attributeNativeIndexDelta(

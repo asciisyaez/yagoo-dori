@@ -2,6 +2,7 @@ import { publicData, publicCards } from "../public-data";
 import { mechanicsData } from "../mechanics";
 import { nativeGuideData } from "../native-guide-data";
 import { nativeRankingData } from "../native-ranking-data";
+import { nativeRankingChangelogData } from "../native-ranking-changelog-data";
 import { songContextData } from "../song-contexts";
 
 const sampleIds = [
@@ -48,6 +49,13 @@ if (nativeRankingData.rosterCommit !== mechanicsData.sourceSnapshot.commit) {
 }
 if (nativeRankingData.absoluteScoreAvailable) {
   throw new Error("An absolute score cannot be published before the runtime equation is validated.");
+}
+if (
+  nativeRankingChangelogData.to.snapshotId !== nativeRankingData.snapshotId ||
+  nativeRankingChangelogData.to.generatedAt !== nativeRankingData.generatedAt ||
+  nativeRankingChangelogData.to.methodologyVersion !== nativeRankingData.methodologyVersion
+) {
+  throw new Error("Native ranking changelog does not end at the published ranking snapshot.");
 }
 
 for (const guide of nativeGuideData.guides) {

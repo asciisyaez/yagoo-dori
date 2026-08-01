@@ -10,6 +10,8 @@
     "./native-metrics": "./src/native-metrics.ts",
     "./native-ranking-benchmark": "./src/native-ranking-benchmark.ts",
     "./native-ranking-data": "./src/native-ranking-data.ts",
+    "./native-ranking-changelog": "./src/native-ranking-changelog.ts",
+    "./native-ranking-changelog-data": "./src/native-ranking-changelog-data.ts",
     "./native-ranking-generator": "./src/native-ranking-generator.ts",
     "./native-ranking-scoring": "./src/native-ranking-scoring.ts",
     "./native-ranking-schema": "./src/native-ranking-schema.ts",
@@ -28,7 +30,8 @@
     "test": "vitest run",
     "data:validate": "tsx src/cli/validate-data.ts",
     "rankings:generate": "tsx src/cli/generate-rankings.ts",
-    "guides:generate": "tsx src/cli/generate-guides.ts"
+    "guides:generate": "tsx src/cli/generate-guides.ts",
+    "guides:rebase": "tsx src/cli/rebase-guides.ts"
   },
   "dependencies": {
     "zod": "4.4.3"

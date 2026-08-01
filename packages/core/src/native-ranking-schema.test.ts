@@ -87,7 +87,7 @@ function snapshotFixture(cardCount = 113) {
     dataRetrievedAt: "2026-07-31",
     rosterCommit: "a".repeat(40),
     mechanicsVersion: "fixture-mechanics-v1",
-    methodologyVersion: "yd-native-ranking-2.0.0" as const,
+    methodologyVersion: "yd-native-ranking-2.1.0" as const,
     evaluatorVersion: "yd-native-utility-1.0.0" as const,
     benchmarkId: "fixture-benchmark-v1",
     currentContextExtension: null,
@@ -176,6 +176,13 @@ describe("native ranking publication schema", () => {
     ).toBe(false);
     expect(
       NativeRankingEntrySchema.safeParse({ ...fixture, modelBand: "S" }).success,
+    ).toBe(false);
+    expect(
+      NativeRankingEntrySchema.safeParse({
+        ...fixture,
+        stableTier: fixture.tier,
+        provisionalReasons: fixture.provisionalReasons,
+      }).success,
     ).toBe(false);
   });
 

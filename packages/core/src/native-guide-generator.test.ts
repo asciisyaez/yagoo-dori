@@ -5,11 +5,13 @@ import {
   generateNativeGuideData,
   guideLeaderOutfitCardIdsForSong,
   mergeNativeGuideData,
+  rebaseNativeGuideDataSnapshot,
   selectGuideRatingSongs,
 } from "./native-guide-generator";
 import { nativeGuideData } from "./native-guide-data";
 import type { NativeGuide, NativeGuideData } from "./native-guide-schema";
 import { nativeRankingData } from "./native-ranking-data";
+import { nativeRankingChangelogData } from "./native-ranking-changelog-data";
 import { publicCardById } from "./public-data";
 
 const GENERATED_AT = "2026-08-01T05:30:00.000Z";
@@ -95,6 +97,26 @@ describe("native guide request resolution", () => {
 });
 
 describe("native guide dataset merge", () => {
+  it("rebases guides only across a score- and rank-neutral ranking transition", () => {
+    const stale = structuredClone(nativeGuideData);
+    for (const guide of stale.guides) {
+      guide.snapshotId = nativeRankingChangelogData.from!.snapshotId;
+    }
+    const rebased = rebaseNativeGuideDataSnapshot(
+      GENERATED_AT,
+      stale,
+      nativeRankingChangelogData,
+    );
+    expect(new Set(rebased.guides.map((guide) => guide.snapshotId))).toEqual(
+      new Set([nativeRankingData.snapshotId]),
+    );
+
+    expect(() => rebaseNativeGuideDataSnapshot(GENERATED_AT, stale, {
+      ...nativeRankingChangelogData,
+      summary: { ...nativeRankingChangelogData.summary, scoreChanged: 1 },
+    })).toThrow(/unchanged roster, score index, and rank order/i);
+  });
+
   it("preserves unrelated guides and replaces the matching anchor", () => {
     const oldAnchor = guideVariant("anchor-a", "old-a");
     const unrelated = guideVariant("anchor-b", "b");
