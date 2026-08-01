@@ -16,6 +16,7 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Rewrote and atomically force-pushed the public candidate history and v0.1.0 tag with noreply attribution and superseded internal files removed, then passed the full private Actions verification while keeping the Pages gate disabled",
     "Removed obsolete domain references, the superseded T-series release plan, and the unused legacy artwork-rights gate from the public-project tip",
     "Completed the GitHub Pages release candidate with 654 static routes, prefixed deep links, real calculator Worker smoke coverage, and mobile Lighthouse scores of 96 Performance, 100 Accessibility, and 100 SEO",
     "Added deterministic 1024 by 576 listing previews for all 113 cards while retaining full-resolution profile artwork and strict source/hash validation",
@@ -47,10 +48,9 @@
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
   "blockers": [
-    "The user must decide whether to rewrite the six historic commits and v0.1.0 tag to use a noreply email and purge deleted superseded files, or accept that metadata and history as public",
     "The current GitHub repository is named yaago-dori and must be renamed to yagoo-dori before Pages activation to avoid a misspelled permanent URL",
     "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Resolve the historic email and deleted-history decision, create the final reviewed private checkpoint, then hand the user the repository rename, visibility, Pages-source, and deployment-variable flip checklist."
+  "nextAction": "Hand the user the manual repository rename, visibility, Pages-source, and deployment-variable flip checklist after the private remote verification run passes."
 }
