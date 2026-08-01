@@ -3,6 +3,10 @@ import { mechanicsData } from "../mechanics";
 import { nativeGuideData } from "../native-guide-data";
 import { nativeRankingData } from "../native-ranking-data";
 import { nativeRankingChangelogData } from "../native-ranking-changelog-data";
+import { nativeRankingBenchmark } from "../native-ranking-benchmark";
+import { chartTimelineData } from "../chart-timelines";
+import { rankingCorpusTimelineData } from "../ranking-corpus-timelines";
+import { guideRatingTimelineByKey, guideRatingTimelineData } from "../guide-rating-timelines";
 import { songContextData } from "../song-contexts";
 
 const sampleIds = [
@@ -56,6 +60,109 @@ if (
   nativeRankingChangelogData.to.methodologyVersion !== nativeRankingData.methodologyVersion
 ) {
   throw new Error("Native ranking changelog does not end at the published ranking snapshot.");
+}
+
+const aggregateCharts = songContextData.charts.filter((chart) => chart.fidelity === "aggregate");
+const aggregateChartByKey = new Map(aggregateCharts.map((chart) => [chart.key, chart] as const));
+const exactChartByKey = new Map(chartTimelineData.charts.map((chart) => [chart.key, chart] as const));
+const unavailableChartByKey = new Map(
+  chartTimelineData.unavailableCharts.map((chart) => [chart.key, chart] as const),
+);
+if (
+  chartTimelineData.charts.length + chartTimelineData.unavailableCharts.length !==
+  aggregateCharts.length
+) {
+  throw new Error("Exact and unavailable chart timelines do not cover the aggregate chart catalog.");
+}
+for (const aggregate of aggregateCharts) {
+  const exact = exactChartByKey.get(aggregate.key);
+  const unavailable = unavailableChartByKey.get(aggregate.key);
+  if (Boolean(exact) === Boolean(unavailable)) {
+    throw new Error(`${aggregate.key} must have exactly one chart timeline availability state.`);
+  }
+  const timeline = exact ?? unavailable!;
+  if (
+    timeline.upstreamChartHash !== aggregate.chartHash ||
+    timeline.fullComboNoteCount !== aggregate.fullComboNoteCount
+  ) {
+    throw new Error(`${aggregate.key} timeline drifted from the pinned aggregate chart.`);
+  }
+  if (
+    exact &&
+    (exact.normalNoteCount !== aggregate.normalNoteCount ||
+      exact.level !== aggregate.level ||
+      exact.chartAssetId !== aggregate.chartAssetId)
+  ) {
+    throw new Error(`${aggregate.key} exact timeline metadata drifted from the aggregate chart.`);
+  }
+}
+
+const frozenBenchmarkEntries = [
+  ...nativeRankingBenchmark.corpus.reference,
+  ...nativeRankingBenchmark.corpus.current,
+];
+if (rankingCorpusTimelineData.charts.length !== frozenBenchmarkEntries.length) {
+  throw new Error("Compact ranking timelines do not cover the frozen benchmark corpus.");
+}
+for (const entry of frozenBenchmarkEntries) {
+  const compact = rankingCorpusTimelineData.charts.find((chart) => chart.key === entry.chartKey);
+  const exact = exactChartByKey.get(entry.chartKey);
+  if (
+    !compact ||
+    !exact ||
+    compact.expectedChartHash !== entry.expectedChartHash ||
+    compact.expectedChartHash !== exact.upstreamChartHash ||
+    compact.fullComboNoteCount !== exact.fullComboNoteCount ||
+    compact.events.length !== exact.events.length ||
+    compact.feverMarkerMicroseconds.chargeStart !== exact.feverMarkerMicroseconds?.chargeStart ||
+    compact.feverMarkerMicroseconds.chargeEnd !== exact.feverMarkerMicroseconds?.chargeEnd ||
+    compact.feverMarkerMicroseconds.feverStart !== exact.feverMarkerMicroseconds?.feverStart ||
+    compact.feverMarkerMicroseconds.feverEnd !== exact.feverMarkerMicroseconds?.feverEnd ||
+    compact.source.susSha256 !== exact.source.sus.sha256 ||
+    compact.source.metadataSha256 !== exact.source.metadata.sha256
+  ) {
+    throw new Error(`${entry.chartKey} compact ranking timeline drifted from its exact source.`);
+  }
+}
+
+const publishedGuideChartKeys = new Set(
+  nativeGuideData.guides.flatMap((guide) =>
+    guide.ratingSongComparisons.map((comparison) => comparison.chartKey),
+  ),
+);
+if (
+  publishedGuideChartKeys.size !== guideRatingTimelineData.charts.length ||
+  [...publishedGuideChartKeys].some((chartKey) => !guideRatingTimelineByKey.has(chartKey))
+) {
+  throw new Error("Compact guide timelines do not cover the exact published rating-song set.");
+}
+for (const guide of nativeGuideData.guides) {
+  for (const comparison of guide.ratingSongComparisons) {
+    const compact = guideRatingTimelineByKey.get(comparison.chartKey);
+    const exact = exactChartByKey.get(comparison.chartKey);
+    if (
+      !compact ||
+      !exact ||
+      compact.expectedChartHash !== exact.upstreamChartHash ||
+      comparison.formationOrderTimelineFidelity !== "exact-timed" ||
+      comparison.noteTimeline !== "exact" ||
+      comparison.formationOrderModel.corpusChartCount !== 1 ||
+      comparison.timelineEvidence.susSha256 !== compact.source.susSha256 ||
+      comparison.timelineEvidence.metadataSha256 !== compact.source.metadataSha256 ||
+      comparison.timelineEvidence.specialMarkerMicroseconds.join(",") !==
+        compact.specialMarkerMicroseconds.join(",") ||
+      comparison.timelineEvidence.feverMarkerMicroseconds.chargeStart !==
+        compact.feverMarkerMicroseconds.chargeStart ||
+      comparison.timelineEvidence.feverMarkerMicroseconds.chargeEnd !==
+        compact.feverMarkerMicroseconds.chargeEnd ||
+      comparison.timelineEvidence.feverMarkerMicroseconds.feverStart !==
+        compact.feverMarkerMicroseconds.feverStart ||
+      comparison.timelineEvidence.feverMarkerMicroseconds.feverEnd !==
+        compact.feverMarkerMicroseconds.feverEnd
+    ) {
+      throw new Error(`${guide.slug}/${comparison.chartKey} exact order evidence drifted.`);
+    }
+  }
 }
 
 for (const guide of nativeGuideData.guides) {
@@ -114,6 +221,13 @@ console.log(
   `Song contexts valid: ${songContextData.counts.songs} songs, ` +
     `${songContextData.counts.aggregateCharts} aggregate charts, ` +
     `${songContextData.counts.timedCharts} timed charts.`,
+);
+console.log(
+  `Exact chart timelines valid: ${chartTimelineData.counts.charts} available, ` +
+    `${chartTimelineData.counts.unavailableCharts} unavailable, ` +
+    `${chartTimelineData.counts.events} timed events; ` +
+    `${rankingCorpusTimelineData.counts.charts} frozen ranking charts and ` +
+    `${guideRatingTimelineData.counts.charts} published guide charts projected.`,
 );
 console.log(
   `Native output valid: 2 ranking contexts x ${nativeRankingData.lenses.length} lenses x ` +

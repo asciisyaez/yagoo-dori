@@ -337,7 +337,7 @@ test("generated guide renders three legal formations and decision details", asyn
 
   await expect(page.getByRole("heading", { name: "Why this lineup works" }).first()).toBeVisible();
   await expect(page.getByText("Placement sequence", { exact: true }).first()).toBeVisible();
-  await expect(page.getByText(/120 placements compared across 420 timing scenarios\./).first()).toBeVisible();
+  await expect(page.getByText(/120 placements compared across 30 pinned Expert chart timelines\./).first()).toBeVisible();
   await expect(
     page.locator("#formation-standard [aria-label$='static parameter calculation']"),
   ).toBeVisible();
@@ -359,4 +359,11 @@ test("generated guide renders three legal formations and decision details", asyn
   await expect(page.locator("body")).not.toContainText(
     /AppMedia|globally optimal|canonical display|heuristic coverage|unavailable|unresolved/i,
   );
+});
+
+test("meaningful exact song-order changes are shown without publishing timing ties", async ({ page }) => {
+  await page.goto(`/guides/${PEKORA_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
+
+  await expect(page.locator("#rating-song-comparisons article")).toHaveCount(3);
+  await expect(page.getByText("Order change", { exact: true })).toHaveCount(2);
 });

@@ -81,7 +81,7 @@ const ReplacementSchema = z
     rarity: z.union([z.literal(4), z.literal(5)]),
     lossPercent: SerializableIntervalSchema,
     suggestedOrder: z.array(z.string().min(1)).length(5),
-    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    orderStatus: z.enum(["modeled-general", "timed-corpus", "indeterminate"]),
     tradeoff: z
       .object({
         benefit: z.string().min(1),
@@ -193,8 +193,11 @@ const SearchCertificateSchema = z
 
 const FormationOrderModelSchema = z
   .object({
-    methodologyVersion: z.literal("yd-formation-order-modeled-general-1.0.0"),
-    corpusChartCount: z.literal(30),
+    methodologyVersion: z.enum([
+      "yd-formation-order-modeled-general-1.0.0",
+      "yd-formation-order-timed-corpus-1.0.0",
+    ]),
+    corpusChartCount: z.union([z.literal(1), z.literal(30)]),
     markerLayoutCount: z.number().int().positive(),
     timingScenarioCount: z.number().int().positive(),
     permutationsChecked: z.literal(120),
@@ -202,7 +205,9 @@ const FormationOrderModelSchema = z
     meanRegretPermil: z.number().finite().nonnegative(),
     runnerUpGapPermil: z.number().finite().nonnegative(),
     winSharePermil: z.number().finite().min(0).max(1_000),
-    exactTimelineAvailable: z.literal(false),
+    exactTimelineAvailable: z.boolean(),
+    noteTimelineAvailable: z.boolean().default(false),
+    changesModeledTimingUtility: z.boolean().default(false),
     statement: z.string().min(1),
   })
   .strict()
@@ -212,6 +217,21 @@ const FormationOrderModelSchema = z
         code: "custom",
         path: ["timingScenarioCount"],
         message: "Timing scenarios must equal corpus charts multiplied by marker layouts",
+      });
+    }
+    const timed = model.methodologyVersion === "yd-formation-order-timed-corpus-1.0.0";
+    if (
+      timed !== model.exactTimelineAvailable ||
+      timed !== model.noteTimelineAvailable ||
+      timed !== model.changesModeledTimingUtility ||
+      (timed &&
+        (model.markerLayoutCount !== 1 ||
+          model.timingScenarioCount !== model.corpusChartCount))
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["methodologyVersion"],
+        message: "Formation-order timing flags must match the declared methodology",
       });
     }
   });
@@ -225,7 +245,7 @@ export const NativeGuideFormationSchema = z
     leaderOutfitCardId: z.string().min(1),
     members: z.array(FormationMemberSchema).length(5),
     formationOrder: z.array(z.string().min(1)).length(5),
-    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    orderStatus: z.enum(["modeled-general", "timed-corpus", "indeterminate"]),
     formationOrderModel: FormationOrderModelSchema,
     relativeUtility: SerializableIntervalSchema,
     staticParameters: z
@@ -246,6 +266,13 @@ export const NativeGuideFormationSchema = z
   })
   .strict()
   .superRefine((formation, context) => {
+    if (formation.formationOrderModel.corpusChartCount !== 30) {
+      context.addIssue({
+        code: "custom",
+        path: ["formationOrderModel", "corpusChartCount"],
+        message: "Published general formations require the frozen 30-chart corpus",
+      });
+    }
     const memberIds = formation.members.map((member) => member.cardId);
     const memberSlots = formation.members.map((member) => member.slot);
     if (new Set(memberIds).size !== 5) {
@@ -376,10 +403,22 @@ export const RatingSongComparisonSchema = z
     leaderSingerMatched: z.literal(true),
     platform: z.literal("mobile"),
     chartFidelity: z.literal("aggregate"),
-    noteTimeline: z.literal("unavailable"),
+    noteTimeline: z.literal("exact"),
+    formationOrderTimelineFidelity: z.literal("exact-timed"),
+    timelineEvidence: z.object({
+      susSha256: z.string().regex(/^[a-f0-9]{64}$/),
+      metadataSha256: z.string().regex(/^[a-f0-9]{64}$/),
+      specialMarkerMicroseconds: z.array(z.number().int().nonnegative()).length(5),
+      feverMarkerMicroseconds: z.object({
+        chargeStart: z.number().int().nonnegative(),
+        chargeEnd: z.number().int().nonnegative(),
+        feverStart: z.number().int().nonnegative(),
+        feverEnd: z.number().int().nonnegative(),
+      }).strict(),
+    }).strict(),
     leaderOutfitCardId: z.string().min(1),
     formationOrder: z.array(z.string().min(1)).length(5),
-    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    orderStatus: z.enum(["modeled-general", "timed-corpus", "indeterminate"]),
     formationOrderModel: FormationOrderModelSchema,
     members: z.array(z.string().min(1)).length(5),
     relativeUtility: SerializableIntervalSchema,
@@ -390,6 +429,17 @@ export const RatingSongComparisonSchema = z
   .superRefine((entry, context) => {
     if (entry.chartKey !== `${entry.songId}:expert`) {
       context.addIssue({ code: "custom", path: ["chartKey"], message: "Comparison chart must match its rating song" });
+    }
+    if (
+      entry.formationOrderModel.corpusChartCount !== 1 ||
+      !entry.formationOrderModel.exactTimelineAvailable ||
+      !entry.formationOrderModel.noteTimelineAvailable
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["formationOrderModel"],
+        message: "Rating-song placement requires one exact timed chart",
+      });
     }
     if (entry.changesReferenceFormation !== (entry.advantageOverReferencePercent !== null)) {
       context.addIssue({
@@ -460,7 +510,7 @@ export const NativeGuideSchema = z
 
 export const NativeGuideDataSchema = z
   .object({
-    schemaVersion: z.literal(4),
+    schemaVersion: z.literal(5),
     generatedAt: z.iso.datetime({ offset: true }),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     guides: z.array(NativeGuideSchema).min(1),

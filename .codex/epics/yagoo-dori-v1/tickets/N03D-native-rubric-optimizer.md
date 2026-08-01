@@ -20,6 +20,6 @@ parent_epic: yagoo-dori-v1
 
 ## Verification evidence
 
-- Guide methodology `yd-native-guide-1.2.0` persists modeled placement evidence from all 120 orders across 420 timing scenarios.
+- Guide methodology `yd-native-guide-1.2.0` persists chart-timed placement evidence from all 120 orders across 30 pinned Expert timelines, exact five-Special markers, and manual-Perfect note-type coefficients.
 - Replacement rows are re-evaluated under the same Leader, chart, progression, and modeled-order basis, with recipient and cadence deltas.
-- `native-guide-schema`, `native-published-data`, `native-guide-reduced-proof`, `native-guide-generator`, and `formation-order-recommender`: 38 focused tests passed on 2026-08-01.
+- The full-roster proof search has a sound upper-bound certificate path and exact reduced-roster regressions, but current bounds do not yet finish the 113-card search within the declared runtime budget.

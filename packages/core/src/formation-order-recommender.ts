@@ -11,6 +11,11 @@ import {
   type SkillApplication,
 } from "./formation-evaluator";
 import type { CardMechanics } from "./mechanics";
+import {
+  rankingCorpusTimelineByKey,
+  type RankingCorpusTimeline,
+} from "./ranking-corpus-timelines";
+import { TIMELINE_NOTE_TYPES } from "./chart-timeline-parser";
 import { songContextData } from "./song-contexts";
 
 type Five<T> = readonly [T, T, T, T, T];
@@ -40,13 +45,15 @@ export type FormationOrderRecommenderInput = Readonly<{
   leaderOutfitCardId: string;
   members: Five<FormationOrderMember>;
   corpus: readonly FormationOrderCorpusEntry[];
+  corpusMode?: "frozen-30-chart" | "exact-song";
+  exactTimelineByKey?: ReadonlyMap<string, RankingCorpusTimeline>;
 }>;
 
 export type FormationOrderMarkerLayout = Readonly<{
   id: string;
-  family: "low-discrepancy" | "stress";
+  family: "low-discrepancy" | "stress" | "exact";
   description: string;
-  markerPositionsPermillion: Five<number>;
+  markerPositionsPermillion: Five<number> | null;
 }>;
 
 export type FormationOrderComponent = Readonly<{
@@ -80,34 +87,44 @@ type OrderObjective = Readonly<{
   scenarioWins: number;
 }>;
 
-export type FormationOrderRecommendation = Readonly<{
-  kind: "modeled-general";
-  status: "modeled-general" | "indeterminate";
-  label: "Suggested general order";
-  methodologyVersion: "yd-formation-order-modeled-general-1.0.0";
+type FormationOrderRecommendationShared = Readonly<{
   order: Five<string>;
   components: Five<FormationOrderComponent>;
-  method: Readonly<{
+  method: Readonly<
+    {
     selection: "minimum-max-regret-then-mean-regret-then-card-id";
-    markerModel: "sorted-five-dimensional-halton-with-stress-layouts";
-    noteModel: "aggregate-uniform-note-midpoints";
     execution: "all-perfect-full-combo-full-life";
-    exactTimelineAvailable: false;
-    noteTimelineAvailable: false;
     permutationsChecked: 120;
-    lowDiscrepancySeed: number;
     activeFirstCheck: "one-cooldown-after-live-start";
-    activeConditionalBreakpoints: "uniform-note-combo-threshold-events";
     persistentSupportRecipients: "guaranteed-recipient-floor";
     activeCollisionModel: "expected-maximum-unstacked";
     activationBoostStacking: "additive-capped-at-1000-permil";
     unresolvedApplicationPolicy: "mean-of-enumerated-alternatives";
     scoreScope: "relative-active-and-special-timing-only";
-    changesTeamUtility: false;
-  }>;
+    } & (
+      | Readonly<{
+          markerModel: "sorted-five-dimensional-halton-with-stress-layouts";
+          noteModel: "aggregate-uniform-note-midpoints";
+          exactTimelineAvailable: false;
+          noteTimelineAvailable: false;
+          lowDiscrepancySeed: number;
+          activeConditionalBreakpoints: "uniform-note-combo-threshold-events";
+          changesModeledTimingUtility: false;
+        }>
+      | Readonly<{
+          markerModel: "exact-per-chart-special-markers";
+          noteModel: "exact-timed-note-events";
+          exactTimelineAvailable: true;
+          noteTimelineAvailable: true;
+          lowDiscrepancySeed: null;
+          activeConditionalBreakpoints: "exact-note-combo-threshold-events";
+          changesModeledTimingUtility: true;
+        }>
+    )
+  >;
   scenarios: Readonly<{
     count: number;
-    chartCount: 30;
+    chartCount: number;
     layoutCount: number;
     lowDiscrepancyLayoutCount: number;
     stressLayoutCount: number;
@@ -116,6 +133,8 @@ export type FormationOrderRecommendation = Readonly<{
       chartKey: string;
       durationMilliseconds: number;
       noteCount: number;
+      timelineSusSha256: string | null;
+      timelineMetadataSha256: string | null;
     }>[];
   }>;
   objective: Readonly<{
@@ -137,10 +156,18 @@ export type FormationOrderRecommendation = Readonly<{
       markerMilliseconds: Five<number>;
       regretPermil: number;
     }>[];
-  }>;
-  confidence: Readonly<{
-    kind: "modeled-general" | "indeterminate";
-    statement: string;
+    perChartDiagnostics: readonly Readonly<{
+      chartKey: string;
+      markerMilliseconds: Five<number>;
+      selectedRelativeTimingScore: number;
+      bestRelativeTimingScore: number;
+      regretPermil: number;
+      scenarioBestOrder: Five<string>;
+      selectedWins: boolean;
+      timelineSusSha256: string;
+      timelineMetadataSha256: string;
+      noteCoefficientTotalPermil: number;
+    }>[];
   }>;
   fixedContext: Readonly<{
     judgement: "perfect";
@@ -149,6 +176,30 @@ export type FormationOrderRecommendation = Readonly<{
   }>;
   exactTimelineStatement: string;
 }>;
+
+export type FormationOrderRecommendation =
+  | (FormationOrderRecommendationShared &
+      Readonly<{
+        kind: "modeled-general";
+        status: "modeled-general" | "indeterminate";
+        label: "Suggested general order";
+        methodologyVersion: "yd-formation-order-modeled-general-1.0.0";
+        confidence: Readonly<{
+          kind: "modeled-general" | "indeterminate";
+          statement: string;
+        }>;
+      }>)
+  | (FormationOrderRecommendationShared &
+      Readonly<{
+        kind: "timed-corpus";
+        status: "timed-corpus" | "indeterminate";
+        label: "Chart-timed corpus order";
+        methodologyVersion: "yd-formation-order-timed-corpus-1.0.0";
+        confidence: Readonly<{
+          kind: "timed-corpus" | "indeterminate";
+          statement: string;
+        }>;
+      }>);
 
 type TimingProfile = Readonly<{
   cardId: string;
@@ -162,10 +213,15 @@ type CompiledChart = Readonly<{
   durationMilliseconds: number;
   noteCount: number;
   noteTimesMilliseconds: readonly number[];
+  noteCoefficientPrefixPermil: readonly number[];
   songSingerTalentIds: readonly string[];
   activeScoreUpByProfileAndNote: readonly (readonly number[])[];
   persistentActiveSupportPermilByProfile: readonly number[];
   baseBreakpointsMilliseconds: readonly number[];
+  timelineSusSha256: string | null;
+  timelineMetadataSha256: string | null;
+  exactSpecialMarkerMilliseconds: Five<number> | null;
+  exactSpecialStartsAtCombo: Five<number> | null;
 }>;
 
 type SpecialWindow = Readonly<{
@@ -187,6 +243,7 @@ type Scenario = Readonly<{
   chart: CompiledChart;
   layout: FormationOrderMarkerLayout;
   markerMilliseconds: Five<number>;
+  specialStartsAtCombo: Five<number> | null;
   specialWindowsByProfileAndSlot: readonly (readonly SpecialWindow[])[];
 }>;
 
@@ -212,6 +269,45 @@ type PermutationAggregate = Readonly<{
   scenarioWins: number;
   winSharePermil: number;
 }>;
+
+const manualPerfectCoefficientByNoteTypeCode = TIMELINE_NOTE_TYPES.map((noteType) => {
+  const rule = songContextData.rules.noteJudgements.find(
+    (candidate) =>
+      candidate.playMode === "manual" &&
+      candidate.noteType === noteType &&
+      candidate.judgement === "perfect",
+  );
+  return rule?.scoreCoefficientPermilMultiply ?? null;
+});
+
+export function manualPerfectNoteCoefficientPermil(noteTypeCode: number): number {
+  if (!Number.isInteger(noteTypeCode) || noteTypeCode < 0) {
+    throw new Error(`Invalid exact note-type code: ${noteTypeCode}`);
+  }
+  const coefficient = manualPerfectCoefficientByNoteTypeCode[noteTypeCode];
+  if (coefficient === null || coefficient === undefined) {
+    throw new Error(`No pinned manual Perfect coefficient for note-type code ${noteTypeCode}`);
+  }
+  return coefficient;
+}
+
+function exactTimelineFor(
+  chartKey: string,
+  expectedChartHash: string,
+  expectedNoteCount: number,
+  timelineByKey: ReadonlyMap<string, RankingCorpusTimeline>,
+): RankingCorpusTimeline | null {
+  const timeline = timelineByKey.get(chartKey);
+  if (!timeline) return null;
+  if (
+    timeline.expectedChartHash !== expectedChartHash ||
+    timeline.fullComboNoteCount !== expectedNoteCount ||
+    timeline.events.length !== expectedNoteCount
+  ) {
+    return null;
+  }
+  return timeline;
+}
 
 function asFive<T>(values: readonly T[], label: string): Five<T> {
   if (values.length !== 5) throw new Error(`${label} requires exactly five entries`);
@@ -406,11 +502,43 @@ function compileChart(
   profiles: readonly TimingProfile[],
   formation: LegalFormation,
   persistentActiveSupportPermilByProfile: readonly number[],
+  exactTimeline?: Readonly<{
+    noteTimesMilliseconds: readonly number[];
+    noteCoefficientPermil: readonly number[];
+    specialMarkerMilliseconds: Five<number>;
+    specialStartsAtCombo: Five<number>;
+    susSha256: string;
+    metadataSha256: string;
+  }>,
 ): CompiledChart {
-  const noteTimesMilliseconds = Array.from(
-    { length: noteCount },
-    (_, noteIndex) => ((noteIndex + 0.5) * durationMilliseconds) / noteCount,
-  );
+  const noteTimesMilliseconds = exactTimeline
+    ? [...exactTimeline.noteTimesMilliseconds]
+    : Array.from(
+        { length: noteCount },
+        (_, noteIndex) => ((noteIndex + 0.5) * durationMilliseconds) / noteCount,
+      );
+  if (
+    noteTimesMilliseconds.length !== noteCount ||
+    noteTimesMilliseconds.some(
+      (time, index) =>
+        !Number.isFinite(time) ||
+        time < 0 ||
+        (index > 0 && time < noteTimesMilliseconds[index - 1]!),
+    )
+  ) {
+    throw new Error(`${chartKey} exact note timeline is incomplete or unordered`);
+  }
+  const noteCoefficientPermil = exactTimeline?.noteCoefficientPermil ?? noteTimesMilliseconds.map(() => 1_000);
+  if (
+    noteCoefficientPermil.length !== noteCount ||
+    noteCoefficientPermil.some((coefficient) => !Number.isFinite(coefficient) || coefficient < 0)
+  ) {
+    throw new Error(`${chartKey} exact note coefficients are incomplete`);
+  }
+  const noteCoefficientPrefixPermil = [0];
+  for (const coefficient of noteCoefficientPermil) {
+    noteCoefficientPrefixPermil.push(noteCoefficientPrefixPermil.at(-1)! + coefficient);
+  }
   const activeScoreUpByProfileAndNote = profiles.map((profile) =>
     (() => {
       const comboThresholds = profile.active.applications
@@ -456,9 +584,9 @@ function compileChart(
         ? application.trigger.threshold
         : null;
       if (threshold !== null && threshold > 0 && threshold <= noteCount) {
-        baseBreakpoints.push(
-          modeledComboThresholdMilliseconds(noteCount, durationMilliseconds, threshold),
-        );
+        baseBreakpoints.push(exactTimeline
+          ? noteTimesMilliseconds[threshold - 1]!
+          : modeledComboThresholdMilliseconds(noteCount, durationMilliseconds, threshold));
       }
     }
   }
@@ -467,10 +595,15 @@ function compileChart(
     durationMilliseconds,
     noteCount,
     noteTimesMilliseconds,
+    noteCoefficientPrefixPermil,
     songSingerTalentIds,
     activeScoreUpByProfileAndNote,
     persistentActiveSupportPermilByProfile,
     baseBreakpointsMilliseconds: uniqueSorted(baseBreakpoints),
+    timelineSusSha256: exactTimeline?.susSha256 ?? null,
+    timelineMetadataSha256: exactTimeline?.metadataSha256 ?? null,
+    exactSpecialMarkerMilliseconds: exactTimeline?.specialMarkerMilliseconds ?? null,
+    exactSpecialStartsAtCombo: exactTimeline?.specialStartsAtCombo ?? null,
   };
 }
 
@@ -479,15 +612,16 @@ function specialWindow(
   markerMilliseconds: number,
   chart: CompiledChart,
   formation: LegalFormation,
+  exactStartsAtCombo?: number,
 ): SpecialWindow {
   const duration = requirePositiveInteger(
     profile.special.durationMilliseconds,
     `${profile.cardId} Special duration`,
   );
-  const markerCombo = Math.min(
-    chart.noteCount,
-    Math.floor((chart.noteCount * markerMilliseconds) / chart.durationMilliseconds),
-  );
+  const markerCombo = exactStartsAtCombo ?? Math.min(
+      chart.noteCount,
+      Math.floor((chart.noteCount * markerMilliseconds) / chart.durationMilliseconds),
+    );
   const resolution = resolveLeaderApplications(profile.special.applications, formation, {
     combo: markerCombo,
     life: 1_000,
@@ -608,6 +742,9 @@ function evaluateScenarioOrder(
     const afterLastNoteIndex = lowerBound(scenario.chart.noteTimesMilliseconds, endsAt);
     const coveredNotes = afterLastNoteIndex - firstNoteIndex;
     if (coveredNotes <= 0) continue;
+    const coveredNoteCoefficientPermil =
+      scenario.chart.noteCoefficientPrefixPermil[afterLastNoteIndex]! -
+      scenario.chart.noteCoefficientPrefixPermil[firstNoteIndex]!;
     const representativeTime = scenario.chart.noteTimesMilliseconds[firstNoteIndex]!;
     const specialSupportPermil = specialWindows.reduce(
       (total, window) =>
@@ -638,7 +775,7 @@ function evaluateScenarioOrder(
     // Score Support is not a standalone score source. It multiplies an Active
     // Skill's Score UP while their windows overlap, matching the corroborated
     // combination rule used by native utility.
-    score += coveredNotes * expectedMaximum(activeEntries);
+    score += (coveredNoteCoefficientPermil * expectedMaximum(activeEntries)) / 1_000;
   }
 
   const allActiveChecks = activeChecksByProfile.flat();
@@ -727,12 +864,16 @@ function fullComboSpecialValue(
 export function recommendFormationOrder(
   input: FormationOrderRecommenderInput,
 ): FormationOrderRecommendation {
-  if (input.corpus.length !== 30) {
+  const corpusMode = input.corpusMode ?? "frozen-30-chart";
+  const expectedChartCount = corpusMode === "exact-song" ? 1 : 30;
+  if (input.corpus.length !== expectedChartCount) {
     throw new Error(
-      `Formation order requires the frozen 30-chart corpus; received ${input.corpus.length}`,
+      corpusMode === "exact-song"
+        ? `Song-specific formation order requires exactly one chart; received ${input.corpus.length}`
+        : `Formation order requires the frozen 30-chart corpus; received ${input.corpus.length}`,
     );
   }
-  if (new Set(input.corpus.map((entry) => entry.chartKey)).size !== 30) {
+  if (new Set(input.corpus.map((entry) => entry.chartKey)).size !== expectedChartCount) {
     throw new Error("Formation order corpus charts must be unique");
   }
 
@@ -778,7 +919,25 @@ export function recommendFormationOrder(
 
   const chartByKey = new Map(songContextData.charts.map((chart) => [chart.key, chart]));
   const songById = new Map(songContextData.songs.map((song) => [song.id, song]));
-  const charts = input.corpus.map((entry) => {
+  const exactTimelineByKey = input.exactTimelineByKey ?? rankingCorpusTimelineByKey;
+  const exactTimelineCandidates = input.corpus.map((entry) => {
+    const chart = chartByKey.get(entry.chartKey);
+    return chart
+      ? exactTimelineFor(
+          entry.chartKey,
+          entry.expectedChartHash,
+          chart.fullComboNoteCount,
+          exactTimelineByKey,
+        )
+      : null;
+  });
+  const usesExactTimeline = exactTimelineCandidates.every(
+    (timeline): timeline is RankingCorpusTimeline => timeline !== null,
+  );
+  if (corpusMode === "exact-song" && !usesExactTimeline) {
+    throw new Error(`Exact song timeline is missing or drifted: ${input.corpus[0]!.chartKey}`);
+  }
+  const charts = input.corpus.map((entry, corpusIndex) => {
     const chart = chartByKey.get(entry.chartKey);
     if (!chart || chart.difficulty !== "expert" || chart.chartHash !== entry.expectedChartHash) {
       throw new Error(`Frozen corpus chart is missing or drifted: ${entry.chartKey}`);
@@ -797,6 +956,7 @@ export function recommendFormationOrder(
         songSingerTalentIds: song.singerTalentIds,
       },
     });
+    const exactTimeline = usesExactTimeline ? exactTimelineCandidates[corpusIndex]! : null;
     return compileChart(
       entry.chartKey,
       song.playingMilliseconds,
@@ -805,22 +965,60 @@ export function recommendFormationOrder(
       profiles,
       formation,
       compilePersistentActiveSupport(evaluator, profiles),
+      exactTimeline
+          ? {
+            noteTimesMilliseconds: exactTimeline.events.map((event) => event[0] / 1_000),
+            noteCoefficientPermil: exactTimeline.events.map((event) =>
+              manualPerfectNoteCoefficientPermil(event[1]),
+            ),
+            specialMarkerMilliseconds: asFive(
+              exactTimeline.specialMarkerMicroseconds.map((marker) => marker / 1_000),
+              `${entry.chartKey} exact Special markers`,
+            ),
+            specialStartsAtCombo: asFive(
+              exactTimeline.specialStartsAtCombo,
+              `${entry.chartKey} exact Special start combos`,
+            ),
+            susSha256: exactTimeline.source.susSha256,
+            metadataSha256: exactTimeline.source.metadataSha256,
+          }
+        : undefined,
     );
   });
-  const layouts = buildFormationOrderMarkerLayouts();
+  const layouts: readonly FormationOrderMarkerLayout[] = usesExactTimeline
+    ? [
+        {
+          id: "exact-per-chart",
+          family: "exact",
+          description: "Five exact Special markers parsed from each pinned public chart timeline.",
+          markerPositionsPermillion: null,
+        },
+      ]
+    : buildFormationOrderMarkerLayouts();
   const scenarios = charts.flatMap((chart) =>
     layouts.map((layout): Scenario => {
-      const markers = layout.markerPositionsPermillion.map((position) =>
-        Math.round((chart.durationMilliseconds * position) / PERMILLION),
+      const markerMilliseconds = chart.exactSpecialMarkerMilliseconds ?? asFive(
+        layout.markerPositionsPermillion!.map((position) =>
+          Math.round((chart.durationMilliseconds * position) / PERMILLION),
+        ),
+        "Scenario markers",
       );
-      const markerMilliseconds = asFive(markers, "Scenario markers");
       return {
         id: `${chart.chartKey}/${layout.id}`,
         chart,
         layout,
         markerMilliseconds,
+        specialStartsAtCombo: chart.exactSpecialStartsAtCombo,
         specialWindowsByProfileAndSlot: profiles.map((profile) =>
-          markerMilliseconds.map((marker) => specialWindow(profile, marker, chart, formation)),
+          markerMilliseconds.map((marker, slotIndex) =>
+            specialWindow(
+              profile,
+              marker,
+              chart,
+              formation,
+              chart.exactSpecialStartsAtCombo?.[slotIndex],
+            ),
+          ),
         ),
       };
     }),
@@ -885,7 +1083,13 @@ export function recommendFormationOrder(
         ? meanGap
         : 0,
   );
-  const status = formationOrderConfidenceFromGap(runnerUpGapPermil);
+  const gapStatus = formationOrderConfidenceFromGap(runnerUpGapPermil);
+  const status: "timed-corpus" | "modeled-general" | "indeterminate" =
+    gapStatus === "indeterminate"
+      ? "indeterminate"
+      : usesExactTimeline
+        ? "timed-corpus"
+        : "modeled-general";
   const selectedOriginalIndex = permutations.findIndex(
     (order) => order.map((profile) => profile.cardId).join("|") === selected.key,
   );
@@ -924,6 +1128,36 @@ export function recommendFormationOrder(
         regretPermil: round(regretPermil),
       };
     });
+  const perChartDiagnostics = usesExactTimeline
+    ? scenarios.map((scenario, scenarioIndex) => {
+        const bestScore = bestScoreByScenario[scenarioIndex]!;
+        const scenarioBest = aggregates
+          .filter(
+            (aggregate) =>
+              Math.abs(aggregate.scores[scenarioIndex]! - bestScore) <=
+              Math.max(1, Math.abs(bestScore)) * OBJECTIVE_EPSILON,
+          )
+          .sort((left, right) => left.key.localeCompare(right.key))[0]!;
+        const selectedScore = selected.scores[scenarioIndex]!;
+        return {
+          chartKey: scenario.chart.chartKey,
+          markerMilliseconds: scenario.markerMilliseconds,
+          selectedRelativeTimingScore: round(selectedScore),
+          bestRelativeTimingScore: round(bestScore),
+          regretPermil: round(selected.regretsPermil[scenarioIndex]!),
+          scenarioBestOrder: asFive(
+            scenarioBest.order.map((profile) => profile.cardId),
+            `${scenario.chart.chartKey} best order`,
+          ),
+          selectedWins:
+            Math.abs(selectedScore - bestScore) <=
+            Math.max(1, Math.abs(bestScore)) * OBJECTIVE_EPSILON,
+          timelineSusSha256: scenario.chart.timelineSusSha256!,
+          timelineMetadataSha256: scenario.chart.timelineMetadataSha256!,
+          noteCoefficientTotalPermil: scenario.chart.noteCoefficientPrefixPermil.at(-1)!,
+        };
+      })
+    : [];
 
   const selectedOrder = asFive(
     selected.order.map((profile) => profile.cardId),
@@ -991,34 +1225,12 @@ export function recommendFormationOrder(
     },
   }));
 
-  return {
-    kind: "modeled-general",
-    status,
-    label: "Suggested general order",
-    methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
+  const shared = {
     order: selectedOrder,
     components: asFive(components, "Order components"),
-    method: {
-      selection: "minimum-max-regret-then-mean-regret-then-card-id",
-      markerModel: "sorted-five-dimensional-halton-with-stress-layouts",
-      noteModel: "aggregate-uniform-note-midpoints",
-      execution: "all-perfect-full-combo-full-life",
-      exactTimelineAvailable: false,
-      noteTimelineAvailable: false,
-      permutationsChecked: 120,
-      lowDiscrepancySeed: LOW_DISCREPANCY_SEED,
-      activeFirstCheck: "one-cooldown-after-live-start",
-      activeConditionalBreakpoints: "uniform-note-combo-threshold-events",
-      persistentSupportRecipients: "guaranteed-recipient-floor",
-      activeCollisionModel: "expected-maximum-unstacked",
-      activationBoostStacking: "additive-capped-at-1000-permil",
-      unresolvedApplicationPolicy: "mean-of-enumerated-alternatives",
-      scoreScope: "relative-active-and-special-timing-only",
-      changesTeamUtility: false,
-    },
     scenarios: {
       count: scenarios.length,
-      chartCount: 30,
+      chartCount: charts.length,
       layoutCount: layouts.length,
       lowDiscrepancyLayoutCount: layouts.filter(
         (layout) => layout.family === "low-discrepancy",
@@ -1029,6 +1241,8 @@ export function recommendFormationOrder(
         chartKey: chart.chartKey,
         durationMilliseconds: chart.durationMilliseconds,
         noteCount: chart.noteCount,
+        timelineSusSha256: chart.timelineSusSha256,
+        timelineMetadataSha256: chart.timelineMetadataSha256,
       })),
     },
     objective: {
@@ -1039,16 +1253,81 @@ export function recommendFormationOrder(
       tinyMarginThresholdPermil: FORMATION_ORDER_TINY_MARGIN_PERMIL,
       diagnostics: aggregateDiagnostics,
       worstScenarios,
+      perChartDiagnostics,
+    },
+    fixedContext: { judgement: "perfect", fullCombo: true, life: 1_000 },
+  } as const;
+  const methodBase = {
+    selection: "minimum-max-regret-then-mean-regret-then-card-id",
+    execution: "all-perfect-full-combo-full-life",
+    permutationsChecked: 120,
+    activeFirstCheck: "one-cooldown-after-live-start",
+    persistentSupportRecipients: "guaranteed-recipient-floor",
+    activeCollisionModel: "expected-maximum-unstacked",
+    activationBoostStacking: "additive-capped-at-1000-permil",
+    unresolvedApplicationPolicy: "mean-of-enumerated-alternatives",
+    scoreScope: "relative-active-and-special-timing-only",
+  } as const;
+
+  if (usesExactTimeline) {
+    const timedStatus = status === "indeterminate" ? "indeterminate" : "timed-corpus";
+    return {
+      ...shared,
+      kind: "timed-corpus",
+      status: timedStatus,
+      label: "Chart-timed corpus order",
+      methodologyVersion: "yd-formation-order-timed-corpus-1.0.0",
+      method: {
+        ...methodBase,
+        markerModel: "exact-per-chart-special-markers",
+        noteModel: "exact-timed-note-events",
+        exactTimelineAvailable: true,
+        noteTimelineAvailable: true,
+        lowDiscrepancySeed: null,
+        activeConditionalBreakpoints: "exact-note-combo-threshold-events",
+        changesModeledTimingUtility: true,
+      },
+      confidence: {
+        kind: timedStatus,
+        statement:
+          timedStatus === "indeterminate"
+            ? "The chart-timed winner and runner-up are tied or separated by no more than one basis point; no meaningful order preference is claimed."
+            : corpusMode === "exact-song"
+              ? "The winner clears the published tiny-margin threshold on this exact chart timeline under the documented relative timing model."
+              : "The minimax-regret winner clears the published tiny-margin threshold across all 30 pinned chart timelines under the documented relative timing model.",
+      },
+      exactTimelineStatement:
+        corpusMode === "exact-song"
+          ? "This song uses pinned timed note events and its five exact Special markers. The placement is specific to the documented relative Active and Score Support timing model, not an absolute Live Score claim."
+          : "All 30 frozen charts use pinned timed note events and their five exact Special markers. The order is timing-optimal for the documented relative Active and Score Support model, not an absolute Live Score claim.",
+    };
+  }
+
+  const modeledStatus = status === "indeterminate" ? "indeterminate" : "modeled-general";
+  return {
+    ...shared,
+    kind: "modeled-general",
+    status: modeledStatus,
+    label: "Suggested general order",
+    methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
+    method: {
+      ...methodBase,
+      markerModel: "sorted-five-dimensional-halton-with-stress-layouts",
+      noteModel: "aggregate-uniform-note-midpoints",
+      exactTimelineAvailable: false,
+      noteTimelineAvailable: false,
+      lowDiscrepancySeed: LOW_DISCREPANCY_SEED,
+      activeConditionalBreakpoints: "uniform-note-combo-threshold-events",
+      changesModeledTimingUtility: false,
     },
     confidence: {
-      kind: status,
+      kind: modeledStatus,
       statement:
-        status === "indeterminate"
+        modeledStatus === "indeterminate"
           ? "The modeled winner and runner-up are tied or separated by no more than one basis point; no meaningful order preference is claimed."
           : "The minimax-regret winner clears the published tiny-margin threshold across the modeled general-layout corpus.",
     },
-    fixedContext: { judgement: "perfect", fullCombo: true, life: 1_000 },
     exactTimelineStatement:
-      "Exact rainbow-marker timestamps and timed note events are unavailable. This is a deterministic general-order model, not an exact or certified per-song optimum.",
+      "Exact rainbow-marker timestamps or timed note events are missing for at least one requested chart. This is a deterministic general-order fallback, not an exact or certified per-song optimum.",
   };
 }

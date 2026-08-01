@@ -94,7 +94,7 @@ function resultFixture(): TeamCalculatorResult {
       methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
       cardIds: members.map((member) => member.cardId),
       exactTimelineAvailable: false,
-      changesTeamUtility: false,
+      changesModeledTimingUtility: false,
       permutationsChecked: 120,
       corpusChartCount: 30,
       markerLayoutCount: 14,

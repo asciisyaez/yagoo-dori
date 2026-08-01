@@ -6,6 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./formation-evaluator": "./src/formation-evaluator.ts",
+    "./chart-timelines": "./src/chart-timelines.ts",
+    "./guide-rating-timelines": "./src/guide-rating-timelines.ts",
     "./mechanics": "./src/mechanics.ts",
     "./native-metrics": "./src/native-metrics.ts",
     "./native-ranking-benchmark": "./src/native-ranking-benchmark.ts",
@@ -15,8 +17,12 @@
     "./native-ranking-generator": "./src/native-ranking-generator.ts",
     "./native-ranking-scoring": "./src/native-ranking-scoring.ts",
     "./native-ranking-schema": "./src/native-ranking-schema.ts",
+    "./ranking-corpus-timelines": "./src/ranking-corpus-timelines.ts",
     "./native-guide-data": "./src/native-guide-data.ts",
     "./native-guide-schema": "./src/native-guide-schema.ts",
+    "./native-global-bound": "./src/native-global-bound.ts",
+    "./native-global-search": "./src/native-global-search.ts",
+    "./native-leader-equivalence": "./src/native-leader-equivalence.ts",
     "./native-search": "./src/native-search.ts",
     "./native-utility": "./src/native-utility.ts",
     "./score-kernel": "./src/score-kernel.ts",
@@ -31,7 +37,10 @@
     "data:validate": "tsx src/cli/validate-data.ts",
     "rankings:generate": "tsx src/cli/generate-rankings.ts",
     "guides:generate": "tsx src/cli/generate-guides.ts",
-    "guides:rebase": "tsx src/cli/rebase-guides.ts"
+    "guides:rebase": "tsx src/cli/rebase-guides.ts",
+    "timelines:sync": "tsx src/cli/sync-chart-timelines.ts",
+    "timelines:project": "tsx src/cli/project-ranking-timelines.ts",
+    "timelines:project:guides": "tsx src/cli/project-guide-rating-timelines.ts"
   },
   "dependencies": {
     "zod": "4.4.3"

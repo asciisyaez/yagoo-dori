@@ -201,7 +201,9 @@ function FormationSection({
         <div className={styles.orderHeading}>
           <div><p className="db-eyebrow">Placement sequence</p><h3>Recommended five</h3></div>
           <p>
-            {formation.formationOrderModel.permutationsChecked} placements compared across {formation.formationOrderModel.timingScenarioCount} timing scenarios.
+            {formation.formationOrderModel.exactTimelineAvailable
+              ? `${formation.formationOrderModel.permutationsChecked} placements compared across ${formation.formationOrderModel.corpusChartCount} pinned Expert chart timelines.`
+              : `${formation.formationOrderModel.permutationsChecked} placements compared across ${formation.formationOrderModel.timingScenarioCount} modeled timing scenarios.`}
             {formation.orderStatus === "indeterminate" && " The leading placements are effectively tied."}
           </p>
         </div>
@@ -383,7 +385,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const standardLeaderFit = modeledLeaderFit(standard, standardLeader);
   const anchorEditionLabel = anchor.id === "card-00012-5-uniq-0062-00" ? "summer" : "featured";
   const songAlternatives = guide.ratingSongComparisons.filter(
-    (comparison) => comparison.changesReferenceFormation,
+    (comparison) =>
+      comparison.changesReferenceFormation ||
+      (comparison.orderStatus === "timed-corpus" &&
+        comparison.formationOrder.join("|") !== standard.formationOrder.join("|")),
   );
   const defaultSongCount = guide.ratingSongComparisons.length - songAlternatives.length;
 
@@ -419,7 +424,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               </dd>
             </div>
             <div><dt><Music2 aria-hidden="true" /> Song coverage</dt><dd>{guide.ratingSongComparisons.length} singer-matched Expert charts</dd></div>
-            <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternatives.length === 0 ? "No robust change" : songAlternatives.length}</dd></div>
+            <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternatives.length === 0 ? "No change" : songAlternatives.length}</dd></div>
             <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Mobile · Manual · All Perfect</dd></div>
           </dl>
           {hasSeparateStandardLeaderSource && (
@@ -474,7 +479,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <section className={styles.songSection} id="rating-song-comparisons">
         <div className={styles.sectionHeading}>
           <div><p className="db-eyebrow">Song fit</p><h2>Use one build unless the chart changes the answer</h2></div>
-          <p>Only a reliably stronger formation is shown as an alternative.</p>
+          <p>Shows a reliably stronger formation or a chart-timed placement change.</p>
         </div>
         <div className={styles.songGrid}>
           <article className={styles.songSummary}>
@@ -496,7 +501,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                   <span className={styles.changedSong}>
                     {variant.advantageOverReferencePercent !== null
                       ? `+${variant.advantageOverReferencePercent.toFixed(1)}% model`
-                      : "Alternative"}
+                      : "Order change"}
                   </span>
                 </header>
                 <p><Crown aria-hidden="true" /> {leader.talentName} · {leader.leaderOutfit.costumeName}</p>

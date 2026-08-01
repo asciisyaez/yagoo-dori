@@ -1,5 +1,6 @@
 import { mechanicsData } from "./mechanics";
 import { recommendFormationOrder } from "./formation-order-recommender";
+import { guideRatingTimelineByKey } from "./guide-rating-timelines";
 import {
   NativeGuideDataSchema,
   NativeGuideFormationSchema,
@@ -98,6 +99,7 @@ function addIntervals(left: UtilityInterval, right: UtilityInterval): Serializab
 type MemberCardIdTuple = readonly [string, string, string, string, string];
 
 const modeledOrderCache = new Map<string, ReturnType<typeof recommendFormationOrder>>();
+const exactSongOrderCache = new Map<string, ReturnType<typeof recommendFormationOrder>>();
 
 function modeledOrderEvaluation(
   leaderOutfitCardId: string,
@@ -145,6 +147,41 @@ function modeledOrderEvaluation(
   };
 }
 
+function exactSongOrderEvaluation(
+  leaderOutfitCardId: string,
+  memberCardIds: MemberCardIdTuple,
+  investment: Investment,
+  chartKey: string,
+): ReturnType<typeof recommendFormationOrder> {
+  const bloomStage = PROGRESSION_LENSES[investment].bloomStage;
+  const timeline = guideRatingTimelineByKey.get(chartKey);
+  if (!timeline) throw new Error(`Published guide rating timeline is missing: ${chartKey}`);
+  const cacheKey = [
+    chartKey,
+    leaderOutfitCardId,
+    [...memberCardIds].sort().join("|"),
+    bloomStage,
+  ].join("|");
+  let model = exactSongOrderCache.get(cacheKey);
+  if (!model) {
+    model = recommendFormationOrder({
+      leaderOutfitCardId,
+      members: memberCardIds.map((cardId) => ({ cardId, bloomStage })) as [
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+      ],
+      corpus: [{ chartKey, expectedChartHash: timeline.expectedChartHash }],
+      corpusMode: "exact-song",
+      exactTimelineByKey: guideRatingTimelineByKey,
+    });
+    exactSongOrderCache.set(cacheKey, model);
+  }
+  return model;
+}
+
 function subtractIntervals(selected: UtilityInterval, alternative: UtilityInterval): UtilityInterval {
   return {
     lower: selected.lower - alternative.upper,
@@ -165,6 +202,8 @@ function serializeOrderModel(model: ReturnType<typeof recommendFormationOrder>) 
     runnerUpGapPermil: model.objective.runnerUpGapPermil,
     winSharePermil: model.objective.selected.winSharePermil,
     exactTimelineAvailable: model.method.exactTimelineAvailable,
+    noteTimelineAvailable: model.method.noteTimelineAvailable,
+    changesModeledTimingUtility: model.method.changesModeledTimingUtility,
     statement: model.confidence.statement,
   };
 }
@@ -533,7 +572,7 @@ export function mergeNativeGuideData(
   }
 
   return NativeGuideDataSchema.parse({
-    schemaVersion: 4,
+    schemaVersion: 5,
     generatedAt: normalizedGeneratedAt,
     rosterCommit: nativeRankingData.rosterCommit,
     guides: [...guidesByAnchorCardId.values()].sort(
@@ -721,10 +760,36 @@ export function generateNativeGuideData(
       ratingSelection.singerTalentId,
       false,
     );
+    const candidateMembers = formation.members.map((member) => member.cardId) as unknown as MemberCardIdTuple;
+    const defaultMembers = standard.members.map((member) => member.cardId) as unknown as MemberCardIdTuple;
+    const candidateOrderModel = exactSongOrderEvaluation(
+      formation.leaderOutfitCardId,
+      candidateMembers,
+      "one-copy-maximum",
+      chartKey,
+    );
+    const defaultOrderModel = exactSongOrderEvaluation(
+      standard.leaderOutfitCardId,
+      defaultMembers,
+      "one-copy-maximum",
+      chartKey,
+    );
+    const candidateOnSong = evaluateNativeRelativeUtility({
+      formation: {
+        leaderOutfitCardId: formation.leaderOutfitCardId,
+        members: candidateOrderModel.order.map((cardId) => ({
+          cardId,
+          investment: "one-copy-maximum" as const,
+        })),
+      },
+      chartKey,
+      seed: SEED,
+      accountState: BOARD,
+    });
     const defaultOnSong = evaluateNativeRelativeUtility({
       formation: {
         leaderOutfitCardId: standard.leaderOutfitCardId,
-        members: standard.formationOrder.map((cardId) => ({
+        members: defaultOrderModel.order.map((cardId) => ({
           cardId,
           investment: "one-copy-maximum" as const,
         })),
@@ -734,15 +799,15 @@ export function generateNativeGuideData(
       accountState: BOARD,
     });
     const advantage =
-      ((formation.relativeUtility.central - defaultOnSong.relativeUtility.central) /
+      ((candidateOnSong.relativeUtility.central - defaultOnSong.relativeUtility.central) /
         Math.max(1, defaultOnSong.relativeUtility.central)) *
       100;
-    const candidateMembers = formation.members.map((member) => member.cardId);
-    const defaultMembers = standard.members.map((member) => member.cardId);
     const robustlyBetter = utilityIntervalStrictlyDominates(
-      formation.relativeUtility,
+      candidateOnSong.relativeUtility,
       defaultOnSong.relativeUtility,
     );
+    const selectedOrderModel = robustlyBetter ? candidateOrderModel : defaultOrderModel;
+    const timeline = guideRatingTimelineByKey.get(chartKey)!;
     return {
       songId: song.id,
       songTitle: song.title,
@@ -754,30 +819,33 @@ export function generateNativeGuideData(
       leaderSingerMatched: true,
       platform: "mobile",
       chartFidelity: "aggregate",
-      noteTimeline: "unavailable",
+      noteTimeline: "exact",
+      formationOrderTimelineFidelity: "exact-timed",
+      timelineEvidence: {
+        susSha256: timeline.source.susSha256,
+        metadataSha256: timeline.source.metadataSha256,
+        specialMarkerMicroseconds: timeline.specialMarkerMicroseconds,
+        feverMarkerMicroseconds: timeline.feverMarkerMicroseconds,
+      },
       leaderOutfitCardId: robustlyBetter
         ? formation.leaderOutfitCardId
         : standard.leaderOutfitCardId,
-      formationOrder: robustlyBetter
-        ? formation.formationOrder
-        : standard.formationOrder,
+      formationOrder: selectedOrderModel.order,
       members: robustlyBetter ? candidateMembers : defaultMembers,
       relativeUtility: robustlyBetter
-        ? formation.relativeUtility
+        ? serializable(candidateOnSong.relativeUtility)
         : serializable(defaultOnSong.relativeUtility),
       advantageOverReferencePercent: robustlyBetter
         ? Math.round(advantage * 100) / 100
         : null,
       changesReferenceFormation: robustlyBetter,
-      orderStatus: robustlyBetter ? formation.orderStatus : standard.orderStatus,
-      formationOrderModel: robustlyBetter
-        ? formation.formationOrderModel
-        : standard.formationOrderModel,
+      orderStatus: selectedOrderModel.status,
+      formationOrderModel: serializeOrderModel(selectedOrderModel),
     };
   });
 
   return NativeGuideDataSchema.parse({
-    schemaVersion: 4,
+    schemaVersion: 5,
     generatedAt: parsedGeneratedAt.toISOString(),
     rosterCommit: mechanicsData.sourceSnapshot.commit,
     guides: [

@@ -16,6 +16,10 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Parsed and reconciled a pinned revision-51 chart corpus with 704 available charts, 405,819 exact timed note events, and 3,520 Special markers",
+    "Replaced the calculator and guide general placement model with all-120-order audits across 30 exact pinned Expert timelines and manual-Perfect note coefficients",
+    "Regenerated all seven guides under schema v5 with exact per-song placement audits for 38 singer-matched rating charts and visible placement-only alternatives",
+    "Added a sound reduced-roster global-optimum certificate path with Leader equivalence classes and stronger trigger- and recipient-aware upper bounds without presenting the unfinished full-roster proof as complete",
     "Applied calibrated SS and D confidence gates, same-methodology tier hysteresis, concrete provisional reasons, exact micro-index changelog attribution, and a public tier-correction changelog without changing numerical scores or ranks",
     "Published the cleaned history and v0.1.0 tag to the correctly named public repository, stabilized shared-runner optimizer tests, enabled GitHub Pages, and passed live browser and calculator smoke checks",
     "Replaced the deleted misspelled remote with a fresh empty public asciisyaez/yagoo-dori repository ready to receive only the cleaned history",
@@ -29,7 +33,6 @@
     "Updated the release architecture from a paid domain and hosted container to the intended public asciisyaez/yagoo-dori GitHub Pages project",
     "Received user approval for the reviewed calculator and guide working tree and published the release checkpoint to main",
     "Added Oshi mode with persistent Member, Leader Outfit, and combined favorite constraints plus exact role-fulfillment badges",
-    "Added a Bloom-aware suggested five-slot order that compares all 120 placements across 420 modeled timing scenarios and shows Active cadence and Special duration",
     "Clarified the summer Subaru guide's summer Member anchor versus separately sourced regular Subaru Leader Outfit without overstating bounded-search proof",
     "Regenerated seven optimizer-backed guides with exact Leader versus Passive attribution, progression-level prose, and explicit source-card Outfit identity",
     "Added an owned-roster Team calculator preview with live filtering, rarity groups, per-card Bloom, local persistence, a cancellable browser Worker, and legal Leader plus five-Member results averaged over the pinned 30-chart benchmark",
@@ -52,8 +55,8 @@
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
   "blockers": [
-    "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
+    "The actual runtime score equation and target-priority rules are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Continue N03D by adding a deterministic global-optimum proof path for legal five-card teams and all 120 finalist orders without weakening the current evidence boundaries."
+  "nextAction": "Continue N03D with a fundamentally different exact full-roster formulation, such as meet-in-the-middle or a specialized compiled solver, because the sound branch-and-bound prototype cannot yet certify 126,445,821 legal team sets within its runtime budget."
 }

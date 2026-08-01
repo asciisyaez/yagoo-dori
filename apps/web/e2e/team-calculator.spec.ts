@@ -183,7 +183,7 @@ test("a five-talent roster calculates a legal Leader and five Members off the ma
   await expect(page.locator("a[class*='memberResult']")).toHaveCount(5);
   await expect(page.getByText("Special activation order", { exact: true })).toBeVisible();
   await expect(page.getByText("Left to right", { exact: true })).toBeVisible();
-  await expect(page.getByText(/Timing modeled|Timing tie/, { exact: true })).toBeVisible();
+  await expect(page.getByText(/Chart timed|Timing tie/, { exact: true })).toBeVisible();
   await expect(page.locator("[class*='orderSlot']")).toHaveText([
     "Slot 1",
     "Slot 2",

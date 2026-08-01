@@ -20,8 +20,8 @@ parent_epic: yagoo-dori-v1
 
 ## Verification evidence
 
-- All seven guides were regenerated under schema v4 and methodology `yd-native-guide-1.2.0`.
-- Every formation records the modeled order, 30-chart/14-layout timing coverage, actual search order count, and exact replacement comparison basis.
+- All seven guides were regenerated under schema v5 and methodology `yd-native-guide-1.2.0`.
+- Every formation records its all-120-placement order over 30 exact pinned Expert timelines, actual search order count, and exact replacement comparison basis.
 - Replacement UI exposes gain, cost, Active cadence, Special duration, recipient changes, and alternate placement.
-- Focused core tests (38) and desktop/mobile guide Playwright checks passed on 2026-08-01.
-- Exact timed-chart breakpoints remain unchecked because the pinned dataset contains zero note/Special-marker timelines.
+- Each of 38 published rating-song rows independently audits all 120 placements on its exact note/Special timeline and records source hashes; the page exposes placement-only changes as well as robust team changes.
+- Generic duration breakpoints beyond the currently published chart set remain unchecked.

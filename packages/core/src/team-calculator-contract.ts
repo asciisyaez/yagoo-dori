@@ -224,13 +224,16 @@ export const TeamCalculatorResultSchema = z
       .length(5),
     formationOrder: z
       .object({
-        kind: z.literal("modeled-general"),
-        status: z.enum(["modeled-general", "indeterminate"]),
-        label: z.literal("Suggested general order"),
-        methodologyVersion: z.literal("yd-formation-order-modeled-general-1.0.0"),
+        kind: z.enum(["modeled-general", "timed-corpus"]),
+        status: z.enum(["modeled-general", "timed-corpus", "indeterminate"]),
+        label: z.enum(["Suggested general order", "Chart-timed corpus order"]),
+        methodologyVersion: z.enum([
+          "yd-formation-order-modeled-general-1.0.0",
+          "yd-formation-order-timed-corpus-1.0.0",
+        ]),
         cardIds: z.array(z.string().min(1)).length(5),
-        exactTimelineAvailable: z.literal(false),
-        changesTeamUtility: z.literal(false),
+        exactTimelineAvailable: z.boolean(),
+        changesModeledTimingUtility: z.boolean(),
         permutationsChecked: z.literal(120),
         corpusChartCount: z.literal(30),
         markerLayoutCount: z.number().int().positive(),
@@ -238,7 +241,7 @@ export const TeamCalculatorResultSchema = z
         activeFirstCheck: z.literal("one-cooldown-after-live-start"),
         confidence: z
           .object({
-            kind: z.enum(["modeled-general", "indeterminate"]),
+            kind: z.enum(["modeled-general", "timed-corpus", "indeterminate"]),
             winSharePermil: z.number().finite().min(0).max(1_000),
             runnerUpGapPermil: z.number().finite().nonnegative(),
             maxRegretPermil: z.number().finite().nonnegative(),
@@ -336,7 +339,20 @@ export const TeamCalculatorResultSchema = z
     }
     const orderCardIds = result.formationOrder.cardIds;
     const orderComponents = result.formationOrder.members;
+    const timedOrder = result.formationOrder.kind === "timed-corpus";
+    const orderDiscriminatorMismatch = timedOrder
+      ? result.formationOrder.label !== "Chart-timed corpus order" ||
+        result.formationOrder.methodologyVersion !== "yd-formation-order-timed-corpus-1.0.0" ||
+        !result.formationOrder.exactTimelineAvailable ||
+        !result.formationOrder.changesModeledTimingUtility ||
+        !["timed-corpus", "indeterminate"].includes(result.formationOrder.status)
+      : result.formationOrder.label !== "Suggested general order" ||
+        result.formationOrder.methodologyVersion !== "yd-formation-order-modeled-general-1.0.0" ||
+        result.formationOrder.exactTimelineAvailable ||
+        result.formationOrder.changesModeledTimingUtility ||
+        !["modeled-general", "indeterminate"].includes(result.formationOrder.status);
     if (
+      orderDiscriminatorMismatch ||
       result.formationOrder.status !== result.formationOrder.confidence.kind ||
       result.formationOrder.timingScenarioCount !==
         result.formationOrder.corpusChartCount * result.formationOrder.markerLayoutCount ||

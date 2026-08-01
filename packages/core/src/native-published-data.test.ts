@@ -445,12 +445,27 @@ describe("generated native publication data", () => {
         expect([...formation.investmentOrder].sort()).toEqual([...memberIds].sort());
         expect(formation.ordersAudited).toBeGreaterThanOrEqual(120);
         expect(formation.ordersAudited % 120).toBe(0);
-        expect(["modeled-general", "indeterminate"]).toContain(formation.orderStatus);
+        expect(["modeled-general", "timed-corpus", "indeterminate"]).toContain(
+          formation.orderStatus,
+        );
         expect(formation.formationOrderModel).toMatchObject({
-          methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
           corpusChartCount: 30,
           permutationsChecked: 120,
-          exactTimelineAvailable: false,
+        });
+        const formationUsesTimedCorpus =
+          formation.formationOrderModel.methodologyVersion ===
+          "yd-formation-order-timed-corpus-1.0.0";
+        expect(
+          formation.orderStatus === "indeterminate" ||
+            formation.orderStatus ===
+              (formationUsesTimedCorpus ? "timed-corpus" : "modeled-general"),
+        ).toBe(true);
+        expect(formation.formationOrderModel).toMatchObject({
+          markerLayoutCount: formationUsesTimedCorpus ? 1 : 14,
+          timingScenarioCount: formationUsesTimedCorpus ? 30 : 420,
+          exactTimelineAvailable: formationUsesTimedCorpus,
+          noteTimelineAvailable: formationUsesTimedCorpus,
+          changesModeledTimingUtility: formationUsesTimedCorpus,
         });
         expect(formation.formationOrderModel.timingScenarioCount).toBe(
           formation.formationOrderModel.corpusChartCount *
@@ -498,7 +513,9 @@ describe("generated native publication data", () => {
           expect(replacement.lossPercent.central).toBeGreaterThanOrEqual(0);
           expect(replacement.tradeoff.benefit.length).toBeGreaterThan(0);
           expect(replacement.tradeoff.cost.length).toBeGreaterThan(0);
-          expect(["modeled-general", "indeterminate"]).toContain(replacement.orderStatus);
+          expect(["modeled-general", "timed-corpus", "indeterminate"]).toContain(
+            replacement.orderStatus,
+          );
           expect(replacement.suggestedOrder).toContain(replacement.cardId);
           expect(replacement.suggestedOrder).not.toContain(replacement.replacedCardId);
           expect(
@@ -606,9 +623,25 @@ describe("generated native publication data", () => {
         expect(song.singerTalentIds).toContain(guide.ratingSongScope.singerTalentId);
         expect(leader.talentId).toBe(guide.ratingSongScope.singerTalentId);
         expect(comparison.platform).toBe("mobile");
-        expect(comparison.noteTimeline).toBe("unavailable");
-        expect(["modeled-general", "indeterminate"]).toContain(comparison.orderStatus);
-        expect(comparison.formationOrderModel.timingScenarioCount).toBe(420);
+        expect(comparison.noteTimeline).toBe("exact");
+        expect(comparison.formationOrderTimelineFidelity).toBe("exact-timed");
+        expect(["modeled-general", "timed-corpus", "indeterminate"]).toContain(
+          comparison.orderStatus,
+        );
+        const comparisonUsesTimedCorpus = true;
+        expect(
+          comparison.orderStatus === "indeterminate" ||
+            comparison.orderStatus ===
+              (comparisonUsesTimedCorpus ? "timed-corpus" : "modeled-general"),
+        ).toBe(true);
+        expect(comparison.formationOrderModel).toMatchObject({
+          corpusChartCount: 1,
+          markerLayoutCount: 1,
+          timingScenarioCount: 1,
+          exactTimelineAvailable: comparisonUsesTimedCorpus,
+          noteTimelineAvailable: comparisonUsesTimedCorpus,
+          changesModeledTimingUtility: comparisonUsesTimedCorpus,
+        });
       }
     }
   });

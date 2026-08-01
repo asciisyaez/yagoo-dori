@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "holodori-best-chart-corpus-r51",
+  "apiBaseUrl": "https://api.holodori.best",
+  "apiRevision": 51,
+  "retrievedAt": "2026-08-02",
+  "sourceLicense": null,
+  "runtimePolicy": "Build-time retrieval only; generated timelines are stored locally and production makes no source API requests.",
+  "urlTemplates": {
+    "revision": "https://api.holodori.best/api/revision",
+    "sus": "https://api.holodori.best/api/asset/resources/chart_{musicId}_{difficulty}.sus/chart_{musicId}_{difficulty}.sus",
+    "metadata": "https://api.holodori.best/api/asset/resources/chart_{musicId}_{difficulty}.sus/chart_{musicId}_{difficulty}.json"
+  },
+  "parserReference": {
+    "repository": "https://github.com/HolodoriDB/holodori-scores",
+    "commit": "0d31cd7710fe5f68933211ad312813d984542f41",
+    "license": "MIT",
+    "files": [
+      "src/holodori/scores/render.py",
+      "src/holodori/scores/metadata.py"
+    ]
+  },
+  "fixture": {
+    "chartKey": "m0049:expert",
+    "upstreamChartHash": "a623f990866d4a4839776be4aaed9e23",
+    "susUrl": "https://api.holodori.best/api/asset/resources/chart_m0049_expert.sus/chart_m0049_expert.sus",
+    "susSha256": "4c0a2dd4e9747c04c2c2299c8830d5befa19e7e3163ecf53a0accac4d2028a51",
+    "localPath": "packages/core/src/fixtures/chart-m0049-expert.sus"
+  }
+}

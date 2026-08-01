@@ -114,14 +114,14 @@ describe("owned-roster team calculator", () => {
     expect(result.members).toHaveLength(5);
     expect(new Set(result.members.map((member) => member.talentId)).size).toBe(5);
     expect(result.formationOrder).toMatchObject({
-      kind: "modeled-general",
-      label: "Suggested general order",
+      kind: "timed-corpus",
+      label: "Chart-timed corpus order",
       permutationsChecked: 120,
       corpusChartCount: 30,
-      markerLayoutCount: 14,
-      timingScenarioCount: 420,
-      exactTimelineAvailable: false,
-      changesTeamUtility: false,
+      markerLayoutCount: 1,
+      timingScenarioCount: 30,
+      exactTimelineAvailable: true,
+      changesModeledTimingUtility: true,
     });
     expect(result.formationOrder.cardIds).toEqual(
       result.members.map((member) => member.cardId),

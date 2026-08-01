@@ -146,7 +146,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
         <div className={styles.memberResultGroup}>
           <header>
             <div><span>Special activation order</span><strong>Left to right</strong></div>
-            <small>{result.formationOrder.status === "indeterminate" ? "Timing tie" : "Timing modeled"}</small>
+            <small>{result.formationOrder.status === "indeterminate" ? "Timing tie" : result.formationOrder.kind === "timed-corpus" ? "Chart timed" : "Timing modeled"}</small>
           </header>
           <div className={styles.memberResults}>
             {result.members.map((member, index) => {
@@ -181,7 +181,9 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
           <p className={styles.orderSummary} data-status={result.formationOrder.status}>
             {result.formationOrder.status === "indeterminate"
               ? "Timing outcomes were effectively tied; this is a stable starting order."
-              : `Skill timing at the selected Bloom levels · ${result.formationOrder.permutationsChecked} placements compared across ${result.formationOrder.corpusChartCount} Expert charts.`}
+              : result.formationOrder.kind === "timed-corpus"
+                ? `Chart-timed skill order at the selected Bloom levels · ${result.formationOrder.permutationsChecked} placements compared across ${result.formationOrder.corpusChartCount} pinned Expert charts.`
+                : `Skill timing at the selected Bloom levels · ${result.formationOrder.permutationsChecked} placements compared across ${result.formationOrder.corpusChartCount} Expert charts.`}
           </p>
         </div>
       </div>

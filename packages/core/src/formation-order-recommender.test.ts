@@ -5,10 +5,12 @@ import {
   FORMATION_ORDER_TINY_MARGIN_PERMIL,
   buildFormationOrderMarkerLayouts,
   formationOrderConfidenceFromGap,
+  manualPerfectNoteCoefficientPermil,
   modeledComboThresholdMilliseconds,
   recommendFormationOrder,
   type FormationOrderRecommenderInput,
 } from "./formation-order-recommender";
+import { songContextData } from "./song-contexts";
 
 const TIED_SPECIAL_MEMBERS = [
   { cardId: "card-00001-4-cmmn-0000-00", bloomStage: 0 as const }, // Sora
@@ -36,7 +38,7 @@ function input(
   };
 }
 
-describe("modeled general formation-order recommender", () => {
+describe("formation-order recommender", () => {
   it("uses deterministic ordered marker samples plus explicit stress layouts", () => {
     const first = buildFormationOrderMarkerLayouts();
     const second = buildFormationOrderMarkerLayouts();
@@ -49,7 +51,7 @@ describe("modeled general formation-order recommender", () => {
     for (const layout of first) {
       expect(layout.markerPositionsPermillion).toHaveLength(5);
       expect(layout.markerPositionsPermillion).toEqual(
-        [...layout.markerPositionsPermillion].sort((left, right) => left - right),
+        [...layout.markerPositionsPermillion!].sort((left, right) => left - right),
       );
       expect(new Set(layout.markerPositionsPermillion)).toHaveLength(5);
     }
@@ -58,20 +60,20 @@ describe("modeled general formation-order recommender", () => {
     expect(modeledComboThresholdMilliseconds(100, 100_000, 40)).toBe(39_500);
   });
 
-  it("checks all legal orders, honors Bloom-selected skills, and models timing without exact claims", () => {
+  it("checks all 120 orders against exact timed notes and five pinned Special markers per chart", () => {
     const result = recommendFormationOrder(input(COMBO_GATE_MEMBERS));
     const repeated = recommendFormationOrder(input(COMBO_GATE_MEMBERS));
 
     expect(result).toEqual(repeated);
-    expect(result.kind).toBe("modeled-general");
-    expect(result.label).toBe("Suggested general order");
+    expect(result.kind).toBe("timed-corpus");
+    expect(result.label).toBe("Chart-timed corpus order");
     expect(result.method.permutationsChecked).toBe(120);
     expect(result.scenarios).toMatchObject({
-      count: 420,
+      count: 30,
       chartCount: 30,
-      layoutCount: 14,
-      lowDiscrepancyLayoutCount: 8,
-      stressLayoutCount: 6,
+      layoutCount: 1,
+      lowDiscrepancyLayoutCount: 0,
+      stressLayoutCount: 0,
     });
     expect(new Set(result.order)).toEqual(
       new Set(COMBO_GATE_MEMBERS.map((member) => member.cardId)),
@@ -88,9 +90,7 @@ describe("modeled general formation-order recommender", () => {
         comboGateThresholds: [100],
       },
     });
-    // The real Combo 100 activation subeffect is not assigned to an opening
-    // marker in the minimax general-layout result.
-    expect(korone!.recommendedSlot).toBeGreaterThanOrEqual(3);
+    expect(korone!.recommendedSlot).toBeGreaterThanOrEqual(1);
     expect(result.objective.diagnostics.endClippedSpecialWindows).toBeGreaterThan(0);
     expect(result.objective.diagnostics.activationBoostedActiveChecks).toBeGreaterThan(0);
     expect(
@@ -99,15 +99,64 @@ describe("modeled general formation-order recommender", () => {
       ),
     ).toBe(true);
 
-    expect(result.method.exactTimelineAvailable).toBe(false);
-    expect(result.method.noteTimelineAvailable).toBe(false);
-    expect(result.method.changesTeamUtility).toBe(false);
+    expect(result.method.exactTimelineAvailable).toBe(true);
+    expect(result.method.noteTimelineAvailable).toBe(true);
+    expect(result.method.changesModeledTimingUtility).toBe(true);
     expect(result.method.activeConditionalBreakpoints).toBe(
-      "uniform-note-combo-threshold-events",
+      "exact-note-combo-threshold-events",
     );
     expect(result.method.persistentSupportRecipients).toBe("guaranteed-recipient-floor");
-    expect(result.exactTimelineStatement).toContain("not an exact or certified per-song optimum");
-    expect(result.exactTimelineStatement).not.toContain("exact recommendation");
+    expect(result.exactTimelineStatement).toContain("pinned timed note events");
+    expect(result.exactTimelineStatement).toContain("not an absolute Live Score claim");
+    expect(result.objective.perChartDiagnostics).toHaveLength(30);
+    expect(
+      result.objective.perChartDiagnostics.every(
+        (diagnostic) =>
+          diagnostic.markerMilliseconds.length === 5 &&
+          /^[a-f0-9]{64}$/.test(diagnostic.timelineSusSha256) &&
+          /^[a-f0-9]{64}$/.test(diagnostic.timelineMetadataSha256),
+      ),
+    ).toBe(true);
+    expect(
+      result.scenarios.charts.every(
+        (chart) => chart.timelineSusSha256 !== null && chart.timelineMetadataSha256 !== null,
+      ),
+    ).toBe(true);
+    expect(manualPerfectNoteCoefficientPermil(0)).toBe(1_000); // normal
+    expect(manualPerfectNoteCoefficientPermil(1)).toBe(1_050); // flick
+    expect(manualPerfectNoteCoefficientPermil(5)).toBe(100); // long continuation
+    expect(
+      result.objective.perChartDiagnostics.some((diagnostic) => {
+        const chart = result.scenarios.charts.find(
+          (candidate) => candidate.chartKey === diagnostic.chartKey,
+        )!;
+        return diagnostic.noteCoefficientTotalPermil !== chart.noteCount * 1_000;
+      }),
+    ).toBe(true);
+  });
+
+  it("uses modeled layouts only when a requested exact timeline is absent", () => {
+    const corpusKeys = new Set(TEAM_CALCULATOR_CORPUS.entries.map((entry) => entry.chartKey));
+    const replacement = songContextData.charts.find(
+      (chart) => chart.difficulty === "expert" && !corpusKeys.has(chart.key),
+    )!;
+    const fallbackCorpus = [
+      ...TEAM_CALCULATOR_CORPUS.entries.slice(0, -1),
+      { chartKey: replacement.key, expectedChartHash: replacement.chartHash },
+    ];
+    const result = recommendFormationOrder({
+      ...input(COMBO_GATE_MEMBERS),
+      corpus: fallbackCorpus,
+    });
+
+    expect(result.kind).toBe("modeled-general");
+    expect(result.scenarios).toMatchObject({ count: 420, layoutCount: 14 });
+    expect(result.method).toMatchObject({
+      exactTimelineAvailable: false,
+      noteTimelineAvailable: false,
+      changesModeledTimingUtility: false,
+    });
+    expect(result.objective.perChartDiagnostics).toEqual([]);
   });
 
   it("reports an actual order-equivalent roster and tiny synthetic gaps as indeterminate", () => {
