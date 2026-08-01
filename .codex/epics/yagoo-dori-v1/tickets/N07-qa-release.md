@@ -16,6 +16,6 @@ parent_epic: yagoo-dori-v1
 - [x] Asset and data validation fail on missing source mappings or fabricated records.
 - [x] Mobile Lighthouse meets the agreed performance, accessibility, and SEO targets.
 - [x] Repository-subpath static export passes desktop/mobile browser smoke with local artwork and the calculator Worker.
-- [ ] Public-history, dependency, and credential audits are clean or have an explicitly accepted exception.
+- [x] Public-history, dependency, and credential audits are clean or have an explicitly accepted exception.
 - [x] Gated GitHub Pages workflow and rollback procedure are verified without changing external settings.
 - [x] User approves the reviewed working tree before commit or deployment.

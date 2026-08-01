@@ -39,4 +39,8 @@ pnpm dlx lighthouse@13.4.1 http://127.0.0.1:3100/yagoo-dori/ `
   --throttling-method=devtools
 ```
 
-GitHub deployment remains disabled until the user completes the manual activation in `docs/release.md`.
+GitHub Pages is enabled through the gated workflow described in `docs/release.md`.
+
+## Public deployment
+
+The 2026-08-01 public release passed the complete Verify and GitHub Pages workflows. Live browser smoke confirmed the homepage, tier list, team calculator, card database, and guide index return successfully with repository-prefixed assets and one footer disclaimer. A five-talent calculator run also returned a legal Leader, five Members, and the modeled five-slot activation order without browser, console, or request failures.

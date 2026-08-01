@@ -2,6 +2,8 @@
 
 Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader Outfit tier list, and owned-roster team builder. It is a noncommercial fan project built for quick card comparison and legal five-Member team decisions.
 
+**Live site:** [asciisyaez.github.io/yagoo-dori](https://asciisyaez.github.io/yagoo-dori/)
+
 ## What is included
 
 - 54 talents, 59 five-star Member cards, and 54 four-star Member cards.

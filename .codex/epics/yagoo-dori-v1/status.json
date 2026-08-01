@@ -16,6 +16,7 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Published the cleaned history and v0.1.0 tag to the correctly named public repository, stabilized shared-runner optimizer tests, enabled GitHub Pages, and passed live browser and calculator smoke checks",
     "Replaced the deleted misspelled remote with a fresh empty public asciisyaez/yagoo-dori repository ready to receive only the cleaned history",
     "Audited retained GitHub Actions metadata after the history rewrite and changed the release handoff to a fresh repository so the misspelled archive never needs to become public",
     "Rewrote and atomically force-pushed the public candidate history and v0.1.0 tag with noreply attribution and superseded internal files removed, then passed the full private Actions verification while keeping the Pages gate disabled",
@@ -53,5 +54,5 @@
     "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Push only cleaned main and v0.1.0 to the fresh public repository, verify its Actions run, then enable and smoke-test GitHub Pages."
+  "nextAction": "Continue N03D by implementing and testing confidence, hysteresis, provisional-state, and score-delta attribution behavior without weakening the published evidence gates."
 }
