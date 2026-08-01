@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Crown, Layers3 } from "lucide-react";
 

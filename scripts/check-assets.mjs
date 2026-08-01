@@ -2,10 +2,16 @@ import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { basename, join } from "node:path";
 
-const manifest = JSON.parse(await readFile("data/generated/card-art-manifest.json", "utf8"));
+const sourceManifestPath = "data/generated/card-art-manifest.json";
+const sourceManifestBytes = await readFile(sourceManifestPath);
+const manifest = JSON.parse(sourceManifestBytes.toString("utf8"));
+const previewManifest = JSON.parse(
+  await readFile("data/generated/card-art-preview-manifest.json", "utf8"),
+);
 const publicData = JSON.parse(await readFile("data/generated/holodori-public.json", "utf8"));
 const failures = [];
 const expectedCount = publicData.counts?.total;
+const expectedPreviewCount = 113;
 const requiredDimensions = {
   icon: { width: 300, height: 300 },
   illustration: { width: 2282, height: 1284 },
@@ -167,6 +173,123 @@ for (const [kind, directory] of Object.entries({
   if (untracked.length) failures.push(`${kind} directory: ${untracked.length} untracked WebP files`);
 }
 
+const expectedPreviewGenerator = {
+  library: "sharp",
+  version: "0.35.3",
+  format: "webp",
+  resize: { width: 1024, height: 576, fit: "cover", position: "centre" },
+  webp: { quality: 80, effort: 6 },
+};
+const sourceManifestHash = createHash("sha256").update(sourceManifestBytes).digest("hex");
+
+if (expectedCount !== expectedPreviewCount) {
+  failures.push(
+    `preview roster: expected exactly ${expectedPreviewCount} cards, found ${expectedCount ?? 0}`,
+  );
+}
+if (
+  previewManifest.expectedCount !== expectedPreviewCount ||
+  !Array.isArray(previewManifest.previews) ||
+  previewManifest.previews.length !== expectedPreviewCount
+) {
+  failures.push(
+    `preview manifest: expected exactly ${expectedPreviewCount} mappings, found ` +
+      `${previewManifest.previews?.length ?? 0}`,
+  );
+}
+if (JSON.stringify(previewManifest.generator) !== JSON.stringify(expectedPreviewGenerator)) {
+  failures.push("preview manifest: generator settings are not the pinned 1024x576 WebP recipe");
+}
+if (
+  previewManifest.sourceManifest?.path !== sourceManifestPath ||
+  previewManifest.sourceManifest?.sha256 !== sourceManifestHash ||
+  previewManifest.sourceManifest?.schemaVersion !== manifest.schemaVersion ||
+  previewManifest.sourceManifest?.retrievedAt !== manifest.retrievedAt
+) {
+  failures.push("preview manifest: source-manifest identity is stale or incomplete");
+}
+
+const sourceIllustrations = new Map(
+  (manifest.assets ?? []).map((asset) => [asset.cardId, asset.illustration]),
+);
+const seenPreviewCards = new Set();
+const seenPreviewPaths = new Set();
+const expectedPreviewFiles = new Set();
+
+for (const preview of previewManifest.previews ?? []) {
+  if (!preview.cardId || seenPreviewCards.has(preview.cardId)) {
+    failures.push(`${preview.cardId ?? "unknown preview"}: duplicate or missing preview card ID`);
+    continue;
+  }
+  seenPreviewCards.add(preview.cardId);
+
+  const source = sourceIllustrations.get(preview.cardId);
+  const expectedSourcePath = source?.localPath;
+  const expectedOutputPath = expectedSourcePath?.replace(
+    /^\/game\/illustrations\//,
+    "/game/previews/",
+  );
+  if (
+    !source ||
+    preview.source?.path !== expectedSourcePath ||
+    preview.source?.sha256 !== source.sha256
+  ) {
+    failures.push(`${preview.cardId}: preview source path or SHA-256 does not match the illustration`);
+  }
+  if (!expectedOutputPath || preview.output?.path !== expectedOutputPath) {
+    failures.push(`${preview.cardId}: preview output path does not match its illustration filename`);
+    continue;
+  }
+  if (seenPreviewPaths.has(preview.output.path)) {
+    failures.push(`${preview.cardId}: duplicate preview output path ${preview.output.path}`);
+  }
+  seenPreviewPaths.add(preview.output.path);
+  expectedPreviewFiles.add(basename(preview.output.path));
+
+  const path = join("apps", "web", "public", preview.output.path.replace(/^\//, ""));
+  try {
+    const bytes = await readFile(path);
+    const hash = createHash("sha256").update(bytes).digest("hex");
+    if (hash !== preview.output.sha256) {
+      failures.push(`${preview.cardId}: preview SHA-256 mismatch`);
+    }
+    if (bytes.length !== preview.output.bytes) {
+      failures.push(`${preview.cardId}: preview byte-count mismatch`);
+    }
+    const dimensions = webpDimensions(bytes, `${preview.cardId} preview`);
+    if (
+      dimensions.width !== 1024 ||
+      dimensions.height !== 576 ||
+      preview.output.width !== 1024 ||
+      preview.output.height !== 576
+    ) {
+      failures.push(`${preview.cardId}: preview must be exactly 1024x576`);
+    }
+  } catch (error) {
+    failures.push(`${preview.cardId}: preview local validation failed (${error.message})`);
+  }
+}
+
+const localPreviewFiles = new Set(
+  (await readdir(join("apps", "web", "public", "game", "previews"))).filter((file) =>
+    file.endsWith(".webp"),
+  ),
+);
+const missingPreviews = [...expectedPreviewFiles].filter((file) => !localPreviewFiles.has(file));
+const untrackedPreviews = [...localPreviewFiles].filter((file) => !expectedPreviewFiles.has(file));
+if (missingPreviews.length) {
+  failures.push(`preview directory: ${missingPreviews.length} manifest files missing`);
+}
+if (untrackedPreviews.length) {
+  failures.push(`preview directory: ${untrackedPreviews.length} untracked WebP files`);
+}
+if (
+  seenPreviewCards.size !== sourceIllustrations.size ||
+  [...sourceIllustrations.keys()].some((cardId) => !seenPreviewCards.has(cardId))
+) {
+  failures.push("preview manifest: mappings do not cover every source illustration exactly once");
+}
+
 if (failures.length > 0) {
   console.error("Asset provenance check failed:");
   failures.forEach((failure) => console.error(`- ${failure}`));
@@ -175,5 +298,6 @@ if (failures.length > 0) {
 
 console.log(
   `Asset provenance check passed (${manifest.assets.length} icons at 300x300 and ` +
-  `${manifest.assets.length} illustrations at 2282x1284 or larger).`,
+  `${manifest.assets.length} illustrations at 2282x1284 or larger; ` +
+  `${previewManifest.previews.length} previews at 1024x576).`,
 );

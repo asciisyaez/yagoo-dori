@@ -27,7 +27,7 @@ FROM ${NODE_IMAGE} AS runner
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION=dev
-ARG SOURCE_URL=https://yagoo-dori.cc
+ARG SOURCE_URL=https://github.com/asciisyaez/yagoo-dori
 LABEL org.opencontainers.image.title="Yagoo-dori" \
       org.opencontainers.image.description="Noncommercial hololive Dreams research fansite" \
       org.opencontainers.image.created="${BUILD_DATE}" \
@@ -51,4 +51,3 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD ["node", "-e", "fetch('http://127.0.0.1:3000/healthz').then((response) => { if (!response.ok) process.exit(1) }).catch(() => process.exit(1))"]
 CMD ["node", "apps/web/server.js"]
-

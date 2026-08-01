@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { sitePath } from "@/lib/site-path";
 
 const instrumentSans = localFont({
   src: "../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2",
@@ -15,20 +16,22 @@ const instrumentSans = localFont({
   weight: "100 900",
 });
 
+const siteUrl = new URL(
+  process.env.YAGOO_DORI_SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+);
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: siteUrl,
   title: {
     default: "Yagoo-dori — hololive Dreams database",
     template: "%s · Yagoo-dori",
   },
   description:
     "A hololive Dreams card and Leader Outfit database, Member tier list, and team-building guide.",
-  alternates: { canonical: "/" },
   robots:
     process.env.NEXT_PUBLIC_PUBLICATION_READY === "true"
       ? { index: true, follow: true }
       : { index: false, follow: false },
-  icons: { icon: "/yagoo-dori-mark.svg" },
+  icons: { icon: sitePath("/yagoo-dori-mark.svg") },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

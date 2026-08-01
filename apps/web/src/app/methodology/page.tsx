@@ -1,6 +1,6 @@
 import { nativeRankingData, publicData } from "@yagoo-dori/core";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/site-link";
 import { ArrowRight, BarChart3, Layers3, Sigma } from "lucide-react";
 
 export const metadata: Metadata = {

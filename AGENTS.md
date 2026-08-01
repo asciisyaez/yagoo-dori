@@ -2,7 +2,7 @@
 
 ## North Star
 
-Build the most useful and accurate English hololive Dreams database, tier-list, and team-building site at `yagoo-dori.cc`.
+Build the most useful and accurate English hololive Dreams database, tier-list, and team-building site, released from the public `asciisyaez/yagoo-dori` repository through GitHub Pages.
 
 - Optimize every public screen for fast game decisions: find a card, understand its skills, compare it, and build a legal team.
 - Use Prydwen as the information-architecture and density benchmark: persistent grouped navigation, compact filters, art-led records, and scan-friendly tier rows. Keep Yagoo-dori’s branding, code, motion, and visual language original.
@@ -45,7 +45,8 @@ Rejected or blocked work earns no progress. A checked criterion counts only when
 - Tier pages lead with context tabs, search, compact filters, and a real tier matrix.
 - Card art is the primary scanning unit. Text and mechanics support it.
 - URL-backed filters, keyboard navigation, reduced motion, responsive images, and mobile readability are mandatory.
-- No accounts, comments, votes, CMS, ads, affiliate links, paywalls, automatic publication, or public write API in v1.
+- No accounts, comments, votes, CMS, ads, affiliate links, paywalls, or public write API in v1.
+- Production is a repository-subpath-safe static export. Keep Pages deployment disabled until the user completes the explicit public-release checklist.
 
 ## Verification
 
@@ -53,6 +54,7 @@ Run, in order:
 
 ```text
 pnpm install --frozen-lockfile
+pnpm audit --prod --audit-level=high
 pnpm lint
 pnpm typecheck
 pnpm test
@@ -60,6 +62,8 @@ pnpm assets:check
 pnpm data:validate
 pnpm build
 pnpm test:e2e
+pnpm build:pages
+pnpm test:e2e:pages
 pnpm project:status
 ```
 

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
+import { useSearchParams } from "next/navigation";
 import type { TeamCalculatorResult } from "@yagoo-dori/core/team-calculator-contract";
 import {
   ArrowRight,
@@ -273,7 +273,6 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
 }
 
 export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const initialSearch = new URLSearchParams(searchParams.toString());
   initialSearch.delete("chart");
@@ -355,10 +354,11 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
 
   useEffect(() => {
     if (new URLSearchParams(window.location.search).has("chart")) {
+      const nextQuery = pendingSearch.current;
       window.history.replaceState(
         window.history.state,
         "",
-        pendingSearch.current ? `${pathname}?${pendingSearch.current}` : pathname,
+        nextQuery ? `${window.location.pathname}?${nextQuery}` : window.location.pathname,
       );
     }
 
@@ -374,7 +374,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     };
     window.addEventListener("popstate", syncFiltersFromHistory);
     return () => window.removeEventListener("popstate", syncFiltersFromHistory);
-  }, [pathname]);
+  }, []);
 
   const setFilter = (key: string, value: string, defaultValue = "all") => {
     // Keep an eagerly updated copy because several controls can change before
@@ -389,10 +389,12 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       rarity: next.get("rarity") ?? "all",
       attribute: next.get("attribute") ?? "all",
     });
+    // location.pathname retains the repository prefix on GitHub Pages while
+    // replaceState avoids a full App Router navigation for every keystroke.
     window.history.replaceState(
       window.history.state,
       "",
-      nextQuery ? `${pathname}?${nextQuery}` : pathname,
+      nextQuery ? `${window.location.pathname}?${nextQuery}` : window.location.pathname,
     );
   };
 
@@ -650,7 +652,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                 window.history.replaceState(
                   window.history.state,
                   "",
-                  nextQuery ? `${pathname}?${nextQuery}` : pathname,
+                  nextQuery ? `${window.location.pathname}?${nextQuery}` : window.location.pathname,
                 );
               }} type="button">Reset card filters</button>
             </div>

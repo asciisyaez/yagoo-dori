@@ -1,7 +1,7 @@
 import { publicData } from "@yagoo-dori/core";
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { Mic2 } from "lucide-react";
 
 import { talentRecords } from "./talent-records";
@@ -41,6 +41,7 @@ export default function TalentsPage() {
               <Image
                 alt=""
                 fill
+                preview
                 sizes="(max-width: 640px) 48vw, (max-width: 1200px) 25vw, 190px"
                 src={talent.heroCard.illustrationPath}
               />

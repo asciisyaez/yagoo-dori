@@ -6,7 +6,7 @@ reset: 2026-07-30
 status: executing
 answers:
   scope: "Build the most useful and accurate English hololive Dreams database, tier list, and team-building site."
-  constraints: ["public sources only", "no synthetic public data", "no private game access", "no deployment without explicit approval"]
+  constraints: ["public sources only", "no synthetic public data", "no private game access", "no GitHub Pages activation without explicit user action"]
   approach: "Pinned real data, independently checked mechanics, an art-led Prydwen-inspired information architecture, and an original Yagoo-dori interaction language."
   goal: "A complete, usable game reference whose claims are traceable and whose public interface never exposes internal workflow clutter."
 assumptions:
@@ -39,7 +39,7 @@ The interface takes Prydwen’s density and navigation hierarchy as a usability 
 - Accounts, comments, votes, CMS, ads, affiliates, paywalls, public writes, or automatic publication.
 - Private APIs, game-client extraction/decryption, installed game files, account automation, or scrape-protection bypass.
 - Displaying calculated Yagoo-dori scores before the actual score inputs and mechanics are represented and tested.
-- Deploying before the accuracy and release gates pass and the user explicitly approves it.
+- Changing repository visibility or enabling GitHub Pages before the accuracy and release gates pass and the user explicitly performs the release checklist.
 
 ## Ticket graph
 
@@ -64,7 +64,7 @@ N01 ──┬──► N02 ──► N03A ──┬──► N03B ──┐
 | N06A | Combined card and Outfit database product cleanup | 5% | N02, N04 |
 | N06B | Optimizer-backed team guides | 7% | N03D, N06A |
 | N06C | Owned-roster team calculator | 8% | N03B, N03C, N04, N06A |
-| N07 | Accuracy review, responsive QA, container, and release | 5% | N05, N06B, N06C |
+| N07 | Accuracy review, responsive QA, and GitHub Pages release | 5% | N05, N06B, N06C |
 
 ## Accuracy boundary
 

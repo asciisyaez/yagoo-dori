@@ -1,6 +1,16 @@
 # Yagoo-dori
 
-Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader Outfit tier list, and team-building project. It includes the complete current 4★ and 5★ roster, locally stored game artwork, searchable card/talent/Outfit records, a deterministic native ranking model, and search-backed team guides.
+Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader Outfit tier list, and owned-roster team builder. It is a noncommercial fan project built for quick card comparison and legal five-Member team decisions.
+
+## What is included
+
+- 54 talents, 59 five-star Member cards, and 54 four-star Member cards.
+- 113 linked Leader Outfits with locally served card icons and illustrations.
+- Searchable card, talent, Outfit, skill, synergy, guide, and changelog routes.
+- Three ranking lenses backed by pinned mechanics, a frozen 30-chart benchmark, matched substitutions, and deterministic uncertainty estimates.
+- A Bloom-aware team calculator with Oshi constraints and all-120-order placement analysis.
+
+Yagoo-dori tiers are comparative results under the published neutral account assumptions. The calculator uses deterministic bounded search and does not claim an absolute Live Score or a certified full-roster global optimum.
 
 ## Development
 
@@ -17,6 +27,7 @@ Run the repository checks in this order:
 
 ```powershell
 pnpm install --frozen-lockfile
+pnpm audit --prod --audit-level=high
 pnpm lint
 pnpm typecheck
 pnpm test
@@ -24,24 +35,16 @@ pnpm assets:check
 pnpm data:validate
 pnpm build
 pnpm test:e2e
+pnpm build:pages
+pnpm test:e2e:pages
 pnpm project:status
 ```
 
-## Current data snapshot
-
-- 54 talents
-- 59 five-star Member cards
-- 54 four-star Member cards
-- 113 linked Leader Outfits
-- 226 local card icons and illustrations
-- 177 songs and 708 pinned aggregate chart contexts
-- Three investment lenses: Low Investment, Standard Manual, and Max Ceiling
-
-The public Member and Leader Outfit bands are Yagoo-dori calculations derived from complete matched substitutions across 300 contexts per entity type, a 21-reference/9-current chart corpus, current skills and stats, and frozen robust baselines. Four hundred deterministic bootstrap resamples estimate uncertainty. The bands remain marked **Theorycraft Beta** and are relative comparisons under a neutral account state rather than absolute Live Score predictions.
+`pnpm build:pages` produces the repository-subpath-safe static export in `apps/web/out`. See [`docs/release.md`](docs/release.md) for the private-to-public GitHub Pages activation checklist.
 
 ## Refreshing generated results
 
-After reviewing an upstream data update, regenerate the deterministic outputs in order:
+After reviewing an upstream update, regenerate deterministic outputs in order:
 
 ```powershell
 pnpm data:sync

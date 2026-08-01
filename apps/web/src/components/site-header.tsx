@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {

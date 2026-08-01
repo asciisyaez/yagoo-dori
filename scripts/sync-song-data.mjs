@@ -41,7 +41,7 @@ async function fetchJson(file) {
   const response = await fetch(rawUrl(file), {
     headers: {
       accept: "application/json",
-      "user-agent": "Yagoo-dori song-context indexer (+https://yagoo-dori.cc)",
+      "user-agent": "Yagoo-dori song-context indexer (+https://github.com/asciisyaez/yagoo-dori)",
     },
   });
   if (!response.ok) {

@@ -79,7 +79,7 @@ async function fetchPublic(url, accept) {
     try {
       const response = await fetch(url, {
         headers: {
-          "user-agent": "Yagoo-dori public-data indexer (+https://yagoo-dori.cc)",
+          "user-agent": "Yagoo-dori public-data indexer (+https://github.com/asciisyaez/yagoo-dori)",
           accept,
         },
         signal: AbortSignal.timeout(30_000),

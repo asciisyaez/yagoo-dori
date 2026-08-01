@@ -1,6 +1,6 @@
 import { publicCards, publicData } from "@yagoo-dori/core";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import {
   ArrowRight,
   BarChart3,
@@ -74,8 +74,10 @@ export default function HomePage() {
         <Link className={`hero-feature attribute-${spotlight.attribute}`} href={`/cards/${spotlight.slug}`}>
           <Image
             alt={`${spotlight.title} ${spotlight.talentName}`}
+            fetchPriority="high"
             fill
             loading="eager"
+            preview
             priority
             sizes="(max-width: 900px) 100vw, 48vw"
             src={spotlight.illustrationPath}
@@ -114,7 +116,7 @@ export default function HomePage() {
         <div className="latest-card-grid">
           {latestCards.map((card) => (
             <Link className={`latest-card attribute-${card.attribute}`} href={`/cards/${card.slug}`} key={card.id}>
-              <span className="latest-card-art"><Image alt="" fill sizes="(max-width: 700px) 80vw, 20vw" src={card.illustrationPath} /><i>5★</i></span>
+              <span className="latest-card-art"><Image alt="" fill preview sizes="(max-width: 700px) 80vw, 20vw" src={card.illustrationPath} /><i>5★</i></span>
               <span className="latest-card-copy"><small>{card.attribute} · {card.generation}</small><strong>{card.talentName}</strong><span>{card.title}</span></span>
             </Link>
           ))}

@@ -2,8 +2,8 @@
 
 import type { NativeLens, NativeModelBand } from "@yagoo-dori/core";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CircleHelp, Grid3X3, RotateCcw, Search, SlidersHorizontal, X } from "lucide-react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";

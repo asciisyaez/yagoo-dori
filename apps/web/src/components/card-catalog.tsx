@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 
@@ -127,6 +127,7 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
                 alt=""
                 fill
                 loading={index < 4 ? "eager" : "lazy"}
+                preview
                 sizes="(max-width: 700px) 50vw, (max-width: 1200px) 33vw, 25vw"
                 src={card.illustrationPath}
               />

@@ -1,7 +1,7 @@
 import { nativeGuideData, publicCardById } from "@yagoo-dori/core";
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteImage as Image } from "@/components/site-image";
+import { SiteLink as Link } from "@/components/site-link";
 import { ArrowRight, BookOpenCheck, Clock3, Music2 } from "lucide-react";
 
 import styles from "./guides.module.css";
@@ -76,6 +76,7 @@ export default function GuidesPage() {
                   <Image
                     alt={`${anchor.title} ${anchor.talentName} card illustration`}
                     fill
+                    preview
                     priority={guideIndex === 0}
                     sizes="(max-width: 800px) 100vw, 42vw"
                     src={anchor.illustrationPath}

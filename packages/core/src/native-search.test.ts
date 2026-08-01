@@ -533,7 +533,10 @@ describe("native legal-team search", () => {
     });
     expect(result.best.members).toHaveLength(5);
     expect(new Set(result.best.members.map((member) => member.talentId))).toHaveLength(5);
-  }, 60_000);
+  // The same full-roster proof takes roughly one minute on GitHub's shared
+  // Linux runners. Keep the production-sized coverage and give slower runners
+  // enough headroom instead of shrinking the roster under test.
+  }, 120_000);
 
   it("rejects oversized exhaustive searches and editorial inputs and imports no editorial or legacy ranking module", () => {
     expect(() =>

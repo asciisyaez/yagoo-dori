@@ -642,7 +642,7 @@ select {
 
 .latest-card-copy small {
   overflow: hidden;
-  color: var(--yd-dim);
+  color: var(--yd-muted);
   font-size: 0.6rem;
   text-overflow: ellipsis;
   text-transform: capitalize;
