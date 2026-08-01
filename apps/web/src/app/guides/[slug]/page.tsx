@@ -101,6 +101,16 @@ function lossLabel(loss: number) {
   return loss > 0 ? `≈${rounded}% lower` : `≈${rounded}% higher`;
 }
 
+function cadenceDelta(milliseconds: number) {
+  if (milliseconds === 0) return "same cadence";
+  return `${formatSeconds(Math.abs(milliseconds))} ${milliseconds < 0 ? "faster" : "slower"}`;
+}
+
+function durationDelta(milliseconds: number) {
+  if (milliseconds === 0) return "same duration";
+  return `${formatSeconds(Math.abs(milliseconds))} ${milliseconds > 0 ? "longer" : "shorter"}`;
+}
+
 function modeledLeaderFit(formation: NativeGuideFormation, leader: PublicCard) {
   const activeLeaderEffect = formation.recipients.some(
     (recipient) => recipient.source === "leader" && recipient.sourceCardId === leader.id,
@@ -189,13 +199,17 @@ function FormationSection({
 
       <div className={styles.orderBlock}>
         <div className={styles.orderHeading}>
-          <div><p className="db-eyebrow">Member lineup</p><h3>Recommended five</h3></div>
-          <p>One card per Holomem, built around the exact 5★ anchor.</p>
+          <div><p className="db-eyebrow">Placement sequence</p><h3>Recommended five</h3></div>
+          <p>
+            {formation.formationOrderModel.permutationsChecked} placements compared across {formation.formationOrderModel.timingScenarioCount} timing scenarios.
+            {formation.orderStatus === "indeterminate" && " The leading placements are effectively tied."}
+          </p>
         </div>
         <ul className={styles.formationTrack} aria-label={`${formation.label} Member lineup`}>
-          {members.map((member) => (
+          {members.map((member, index) => (
             <li key={member.id}>
               <Link href={`/cards/${member.slug}`}>
+                <span className={styles.slotNumber}>{index + 1}</span>
                 <Image
                   alt={`${member.talentName}, ${member.title}, ${member.rarity} star ${member.attribute}`}
                   height={180}
@@ -255,6 +269,12 @@ function FormationSection({
               const incoming = requireCard(replacement.cardId);
               const key = `${replacement.replacedCardId}:${replacement.cardId}`;
               const row = replacementsByCard.get(key)!;
+              const gainedRecipients = row.tradeoff.possibleRecipientCardIdsAdded
+                .map((cardId) => requireCard(cardId).talentName);
+              const lostRecipients = row.tradeoff.possibleRecipientCardIdsRemoved
+                .map((cardId) => requireCard(cardId).talentName);
+              const replacementOrder = row.suggestedOrder
+                .map((cardId) => requireCard(cardId).talentName);
               return (
                 <div key={key}>
                   <span className={styles.swapCards}>
@@ -266,11 +286,28 @@ function FormationSection({
                     <small>Replace {outgoing.talentName} with</small>
                     <strong>{incoming.talentName} · {incoming.rarity}★</strong>
                     <small className={styles.swapReason}>
-                      Passive at Lv.{formation.progressionLens.passiveSkillLevel}: {skillDescriptionAtLevel(
-                        incoming.skills.passive,
-                        formation.progressionLens.passiveSkillLevel,
-                      )}
+                      <b>Gain:</b> {cleanDescription(row.tradeoff.benefit)}
                     </small>
+                    <small className={styles.swapReason}>
+                      <b>Give up:</b> {cleanDescription(row.tradeoff.cost)}
+                    </small>
+                    <small className={styles.swapReason}>
+                      Active check: {cadenceDelta(row.tradeoff.activeCooldownDeltaMilliseconds)} · Special window: {durationDelta(row.tradeoff.specialDurationDeltaMilliseconds)}
+                      {row.tradeoff.formationOrderChanged ? " · placement changes" : " · placement stays stable"}
+                      {(row.tradeoff.recipientApplicationsAdded > 0 || row.tradeoff.recipientApplicationsRemoved > 0) &&
+                        ` · target applications ${row.tradeoff.recipientApplicationsAdded > 0 ? `+${row.tradeoff.recipientApplicationsAdded}` : ""}${row.tradeoff.recipientApplicationsRemoved > 0 ? ` −${row.tradeoff.recipientApplicationsRemoved}` : ""}`}
+                    </small>
+                    {(gainedRecipients.length > 0 || lostRecipients.length > 0) && (
+                      <small className={styles.swapReason}>
+                        <b>Targets:</b>{gainedRecipients.length > 0 ? ` gains ${gainedRecipients.join(", ")}` : ""}
+                        {lostRecipients.length > 0 ? `${gainedRecipients.length > 0 ? ";" : ""} loses ${lostRecipients.join(", ")}` : ""}
+                      </small>
+                    )}
+                    {row.tradeoff.formationOrderChanged && (
+                      <small className={styles.swapReason}>
+                        <b>Placement:</b> {replacementOrder.join(" → ")}
+                      </small>
+                    )}
                   </span>
                   <span className={styles.lossFigure}>
                     <strong>{lossLabel(row.lossPercent.central)}</strong>

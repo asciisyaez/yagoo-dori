@@ -1,4 +1,5 @@
 import { mechanicsData } from "./mechanics";
+import { recommendFormationOrder } from "./formation-order-recommender";
 import {
   NativeGuideDataSchema,
   NativeGuideFormationSchema,
@@ -6,6 +7,7 @@ import {
   type NativeGuideFormation,
 } from "./native-guide-schema";
 import { nativeRankingData } from "./native-ranking-data";
+import { nativeRankingBenchmark } from "./native-ranking-benchmark";
 import type { NativeRankingChangelog } from "./native-ranking-changelog";
 import { type SerializableInterval } from "./native-ranking-schema";
 import { searchNativeLegalTeams, type NativeSearchResult } from "./native-search";
@@ -93,23 +95,100 @@ function addIntervals(left: UtilityInterval, right: UtilityInterval): Serializab
   };
 }
 
-function canonicalOrderEvaluation(
-  search: NativeSearchResult,
+type MemberCardIdTuple = readonly [string, string, string, string, string];
+
+const modeledOrderCache = new Map<string, ReturnType<typeof recommendFormationOrder>>();
+
+function modeledOrderEvaluation(
+  leaderOutfitCardId: string,
+  memberCardIds: MemberCardIdTuple,
   investment: Investment,
-): { order: readonly string[]; utility: NativeUtilityResult } {
-  const order = search.best.orderAudit.canonicalOrder;
+  chartKey: string,
+): {
+  order: readonly [string, string, string, string, string];
+  utility: NativeUtilityResult;
+  model: ReturnType<typeof recommendFormationOrder>;
+} {
+  const bloomStage = PROGRESSION_LENSES[investment].bloomStage;
+  const cacheKey = `${leaderOutfitCardId}|${[...memberCardIds].sort().join("|")}|${bloomStage}`;
+  let model = modeledOrderCache.get(cacheKey);
+  if (!model) {
+    model = recommendFormationOrder({
+      leaderOutfitCardId,
+      members: memberCardIds.map((cardId) => ({ cardId, bloomStage })) as [
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+        { cardId: string; bloomStage: typeof bloomStage },
+      ],
+      corpus: [
+        ...nativeRankingBenchmark.corpus.reference,
+        ...nativeRankingBenchmark.corpus.current,
+      ],
+    });
+    modeledOrderCache.set(cacheKey, model);
+  }
+  const order = model.order;
   return {
     order,
+    model,
     utility: evaluateNativeRelativeUtility({
       formation: {
-        leaderOutfitCardId: search.best.leaderOutfitCardId,
+        leaderOutfitCardId,
         members: order.map((cardId) => ({ cardId, investment })),
       },
-      chartKey: search.context.chartKey,
+      chartKey,
       seed: SEED,
       accountState: BOARD,
     }),
   };
+}
+
+function subtractIntervals(selected: UtilityInterval, alternative: UtilityInterval): UtilityInterval {
+  return {
+    lower: selected.lower - alternative.upper,
+    central: selected.central - alternative.central,
+    upper: selected.upper - alternative.lower,
+  };
+}
+
+function serializeOrderModel(model: ReturnType<typeof recommendFormationOrder>) {
+  return {
+    methodologyVersion: model.methodologyVersion,
+    corpusChartCount: model.scenarios.chartCount,
+    markerLayoutCount: model.scenarios.layoutCount,
+    timingScenarioCount: model.scenarios.count,
+    permutationsChecked: model.method.permutationsChecked,
+    maxRegretPermil: model.objective.selected.maxRegretPermil,
+    meanRegretPermil: model.objective.selected.meanRegretPermil,
+    runnerUpGapPermil: model.objective.runnerUpGapPermil,
+    winSharePermil: model.objective.selected.winSharePermil,
+    exactTimelineAvailable: model.method.exactTimelineAvailable,
+    statement: model.confidence.statement,
+  };
+}
+
+function recipientSignature(summary: ReturnType<typeof recipientSummary>[number]): string {
+  return [
+    summary.source,
+    summary.sourceCardId,
+    summary.effectGroupId,
+    summary.effectKind,
+    summary.valuePermil,
+    summary.commonToEveryAlternativeCardIds.join(","),
+    summary.possibleCardIds.join(","),
+  ].join("|");
+}
+
+function skillDescription(
+  cardId: string,
+  kind: "passive" | "active" | "special",
+  level: number,
+): string {
+  const card = publicCardById.get(cardId);
+  const row = card?.skills[kind].find((skill) => skill.level === level);
+  return row?.description ?? "No additional effect.";
 }
 
 function lossPercent(loss: UtilityInterval, selected: UtilityInterval): SerializableInterval {
@@ -154,8 +233,15 @@ function buildFormation(
   investment: Investment,
   search: NativeSearchResult,
   ratingSingerTalentId: string,
+  includeReplacements = true,
 ): NativeGuideFormation {
-  const selected = canonicalOrderEvaluation(search, investment);
+  const selectedMemberIds = search.best.members.map(({ cardId }) => cardId) as unknown as MemberCardIdTuple;
+  const selected = modeledOrderEvaluation(
+    search.best.leaderOutfitCardId,
+    selectedMemberIds,
+    investment,
+    search.context.chartKey,
+  );
   const order = selected.order;
   const song = songContextData.songs.find((candidate) => candidate.id === selected.utility.context.songId);
   const leader = publicCardById.get(search.best.leaderOutfitCardId);
@@ -168,14 +254,82 @@ function buildFormation(
   ) {
     throw new Error("Guide formations require a rating-eligible song and a singer-matched Leader Outfit");
   }
-  const replacementRows = search.replacementsBySlot.flatMap((slot) =>
-    slot.alternatives.slice(0, 2).map((replacement) => ({
-      replacedCardId: slot.replacedCardId,
-      cardId: replacement.cardId,
-      rarity: replacement.rarity,
-      lossPercent: lossPercent(replacement.intervalLoss, selected.utility.relativeUtility),
-    })),
-  );
+  const selectedRecipientRows = recipientSummary(selected.utility, order);
+  const selectedRecipients = new Set(selectedRecipientRows.map(recipientSignature));
+  const replacementRows = includeReplacements ? search.replacementsBySlot.flatMap((slot) => {
+    const replacedIndex = selectedMemberIds.indexOf(slot.replacedCardId);
+    if (replacedIndex < 0) throw new Error(`Replacement source is not in the selected formation: ${slot.replacedCardId}`);
+    return slot.alternatives.slice(0, 2).map((replacement) => {
+      const replacementMemberIds = [...selectedMemberIds] as [string, string, string, string, string];
+      replacementMemberIds[replacedIndex] = replacement.cardId;
+      const alternative = modeledOrderEvaluation(
+        search.best.leaderOutfitCardId,
+        replacementMemberIds,
+        investment,
+        search.context.chartKey,
+      );
+      const alternativeRecipientRows = recipientSummary(alternative.utility, alternative.order);
+      const alternativeRecipients = new Set(alternativeRecipientRows.map(recipientSignature));
+      const addedRecipientRows = alternativeRecipientRows.filter(
+        (row) => !selectedRecipients.has(recipientSignature(row)),
+      );
+      const removedRecipientRows = selectedRecipientRows.filter(
+        (row) => !alternativeRecipients.has(recipientSignature(row)),
+      );
+      const outgoingActive = selected.utility.components.active.byMember.find(
+        (active) => active.cardId === slot.replacedCardId,
+      )!;
+      const incomingActive = alternative.utility.components.active.byMember.find(
+        (active) => active.cardId === replacement.cardId,
+      )!;
+      const outgoingSpecial = selected.utility.components.special.byFormationOrder.find(
+        (special) => special.cardId === slot.replacedCardId,
+      )!;
+      const incomingSpecial = alternative.utility.components.special.byFormationOrder.find(
+        (special) => special.cardId === replacement.cardId,
+      )!;
+      return {
+        replacedCardId: slot.replacedCardId,
+        cardId: replacement.cardId,
+        rarity: replacement.rarity,
+        lossPercent: lossPercent(
+          subtractIntervals(selected.utility.relativeUtility, alternative.utility.relativeUtility),
+          selected.utility.relativeUtility,
+        ),
+        suggestedOrder: alternative.order,
+        orderStatus: alternative.model.status,
+        tradeoff: {
+          benefit: skillDescription(
+            replacement.cardId,
+            "passive",
+            PROGRESSION_LENSES[investment].passiveSkillLevel,
+          ),
+          cost: skillDescription(
+            slot.replacedCardId,
+            "passive",
+            PROGRESSION_LENSES[investment].passiveSkillLevel,
+          ),
+          activeCooldownDeltaMilliseconds:
+            incomingActive.cooldownMilliseconds - outgoingActive.cooldownMilliseconds,
+          specialDurationDeltaMilliseconds:
+            incomingSpecial.durationMilliseconds - outgoingSpecial.durationMilliseconds,
+          formationOrderChanged: alternative.order.join("|") !== order.join("|"),
+          recipientApplicationsAdded: [...alternativeRecipients].filter(
+            (signature) => !selectedRecipients.has(signature),
+          ).length,
+          recipientApplicationsRemoved: [...selectedRecipients].filter(
+            (signature) => !alternativeRecipients.has(signature),
+          ).length,
+          possibleRecipientCardIdsAdded: [
+            ...new Set(addedRecipientRows.flatMap((row) => row.possibleCardIds)),
+          ].sort(),
+          possibleRecipientCardIdsRemoved: [
+            ...new Set(removedRecipientRows.flatMap((row) => row.possibleCardIds)),
+          ].sort(),
+        },
+      };
+    });
+  }) : [];
   const lossByCard = new Map(
     search.replacementsBySlot.map((slot) => [
       slot.replacedCardId,
@@ -232,7 +386,8 @@ function buildFormation(
     leaderOutfitCardId: search.best.leaderOutfitCardId,
     members: order.map((cardId, index) => ({ slot: index + 1, cardId })),
     formationOrder: order,
-    orderStatus: "canonical-display-only-timing-unresolved",
+    orderStatus: selected.model.status,
+    formationOrderModel: serializeOrderModel(selected.model),
     relativeUtility: serializable(selected.utility.relativeUtility),
     staticParameters: {
       base: serializable(selected.utility.components.baseParameters.relativeUnits),
@@ -244,14 +399,14 @@ function buildFormation(
     },
     searchCertificate,
     finalistsEvaluated: search.counts.auditedFinalists,
-    ordersAudited: 120,
+    ordersAudited: search.counts.formationOrdersAudited,
     recipients: recipientSummary(selected.utility, order),
     activeSkills: selected.utility.components.active.byMember.map((active) => ({
       cardId: active.cardId,
       activationProbabilityPermil: active.activationProbabilityPermil,
       cooldownMilliseconds: active.cooldownMilliseconds,
       durationMilliseconds: active.durationMilliseconds,
-      firstCheck: "unresolved",
+      firstCheck: "one-cooldown-after-live-start",
       chartNoteCoverage: null,
     })),
     specialSkills: selected.utility.components.special.byFormationOrder.map((special) => ({
@@ -378,7 +533,7 @@ export function mergeNativeGuideData(
   }
 
   return NativeGuideDataSchema.parse({
-    schemaVersion: 3,
+    schemaVersion: 4,
     generatedAt: normalizedGeneratedAt,
     rosterCommit: nativeRankingData.rosterCommit,
     guides: [...guidesByAnchorCardId.values()].sort(
@@ -564,6 +719,7 @@ export function generateNativeGuideData(
       "one-copy-maximum",
       standardSearches.get(chartKey)!,
       ratingSelection.singerTalentId,
+      false,
     );
     const defaultOnSong = evaluateNativeRelativeUtility({
       formation: {
@@ -613,12 +769,15 @@ export function generateNativeGuideData(
         ? Math.round(advantage * 100) / 100
         : null,
       changesReferenceFormation: robustlyBetter,
-      orderStatus: "canonical-display-only-timing-unresolved",
+      orderStatus: robustlyBetter ? formation.orderStatus : standard.orderStatus,
+      formationOrderModel: robustlyBetter
+        ? formation.formationOrderModel
+        : standard.formationOrderModel,
     };
   });
 
   return NativeGuideDataSchema.parse({
-    schemaVersion: 3,
+    schemaVersion: 4,
     generatedAt: parsedGeneratedAt.toISOString(),
     rosterCommit: mechanicsData.sourceSnapshot.commit,
     guides: [
@@ -632,7 +791,7 @@ export function generateNativeGuideData(
         anchorCardId: anchor.id,
         anchorTalentId: anchor.talentId,
         snapshotId: nativeRankingData.snapshotId,
-        methodologyVersion: "yd-native-guide-1.1.0",
+        methodologyVersion: "yd-native-guide-1.2.0",
         publicationState: "theorycraft-beta",
         benchmark: BENCHMARK,
         ratingSongScope: {

@@ -73,7 +73,20 @@ function formationFixture(kind: "premium" | "standard" | "accessible-4-star" = "
     leaderOutfitCardId: "leader",
     members: [1, 2, 3, 4, 5].map((slot) => ({ slot, cardId: `card-${slot}` })),
     formationOrder: ["card-1", "card-2", "card-3", "card-4", "card-5"],
-    orderStatus: "canonical-display-only-timing-unresolved",
+    orderStatus: "modeled-general",
+    formationOrderModel: {
+      methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
+      corpusChartCount: 30,
+      markerLayoutCount: 14,
+      timingScenarioCount: 420,
+      permutationsChecked: 120,
+      maxRegretPermil: 4,
+      meanRegretPermil: 1,
+      runnerUpGapPermil: 0.2,
+      winSharePermil: 250,
+      exactTimelineAvailable: false,
+      statement: "Fixture modeled-order result.",
+    },
     relativeUtility: { lower: 1, central: 2, upper: 3 },
     staticParameters: {
       base: { lower: 100, central: 100, upper: 100 },
@@ -100,7 +113,7 @@ function formationFixture(kind: "premium" | "standard" | "accessible-4-star" = "
       activationProbabilityPermil: 500,
       cooldownMilliseconds: 20_000,
       durationMilliseconds: 10_000,
-      firstCheck: "unresolved",
+      firstCheck: "one-cooldown-after-live-start",
       chartNoteCoverage: null,
     })),
     specialSkills: [1, 2, 3, 4, 5].map((slot) => ({
@@ -133,7 +146,20 @@ const comparisonFixture = {
   noteTimeline: "unavailable",
   leaderOutfitCardId: "leader",
   formationOrder: ["card-1", "card-2", "card-3", "card-4", "card-5"],
-  orderStatus: "canonical-display-only-timing-unresolved",
+  orderStatus: "modeled-general",
+  formationOrderModel: {
+    methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
+    corpusChartCount: 30,
+    markerLayoutCount: 14,
+    timingScenarioCount: 420,
+    permutationsChecked: 120,
+    maxRegretPermil: 4,
+    meanRegretPermil: 1,
+    runnerUpGapPermil: 0.2,
+    winSharePermil: 250,
+    exactTimelineAvailable: false,
+    statement: "Fixture modeled-order result.",
+  },
   members: ["card-1", "card-2", "card-3", "card-4", "card-5"],
   relativeUtility: { lower: 100, central: 110, upper: 120 },
 } as const;
@@ -150,7 +176,7 @@ function guideFixture(overrides: Partial<{
     anchorCardId: overrides.anchorCardId ?? "card-1",
     anchorTalentId: "talent-1",
     snapshotId: "snapshot-1",
-    methodologyVersion: "yd-native-guide-1.1.0",
+    methodologyVersion: "yd-native-guide-1.2.0",
     publicationState: "theorycraft-beta",
     benchmark: {
       accountState: "frozen-neutral-public-benchmark",
@@ -188,7 +214,7 @@ function guideFixture(overrides: Partial<{
 
 function guideDataFixture(guides: readonly unknown[]) {
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     generatedAt: "2026-08-01T00:00:00.000Z",
     rosterCommit: "a".repeat(40),
     guides,
@@ -196,7 +222,7 @@ function guideDataFixture(guides: readonly unknown[]) {
 }
 
 describe("native guide publication schema", () => {
-  it("accepts only a canonical display order containing the same five Member cards", () => {
+  it("accepts only a modeled order containing the same five Member cards", () => {
     expect(NativeGuideFormationSchema.safeParse(formationFixture()).success).toBe(true);
     expect(
       NativeGuideFormationSchema.safeParse({
@@ -206,7 +232,7 @@ describe("native guide publication schema", () => {
     ).toBe(false);
   });
 
-  it("requires Member slots and canonical order to describe the same slot mapping", () => {
+  it("requires Member slots and modeled order to describe the same slot mapping", () => {
     const fixture = formationFixture();
     expect(
       NativeGuideFormationSchema.safeParse({
@@ -222,6 +248,57 @@ describe("native guide publication schema", () => {
         members: fixture.members.map((member, index) =>
           index === 0 ? { ...member, slot: 2 } : index === 1 ? { ...member, slot: 1 } : member,
         ),
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires internally consistent modeled timing evidence", () => {
+    const fixture = formationFixture();
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        formationOrderModel: {
+          ...fixture.formationOrderModel,
+          timingScenarioCount: 419,
+        },
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        ordersAudited: 121,
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires replacement tradeoffs to describe one legal swap", () => {
+    const fixture = formationFixture();
+    const replacement = {
+      replacedCardId: "card-5",
+      cardId: "card-6",
+      rarity: 4 as const,
+      lossPercent: { lower: 1, central: 2, upper: 3 },
+      suggestedOrder: ["card-1", "card-2", "card-3", "card-4", "card-6"],
+      orderStatus: "modeled-general" as const,
+      tradeoff: {
+        benefit: "Incoming Passive",
+        cost: "Outgoing Passive",
+        activeCooldownDeltaMilliseconds: -1_000,
+        specialDurationDeltaMilliseconds: 2_000,
+        formationOrderChanged: true,
+        recipientApplicationsAdded: 1,
+        recipientApplicationsRemoved: 2,
+        possibleRecipientCardIdsAdded: ["card-6"],
+        possibleRecipientCardIdsRemoved: ["card-5"],
+      },
+    };
+    expect(
+      NativeGuideFormationSchema.safeParse({ ...fixture, replacements: [replacement] }).success,
+    ).toBe(true);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        replacements: [{ ...replacement, suggestedOrder: fixture.formationOrder }],
       }).success,
     ).toBe(false);
   });

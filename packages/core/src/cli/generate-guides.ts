@@ -49,9 +49,21 @@ const outputPath = resolve(
 const anchorCardIds = [...new Set(argumentsFor("--anchor-card-id"))].sort();
 const fixedLeaderOutfitCardId = argument("--leader-outfit-card-id");
 const replaceAll = process.argv.includes("--replace-all");
-const existingData = existsSync(outputPath)
-  ? NativeGuideDataSchema.parse(JSON.parse(readFileSync(outputPath, "utf8")))
+const existingJson: unknown = existsSync(outputPath)
+  ? JSON.parse(readFileSync(outputPath, "utf8"))
   : undefined;
+const existingData = existingJson !== undefined && !replaceAll
+  ? NativeGuideDataSchema.parse(existingJson)
+  : undefined;
+const existingAnchorCardIds = existingJson && typeof existingJson === "object" &&
+    "guides" in existingJson && Array.isArray(existingJson.guides)
+  ? existingJson.guides.flatMap((guide) =>
+      guide && typeof guide === "object" && "anchorCardId" in guide &&
+      typeof guide.anchorCardId === "string"
+        ? [guide.anchorCardId]
+        : [],
+    )
+  : [];
 const existingIsStale = existingData?.guides.some(
   (guide) => guide.snapshotId !== nativeRankingData.snapshotId,
 ) ?? false;
@@ -62,8 +74,10 @@ if (fixedLeaderOutfitCardId && anchorCardIds.length > 1) {
 
 const requestedAnchorCardIds = anchorCardIds.length > 0
   ? anchorCardIds
-  : (replaceAll || existingIsStale) && existingData
-    ? existingData.guides.map((guide) => guide.anchorCardId).sort()
+  : replaceAll && existingAnchorCardIds.length > 0
+    ? existingAnchorCardIds.sort()
+    : existingIsStale && existingData
+      ? existingData.guides.map((guide) => guide.anchorCardId).sort()
     : [DEFAULT_GUIDE_ANCHOR_CARD_ID];
 
 console.log(`Generating native guide data at ${generatedAt}...`);

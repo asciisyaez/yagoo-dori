@@ -336,11 +336,15 @@ test("generated guide renders three legal formations and decision details", asyn
   await expect(accessibleOrder.locator('img[alt*="5 star"]')).toHaveCount(1);
 
   await expect(page.getByRole("heading", { name: "Why this lineup works" }).first()).toBeVisible();
+  await expect(page.getByText("Placement sequence", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText(/120 placements compared across 420 timing scenarios\./).first()).toBeVisible();
   await expect(
     page.locator("#formation-standard [aria-label$='static parameter calculation']"),
   ).toBeVisible();
   await expect(page.getByText("Effective static pool", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Practical swaps" }).first()).toBeVisible();
+  await expect(page.getByText("Gain:", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Give up:", { exact: true }).first()).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Active and Special timing" }).first(),
   ).toBeVisible();

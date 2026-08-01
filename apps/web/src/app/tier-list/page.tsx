@@ -33,6 +33,27 @@ function rankingsFor(
   };
 }
 
+function plainText(value: string | null): string {
+  return value?.replace(/\[\/?[^\]]+\]/g, "") ?? "No effect.";
+}
+
+function mechanicsFor(card: (typeof publicCards)[number]): TierCard["mechanics"] {
+  const latest = <T,>(rows: readonly T[]): T => {
+    const row = rows.at(-1);
+    if (!row) throw new Error(`Card ${card.id} is missing a skill progression row`);
+    return row;
+  };
+  return {
+    performance: card.parameters.oneCopyMaxLevel.performance,
+    technique: card.parameters.oneCopyMaxLevel.technique,
+    sense: card.parameters.oneCopyMaxLevel.sense,
+    active: plainText(latest(card.skills.active).description),
+    passive: plainText(latest(card.skills.passive).description),
+    special: plainText(latest(card.skills.special).description),
+    leader: plainText(card.leaderOutfit.description),
+  };
+}
+
 const memberCards: TierCard[] = publicCards.map((card) => ({
   id: card.id,
   slug: card.slug,
@@ -43,6 +64,7 @@ const memberCards: TierCard[] = publicCards.map((card) => ({
   generation: card.generation,
   groups: card.groups,
   artPath: card.artPath,
+  mechanics: mechanicsFor(card),
   rankings: rankingsFor(card.id, nativeRankingEntryByLensAndCard),
 }));
 
@@ -56,6 +78,7 @@ const leaderOutfits: TierCard[] = publicCards.map((card) => ({
   generation: card.generation,
   groups: card.groups,
   artPath: card.artPath,
+  mechanics: mechanicsFor(card),
   rankings: rankingsFor(card.id, nativeLeaderOutfitRankingEntryByLensAndCard),
 }));
 

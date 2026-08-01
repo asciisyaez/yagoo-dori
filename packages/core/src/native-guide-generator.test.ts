@@ -27,7 +27,7 @@ function guideVariant(anchorCardId: string, label: string): NativeGuide {
 
 function guideDataset(...guides: NativeGuide[]): NativeGuideData {
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     generatedAt: GENERATED_AT,
     rosterCommit: nativeRankingData.rosterCommit,
     guides,

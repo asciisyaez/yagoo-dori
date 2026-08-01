@@ -676,6 +676,166 @@
   display: block;
 }
 
+.card-quick-view-button {
+  position: absolute;
+  right: 0.34rem;
+  bottom: 0.42rem;
+  z-index: 6;
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  background: rgba(7, 9, 13, 0.84);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.card-quick-view-button svg { width: 0.78rem; height: 0.78rem; }
+
+.game-card-tile:hover .card-quick-view-button,
+.game-card-tile:focus-within .card-quick-view-button,
+.card-quick-view-button:focus-visible {
+  opacity: 1;
+}
+
+.card-quick-view-button:hover,
+.card-quick-view-button:focus-visible {
+  background: var(--yd-cyan);
+  color: #091017;
+  transform: translateY(-1px);
+}
+
+.tier-quick-view {
+  width: min(760px, calc(100vw - 2rem));
+  max-height: min(740px, calc(100dvh - 2rem));
+  overflow: auto;
+  border: 1px solid #48515f;
+  border-radius: 10px;
+  background: #11151c;
+  color: var(--yd-ink);
+  padding: 0;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.66);
+}
+
+.tier-quick-view::backdrop {
+  background: rgba(4, 7, 12, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.tier-quick-view-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(250px, 0.9fr) minmax(330px, 1.1fr);
+  min-height: 480px;
+  border-top: 3px solid var(--attribute-color);
+}
+
+.tier-quick-view-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 4;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 5px;
+  background: rgba(9, 12, 17, 0.84);
+  color: #fff;
+  cursor: pointer;
+}
+
+.tier-quick-view-close svg { width: 1rem; }
+.tier-quick-view-close:hover,
+.tier-quick-view-close:focus-visible { border-color: #fff; background: #202733; }
+
+.tier-quick-view-art {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #242a34;
+}
+
+.tier-quick-view-art::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent 55%, rgba(8, 11, 16, 0.72));
+  pointer-events: none;
+}
+
+.tier-quick-view-art img { object-fit: cover; }
+
+.tier-quick-view-copy { padding: 2.25rem 1.45rem 1.45rem; }
+.tier-quick-view-copy h2 { margin: 0.12rem 0 0; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+.tier-quick-view-title { margin: 0.18rem 0 0.8rem; color: #b8c0cc; font-size: 0.88rem; }
+
+.tier-quick-view-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.tier-quick-view-tags span {
+  border: 1px solid #3d4654;
+  border-radius: 4px;
+  background: #1b212b;
+  color: #dce2ea;
+  padding: 0.24rem 0.42rem;
+  font-size: 0.62rem;
+  font-weight: 750;
+  text-transform: capitalize;
+}
+
+.tier-quick-view-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  margin: 0 0 0.8rem;
+  border: 1px solid #343c48;
+  border-radius: 5px;
+  background: #343c48;
+}
+
+.tier-quick-view-stats div { background: #181e27; padding: 0.55rem 0.6rem; }
+.tier-quick-view-stats dt { color: #8f99a8; font-size: 0.55rem; text-transform: uppercase; }
+.tier-quick-view-stats dd { margin: 0.15rem 0 0; font-size: 0.8rem; font-weight: 800; }
+
+.tier-quick-view-skills { display: grid; gap: 0.48rem; }
+.tier-quick-view-skills section {
+  border-left: 2px solid var(--attribute-color);
+  background: #181e27;
+  padding: 0.58rem 0.68rem;
+}
+.tier-quick-view-skills h3 { margin: 0 0 0.2rem; color: #fff; font-size: 0.7rem; }
+.tier-quick-view-skills p { margin: 0; color: #b8c0cc; font-size: 0.67rem; line-height: 1.5; }
+
+.tier-quick-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.9rem;
+  color: var(--yd-cyan);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.tier-quick-view-link svg { width: 0.82rem; }
+
+@media (max-width: 700px) {
+  .card-quick-view-button { opacity: 1; }
+  .tier-quick-view { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
+  .tier-quick-view-shell { grid-template-columns: 1fr; }
+  .tier-quick-view-art { min-height: 260px; aspect-ratio: 16 / 10; }
+  .tier-quick-view-copy { padding: 1.2rem 1rem 1rem; }
+}
+
 .empty-tier-band {
   align-self: center;
   margin: 0;

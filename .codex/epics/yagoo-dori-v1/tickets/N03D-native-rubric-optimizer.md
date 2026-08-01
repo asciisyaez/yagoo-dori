@@ -15,5 +15,11 @@ parent_epic: yagoo-dori-v1
 - [x] Card evaluation measures matched-context marginal contribution, synergy ceiling, breadth, and investment efficiency from the evaluator.
 - [x] A frozen robust baseline prevents unrelated additions and extreme outliers from arbitrarily rescaling existing cards.
 - [x] Confidence, hysteresis, provisional state, and score-delta attribution are implemented and tested.
-- [ ] Optimizer output includes Leader/Outfit, five cards, order, song context, alternatives, replacement losses, recipients, and timing.
+- [x] Optimizer output includes Leader/Outfit, five cards, order, song context, alternatives, replacement losses, recipients, and timing.
 - [x] AppMedia or any other editorial label cannot influence a native score, search result, or tier assignment.
+
+## Verification evidence
+
+- Guide methodology `yd-native-guide-1.2.0` persists modeled placement evidence from all 120 orders across 420 timing scenarios.
+- Replacement rows are re-evaluated under the same Leader, chart, progression, and modeled-order basis, with recipient and cadence deltas.
+- `native-guide-schema`, `native-published-data`, `native-guide-reduced-proof`, `native-guide-generator`, and `formation-order-recommender`: 38 focused tests passed on 2026-08-01.

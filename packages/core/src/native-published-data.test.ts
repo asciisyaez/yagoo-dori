@@ -12,6 +12,7 @@ import {
   nativeGuideData,
 } from "./native-guide-data";
 import { nativeRankingData } from "./native-ranking-data";
+import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
@@ -442,8 +443,19 @@ describe("generated native publication data", () => {
           [...memberIds].sort(),
         );
         expect([...formation.investmentOrder].sort()).toEqual([...memberIds].sort());
-        expect(formation.ordersAudited).toBe(120);
-        expect(formation.orderStatus).toBe("canonical-display-only-timing-unresolved");
+        expect(formation.ordersAudited).toBeGreaterThanOrEqual(120);
+        expect(formation.ordersAudited % 120).toBe(0);
+        expect(["modeled-general", "indeterminate"]).toContain(formation.orderStatus);
+        expect(formation.formationOrderModel).toMatchObject({
+          methodologyVersion: "yd-formation-order-modeled-general-1.0.0",
+          corpusChartCount: 30,
+          permutationsChecked: 120,
+          exactTimelineAvailable: false,
+        });
+        expect(formation.formationOrderModel.timingScenarioCount).toBe(
+          formation.formationOrderModel.corpusChartCount *
+            formation.formationOrderModel.markerLayoutCount,
+        );
 
         expect(chart.songId).toBe(song.id);
         expect(chart.difficulty).toBe("expert");
@@ -484,11 +496,64 @@ describe("generated native publication data", () => {
           expect(memberIds).not.toContain(replacement.cardId);
           expect(replacementCard.rarity).toBe(replacement.rarity);
           expect(replacement.lossPercent.central).toBeGreaterThanOrEqual(0);
+          expect(replacement.tradeoff.benefit.length).toBeGreaterThan(0);
+          expect(replacement.tradeoff.cost.length).toBeGreaterThan(0);
+          expect(["modeled-general", "indeterminate"]).toContain(replacement.orderStatus);
+          expect(replacement.suggestedOrder).toContain(replacement.cardId);
+          expect(replacement.suggestedOrder).not.toContain(replacement.replacedCardId);
+          expect(
+            replacement.tradeoff.possibleRecipientCardIdsAdded.every((cardId) =>
+              replacement.suggestedOrder.includes(cardId),
+            ),
+          ).toBe(true);
+          expect(
+            replacement.tradeoff.possibleRecipientCardIdsRemoved.every((cardId) =>
+              memberIds.includes(cardId),
+            ),
+          ).toBe(true);
           const replacementTalentIds = resolvedCards
             .filter((card) => card.id !== replacement.replacedCardId)
             .map((card) => card.talentId)
             .concat(replacementCard.talentId);
           expect(new Set(replacementTalentIds).size).toBe(5);
+          const investment = formation.kind === "premium"
+            ? "duplicate-enabled-ceiling" as const
+            : "one-copy-maximum" as const;
+          const selectedUtility = evaluateNativeRelativeUtility({
+            formation: {
+              leaderOutfitCardId: formation.leaderOutfitCardId,
+              members: formation.formationOrder.map((cardId) => ({ cardId, investment })),
+            },
+            chartKey: formation.context.chartKey,
+            seed: 0x5eed,
+            accountState: {
+              board: {
+                mode: "declared-neutral",
+                evidenceGrade: "verified",
+                evidenceRef: "methodology:neutral-board-v1",
+              },
+            },
+          });
+          const alternativeUtility = evaluateNativeRelativeUtility({
+            formation: {
+              leaderOutfitCardId: formation.leaderOutfitCardId,
+              members: replacement.suggestedOrder.map((cardId) => ({ cardId, investment })),
+            },
+            chartKey: formation.context.chartKey,
+            seed: 0x5eed,
+            accountState: {
+              board: {
+                mode: "declared-neutral",
+                evidenceGrade: "verified",
+                evidenceRef: "methodology:neutral-board-v1",
+              },
+            },
+          });
+          expect(replacement.lossPercent.central).toBeCloseTo(
+            ((selectedUtility.relativeUtility.central - alternativeUtility.relativeUtility.central) /
+              selectedUtility.relativeUtility.central) * 100,
+            4,
+          );
         }
 
         if (formation.kind === "accessible-4-star") {
@@ -542,6 +607,8 @@ describe("generated native publication data", () => {
         expect(leader.talentId).toBe(guide.ratingSongScope.singerTalentId);
         expect(comparison.platform).toBe("mobile");
         expect(comparison.noteTimeline).toBe("unavailable");
+        expect(["modeled-general", "indeterminate"]).toContain(comparison.orderStatus);
+        expect(comparison.formationOrderModel.timingScenarioCount).toBe(420);
       }
     }
   });

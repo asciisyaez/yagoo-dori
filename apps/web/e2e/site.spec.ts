@@ -114,6 +114,29 @@ test("Leader Outfit tier context hydrates from a shareable URL", async ({ page }
   await expect(page.getByRole("searchbox", { name: "Search cards" })).toHaveValue("AZKi");
 });
 
+test("tier card quick view exposes the mechanics for each ranking context", async ({ page }) => {
+  await page.goto("/tier-list?q=AZKi", GOTO_OPTIONS);
+
+  await page.getByRole("button", { name: /Quick view AZKi, A Flower in Full Bloom/i }).click();
+  const memberDialog = page.getByRole("dialog");
+  await expect(memberDialog).toBeVisible();
+  await expect(memberDialog.getByRole("heading", { name: "AZKi" })).toBeVisible();
+  await expect(memberDialog.getByText("A Flower in Full Bloom", { exact: true })).toBeVisible();
+  await expect(memberDialog.getByRole("heading", { name: "Active", exact: true })).toBeVisible();
+  await expect(memberDialog.getByRole("heading", { name: "Passive", exact: true })).toBeVisible();
+  await expect(memberDialog.getByRole("heading", { name: "Special", exact: true })).toBeVisible();
+  await expect(memberDialog.getByText("10,346", { exact: true })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(memberDialog).not.toBeVisible();
+
+  await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
+  await page.getByRole("button", { name: /Quick view AZKi, Graceful Scent/i }).click();
+  const outfitDialog = page.getByRole("dialog");
+  await expect(outfitDialog.getByText("Leader Outfit", { exact: true })).toBeVisible();
+  await expect(outfitDialog.getByRole("heading", { name: "Leader effect" })).toBeVisible();
+  await expect(outfitDialog).not.toContainText("Theorycraft Beta");
+});
+
 test("tier context and lens tabs support arrow-key selection", async ({ page }) => {
   await page.goto("/tier-list", GOTO_OPTIONS);
 

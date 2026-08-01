@@ -5,8 +5,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { CircleHelp, Grid3X3, RotateCcw, Search, SlidersHorizontal, X } from "lucide-react";
-import type { KeyboardEvent as ReactKeyboardEvent } from "react";
+import { ArrowUpRight, CircleHelp, Eye, Grid3X3, RotateCcw, Search, SlidersHorizontal, X } from "lucide-react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 
 type TierPlacement = {
   tier: NativeModelBand;
@@ -23,6 +23,15 @@ export type TierCard = {
   generation: string;
   groups: string[];
   artPath: string;
+  mechanics: {
+    performance: number;
+    technique: number;
+    sense: number;
+    active: string;
+    passive: string;
+    special: string;
+    leader: string;
+  };
   rankings: Record<NativeLens, TierPlacement>;
 };
 
@@ -104,11 +113,13 @@ function CardTile({
   context,
   lens,
   reducedMotion,
+  onQuickView,
 }: {
   card: TierCard;
   context: TierContext;
   lens: NativeLens;
   reducedMotion: boolean;
+  onQuickView: (card: TierCard) => void;
 }) {
   const placement = card.rankings[lens];
   const entityLabel = context === "outfits" ? "Leader Outfit" : "Member card";
@@ -127,6 +138,14 @@ function CardTile({
         <span className="card-rarity">{card.rarity}★</span>
         <i className="attribute-dot" aria-hidden="true" />
       </Link>
+      <button
+        aria-label={`Quick view ${card.talentName}, ${card.title}`}
+        className="card-quick-view-button"
+        onClick={() => onQuickView(card)}
+        type="button"
+      >
+        <Eye aria-hidden="true" />
+      </button>
       <span className="card-tile-tooltip" aria-hidden="true">
         <strong>{card.talentName}</strong>
         <small>{card.title} · {placement.tier} tier</small>
@@ -140,6 +159,8 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const quickViewRef = useRef<HTMLDialogElement>(null);
+  const [selectedCard, setSelectedCard] = useState<TierCard | null>(null);
   const requestedLens = searchParams.get("lens");
   const lens = isNativeLens(requestedLens) ? requestedLens : DEFAULT_LENS;
   const requestedContext = searchParams.get("context");
@@ -184,6 +205,11 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
     generation !== "all",
   ].filter(Boolean).length;
   const activeLens = lenses.find((item) => item.id === lens)!;
+
+  useEffect(() => {
+    const dialog = quickViewRef.current;
+    if (selectedCard && dialog && !dialog.open) dialog.showModal();
+  }, [selectedCard]);
 
   const resetFilters = () => {
     const next = new URLSearchParams();
@@ -328,6 +354,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                     context={context}
                     key={card.id}
                     lens={lens}
+                    onQuickView={setSelectedCard}
                     reducedMotion={reducedMotion}
                   />
                 ))}
@@ -337,6 +364,71 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
           ))}
         </AnimatePresence>
       </div>
+
+      <dialog
+        aria-labelledby="tier-quick-view-title"
+        className="tier-quick-view"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+        onClose={() => setSelectedCard(null)}
+        ref={quickViewRef}
+      >
+        {selectedCard && (
+          <div className={`tier-quick-view-shell attribute-${selectedCard.attribute}`}>
+            <button
+              aria-label="Close quick view"
+              className="tier-quick-view-close"
+              onClick={() => quickViewRef.current?.close()}
+              type="button"
+            >
+              <X aria-hidden="true" />
+            </button>
+            <div className="tier-quick-view-art">
+              <Image
+                alt={`${selectedCard.talentName} ${selectedCard.title}`}
+                fill
+                sizes="(max-width: 700px) 100vw, 330px"
+                src={selectedCard.artPath}
+              />
+            </div>
+            <div className="tier-quick-view-copy">
+              <p className="db-eyebrow">{context === "outfits" ? "Leader Outfit" : "Member card"}</p>
+              <h2 id="tier-quick-view-title">{selectedCard.talentName}</h2>
+              <p className="tier-quick-view-title">{selectedCard.title}</p>
+              <div className="tier-quick-view-tags">
+                <span>{selectedCard.rarity}★</span>
+                <span>{selectedCard.attribute}</span>
+                <span>{selectedCard.rankings[lens].tier} tier</span>
+                <span>#{selectedCard.rankings[lens].rank}</span>
+              </div>
+
+              {context === "members" ? (
+                <>
+                  <dl className="tier-quick-view-stats">
+                    <div><dt>Performance</dt><dd>{selectedCard.mechanics.performance.toLocaleString()}</dd></div>
+                    <div><dt>Technique</dt><dd>{selectedCard.mechanics.technique.toLocaleString()}</dd></div>
+                    <div><dt>Sense</dt><dd>{selectedCard.mechanics.sense.toLocaleString()}</dd></div>
+                  </dl>
+                  <div className="tier-quick-view-skills">
+                    <section><h3>Active</h3><p>{selectedCard.mechanics.active}</p></section>
+                    <section><h3>Passive</h3><p>{selectedCard.mechanics.passive}</p></section>
+                    <section><h3>Special</h3><p>{selectedCard.mechanics.special}</p></section>
+                  </div>
+                </>
+              ) : (
+                <div className="tier-quick-view-skills">
+                  <section><h3>Leader effect</h3><p>{selectedCard.mechanics.leader}</p></section>
+                </div>
+              )}
+
+              <Link className="tier-quick-view-link" href={`/cards/${selectedCard.slug}`}>
+                Open full card <ArrowUpRight aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        )}
+      </dialog>
     </div>
   );
 }

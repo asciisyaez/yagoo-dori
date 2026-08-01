@@ -80,8 +80,27 @@ const ReplacementSchema = z
     cardId: z.string().min(1),
     rarity: z.union([z.literal(4), z.literal(5)]),
     lossPercent: SerializableIntervalSchema,
+    suggestedOrder: z.array(z.string().min(1)).length(5),
+    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    tradeoff: z
+      .object({
+        benefit: z.string().min(1),
+        cost: z.string().min(1),
+        activeCooldownDeltaMilliseconds: z.number().int(),
+        specialDurationDeltaMilliseconds: z.number().int(),
+        formationOrderChanged: z.boolean(),
+        recipientApplicationsAdded: z.number().int().nonnegative(),
+        recipientApplicationsRemoved: z.number().int().nonnegative(),
+        possibleRecipientCardIdsAdded: z.array(z.string().min(1)),
+        possibleRecipientCardIdsRemoved: z.array(z.string().min(1)),
+      })
+      .strict(),
   })
-  .strict();
+  .strict()
+  .refine((replacement) => new Set(replacement.suggestedOrder).size === 5, {
+    message: "Replacement order must contain five unique Members",
+    path: ["suggestedOrder"],
+  });
 
 const RecipientSchema = z
   .object({
@@ -112,7 +131,7 @@ const ActiveSkillSummarySchema = z
     activationProbabilityPermil: z.number().int().min(0).max(1_000),
     cooldownMilliseconds: z.number().int().positive(),
     durationMilliseconds: z.number().int().positive(),
-    firstCheck: z.literal("unresolved"),
+    firstCheck: z.literal("one-cooldown-after-live-start"),
     chartNoteCoverage: z.null(),
   })
   .strict();
@@ -172,6 +191,31 @@ const SearchCertificateSchema = z
     }
   });
 
+const FormationOrderModelSchema = z
+  .object({
+    methodologyVersion: z.literal("yd-formation-order-modeled-general-1.0.0"),
+    corpusChartCount: z.literal(30),
+    markerLayoutCount: z.number().int().positive(),
+    timingScenarioCount: z.number().int().positive(),
+    permutationsChecked: z.literal(120),
+    maxRegretPermil: z.number().finite().nonnegative(),
+    meanRegretPermil: z.number().finite().nonnegative(),
+    runnerUpGapPermil: z.number().finite().nonnegative(),
+    winSharePermil: z.number().finite().min(0).max(1_000),
+    exactTimelineAvailable: z.literal(false),
+    statement: z.string().min(1),
+  })
+  .strict()
+  .superRefine((model, context) => {
+    if (model.timingScenarioCount !== model.corpusChartCount * model.markerLayoutCount) {
+      context.addIssue({
+        code: "custom",
+        path: ["timingScenarioCount"],
+        message: "Timing scenarios must equal corpus charts multiplied by marker layouts",
+      });
+    }
+  });
+
 export const NativeGuideFormationSchema = z
   .object({
     kind: FormationKindSchema,
@@ -181,7 +225,8 @@ export const NativeGuideFormationSchema = z
     leaderOutfitCardId: z.string().min(1),
     members: z.array(FormationMemberSchema).length(5),
     formationOrder: z.array(z.string().min(1)).length(5),
-    orderStatus: z.literal("canonical-display-only-timing-unresolved"),
+    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    formationOrderModel: FormationOrderModelSchema,
     relativeUtility: SerializableIntervalSchema,
     staticParameters: z
       .object({
@@ -192,7 +237,7 @@ export const NativeGuideFormationSchema = z
       .strict(),
     searchCertificate: SearchCertificateSchema,
     finalistsEvaluated: z.number().int().positive(),
-    ordersAudited: z.literal(120),
+    ordersAudited: z.number().int().positive().multipleOf(120),
     recipients: z.array(RecipientSchema),
     activeSkills: z.array(ActiveSkillSummarySchema).length(5),
     specialSkills: z.array(SpecialSkillSummarySchema).length(5),
@@ -266,6 +311,47 @@ export const NativeGuideFormationSchema = z
         });
       }
     }
+    for (const [index, replacement] of formation.replacements.entries()) {
+      if (!memberIds.includes(replacement.replacedCardId)) {
+        context.addIssue({
+          code: "custom",
+          path: ["replacements", index, "replacedCardId"],
+          message: "Replacement source must be one of the five selected Members",
+        });
+      }
+      if (memberIds.includes(replacement.cardId)) {
+        context.addIssue({
+          code: "custom",
+          path: ["replacements", index, "cardId"],
+          message: "Replacement card cannot already be in the selected formation",
+        });
+      }
+      const expectedAlternativeIds = memberIds
+        .filter((cardId) => cardId !== replacement.replacedCardId)
+        .concat(replacement.cardId)
+        .sort();
+      if ([...replacement.suggestedOrder].sort().join("\0") !== expectedAlternativeIds.join("\0")) {
+        context.addIssue({
+          code: "custom",
+          path: ["replacements", index, "suggestedOrder"],
+          message: "Replacement order must swap only the declared outgoing and incoming cards",
+        });
+      }
+      if (
+        replacement.tradeoff.possibleRecipientCardIdsAdded.some(
+          (cardId) => !replacement.suggestedOrder.includes(cardId),
+        ) ||
+        replacement.tradeoff.possibleRecipientCardIdsRemoved.some(
+          (cardId) => !memberIds.includes(cardId),
+        )
+      ) {
+        context.addIssue({
+          code: "custom",
+          path: ["replacements", index, "tradeoff"],
+          message: "Replacement recipient changes must reference their respective legal formations",
+        });
+      }
+    }
     const expectedLens = formation.kind === "premium"
       ? "level-cap-bloom-5-skill-2-connect-2"
       : "level-cap-bloom-0-skill-1-connect-1";
@@ -293,7 +379,8 @@ export const RatingSongComparisonSchema = z
     noteTimeline: z.literal("unavailable"),
     leaderOutfitCardId: z.string().min(1),
     formationOrder: z.array(z.string().min(1)).length(5),
-    orderStatus: z.literal("canonical-display-only-timing-unresolved"),
+    orderStatus: z.enum(["modeled-general", "indeterminate"]),
+    formationOrderModel: FormationOrderModelSchema,
     members: z.array(z.string().min(1)).length(5),
     relativeUtility: SerializableIntervalSchema,
     advantageOverReferencePercent: z.number().finite().positive().nullable(),
@@ -344,7 +431,7 @@ export const NativeGuideSchema = z
     anchorCardId: z.string().min(1),
     anchorTalentId: z.string().min(1),
     snapshotId: z.string().min(1),
-    methodologyVersion: z.literal("yd-native-guide-1.1.0"),
+    methodologyVersion: z.literal("yd-native-guide-1.2.0"),
     publicationState: z.literal("theorycraft-beta"),
     benchmark: BenchmarkContextSchema,
     ratingSongScope: z
@@ -373,7 +460,7 @@ export const NativeGuideSchema = z
 
 export const NativeGuideDataSchema = z
   .object({
-    schemaVersion: z.literal(3),
+    schemaVersion: z.literal(4),
     generatedAt: z.iso.datetime({ offset: true }),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     guides: z.array(NativeGuideSchema).min(1),
