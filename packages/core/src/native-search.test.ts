@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 
 import { mechanicsData } from "./mechanics";
 import {
+  searchNativeCanonicalCandidates,
   searchNativeLegalTeams,
   type NativeSearchInput,
 } from "./native-search";
@@ -152,6 +153,28 @@ function independentBruteForce(): BruteCandidate[] {
 }
 
 describe("native legal-team search", () => {
+  it("generates deterministic canonical beam candidates without formation-order audits", () => {
+    const { strategy: _strategy, ...base } = BASE_INPUT;
+    const input = {
+      ...base,
+      strategy: {
+        mode: "beam" as const,
+        beamWidth: 8,
+        finalistTeamCount: 3,
+        leadersPerTeam: 1,
+      },
+    };
+    const result = searchNativeCanonicalCandidates(input);
+
+    expect(result).toEqual(searchNativeCanonicalCandidates(input));
+    expect(result.candidates).toHaveLength(result.counts.teamSetsConsidered);
+    expect(result.counts.leaderTeamEvaluations).toBe(
+      result.counts.teamSetsConsidered * result.counts.eligibleLeaderOutfits,
+    );
+    expect(result.counts.utilityEvaluations).toBe(result.counts.leaderTeamEvaluations);
+    expect(result).not.toHaveProperty("auditedFinalists");
+  });
+
   it("matches an independent real-card winner and returns a strict local fixed point", () => {
     const brute = independentBruteForce();
     const initiallyAudited = brute
@@ -344,6 +367,79 @@ describe("native legal-team search", () => {
     )!;
     expect(anchorSlot).toMatchObject({ anchored: true, alternatives: [] });
     expect(result.replacementsBySlot.some((slot) => slot.alternatives.length > 0)).toBe(true);
+  });
+
+  it("applies exact per-card Bloom stages without weakening legal-team constraints", () => {
+    const memberCardIds = [CARD.sora4, CARD.aki5, CARD.haato5, CARD.azki5, CARD.okayu5] as const;
+    const bloomStageByCardId = {
+      [CARD.sora4]: 0,
+      [CARD.aki5]: 1,
+      [CARD.haato5]: 2,
+      [CARD.azki5]: 3,
+      [CARD.okayu5]: 4,
+    } as const;
+    const result = searchNativeLegalTeams({
+      ...BASE_INPUT,
+      bloomStageByCardId,
+      constraints: {
+        fixedLeaderOutfitCardId: CARD.azki5,
+        memberCardIds,
+        leaderOutfitCardIds: [CARD.azki5],
+      },
+      strategy: {
+        mode: "exact",
+        maxTeamSets: 1,
+        auditedFinalists: 1,
+        alternativesPerSlot: 1,
+      },
+    });
+
+    expect(result.constraints.bloomStageByCardId).toEqual(bloomStageByCardId);
+    expect(result.best.members.map((member) => [member.cardId, member.bloomStage])).toEqual(
+      result.best.members.map((member) => [
+        member.cardId,
+        bloomStageByCardId[member.cardId as keyof typeof bloomStageByCardId],
+      ]),
+    );
+    expect(new Set(result.best.members.map((member) => member.talentId))).toHaveLength(5);
+    expect(result.best.orderAudit.recommendedOrder).toBeNull();
+
+    const direct = evaluateNativeRelativeUtility({
+      formation: {
+        leaderOutfitCardId: result.best.leaderOutfitCardId,
+        members: result.best.members.map((member) => ({
+          cardId: member.cardId,
+          investment: "one-copy-maximum" as const,
+          bloomStage: bloomStageByCardId[member.cardId as keyof typeof bloomStageByCardId],
+        })),
+      },
+      chartKey: BASE_INPUT.chartKey,
+      seed: BASE_INPUT.seed,
+      accountState: BOARD,
+    });
+    expect(result.best.relativeUtility).toEqual(direct.relativeUtility);
+    expect(result.best.recipients.every((recipient) => recipient.valuePermil >= 0)).toBe(true);
+  });
+
+  it("rejects unknown, fractional, and out-of-range per-card Bloom stages", () => {
+    expect(() =>
+      searchNativeLegalTeams({
+        ...BASE_INPUT,
+        bloomStageByCardId: { [CARD.sora4]: 2.5 } as never,
+      }),
+    ).toThrow(/integer from 0 through 5/i);
+    expect(() =>
+      searchNativeLegalTeams({
+        ...BASE_INPUT,
+        bloomStageByCardId: { [CARD.sora4]: 6 } as never,
+      }),
+    ).toThrow(/integer from 0 through 5/i);
+    expect(() =>
+      searchNativeLegalTeams({
+        ...BASE_INPUT,
+        bloomStageByCardId: { "card-unknown": 0 },
+      }),
+    ).toThrow(/unknown Bloom-stage card/i);
   });
 
   it("is deterministic and independent of caller allowlist order", () => {

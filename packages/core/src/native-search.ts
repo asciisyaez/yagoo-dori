@@ -1,5 +1,10 @@
 import { mechanicsData, type CardMechanics } from "./mechanics";
 import {
+  assertBloomStage,
+  resolveCardInvestmentState,
+  type BloomStage,
+} from "./formation-evaluator";
+import {
   evaluateNativeRelativeUtility,
   type NativeUtilityInput,
   type NativeUtilityResult,
@@ -40,9 +45,47 @@ export type NativeSearchInput = Readonly<{
   chartKey: string;
   seed: number;
   investmentLayer: NativeSearchInvestmentLayer;
+  /** Exact per-card ownership progression. Entries override investmentLayer for that Member card. */
+  bloomStageByCardId?: Readonly<Record<string, BloomStage>>;
   accountState: NeutralBoardAccountState;
   constraints?: NativeSearchConstraints;
   strategy: NativeSearchStrategy;
+}>;
+
+/**
+ * Lightweight bounded candidate generation for callers that compare teams in a
+ * fixed canonical order. Unlike `searchNativeLegalTeams`, this boundary never
+ * audits the 120 formation permutations or performs chart-local replacement
+ * work. The caller remains responsible for final scoring and any local search.
+ */
+export type NativeCanonicalCandidateSearchInput = Readonly<
+  Omit<NativeSearchInput, "strategy"> & {
+    strategy: Readonly<{
+      mode: "beam";
+      beamWidth?: number;
+      finalistTeamCount?: number;
+      leadersPerTeam?: number;
+    }>;
+  }
+>;
+
+export type NativeCanonicalCandidateSearchResult = Readonly<{
+  kind: "native-canonical-candidate-search";
+  methodologyVersion: "yd-native-canonical-candidates-1.0.0";
+  candidates: ReadonlyArray<{
+    leaderOutfitCardId: string;
+    memberCardIds: readonly [string, string, string, string, string];
+    relativeUtility: UtilityInterval;
+  }>;
+  counts: Readonly<{
+    eligibleMemberCards: number;
+    eligibleLeaderOutfits: number;
+    legalTeamSetsInScope: number;
+    teamSetsConsidered: number;
+    unsearchedTeamSets: number;
+    leaderTeamEvaluations: number;
+    utilityEvaluations: number;
+  }>;
 }>;
 
 type SearchCard = Readonly<{
@@ -50,6 +93,7 @@ type SearchCard = Readonly<{
   talentId: string;
   rarity: 4 | 5;
   mechanics: CardMechanics;
+  bloomStage: BloomStage | null;
   baseParameterProxy: number;
   individualSkillProxy: number;
   diversitySignature: string;
@@ -156,6 +200,7 @@ export type NativeSearchRecipientSummary = ReadonlyArray<{
   sourceCardId: string;
   effectGroupId: string;
   effectKind: "performance-up" | "technique-up" | "sense-up" | "all-parameters-up";
+  valuePermil: number;
   alternatives: ReadonlyArray<readonly string[]>;
 }>;
 
@@ -163,6 +208,7 @@ export type NativeSearchReplacement = Readonly<{
   cardId: string;
   talentId: string;
   rarity: 4 | 5;
+  bloomStage: BloomStage | null;
   relativeUtility: UtilityInterval;
   intervalLoss: UtilityInterval;
 }>;
@@ -182,6 +228,7 @@ export type NativeSearchResult = Readonly<{
     leaderRarities: readonly (4 | 5)[];
     maxFiveStarMembers: number;
     investmentLayer: NativeSearchInvestmentLayer;
+    bloomStageByCardId: Readonly<Record<string, BloomStage>>;
   }>;
   counts: Readonly<{
     eligibleMemberCards: number;
@@ -210,6 +257,7 @@ export type NativeSearchResult = Readonly<{
       talentId: string;
       rarity: 4 | 5;
       investment: NativeSearchInvestmentLayer;
+      bloomStage: BloomStage | null;
     }>;
     relativeUtility: UtilityInterval;
     recipients: NativeSearchRecipientSummary;
@@ -232,6 +280,7 @@ const allCards: readonly SearchCard[] = [...mechanicsData.cards]
     talentId: mechanics.talentId,
     rarity: mechanics.rarity,
     mechanics,
+    bloomStage: null,
     baseParameterProxy: 0,
     individualSkillProxy: 0,
     diversitySignature: "uncompiled",
@@ -298,20 +347,7 @@ function selectedInvestmentState(
   card: SearchCard,
   layer: NativeSearchInvestmentLayer,
 ): CardMechanics["progression"]["oneCopy"] {
-  if (layer === "one-copy-maximum") return card.mechanics.progression.oneCopy;
-  if (layer === "duplicate-enabled-ceiling") return card.mechanics.progression.maxPotential;
-  const first = card.mechanics.progression.levelCurve[0];
-  if (!first) throw new Error(`${card.cardId} has no progression curve`);
-  return {
-    level: first.level,
-    activeSkillLevel: Math.min(...card.mechanics.skills.active.map((skill) => skill.level)),
-    passiveSkillLevel: Math.min(...card.mechanics.skills.passive.map((skill) => skill.level)),
-    specialSkillLevel: Math.min(...card.mechanics.skills.special.map((skill) => skill.level)),
-    connectEffectLevel: Math.min(
-      ...card.mechanics.progression.connectEffect.levels.map((effect) => effect.level),
-    ),
-    allParameterPermilUp: 0,
-  };
+  return resolveCardInvestmentState(card.mechanics, layer, card.bloomStage ?? undefined);
 }
 
 function baseParameterProxy(card: SearchCard, layer: NativeSearchInvestmentLayer): number {
@@ -339,13 +375,11 @@ function selectedSkill(
 ): CardMechanics["skills"][typeof kind][number] {
   const state = selectedInvestmentState(card, layer);
   const selectedLevel =
-    layer === "low-investment"
-      ? Math.min(...card.mechanics.skills[kind].map((candidate) => candidate.level))
-      : kind === "active"
-        ? state.activeSkillLevel
-        : kind === "passive"
-          ? state.passiveSkillLevel
-          : state.specialSkillLevel;
+    kind === "active"
+      ? state.activeSkillLevel
+      : kind === "passive"
+        ? state.passiveSkillLevel
+        : state.specialSkillLevel;
   const skill = card.mechanics.skills[kind].find((candidate) => candidate.level === selectedLevel);
   if (!skill) {
     throw new Error(`${card.cardId} has no ${kind} skill level ${selectedLevel}`);
@@ -539,6 +573,7 @@ function normalizeInput(input: NativeSearchInput): {
   memberRarities: (4 | 5)[];
   leaderRarities: (4 | 5)[];
   maxFiveStarMembers: number;
+  bloomStageByCardId: Readonly<Record<string, BloomStage>>;
   song: SongContext;
 } {
   assertNoEditorialBoundary(input);
@@ -567,6 +602,27 @@ function normalizeInput(input: NativeSearchInput): {
     throw new Error("maxFiveStarMembers must be an integer from 0 through 5");
   }
 
+  const rawBloomStages = input.bloomStageByCardId;
+  if (
+    rawBloomStages !== undefined &&
+    (rawBloomStages === null || typeof rawBloomStages !== "object" || Array.isArray(rawBloomStages))
+  ) {
+    throw new Error("bloomStageByCardId must be a card-ID keyed object");
+  }
+  const bloomStageEntries = Object.entries(rawBloomStages ?? {}).sort(([left], [right]) =>
+    left.localeCompare(right),
+  );
+  for (const [cardId, bloomStage] of bloomStageEntries) {
+    if (!cardById.has(cardId)) throw new Error(`Unknown Bloom-stage card: ${cardId}`);
+    if (typeof bloomStage !== "number") {
+      throw new Error(`Bloom stage for ${cardId} must be an integer from 0 through 5`);
+    }
+    assertBloomStage(bloomStage);
+  }
+  const bloomStageByCardId = Object.fromEntries(bloomStageEntries) as Readonly<
+    Record<string, BloomStage>
+  >;
+
   const resolveAllowlist = (ids: readonly string[] | undefined, label: string): SearchCard[] => {
     if (!ids) return [...allCards];
     const normalized = uniqueSorted(ids);
@@ -578,12 +634,18 @@ function normalizeInput(input: NativeSearchInput): {
 
   const memberCards = resolveAllowlist(constraints.memberCardIds, "Member")
     .filter((card) => memberRarities.includes(card.rarity))
-    .map((card) => ({
-      ...card,
-      baseParameterProxy: baseParameterProxy(card, input.investmentLayer),
-      individualSkillProxy: individualSkillProxy(card, input.investmentLayer, song),
-      diversitySignature: cardDiversitySignature(card, input.investmentLayer),
-    }));
+    .map((card) => {
+      const withBloom = {
+        ...card,
+        bloomStage: bloomStageByCardId[card.cardId] ?? null,
+      };
+      return {
+        ...withBloom,
+        baseParameterProxy: baseParameterProxy(withBloom, input.investmentLayer),
+        individualSkillProxy: individualSkillProxy(withBloom, input.investmentLayer, song),
+        diversitySignature: cardDiversitySignature(withBloom, input.investmentLayer),
+      };
+    });
   const leaderCards = resolveAllowlist(constraints.leaderOutfitCardIds, "Leader/Outfit").filter(
     (card) => leaderRarities.includes(card.rarity),
   );
@@ -624,6 +686,7 @@ function normalizeInput(input: NativeSearchInput): {
     memberRarities,
     leaderRarities,
     maxFiveStarMembers,
+    bloomStageByCardId,
     song,
   };
 }
@@ -842,6 +905,7 @@ function summarizeRecipients(candidate: ScoredCandidate): NativeSearchRecipientS
     sourceCardId: contribution.sourceCardId,
     effectGroupId: contribution.effectGroupId,
     effectKind: contribution.effectKind,
+    valuePermil: contribution.valuePermil,
     alternatives: contribution.recipientAlternatives.map((indexes) =>
       indexes.map((index) => candidate.memberCardIds[index]!).filter(Boolean),
     ),
@@ -871,6 +935,99 @@ function summarizeTiming(candidate: ScoredCandidate): NativeSearchTimingSummary 
       modeledActivationRateCoveragePermil: member.modeledActivationRateCoveragePermil,
     })),
     specialActivationRate: candidate.utility.components.special.activationRate,
+  };
+}
+
+export function searchNativeCanonicalCandidates(
+  input: NativeCanonicalCandidateSearchInput,
+): NativeCanonicalCandidateSearchResult {
+  const beamWidth = requirePositiveInteger(
+    input.strategy.beamWidth ?? DEFAULT_BEAM_WIDTH,
+    "beamWidth",
+  );
+  const finalistTeamCount = requirePositiveInteger(
+    input.strategy.finalistTeamCount ?? DEFAULT_FINALIST_TEAM_COUNT,
+    "finalistTeamCount",
+  );
+  const leadersPerTeam = requirePositiveInteger(
+    input.strategy.leadersPerTeam ?? 1,
+    "leadersPerTeam",
+  );
+  const normalized = normalizeInput({
+    ...input,
+    strategy: {
+      mode: "beam",
+      beamWidth,
+      finalistTeamCount,
+    },
+  });
+  const legalTeamSetsInScope = countLegalTeamSets(
+    normalized.memberCards,
+    normalized.anchor,
+    normalized.maxFiveStarMembers,
+  );
+  if (legalTeamSetsInScope === 0) {
+    throw new Error("No legal five-Member team satisfies the constraints");
+  }
+  const teamSets = enumerateBeamTeams(
+    normalized.memberCards,
+    normalized.anchor,
+    normalized.maxFiveStarMembers,
+    beamWidth,
+    finalistTeamCount,
+    input.investmentLayer,
+    normalized.song,
+  );
+  if (teamSets.length === 0) throw new Error("Search produced no legal finalist team sets");
+
+  let utilityEvaluations = 0;
+  const scoredByTeam = teamSets.map((team) => {
+    const scored = normalized.leaderCards.map((leader): ScoredCandidate => {
+      const utility = evaluateNativeRelativeUtility({
+        formation: {
+          leaderOutfitCardId: leader.cardId,
+          members: team.memberCardIds.map((cardId) => {
+            const bloomStage = normalized.bloomStageByCardId[cardId];
+            return bloomStage === undefined
+              ? { cardId, investment: input.investmentLayer }
+              : { cardId, investment: input.investmentLayer, bloomStage };
+          }),
+        },
+        chartKey: input.chartKey,
+        seed: input.seed,
+        accountState: input.accountState,
+      });
+      utilityEvaluations += 1;
+      return {
+        leaderOutfitCardId: leader.cardId,
+        memberCardIds: team.memberCardIds,
+        utility,
+      };
+    });
+    return scored.sort(compareScoredCandidates).slice(0, leadersPerTeam);
+  });
+  const candidates = scoredByTeam
+    .flat()
+    .sort(compareScoredCandidates)
+    .map((candidate) => ({
+      leaderOutfitCardId: candidate.leaderOutfitCardId,
+      memberCardIds: candidate.memberCardIds,
+      relativeUtility: candidate.utility.relativeUtility,
+    }));
+
+  return {
+    kind: "native-canonical-candidate-search",
+    methodologyVersion: "yd-native-canonical-candidates-1.0.0",
+    candidates,
+    counts: {
+      eligibleMemberCards: normalized.memberCards.length,
+      eligibleLeaderOutfits: normalized.leaderCards.length,
+      legalTeamSetsInScope,
+      teamSetsConsidered: teamSets.length,
+      unsearchedTeamSets: Math.max(0, legalTeamSetsInScope - teamSets.length),
+      leaderTeamEvaluations: utilityEvaluations,
+      utilityEvaluations,
+    },
   };
 }
 
@@ -972,7 +1129,12 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
     const result = evaluateNativeRelativeUtility({
       formation: {
         leaderOutfitCardId,
-        members: memberCardIds.map((cardId) => ({ cardId, investment: input.investmentLayer })),
+        members: memberCardIds.map((cardId) => {
+          const bloomStage = normalized.bloomStageByCardId[cardId];
+          return bloomStage === undefined
+            ? { cardId, investment: input.investmentLayer }
+            : { cardId, investment: input.investmentLayer, bloomStage };
+        }),
       },
       chartKey: input.chartKey,
       seed: input.seed,
@@ -1212,6 +1374,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
               cardId: card.cardId,
               talentId: card.talentId,
               rarity: card.rarity,
+              bloomStage: card.bloomStage,
               relativeUtility: utility,
               intervalLoss: subtractIntervals(best.utility.relativeUtility, utility),
             };
@@ -1257,6 +1420,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
       leaderRarities: normalized.leaderRarities,
       maxFiveStarMembers: normalized.maxFiveStarMembers,
       investmentLayer: input.investmentLayer,
+      bloomStageByCardId: normalized.bloomStageByCardId,
     },
     counts: {
       eligibleMemberCards: normalized.memberCards.length,
@@ -1287,6 +1451,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
           talentId: card.talentId,
           rarity: card.rarity,
           investment: input.investmentLayer,
+          bloomStage: normalized.bloomStageByCardId[cardId] ?? null,
         };
       }),
       relativeUtility: best.utility.relativeUtility,

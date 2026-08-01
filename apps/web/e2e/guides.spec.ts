@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { nativeGuideBySlug, publicCardById, type PublicCard } from "@yagoo-dori/core";
 
 const GUIDES = [
   {
@@ -57,6 +58,16 @@ const PEKORA_GUIDE = GUIDES[1];
 const SUBARU_GUIDE = GUIDES[2];
 const DISCLAIMER = "Unofficial fan site; not affiliated with COVER Corp. or QualiArts.";
 
+function requireCard(cardId: string): PublicCard {
+  const card = publicCardById.get(cardId);
+  if (!card) throw new Error(`E2E guide fixture references missing card ${cardId}`);
+  return card;
+}
+
+function cardArtPattern(cardId: string) {
+  return new RegExp(`${cardId}\\.webp`);
+}
+
 test("guide library lists every generated exact-card build", async ({ isMobile, page }) => {
   await page.goto("/guides", { waitUntil: "domcontentloaded" });
 
@@ -114,10 +125,20 @@ for (const guide of GUIDES) {
     isMobile,
     page,
   }) => {
+    const publishedGuide = nativeGuideBySlug.get(guide.guideSlug);
+    if (!publishedGuide) throw new Error(`Missing published guide ${guide.guideSlug}`);
+    const anchor = requireCard(publishedGuide.anchorCardId);
+
     await page.goto(`/guides/${guide.guideSlug}`, { waitUntil: "domcontentloaded" });
 
     await expect(page.getByRole("heading", { level: 1, name: guide.talent })).toBeVisible();
     await expect(page.getByRole("heading", { level: 2, name: guide.cardTitle })).toBeVisible();
+    await expect(
+      page.getByRole("img", {
+        name: `${anchor.title} ${anchor.talentName} card illustration`,
+        exact: true,
+      }),
+    ).toHaveAttribute("src", cardArtPattern(anchor.id));
     await expect(page.getByRole("link", { name: "Open anchor card" })).toHaveAttribute(
       "href",
       `/cards/${guide.cardSlug}`,
@@ -136,6 +157,59 @@ for (const guide of GUIDES) {
         .getByRole("list", { name: /Member lineup/i })
         .getByRole("listitem"),
     ).toHaveCount(5);
+
+    for (const formation of publishedGuide.formations) {
+      const section = page.locator(`#formation-${formation.kind}`);
+      const leader = requireCard(formation.leaderOutfitCardId);
+      const leaderPanel = section.getByRole("link", { name: "Open Outfit", exact: true }).locator("..");
+      await expect(section).toBeVisible();
+      await expect(leaderPanel).toContainText(
+        `${leader.talentName} · ${leader.leaderOutfit.costumeName}`,
+      );
+      await expect(leaderPanel).toContainText(`${leader.rarity}★ Leader card · ${leader.title}`);
+      await expect(leaderPanel.locator("img").first()).toHaveAttribute(
+        "src",
+        cardArtPattern(leader.id),
+      );
+      await expect(leaderPanel.getByRole("link", { name: "Open Outfit", exact: true })).toHaveAttribute(
+        "href",
+        `/cards/${leader.slug}#leader-outfit`,
+      );
+
+      const formationOrder = formation.formationOrder.map(requireCard);
+      const lineup = section.getByRole("list", {
+        name: `${formation.label} Member lineup`,
+        exact: true,
+      });
+      const memberRows = lineup.locator(":scope > li");
+      await expect(memberRows).toHaveCount(formationOrder.length);
+      for (const [index, member] of formationOrder.entries()) {
+        const row = memberRows.nth(index);
+        await expect(row).toContainText(member.talentName);
+        await expect(row).toContainText(member.title);
+        await expect(row.getByRole("link")).toHaveAttribute("href", `/cards/${member.slug}`);
+        await expect(
+          row.getByRole("img", {
+            name: `${member.talentName}, ${member.title}, ${member.rarity} star ${member.attribute}`,
+            exact: true,
+          }),
+        ).toHaveAttribute("src", cardArtPattern(member.id));
+      }
+
+      for (const replacement of formation.replacements) {
+        const outgoing = requireCard(replacement.replacedCardId);
+        const incoming = requireCard(replacement.cardId);
+        const rows = section
+          .getByText(`Replace ${outgoing.talentName} with`, { exact: true })
+          .locator("../..")
+          .filter({ hasText: `${incoming.talentName} · ${incoming.rarity}★` });
+        await expect(rows).toHaveCount(1);
+        const replacementArt = rows.locator("img");
+        await expect(replacementArt).toHaveCount(2);
+        await expect(replacementArt.nth(0)).toHaveAttribute("src", cardArtPattern(outgoing.id));
+        await expect(replacementArt.nth(1)).toHaveAttribute("src", cardArtPattern(incoming.id));
+      }
+    }
 
     if (isMobile) {
       const dimensions = await page.locator("body").evaluate((body) => ({
@@ -181,15 +255,63 @@ test("Pekora keeps Leader and Passive recipients separate at each skill level", 
 test("Subaru guide distinguishes the summer Member from its recommended Leader card", async ({ page }) => {
   await page.goto(`/guides/${SUBARU_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
 
+  const heroClarification = page.locator(
+    '[role="note"][aria-label="Member anchor and Standard Leader source"]',
+  );
+  await expect(heroClarification).toContainText(
+    "This guide stays anchored to the summer 5★ Vibrant Sun Splash! Member card.",
+  );
+  await expect(heroClarification).toContainText(
+    "The split is intentional: the current modeled Standard formation uses Duckie Bounce! as Leader while keeping the featured Member card in the five-Member lineup.",
+  );
+  await expect(heroClarification).toContainText("Oozora Subaru · Vibrant Sun Splash!");
+  await expect(heroClarification).toContainText("Outfit on this card: The Longing Sun");
+  await expect(heroClarification).toContainText("Oozora Subaru · Duckie Bounce!");
+  await expect(heroClarification).toContainText("Source card: 5★ Duckling Noon Jam");
+  await expect(heroClarification).toContainText(
+    "With 2 or more Gen 2 Members, Grants All Stats UP 50% to all.",
+  );
+
   const standard = page.locator("#formation-standard");
   await expect(standard.getByText("Oozora Subaru · Duckie Bounce!", { exact: true })).toBeVisible();
   await expect(standard.getByText("5★ Leader card · Duckling Noon Jam", { exact: true })).toBeVisible();
+  const standardClarification = standard.locator(
+    '[role="note"][aria-label="Bloom 0 · skills Lv.1 Leader source clarification"]',
+  );
+  await expect(standardClarification).toContainText("Leader selected separately");
+  await expect(standardClarification).toContainText(
+    "The Member anchor remains Oozora Subaru · Vibrant Sun Splash!; its card Outfit is The Longing Sun.",
+  );
+  await expect(standardClarification).toContainText(
+    "This formation's modeled recommendation instead uses Duckie Bounce! from the 5★ Duckling Noon Jam card as Leader.",
+  );
   await expect(standard.locator('img[src*="card-00012-5-uniq-0012-00.webp"]')).toBeVisible();
   const lineup = standard.getByRole("list", { name: /Member lineup/i });
   const summerMemberArt = lineup.locator('img[alt*="Vibrant Sun Splash!"]');
   await expect(summerMemberArt).toHaveAttribute(
     "src",
     /card-00012-5-uniq-0062-00\.webp/,
+  );
+});
+
+test("a guide whose Standard Leader comes from its anchor card needs no mismatch warning", async ({ page }) => {
+  await page.goto(`/guides/${AZKI_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
+
+  await expect(
+    page.locator('[role="note"][aria-label="Member anchor and Standard Leader source"]'),
+  ).toHaveCount(0);
+  await expect(
+    page.locator('#formation-standard [role="note"][aria-label$="Leader source clarification"]'),
+  ).toHaveCount(0);
+
+  const accessibleClarification = page.locator(
+    '#formation-accessible-4-star [role="note"][aria-label$="Leader source clarification"]',
+  );
+  await expect(accessibleClarification).toContainText(
+    "The Member anchor remains AZKi · A Flower in Full Bloom; its card Outfit is Graceful Scent.",
+  );
+  await expect(accessibleClarification).toContainText(
+    "This formation's modeled recommendation instead uses Dreamy Drop from the 4★ Upon a Tender Melody card as Leader.",
   );
 });
 

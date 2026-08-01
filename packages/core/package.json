@@ -18,7 +18,9 @@
     "./native-search": "./src/native-search.ts",
     "./native-utility": "./src/native-utility.ts",
     "./score-kernel": "./src/score-kernel.ts",
-    "./song-contexts": "./src/song-contexts.ts"
+    "./song-contexts": "./src/song-contexts.ts",
+    "./team-calculator": "./src/team-calculator.ts",
+    "./team-calculator-contract": "./src/team-calculator-contract.ts"
   },
   "scripts": {
     "lint": "tsc --noEmit",

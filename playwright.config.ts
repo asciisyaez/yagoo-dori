@@ -5,7 +5,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : undefined,
+  // Keep the standalone server responsive while the calculator's browser
+  // Worker performs a real optimizer integration run in parallel with UI QA.
+  workers: process.env.CI ? 2 : 4,
   reporter: process.env.CI ? "github" : "list",
   use: {
     baseURL: "http://127.0.0.1:3000",

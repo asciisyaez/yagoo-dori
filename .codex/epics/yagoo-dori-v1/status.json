@@ -1,6 +1,6 @@
 {
   "objective": "Build the most useful and accurate English hololive Dreams database, tier list, and team-building site.",
-  "ticketOrder": ["N01", "N02", "N03A", "N03B", "N03C", "N03D", "N04", "N05", "N06A", "N06B", "N07"],
+  "ticketOrder": ["N01", "N02", "N03A", "N03B", "N03C", "N03D", "N04", "N05", "N06A", "N06B", "N06C", "N07"],
   "weights": {
     "N01": 5,
     "N02": 25,
@@ -9,12 +9,19 @@
     "N03C": 3,
     "N03D": 6,
     "N04": 15,
-    "N05": 15,
+    "N05": 10,
     "N06A": 5,
-    "N06B": 10,
+    "N06B": 7,
+    "N06C": 8,
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Added Oshi mode with persistent Member, Leader Outfit, and combined favorite constraints plus exact role-fulfillment badges",
+    "Added a Bloom-aware suggested five-slot order that compares all 120 placements across 420 modeled timing scenarios and shows Active cadence and Special duration",
+    "Clarified the summer Subaru guide's summer Member anchor versus separately sourced regular Subaru Leader Outfit without overstating bounded-search proof",
+    "Regenerated seven optimizer-backed guides with exact Leader versus Passive attribution, progression-level prose, and explicit source-card Outfit identity",
+    "Added an owned-roster Team calculator preview with live filtering, rarity groups, per-card Bloom, local persistence, a cancellable browser Worker, and legal Leader plus five-Member results averaged over the pinned 30-chart benchmark",
+    "Audited all seven generated guides across 76 referenced Member cards and 14 Leader source cards, with browser and core regressions for exact card, Outfit, icon, and illustration identity",
     "Compiled every current Active, Passive, Special, Leader, Connect, Board, target, trigger, cap, and progression row into a source-linked 113-card mechanics catalog",
     "Verified card parameter progression and conditional effect semantics against pinned data and independent fixtures while preserving unresolved runtime rules as hard score blockers",
     "Pinned 177 songs and 708 aggregate chart contexts with exact judgment, combo, Life, Auto, rating, and singer relationships without inventing note timelines",
@@ -34,7 +41,7 @@
   ],
   "blockers": [
     "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
-    "The full-roster guide search is deterministic and locally refined but is not yet a certified global optimum"
+    "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Validate the remaining runtime rules and replace the full-roster heuristic with a certifiable global search before claiming mathematically optimal formations."
+  "nextAction": "Complete release QA on the reviewed calculator and guide changes, then validate exact chart timing and replace the full-roster heuristic with a certifiable global search."
 }

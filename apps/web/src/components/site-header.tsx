@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import {
   BarChart3,
   BookOpen,
+  Calculator,
   Home,
   LibraryBig,
   Menu,
@@ -28,6 +29,10 @@ const navigation = [
   {
     label: "Rankings",
     items: [{ href: "/tier-list", label: "Tier list", icon: BarChart3 }],
+  },
+  {
+    label: "Tools",
+    items: [{ href: "/team-builder", label: "Team calculator", icon: Calculator }],
   },
   {
     label: "Learn",

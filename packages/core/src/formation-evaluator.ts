@@ -28,9 +28,17 @@ export type InvestmentLayer =
   | "one-copy-maximum"
   | "duplicate-enabled-ceiling";
 
+export type BloomStage = 0 | 1 | 2 | 3 | 4 | 5;
+
 export type FormationMember = {
   cardId: string;
   investment: InvestmentLayer;
+  /**
+   * Exact owned-card Bloom progression. When present, this takes precedence over
+   * the broad investment lens while retaining that lens for backwards-compatible
+   * reporting and callers that do not model individual ownership.
+   */
+  bloomStage?: BloomStage;
 };
 
 export type FormationInput = {
@@ -64,6 +72,7 @@ type ParameterName = "performance" | "technique" | "sense";
 
 export type CardProgression = {
   layer: InvestmentLayer;
+  bloomStage: BloomStage | null;
   evidenceGrade: "verified";
   state: InvestmentState;
   parameterBaseValue: number;
@@ -227,7 +236,11 @@ export type FormationEvaluation = {
   };
   components: {
     accountState: {
-      memberInvestments: Array<{ cardId: string; layer: InvestmentLayer }>;
+      memberInvestments: Array<{
+        cardId: string;
+        layer: InvestmentLayer;
+        bloomStage: BloomStage | null;
+      }>;
       board: FormationAccountState["board"];
     };
     connectAndBoard: {
@@ -290,6 +303,12 @@ function assertPositiveInteger(value: number, label: string): void {
   }
 }
 
+export function assertBloomStage(value: number): asserts value is BloomStage {
+  if (!Number.isInteger(value) || value < 0 || value > 5) {
+    throw new Error("Bloom stage must be an integer from 0 through 5");
+  }
+}
+
 export function verifiedOnlyRuntimePolicy(seed: number): RuntimePolicy {
   assertSeed(seed);
   return {
@@ -333,6 +352,7 @@ export function assertLegalFormation(input: FormationInput): LegalFormation {
 
   const leaderPair = cardPair(input.leaderOutfitCardId);
   const members = input.members.map((member) => {
+    if (member.bloomStage !== undefined) assertBloomStage(member.bloomStage);
     const pair = cardPair(member.cardId);
     return { ...member, ...pair };
   });
@@ -355,10 +375,43 @@ function minimumSkillLevel(levels: readonly { level: number }[]): number {
   return Math.min(...levels.map((level) => level.level));
 }
 
-function investmentState(
+export function resolveCardInvestmentState(
   mechanics: CardMechanics,
   layer: InvestmentLayer,
+  bloomStage?: BloomStage,
 ): InvestmentState {
+  if (bloomStage !== undefined) {
+    assertBloomStage(bloomStage);
+    const state: InvestmentState = { ...mechanics.progression.oneCopy };
+    const expectedKinds = {
+      1: "active-skill-level-up",
+      2: "all-parameters-up",
+      3: "special-skill-level-up",
+      4: "passive-skill-level-up",
+      5: "connect-effect-level-up",
+    } as const;
+    for (let stage = 1; stage <= bloomStage; stage += 1) {
+      const effects = mechanics.progression.potential.filter((effect) => effect.stage === stage);
+      if (effects.length !== 1) {
+        throw new Error(
+          `${mechanics.cardId} Bloom ${stage} requires exactly one progression effect`,
+        );
+      }
+      const effect = effects[0]!;
+      const expectedKind = expectedKinds[stage as keyof typeof expectedKinds];
+      if (effect.kind !== expectedKind) {
+        throw new Error(
+          `${mechanics.cardId} Bloom ${stage} must be ${expectedKind}; received ${effect.kind}`,
+        );
+      }
+      if (effect.kind === "active-skill-level-up") state.activeSkillLevel = effect.value;
+      else if (effect.kind === "all-parameters-up") state.allParameterPermilUp = effect.value;
+      else if (effect.kind === "special-skill-level-up") state.specialSkillLevel = effect.value;
+      else if (effect.kind === "passive-skill-level-up") state.passiveSkillLevel = effect.value;
+      else if (effect.kind === "connect-effect-level-up") state.connectEffectLevel = effect.value;
+    }
+    return state;
+  }
   if (layer === "one-copy-maximum") return { ...mechanics.progression.oneCopy };
   if (layer === "duplicate-enabled-ceiling") return { ...mechanics.progression.maxPotential };
 
@@ -382,12 +435,13 @@ export function calculateCardProgression(
   publicCard: PublicCard,
   mechanics: CardMechanics,
   layer: InvestmentLayer,
+  bloomStage?: BloomStage,
 ): CardProgression {
   if (publicCard.id !== mechanics.cardId || publicCard.talentId !== mechanics.talentId) {
     throw new Error("Public card and mechanics record must identify the same card and talent");
   }
 
-  const state = investmentState(mechanics, layer);
+  const state = resolveCardInvestmentState(mechanics, layer, bloomStage);
   const level = mechanics.progression.levelCurve.find((candidate) => candidate.level === state.level);
   if (!level) throw new Error(`${mechanics.cardId} has no exact level-curve row for level ${state.level}`);
 
@@ -417,9 +471,9 @@ export function calculateCardProgression(
   ) as Record<ParameterName, number>;
 
   const pinnedParameters =
-    layer === "one-copy-maximum"
+    bloomStage === 0 || (bloomStage === undefined && layer === "one-copy-maximum")
       ? publicCard.parameters.oneCopyMaxLevel
-      : layer === "duplicate-enabled-ceiling"
+      : bloomStage === 5 || (bloomStage === undefined && layer === "duplicate-enabled-ceiling")
         ? publicCard.parameters.maxPotential
         : null;
   if (
@@ -431,6 +485,7 @@ export function calculateCardProgression(
 
   return {
     layer,
+    bloomStage: bloomStage ?? null,
     evidenceGrade: "verified",
     state,
     parameterBaseValue: level.parameterBaseValue,
@@ -935,6 +990,7 @@ export function evaluateFormation(
       member.publicCard,
       member.mechanics,
       member.investment,
+      member.bloomStage,
     );
     const connect = exactSkillLevel(
       member.mechanics.progression.connectEffect.levels,
@@ -1132,6 +1188,7 @@ export function evaluateFormation(
         memberInvestments: legal.members.map((member) => ({
           cardId: member.cardId,
           layer: member.investment,
+          bloomStage: member.bloomStage ?? null,
         })),
         board: options.accountState.board,
       },

@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const DISCLAIMER = "Unofficial fan site; not affiliated with COVER Corp. or QualiArts.";
 const AZKI_CARD_SLUG = "azki-a-flower-in-full-bloom-card-00013-5-uniq-0002-00";
+const GOTO_OPTIONS = { waitUntil: "domcontentloaded" as const };
 
 const corePublicRoutes = [
   "/",
@@ -14,7 +15,7 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   test.setTimeout(60_000);
 
   for (const route of corePublicRoutes) {
-    await page.goto(route);
+    await page.goto(route, GOTO_OPTIONS);
 
     const footer = page.getByRole("contentinfo");
     const disclaimer = page.getByText(DISCLAIMER, { exact: true });
@@ -29,7 +30,7 @@ test("desktop presents a persistent grouped sidebar for the core database tasks"
   page,
 }) => {
   test.skip(isMobile, "Desktop sidebar assertion");
-  await page.goto("/");
+  await page.goto("/", GOTO_OPTIONS);
 
   const sidebar = page.locator("aside").filter({
     has: page.getByRole("navigation", { name: /primary|site/i }),
@@ -49,7 +50,7 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
   page,
 }) => {
   test.setTimeout(60_000);
-  await page.goto("/tier-list");
+  await page.goto("/tier-list", GOTO_OPTIONS);
 
   await expect(page.getByRole("heading", { level: 1, name: "hololive Dreams tier list" })).toBeVisible();
   await expect(page.getByRole("tab", { name: /Member cards/i })).toHaveAttribute(
@@ -92,7 +93,7 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
 });
 
 test("Leader Outfit tier context hydrates from a shareable URL", async ({ page }) => {
-  await page.goto("/tier-list?context=outfits&lens=duplicate-enabled-ceiling&q=AZKi");
+  await page.goto("/tier-list?context=outfits&lens=duplicate-enabled-ceiling&q=AZKi", GOTO_OPTIONS);
 
   await expect(page.getByRole("tab", { name: /Leader \/ Outfits/i })).toHaveAttribute(
     "aria-selected",
@@ -114,7 +115,7 @@ test("Leader Outfit tier context hydrates from a shareable URL", async ({ page }
 });
 
 test("tier context and lens tabs support arrow-key selection", async ({ page }) => {
-  await page.goto("/tier-list");
+  await page.goto("/tier-list", GOTO_OPTIONS);
 
   const memberTab = page.getByRole("tab", { name: /Member cards/i });
   await memberTab.focus();
@@ -139,6 +140,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
   test.setTimeout(60_000);
   await page.goto(
     "/tier-list?lens=low-investment&rarity=4&attribute=cute&generation=Gen+0&q=AZKi",
+    GOTO_OPTIONS,
   );
 
   const lowInvestmentTab = page.getByRole("tab", { name: /Low Investment/i });
@@ -173,7 +175,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({
   page,
 }) => {
-  await page.goto(`/cards/${AZKI_CARD_SLUG}`);
+  await page.goto(`/cards/${AZKI_CARD_SLUG}`, GOTO_OPTIONS);
 
   await expect(page.getByRole("heading", { level: 1, name: "AZKi" })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "A Flower in Full Bloom" })).toBeVisible();
@@ -205,7 +207,7 @@ test("public decision pages do not expose editorial or research-workflow placeho
   test.setTimeout(60_000);
 
   for (const route of corePublicRoutes) {
-    await page.goto(route);
+    await page.goto(route, GOTO_OPTIONS);
     await expect(page.locator("body")).not.toContainText(/Art pending rights/i);
     await expect(page.locator("body")).not.toContainText(/AppMedia/i);
     await expect(page.locator("body")).not.toContainText(/illustrative (?:data|PI|score)/i);
@@ -214,7 +216,7 @@ test("public decision pages do not expose editorial or research-workflow placeho
 });
 
 test("skip link provides a keyboard path into the main content", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", GOTO_OPTIONS);
 
   await page.keyboard.press("Tab");
   const skipLink = page.getByRole("link", { name: "Skip to content" });
@@ -227,7 +229,7 @@ test("skip link provides a keyboard path into the main content", async ({ page }
 
 test("reduced-motion preference collapses tier animation durations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/tier-list");
+  await page.goto("/tier-list", GOTO_OPTIONS);
 
   expect(await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
 
@@ -251,7 +253,7 @@ test("mobile drawer is keyboard reachable and the database does not overflow", a
   page,
 }) => {
   test.skip(!isMobile, "Mobile navigation assertion");
-  await page.goto("/");
+  await page.goto("/", GOTO_OPTIONS);
 
   const bodyMetrics = await page.locator("body").evaluate((body) => ({
     clientWidth: body.clientWidth,

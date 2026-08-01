@@ -311,6 +311,95 @@
   padding: 0.6rem 0;
 }
 
+.anchorLeaderNote {
+  margin: 0 0 1rem;
+  border: 1px solid rgba(244, 199, 93, 0.28);
+  border-radius: 7px;
+  background:
+    linear-gradient(110deg, rgba(244, 199, 93, 0.09), rgba(37, 188, 233, 0.035)),
+    #12171f;
+  padding: 0.72rem;
+}
+
+.anchorLeaderNote > header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.anchorLeaderNote > header > svg {
+  width: 18px;
+  flex: 0 0 auto;
+  color: #f4d582;
+}
+
+.anchorLeaderNote > header span,
+.anchorLeaderPair span {
+  display: block;
+  color: #c4a95f;
+  font-size: 0.5rem;
+  font-weight: 820;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.anchorLeaderNote h3 {
+  margin: 0.06rem 0 0;
+  color: #f5f6f8;
+  font-size: 0.76rem;
+}
+
+.anchorLeaderNote > p:not(.leaderFit) {
+  margin: 0.52rem 0;
+  color: #b3bac5;
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.anchorLeaderPair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+  padding: 0.55rem 0;
+}
+
+.anchorLeaderPair > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.08rem;
+}
+
+.anchorLeaderPair > svg {
+  width: 14px;
+  color: #626c79;
+}
+
+.anchorLeaderPair strong {
+  color: #eef1f5;
+  font-size: 0.62rem;
+  overflow-wrap: anywhere;
+}
+
+.anchorLeaderPair small {
+  color: #818a97;
+  font-size: 0.53rem;
+  line-height: 1.35;
+}
+
+.anchorLeaderNote .leaderFit {
+  margin: 0.5rem 0 0;
+  color: #9da6b3;
+  font-size: 0.56rem;
+  line-height: 1.45;
+}
+
+.leaderFit strong {
+  color: var(--yd-cyan-soft);
+}
+
 .guideNav {
   position: sticky;
   z-index: 8;
@@ -487,11 +576,39 @@
   margin: 0.16rem 0 0;
 }
 
-.leaderPanel p:last-child {
+.leaderDescription {
   max-width: 900px;
   margin: 0.28rem 0 0;
   color: var(--yd-muted);
   font-size: 0.67rem;
+}
+
+.formationLeaderNote {
+  margin-top: 0.55rem;
+  border-left: 2px solid #f4c75d;
+  border-radius: 0 5px 5px 0;
+  background: rgba(244, 199, 93, 0.055);
+  padding: 0.48rem 0.55rem;
+}
+
+.formationLeaderNote > strong {
+  color: #f1d995;
+  font-size: 0.58rem;
+}
+
+.formationLeaderNote > p {
+  margin: 0.16rem 0 0;
+  color: #abb3bf;
+  font-size: 0.59rem;
+  line-height: 1.45;
+}
+
+.formationLeaderNote > small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #7fc6dc;
+  font-size: 0.54rem;
+  line-height: 1.4;
 }
 
 .leaderPanel > a {
@@ -1145,6 +1262,14 @@
 
   .leaderPanel > a {
     grid-column: 2;
+  }
+
+  .anchorLeaderPair {
+    grid-template-columns: 1fr;
+  }
+
+  .anchorLeaderPair > svg {
+    transform: rotate(90deg);
   }
 
   .orderHeading {

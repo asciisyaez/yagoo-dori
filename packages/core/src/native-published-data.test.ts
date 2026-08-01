@@ -1,13 +1,188 @@
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
 import { describe, expect, it } from "vitest";
 
+import cardArtManifestJson from "../../../data/generated/card-art-manifest.json";
+
+import { mechanicsCardById } from "./mechanics";
 import {
   nativeGuideByAnchorCardId,
   nativeGuideBySlug,
   nativeGuideData,
 } from "./native-guide-data";
 import { nativeRankingData } from "./native-ranking-data";
-import { publicCardById, publicCards } from "./public-data";
+import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
+
+const PINNED_GUIDE_ROSTER_COMMIT = "1907a1b9f85beb22e9d255686a26e0bd5db223e9";
+
+const EXPECTED_GUIDE_IDENTITIES = [
+  {
+    anchorCardId: "card-00012-5-uniq-0062-00",
+    talentId: "chr-00012",
+    talentName: "Oozora Subaru",
+    cardTitle: "Vibrant Sun Splash!",
+    leaders: {
+      premium: "card-00012-5-uniq-0012-00",
+      standard: "card-00012-5-uniq-0012-00",
+      "accessible-4-star": "card-00012-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00013-5-uniq-0002-00",
+    talentId: "chr-00013",
+    talentName: "AZKi",
+    cardTitle: "A Flower in Full Bloom",
+    leaders: {
+      premium: "card-00013-5-uniq-0002-00",
+      standard: "card-00013-5-uniq-0002-00",
+      "accessible-4-star": "card-00013-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00019-5-uniq-0016-00",
+    talentId: "chr-00019",
+    talentName: "Usada Pekora",
+    cardTitle: "Playful Rabbit Field",
+    leaders: {
+      premium: "card-00019-5-uniq-0016-00",
+      standard: "card-00019-5-uniq-0016-00",
+      "accessible-4-star": "card-00019-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00021-5-uniq-0064-00",
+    talentId: "chr-00021",
+    talentName: "Shiranui Flare",
+    cardTitle: "Sparks at Sunset",
+    leaders: {
+      premium: "card-00021-5-uniq-0064-00",
+      standard: "card-00021-5-uniq-0064-00",
+      "accessible-4-star": "card-00021-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00022-5-uniq-0063-00",
+    talentId: "chr-00022",
+    talentName: "Shirogane Noel",
+    cardTitle: "Serene Wave Knight",
+    leaders: {
+      premium: "card-00022-5-uniq-0063-00",
+      standard: "card-00022-5-uniq-0063-00",
+      "accessible-4-star": "card-00022-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00026-5-uniq-0065-00",
+    talentId: "chr-00026",
+    talentName: "Tsunomaki Watame",
+    cardTitle: "Floatie Float Time",
+    leaders: {
+      premium: "card-00026-5-uniq-0065-00",
+      standard: "card-00026-5-uniq-0065-00",
+      "accessible-4-star": "card-00026-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-06002-5-uniq-0066-00",
+    talentId: "chr-06002",
+    talentName: "Otonose Kanade",
+    cardTitle: "Breezy Smile Chords",
+    leaders: {
+      premium: "card-06002-5-uniq-0066-00",
+      standard: "card-06002-5-uniq-0066-00",
+      "accessible-4-star": "card-06002-4-cmmn-0000-00",
+    },
+  },
+] as const;
+
+const EXPECTED_LEADER_IDENTITIES = {
+  "card-00012-4-cmmn-0000-00": {
+    cardTitle: "Radiant Soul Jam",
+    costumeId: "cos-00012-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00012-4-cmmn-0000-00",
+  },
+  "card-00012-5-uniq-0012-00": {
+    cardTitle: "Duckling Noon Jam",
+    costumeId: "cos-00012-uniq-0012-00",
+    costumeName: "Duckie Bounce!",
+    leaderSkillId: "live_leader_skill-card-00012-5-uniq-0012-00",
+  },
+  "card-00013-4-cmmn-0000-00": {
+    cardTitle: "Upon a Tender Melody",
+    costumeId: "cos-00013-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00013-4-cmmn-0000-00",
+  },
+  "card-00013-5-uniq-0002-00": {
+    cardTitle: "A Flower in Full Bloom",
+    costumeId: "cos-00013-uniq-0002-00",
+    costumeName: "Graceful Scent",
+    leaderSkillId: "live_leader_skill-card-00013-5-uniq-0002-00",
+  },
+  "card-00019-4-cmmn-0000-00": {
+    cardTitle: "Vogue Hop Bunny",
+    costumeId: "cos-00019-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00019-4-cmmn-0000-00",
+  },
+  "card-00019-5-uniq-0016-00": {
+    cardTitle: "Playful Rabbit Field",
+    costumeId: "cos-00019-uniq-0016-00",
+    costumeName: "Anarchy Rabbit",
+    leaderSkillId: "live_leader_skill-card-00019-5-uniq-0016-00",
+  },
+  "card-00021-4-cmmn-0000-00": {
+    cardTitle: "Graceful Empathy",
+    costumeId: "cos-00021-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00021-4-cmmn-0000-00",
+  },
+  "card-00021-5-uniq-0064-00": {
+    cardTitle: "Sparks at Sunset",
+    costumeId: "cos-00021-uniq-0064-00",
+    costumeName: "You're My Sunflower",
+    leaderSkillId: "live_leader_skill-card-00021-5-uniq-0064-00",
+  },
+  "card-00022-4-cmmn-0000-00": {
+    cardTitle: "Vocal Juggernaut",
+    costumeId: "cos-00022-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00022-4-cmmn-0000-00",
+  },
+  "card-00022-5-uniq-0063-00": {
+    cardTitle: "Serene Wave Knight",
+    costumeId: "cos-00022-uniq-0063-00",
+    costumeName: "Soleil Kiss",
+    leaderSkillId: "live_leader_skill-card-00022-5-uniq-0063-00",
+  },
+  "card-00026-4-cmmn-0000-00": {
+    cardTitle: "Zenith Resonance",
+    costumeId: "cos-00026-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00026-4-cmmn-0000-00",
+  },
+  "card-00026-5-uniq-0065-00": {
+    cardTitle: "Floatie Float Time",
+    costumeId: "cos-00026-uniq-0065-00",
+    costumeName: "Beaming Sol",
+    leaderSkillId: "live_leader_skill-card-00026-5-uniq-0065-00",
+  },
+  "card-06002-4-cmmn-0000-00": {
+    cardTitle: "Apex Harmony",
+    costumeId: "cos-06002-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-06002-4-cmmn-0000-00",
+  },
+  "card-06002-5-uniq-0066-00": {
+    cardTitle: "Breezy Smile Chords",
+    costumeId: "cos-06002-uniq-0066-00",
+    costumeName: "Sunflower Symphony",
+    leaderSkillId: "live_leader_skill-card-06002-5-uniq-0066-00",
+  },
+} as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
   "card-00012-5-uniq-0062-00",
@@ -20,6 +195,46 @@ const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
 ].sort();
 
 const EXPECTED_FORMATION_KINDS = ["accessible-4-star", "premium", "standard"].sort();
+
+const artAssetByCardId = new Map(
+  cardArtManifestJson.assets.map((asset) => [asset.cardId, asset]),
+);
+
+function localWebAssetExists(localPath: string) {
+  return existsSync(
+    fileURLToPath(new URL(`../../../apps/web/public${localPath}`, import.meta.url)),
+  );
+}
+
+function collectGuideCardReferences() {
+  const cardIds = new Set<string>();
+  for (const guide of nativeGuideData.guides) {
+    cardIds.add(guide.anchorCardId);
+    for (const formation of guide.formations) {
+      cardIds.add(formation.leaderOutfitCardId);
+      formation.members.forEach((member) => cardIds.add(member.cardId));
+      formation.formationOrder.forEach((cardId) => cardIds.add(cardId));
+      formation.activeSkills.forEach((skill) => cardIds.add(skill.cardId));
+      formation.specialSkills.forEach((skill) => cardIds.add(skill.cardId));
+      formation.investmentOrder.forEach((cardId) => cardIds.add(cardId));
+      for (const recipient of formation.recipients) {
+        cardIds.add(recipient.sourceCardId);
+        recipient.possibleCardIds.forEach((cardId) => cardIds.add(cardId));
+        recipient.commonToEveryAlternativeCardIds.forEach((cardId) => cardIds.add(cardId));
+      }
+      for (const replacement of formation.replacements) {
+        cardIds.add(replacement.replacedCardId);
+        cardIds.add(replacement.cardId);
+      }
+    }
+    for (const comparison of guide.ratingSongComparisons) {
+      cardIds.add(comparison.leaderOutfitCardId);
+      comparison.members.forEach((cardId) => cardIds.add(cardId));
+      comparison.formationOrder.forEach((cardId) => cardIds.add(cardId));
+    }
+  }
+  return cardIds;
+}
 
 describe("generated native publication data", () => {
   it("covers every real card in each investment lens without an absolute-score claim", () => {
@@ -41,6 +256,111 @@ describe("generated native publication data", () => {
     );
     expect(nativeGuideBySlug.size).toBe(nativeGuideData.guides.length);
     expect(nativeGuideByAnchorCardId.size).toBe(nativeGuideData.guides.length);
+  });
+
+  it("pins exact anchor and Leader identities to the audited raw Card-to-Costume join", () => {
+    expect(publicData.sourceSnapshots.english.commit).toBe(PINNED_GUIDE_ROSTER_COMMIT);
+    expect(nativeGuideData.rosterCommit).toBe(PINNED_GUIDE_ROSTER_COMMIT);
+
+    for (const expected of EXPECTED_GUIDE_IDENTITIES) {
+      const guide = nativeGuideByAnchorCardId.get(expected.anchorCardId);
+      const anchor = publicCardById.get(expected.anchorCardId);
+      expect(guide, `missing guide for ${expected.anchorCardId}`).toBeDefined();
+      expect(anchor, `missing anchor ${expected.anchorCardId}`).toBeDefined();
+      if (!guide || !anchor) throw new Error(`Missing exact guide anchor ${expected.anchorCardId}`);
+
+      expect(anchor).toMatchObject({
+        id: expected.anchorCardId,
+        talentId: expected.talentId,
+        talentName: expected.talentName,
+        title: expected.cardTitle,
+        assetId: expected.anchorCardId.replace(/^card-/, ""),
+        artPath: `/game/cards/${expected.anchorCardId}.webp`,
+        illustrationPath: `/game/illustrations/${expected.anchorCardId}.webp`,
+      });
+      expect(guide.anchorTalentId).toBe(expected.talentId);
+      expect(guide.title).toBe(`${expected.talentName} — ${expected.cardTitle} team guide`);
+
+      for (const formation of guide.formations) {
+        const expectedLeaderId = expected.leaders[formation.kind];
+        expect(formation.leaderOutfitCardId).toBe(expectedLeaderId);
+      }
+    }
+
+    const leaderIds = new Set(
+      nativeGuideData.guides.flatMap((guide) =>
+        guide.formations.map((formation) => formation.leaderOutfitCardId),
+      ),
+    );
+    expect([...leaderIds].sort()).toEqual(Object.keys(EXPECTED_LEADER_IDENTITIES).sort());
+
+    for (const [cardId, expected] of Object.entries(EXPECTED_LEADER_IDENTITIES)) {
+      const card = publicCardById.get(cardId);
+      const mechanics = mechanicsCardById.get(cardId);
+      expect(card, `missing public Leader source card ${cardId}`).toBeDefined();
+      expect(mechanics, `missing mechanics for Leader source card ${cardId}`).toBeDefined();
+      if (!card || !mechanics) throw new Error(`Missing Leader identity ${cardId}`);
+
+      expect(card.title).toBe(expected.cardTitle);
+      expect(card.leaderOutfit.costumeId).toBe(expected.costumeId);
+      expect(card.leaderOutfit.costumeName).toBe(expected.costumeName);
+      expect(card.artPath).toBe(`/game/cards/${cardId}.webp`);
+      expect(mechanics.talentId).toBe(card.talentId);
+      expect(mechanics.leaderOutfit.costumeId).toBe(expected.costumeId);
+      expect(mechanics.leaderOutfit.talentId).toBe(card.talentId);
+      expect(mechanics.leaderOutfit.leaderSkillId).toBe(expected.leaderSkillId);
+    }
+  });
+
+  it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
+    const referencedCardIds = collectGuideCardReferences();
+    expect(referencedCardIds.size).toBe(76);
+
+    for (const cardId of referencedCardIds) {
+      const card = publicCardById.get(cardId);
+      const mechanics = mechanicsCardById.get(cardId);
+      const manifestMatches = cardArtManifestJson.assets.filter((asset) => asset.cardId === cardId);
+      const asset = artAssetByCardId.get(cardId);
+      expect(card, `missing public card ${cardId}`).toBeDefined();
+      expect(mechanics, `missing mechanics ${cardId}`).toBeDefined();
+      expect(manifestMatches, `asset manifest identity collision for ${cardId}`).toHaveLength(1);
+      expect(asset, `missing local art manifest record ${cardId}`).toBeDefined();
+      if (!card || !mechanics || !asset) throw new Error(`Unresolved guide card ${cardId}`);
+
+      expect(card.assetId).toBe(cardId.replace(/^card-/, ""));
+      expect(card.artPath).toBe(`/game/cards/${cardId}.webp`);
+      expect(card.illustrationPath).toBe(`/game/illustrations/${cardId}.webp`);
+      expect(mechanics.cardId).toBe(cardId);
+      expect(mechanics.talentId).toBe(card.talentId);
+      expect(mechanics.rarity).toBe(card.rarity);
+
+      expect(asset).toMatchObject({
+        cardId,
+        talentId: card.talentId,
+        status: "downloaded",
+        icon: {
+          cardId,
+          talentId: card.talentId,
+          localPath: card.artPath,
+        },
+        illustration: {
+          cardId,
+          talentId: card.talentId,
+          localPath: card.illustrationPath,
+        },
+      });
+      expect(asset.icon.width).toBeGreaterThan(0);
+      expect(asset.icon.height).toBeGreaterThan(0);
+      expect(asset.icon.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(asset.illustration.width).toBeGreaterThan(0);
+      expect(asset.illustration.height).toBeGreaterThan(0);
+      expect(asset.illustration.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(localWebAssetExists(card.artPath), `missing ${card.artPath}`).toBe(true);
+      expect(
+        localWebAssetExists(card.illustrationPath),
+        `missing ${card.illustrationPath}`,
+      ).toBe(true);
+    }
   });
 
   it("preserves Leader and Passive roles when the same card supplies both", () => {

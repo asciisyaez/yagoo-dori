@@ -1,4 +1,5 @@
 export * from "./formation-evaluator";
+export * from "./formation-order-recommender";
 export * from "./mechanics";
 export * from "./native-guide-generator";
 export * from "./native-guide-data";
@@ -15,3 +16,5 @@ export * from "./native-utility";
 export * from "./public-data";
 export * from "./score-kernel";
 export * from "./song-contexts";
+export * from "./team-calculator";
+export * from "./team-calculator-contract";

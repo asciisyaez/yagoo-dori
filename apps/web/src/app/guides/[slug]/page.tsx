@@ -101,8 +101,25 @@ function lossLabel(loss: number) {
   return loss > 0 ? `≈${rounded}% lower` : `≈${rounded}% higher`;
 }
 
-function FormationSection({ formation }: { formation: NativeGuideFormation }) {
+function modeledLeaderFit(formation: NativeGuideFormation, leader: PublicCard) {
+  const activeLeaderEffect = formation.recipients.some(
+    (recipient) => recipient.source === "leader" && recipient.sourceCardId === leader.id,
+  );
+  return activeLeaderEffect && leader.leaderOutfit.description
+    ? cleanDescription(leader.leaderOutfit.description)
+    : null;
+}
+
+function FormationSection({
+  anchor,
+  formation,
+}: {
+  anchor: PublicCard;
+  formation: NativeGuideFormation;
+}) {
   const leader = requireCard(formation.leaderOutfitCardId);
+  const hasSeparateLeaderSource = leader.id !== anchor.id;
+  const leaderFit = modeledLeaderFit(formation, leader);
   const members = formation.formationOrder.map(requireCard);
   const activeByCard = new Map(formation.activeSkills.map((skill) => [skill.cardId, skill]));
   const specialByCard = new Map(formation.specialSkills.map((skill) => [skill.cardId, skill]));
@@ -137,7 +154,21 @@ function FormationSection({ formation }: { formation: NativeGuideFormation }) {
           <p className="db-eyebrow">Leader Outfit</p>
           <h3>{leader.talentName} · {leader.leaderOutfit.costumeName}</h3>
           <p className={styles.leaderCardSource}>{leader.rarity}★ Leader card · {leader.title}</p>
-          <p>{cleanDescription(leader.leaderOutfit.description)}</p>
+          <p className={styles.leaderDescription}>{cleanDescription(leader.leaderOutfit.description)}</p>
+          {hasSeparateLeaderSource && (
+            <aside
+              aria-label={`${formation.label} Leader source clarification`}
+              className={styles.formationLeaderNote}
+              role="note"
+            >
+              <strong>Leader selected separately</strong>
+              <p>
+                The Member anchor remains {anchor.talentName} · {anchor.title}; its card Outfit is {anchor.leaderOutfit.costumeName}.
+                This formation&apos;s modeled recommendation instead uses {leader.leaderOutfit.costumeName} from the {leader.rarity}★ {leader.title} card as Leader.
+              </p>
+              {leaderFit && <small>Modeled fit: {leaderFit}</small>}
+            </aside>
+          )}
         </div>
         <Link href={`/cards/${leader.slug}#leader-outfit`}>Open Outfit <ArrowRight aria-hidden="true" /></Link>
       </div>
@@ -311,6 +342,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const anchor = requireCard(guide.anchorCardId);
   const standard = guide.formations.find((formation) => formation.kind === "standard")!;
   const standardLeader = requireCard(standard.leaderOutfitCardId);
+  const hasSeparateStandardLeaderSource = standardLeader.id !== anchor.id;
+  const standardLeaderFit = modeledLeaderFit(standard, standardLeader);
+  const anchorEditionLabel = anchor.id === "card-00012-5-uniq-0062-00" ? "summer" : "featured";
   const songAlternatives = guide.ratingSongComparisons.filter(
     (comparison) => comparison.changesReferenceFormation,
   );
@@ -351,6 +385,39 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternatives.length === 0 ? "No robust change" : songAlternatives.length}</dd></div>
             <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Mobile · Manual · All Perfect</dd></div>
           </dl>
+          {hasSeparateStandardLeaderSource && (
+            <aside
+              aria-label="Member anchor and Standard Leader source"
+              className={styles.anchorLeaderNote}
+              role="note"
+            >
+              <header>
+                <Repeat2 aria-hidden="true" />
+                <div>
+                  <span>Separate cards, separate roles</span>
+                  <h3>Member anchor and Leader source</h3>
+                </div>
+              </header>
+              <p>
+                This guide stays anchored to the {anchorEditionLabel} {anchor.rarity}★ {anchor.title} Member card.
+                The split is intentional: the current modeled Standard formation uses {standardLeader.leaderOutfit.costumeName} as Leader while keeping the featured Member card in the five-Member lineup.
+              </p>
+              <div className={styles.anchorLeaderPair}>
+                <div>
+                  <span>Member anchor</span>
+                  <strong>{anchor.talentName} · {anchor.title}</strong>
+                  <small>Outfit on this card: {anchor.leaderOutfit.costumeName}</small>
+                </div>
+                <ArrowRight aria-hidden="true" />
+                <div>
+                  <span>Standard Leader</span>
+                  <strong>{standardLeader.talentName} · {standardLeader.leaderOutfit.costumeName}</strong>
+                  <small>Source card: {standardLeader.rarity}★ {standardLeader.title}</small>
+                </div>
+              </div>
+              {standardLeaderFit && <p className={styles.leaderFit}><strong>Modeled fit:</strong> {standardLeaderFit}</p>}
+            </aside>
+          )}
           <Link className={styles.anchorLink} href={`/cards/${anchor.slug}`}>Open anchor card <ArrowRight aria-hidden="true" /></Link>
         </div>
       </header>
@@ -363,7 +430,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <a href="#calculation-basis">Calculation basis</a>
       </nav>
 
-      {guide.formations.map((formation) => <FormationSection formation={formation} key={formation.kind} />)}
+      {guide.formations.map((formation) => (
+        <FormationSection anchor={anchor} formation={formation} key={formation.kind} />
+      ))}
 
       <section className={styles.songSection} id="rating-song-comparisons">
         <div className={styles.sectionHeading}>

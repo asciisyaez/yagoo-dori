@@ -46,8 +46,9 @@ The interface takes Prydwen’s density and navigation hierarchy as a usability 
 ```text
 N01 ──┬──► N02 ──► N03A ──┬──► N03B ──┐
       │                     └──► N03C ──┴──► N03D ──► N05 ──┐
-      └──► N04 ───────────────────────────────┬──► N06A ──► N06B ──┤
-                                              └─────────────────────► N07
+      └──► N04 ───────────────────────────────┬──► N06A ──┬──► N06B ──┤
+                                              │           └──► N06C ──┤
+                                              └───────────────────────► N07
 ```
 
 | ID | Title | Weight | Depends on |
@@ -59,10 +60,11 @@ N01 ──┬──► N02 ──► N03A ──┬──► N03B ──┐
 | N03C | Evidence-linked song and chart contexts | 3% | N03A |
 | N03D | Native card rubric, tier snapshot, and global optimizer | 6% | N03B, N03C |
 | N04 | Prydwen-inspired application shell and design system | 15% | N01 |
-| N05 | Complete, usable Member-card tier list | 15% | N02, N03D, N04 |
+| N05 | Complete, usable Member-card tier list | 10% | N02, N03D, N04 |
 | N06A | Combined card and Outfit database product cleanup | 5% | N02, N04 |
-| N06B | Optimizer-backed team guides | 10% | N03D, N06A |
-| N07 | Accuracy review, responsive QA, container, and release | 5% | N05, N06B |
+| N06B | Optimizer-backed team guides | 7% | N03D, N06A |
+| N06C | Owned-roster team calculator | 8% | N03B, N03C, N04, N06A |
+| N07 | Accuracy review, responsive QA, container, and release | 5% | N05, N06B, N06C |
 
 ## Accuracy boundary
 
