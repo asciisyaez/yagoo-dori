@@ -16,6 +16,7 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Received user approval for the reviewed calculator and guide working tree and published the release checkpoint to main",
     "Added Oshi mode with persistent Member, Leader Outfit, and combined favorite constraints plus exact role-fulfillment badges",
     "Added a Bloom-aware suggested five-slot order that compares all 120 placements across 420 modeled timing scenarios and shows Active cadence and Special duration",
     "Clarified the summer Subaru guide's summer Member anchor versus separately sourced regular Subaru Leader Outfit without overstating bounded-search proof",
@@ -43,5 +44,5 @@
     "The actual runtime score equation, target-priority rules, and exact chart timing inputs are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
-  "nextAction": "Complete release QA on the reviewed calculator and guide changes, then validate exact chart timing and replace the full-roster heuristic with a certifiable global search."
+  "nextAction": "Run Lighthouse and non-root container release QA, then validate exact chart timing and replace the full-roster heuristic with a certifiable global search."
 }

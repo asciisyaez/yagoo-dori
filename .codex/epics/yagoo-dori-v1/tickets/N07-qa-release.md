@@ -16,4 +16,4 @@ parent_epic: yagoo-dori-v1
 - [ ] Asset and data validation fail on missing source mappings or fabricated records.
 - [ ] Mobile Lighthouse meets the agreed performance, accessibility, and SEO targets.
 - [ ] Non-root container health and rollback are verified.
-- [ ] User approves the reviewed working tree before commit or deployment.
+- [x] User approves the reviewed working tree before commit or deployment.
