@@ -4,9 +4,33 @@ import {
   DEFAULT_GUIDE_ANCHOR_CARD_ID,
   generateNativeGuideData,
   guideLeaderOutfitCardIdsForSong,
+  mergeNativeGuideData,
   selectGuideRatingSongs,
 } from "./native-guide-generator";
+import { nativeGuideData } from "./native-guide-data";
+import type { NativeGuide, NativeGuideData } from "./native-guide-schema";
+import { nativeRankingData } from "./native-ranking-data";
 import { publicCardById } from "./public-data";
+
+const GENERATED_AT = "2026-08-01T05:30:00.000Z";
+
+function guideVariant(anchorCardId: string, label: string): NativeGuide {
+  const guide = structuredClone(nativeGuideData.guides[0]!);
+  guide.id = `guide-${label}`;
+  guide.slug = `guide-${label}`;
+  guide.title = `Guide ${label}`;
+  guide.anchorCardId = anchorCardId;
+  return guide;
+}
+
+function guideDataset(...guides: NativeGuide[]): NativeGuideData {
+  return {
+    schemaVersion: 3,
+    generatedAt: GENERATED_AT,
+    rosterCommit: nativeRankingData.rosterCommit,
+    guides,
+  };
+}
 
 describe("native guide request resolution", () => {
   it("rejects an anchor that is not one exact 5-star Member card", () => {
@@ -67,5 +91,43 @@ describe("native guide request resolution", () => {
         ),
       ).toBe(true);
     }
+  });
+});
+
+describe("native guide dataset merge", () => {
+  it("preserves unrelated guides and replaces the matching anchor", () => {
+    const oldAnchor = guideVariant("anchor-a", "old-a");
+    const unrelated = guideVariant("anchor-b", "b");
+    const replacement = guideVariant("anchor-a", "new-a");
+
+    const merged = mergeNativeGuideData(
+      GENERATED_AT,
+      [guideDataset(replacement)],
+      guideDataset(oldAnchor, unrelated),
+    );
+
+    expect(merged.guides.map((guide) => guide.id)).toEqual(["guide-new-a", "guide-b"]);
+  });
+
+  it("is idempotent and sorts independently of generation order", () => {
+    const guideA = guideVariant("anchor-a", "a");
+    const guideB = guideVariant("anchor-b", "b");
+    const forward = mergeNativeGuideData(GENERATED_AT, [guideDataset(guideA), guideDataset(guideB)]);
+    const reverse = mergeNativeGuideData(GENERATED_AT, [guideDataset(guideB), guideDataset(guideA)]);
+    const repeated = mergeNativeGuideData(GENERATED_AT, [guideDataset(guideB), guideDataset(guideA)], forward);
+
+    expect(reverse).toEqual(forward);
+    expect(repeated).toEqual(forward);
+  });
+
+  it("rejects retained guides from stale roster or ranking snapshots", () => {
+    const current = guideDataset(guideVariant("anchor-a", "a"));
+    const staleRoster = structuredClone(current);
+    staleRoster.rosterCommit = "0".repeat(40);
+    const staleRanking = structuredClone(current);
+    staleRanking.guides[0]!.snapshotId = "stale-ranking";
+
+    expect(() => mergeNativeGuideData(GENERATED_AT, [current], staleRoster)).toThrow(/stale roster/i);
+    expect(() => mergeNativeGuideData(GENERATED_AT, [current], staleRanking)).toThrow(/stale ranking/i);
   });
 });

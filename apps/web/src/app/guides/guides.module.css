@@ -98,12 +98,33 @@
   color: #f5f7fa;
   font-size: 1.12rem;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .anchorTitle {
   margin: 0.28rem 0 0.85rem;
   color: var(--yd-muted);
   font-size: 0.7rem;
+  overflow-wrap: anywhere;
+}
+
+.investmentLabel {
+  display: grid;
+  gap: 0.12rem;
+  margin: 0.7rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.investmentLabel strong {
+  color: var(--yd-dim);
+  font-size: 0.55rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.investmentLabel span {
+  color: var(--yd-muted);
+  font-size: 0.62rem;
 }
 
 .buildFacts {
@@ -138,22 +159,35 @@
 
 .buildFacts dd,
 .heroFacts dd {
+  min-width: 0;
   margin: 0;
   color: #d7dce4;
   font-size: 0.66rem;
   font-weight: 690;
+  overflow-wrap: anywhere;
+}
+
+.leaderCardSource {
+  display: block;
+  margin-top: 0.14rem;
+  color: var(--yd-dim);
+  font-size: 0.56rem;
+  font-weight: 590;
 }
 
 .lineupPreview {
   display: flex;
   gap: 0.32rem;
   margin: 0.9rem 0;
+  padding: 0;
+  list-style: none;
 }
 
-.lineupPreview > span {
+.lineupPreview > li {
   position: relative;
   width: 52px;
   height: 52px;
+  flex: 0 0 52px;
   overflow: hidden;
   border: 1px solid #3a424e;
   border-radius: 5px;
@@ -447,6 +481,10 @@
   margin: 0;
   color: #fff;
   font-size: 0.87rem;
+}
+
+.leaderPanel .leaderCardSource {
+  margin: 0.16rem 0 0;
 }
 
 .leaderPanel p:last-child {

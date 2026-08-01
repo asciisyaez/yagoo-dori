@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { utilityIntervalStrictlyDominates } from "./native-guide-generator";
 import {
+  NativeGuideDataSchema,
   NativeGuideFormationSchema,
   NativeGuideSchema,
   RatingSongComparisonSchema,
@@ -84,8 +85,11 @@ function formationFixture(kind: "premium" | "standard" | "accessible-4-star" = "
     ordersAudited: 120,
     recipients: [
       {
+        source: "leader",
         sourceCardId: "leader",
+        effectGroupId: "leader-effect",
         effectKind: "sense-up",
+        valuePermil: 1_200,
         resolution: "unresolved-enumerated-alternatives",
         commonToEveryAlternativeCardIds: ["card-1"],
         possibleCardIds: ["card-1", "card-2"],
@@ -134,6 +138,63 @@ const comparisonFixture = {
   relativeUtility: { lower: 100, central: 110, upper: 120 },
 } as const;
 
+function guideFixture(overrides: Partial<{
+  id: string;
+  slug: string;
+  anchorCardId: string;
+}> = {}) {
+  return {
+    id: overrides.id ?? "guide-fixture",
+    slug: overrides.slug ?? "guide-fixture",
+    title: "Fixture guide",
+    anchorCardId: overrides.anchorCardId ?? "card-1",
+    anchorTalentId: "talent-1",
+    snapshotId: "snapshot-1",
+    methodologyVersion: "yd-native-guide-1.1.0",
+    publicationState: "theorycraft-beta",
+    benchmark: {
+      accountState: "frozen-neutral-public-benchmark",
+      platform: "mobile",
+      playMode: "manual",
+      judgement: "perfect",
+      fullCombo: true,
+      life: 1_000,
+      board: { mode: "neutral", relativeContribution: 0 },
+      collection: { memberUpgradeBonusPermyriad: 0 },
+      eventBonusPermil: 0,
+      targetResolution: "unresolved-enumerated-alternatives",
+      scoreClaim: "relative-utility-only",
+    },
+    ratingSongScope: {
+      singerTalentId: "talent-1",
+      scoreRatingEligibleOnly: true,
+      leaderSingerMatchRequired: true,
+      difficulty: "expert",
+    },
+    formations: [
+      formationFixture("premium"),
+      formationFixture("standard"),
+      formationFixture("accessible-4-star"),
+    ],
+    ratingSongComparisons: [
+      {
+        ...comparisonFixture,
+        advantageOverReferencePercent: null,
+        changesReferenceFormation: false,
+      },
+    ],
+  } as const;
+}
+
+function guideDataFixture(guides: readonly unknown[]) {
+  return {
+    schemaVersion: 3,
+    generatedAt: "2026-08-01T00:00:00.000Z",
+    rosterCommit: "a".repeat(40),
+    guides,
+  };
+}
+
 describe("native guide publication schema", () => {
   it("accepts only a canonical display order containing the same five Member cards", () => {
     expect(NativeGuideFormationSchema.safeParse(formationFixture()).success).toBe(true);
@@ -141,6 +202,60 @@ describe("native guide publication schema", () => {
       NativeGuideFormationSchema.safeParse({
         ...formationFixture(),
         formationOrder: ["card-1", "card-2", "card-3", "card-4", "wrong"],
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires Member slots and canonical order to describe the same slot mapping", () => {
+    const fixture = formationFixture();
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        members: fixture.members.map((member, index) =>
+          index === 1 ? { ...member, slot: 1 } : member,
+        ),
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        members: fixture.members.map((member, index) =>
+          index === 0 ? { ...member, slot: 2 } : index === 1 ? { ...member, slot: 1 } : member,
+        ),
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires Active, Special, and investment summaries to cover the formation exactly", () => {
+    const fixture = formationFixture();
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        activeSkills: fixture.activeSkills.map((skill, index) =>
+          index === 4 ? { ...skill, cardId: "card-1" } : skill,
+        ),
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        specialSkills: fixture.specialSkills.map((skill, index) =>
+          index === 0 ? { ...skill, slot: 2 } : skill,
+        ),
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        specialSkills: fixture.specialSkills.map((skill, index) =>
+          index === 0 ? { ...skill, cardId: "card-2" } : skill,
+        ),
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        investmentOrder: ["card-1", "card-2", "card-3", "card-4", "card-4"],
       }).success,
     ).toBe(false);
   });
@@ -187,12 +302,62 @@ describe("native guide publication schema", () => {
         ...fixture,
         recipients: [
           {
+            source: "leader",
             sourceCardId: "leader",
+            effectGroupId: "leader-effect",
             effectKind: "sense-up",
+            valuePermil: 1_200,
             guaranteedCardIds: ["card-1"],
             possibleCardIds: ["card-1", "card-2"],
           },
         ],
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires explicit Leader or Passive source attribution", () => {
+    const fixture = formationFixture();
+    const recipientWithoutSource = structuredClone(fixture.recipients[0]!);
+    Reflect.deleteProperty(recipientWithoutSource, "source");
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        recipients: [recipientWithoutSource],
+      }).success,
+    ).toBe(false);
+  });
+
+  it("keeps Leader and Passive roles distinct when one card supplies both", () => {
+    const fixture = formationFixture();
+    const sharedSource = "card-1";
+    const leaderRecipient = {
+      ...fixture.recipients[0]!,
+      source: "leader" as const,
+      sourceCardId: sharedSource,
+    };
+    const passiveRecipient = {
+      ...fixture.recipients[0]!,
+      source: "passive" as const,
+      sourceCardId: sharedSource,
+      effectGroupId: "passive-effect",
+    };
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        leaderOutfitCardId: sharedSource,
+        recipients: [leaderRecipient, passiveRecipient],
+      }).success,
+    ).toBe(true);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        recipients: [{ ...leaderRecipient, sourceCardId: "wrong-leader" }],
+      }).success,
+    ).toBe(false);
+    expect(
+      NativeGuideFormationSchema.safeParse({
+        ...fixture,
+        recipients: [{ ...passiveRecipient, sourceCardId: "not-a-member" }],
       }).success,
     ).toBe(false);
   });
@@ -230,47 +395,7 @@ describe("native guide publication schema", () => {
   });
 
   it("makes neutral Board and collection state explicit at guide scope", () => {
-    const guide = {
-      id: "guide-fixture",
-      slug: "guide-fixture",
-      title: "Fixture guide",
-      anchorCardId: "card-1",
-      anchorTalentId: "talent-1",
-      snapshotId: "snapshot-1",
-      methodologyVersion: "yd-native-guide-1.1.0",
-      publicationState: "theorycraft-beta",
-      benchmark: {
-        accountState: "frozen-neutral-public-benchmark",
-        platform: "mobile",
-        playMode: "manual",
-        judgement: "perfect",
-        fullCombo: true,
-        life: 1_000,
-        board: { mode: "neutral", relativeContribution: 0 },
-        collection: { memberUpgradeBonusPermyriad: 0 },
-        eventBonusPermil: 0,
-        targetResolution: "unresolved-enumerated-alternatives",
-        scoreClaim: "relative-utility-only",
-      },
-      ratingSongScope: {
-        singerTalentId: "talent-1",
-        scoreRatingEligibleOnly: true,
-        leaderSingerMatchRequired: true,
-        difficulty: "expert",
-      },
-      formations: [
-        formationFixture("premium"),
-        formationFixture("standard"),
-        formationFixture("accessible-4-star"),
-      ],
-      ratingSongComparisons: [
-        {
-          ...comparisonFixture,
-          advantageOverReferencePercent: null,
-          changesReferenceFormation: false,
-        },
-      ],
-    };
+    const guide = guideFixture();
 
     expect(NativeGuideSchema.safeParse(guide).success).toBe(true);
     expect(
@@ -282,6 +407,45 @@ describe("native guide publication schema", () => {
         },
       }).success,
     ).toBe(false);
+  });
+
+  it("requires exactly one formation of each published kind", () => {
+    const guide = guideFixture();
+    expect(NativeGuideSchema.safeParse(guide).success).toBe(true);
+    expect(
+      NativeGuideSchema.safeParse({
+        ...guide,
+        formations: [
+          formationFixture("premium"),
+          formationFixture("standard"),
+          formationFixture("standard"),
+        ],
+      }).success,
+    ).toBe(false);
+  });
+
+  it.each(["id", "slug", "anchorCardId"] as const)(
+    "requires unique guide %s values within a dataset",
+    (field) => {
+      const first = guideFixture();
+      const second = guideFixture({
+        id: field === "id" ? first.id : "guide-second",
+        slug: field === "slug" ? first.slug : "guide-second",
+        anchorCardId: field === "anchorCardId" ? first.anchorCardId : "card-second",
+      });
+      expect(NativeGuideDataSchema.safeParse(guideDataFixture([first, second])).success).toBe(false);
+    },
+  );
+
+  it("accepts multiple guides when every dataset identity is unique", () => {
+    expect(
+      NativeGuideDataSchema.safeParse(
+        guideDataFixture([
+          guideFixture(),
+          guideFixture({ id: "guide-second", slug: "guide-second", anchorCardId: "card-second" }),
+        ]),
+      ).success,
+    ).toBe(true);
   });
 
   it("publishes formation changes only when an interval-robust advantage exists", () => {

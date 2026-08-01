@@ -4,6 +4,14 @@ import { SerializableIntervalSchema } from "./native-ranking-schema";
 
 const FormationKindSchema = z.enum(["premium", "standard", "accessible-4-star"]);
 
+function sameFiveCardIds(left: readonly string[], right: readonly string[]): boolean {
+  return (
+    new Set(left).size === 5 &&
+    new Set(right).size === 5 &&
+    [...left].sort().join("\0") === [...right].sort().join("\0")
+  );
+}
+
 const ProgressionLensIdSchema = z.enum([
   "level-cap-bloom-0-skill-1-connect-1",
   "level-cap-bloom-5-skill-2-connect-2",
@@ -77,9 +85,12 @@ const ReplacementSchema = z
 
 const RecipientSchema = z
   .object({
+    source: z.enum(["leader", "passive"]),
     sourceCardId: z.string().min(1),
+    effectGroupId: z.string().min(1),
     effectKind: z.string().min(1),
-    resolution: z.literal("unresolved-enumerated-alternatives"),
+    valuePermil: z.number().finite(),
+    resolution: z.enum(["resolved", "unresolved-enumerated-alternatives"]),
     commonToEveryAlternativeCardIds: z.array(z.string().min(1)),
     possibleCardIds: z.array(z.string().min(1)),
   })
@@ -191,11 +202,69 @@ export const NativeGuideFormationSchema = z
   .strict()
   .superRefine((formation, context) => {
     const memberIds = formation.members.map((member) => member.cardId);
+    const memberSlots = formation.members.map((member) => member.slot);
     if (new Set(memberIds).size !== 5) {
       context.addIssue({ code: "custom", path: ["members"], message: "Formation Members must be unique" });
     }
-    if ([...memberIds].sort().join("\0") !== [...formation.formationOrder].sort().join("\0")) {
+    if (new Set(memberSlots).size !== 5) {
+      context.addIssue({
+        code: "custom",
+        path: ["members"],
+        message: "Formation Member slots must contain each slot from 1 through 5 exactly once",
+      });
+    }
+    const memberBySlot = new Map(
+      formation.members.map((member) => [member.slot, member.cardId] as const),
+    );
+    if (
+      formation.formationOrder.some(
+        (cardId, index) => memberBySlot.get(index + 1) !== cardId,
+      )
+    ) {
       context.addIssue({ code: "custom", path: ["formationOrder"], message: "Order must contain the five Members" });
+    }
+    if (!sameFiveCardIds(memberIds, formation.activeSkills.map((skill) => skill.cardId))) {
+      context.addIssue({
+        code: "custom",
+        path: ["activeSkills"],
+        message: "Active Skill summaries must contain each formation Member exactly once",
+      });
+    }
+    const specialSlots = formation.specialSkills.map((skill) => skill.slot);
+    if (
+      new Set(specialSlots).size !== 5 ||
+      formation.specialSkills.some(
+        (skill) => memberBySlot.get(skill.slot) !== skill.cardId,
+      )
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["specialSkills"],
+        message: "Special Skill summaries must match each formation Member and slot exactly once",
+      });
+    }
+    if (!sameFiveCardIds(memberIds, formation.investmentOrder)) {
+      context.addIssue({
+        code: "custom",
+        path: ["investmentOrder"],
+        message: "Investment order must contain each formation Member exactly once",
+      });
+    }
+    for (const [index, recipient] of formation.recipients.entries()) {
+      if (recipient.source === "leader" && recipient.sourceCardId !== formation.leaderOutfitCardId) {
+        context.addIssue({
+          code: "custom",
+          path: ["recipients", index, "sourceCardId"],
+          message: "Leader contribution source must match the selected Leader Outfit card",
+        });
+      }
+      if (recipient.source === "passive" && !memberIds.includes(recipient.sourceCardId)) {
+        context.addIssue({
+          code: "custom",
+          path: ["recipients", index, "sourceCardId"],
+          message: "Passive contribution source must be one of the five formation Members",
+        });
+      }
     }
     const expectedLens = formation.kind === "premium"
       ? "level-cap-bloom-5-skill-2-connect-2"
@@ -289,16 +358,47 @@ export const NativeGuideSchema = z
     formations: z.array(NativeGuideFormationSchema).length(3),
     ratingSongComparisons: z.array(RatingSongComparisonSchema).min(1),
   })
-  .strict();
+  .strict()
+  .superRefine((guide, context) => {
+    for (const kind of FormationKindSchema.options) {
+      if (guide.formations.filter((formation) => formation.kind === kind).length !== 1) {
+        context.addIssue({
+          code: "custom",
+          path: ["formations"],
+          message: `Guide must contain exactly one ${kind} formation`,
+        });
+      }
+    }
+  });
 
 export const NativeGuideDataSchema = z
   .object({
-    schemaVersion: z.literal(2),
+    schemaVersion: z.literal(3),
     generatedAt: z.iso.datetime({ offset: true }),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     guides: z.array(NativeGuideSchema).min(1),
   })
-  .strict();
+  .strict()
+  .superRefine((data, context) => {
+    for (const field of ["id", "slug", "anchorCardId"] as const) {
+      const indexesByValue = new Map<string, number[]>();
+      for (const [index, guide] of data.guides.entries()) {
+        const indexes = indexesByValue.get(guide[field]) ?? [];
+        indexes.push(index);
+        indexesByValue.set(guide[field], indexes);
+      }
+      for (const indexes of indexesByValue.values()) {
+        if (indexes.length < 2) continue;
+        for (const index of indexes) {
+          context.addIssue({
+            code: "custom",
+            path: ["guides", index, field],
+            message: `Guide ${field} must be unique within the dataset`,
+          });
+        }
+      }
+    }
+  });
 
 export type NativeGuideFormation = z.infer<typeof NativeGuideFormationSchema>;
 export type NativeGuide = z.infer<typeof NativeGuideSchema>;

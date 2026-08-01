@@ -129,10 +129,18 @@ function recipientSummary(utility: NativeUtilityResult, order: readonly string[]
     const guaranteed = [...possible].filter((cardId) =>
       alternatives.every((alternative) => alternative.includes(cardId)),
     );
+    const distinctAlternatives = new Set(
+      alternatives.map((alternative) => [...alternative].sort().join("\0")),
+    );
     return {
+      source: contribution.source,
       sourceCardId: contribution.sourceCardId,
+      effectGroupId: contribution.effectGroupId,
       effectKind: contribution.effectKind,
-      resolution: "unresolved-enumerated-alternatives" as const,
+      valuePermil: contribution.valuePermil,
+      resolution: distinctAlternatives.size === 1
+        ? "resolved" as const
+        : "unresolved-enumerated-alternatives" as const,
       commonToEveryAlternativeCardIds: guaranteed.sort(),
       possibleCardIds: [...possible].sort(),
     };
@@ -320,6 +328,65 @@ export type NativeGuideGenerationOptions = Readonly<{
   fixedLeaderOutfitCardId?: string;
 }>;
 
+export function mergeNativeGuideData(
+  generatedAt: string,
+  generatedData: readonly NativeGuideData[],
+  existingData?: NativeGuideData,
+): NativeGuideData {
+  const parsedGeneratedAt = new Date(generatedAt);
+  if (Number.isNaN(parsedGeneratedAt.valueOf())) {
+    throw new Error("generatedAt must be an ISO timestamp");
+  }
+  if (generatedData.length === 0) {
+    throw new Error("At least one generated guide dataset is required");
+  }
+
+  const normalizedGeneratedAt = parsedGeneratedAt.toISOString();
+  const generated = generatedData.map((data) => NativeGuideDataSchema.parse(data));
+  for (const data of generated) {
+    if (data.generatedAt !== normalizedGeneratedAt) {
+      throw new Error("Generated guide datasets must share the requested timestamp");
+    }
+    if (data.rosterCommit !== nativeRankingData.rosterCommit) {
+      throw new Error("Generated guide roster does not match the current ranking snapshot");
+    }
+    if (data.guides.some((guide) => guide.snapshotId !== nativeRankingData.snapshotId)) {
+      throw new Error("Generated guide snapshot does not match the current ranking snapshot");
+    }
+  }
+
+  const existing = existingData
+    ? NativeGuideDataSchema.parse(existingData)
+    : undefined;
+  if (existing) {
+    if (existing.rosterCommit !== nativeRankingData.rosterCommit) {
+      throw new Error("Cannot retain guides from a stale roster snapshot");
+    }
+    if (existing.guides.some((guide) => guide.snapshotId !== nativeRankingData.snapshotId)) {
+      throw new Error("Cannot retain guides from a stale ranking snapshot");
+    }
+  }
+
+  const guidesByAnchorCardId = new Map(
+    (existing?.guides ?? []).map((guide) => [guide.anchorCardId, guide]),
+  );
+  for (const data of generated) {
+    for (const guide of data.guides) {
+      guidesByAnchorCardId.set(guide.anchorCardId, guide);
+    }
+  }
+
+  return NativeGuideDataSchema.parse({
+    schemaVersion: 3,
+    generatedAt: normalizedGeneratedAt,
+    rosterCommit: nativeRankingData.rosterCommit,
+    guides: [...guidesByAnchorCardId.values()].sort(
+      (left, right) =>
+        left.anchorCardId.localeCompare(right.anchorCardId) || left.slug.localeCompare(right.slug),
+    ),
+  });
+}
+
 export function guideLeaderOutfitCardIdsForSong(
   songId: string,
   singerTalentId: string,
@@ -502,7 +569,7 @@ export function generateNativeGuideData(
   });
 
   return NativeGuideDataSchema.parse({
-    schemaVersion: 2,
+    schemaVersion: 3,
     generatedAt: parsedGeneratedAt.toISOString(),
     rosterCommit: mechanicsData.sourceSnapshot.commit,
     guides: [

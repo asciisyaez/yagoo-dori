@@ -59,6 +59,13 @@ function cleanDescription(description: string | null | undefined) {
     .trim();
 }
 
+function skillDescriptionAtLevel(
+  skills: readonly { level: number; description: string | null }[],
+  level: number,
+) {
+  return cleanDescription(skills.find((skill) => skill.level === level)?.description);
+}
+
 function formatDuration(milliseconds: number) {
   const seconds = Math.round(milliseconds / 1_000);
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -129,6 +136,7 @@ function FormationSection({ formation }: { formation: NativeGuideFormation }) {
         <div>
           <p className="db-eyebrow">Leader Outfit</p>
           <h3>{leader.talentName} · {leader.leaderOutfit.costumeName}</h3>
+          <p className={styles.leaderCardSource}>{leader.rarity}★ Leader card · {leader.title}</p>
           <p>{cleanDescription(leader.leaderOutfit.description)}</p>
         </div>
         <Link href={`/cards/${leader.slug}#leader-outfit`}>Open Outfit <ArrowRight aria-hidden="true" /></Link>
@@ -181,12 +189,14 @@ function FormationSection({ formation }: { formation: NativeGuideFormation }) {
             {formation.recipients.length === 0 && <li>No formation-targeted parameter effects in this build.</li>}
             {formation.recipients.map((recipient, index) => {
               const source = requireCard(recipient.sourceCardId);
-              const isLeaderEffect = recipient.sourceCardId === formation.leaderOutfitCardId;
+              const isLeaderEffect = recipient.source === "leader";
               const common = recipient.commonToEveryAlternativeCardIds.map((cardId) => requireCard(cardId).talentName);
               const possible = recipient.possibleCardIds.map((cardId) => requireCard(cardId).talentName);
               const description = isLeaderEffect
                 ? source.leaderOutfit.description
-                : source.skills.passive.at(-1)?.description;
+                : source.skills.passive.find(
+                    (skill) => skill.level === formation.progressionLens.passiveSkillLevel,
+                  )?.description;
               return (
                 <li key={`${recipient.sourceCardId}-${recipient.effectKind}-${index}`}>
                   <strong>{source.talentName} · {isLeaderEffect ? "Leader" : "Passive"}</strong>
@@ -225,7 +235,10 @@ function FormationSection({ formation }: { formation: NativeGuideFormation }) {
                     <small>Replace {outgoing.talentName} with</small>
                     <strong>{incoming.talentName} · {incoming.rarity}★</strong>
                     <small className={styles.swapReason}>
-                      Brings: {cleanDescription(incoming.skills.passive.at(-1)?.description)}
+                      Passive at Lv.{formation.progressionLens.passiveSkillLevel}: {skillDescriptionAtLevel(
+                        incoming.skills.passive,
+                        formation.progressionLens.passiveSkillLevel,
+                      )}
                     </small>
                   </span>
                   <span className={styles.lossFigure}>
@@ -258,12 +271,18 @@ function FormationSection({ formation }: { formation: NativeGuideFormation }) {
                     <th><Image alt="" height={38} src={member.artPath} width={38} /><strong>{member.talentName}</strong></th>
                     <td>
                       {formatPermil(active.activationProbabilityPermil)} · every {formatSeconds(active.cooldownMilliseconds)} · {formatSeconds(active.durationMilliseconds)}
-                      <small>{cleanDescription(member.skills.active.at(-1)?.description)}</small>
+                      <small>{skillDescriptionAtLevel(
+                        member.skills.active,
+                        formation.progressionLens.activeSkillLevel,
+                      )}</small>
                     </td>
                     <td>{formatSeconds(special.durationMilliseconds)}</td>
                     <td>
                       {formatPermil(special.scoreSupportPermil)} support{special.activationRateUpPermil > 0 ? ` · ${formatPermil(special.activationRateUpPermil, "+")} activation` : ""}
-                      <small>{cleanDescription(member.skills.special.at(-1)?.description)}</small>
+                      <small>{skillDescriptionAtLevel(
+                        member.skills.special,
+                        formation.progressionLens.specialSkillLevel,
+                      )}</small>
                     </td>
                   </tr>
                 );
@@ -310,7 +329,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             sizes="(max-width: 800px) 100vw, 54vw"
             src={anchor.illustrationPath}
           />
-          <span>{anchor.rarity}★ anchor</span>
+          <span>{anchor.rarity}★ Member</span>
         </div>
         <div className={styles.heroCopy}>
           <p className="db-eyebrow">{anchor.attribute} · {anchor.generation} · Team guide</p>
@@ -321,9 +340,15 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             replacement losses, skill cadence, and song-specific alternatives.
           </p>
           <dl className={styles.heroFacts}>
-            <div><dt><Crown aria-hidden="true" /> Standard Leader</dt><dd>{standardLeader.talentName} · {standardLeader.leaderOutfit.costumeName}</dd></div>
+            <div>
+              <dt><Crown aria-hidden="true" /> Standard Leader</dt>
+              <dd>
+                {standardLeader.talentName} · {standardLeader.leaderOutfit.costumeName}
+                <small className={styles.leaderCardSource}>{standardLeader.rarity}★ card · {standardLeader.title}</small>
+              </dd>
+            </div>
             <div><dt><Music2 aria-hidden="true" /> Song coverage</dt><dd>{guide.ratingSongComparisons.length} singer-matched Expert charts</dd></div>
-            <div><dt><Clock3 aria-hidden="true" /> Alternate builds</dt><dd>{songAlternatives.length === 0 ? "None needed" : songAlternatives.length}</dd></div>
+            <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternatives.length === 0 ? "No robust change" : songAlternatives.length}</dd></div>
             <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Mobile · Manual · All Perfect</dd></div>
           </dl>
           <Link className={styles.anchorLink} href={`/cards/${anchor.slug}`}>Open anchor card <ArrowRight aria-hidden="true" /></Link>

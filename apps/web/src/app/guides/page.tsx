@@ -40,30 +40,30 @@ export default function GuidesPage() {
         <div className="database-heading-icon"><BookOpenCheck aria-hidden="true" /></div>
         <div>
           <p className="db-eyebrow">Team guides</p>
-          <h1>Teams for rating songs.</h1>
+          <h1>Build teams for rating songs.</h1>
           <p>
-            Exact cards, a singer-matched Leader Outfit, five unique Members, Expert chart
-            comparisons, and practical replacements in one build sheet.
+            Choose a 5★ Member to see the recommended Leader Outfit, five-card lineups,
+            practical replacements, and song-specific alternatives.
           </p>
         </div>
         <dl className="database-summary">
           <div><dt>Guides</dt><dd>{nativeGuideData.guides.length}</dd></div>
-          <div><dt>Builds</dt><dd>{formations}</dd></div>
-          <div><dt>Songs</dt><dd>{songs}</dd></div>
+          <div><dt>Formations</dt><dd>{formations}</dd></div>
+          <div><dt>Unique songs</dt><dd>{songs}</dd></div>
         </dl>
       </header>
 
       <section className={styles.guideLibrary} aria-labelledby="guide-library-heading">
         <div className={styles.sectionHeading}>
           <div>
-            <p className="db-eyebrow">Current builds</p>
-            <h2 id="guide-library-heading">Choose an exact 5★ anchor</h2>
+            <p className="db-eyebrow">Build library</p>
+            <h2 id="guide-library-heading">Build around a 5★ Member</h2>
           </div>
-          <p>Every recommendation keeps one Member card per Holomem.</p>
+          <p>Every lineup uses five different Holomems.</p>
         </div>
 
         <div className={styles.guideGrid}>
-          {nativeGuideData.guides.map((guide) => {
+          {nativeGuideData.guides.map((guide, guideIndex) => {
             const anchor = requireCard(guide.anchorCardId);
             const standard = guide.formations.find((formation) => formation.kind === "standard");
             if (!standard) throw new Error(`Guide ${guide.id} has no standard formation`);
@@ -76,46 +76,62 @@ export default function GuidesPage() {
                   <Image
                     alt={`${anchor.title} ${anchor.talentName} card illustration`}
                     fill
-                    priority
+                    priority={guideIndex === 0}
                     sizes="(max-width: 800px) 100vw, 42vw"
                     src={anchor.illustrationPath}
                   />
-                  <span>{anchor.rarity}★ anchor</span>
+                  <span>{anchor.rarity}★ Member</span>
                 </Link>
 
                 <div className={styles.guideCardBody}>
                   <p className="db-eyebrow">{anchor.attribute} · {anchor.generation}</p>
-                  <h2>{guide.title}</h2>
+                  <h2>{anchor.talentName}</h2>
                   <p className={styles.anchorTitle}>{anchor.title}</p>
 
                   <dl className={styles.buildFacts}>
                     <div>
-                      <dt>Leader Outfit</dt>
-                      <dd>{leader.talentName} · {leader.leaderOutfit.costumeName}</dd>
+                      <dt>Recommended Leader</dt>
+                      <dd>
+                        {leader.talentName} · {leader.leaderOutfit.costumeName}
+                        <small className={styles.leaderCardSource}>{leader.rarity}★ card · {leader.title}</small>
+                      </dd>
                     </div>
                     <div>
-                      <dt><Music2 aria-hidden="true" /> Rating song</dt>
+                      <dt><Music2 aria-hidden="true" /> Reference song</dt>
                       <dd>{standard.context.songTitle}</dd>
                     </div>
                     <div>
-                      <dt><Clock3 aria-hidden="true" /> Chart length</dt>
+                      <dt><Clock3 aria-hidden="true" /> Chart</dt>
                       <dd>{formatDuration(standard.context.durationMilliseconds)} · {standard.context.noteCount.toLocaleString()} notes</dd>
                     </div>
                   </dl>
 
-                  <p className={styles.anchorTitle}>{standard.progressionLens.label}</p>
+                  <p className={styles.investmentLabel}>
+                    <strong>Standard investment</strong>
+                    <span>{standard.progressionLens.label}</span>
+                  </p>
 
-                  <div className={styles.lineupPreview} aria-label="Standard Member lineup">
+                  <ol
+                    className={styles.lineupPreview}
+                    aria-label={`${anchor.talentName} standard Member lineup`}
+                  >
                     {members.map((member, index) => (
-                      <span key={member.id} title={`${index + 1}. ${member.talentName}`}>
+                      <li key={member.id}>
                         <Image alt="" height={52} src={member.artPath} width={52} />
-                        <b>{index + 1}</b>
-                      </span>
+                        <b aria-hidden="true">{index + 1}</b>
+                        <span className="sr-only">
+                          {index + 1}. {member.talentName}, {member.title}, {member.rarity} star {member.attribute}
+                        </span>
+                      </li>
                     ))}
-                  </div>
+                  </ol>
 
-                  <Link className={styles.openGuide} href={`/guides/${guide.slug}`}>
-                    Open team guide <ArrowRight aria-hidden="true" />
+                  <Link
+                    aria-label={`Open ${anchor.talentName} ${anchor.title} team guide`}
+                    className={styles.openGuide}
+                    href={`/guides/${guide.slug}`}
+                  >
+                    View team guide <ArrowRight aria-hidden="true" />
                   </Link>
                 </div>
               </article>
