@@ -1,0 +1,1357 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-31T16:00:00.000Z",
+  "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+  "guides": [
+    {
+      "id": "guide-card-00013-5-uniq-0002-00-standard-manual-v1",
+      "slug": "azki-a-flower-in-full-bloom-team-guide",
+      "title": "AZKi — A Flower in Full Bloom team guide",
+      "anchorCardId": "card-00013-5-uniq-0002-00",
+      "anchorTalentId": "chr-00013",
+      "snapshotId": "2026-07-31-yd-native-2",
+      "methodologyVersion": "yd-native-guide-1.1.0",
+      "publicationState": "theorycraft-beta",
+      "benchmark": {
+        "accountState": "frozen-neutral-public-benchmark",
+        "platform": "mobile",
+        "playMode": "manual",
+        "judgement": "perfect",
+        "fullCombo": true,
+        "life": 1000,
+        "board": {
+          "mode": "neutral",
+          "relativeContribution": 0
+        },
+        "collection": {
+          "memberUpgradeBonusPermyriad": 0
+        },
+        "eventBonusPermil": 0,
+        "targetResolution": "unresolved-enumerated-alternatives",
+        "scoreClaim": "relative-utility-only"
+      },
+      "ratingSongScope": {
+        "singerTalentId": "chr-00013",
+        "scoreRatingEligibleOnly": true,
+        "leaderSingerMatchRequired": true,
+        "difficulty": "expert"
+      },
+      "formations": [
+        {
+          "kind": "premium",
+          "label": "Bloom 5 · skills Lv.2",
+          "progressionLens": {
+            "id": "level-cap-bloom-5-skill-2-connect-2",
+            "label": "Level cap · Bloom 5 · skills Lv.2 · Connect Lv.2",
+            "level": "card-level-cap",
+            "bloomStage": 5,
+            "allParametersUpPermil": 100,
+            "activeSkillLevel": 2,
+            "passiveSkillLevel": 2,
+            "specialSkillLevel": 2,
+            "connectEffectLevel": 2
+          },
+          "context": {
+            "chartKey": "m0074:expert",
+            "songId": "m0074",
+            "songTitle": "ω cat",
+            "difficulty": "expert",
+            "durationMilliseconds": 137000,
+            "noteCount": 1208,
+            "scoreRatingEligible": true,
+            "leaderSingerMatched": true,
+            "platform": "mobile",
+            "chartFidelity": "aggregate",
+            "noteTimeline": "unavailable",
+            "specialMarkers": "unavailable"
+          },
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "members": [
+            {
+              "slot": 1,
+              "cardId": "card-00013-5-uniq-0002-00"
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00015-5-uniq-0003-00"
+            },
+            {
+              "slot": 3,
+              "cardId": "card-00037-5-uniq-0030-00"
+            },
+            {
+              "slot": 4,
+              "cardId": "card-06002-5-uniq-0058-00"
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06004-5-uniq-0060-00"
+            }
+          ],
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "relativeUtility": {
+            "lower": 306049.656834,
+            "central": 398900.28308,
+            "upper": 486568.74211
+          },
+          "staticParameters": {
+            "base": {
+              "lower": 129544,
+              "central": 129544,
+              "upper": 129544
+            },
+            "leaderAndPassiveGain": {
+              "lower": 105688.01,
+              "central": 105688.01,
+              "upper": 105992.45
+            },
+            "effective": {
+              "lower": 235232.01,
+              "central": 235232.01,
+              "upper": 235536.45
+            }
+          },
+          "searchCertificate": {
+            "mode": "heuristic",
+            "resultClaim": "recommended-under-provisional-relative-model",
+            "teamSetsInScope": 5621205,
+            "teamSetsConsidered": 16,
+            "unsearchedTeamSets": 5621189,
+            "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
+            "localRefinement": {
+              "status": "fixed-point",
+              "scope": "one-member-swap-or-leader-change",
+              "selection": "strict-central-coordinate-ascent",
+              "iterations": 4,
+              "candidatesScreened": 2064,
+              "improvingCandidatesAudited": 68,
+              "formationOrdersAudited": 8160,
+              "visitedFormations": 5
+            }
+          },
+          "finalistsEvaluated": 84,
+          "ordersAudited": 120,
+          "recipients": [
+            {
+              "sourceCardId": "card-00013-5-uniq-0002-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00013-5-uniq-0002-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00"
+              ],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00037-5-uniq-0030-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-06002-5-uniq-0058-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-06004-5-uniq-0060-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            }
+          ],
+          "activeSkills": [
+            {
+              "cardId": "card-00013-5-uniq-0002-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 20000,
+              "durationMilliseconds": 7000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00015-5-uniq-0003-00",
+              "activationProbabilityPermil": 460,
+              "cooldownMilliseconds": 15000,
+              "durationMilliseconds": 6000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00037-5-uniq-0030-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 23000,
+              "durationMilliseconds": 8000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06002-5-uniq-0058-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 27000,
+              "durationMilliseconds": 12000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06004-5-uniq-0060-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 22000,
+              "durationMilliseconds": 8000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            }
+          ],
+          "specialSkills": [
+            {
+              "slot": 1,
+              "cardId": "card-00013-5-uniq-0002-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1450,
+              "activationRateUpPermil": 500
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00015-5-uniq-0003-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1450,
+              "activationRateUpPermil": 500
+            },
+            {
+              "slot": 3,
+              "cardId": "card-00037-5-uniq-0030-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1450,
+              "activationRateUpPermil": 550
+            },
+            {
+              "slot": 4,
+              "cardId": "card-06002-5-uniq-0058-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1450,
+              "activationRateUpPermil": 0
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06004-5-uniq-0060-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1450,
+              "activationRateUpPermil": 500
+            }
+          ],
+          "replacements": [
+            {
+              "replacedCardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-00035-5-uniq-0028-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -52.2015,
+                "central": 1.2117,
+                "upper": 59.8362
+              }
+            },
+            {
+              "replacedCardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-00002-5-uniq-0001-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -58.027300000000004,
+                "central": 1.2457,
+                "upper": 60.980999999999995
+              }
+            },
+            {
+              "replacedCardId": "card-00037-5-uniq-0030-00",
+              "cardId": "card-04003-5-uniq-0044-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -54.063700000000004,
+                "central": 1.2659,
+                "upper": 60.22
+              }
+            },
+            {
+              "replacedCardId": "card-00037-5-uniq-0030-00",
+              "cardId": "card-04017-5-uniq-0056-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -53.3479,
+                "central": 1.5152,
+                "upper": 60.3905
+              }
+            },
+            {
+              "replacedCardId": "card-06002-5-uniq-0058-00",
+              "cardId": "card-06005-5-uniq-0061-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -62.0344,
+                "central": 0.5809,
+                "upper": 62.065099999999994
+              }
+            },
+            {
+              "replacedCardId": "card-06002-5-uniq-0058-00",
+              "cardId": "card-00035-5-uniq-0028-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -57.67529999999999,
+                "central": 1.5811,
+                "upper": 62.069399999999995
+              }
+            },
+            {
+              "replacedCardId": "card-06004-5-uniq-0060-00",
+              "cardId": "card-04013-5-uniq-0052-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -53.9108,
+                "central": 1.5909,
+                "upper": 62.4275
+              }
+            },
+            {
+              "replacedCardId": "card-06004-5-uniq-0060-00",
+              "cardId": "card-00034-5-uniq-0027-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -55.1145,
+                "central": 1.9088999999999998,
+                "upper": 63.6888
+              }
+            }
+          ],
+          "investmentOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-06004-5-uniq-0060-00",
+            "card-00037-5-uniq-0030-00",
+            "card-00015-5-uniq-0003-00",
+            "card-06002-5-uniq-0058-00"
+          ]
+        },
+        {
+          "kind": "standard",
+          "label": "Bloom 0 · skills Lv.1",
+          "progressionLens": {
+            "id": "level-cap-bloom-0-skill-1-connect-1",
+            "label": "Level cap · Bloom 0 · skills Lv.1 · Connect Lv.1",
+            "level": "card-level-cap",
+            "bloomStage": 0,
+            "allParametersUpPermil": 0,
+            "activeSkillLevel": 1,
+            "passiveSkillLevel": 1,
+            "specialSkillLevel": 1,
+            "connectEffectLevel": 1
+          },
+          "context": {
+            "chartKey": "m0074:expert",
+            "songId": "m0074",
+            "songTitle": "ω cat",
+            "difficulty": "expert",
+            "durationMilliseconds": 137000,
+            "noteCount": 1208,
+            "scoreRatingEligible": true,
+            "leaderSingerMatched": true,
+            "platform": "mobile",
+            "chartFidelity": "aggregate",
+            "noteTimeline": "unavailable",
+            "specialMarkers": "unavailable"
+          },
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "members": [
+            {
+              "slot": 1,
+              "cardId": "card-00013-5-uniq-0002-00"
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00015-5-uniq-0003-00"
+            },
+            {
+              "slot": 3,
+              "cardId": "card-00037-5-uniq-0030-00"
+            },
+            {
+              "slot": 4,
+              "cardId": "card-06002-5-uniq-0058-00"
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06004-5-uniq-0060-00"
+            }
+          ],
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "relativeUtility": {
+            "lower": 257402.07555,
+            "central": 316849.432556,
+            "upper": 373884.196568
+          },
+          "staticParameters": {
+            "base": {
+              "lower": 117768,
+              "central": 117768,
+              "upper": 117768
+            },
+            "leaderAndPassiveGain": {
+              "lower": 87120.64,
+              "central": 87120.64,
+              "upper": 87326.72
+            },
+            "effective": {
+              "lower": 204888.64,
+              "central": 204888.64,
+              "upper": 205094.72
+            }
+          },
+          "searchCertificate": {
+            "mode": "heuristic",
+            "resultClaim": "recommended-under-provisional-relative-model",
+            "teamSetsInScope": 5621205,
+            "teamSetsConsidered": 16,
+            "unsearchedTeamSets": 5621189,
+            "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
+            "localRefinement": {
+              "status": "fixed-point",
+              "scope": "one-member-swap-or-leader-change",
+              "selection": "strict-central-coordinate-ascent",
+              "iterations": 2,
+              "candidatesScreened": 1242,
+              "improvingCandidatesAudited": 27,
+              "formationOrdersAudited": 3240,
+              "visitedFormations": 3
+            }
+          },
+          "finalistsEvaluated": 43,
+          "ordersAudited": 120,
+          "recipients": [
+            {
+              "sourceCardId": "card-00013-5-uniq-0002-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00013-5-uniq-0002-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00"
+              ],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00015-5-uniq-0003-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00037-5-uniq-0030-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [],
+              "possibleCardIds": [
+                "card-00013-5-uniq-0002-00",
+                "card-00037-5-uniq-0030-00",
+                "card-06002-5-uniq-0058-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-06002-5-uniq-0058-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-06004-5-uniq-0060-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "possibleCardIds": [
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ]
+            }
+          ],
+          "activeSkills": [
+            {
+              "cardId": "card-00013-5-uniq-0002-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 20000,
+              "durationMilliseconds": 7000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00015-5-uniq-0003-00",
+              "activationProbabilityPermil": 460,
+              "cooldownMilliseconds": 15000,
+              "durationMilliseconds": 6000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00037-5-uniq-0030-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 23000,
+              "durationMilliseconds": 8000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06002-5-uniq-0058-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 27000,
+              "durationMilliseconds": 12000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06004-5-uniq-0060-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 22000,
+              "durationMilliseconds": 8000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            }
+          ],
+          "specialSkills": [
+            {
+              "slot": 1,
+              "cardId": "card-00013-5-uniq-0002-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 400
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00015-5-uniq-0003-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 400
+            },
+            {
+              "slot": 3,
+              "cardId": "card-00037-5-uniq-0030-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 450
+            },
+            {
+              "slot": 4,
+              "cardId": "card-06002-5-uniq-0058-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 0
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06004-5-uniq-0060-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 400
+            }
+          ],
+          "replacements": [
+            {
+              "replacedCardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-04017-5-uniq-0056-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -41.3825,
+                "central": 0.6588,
+                "upper": 45.5667
+              }
+            },
+            {
+              "replacedCardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-00035-5-uniq-0028-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -40.659600000000005,
+                "central": 0.7621,
+                "upper": 45.946799999999996
+              }
+            },
+            {
+              "replacedCardId": "card-00037-5-uniq-0030-00",
+              "cardId": "card-04003-5-uniq-0044-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -41.7865,
+                "central": 0.8946000000000001,
+                "upper": 46.3104
+              }
+            },
+            {
+              "replacedCardId": "card-00037-5-uniq-0030-00",
+              "cardId": "card-04017-5-uniq-0056-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -41.4745,
+                "central": 0.9788,
+                "upper": 46.244600000000005
+              }
+            },
+            {
+              "replacedCardId": "card-06002-5-uniq-0058-00",
+              "cardId": "card-06005-5-uniq-0061-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -46.7072,
+                "central": 0.8251,
+                "upper": 48.0267
+              }
+            },
+            {
+              "replacedCardId": "card-06002-5-uniq-0058-00",
+              "cardId": "card-00035-5-uniq-0028-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -43.5871,
+                "central": 1.34,
+                "upper": 47.6738
+              }
+            },
+            {
+              "replacedCardId": "card-06004-5-uniq-0060-00",
+              "cardId": "card-04013-5-uniq-0052-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -40.9008,
+                "central": 1.6182999999999998,
+                "upper": 48.239399999999996
+              }
+            },
+            {
+              "replacedCardId": "card-06004-5-uniq-0060-00",
+              "cardId": "card-00034-5-uniq-0027-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -41.574600000000004,
+                "central": 2.1292999999999997,
+                "upper": 49.0836
+              }
+            }
+          ],
+          "investmentOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-06004-5-uniq-0060-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-00015-5-uniq-0003-00"
+          ]
+        },
+        {
+          "kind": "accessible-4-star",
+          "label": "4★ core · Bloom 0 · skills Lv.1",
+          "progressionLens": {
+            "id": "level-cap-bloom-0-skill-1-connect-1",
+            "label": "Level cap · Bloom 0 · skills Lv.1 · Connect Lv.1",
+            "level": "card-level-cap",
+            "bloomStage": 0,
+            "allParametersUpPermil": 0,
+            "activeSkillLevel": 1,
+            "passiveSkillLevel": 1,
+            "specialSkillLevel": 1,
+            "connectEffectLevel": 1
+          },
+          "context": {
+            "chartKey": "m0074:expert",
+            "songId": "m0074",
+            "songTitle": "ω cat",
+            "difficulty": "expert",
+            "durationMilliseconds": 137000,
+            "noteCount": 1208,
+            "scoreRatingEligible": true,
+            "leaderSingerMatched": true,
+            "platform": "mobile",
+            "chartFidelity": "aggregate",
+            "noteTimeline": "unavailable",
+            "specialMarkers": "unavailable"
+          },
+          "leaderOutfitCardId": "card-00013-4-cmmn-0000-00",
+          "members": [
+            {
+              "slot": 1,
+              "cardId": "card-00001-4-cmmn-0000-00"
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00013-5-uniq-0002-00"
+            },
+            {
+              "slot": 3,
+              "cardId": "card-03008-4-cmmn-0000-00"
+            },
+            {
+              "slot": 4,
+              "cardId": "card-03007-4-cmmn-0000-00"
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06003-4-cmmn-0000-00"
+            }
+          ],
+          "formationOrder": [
+            "card-00001-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-03008-4-cmmn-0000-00",
+            "card-03007-4-cmmn-0000-00",
+            "card-06003-4-cmmn-0000-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "relativeUtility": {
+            "lower": 200914.841355,
+            "central": 229305.933859,
+            "upper": 247985.433876
+          },
+          "staticParameters": {
+            "base": {
+              "lower": 103673,
+              "central": 103673,
+              "upper": 103673
+            },
+            "leaderAndPassiveGain": {
+              "lower": 60707.15,
+              "central": 60707.15,
+              "upper": 61127.15
+            },
+            "effective": {
+              "lower": 164380.15,
+              "central": 164380.15,
+              "upper": 164800.15
+            }
+          },
+          "searchCertificate": {
+            "mode": "heuristic",
+            "resultClaim": "recommended-under-provisional-relative-model",
+            "teamSetsInScope": 292825,
+            "teamSetsConsidered": 16,
+            "unsearchedTeamSets": 292809,
+            "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
+            "localRefinement": {
+              "status": "fixed-point",
+              "scope": "one-member-swap-or-leader-change",
+              "selection": "strict-central-coordinate-ascent",
+              "iterations": 2,
+              "candidatesScreened": 588,
+              "improvingCandidatesAudited": 54,
+              "formationOrdersAudited": 6480,
+              "visitedFormations": 3
+            }
+          },
+          "finalistsEvaluated": 70,
+          "ordersAudited": 120,
+          "recipients": [
+            {
+              "sourceCardId": "card-00013-4-cmmn-0000-00",
+              "effectKind": "all-parameters-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00001-4-cmmn-0000-00",
+                "card-00013-5-uniq-0002-00",
+                "card-03007-4-cmmn-0000-00",
+                "card-03008-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ],
+              "possibleCardIds": [
+                "card-00001-4-cmmn-0000-00",
+                "card-00013-5-uniq-0002-00",
+                "card-03007-4-cmmn-0000-00",
+                "card-03008-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00001-4-cmmn-0000-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [],
+              "possibleCardIds": [
+                "card-00001-4-cmmn-0000-00",
+                "card-00013-5-uniq-0002-00",
+                "card-03008-4-cmmn-0000-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-00013-5-uniq-0002-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-00001-4-cmmn-0000-00",
+                "card-00013-5-uniq-0002-00"
+              ],
+              "possibleCardIds": [
+                "card-00001-4-cmmn-0000-00",
+                "card-00013-5-uniq-0002-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-03008-4-cmmn-0000-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-03008-4-cmmn-0000-00"
+              ],
+              "possibleCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-03008-4-cmmn-0000-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-03007-4-cmmn-0000-00",
+              "effectKind": "sense-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ],
+              "possibleCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ]
+            },
+            {
+              "sourceCardId": "card-06003-4-cmmn-0000-00",
+              "effectKind": "technique-up",
+              "resolution": "unresolved-enumerated-alternatives",
+              "commonToEveryAlternativeCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ],
+              "possibleCardIds": [
+                "card-03007-4-cmmn-0000-00",
+                "card-06003-4-cmmn-0000-00"
+              ]
+            }
+          ],
+          "activeSkills": [
+            {
+              "cardId": "card-00001-4-cmmn-0000-00",
+              "activationProbabilityPermil": 460,
+              "cooldownMilliseconds": 26000,
+              "durationMilliseconds": 9000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00013-5-uniq-0002-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 20000,
+              "durationMilliseconds": 7000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-03008-4-cmmn-0000-00",
+              "activationProbabilityPermil": 460,
+              "cooldownMilliseconds": 23000,
+              "durationMilliseconds": 7000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-03007-4-cmmn-0000-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 34000,
+              "durationMilliseconds": 14000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06003-4-cmmn-0000-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 30000,
+              "durationMilliseconds": 10000,
+              "firstCheck": "unresolved",
+              "chartNoteCoverage": null
+            }
+          ],
+          "specialSkills": [
+            {
+              "slot": 1,
+              "cardId": "card-00001-4-cmmn-0000-00",
+              "durationMilliseconds": 8000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1100,
+              "activationRateUpPermil": 0
+            },
+            {
+              "slot": 2,
+              "cardId": "card-00013-5-uniq-0002-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 400
+            },
+            {
+              "slot": 3,
+              "cardId": "card-03008-4-cmmn-0000-00",
+              "durationMilliseconds": 11000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 800,
+              "activationRateUpPermil": 0
+            },
+            {
+              "slot": 4,
+              "cardId": "card-03007-4-cmmn-0000-00",
+              "durationMilliseconds": 11000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 800,
+              "activationRateUpPermil": 0
+            },
+            {
+              "slot": 5,
+              "cardId": "card-06003-4-cmmn-0000-00",
+              "durationMilliseconds": 8000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1100,
+              "activationRateUpPermil": 0
+            }
+          ],
+          "replacements": [
+            {
+              "replacedCardId": "card-00001-4-cmmn-0000-00",
+              "cardId": "card-00002-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -23.6996,
+                "central": 2.0655,
+                "upper": 25.431199999999997
+              }
+            },
+            {
+              "replacedCardId": "card-00001-4-cmmn-0000-00",
+              "cardId": "card-00015-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -21.7913,
+                "central": 2.6273,
+                "upper": 25.674200000000003
+              }
+            },
+            {
+              "replacedCardId": "card-03007-4-cmmn-0000-00",
+              "cardId": "card-06002-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -22.6992,
+                "central": 1.3208,
+                "upper": 24.8106
+              }
+            },
+            {
+              "replacedCardId": "card-03007-4-cmmn-0000-00",
+              "cardId": "card-00023-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -22.8298,
+                "central": 1.6863,
+                "upper": 25.1143
+              }
+            },
+            {
+              "replacedCardId": "card-03008-4-cmmn-0000-00",
+              "cardId": "card-06004-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -23.937,
+                "central": 0.5958,
+                "upper": 24.0416
+              }
+            },
+            {
+              "replacedCardId": "card-03008-4-cmmn-0000-00",
+              "cardId": "card-00030-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -23.285600000000002,
+                "central": 0.6929000000000001,
+                "upper": 24.3145
+              }
+            },
+            {
+              "replacedCardId": "card-06003-4-cmmn-0000-00",
+              "cardId": "card-00023-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -23.9815,
+                "central": 0.5012,
+                "upper": 23.3479
+              }
+            },
+            {
+              "replacedCardId": "card-06003-4-cmmn-0000-00",
+              "cardId": "card-06004-4-cmmn-0000-00",
+              "rarity": 4,
+              "lossPercent": {
+                "lower": -22.2582,
+                "central": 0.9608,
+                "upper": 24.415100000000002
+              }
+            }
+          ],
+          "investmentOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00001-4-cmmn-0000-00",
+            "card-03007-4-cmmn-0000-00",
+            "card-03008-4-cmmn-0000-00",
+            "card-06003-4-cmmn-0000-00"
+          ]
+        }
+      ],
+      "ratingSongComparisons": [
+        {
+          "songId": "m0141",
+          "songTitle": "Setsunatick Code",
+          "chartKey": "m0141:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 105000,
+          "noteCount": 846,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 256950.893741,
+            "central": 328780.294652,
+            "upper": 394558.656203
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        },
+        {
+          "songId": "m0189",
+          "songTitle": "Inochi(2024 ver.)",
+          "chartKey": "m0189:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 109000,
+          "noteCount": 478,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 257248.100603,
+            "central": 327479.235596,
+            "upper": 391216.821031
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        },
+        {
+          "songId": "m0164",
+          "songTitle": "(Not) A Devil",
+          "chartKey": "m0164:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 132000,
+          "noteCount": 1029,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 256854.874428,
+            "central": 317737.500435,
+            "upper": 376194.58085
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        },
+        {
+          "songId": "m0074",
+          "songTitle": "ω cat",
+          "chartKey": "m0074:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 137000,
+          "noteCount": 1208,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 257402.07555,
+            "central": 316849.432556,
+            "upper": 373884.196568
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        },
+        {
+          "songId": "m0163",
+          "songTitle": "Maware! Setsugetsuka",
+          "chartKey": "m0163:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 141000,
+          "noteCount": 1267,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 257779.276797,
+            "central": 316925.739508,
+            "upper": 377335.288883
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        },
+        {
+          "songId": "m0303",
+          "songTitle": "A Tale of Six Trillion Years and a Night",
+          "chartKey": "m0303:expert",
+          "difficulty": "expert",
+          "durationMilliseconds": 155000,
+          "noteCount": 1520,
+          "scoreRatingEligible": true,
+          "leaderSingerMatched": true,
+          "platform": "mobile",
+          "chartFidelity": "aggregate",
+          "noteTimeline": "unavailable",
+          "leaderOutfitCardId": "card-00013-5-uniq-0002-00",
+          "formationOrder": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "orderStatus": "canonical-display-only-timing-unresolved",
+          "members": [
+            "card-00013-5-uniq-0002-00",
+            "card-00015-5-uniq-0003-00",
+            "card-00037-5-uniq-0030-00",
+            "card-06002-5-uniq-0058-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "relativeUtility": {
+            "lower": 257322.590511,
+            "central": 312180.527616,
+            "upper": 369287.451378
+          },
+          "advantageOverReferencePercent": null,
+          "changesReferenceFormation": false
+        }
+      ]
+    }
+  ]
+}

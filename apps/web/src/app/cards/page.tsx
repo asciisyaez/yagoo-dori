@@ -6,8 +6,8 @@ import { LibraryBig } from "lucide-react";
 import { CardCatalog, type CatalogCard } from "@/components/card-catalog";
 
 export const metadata: Metadata = {
-  title: "Member-card database",
-  description: "Browse all 113 current hololive Dreams 4-star and 5-star Member cards.",
+  title: "Cards and Leader Outfits",
+  description: "Browse every current hololive Dreams Member card and its linked Leader Outfit.",
 };
 
 const cards: CatalogCard[] = publicCards.map((card) => ({
@@ -19,6 +19,10 @@ const cards: CatalogCard[] = publicCards.map((card) => ({
   attribute: card.attribute,
   groups: card.groups,
   illustrationPath: card.illustrationPath,
+  costumeName: card.leaderOutfit.costumeName,
+  leaderDescription:
+    card.leaderOutfit.description?.replace(/\[\/?[^\]]+\]/g, "") ??
+    "Leader effect description unavailable.",
 }));
 
 export default function CardsPage() {
@@ -29,9 +33,9 @@ export default function CardsPage() {
       <header className="database-heading">
         <div className="database-heading-icon"><LibraryBig aria-hidden="true" /></div>
         <div>
-          <p className="db-eyebrow">Database / Member cards</p>
-          <h1>Member-card database</h1>
-          <p>Every current 4★ and 5★ card, with the real art, stats, skill levels, and linked Leader Outfit.</p>
+          <p className="db-eyebrow">Database / Cards & Outfits</p>
+          <h1>Cards and Leader Outfits</h1>
+          <p>Compare every 4★ and 5★ Member, then switch to the Outfit view for its Leader effect.</p>
         </div>
         <dl className="database-summary">
           <div><dt>Total</dt><dd>{publicData.counts.total}</dd></div>
@@ -39,7 +43,7 @@ export default function CardsPage() {
           <div><dt>4★</dt><dd>{publicData.counts.fourStar}</dd></div>
         </dl>
       </header>
-      <Suspense fallback={<div className="db-loading">Loading card database…</div>}>
+      <Suspense fallback={<div className="db-loading">Loading cards and Outfits…</div>}>
         <CardCatalog cards={cards} groups={groups} />
       </Suspense>
     </div>

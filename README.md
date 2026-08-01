@@ -1,6 +1,6 @@
 # Yagoo-dori
 
-Yagoo-dori is an English-first hololive Dreams database, Member-card tier list, and team-building project. The v0.1 preview includes the complete current 4★ and 5★ roster, real locally stored card artwork, searchable card/talent/Leader Outfit records, and a clearly attributed third-party tier reference while the native mechanics model is developed.
+Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader Outfit tier list, and team-building project. It includes the complete current 4★ and 5★ roster, locally stored game artwork, searchable card/talent/Outfit records, a deterministic native ranking model, and search-backed team guides.
 
 ## Development
 
@@ -34,7 +34,18 @@ pnpm project:status
 - 54 four-star Member cards
 - 113 linked Leader Outfits
 - 226 local card icons and illustrations
-- HolodoriDB English commit `060e4c3342a6005ddee94860dd090d24c417c092`
-- HolodoriDB Japanese commit `86dfcc47e5cffa4baee72a53c98f7968af699620`
+- 177 songs and 708 pinned aggregate chart contexts
+- Three investment lenses: Low Investment, Standard Manual, and Max Ceiling
 
-The public SS/S/A view in v0.1 is an attributed AppMedia editorial snapshot. It is not a Yagoo-dori calculation. Native rankings and optimized team guides remain gated on the real mechanics simulator and calibration work tracked in N03.
+The public Member and Leader Outfit bands are Yagoo-dori calculations derived from complete matched substitutions across 300 contexts per entity type, a 21-reference/9-current chart corpus, current skills and stats, and frozen robust baselines. Four hundred deterministic bootstrap resamples estimate uncertainty. The bands remain marked **Theorycraft Beta** and are relative comparisons under a neutral account state rather than absolute Live Score predictions.
+
+## Refreshing generated results
+
+After reviewing an upstream data update, regenerate the deterministic outputs in order:
+
+```powershell
+pnpm data:sync
+pnpm rankings:generate
+pnpm guides:generate
+pnpm data:validate
+```

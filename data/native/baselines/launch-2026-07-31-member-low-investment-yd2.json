@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "id": "launch-2026-07-31-member-low-investment-yd2",
+  "createdAt": "2026-07-31T16:00:00.000Z",
+  "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+  "methodologyVersion": "yd-native-ranking-2.0.0",
+  "entityKind": "member",
+  "lens": "low-investment",
+  "scales": {
+    "G": {
+      "median": "14160",
+      "mad": "36681"
+    },
+    "P": {
+      "median": "60892",
+      "mad": "40898"
+    },
+    "B": {
+      "median": "1547",
+      "mad": "1547"
+    },
+    "E": {
+      "median": "12913",
+      "mad": "38913"
+    },
+    "C": {
+      "median": "69876",
+      "mad": "770400"
+    }
+  }
+}

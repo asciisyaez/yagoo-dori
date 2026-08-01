@@ -1,28 +1,52 @@
 ---
 name: update-holodori-meta
-description: Import or refresh real hololive Dreams cards, skills, Leaders/Outfits, artwork, patches, and source-attributed tier references from pinned public sources. Use for new cards, balance patches, roster refreshes, HolodoriDB updates, or artwork intake. Produce a reviewable diff, corroborate important mechanics, and never publish automatically.
+description: Refresh hololive Dreams cards, skills, Leader Outfits, songs, artwork, native rankings, and team guides from pinned public sources. Use for new cards, balance patches, roster refreshes, HolodoriDB updates, or artwork intake. Produce a reviewable deterministic diff and never publish automatically.
 ---
 
-# Update Holodori meta
+# Update the hololive Dreams meta
 
-Prepare a real-data change set for review.
+Prepare one reproducible roster/mechanics/song change set, then recalculate Yagoo-dori's own rankings and guides. Independent sites corroborate facts only; their tier labels and teams do not influence native calculations.
 
-## Workflow
+## Pin and normalize
 
 1. Run `pnpm project:status` and read `AGENTS.md`.
-2. Resolve exact upstream commits for both HolodoriDB English and Japanese repositories. Record commit, retrieval time, repository URL, and the import transformation.
-3. Inspect the relevant structured tables rather than guessing from identifiers. Join cards, characters, translations, level curves, Active/Passive/Special skills, Leader skills, costumes, attributes, and generations by their explicit keys.
-4. Corroborate counts and important mechanic interpretations against official material and at least one current independent reference such as AppMedia or Game8.
-5. Download publicly posted card art locally. Add a backstage asset-manifest entry containing source URL, retrieval date, local path, and card ID. Never show provenance or rights warnings in the product UI.
-6. Generate a normalized-data diff. Put conflicting values in the internal review queue; do not silently select one.
-7. Keep source-attributed editorial tiers separate from Yagoo-dori calculations. Never manufacture a score to fill a missing field.
-8. Run dataset, asset, type, unit, build, and browser validation. Present the diff and preview for review; do not commit, deploy, or publish unless separately requested.
+2. Resolve the exact English and Japanese HolodoriDB commits. Record repository URL, commit, retrieval time, master version, and transformation in the backstage dataset manifest.
+3. Inspect explicit table keys. Join cards, characters, translations, parameter curves, Active/Passive/Special skills, Leader skills, costumes, attributes, generations, songs, charts, and conditions without inferring meaning from IDs.
+4. Corroborate important mechanics and entity relationships against official material and at least one current independent reference such as Game8 or AppMedia. Put disagreements in the review queue; never silently merge them.
+5. Download publicly posted card art locally and update the backstage asset manifest with card ID, source URL, retrieval date, path, dimensions, and hash. Never hotlink production images or surface provenance messaging in card UI.
+6. Run the pinned imports in dependency order:
 
-## Refuse
+   ```text
+   pnpm data:sync:public
+   pnpm data:sync:mechanics
+   pnpm data:sync:songs
+   ```
 
-- Private APIs, game-client extraction/decryption, installed game files, account automation, or scrape-protection bypass.
-- Invented records, inferred field meanings presented as facts, silent conflicts, or fake ranking precision.
-- Hotlinked production images.
-- Automatic publication.
+7. Review the normalized diff before calculation. Unverified numerical changes stop the affected card from entering a new native snapshot.
 
-The legacy `review-meta-update.ts` helper predates the North-Star reset and must not be used until it is replaced under N02/N03.
+## Recalculate
+
+1. Run `pnpm --filter @yagoo-dori/core rankings:generate --generated-at=<fixed ISO timestamp>` with the repository's fixed seeds and frozen baseline.
+2. Run `pnpm --filter @yagoo-dori/core guides:generate --generated-at=<same fixed ISO timestamp>` so guide teams use the same roster and methodology snapshot.
+3. Attribute native score/rank/tier changes to direct card changes, new synergy, chart/meta changes, new evidence, or methodology corrections. Attribution components must sum to the displayed delta.
+4. Keep methodology-version changes separate from game-patch changes. Do not convert an editorial opinion into a native input.
+
+## Verify and review
+
+Run the repository verification sequence in `AGENTS.md` in its exact order. Then preview the tier list, affected card/Outfit profiles, guide index, and affected guide routes at desktop and mobile sizes.
+
+Present:
+
+- pinned upstream commits and generated snapshot IDs;
+- normalized card, mechanic, song, and asset changes;
+- unresolved disagreements;
+- native ranking and guide deltas;
+- verification evidence.
+
+Do not commit, deploy, or publish unless the user separately requests it.
+
+## Stop instead of guessing
+
+- No private APIs, client extraction/decryption, installed game files, account automation, or scrape-protection bypass.
+- No invented records, inferred field meanings presented as facts, silent conflicts, fake precision, or hotlinked production art.
+- Never auto-publish a generated ranking or guide.

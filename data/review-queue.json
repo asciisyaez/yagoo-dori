@@ -1,17 +1,1 @@
-[
-  {
-    "id": "review-fixture-boundary",
-    "entityId": "all-research-fixtures",
-    "field": "all-numerical-fields",
-    "status": "open",
-    "claims": [
-      {
-        "value": "Illustrative pipeline values",
-        "sourceId": "source-official-system"
-      }
-    ],
-    "resolution": null,
-    "notes": "Replace every illustrative value with independently verified, source-linked launch data before production."
-  }
-]
-
+[]

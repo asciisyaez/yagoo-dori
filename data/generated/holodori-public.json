@@ -1,25 +1,33 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-07-30",
+  "retrievedAt": "2026-07-31",
   "sourceSnapshots": {
     "english": {
       "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-      "commit": "060e4c3342a6005ddee94860dd090d24c417c092",
-      "masterVersion": "24afa2c641f4a831c024ac2e912972b2accb695ad0dd3a63fc47a2ffaa69e121"
+      "commit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+      "masterVersion": "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be"
     },
     "japanese": {
       "repository": "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-      "commit": "86dfcc47e5cffa4baee72a53c98f7968af699620",
-      "masterVersion": "24afa2c641f4a831c024ac2e912972b2accb695ad0dd3a63fc47a2ffaa69e121"
+      "commit": "d8929f3cf6845111eeb6fc96f7b12bffb23ecd78",
+      "masterVersion": "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be"
     },
     "art": {
-      "page": "https://game8.jp/hololive-dreams/800509",
-      "label": "Game8 public Member-card index"
-    },
-    "editorialTier": {
-      "page": "https://appmedia.jp/hololive-dreams/80235364",
-      "label": "AppMedia score-performance tier snapshot",
-      "updatedAt": "2026-07-30T15:44:00+09:00"
+      "page": "https://appmedia.jp/hololive-dreams",
+      "label": "AppMedia public Member-card pages",
+      "talentPageRange": {
+        "firstId": 80234830,
+        "lastId": 80234989,
+        "step": 3,
+        "expectedCount": 54
+      },
+      "fallback": {
+        "page": "https://game8.jp/hololive-dreams/800509",
+        "eventPage": "https://game8.jp/hololive-dreams/800904",
+        "label": "Game8 public Member-card index",
+        "policy": "Declared fallback only; preferred-source incompleteness fails the import.",
+        "illustrationVariant": "original"
+      }
     }
   },
   "counts": {
@@ -32,8 +40,7 @@
   "notes": [
     "HolodoriDB tables are joined by explicit IDs and pinned commits.",
     "One-copy parameters use the maximum level curve without duplicate Potential bonuses.",
-    "Max-Potential parameters apply the rarity 4/5 10% all-parameter Potential bonus.",
-    "Editorial tiers reproduce the cited AppMedia score-performance snapshot and are not Yagoo-dori calculations."
+    "Max-Potential parameters apply the rarity 4/5 10% all-parameter Potential bonus."
   ],
   "cards": [
     {
@@ -154,8 +161,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00005-5-uniq-0006-00",
@@ -275,8 +281,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00004-5-uniq-0005-00",
@@ -396,8 +401,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-03005-5-uniq-0037-00",
@@ -517,8 +521,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-03001-5-uniq-0033-00",
@@ -638,8 +641,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00013-5-uniq-0002-00",
@@ -759,8 +761,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-04016-5-uniq-0055-00",
@@ -880,8 +881,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04012-5-uniq-0051-00",
@@ -1001,8 +1001,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00037-5-uniq-0030-00",
@@ -1122,8 +1121,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2"
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00028-5-uniq-0023-00",
@@ -1243,8 +1241,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00018-5-uniq-0004-00",
@@ -1364,8 +1361,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00023-5-uniq-0019-00",
@@ -1485,8 +1481,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-06003-5-uniq-0059-00",
@@ -1606,8 +1601,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-regloss-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00017-5-uniq-0015-00",
@@ -1727,8 +1721,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04007-5-uniq-0047-00",
@@ -1848,8 +1841,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-promise-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-06004-5-uniq-0060-00",
@@ -1969,8 +1961,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-03008-5-uniq-0040-00",
@@ -2090,8 +2081,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00039-5-uniq-0032-00",
@@ -2211,8 +2201,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-03009-5-uniq-0041-00",
@@ -2332,8 +2321,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04014-5-uniq-0053-00",
@@ -2453,8 +2441,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-03004-5-uniq-0036-00",
@@ -2574,8 +2561,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00035-5-uniq-0028-00",
@@ -2695,8 +2681,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-holox-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04017-5-uniq-0056-00",
@@ -2816,8 +2801,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00031-5-uniq-0025-00",
@@ -2937,8 +2921,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-03002-5-uniq-0034-00",
@@ -3058,8 +3041,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-04001-5-uniq-0042-00",
@@ -3179,8 +3161,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00010-5-uniq-0010-00",
@@ -3300,8 +3281,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00007-5-uniq-0008-00",
@@ -3421,8 +3401,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00016-5-uniq-0014-00",
@@ -3542,8 +3521,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04015-5-uniq-0054-00",
@@ -3663,8 +3641,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-advent-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04003-5-uniq-0044-00",
@@ -3784,8 +3761,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00034-5-uniq-0027-00",
@@ -3905,8 +3881,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00014-5-uniq-0013-00",
@@ -4026,8 +4001,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00012-5-uniq-0012-00",
@@ -4147,8 +4121,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00012-5-uniq-0062-00",
@@ -4268,8 +4241,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-06002-5-uniq-0058-00",
@@ -4389,8 +4361,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-06002-5-uniq-0066-00",
@@ -4510,8 +4481,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04010-5-uniq-0049-00",
@@ -4631,8 +4601,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-03006-5-uniq-0038-00",
@@ -4752,8 +4721,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00002-5-uniq-0001-00",
@@ -4873,8 +4841,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00015-5-uniq-0003-00",
@@ -4994,8 +4961,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-04013-5-uniq-0052-00",
@@ -5115,8 +5081,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00006-5-uniq-0007-00",
@@ -5237,8 +5202,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00021-5-uniq-0017-00",
@@ -5358,8 +5322,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00021-5-uniq-0064-00",
@@ -5479,8 +5442,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2"
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00022-5-uniq-0018-00",
@@ -5600,8 +5562,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00022-5-uniq-0063-00",
@@ -5721,8 +5682,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00032-5-uniq-0026-00",
@@ -5842,8 +5802,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-04002-5-uniq-0043-00",
@@ -5963,8 +5922,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00036-5-uniq-0029-00",
@@ -6084,8 +6042,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-06005-5-uniq-0061-00",
@@ -6205,8 +6162,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00001-5-uniq-0000-00",
@@ -6326,8 +6282,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_0-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-00027-5-uniq-0022-00",
@@ -6447,8 +6402,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00026-5-uniq-0021-00",
@@ -6568,8 +6522,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00026-5-uniq-0065-00",
@@ -6689,8 +6642,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2"
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00019-5-uniq-0016-00",
@@ -6810,8 +6762,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2"
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-03007-5-uniq-0039-00",
@@ -6931,8 +6882,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "S"
+      }
     },
     {
       "id": "card-00030-5-uniq-0024-00",
@@ -7052,8 +7002,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_5-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": "SS"
+      }
     },
     {
       "id": "card-00011-5-uniq-0011-00",
@@ -7173,8 +7122,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2"
-      },
-      "editorialTier": "A"
+      }
     },
     {
       "id": "card-03003-4-cmmn-0000-00",
@@ -7294,8 +7242,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00005-4-cmmn-0000-00",
@@ -7415,8 +7362,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00004-4-cmmn-0000-00",
@@ -7536,8 +7482,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03005-4-cmmn-0000-00",
@@ -7657,8 +7602,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03001-4-cmmn-0000-00",
@@ -7778,8 +7722,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00013-4-cmmn-0000-00",
@@ -7899,8 +7842,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_0-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04016-4-cmmn-0000-00",
@@ -8020,8 +7962,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04012-4-cmmn-0000-00",
@@ -8141,8 +8082,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00037-4-cmmn-0000-00",
@@ -8262,8 +8202,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00028-4-cmmn-0000-00",
@@ -8383,8 +8322,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00018-4-cmmn-0000-00",
@@ -8504,8 +8442,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00023-4-cmmn-0000-00",
@@ -8625,8 +8562,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-06003-4-cmmn-0000-00",
@@ -8746,8 +8682,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00017-4-cmmn-0000-00",
@@ -8867,8 +8802,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04007-4-cmmn-0000-00",
@@ -8988,8 +8922,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-06004-4-cmmn-0000-00",
@@ -9109,8 +9042,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2"
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03008-4-cmmn-0000-00",
@@ -9230,8 +9162,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00039-4-cmmn-0000-00",
@@ -9351,8 +9282,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-holox-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03009-4-cmmn-0000-00",
@@ -9472,8 +9402,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04014-4-cmmn-0000-00",
@@ -9593,8 +9522,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2"
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03004-4-cmmn-0000-00",
@@ -9714,8 +9642,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00035-4-cmmn-0000-00",
@@ -9835,8 +9762,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04017-4-cmmn-0000-00",
@@ -9956,8 +9882,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00031-4-cmmn-0000-00",
@@ -10077,8 +10002,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_5-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03002-4-cmmn-0000-00",
@@ -10198,8 +10122,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04001-4-cmmn-0000-00",
@@ -10319,8 +10242,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00010-4-cmmn-0000-00",
@@ -10440,8 +10362,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00007-4-cmmn-0000-00",
@@ -10561,8 +10482,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00016-4-cmmn-0000-00",
@@ -10682,8 +10602,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04015-4-cmmn-0000-00",
@@ -10803,8 +10722,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04003-4-cmmn-0000-00",
@@ -10924,8 +10842,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00034-4-cmmn-0000-00",
@@ -11045,8 +10962,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00014-4-cmmn-0000-00",
@@ -11166,8 +11082,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00012-4-cmmn-0000-00",
@@ -11287,8 +11202,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-06002-4-cmmn-0000-00",
@@ -11408,8 +11322,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-regloss-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04010-4-cmmn-0000-00",
@@ -11529,8 +11442,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-promise-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03006-4-cmmn-0000-00",
@@ -11650,8 +11562,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-indonesia-gen_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00002-4-cmmn-0000-00",
@@ -11771,8 +11682,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00015-4-cmmn-0000-00",
@@ -11892,8 +11802,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04013-4-cmmn-0000-00",
@@ -12013,8 +11922,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-advent-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00006-4-cmmn-0000-00",
@@ -12135,8 +12043,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00021-4-cmmn-0000-00",
@@ -12256,8 +12163,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
         "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2"
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00022-4-cmmn-0000-00",
@@ -12377,8 +12283,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00032-4-cmmn-0000-00",
@@ -12498,8 +12403,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-04002-4-cmmn-0000-00",
@@ -12619,8 +12523,7 @@
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00036-4-cmmn-0000-00",
@@ -12740,8 +12643,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-06005-4-cmmn-0000-00",
@@ -12861,8 +12763,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00001-4-cmmn-0000-00",
@@ -12982,8 +12883,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00027-4-cmmn-0000-00",
@@ -13103,8 +13003,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00026-4-cmmn-0000-00",
@@ -13224,8 +13123,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00019-4-cmmn-0000-00",
@@ -13345,8 +13243,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-03007-4-cmmn-0000-00",
@@ -13466,8 +13363,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00030-4-cmmn-0000-00",
@@ -13587,8 +13483,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     },
     {
       "id": "card-00011-4-cmmn-0000-00",
@@ -13708,8 +13603,7 @@
         "triggerGroupId": null,
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
-      },
-      "editorialTier": null
+      }
     }
   ]
 }

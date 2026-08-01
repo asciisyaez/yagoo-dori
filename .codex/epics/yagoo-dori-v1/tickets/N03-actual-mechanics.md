@@ -1,13 +1,16 @@
 ---
 id: N03
 title: Actual mechanics schema, simulator, and optimizer
-status: active
+status: split
 depends_on: [N02]
 parallelizable: false
 parent_epic: yagoo-dori-v1
 ---
 
 # N03: Actual mechanics schema, simulator, and optimizer
+
+Split on 2026-07-31 into N03A–N03D so evidence collection, runtime evaluation,
+song contexts, and the public rubric cannot be treated as one unverifiable step.
 
 ## Acceptance criteria
 

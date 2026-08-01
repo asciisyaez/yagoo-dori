@@ -1,4 +1,4 @@
 interface:
   display_name: "Update Holodori Meta"
   short_description: "Import and review real public hololive Dreams data"
-  default_prompt: "Use $update-holodori-meta to refresh the pinned public roster, mechanics, artwork, and source-attributed tier references without publishing."
+  default_prompt: "Use $update-holodori-meta to import new cards or patches, refresh pinned data and artwork, recalculate rankings and guides, and prepare a reviewed local diff."

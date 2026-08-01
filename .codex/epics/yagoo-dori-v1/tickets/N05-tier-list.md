@@ -2,7 +2,7 @@
 id: N05
 title: Complete usable Member-card tier list
 status: pending
-depends_on: [N02, N03, N04]
+depends_on: [N02, N03D, N04]
 parallelizable: false
 parent_epic: yagoo-dori-v1
 ---

@@ -2,7 +2,7 @@
 id: N07
 title: Accuracy review responsive QA container and release
 status: pending
-depends_on: [N05, N06]
+depends_on: [N05, N06B]
 parallelizable: false
 parent_epic: yagoo-dori-v1
 ---

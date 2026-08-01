@@ -1,16 +1,39 @@
-import { publicCards, publicData } from "@yagoo-dori/core";
+import {
+  nativeRankingData,
+  nativeRankingEntryByLensAndCard,
+  nativeLeaderOutfitRankingEntryByLensAndCard,
+  publicCards,
+  publicData,
+} from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { BarChart3, ExternalLink } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 
 import { TierListExplorer, type TierCard } from "@/components/tier-list-explorer";
 
 export const metadata: Metadata = {
-  title: "hololive Dreams Member-card tier list",
-  description: "Browse the complete hololive Dreams 4-star and 5-star card roster and a current source-attributed 5-star score tier snapshot.",
+  title: "hololive Dreams tier list",
+  description: "Compare every current hololive Dreams Member card and Leader Outfit across three model-evaluated investment lenses.",
 };
 
-const tierCards: TierCard[] = publicCards.map((card) => ({
+function rankingsFor(
+  cardId: string,
+  source: typeof nativeRankingEntryByLensAndCard,
+): TierCard["rankings"] {
+  const lowInvestment = source.get("low-investment")?.get(cardId);
+  const standard = source.get("one-copy-maximum")?.get(cardId);
+  const ceiling = source.get("duplicate-enabled-ceiling")?.get(cardId);
+  if (!lowInvestment || !standard || !ceiling) {
+    throw new Error(`Native ranking snapshot is missing ${cardId}`);
+  }
+  return {
+    "low-investment": { tier: lowInvestment.tier, rank: lowInvestment.rank },
+    "one-copy-maximum": { tier: standard.tier, rank: standard.rank },
+    "duplicate-enabled-ceiling": { tier: ceiling.tier, rank: ceiling.rank },
+  };
+}
+
+const memberCards: TierCard[] = publicCards.map((card) => ({
   id: card.id,
   slug: card.slug,
   talentName: card.talentName,
@@ -20,7 +43,20 @@ const tierCards: TierCard[] = publicCards.map((card) => ({
   generation: card.generation,
   groups: card.groups,
   artPath: card.artPath,
-  editorialTier: card.editorialTier,
+  rankings: rankingsFor(card.id, nativeRankingEntryByLensAndCard),
+}));
+
+const leaderOutfits: TierCard[] = publicCards.map((card) => ({
+  id: card.id,
+  slug: card.slug,
+  talentName: card.talentName,
+  title: card.leaderOutfit.costumeName,
+  rarity: card.rarity,
+  attribute: card.attribute,
+  generation: card.generation,
+  groups: card.groups,
+  artPath: card.artPath,
+  rankings: rankingsFor(card.id, nativeLeaderOutfitRankingEntryByLensAndCard),
 }));
 
 export default function TierListPage() {
@@ -31,38 +67,27 @@ export default function TierListPage() {
       <header className="database-heading">
         <div className="database-heading-icon"><BarChart3 aria-hidden="true" /></div>
         <div>
-          <p className="db-eyebrow">Tier Lists / Member cards</p>
+          <p className="db-eyebrow">Tier list</p>
           <h1>hololive Dreams tier list</h1>
           <p>
-            Scan every current 5★ score placement, or switch to the complete 113-card 4★ + 5★ roster.
-            Filters stay in the URL so the exact view is shareable.
+            Compare every current 4★ and 5★ card as a Member or as its Leader Outfit. Switch
+            context and investment lens, then filter the full roster.
           </p>
         </div>
         <dl className="database-summary">
-          <div><dt>5★ cards</dt><dd>{publicData.counts.fiveStar}</dd></div>
-          <div><dt>4★ cards</dt><dd>{publicData.counts.fourStar}</dd></div>
-          <div><dt>Talents</dt><dd>{publicData.counts.talents}</dd></div>
+          <div><dt>Roster</dt><dd>{publicData.counts.total}</dd></div>
+          <div><dt>Contexts</dt><dd>2</dd></div>
+          <div><dt>Lenses</dt><dd>{nativeRankingData.lenses.length}</dd></div>
         </dl>
       </header>
 
-      <Suspense fallback={<div className="db-loading">Loading card matrix…</div>}>
-        <TierListExplorer cards={tierCards} generations={generations} />
+      <Suspense fallback={<div className="db-loading">Loading tier matrix…</div>}>
+        <TierListExplorer
+          generations={generations}
+          leaderOutfits={leaderOutfits}
+          memberCards={memberCards}
+        />
       </Suspense>
-
-      <details className="tier-source-note">
-        <summary>About this tier snapshot</summary>
-        <div>
-          <p>
-            The score-tier tab reproduces AppMedia’s current 5★ score-performance categories,
-            including the five summer cards. It is an attributed editorial reference, not a
-            Yagoo-dori calculation. The roster tab contains every 4★ and 5★ record from the pinned
-            public database snapshot without inventing 4★ placements.
-          </p>
-          <a href={publicData.sourceSnapshots.editorialTier.page} target="_blank" rel="noreferrer">
-            Open AppMedia source <ExternalLink aria-hidden="true" />
-          </a>
-        </div>
-      </details>
     </div>
   );
 }

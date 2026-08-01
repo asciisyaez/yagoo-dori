@@ -37,7 +37,7 @@ test("desktop presents a persistent grouped sidebar for the core database tasks"
   await expect(sidebar).toBeVisible();
 
   const primaryNavigation = sidebar.getByRole("navigation", { name: /primary|site/i });
-  for (const label of [/tier list/i, /member cards|cards/i, /talents/i, /leaders/i]) {
+  for (const label of [/tier list/i, /cards(?:\s*&\s*outfits)?/i, /talents/i]) {
     await expect(primaryNavigation.getByRole("link", { name: label }).first()).toBeVisible();
   }
 
@@ -45,28 +45,45 @@ test("desktop presents a persistent grouped sidebar for the core database tasks"
   expect(["fixed", "sticky"]).toContain(position);
 });
 
-test("tier contexts expose the full real roster without inventing four-star placements", async ({
+test("native tier contexts and lenses expose the full real 4-star and 5-star roster", async ({
   page,
 }) => {
   test.setTimeout(60_000);
   await page.goto("/tier-list");
 
   await expect(page.getByRole("heading", { level: 1, name: "hololive Dreams tier list" })).toBeVisible();
-  await expect(page.getByRole("tab", { name: /5★ score tier/i })).toHaveAttribute(
+  await expect(page.getByRole("tab", { name: /Member cards/i })).toHaveAttribute(
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("59 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(59);
-
-  await page.getByRole("tab", { name: /All 4★ \+ 5★/i }).click();
-  await expect(page).toHaveURL(/(?:\?|&)view=roster(?:&|$)/);
-  await expect(page.getByRole("tab", { name: /All 4★ \+ 5★/i })).toHaveAttribute(
+  await expect(page.getByRole("tab", { name: /Standard Manual/i })).toHaveAttribute(
     "aria-selected",
     "true",
   );
   await expect(page.getByText("113 cards shown", { exact: true })).toBeVisible();
   await expect(page.locator(".game-card-tile")).toHaveCount(113);
+  await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(6);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(12);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(23);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(18);
+  await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(27);
+  await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(27);
+  await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
+
+  await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
+  await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
+  await expect(page.getByText("113 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(113);
+
+  await page.getByRole("tab", { name: /Member cards/i }).click();
+  await expect(page.getByText("113 cards shown", { exact: true })).toBeVisible();
+
+  await page.getByRole("tab", { name: /Low Investment/i }).click();
+  await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
+  await expect(page.getByRole("tab", { name: /Low Investment/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
 
   await page.getByRole("button", { name: "4★", exact: true }).click();
   await expect(page).toHaveURL(/(?:\?|&)rarity=4(?:&|$)/);
@@ -74,17 +91,61 @@ test("tier contexts expose the full real roster without inventing four-star plac
   await expect(page.locator(".game-card-tile")).toHaveCount(54);
 });
 
+test("Leader Outfit tier context hydrates from a shareable URL", async ({ page }) => {
+  await page.goto("/tier-list?context=outfits&lens=duplicate-enabled-ceiling&q=AZKi");
+
+  await expect(page.getByRole("tab", { name: /Leader \/ Outfits/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.getByRole("tab", { name: /Max Ceiling/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.getByRole("searchbox", { name: "Search cards" })).toHaveValue("AZKi");
+  await expect(page.locator(".game-card-tile")).toHaveCount(2);
+
+  await page.reload();
+  await expect(page.getByRole("tab", { name: /Leader \/ Outfits/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.getByRole("searchbox", { name: "Search cards" })).toHaveValue("AZKi");
+});
+
+test("tier context and lens tabs support arrow-key selection", async ({ page }) => {
+  await page.goto("/tier-list");
+
+  const memberTab = page.getByRole("tab", { name: /Member cards/i });
+  await memberTab.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: /Leader \/ Outfits/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
+
+  const standardTab = page.getByRole("tab", { name: /Standard Manual/i });
+  await standardTab.focus();
+  await page.keyboard.press("End");
+  await expect(page.getByRole("tab", { name: /Max Ceiling/i })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page).toHaveURL(/(?:\?|&)lens=duplicate-enabled-ceiling(?:&|$)/);
+});
+
 test("tier filters hydrate from a shareable deep link and survive reload", async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto(
-    "/tier-list?view=roster&rarity=4&attribute=cute&generation=Gen+0&q=AZKi",
+    "/tier-list?lens=low-investment&rarity=4&attribute=cute&generation=Gen+0&q=AZKi",
   );
 
-  const rosterTab = page.getByRole("tab", { name: /All 4★ \+ 5★/i });
+  const lowInvestmentTab = page.getByRole("tab", { name: /Low Investment/i });
   const search = page.getByRole("searchbox", { name: "Search cards" });
   const generation = page.getByRole("combobox", { name: "Generation" });
 
-  await expect(rosterTab).toHaveAttribute("aria-selected", "true");
+  await expect(lowInvestmentTab).toHaveAttribute("aria-selected", "true");
   await expect(search).toHaveValue("AZKi");
   await expect(page.getByRole("button", { name: "4★", exact: true })).toHaveAttribute(
     "aria-pressed",
@@ -105,7 +166,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
   await expect(page.locator(".game-card-tile")).toHaveCount(1);
 
   await page.getByRole("button", { name: /^Reset/ }).click();
-  await expect(page).toHaveURL(/\/tier-list\?view=roster$/);
+  await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
   await expect(page.getByText("113 cards shown", { exact: true })).toBeVisible();
 });
 
@@ -140,13 +201,13 @@ test("AZKi profile renders the pinned real illustration, stats, skills, and Outf
   await expect(page.getByText("Grants Sense UP 120% to all.", { exact: true })).toBeVisible();
 });
 
-test("public decision pages do not expose rejected research placeholders", async ({ page }) => {
+test("public decision pages do not expose editorial or research-workflow placeholders", async ({ page }) => {
   test.setTimeout(60_000);
 
   for (const route of corePublicRoutes) {
     await page.goto(route);
     await expect(page.locator("body")).not.toContainText(/Art pending rights/i);
-    await expect(page.locator("body")).not.toContainText(/Theorycraft Beta/i);
+    await expect(page.locator("body")).not.toContainText(/AppMedia/i);
     await expect(page.locator("body")).not.toContainText(/illustrative (?:data|PI|score)/i);
     await expect(page.locator("body")).not.toContainText(/Provisional/i);
   }
@@ -205,14 +266,14 @@ test("mobile drawer is keyboard reachable and the database does not overflow", a
 
   const mobileNavigation = page.getByRole("navigation", { name: /mobile/i });
   await expect(mobileNavigation).toBeVisible();
-  for (const label of [/tier list/i, /member cards|cards/i, /talents/i, /leaders/i]) {
+  for (const label of [/tier list/i, /cards(?:\s*&\s*outfits)?/i, /talents/i]) {
     const link = mobileNavigation.getByRole("link", { name: label }).first();
     await expect(link).toBeVisible();
     const box = await link.boundingBox();
     expect(box?.height ?? 0).toBeGreaterThanOrEqual(40);
   }
 
-  await drawerTrigger.focus();
-  await page.keyboard.press("Enter");
+  await mobileNavigation.getByRole("link", { name: /tier list/i }).click();
+  await expect(page).toHaveURL(/\/tier-list$/);
   await expect(mobileNavigation).not.toBeVisible();
 });

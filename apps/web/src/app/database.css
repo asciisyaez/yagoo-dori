@@ -112,6 +112,48 @@
 }
 
 /* Shared filters */
+.catalog-context-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+  border: 1px solid var(--yd-line);
+  border-radius: 8px;
+  background: #11151c;
+  padding: 0.35rem;
+}
+
+.catalog-context-tabs a {
+  display: flex;
+  min-height: 38px;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #8f96a4;
+  font-size: 0.72rem;
+  font-weight: 760;
+  padding: 0.55rem 0.72rem;
+}
+
+.catalog-context-tabs a:hover {
+  border-color: rgba(37, 188, 233, 0.18);
+  color: #dce1e9;
+}
+
+.catalog-context-tabs a[aria-current="page"] {
+  border-color: rgba(37, 188, 233, 0.24);
+  background: rgba(37, 188, 233, 0.11);
+  color: #f3f5f8;
+  box-shadow: inset 2px 0 var(--yd-cyan);
+}
+
+.catalog-context-tabs strong {
+  color: var(--yd-dim);
+  font-size: 0.62rem;
+}
+
 .tier-filter-bar,
 .catalog-filter-bar {
   display: flex;
@@ -299,6 +341,29 @@
   color: var(--yd-cyan-soft);
 }
 
+.context-tabs-three button {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.entity-context-tabs {
+  background: #0d1016;
+  padding-inline: 0;
+}
+
+.entity-context-tabs button {
+  min-width: 0;
+  flex: 1 1 0;
+  padding-block: 1rem 0.85rem;
+  padding-inline: 1.2rem;
+}
+
+.entity-context-tabs button::after {
+  right: 0;
+  left: 0;
+  height: 3px;
+}
+
 .tier-filter-bar {
   flex-wrap: wrap;
   border: 0;
@@ -416,6 +481,31 @@
   margin: 0;
 }
 
+.tier-results-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.tier-results-actions > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  color: #aeb5c0;
+  font-size: 0.61rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tier-results-actions > a:hover {
+  color: var(--yd-cyan-soft);
+}
+
+.tier-results-actions > a svg {
+  width: 13px;
+  height: 13px;
+}
+
 .tier-matrix {
   display: grid;
   gap: 8px;
@@ -429,6 +519,23 @@
   grid-template-columns: 104px minmax(0, 1fr);
   border: 1px solid #2b313b;
   background: #1b1f28;
+}
+
+.tier-band-empty {
+  min-height: 62px;
+}
+
+.tier-band-empty .tier-band-label {
+  flex-direction: row;
+  gap: 0.45rem;
+}
+
+.tier-band-empty .tier-band-label strong {
+  font-size: 1.25rem;
+}
+
+.tier-band-empty .tier-band-label span {
+  margin-top: 0;
 }
 
 .tier-band-label {
@@ -459,8 +566,9 @@
 .tier-ss .tier-band-label { background: #ff5f65; }
 .tier-s .tier-band-label { background: #ff9b5b; }
 .tier-a .tier-band-label { background: #efc95b; }
-.tier-five .tier-band-label { background: #70cbea; }
-.tier-four .tier-band-label { background: #aeb6c3; }
+.tier-b .tier-band-label { background: #a9d169; }
+.tier-c .tier-band-label { background: #72c6c8; }
+.tier-d .tier-band-label { background: #9fa8b8; }
 
 .tier-card-grid {
   display: flex;
@@ -563,8 +671,8 @@
 .card-tile-tooltip strong { font-size: 0.68rem; }
 .card-tile-tooltip small { color: var(--yd-muted); font-size: 0.58rem; }
 
-.game-card-tile > a:hover .card-tile-tooltip,
-.game-card-tile > a:focus-visible .card-tile-tooltip {
+.game-card-tile:hover .card-tile-tooltip,
+.game-card-tile:focus-within .card-tile-tooltip {
   display: block;
 }
 
@@ -574,31 +682,6 @@
   color: #757d89;
   font-size: 0.7rem;
 }
-
-.tier-source-note {
-  margin-top: 0.8rem;
-  border: 1px solid var(--yd-line);
-  border-radius: 7px;
-  background: var(--yd-panel);
-  color: var(--yd-muted);
-  font-size: 0.72rem;
-}
-
-.tier-source-note summary {
-  cursor: pointer;
-  color: #c6cbd4;
-  font-weight: 720;
-  padding: 0.75rem 0.9rem;
-}
-
-.tier-source-note > div {
-  border-top: 1px solid var(--yd-line);
-  padding: 0.8rem 0.9rem;
-}
-
-.tier-source-note p { margin: 0 0 0.55rem; }
-.tier-source-note a { color: var(--yd-cyan-soft); }
-.tier-source-note a svg { width: 12px; vertical-align: middle; }
 
 /* Card, talent, and Leader directories */
 .real-card-catalog {
@@ -891,6 +974,12 @@
   padding: 0.38rem 0.52rem;
 }
 
+.card-profile-badges .native-tier-badge {
+  border-color: rgba(37, 188, 233, 0.34);
+  background: rgba(37, 188, 233, 0.09);
+  color: var(--yd-cyan-soft);
+}
+
 .parameter-section,
 .skills-section,
 .related-card-section,
@@ -1079,6 +1168,10 @@
   border-radius: 8px;
   background: linear-gradient(105deg, rgba(248, 186, 74, 0.08), var(--yd-panel));
   padding: 1.1rem;
+}
+
+.leader-outfit-panel {
+  scroll-margin-top: 1rem;
 }
 
 .leader-icon {
@@ -1281,6 +1374,80 @@
 .methodology-checklist li > span { color: var(--yd-cyan); font-size: 0.64rem; font-weight: 850; }
 .methodology-checklist strong { font-size: 0.74rem; }
 .methodology-checklist p { margin: 0.15rem 0 0; color: var(--yd-muted); font-size: 0.67rem; }
+
+.methodology-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.methodology-metrics article {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid #303744;
+  border-radius: 5px;
+  background: #11151c;
+  padding: 0.75rem;
+}
+
+.methodology-metrics article > span {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border: 1px solid rgba(37, 188, 233, 0.34);
+  border-radius: 4px;
+  color: var(--yd-cyan-soft);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.methodology-metrics div {
+  display: grid;
+  min-width: 0;
+  gap: 0.12rem;
+}
+
+.methodology-metrics strong { font-size: 0.72rem; }
+.methodology-metrics p { margin: 0; color: var(--yd-muted); font-size: 0.63rem; line-height: 1.45; }
+.methodology-metrics em { color: var(--yd-cyan); font-size: 0.72rem; font-style: normal; font-weight: 850; }
+
+.methodology-formula {
+  margin: 0.65rem 0 0 !important;
+  border-left: 2px solid var(--yd-cyan);
+  background: #11151c;
+  color: #ccd2db !important;
+  font-variant-numeric: tabular-nums;
+  padding: 0.65rem 0.8rem;
+}
+
+.methodology-beta-note {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  border: 1px solid var(--yd-line);
+  border-radius: 6px;
+  background: rgba(37, 188, 233, 0.045);
+  padding: 0.7rem 0.8rem;
+}
+
+.methodology-beta-note span {
+  flex: 0 0 auto;
+  color: var(--yd-cyan-soft);
+  font-size: 0.59rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.methodology-beta-note p {
+  margin: 0;
+  color: var(--yd-muted);
+  font-size: 0.65rem;
+}
 
 .source-principles {
   display: grid;
@@ -1494,6 +1661,7 @@
   .card-profile-copy { padding: 1.4rem; }
   .parameter-comparison,
   .mechanics-grid { grid-template-columns: 1fr; }
+  .methodology-metrics { grid-template-columns: 1fr; }
   .mechanic-card > p { min-height: 0; }
   .talent-outfit-list,
   .content-grid,
@@ -1515,8 +1683,27 @@
   .simple-select { flex: 1; }
   .generation-filter select,
   .simple-select select { width: 100%; max-width: none; }
-  .tier-results-line { align-items: start; flex-direction: column; gap: 0.2rem; }
+  .tier-list-page .database-heading { margin-bottom: 0.75rem; padding: 0.85rem 1rem; }
+  .tier-list-page .database-heading > div:nth-child(2) > p:last-child,
+  .tier-list-page .database-summary { display: none; }
+  .tier-filter-bar .card-search { order: 0; }
+  .tier-filter-bar .compact-filter,
+  .tier-filter-bar .clear-compact-filters { order: 1; }
+  .tier-filter-bar .attribute-filter,
+  .tier-filter-bar .generation-filter { order: 2; }
+  .tier-filter-bar .clear-compact-filters { margin-left: auto; }
+  .tier-results-line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.3rem 0.6rem;
+  }
+  .tier-results-line > p { grid-column: 1; grid-row: 2; }
+  .tier-results-actions { display: contents; }
+  .tier-results-actions > a { grid-column: 2; grid-row: 2; justify-self: end; }
   .tier-band { min-height: 110px; grid-template-columns: 58px minmax(0, 1fr); }
+  .tier-band-empty { min-height: 48px; }
+  .tier-band-empty .tier-band-label { flex-direction: column; gap: 0; }
   .tier-band-label span { display: none; }
   .tier-card-grid { gap: 0.4rem; padding: 0.5rem; }
   .game-card-tile { width: 70px; height: 80px; }

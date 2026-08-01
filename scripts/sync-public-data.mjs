@@ -12,22 +12,30 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "060e4c3342a6005ddee94860dd090d24c417c092",
-    masterVersion: "24afa2c641f4a831c024ac2e912972b2accb695ad0dd3a63fc47a2ffaa69e121",
+    commit: "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+    masterVersion: "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "86dfcc47e5cffa4baee72a53c98f7968af699620",
-    masterVersion: "24afa2c641f4a831c024ac2e912972b2accb695ad0dd3a63fc47a2ffaa69e121",
+    commit: "d8929f3cf6845111eeb6fc96f7b12bffb23ecd78",
+    masterVersion: "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be",
   },
   art: {
-    page: "https://game8.jp/hololive-dreams/800509",
-    label: "Game8 public Member-card index",
-  },
-  editorialTier: {
-    page: "https://appmedia.jp/hololive-dreams/80235364",
-    label: "AppMedia score-performance tier snapshot",
-    updatedAt: "2026-07-30T15:44:00+09:00",
+    page: "https://appmedia.jp/hololive-dreams",
+    label: "AppMedia public Member-card pages",
+    talentPageRange: {
+      firstId: 80234830,
+      lastId: 80234989,
+      step: 3,
+      expectedCount: 54,
+    },
+    fallback: {
+      page: "https://game8.jp/hololive-dreams/800509",
+      eventPage: "https://game8.jp/hololive-dreams/800904",
+      label: "Game8 public Member-card index",
+      policy: "Declared fallback only; preferred-source incompleteness fails the import.",
+      illustrationVariant: "original",
+    },
   },
 };
 
@@ -55,23 +63,47 @@ const englishFiles = [
   "LiveSpecialSkillLevel.json",
 ];
 
-const japaneseFiles = ["LangCard_Jpn.json"];
+const japaneseFiles = ["LangCard_Jpn.json", "LangCharacter_Jpn.json"];
+
+const minimumCardAssetCount = 113;
+const minimumIllustrationDimensions = { width: 2282, height: 1284 };
+const requiredIconDimensions = { width: 300, height: 300 };
 
 function rawUrl(source, file) {
   return `${source.repository.replace("github.com", "raw.githubusercontent.com")}/${source.commit}/${file}`;
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, {
-    headers: {
-      "user-agent": "Yagoo-dori public-data indexer (+https://yagoo-dori.cc)",
-      accept: "text/html,application/json,image/avif,image/webp,*/*",
-    },
-  });
-  if (!response.ok) {
-    throw new Error(`Failed ${response.status} ${response.statusText}: ${url}`);
+async function fetchPublic(url, accept) {
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "user-agent": "Yagoo-dori public-data indexer (+https://yagoo-dori.cc)",
+          accept,
+        },
+        signal: AbortSignal.timeout(30_000),
+      });
+      if (response.ok) return response;
+      lastError = new Error(`Failed ${response.status} ${response.statusText}: ${url}`);
+    } catch (error) {
+      lastError = error;
+    }
+    if (attempt < 3) {
+      await new Promise((resolve) => setTimeout(resolve, attempt * 250));
+    }
   }
-  return response.text();
+  throw lastError;
+}
+
+async function fetchText(url) {
+  return (await fetchPublic(url, "text/html,application/json;q=0.9,*/*;q=0.5")).text();
+}
+
+async function fetchBytes(url) {
+  return Buffer.from(
+    await (await fetchPublic(url, "image/avif,image/webp,image/*;q=0.9,*/*;q=0.5")).arrayBuffer(),
+  );
 }
 
 async function fetchJsonSet(source, files) {
@@ -98,6 +130,21 @@ function cleanText(value = "") {
     .trim();
 }
 
+function decodeHtml(value = "") {
+  const named = {
+    amp: "&",
+    apos: "'",
+    gt: ">",
+    lt: "<",
+    nbsp: " ",
+    quot: '"',
+  };
+  return value
+    .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 16)))
+    .replace(/&#(\d+);/g, (_, codePoint) => String.fromCodePoint(Number(codePoint)))
+    .replace(/&([a-z]+);/gi, (entity, name) => named[name.toLowerCase()] ?? entity);
+}
+
 function slugify(value) {
   return value
     .normalize("NFKD")
@@ -111,7 +158,73 @@ function normalizeForMatch(value) {
   return value
     .normalize("NFKC")
     .toLowerCase()
-    .replace(/[\s"'’‘“”`´・.,!?！？♪☆★[\]［\]()（）:：/\\-]/g, "");
+    .replace(/[\p{P}\p{S}\p{Z}\s]/gu, "");
+}
+
+async function mapWithConcurrency(values, concurrency, mapper) {
+  const results = new Array(values.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < values.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await mapper(values[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(concurrency, values.length) }, () => worker()));
+  return results;
+}
+
+function webpDimensions(bytes, label) {
+  if (
+    bytes.length < 30 ||
+    bytes.toString("ascii", 0, 4) !== "RIFF" ||
+    bytes.toString("ascii", 8, 12) !== "WEBP"
+  ) {
+    throw new Error(`${label}: expected a WebP image`);
+  }
+
+  let offset = 12;
+  while (offset + 8 <= bytes.length) {
+    const chunkType = bytes.toString("ascii", offset, offset + 4);
+    const chunkLength = bytes.readUInt32LE(offset + 4);
+    const dataOffset = offset + 8;
+
+    if (chunkType === "VP8X" && chunkLength >= 10) {
+      return {
+        width: 1 + bytes.readUIntLE(dataOffset + 4, 3),
+        height: 1 + bytes.readUIntLE(dataOffset + 7, 3),
+      };
+    }
+    if (chunkType === "VP8L" && chunkLength >= 5 && bytes[dataOffset] === 0x2f) {
+      return {
+        width: 1 + bytes[dataOffset + 1] + ((bytes[dataOffset + 2] & 0x3f) << 8),
+        height:
+          1 +
+          ((bytes[dataOffset + 2] & 0xc0) >> 6) +
+          (bytes[dataOffset + 3] << 2) +
+          ((bytes[dataOffset + 4] & 0x0f) << 10),
+      };
+    }
+    if (
+      chunkType === "VP8 " &&
+      chunkLength >= 10 &&
+      bytes[dataOffset + 3] === 0x9d &&
+      bytes[dataOffset + 4] === 0x01 &&
+      bytes[dataOffset + 5] === 0x2a
+    ) {
+      return {
+        width: bytes.readUInt16LE(dataOffset + 6) & 0x3fff,
+        height: bytes.readUInt16LE(dataOffset + 8) & 0x3fff,
+      };
+    }
+
+    offset = dataOffset + chunkLength + (chunkLength % 2);
+  }
+
+  throw new Error(`${label}: WebP dimensions could not be decoded`);
 }
 
 function rarityFrom(value) {
@@ -171,192 +284,308 @@ function skillView(level, descriptions) {
 function parseImageTags(html) {
   return [...html.matchAll(/<img\b[^>]*>/gi)].map(([tag]) => {
     const attributes = Object.fromEntries(
-      [...tag.matchAll(/([\w-]+)=["']([^"']*)["']/g)].map((match) => [match[1], match[2]]),
+      [...tag.matchAll(/([\w:-]+)\s*=\s*(["'])(.*?)\2/gs)].map((match) => [
+        match[1].toLowerCase(),
+        decodeHtml(match[3]),
+      ]),
     );
     return attributes;
   });
 }
 
-const baseTierByTalent = {
-  SS: [
-    "Nakiri Ayame",
-    "Oozora Subaru",
-    "Houshou Marine",
-    "Yukihana Lamy",
-    "Momosuzu Nene",
-    "Shishiro Botan",
-    "Takanashi Kiara",
-    "Ouro Kronii",
-    "Mococo Abyssgard",
-  ],
-  S: [
-    "AZKi",
-    "Hoshimachi Suisei",
-    "Shirakami Fubuki",
-    "Natsuiro Matsuri",
-    "Ookami Mio",
-    "Shiranui Flare",
-    "Tsunomaki Watame",
-    "Tokoyami Towa",
-    "Himemori Luna",
-    "Omaru Polka",
-    "Hakui Koyori",
-    "Kazama Iroha",
-    "Moona Hoshinova",
-    "Pavolia Reine",
-    "Vestia Zeta",
-    "Mori Calliope",
-    "Shiori Novella",
-    "Otonose Kanade",
-    "Ichijou Ririka",
-    "Juufuutei Raden",
-    "Todoroki Hajime",
-  ],
-};
-
-const eventTierByCardId = {
-  "card-00012-5-uniq-0062-00": "A",
-  "card-00021-5-uniq-0064-00": "S",
-  "card-00022-5-uniq-0063-00": "SS",
-  "card-00026-5-uniq-0065-00": "S",
-  "card-06002-5-uniq-0066-00": "A",
-};
-
-const artOverrideByCardId = {
-  "card-04016-5-uniq-0055-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800509",
-    iconSourceUrl: "https://img.game8.jp/12790222/2095ecb167fd7d0dbb759da7ca00f450.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12791423/9b94418b4ccd3acf74d0f502701c0702.webp/show",
+const appMediaAssetOverrideByCardId = {
+  "card-00005-5-uniq-0006-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234848",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/01/121022_jka0l.webp",
+    illustrationSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/185321_4723g.webp",
   },
-  "card-03008-5-uniq-0040-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800509",
-    iconSourceUrl: "https://img.game8.jp/12790207/54d51bc8536b4d86203b2407238b16d7.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12791393/65a793e03386f01811e2177f6622a52c.webp/show",
+  "card-00032-5-uniq-0026-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234902",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/01/122208_iturw.webp",
+    illustrationSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/190152_296fi.webp",
   },
-  "card-04013-5-uniq-0052-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800509",
-    iconSourceUrl: "https://img.game8.jp/12790216/e60faf0d1e000f3351340596fde9fc49.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12791388/8f233884d713333fdb61ae8094bb140d.webp/show",
+  "card-04001-5-uniq-0042-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234947",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/124146_zi71m.webp",
+    illustrationSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/190157_gnrx9.webp",
   },
-  "card-06003-4-cmmn-0000-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800509",
-    iconSourceUrl: "https://img.game8.jp/12791114/dbc9a55bed9998af1fd92b9408ae4dcc.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12791639/14766191b6e6dbde2d6ac8574914475c.webp/show",
-  },
-  "card-00012-5-uniq-0062-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800904",
-    iconSourceUrl: "https://img.game8.jp/12810700/46b9c009f92daccfdd67a99e03b5efc3.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12809463/c46040bb3aca8666765338376817c7df.webp/show",
-  },
-  "card-06002-5-uniq-0066-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800904",
-    iconSourceUrl: "https://img.game8.jp/12810699/09345b620c704e4b660e301b2c8df807.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12809557/2a1ec7bd3af75d3873b9a40562588afd.webp/show",
-  },
-  "card-00021-5-uniq-0064-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800904",
-    iconSourceUrl: "https://img.game8.jp/12810701/87ec8d34d63e8147ba54f7f6cfab7c30.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12809476/6e9648c8cfad8b1f8ba2ca79b0ff6c58.webp/show",
-  },
-  "card-00022-5-uniq-0063-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800904",
-    iconSourceUrl: "https://img.game8.jp/12810698/6eb78c6e9f2234ec3339f058769de58e.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12809493/1ef646d169f0645fa13e8937fa0efc4d.webp/show",
-  },
-  "card-00026-5-uniq-0065-00": {
-    sourcePage: "https://game8.jp/hololive-dreams/800904",
-    iconSourceUrl: "https://img.game8.jp/12810702/5ce5358133f24551a4235eed64b58601.webp/original",
-    illustrationSourceUrl: "https://img.game8.jp/12809533/89a65fb59833b97f479bc624fc9872df.webp/show",
+  "card-04012-4-cmmn-0000-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234962",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/143818_hxwlf.webp",
+    illustrationSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/193928_apfbq.webp",
   },
 };
 
-function editorialTier(cardId, talentName, rarity) {
-  if (rarity !== 5) return null;
-  if (eventTierByCardId[cardId]) return eventTierByCardId[cardId];
-  if (baseTierByTalent.SS.includes(talentName)) return "SS";
-  if (baseTierByTalent.S.includes(talentName)) return "S";
-  return "A";
+const appMediaTitleAliasByCardId = {
+  // AppMedia omits ラ from ラビット in this title.
+  "card-00019-5-uniq-0016-00": "愛嬌たっぷりビットフィールド",
+  // AppMedia writes 探究心 where the pinned Japanese game table writes 探求心.
+  "card-04013-5-uniq-0052-00": "書庫ではぐくむ探究心",
+  // AppMedia renders ホッと as the katakana ホット.
+  "card-04016-4-cmmn-0000-00": "ホット安らぐフワワライブ",
+};
+
+function appMediaTalentPageUrls(indexHtml) {
+  const { firstId, lastId, step, expectedCount } = sources.art.talentPageRange;
+  const expectedUrls = [];
+  for (let id = firstId; id <= lastId; id += step) {
+    expectedUrls.push(`https://appmedia.jp/hololive-dreams/${id}`);
+  }
+  if (expectedUrls.length !== expectedCount) {
+    throw new Error(`AppMedia talent-page range produced ${expectedUrls.length}, expected ${expectedCount}`);
+  }
+
+  const indexedUrls = new Set(
+    [...indexHtml.matchAll(/href\s*=\s*(["'])(https:\/\/appmedia\.jp\/hololive-dreams\/(\d+)\/?)(?:\1)/gi)]
+      .map((match) => match[2].replace(/\/$/, "")),
+  );
+  const missingPages = expectedUrls.filter((url) => !indexedUrls.has(url));
+  if (missingPages.length > 0) {
+    throw new Error(`AppMedia index is missing ${missingPages.length} expected talent pages: ${missingPages.join(", ")}`);
+  }
+  return expectedUrls;
 }
 
-async function downloadArt(cards) {
-  const html = await fetchText(sources.art.page);
-  const images = parseImageTags(html)
-    .filter((image) => image["data-src"]?.includes("img.game8.jp"))
-    .filter((image) => image.alt && !image.alt.includes("アイコン"));
-  const icons = images
-    .filter((image) => image["data-src"]?.endsWith("/original"))
-    .filter((image) => Number(image.width) === 60);
-  const illustrations = images
-    .filter((image) => image["data-src"]?.includes("img.game8.jp"))
-    .filter((image) => image["data-src"]?.endsWith("/show"))
-    .filter((image) => Number(image.width) >= 600);
+function appMediaImages(html, sourcePage) {
+  return parseImageTags(html).flatMap((image) => {
+    const rawSourceUrl = image["data-src"] ?? image["data-lazy-src"] ?? image.src;
+    if (!image.alt || !rawSourceUrl) return [];
 
+    const sourceUrl = new URL(rawSourceUrl, sourcePage);
+    if (
+      sourceUrl.origin !== "https://appmedia.jp" ||
+      !sourceUrl.pathname.startsWith("/wp-content/uploads/") ||
+      !sourceUrl.pathname.endsWith(".webp")
+    ) {
+      return [];
+    }
+
+    return [{
+      alt: image.alt.trim(),
+      normalizedAlt: normalizeForMatch(image.alt),
+      sourcePage,
+      sourceUrl: sourceUrl.href,
+    }];
+  });
+}
+
+function uniqueMatches(matches) {
+  return [...new Map(matches.map((match) => [`${match.sourcePage}\0${match.sourceUrl}`, match])).values()];
+}
+
+function requireSingleMatch(card, kind, matches) {
+  const unique = uniqueMatches(matches);
+  if (unique.length !== 1) {
+    throw new Error(
+      `${card.id}: expected one AppMedia ${kind} match for "${card.titleJa}", found ${unique.length}`,
+    );
+  }
+  return unique[0];
+}
+
+function validateManifestCoverage(cards, manifest) {
+  if (cards.length < minimumCardAssetCount) {
+    throw new Error(`Expected at least ${minimumCardAssetCount} cards, found ${cards.length}`);
+  }
+  if (!Array.isArray(manifest) || manifest.length !== cards.length) {
+    throw new Error(`Expected ${cards.length} asset manifest records, found ${manifest?.length ?? 0}`);
+  }
+
+  const expectedIds = new Set(cards.map((card) => card.id));
+  const manifestIds = manifest.map((asset) => asset.cardId);
+  const duplicateIds = manifestIds.filter((cardId, index) => manifestIds.indexOf(cardId) !== index);
+  const missingIds = [...expectedIds].filter((cardId) => !manifestIds.includes(cardId));
+  const unexpectedIds = manifestIds.filter((cardId) => !expectedIds.has(cardId));
+  if (duplicateIds.length || missingIds.length || unexpectedIds.length) {
+    throw new Error(
+      `Asset manifest coverage mismatch; duplicates=${[...new Set(duplicateIds)].join(",") || "none"}; ` +
+      `missing=${missingIds.join(",") || "none"}; unexpected=${unexpectedIds.join(",") || "none"}`,
+    );
+  }
+}
+
+async function downloadArt(cards, talentNameJaById) {
+  const indexHtml = await fetchText(sources.art.page);
+  const pageUrls = appMediaTalentPageUrls(indexHtml);
+  const pages = await mapWithConcurrency(pageUrls, 6, async (sourcePage) => ({
+    sourcePage,
+    images: appMediaImages(await fetchText(sourcePage), sourcePage),
+  }));
+  const pageByUrl = new Map(pages.map((page) => [page.sourcePage, page]));
+  const allImages = pages.flatMap((page) => page.images);
+
+  const mappings = cards.map((card) => {
+    const talentNameJa = talentNameJaById.get(card.talentId);
+    if (!talentNameJa) throw new Error(`${card.id}: missing Japanese talent name`);
+
+    const sourceTitle = appMediaTitleAliasByCardId[card.id] ?? card.titleJa;
+    const titleNeedle = normalizeForMatch(sourceTitle);
+    const talentNeedle = normalizeForMatch(talentNameJa);
+    const belongsToCard = (image) =>
+      image.normalizedAlt.includes(titleNeedle) && image.normalizedAlt.includes(talentNeedle);
+    const isIllustration = (image) => /_イラスト$/u.test(image.alt);
+    const isThreeDimensional = (image) => /_3d$/iu.test(image.alt);
+    const override = appMediaAssetOverrideByCardId[card.id];
+
+    let illustration;
+    let illustrationMatchMethod;
+    if (override) {
+      const overridePage = pageByUrl.get(override.sourcePage);
+      if (!overridePage) throw new Error(`${card.id}: override page is outside the pinned talent-page set`);
+      if (!overridePage.images.some((image) => image.sourceUrl === override.iconSourceUrl)) {
+        throw new Error(`${card.id}: AppMedia icon override is no longer present on the talent page`);
+      }
+      const detected = uniqueMatches(
+        overridePage.images.filter((image) => belongsToCard(image) && isIllustration(image)),
+      );
+      if (
+        detected.length > 1 ||
+        (detected.length === 1 && detected[0].sourceUrl !== override.illustrationSourceUrl)
+      ) {
+        throw new Error(`${card.id}: AppMedia illustration override disagrees with the talent page`);
+      }
+      illustration = {
+        sourcePage: override.sourcePage,
+        sourceUrl: override.illustrationSourceUrl,
+      };
+      illustrationMatchMethod = "explicit-media-override";
+    } else {
+      illustration = requireSingleMatch(
+        card,
+        "illustration",
+        allImages.filter((image) => belongsToCard(image) && isIllustration(image)),
+      );
+      illustrationMatchMethod = appMediaTitleAliasByCardId[card.id]
+        ? "normalized-source-title-alias-and-talent"
+        : "normalized-japanese-title-and-talent";
+    }
+
+    const talentPage = pageByUrl.get(illustration.sourcePage);
+    const icon = override
+      ? {
+          sourcePage: override.sourcePage,
+          sourceUrl: override.iconSourceUrl,
+          matchMethod: "explicit-media-override",
+        }
+      : {
+          ...requireSingleMatch(
+            card,
+            "icon",
+            talentPage.images.filter(
+              (image) => belongsToCard(image) && !isIllustration(image) && !isThreeDimensional(image),
+            ),
+          ),
+          matchMethod: appMediaTitleAliasByCardId[card.id]
+            ? "normalized-source-title-alias-and-talent"
+            : "normalized-japanese-title-and-talent",
+        };
+    if (icon.sourceUrl === illustration.sourceUrl) {
+      throw new Error(`${card.id}: icon and illustration resolved to the same media URL`);
+    }
+
+    return {
+      card,
+      talentNameJa,
+      icon,
+      illustration: { ...illustration, matchMethod: illustrationMatchMethod },
+    };
+  });
+
+  const iconUrls = mappings.map((mapping) => mapping.icon.sourceUrl);
+  const illustrationUrls = mappings.map((mapping) => mapping.illustration.sourceUrl);
+  if (new Set(iconUrls).size !== mappings.length || new Set(illustrationUrls).size !== mappings.length) {
+    throw new Error("AppMedia resolved duplicate media URLs across card records");
+  }
+
+  const prepared = await mapWithConcurrency(mappings, 4, async (mapping) => {
+    const [iconBytes, illustrationBytes] = await Promise.all([
+      fetchBytes(mapping.icon.sourceUrl),
+      fetchBytes(mapping.illustration.sourceUrl),
+    ]);
+    const iconDimensions = webpDimensions(iconBytes, `${mapping.card.id} icon`);
+    const illustrationDimensions = webpDimensions(
+      illustrationBytes,
+      `${mapping.card.id} illustration`,
+    );
+    if (
+      iconDimensions.width !== requiredIconDimensions.width ||
+      iconDimensions.height !== requiredIconDimensions.height
+    ) {
+      throw new Error(
+        `${mapping.card.id}: icon is ${iconDimensions.width}x${iconDimensions.height}; ` +
+        `required ${requiredIconDimensions.width}x${requiredIconDimensions.height}`,
+      );
+    }
+    if (
+      illustrationDimensions.width < minimumIllustrationDimensions.width ||
+      illustrationDimensions.height < minimumIllustrationDimensions.height
+    ) {
+      throw new Error(
+        `${mapping.card.id}: illustration is ${illustrationDimensions.width}x${illustrationDimensions.height}; ` +
+        `minimum ${minimumIllustrationDimensions.width}x${minimumIllustrationDimensions.height}`,
+      );
+    }
+
+    const iconPath = `/game/cards/${mapping.card.id}.webp`;
+    const illustrationPath = `/game/illustrations/${mapping.card.id}.webp`;
+    mapping.card.artPath = iconPath;
+    mapping.card.illustrationPath = illustrationPath;
+
+    const provenance = (assetClass, asset, localPath, bytes, dimensions) => ({
+      assetClass,
+      cardId: mapping.card.id,
+      talentId: mapping.card.talentId,
+      sourcePage: asset.sourcePage,
+      sourceUrl: asset.sourceUrl,
+      localPath,
+      retrievedAt,
+      matchMethod: asset.matchMethod,
+      width: dimensions.width,
+      height: dimensions.height,
+      bytes: bytes.length,
+      sha256: createHash("sha256").update(bytes).digest("hex"),
+    });
+
+    return {
+      iconBytes,
+      illustrationBytes,
+      manifest: {
+        cardId: mapping.card.id,
+        talentId: mapping.card.talentId,
+        talentNameJa: mapping.talentNameJa,
+        status: "downloaded",
+        retrievedAt,
+        icon: provenance("card-icon", mapping.icon, iconPath, iconBytes, iconDimensions),
+        illustration: provenance(
+          "card-illustration",
+          mapping.illustration,
+          illustrationPath,
+          illustrationBytes,
+          illustrationDimensions,
+        ),
+      },
+    };
+  });
+
+  const manifest = prepared.map((asset) => asset.manifest);
+  if (
+    new Set(manifest.map((asset) => asset.icon.sha256)).size !== manifest.length ||
+    new Set(manifest.map((asset) => asset.illustration.sha256)).size !== manifest.length
+  ) {
+    throw new Error("AppMedia returned duplicate card-art binaries");
+  }
+  validateManifestCoverage(cards, manifest);
   await mkdir(artDirectory, { recursive: true });
   await mkdir(illustrationDirectory, { recursive: true });
-  const manifest = [];
-
-  for (const card of cards) {
-    const override = artOverrideByCardId[card.id];
-    const iconMatch = icons.find((image) =>
-      normalizeForMatch(image.alt).includes(normalizeForMatch(card.titleJa)),
-    );
-    const illustrationMatch = illustrations.find((image) =>
-      normalizeForMatch(image.alt).includes(normalizeForMatch(card.titleJa)),
-    );
-    if ((!iconMatch || !illustrationMatch) && !override) {
-      manifest.push({
-        cardId: card.id,
-        status: "missing",
-        sourcePage: sources.art.page,
-        sourceUrl: null,
-        localPath: null,
-        retrievedAt,
-      });
-      continue;
-    }
-
-    const iconSourceUrl = override?.iconSourceUrl ?? iconMatch["data-src"];
-    const illustrationSourceUrl =
-      override?.illustrationSourceUrl ?? illustrationMatch["data-src"];
-    const sourcePage = override?.sourcePage ?? sources.art.page;
-    const iconPath = `/game/cards/${card.id}.webp`;
-    const illustrationPath = `/game/illustrations/${card.id}.webp`;
-
-    async function download(sourceUrl, absolutePath) {
-      const response = await fetch(sourceUrl, {
-        headers: { "user-agent": "Mozilla/5.0 Yagoo-dori/1.0" },
-      });
-      if (!response.ok) {
-        throw new Error(`Art download failed ${response.status}: ${sourceUrl}`);
-      }
-      const bytes = Buffer.from(await response.arrayBuffer());
-      await writeFile(absolutePath, bytes);
-      return {
-        bytes: bytes.length,
-        sha256: createHash("sha256").update(bytes).digest("hex"),
-      };
-    }
-
-    const icon = await download(iconSourceUrl, join(artDirectory, `${card.id}.webp`));
-    const illustration = await download(
-      illustrationSourceUrl,
-      join(illustrationDirectory, `${card.id}.webp`),
-    );
-    card.artPath = iconPath;
-    card.illustrationPath = illustrationPath;
-    manifest.push({
-      cardId: card.id,
-      status: "downloaded",
-      sourcePage,
-      retrievedAt,
-      icon: { sourceUrl: iconSourceUrl, localPath: iconPath, ...icon },
-      illustration: {
-        sourceUrl: illustrationSourceUrl,
-        localPath: illustrationPath,
-        ...illustration,
-      },
-    });
-  }
+  await mapWithConcurrency(prepared, 8, async (asset) => {
+    await Promise.all([
+      writeFile(join(artDirectory, `${asset.manifest.cardId}.webp`), asset.iconBytes),
+      writeFile(
+        join(illustrationDirectory, `${asset.manifest.cardId}.webp`),
+        asset.illustrationBytes,
+      ),
+    ]);
+  });
 
   return manifest;
 }
@@ -378,7 +607,14 @@ const englishText = languageMap(
   english["LangGeneratedLiveSpecialSkillLevel_Eng.json"],
   english["LangGeneratedLiveLeaderSkill_Eng.json"],
 );
-const japaneseText = languageMap(japanese["LangCard_Jpn.json"]);
+const japaneseCardText = languageMap(japanese["LangCard_Jpn.json"]);
+const japaneseCharacterText = languageMap(japanese["LangCharacter_Jpn.json"]);
+const talentNameJaById = new Map(
+  [...characters].map(([characterId, character]) => [
+    characterId,
+    japaneseCharacterText.get(character.nameLangId),
+  ]),
+);
 const activeLevels = indexLevels(english["LiveActiveSkillLevel.json"], "liveActiveSkillId");
 const passiveLevels = indexLevels(english["LivePassiveSkillLevel.json"], "livePassiveSkillId");
 const specialLevels = indexLevels(english["LiveSpecialSkillLevel.json"], "liveSpecialSkillId");
@@ -393,7 +629,7 @@ const cards = english["Card.json"]
     const costume = costumes.get(card.rewardCostumeId);
     const rarity = rarityFrom(card.rarity);
     const title = englishText.get(card.nameLangId);
-    const titleJa = japaneseText.get(card.nameLangId);
+    const titleJa = japaneseCardText.get(card.nameLangId);
     const maxLevelRow = levelRows.get(card.cardLevelGroupId)?.at(-1);
     const parameterBase = Number(maxLevelRow?.parameterBaseValue ?? 0);
     const maxPotentialMultiplier = rarity >= 4 ? 1.1 : 1;
@@ -455,7 +691,6 @@ const cards = english["Card.json"]
         additionalEffectGroupId: leader?.additionalLivePassiveSkillEffectGroupId ?? null,
         additionalTriggerGroupId: leader?.additionalLiveSkillTriggerGroupId ?? null,
       },
-      editorialTier: editorialTier(card.id, talentName, rarity),
     };
   })
   .sort((left, right) => {
@@ -463,9 +698,20 @@ const cards = english["Card.json"]
     return left.talentName.localeCompare(right.talentName) || left.id.localeCompare(right.id);
   });
 
-const manifest = skipArt
-  ? JSON.parse(await readFile(assetManifestFile, "utf8"))
-  : await downloadArt(cards);
+let manifest;
+if (skipArt) {
+  const storedManifest = JSON.parse(await readFile(assetManifestFile, "utf8"));
+  manifest = storedManifest.assets;
+  validateManifestCoverage(cards, manifest);
+  const assetByCardId = new Map(manifest.map((entry) => [entry.cardId, entry]));
+  for (const card of cards) {
+    const asset = assetByCardId.get(card.id);
+    card.artPath = asset?.icon?.localPath ?? null;
+    card.illustrationPath = asset?.illustration?.localPath ?? null;
+  }
+} else {
+  manifest = await downloadArt(cards, talentNameJaById);
+}
 
 const payload = {
   schemaVersion: 1,
@@ -482,18 +728,32 @@ const payload = {
     "HolodoriDB tables are joined by explicit IDs and pinned commits.",
     "One-copy parameters use the maximum level curve without duplicate Potential bonuses.",
     "Max-Potential parameters apply the rarity 4/5 10% all-parameter Potential bonus.",
-    "Editorial tiers reproduce the cited AppMedia score-performance snapshot and are not Yagoo-dori calculations.",
   ],
   cards,
 };
 
 await mkdir(dirname(outputFile), { recursive: true });
 await writeFile(outputFile, `${JSON.stringify(payload, null, 2)}\n`);
-await writeFile(assetManifestFile, `${JSON.stringify({ retrievedAt, source: sources.art, assets: manifest }, null, 2)}\n`);
+if (!skipArt) {
+  await writeFile(
+    assetManifestFile,
+    `${JSON.stringify({
+      schemaVersion: 2,
+      retrievedAt,
+      source: sources.art,
+      expectedCounts: {
+        cards: cards.length,
+        icons: cards.length,
+        illustrations: cards.length,
+      },
+      assets: manifest,
+    }, null, 2)}\n`,
+  );
+}
 
 const missingArt = manifest.filter((entry) => entry.status !== "downloaded");
 console.log(`Normalized ${cards.length} cards (${payload.counts.fiveStar} five-star, ${payload.counts.fourStar} four-star).`);
-console.log(`Downloaded ${payload.counts.art} card-art files; ${missingArt.length} unresolved.`);
+console.log(`${skipArt ? "Reused" : "Downloaded"} ${payload.counts.art} card-art pairs; ${missingArt.length} unresolved.`);
 if (missingArt.length > 0) {
   console.log(`Missing: ${missingArt.map((entry) => entry.cardId).join(", ")}`);
   process.exitCode = 1;

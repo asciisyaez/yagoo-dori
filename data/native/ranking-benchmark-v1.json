@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "benchmarkId": "launch-2026-07-31-matched-context-v1",
+  "methodologyVersion": "yd-native-ranking-benchmark-1.0.0",
+  "retrievedAt": "2026-07-31",
+  "sources": {
+    "roster": {
+      "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
+      "commit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+      "masterVersion": "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be"
+    },
+    "charts": {
+      "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
+      "commit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+      "masterVersion": "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be"
+    }
+  },
+  "cohort": {
+    "expectedCardCount": 113,
+    "orderedCardIdsSha256": "464bc16340a7bee8c1ce0cb8e637fcffc9cadba82c2c3d2aee5f0ef506e80d9f",
+    "orderedCardIds": [
+      "card-00001-4-cmmn-0000-00",
+      "card-00001-5-uniq-0000-00",
+      "card-00002-4-cmmn-0000-00",
+      "card-00002-5-uniq-0001-00",
+      "card-00004-4-cmmn-0000-00",
+      "card-00004-5-uniq-0005-00",
+      "card-00005-4-cmmn-0000-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00006-4-cmmn-0000-00",
+      "card-00006-5-uniq-0007-00",
+      "card-00007-4-cmmn-0000-00",
+      "card-00007-5-uniq-0008-00",
+      "card-00010-4-cmmn-0000-00",
+      "card-00010-5-uniq-0010-00",
+      "card-00011-4-cmmn-0000-00",
+      "card-00011-5-uniq-0011-00",
+      "card-00012-4-cmmn-0000-00",
+      "card-00012-5-uniq-0012-00",
+      "card-00012-5-uniq-0062-00",
+      "card-00013-4-cmmn-0000-00",
+      "card-00013-5-uniq-0002-00",
+      "card-00014-4-cmmn-0000-00",
+      "card-00014-5-uniq-0013-00",
+      "card-00015-4-cmmn-0000-00",
+      "card-00015-5-uniq-0003-00",
+      "card-00016-4-cmmn-0000-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00017-4-cmmn-0000-00",
+      "card-00017-5-uniq-0015-00",
+      "card-00018-4-cmmn-0000-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00019-4-cmmn-0000-00",
+      "card-00019-5-uniq-0016-00",
+      "card-00021-4-cmmn-0000-00",
+      "card-00021-5-uniq-0017-00",
+      "card-00021-5-uniq-0064-00",
+      "card-00022-4-cmmn-0000-00",
+      "card-00022-5-uniq-0018-00",
+      "card-00022-5-uniq-0063-00",
+      "card-00023-4-cmmn-0000-00",
+      "card-00023-5-uniq-0019-00",
+      "card-00026-4-cmmn-0000-00",
+      "card-00026-5-uniq-0021-00",
+      "card-00026-5-uniq-0065-00",
+      "card-00027-4-cmmn-0000-00",
+      "card-00027-5-uniq-0022-00",
+      "card-00028-4-cmmn-0000-00",
+      "card-00028-5-uniq-0023-00",
+      "card-00030-4-cmmn-0000-00",
+      "card-00030-5-uniq-0024-00",
+      "card-00031-4-cmmn-0000-00",
+      "card-00031-5-uniq-0025-00",
+      "card-00032-4-cmmn-0000-00",
+      "card-00032-5-uniq-0026-00",
+      "card-00034-4-cmmn-0000-00",
+      "card-00034-5-uniq-0027-00",
+      "card-00035-4-cmmn-0000-00",
+      "card-00035-5-uniq-0028-00",
+      "card-00036-4-cmmn-0000-00",
+      "card-00036-5-uniq-0029-00",
+      "card-00037-4-cmmn-0000-00",
+      "card-00037-5-uniq-0030-00",
+      "card-00039-4-cmmn-0000-00",
+      "card-00039-5-uniq-0032-00",
+      "card-03001-4-cmmn-0000-00",
+      "card-03001-5-uniq-0033-00",
+      "card-03002-4-cmmn-0000-00",
+      "card-03002-5-uniq-0034-00",
+      "card-03003-4-cmmn-0000-00",
+      "card-03003-5-uniq-0035-00",
+      "card-03004-4-cmmn-0000-00",
+      "card-03004-5-uniq-0036-00",
+      "card-03005-4-cmmn-0000-00",
+      "card-03005-5-uniq-0037-00",
+      "card-03006-4-cmmn-0000-00",
+      "card-03006-5-uniq-0038-00",
+      "card-03007-4-cmmn-0000-00",
+      "card-03007-5-uniq-0039-00",
+      "card-03008-4-cmmn-0000-00",
+      "card-03008-5-uniq-0040-00",
+      "card-03009-4-cmmn-0000-00",
+      "card-03009-5-uniq-0041-00",
+      "card-04001-4-cmmn-0000-00",
+      "card-04001-5-uniq-0042-00",
+      "card-04002-4-cmmn-0000-00",
+      "card-04002-5-uniq-0043-00",
+      "card-04003-4-cmmn-0000-00",
+      "card-04003-5-uniq-0044-00",
+      "card-04007-4-cmmn-0000-00",
+      "card-04007-5-uniq-0047-00",
+      "card-04010-4-cmmn-0000-00",
+      "card-04010-5-uniq-0049-00",
+      "card-04012-4-cmmn-0000-00",
+      "card-04012-5-uniq-0051-00",
+      "card-04013-4-cmmn-0000-00",
+      "card-04013-5-uniq-0052-00",
+      "card-04014-4-cmmn-0000-00",
+      "card-04014-5-uniq-0053-00",
+      "card-04015-4-cmmn-0000-00",
+      "card-04015-5-uniq-0054-00",
+      "card-04016-4-cmmn-0000-00",
+      "card-04016-5-uniq-0055-00",
+      "card-04017-4-cmmn-0000-00",
+      "card-04017-5-uniq-0056-00",
+      "card-06002-4-cmmn-0000-00",
+      "card-06002-5-uniq-0058-00",
+      "card-06002-5-uniq-0066-00",
+      "card-06003-4-cmmn-0000-00",
+      "card-06003-5-uniq-0059-00",
+      "card-06004-4-cmmn-0000-00",
+      "card-06004-5-uniq-0060-00",
+      "card-06005-4-cmmn-0000-00",
+      "card-06005-5-uniq-0061-00"
+    ]
+  },
+  "corpus": {
+    "difficulty": "expert",
+    "contextsPerChart": 10,
+    "referenceSharePermil": 700,
+    "currentSharePermil": 300,
+    "currentCutoffEpochMilliseconds": 1785542399999,
+    "selection": {
+      "reference": "Frozen rank-space maximin coverage of duration, note density, Expert level, and Live-score coefficient.",
+      "current": "Nine newest released Expert charts at the frozen retrieval cutoff; ties use descending chart key."
+    },
+    "entriesSha256": "9b7ddae06b00d7b797298aef76c185556f1b0e3908006c58451b1af562dc0b11",
+    "reference": [
+      {
+        "chartKey": "m0004:expert",
+        "expectedChartHash": "e242ffc6b317019f871fa3459d8df865"
+      },
+      {
+        "chartKey": "m0012:expert",
+        "expectedChartHash": "6368b27b59999c48b7a6ee3381ed4c3d"
+      },
+      {
+        "chartKey": "m0032:expert",
+        "expectedChartHash": "c21cd05905d8542858e3f3970f3368df"
+      },
+      {
+        "chartKey": "m0033:expert",
+        "expectedChartHash": "6b496191d28e5082cdcf7b28ad8d3922"
+      },
+      {
+        "chartKey": "m0038:expert",
+        "expectedChartHash": "87fb6a3b6ca8d4514565b864a209b4bf"
+      },
+      {
+        "chartKey": "m0058:expert",
+        "expectedChartHash": "6fb62e81dc457f87a1b9d9d91c606a29"
+      },
+      {
+        "chartKey": "m0063:expert",
+        "expectedChartHash": "eb7c6ea5a1687d582aba89ba4e26aae8"
+      },
+      {
+        "chartKey": "m0074:expert",
+        "expectedChartHash": "45cb3e34396982301faca95a97a4385e"
+      },
+      {
+        "chartKey": "m0095:expert",
+        "expectedChartHash": "cd826c7d7420fd2b2b53c1cfcf3f232b"
+      },
+      {
+        "chartKey": "m0121:expert",
+        "expectedChartHash": "e79595488c96f63f66aad1c7c02d303d"
+      },
+      {
+        "chartKey": "m0131:expert",
+        "expectedChartHash": "7045dda67fe2fd9b905fb69268449017"
+      },
+      {
+        "chartKey": "m0133:expert",
+        "expectedChartHash": "82df8c5f61c7c3837b5cc94c7eadb43f"
+      },
+      {
+        "chartKey": "m0149:expert",
+        "expectedChartHash": "82b15511a6ce8213c47a8b896d94a4a4"
+      },
+      {
+        "chartKey": "m0181:expert",
+        "expectedChartHash": "1e3ad93ae23adc95a863695101af20fb"
+      },
+      {
+        "chartKey": "m0186:expert",
+        "expectedChartHash": "98de0f5da73bc30314c5564fc0fcc9ab"
+      },
+      {
+        "chartKey": "m0188:expert",
+        "expectedChartHash": "54cd56206974073df0fba7afdbf98fbc"
+      },
+      {
+        "chartKey": "m0198:expert",
+        "expectedChartHash": "d410ad5f25a6ecae881bf563ab573f15"
+      },
+      {
+        "chartKey": "m0201:expert",
+        "expectedChartHash": "c869633df9f884e583d0eb13069dc86c"
+      },
+      {
+        "chartKey": "m0300:expert",
+        "expectedChartHash": "ce21860d82671940c3a82bf6979d24af"
+      },
+      {
+        "chartKey": "m0330:expert",
+        "expectedChartHash": "ac8b75f978ace1651b0aa5f6bfaec341"
+      },
+      {
+        "chartKey": "m0337:expert",
+        "expectedChartHash": "4abac55b4efe382e72e0918979b3bf0f"
+      }
+    ],
+    "current": [
+      {
+        "chartKey": "m0308:expert",
+        "expectedChartHash": "acec08c476a9d9fadad2b373eebcb7a3"
+      },
+      {
+        "chartKey": "m0302:expert",
+        "expectedChartHash": "015e7298f6efc63af4481ff32190d0ee"
+      },
+      {
+        "chartKey": "m0329:expert",
+        "expectedChartHash": "8ec7d5b83ecf704a4ddbecbe4a30f19c"
+      },
+      {
+        "chartKey": "m0524:expert",
+        "expectedChartHash": "b843baf6f8c223b82f2d924ea2161c19"
+      },
+      {
+        "chartKey": "m0312:expert",
+        "expectedChartHash": "644befff51a396ef9ca20040622e541d"
+      },
+      {
+        "chartKey": "m0311:expert",
+        "expectedChartHash": "377ba1d5fd0ea01759ffa23ddb001d99"
+      },
+      {
+        "chartKey": "m0310:expert",
+        "expectedChartHash": "60aa9544d492557a7d927646615ce0d4"
+      },
+      {
+        "chartKey": "m0309:expert",
+        "expectedChartHash": "44ce437186ab0c936e9a96bd3b9ab0c8"
+      },
+      {
+        "chartKey": "m0206:expert",
+        "expectedChartHash": "9b1d3743fceb9be12e4a2c4905904f7c"
+      }
+    ]
+  },
+  "schedule": {
+    "algorithm": "cyclic-coprime-v1",
+    "cohortStep": 47,
+    "memberPartnerOffset": 11,
+    "memberLeaderStep": 31,
+    "memberLeaderOffset": 23,
+    "leaderMemberOffset": 59
+  }
+}

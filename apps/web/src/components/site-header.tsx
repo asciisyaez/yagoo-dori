@@ -7,11 +7,9 @@ import { useEffect, useState } from "react";
 import {
   BarChart3,
   BookOpen,
-  Database,
   Home,
   LibraryBig,
   Menu,
-  Shirt,
   UsersRound,
 } from "lucide-react";
 
@@ -23,25 +21,21 @@ const navigation = [
   {
     label: "Database",
     items: [
-      { href: "/cards", label: "Member cards", icon: LibraryBig },
+      { href: "/cards", label: "Cards & Outfits", icon: LibraryBig },
       { href: "/talents", label: "Talents", icon: UsersRound },
-      { href: "/leaders", label: "Leaders / Outfits", icon: Shirt },
     ],
   },
   {
     label: "Rankings",
-    items: [{ href: "/tier-list", label: "Member tier list", icon: BarChart3 }],
+    items: [{ href: "/tier-list", label: "Tier list", icon: BarChart3 }],
   },
   {
     label: "Learn",
-    items: [
-      { href: "/guides", label: "Team guides", icon: BookOpen },
-      { href: "/sources", label: "Data sources", icon: Database },
-    ],
+    items: [{ href: "/guides", label: "Team guides", icon: BookOpen }],
   },
 ] as const;
 
-function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
+function NavigationLinks({ mobile = false, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
@@ -59,6 +53,7 @@ function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
                 href={item.href}
                 key={item.href}
                 prefetch={false}
+                {...(mobile && onNavigate ? { onClick: onNavigate } : {})}
               >
                 <Icon aria-hidden="true" />
                 <span>{item.label}</span>
@@ -90,10 +85,6 @@ export function SiteHeader() {
           <span><strong>Yagoo-dori</strong><small>hololive Dreams</small></span>
         </Link>
         <NavigationLinks />
-        <div className="sidebar-snapshot">
-          <span className="snapshot-pulse" aria-hidden="true" />
-          <span><strong>Roster synced</strong><small>30 Jul 2026 snapshot</small></span>
-        </div>
       </aside>
 
       <header className="mobile-topbar">
@@ -112,8 +103,8 @@ export function SiteHeader() {
             <Menu aria-hidden="true" /><span>Menu</span>
           </button>
           {mobileOpen && <div className="mobile-drawer-panel" id="mobile-navigation-panel">
-            <div className="drawer-heading"><strong>Navigate</strong><span>Database & guides</span></div>
-            <NavigationLinks mobile />
+            <div className="drawer-heading"><strong>Navigate</strong><span>Cards, tiers & guides</span></div>
+            <NavigationLinks mobile onNavigate={() => setMobileOpen(false)} />
           </div>}
         </div>
       </header>

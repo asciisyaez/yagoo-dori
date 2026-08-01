@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "id": "launch-2026-07-31-member-duplicate-enabled-ceiling-yd2",
+  "createdAt": "2026-07-31T16:00:00.000Z",
+  "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+  "methodologyVersion": "yd-native-ranking-2.0.0",
+  "entityKind": "member",
+  "lens": "duplicate-enabled-ceiling",
+  "scales": {
+    "G": {
+      "median": "10304",
+      "mad": "39483"
+    },
+    "P": {
+      "median": "67328",
+      "mad": "43007"
+    },
+    "B": {
+      "median": "824",
+      "mad": "824"
+    },
+    "E": {
+      "median": "12913",
+      "mad": "38913"
+    },
+    "C": {
+      "median": "17334",
+      "mad": "748171"
+    }
+  }
+}

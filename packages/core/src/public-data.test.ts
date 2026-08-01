@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { publicCardBySlug, publicCards, publicData, publicTalents } from "./public-data";
+import {
+  PublicDataSchema,
+  publicCardBySlug,
+  publicCards,
+  publicData,
+  publicTalents,
+} from "./public-data";
 
 const AZKI_CARD_SLUG = "azki-a-flower-in-full-bloom-card-00013-5-uniq-0002-00";
 
@@ -21,14 +27,43 @@ describe("pinned public hololive Dreams dataset", () => {
     expect(publicCards.filter((card) => card.rarity === 5)).toHaveLength(59);
   });
 
-  it("keeps the attributed editorial tier snapshot separate from four-star records", () => {
-    const fiveStar = publicCards.filter((card) => card.rarity === 5);
-    const fourStar = publicCards.filter((card) => card.rarity === 4);
+  it("validates declared counts instead of hard-coding the launch roster size", () => {
+    const expanded = structuredClone(publicData);
+    const source = expanded.cards[0]!;
+    expanded.cards.push({
+      ...source,
+      id: "card-future-5-uniq-9999-00",
+      slug: "future-talent-future-card-card-future-5-uniq-9999-00",
+      talentId: "future-talent",
+      talentName: "Future Talent",
+      assetId: "future-card-art",
+      artPath: "/game/cards/card-future-5-uniq-9999-00.webp",
+      illustrationPath: "/game/illustrations/card-future-5-uniq-9999-00.webp",
+    });
+    expanded.counts.talents += 1;
+    expanded.counts.fiveStar += 1;
+    expanded.counts.total += 1;
+    expanded.counts.art += 1;
 
-    expect(fiveStar.filter((card) => card.editorialTier === "SS")).toHaveLength(10);
-    expect(fiveStar.filter((card) => card.editorialTier === "S")).toHaveLength(23);
-    expect(fiveStar.filter((card) => card.editorialTier === "A")).toHaveLength(26);
-    expect(fourStar.every((card) => card.editorialTier === null)).toBe(true);
+    expect(PublicDataSchema.safeParse(expanded).success).toBe(true);
+    expanded.counts.total -= 1;
+    expect(PublicDataSchema.safeParse(expanded).success).toBe(false);
+  });
+
+  it("excludes editorial tier labels and rejects them if reintroduced", () => {
+    expect("editorialTier" in publicData.sourceSnapshots).toBe(false);
+    expect(publicCards.every((card) => !("editorialTier" in card))).toBe(true);
+    expect(publicData.notes.every((note) => !/editorial|tier snapshot/i.test(note))).toBe(true);
+
+    const withCardTier = structuredClone(publicData) as unknown as Record<string, unknown>;
+    const cards = withCardTier.cards as Array<Record<string, unknown>>;
+    cards[0]!.editorialTier = "SS";
+    expect(PublicDataSchema.safeParse(withCardTier).success).toBe(false);
+
+    const withTierSource = structuredClone(publicData) as unknown as Record<string, unknown>;
+    const sources = withTierSource.sourceSnapshots as Record<string, unknown>;
+    sources.editorialTier = { page: "https://example.com", label: "tier snapshot" };
+    expect(PublicDataSchema.safeParse(withTierSource).success).toBe(false);
   });
 
   it("preserves many-to-many talent group membership", () => {

@@ -59,8 +59,7 @@ export const PublicCardSchema = z.object({
     additionalEffectGroupId: z.string().min(1).nullable(),
     additionalTriggerGroupId: z.string().min(1).nullable(),
   }),
-  editorialTier: z.enum(["SS", "S", "A"]).nullable(),
-});
+}).strict();
 
 export const PublicDataSchema = z.object({
   schemaVersion: z.literal(1),
@@ -77,33 +76,22 @@ export const PublicDataSchema = z.object({
       masterVersion: z.string().regex(/^[0-9a-f]{64}$/),
     }),
     art: z.object({ page: z.url(), label: z.string().min(1) }),
-    editorialTier: z.object({
-      page: z.url(),
-      label: z.string().min(1),
-      updatedAt: z.iso.datetime({ offset: true }),
-    }),
-  }),
+  }).strict(),
   counts: z.object({
-    talents: z.literal(54),
-    fourStar: z.literal(54),
-    fiveStar: z.literal(59),
-    total: z.literal(113),
-    art: z.literal(113),
+    talents: z.number().int().positive(),
+    fourStar: z.number().int().nonnegative(),
+    fiveStar: z.number().int().nonnegative(),
+    total: z.number().int().positive(),
+    art: z.number().int().nonnegative(),
   }),
   notes: z.array(z.string().min(1)),
-  cards: z.array(PublicCardSchema).length(113),
+  cards: z.array(PublicCardSchema).min(1),
 }).superRefine((data, context) => {
   const ids = new Set(data.cards.map((card) => card.id));
   const slugs = new Set(data.cards.map((card) => card.slug));
   const talents = new Set(data.cards.map((card) => card.talentId));
   const fourStar = data.cards.filter((card) => card.rarity === 4);
   const fiveStar = data.cards.filter((card) => card.rarity === 5);
-  const tierCounts = Object.fromEntries(
-    ["SS", "S", "A"].map((tier) => [
-      tier,
-      fiveStar.filter((card) => card.editorialTier === tier).length,
-    ]),
-  );
 
   if (ids.size !== data.cards.length) {
     context.addIssue({ code: "custom", path: ["cards"], message: "Card IDs must be unique" });
@@ -111,14 +99,21 @@ export const PublicDataSchema = z.object({
   if (slugs.size !== data.cards.length) {
     context.addIssue({ code: "custom", path: ["cards"], message: "Card slugs must be unique" });
   }
-  if (talents.size !== 54 || fourStar.length !== 54 || fiveStar.length !== 59) {
-    context.addIssue({ code: "custom", path: ["counts"], message: "Roster counts do not match the pinned snapshot" });
-  }
-  if (fourStar.some((card) => card.editorialTier !== null)) {
-    context.addIssue({ code: "custom", path: ["cards"], message: "The AppMedia score-tier snapshot covers 5-star cards only" });
-  }
-  if (tierCounts.SS !== 10 || tierCounts.S !== 23 || tierCounts.A !== 26) {
-    context.addIssue({ code: "custom", path: ["cards"], message: "Editorial tier counts do not match the 2026-07-30 AppMedia snapshot" });
+  const actualCounts = {
+    talents: talents.size,
+    fourStar: fourStar.length,
+    fiveStar: fiveStar.length,
+    total: data.cards.length,
+    art: data.cards.filter((card) => card.artPath && card.illustrationPath).length,
+  };
+  for (const [key, actual] of Object.entries(actualCounts)) {
+    if (data.counts[key as keyof typeof data.counts] !== actual) {
+      context.addIssue({
+        code: "custom",
+        path: ["counts", key],
+        message: `Declared ${key} count does not match the normalized roster`,
+      });
+    }
   }
   for (const [index, card] of data.cards.entries()) {
     const totalDistribution =

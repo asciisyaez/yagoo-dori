@@ -8,7 +8,7 @@ import { talentRecords } from "./talent-records";
 
 export const metadata: Metadata = {
   title: "Holomem talent database",
-  description: "Browse all 54 playable holomem and their current 4-star and 5-star Member cards.",
+  description: `Browse all ${publicData.counts.talents} playable holomem and their current 4-star and 5-star Member cards.`,
 };
 
 export default function TalentsPage() {
@@ -21,7 +21,7 @@ export default function TalentsPage() {
         <div>
           <p className="db-eyebrow">Database / Talents</p>
           <h1>Holomem directory</h1>
-          <p>Choose a talent to compare every current 4★ and 5★ Member card and its linked Leader Outfit.</p>
+          <p>Choose a talent to compare every current 4★ and 5★ card and its linked Leader Outfit.</p>
         </div>
         <dl className="database-summary">
           <div><dt>Talents</dt><dd>{publicData.counts.talents}</dd></div>

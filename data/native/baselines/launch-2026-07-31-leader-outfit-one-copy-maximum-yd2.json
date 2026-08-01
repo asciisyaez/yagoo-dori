@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "id": "launch-2026-07-31-leader-outfit-one-copy-maximum-yd2",
+  "createdAt": "2026-07-31T16:00:00.000Z",
+  "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+  "methodologyVersion": "yd-native-ranking-2.0.0",
+  "entityKind": "leader-outfit",
+  "lens": "one-copy-maximum",
+  "scales": {
+    "G": {
+      "median": "19780",
+      "mad": "32757"
+    },
+    "P": {
+      "median": "71504",
+      "mad": "37966"
+    },
+    "B": {
+      "median": "1933",
+      "mad": "1933"
+    },
+    "E": {
+      "median": "25127",
+      "mad": "37452"
+    },
+    "C": {
+      "median": "142678",
+      "mad": "728667"
+    }
+  }
+}

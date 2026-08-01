@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s · Yagoo-dori",
   },
   description:
-    "An English hololive Dreams card database, Member tier list, Leader directory, and team-building reference.",
+    "A hololive Dreams card and Leader Outfit database, Member tier list, and team-building guide.",
   alternates: { canonical: "/" },
   robots:
     process.env.NEXT_PUBLIC_PUBLICATION_READY === "true"

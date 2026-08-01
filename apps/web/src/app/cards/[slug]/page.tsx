@@ -1,9 +1,15 @@
-import { publicCardBySlug, publicCards, publicData } from "@yagoo-dori/core";
+import {
+  nativeLeaderOutfitRankingEntryByLensAndCard,
+  nativeGuideByAnchorCardId,
+  nativeRankingEntryByLensAndCard,
+  publicCardBySlug,
+  publicCards,
+} from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, Sparkles, Timer, Users } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Timer, Users } from "lucide-react";
 
 export function generateStaticParams() {
   return publicCards.map((card) => ({ slug: card.slug }));
@@ -14,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: card ? `${card.talentName} — ${card.title}` : "Card not found",
     description: card
-      ? `${card.rarity}★ ${card.attribute} Member card stats and skills for ${card.talentName}.`
+      ? `${card.rarity}★ ${card.attribute} Member card, skills, stats, and Leader Outfit for ${card.talentName}.`
       : undefined,
   };
 }
@@ -24,7 +30,7 @@ function total(parameters: { performance: number; technique: number; sense: numb
 }
 
 function cleanDescription(description: string | null | undefined) {
-  return description?.replace(/\[\/?[^\]]+\]/g, "") ?? "Description unavailable in the pinned English table.";
+  return description?.replace(/\[\/?[^\]]+\]/g, "") ?? "Description unavailable.";
 }
 
 function SkillBlock({
@@ -73,11 +79,18 @@ function SkillBlock({
 export default async function CardPage({ params }: { params: Promise<{ slug: string }> }) {
   const card = publicCardBySlug.get((await params).slug);
   if (!card) notFound();
+  const standardRanking = nativeRankingEntryByLensAndCard
+    .get("one-copy-maximum")
+    ?.get(card.id);
+  const standardLeaderRanking = nativeLeaderOutfitRankingEntryByLensAndCard
+    .get("one-copy-maximum")
+    ?.get(card.id);
   const related = publicCards.filter((candidate) => candidate.talentId === card.talentId && candidate.id !== card.id);
+  const teamGuide = nativeGuideByAnchorCardId.get(card.id);
 
   return (
     <div className="database-page card-profile-page">
-      <Link className="back-link" href="/cards"><ArrowLeft aria-hidden="true" /> Member-card database</Link>
+      <Link className="back-link" href="/cards"><ArrowLeft aria-hidden="true" /> Cards and Outfits</Link>
 
       <section className={`card-profile-hero attribute-${card.attribute}`}>
         <div className="card-illustration">
@@ -98,7 +111,16 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
           <div className="card-profile-badges">
             <span>Lv. {card.maxLevel}</span>
             <span>Member card</span>
-            {card.editorialTier && <span>AppMedia {card.editorialTier} tier</span>}
+            {standardRanking && (
+              <span className="native-tier-badge">
+                Member · {standardRanking.tier} tier
+              </span>
+            )}
+            {standardLeaderRanking && (
+              <span className="native-tier-badge">
+                Leader Outfit · {standardLeaderRanking.tier} tier
+              </span>
+            )}
           </div>
         </div>
       </section>
@@ -146,7 +168,7 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      <section className="leader-outfit-panel">
+      <section className="leader-outfit-panel" id="leader-outfit">
         <div className="leader-icon"><Users aria-hidden="true" /></div>
         <div>
           <p className="db-eyebrow">Leader / Outfit skill</p>
@@ -165,7 +187,7 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
           <div className="related-card-grid">
             {related.map((item) => (
               <Link href={`/cards/${item.slug}`} key={item.id}>
-                <Image alt="" height={120} src={item.artPath} width={126} />
+                <Image alt="" height={120} src={item.artPath} width={120} />
                 <span><strong>{item.rarity}★ {item.title}</strong><small>{item.attribute}</small></span>
               </Link>
             ))}
@@ -173,12 +195,22 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
         </section>
       )}
 
-      <p className="compact-source-line">
-        Data snapshot {publicData.retrievedAt} · HolodoriDB {publicData.sourceSnapshots.english.commit.slice(0, 8)} ·
-        artwork indexed from Game8 · <a href={publicData.sourceSnapshots.art.page} target="_blank" rel="noreferrer">
-          source <ExternalLink aria-hidden="true" />
-        </a>
-      </p>
+      {teamGuide && (
+        <section className="related-card-section">
+          <div className="section-title-row">
+            <div><p className="db-eyebrow">Team guide</p><h2>Build around this exact card</h2></div>
+            <Users aria-hidden="true" />
+          </div>
+          <div className="related-card-grid">
+            <Link href={`/guides/${teamGuide.slug}`}>
+              <Image alt="" height={120} src={card.artPath} width={120} />
+              <span><strong>{teamGuide.title}</strong><small>Premium, standard, and 4★-accessible formations</small></span>
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+      )}
+
     </div>
   );
 }

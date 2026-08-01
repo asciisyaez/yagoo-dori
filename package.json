@@ -18,7 +18,11 @@
     "test:e2e:update": "playwright test --update-snapshots",
     "data:validate": "pnpm --filter @yagoo-dori/core data:validate",
     "rankings:generate": "pnpm --filter @yagoo-dori/core rankings:generate",
-    "data:sync": "node scripts/sync-public-data.mjs",
+    "guides:generate": "pnpm --filter @yagoo-dori/core guides:generate",
+    "data:sync": "pnpm data:sync:public && pnpm data:sync:mechanics && pnpm data:sync:songs",
+    "data:sync:public": "node scripts/sync-public-data.mjs",
+    "data:sync:mechanics": "node scripts/sync-mechanics-data.mjs",
+    "data:sync:songs": "node scripts/sync-song-data.mjs",
     "assets:check": "node scripts/check-assets.mjs",
     "project:status": "node scripts/project-status.mjs"
   },

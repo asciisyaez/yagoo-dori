@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "launch-2026-07-31-member-tier-calibration-v1",
+  "methodologyVersion": "yd-member-tier-calibration-1.0.0",
+  "sourceSnapshotId": "2026-07-31-yd-native-2",
+  "sourceSnapshotSha256": "e9cb8811e5587077713bd9bce78db740f7f6020b9eef705b5748218afd5f687d",
+  "selection": {
+    "fiveStarBands": "SS top 10%, S next 20%, A next 40%, B remaining 30%",
+    "rarityBoundary": "Midpoint between the weakest 5-star and strongest 4-star launch index",
+    "fourStarBands": "C upper half, D lower half",
+    "futureCards": "Classify against these fixed index boundaries without recalibrating the launch roster"
+  },
+  "lenses": {
+    "low-investment": {
+      "SS": 106.768945,
+      "S": 104.881475,
+      "A": 102.680665,
+      "B": 97.051755,
+      "C": 92.013155
+    },
+    "one-copy-maximum": {
+      "SS": 106.764245,
+      "S": 104.875805,
+      "A": 102.67487,
+      "B": 97.05101,
+      "C": 92.018795
+    },
+    "duplicate-enabled-ceiling": {
+      "SS": 109.97055,
+      "S": 106.63282,
+      "A": 103.896005,
+      "B": 97.59546,
+      "C": 92.56485
+    }
+  }
+}

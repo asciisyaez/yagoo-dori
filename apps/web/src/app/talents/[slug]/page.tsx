@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const talent = talentRecordBySlug.get((await params).slug);
   if (!talent) return { title: "Talent not found" };
   return {
-    title: `${talent.name} cards and Leader Outfits`,
-    description: `Compare every current 4-star and 5-star ${talent.name} Member card and linked Leader Outfit.`,
+    title: `${talent.name} cards and Outfits`,
+    description: `Compare every current 4-star and 5-star ${talent.name} card and its linked Leader Outfit.`,
   };
 }
 
@@ -48,7 +48,7 @@ export default async function TalentPage({ params }: { params: Promise<{ slug: s
         <div className="card-profile-copy">
           <p className="db-eyebrow">{talent.branch} · {talent.groups.join(" + ")}</p>
           <h1>{talent.name}</h1>
-          <p className="talent-profile-intro">All current Member cards and the exact reward Outfit attached to each card.</p>
+          <p className="talent-profile-intro">Compare every current card and the Leader Outfit attached to it.</p>
           <div className="card-profile-badges">
             <span>{cards.length} Member cards</span>
             <span>{cards.length} Leader Outfits</span>
@@ -85,7 +85,7 @@ export default async function TalentPage({ params }: { params: Promise<{ slug: s
         </div>
         <div className="talent-outfit-list">
           {cards.map((card) => (
-            <Link href={`/leaders/${card.slug}`} key={card.leaderOutfit.costumeId}>
+            <Link href={`/cards/${card.slug}#leader-outfit`} key={card.leaderOutfit.costumeId}>
               <Image alt="" height={88} src={card.artPath} width={92} />
               <span>
                 <small>Unlocked by {card.rarity}★ {card.title}</small>
