@@ -341,30 +341,41 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     const candidateLeaderIds = preferredLeaderOutfitCardId
       ? [preferredLeaderOutfitCardId, ...leaderRepresentatives]
       : leaderRepresentatives;
-    const leaderBranches = [...new Set(candidateLeaderIds)]
-      .map((leaderOutfitCardId) => {
-        boundEvaluations += 1;
-        return {
-          leaderOutfitCardId,
-          upperCentralUtility: boundContext.bound({
-            partialMemberCardIds: members,
-            eligibleMemberCardIds: members,
-            eligibleLeaderOutfitCardIds: [leaderOutfitCardId],
-          }).upperCentralUtility,
-        };
-      })
-      .sort(
-        (left, right) =>
-          right.upperCentralUtility - left.upperCentralUtility ||
-          left.leaderOutfitCardId.localeCompare(right.leaderOutfitCardId),
-      );
-    leaderTeamCandidates += leaderBranches.length;
-    for (const leaderBranch of leaderBranches) {
-      const { leaderOutfitCardId } = leaderBranch;
-      if (best && leaderBranch.upperCentralUtility < best.relativeUtility.central) {
-        prunedLeaderTeamCandidates += 1;
-        continue;
+    const allLeaderIds = [...new Set(candidateLeaderIds)];
+    leaderTeamCandidates += allLeaderIds.length;
+    let leaderIds = allLeaderIds;
+    if (!countLeaf) {
+      const leaderBranches = allLeaderIds
+        .map((leaderOutfitCardId) => {
+          boundEvaluations += 1;
+          return {
+            leaderOutfitCardId,
+            upperCentralUtility: boundContext.bound({
+              partialMemberCardIds: members,
+              eligibleMemberCardIds: members,
+              eligibleLeaderOutfitCardIds: [leaderOutfitCardId],
+            }).upperCentralUtility,
+          };
+        })
+        .sort(
+          (left, right) =>
+            right.upperCentralUtility - left.upperCentralUtility ||
+            left.leaderOutfitCardId.localeCompare(right.leaderOutfitCardId),
+        );
+      leaderIds = [];
+      for (const leaderBranch of leaderBranches) {
+        if (best && leaderBranch.upperCentralUtility < best.relativeUtility.central) {
+          prunedLeaderTeamCandidates += 1;
+          continue;
+        }
+        leaderIds.push(leaderBranch.leaderOutfitCardId);
       }
+    }
+    // Complete team leaves are already legal and are cheap to compare with
+    // the exact central evaluator. Rebuilding an optimistic bound for every
+    // Leader at each leaf costs more than the exact comparison, so only the
+    // non-counted incumbent seeds use the Leader bound for ordering/pruning.
+    for (const leaderOutfitCardId of leaderIds) {
       exactLeaderTeamEvaluations += 1;
       const centralUtilities = input.chartKeys.map((chartKey) => {
         checkRuntime();
@@ -388,7 +399,10 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         centralUtilities.reduce((sum, utility) => sum + utility, 0) /
           centralUtilities.length,
       );
-      if (best && central < best.relativeUtility.central) continue;
+      if (best && central < best.relativeUtility.central) {
+        prunedLeaderTeamCandidates += 1;
+        continue;
+      }
       const utilities = input.chartKeys.map((chartKey) => {
         checkRuntime();
         intervalUtilityEvaluations += 1;
