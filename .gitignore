@@ -13,3 +13,8 @@ output/
 !.env.example
 *.tsbuildinfo
 .DS_Store
+
+# Native exact-search build outputs remain local evidence, not site data.
+tools/exact-global-solver/target/
+tools/exact-global-solver/Cargo.lock
+tools/exact-global-solver/small.json
