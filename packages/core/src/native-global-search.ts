@@ -11,6 +11,7 @@ import {
   type UtilityInterval,
 } from "./native-utility";
 import { searchNativeCanonicalCandidates } from "./native-search";
+import { publicCardById } from "./public-data";
 
 type TalentGroup = Readonly<{
   talentId: string;
@@ -244,7 +245,29 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   }
   const groups: TalentGroup[] = [...grouped.entries()]
     .map(([talentId, cardIds]) => ({ talentId, cardIds: [...cardIds].sort() }))
-    .sort((left, right) => left.talentId.localeCompare(right.talentId));
+    .sort((left, right) => {
+      const leftMax = Math.max(
+        ...left.cardIds.map((cardId) => {
+          const card = mechanicsCardById.get(cardId);
+          if (!card) throw new Error(`Unknown eligible Member: ${cardId}`);
+          const publicCard = publicCardById.get(cardId);
+          if (!publicCard) throw new Error(`Unknown public Member: ${cardId}`);
+          const parameters = publicCard.parameters.maxPotential;
+          return parameters.performance + parameters.technique + parameters.sense;
+        }),
+      );
+      const rightMax = Math.max(
+        ...right.cardIds.map((cardId) => {
+          const card = mechanicsCardById.get(cardId);
+          if (!card) throw new Error(`Unknown eligible Member: ${cardId}`);
+          const publicCard = publicCardById.get(cardId);
+          if (!publicCard) throw new Error(`Unknown public Member: ${cardId}`);
+          const parameters = publicCard.parameters.maxPotential;
+          return parameters.performance + parameters.technique + parameters.sense;
+        }),
+      );
+      return rightMax - leftMax || left.talentId.localeCompare(right.talentId);
+    });
   const suffixCardIds: string[][] = Array.from({ length: groups.length + 1 }, () => []);
   for (let index = groups.length - 1; index >= 0; index -= 1) {
     suffixCardIds[index] = [...groups[index]!.cardIds, ...suffixCardIds[index + 1]!];
@@ -511,7 +534,11 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     }
     const group = groups[branch.groupIndex];
     if (!group) throw new Error("Global-search traversal exhausted its talent groups");
-    const children: Branch[] = [];
+    // Do not pre-compute every child bound just to sort the children. On the
+    // full roster that turns one branch into dozens of expensive bound calls
+    // before any child can be visited. Traversal order is an optimization only;
+    // visiting children lazily preserves the exhaustive certificate while
+    // allowing the incumbent to prune each child after its own bound is ready.
     for (const cardId of group.cardIds) {
       const rarity = mechanicsCardById.get(cardId)!.rarity;
       if (rarity === 5 && branch.fiveStars >= maxFiveStarMembers) continue;
@@ -520,17 +547,10 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         [...branch.selected, cardId],
         branch.fiveStars + (rarity === 5 ? 1 : 0),
       );
-      if (child) children.push(child);
+      if (child) visit(child);
     }
     const skipped = makeBranch(branch.groupIndex + 1, branch.selected, branch.fiveStars);
-    if (skipped) children.push(skipped);
-    children.sort(
-      (left, right) =>
-        right.bound.upperCentralUtility - left.bound.upperCentralUtility ||
-        left.selected.join("|").localeCompare(right.selected.join("|")) ||
-        left.groupIndex - right.groupIndex,
-    );
-    for (const child of children) visit(child);
+    if (skipped) visit(skipped);
   };
 
   const root = makeBranch(0, fixedMemberCardIds, fixedFiveStars);
