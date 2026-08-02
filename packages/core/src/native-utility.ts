@@ -97,6 +97,7 @@ export function evaluateNativeCentralUtility(input: NativeUtilityInput): number 
     policy: provisionalRuntimePolicy(input.seed, 1),
     accountState: input.accountState,
     observation,
+    runActiveSimulation: false,
   });
   const parameters = evaluator.members.map((member) => member.progression.parameters);
   const memberCardIds = evaluator.members.map((member) => member.cardId);
@@ -873,6 +874,7 @@ export function evaluateNativeRelativeUtility(input: NativeUtilityInput): Native
     policy: provisionalRuntimePolicy(input.seed, 1),
     accountState: input.accountState,
     observation,
+    runActiveSimulation: false,
   });
 
   const baseMembers = evaluator.members.map((member) => {

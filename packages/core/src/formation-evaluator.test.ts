@@ -228,6 +228,38 @@ describe("evidence-aware deterministic formation evaluator", () => {
     });
   });
 
+  it("can skip the unused modeled Active report without changing the contribution graph", () => {
+    const chart = songContextData.charts[0]!;
+    const song = songContextData.songs.find((candidate) => candidate.id === chart.songId)!;
+    const options = {
+      chart,
+      song,
+      policy: provisionalRuntimePolicy(0x5eed, 20),
+      accountState: unavailableAccountState,
+      observation: {
+        combo: chart.fullComboNoteCount,
+        life: 1_000,
+        judgement: "perfect" as const,
+        songSingerTalentIds: song.singerTalentIds,
+      },
+    };
+    const withSimulation = evaluateFormation(formation, options);
+    const withoutSimulation = evaluateFormation(formation, {
+      ...options,
+      runActiveSimulation: false,
+    });
+
+    expect(withSimulation.activeSimulation).not.toBeNull();
+    expect(withoutSimulation).toEqual({
+      ...withSimulation,
+      activeSimulation: null,
+      components: {
+        ...withSimulation.components,
+        timing: { ...withSimulation.components.timing, activeChecks: "not-run" },
+      },
+    });
+  });
+
   it("hard-fails verified-only evaluation but returns provisional, scoreless breakdowns", () => {
     const chart = songContextData.charts[0]!;
     const song = songContextData.songs.find((candidate) => candidate.id === chart.songId)!;

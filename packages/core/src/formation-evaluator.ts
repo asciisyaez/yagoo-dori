@@ -962,6 +962,13 @@ export function evaluateFormation(
     policy: RuntimePolicy;
     accountState: FormationAccountState;
     observation?: TriggerObservation;
+    /**
+     * Native utility callers only need the deterministic contribution graph.
+     * Keep the modeled Monte-Carlo report enabled by default for the public
+     * evaluator, but allow proof/search callers to skip work whose result is
+     * not consumed by their score calculation.
+     */
+    runActiveSimulation?: boolean;
   },
 ): FormationEvaluation {
   assertSeed(options.policy.seed);
@@ -1075,7 +1082,7 @@ export function evaluateFormation(
         ],
   );
   const activeSimulation =
-    options.policy.mode === "provisional"
+    options.runActiveSimulation !== false && options.policy.mode === "provisional"
       ? simulateModeledActiveChecks(activeInputs, {
           liveDurationMilliseconds: options.song.playingMilliseconds,
           trials: options.policy.simulationTrials,
