@@ -200,4 +200,29 @@ describe("native global team search", () => {
       result.certificate.exactLeafEvaluations + result.certificate.prunedTeamSets,
     ).toBe(result.certificate.legalTeamSets);
   }, 20_000);
+
+  it("accepts a legal incumbent seed without weakening the exhaustive certificate", () => {
+    const expected = bruteForce();
+    const result = searchNativeGlobalTeams({
+      eligibleMemberCardIds: MEMBERS,
+      eligibleLeaderOutfitCardIds: LEADERS,
+      initialCandidate: {
+        leaderOutfitCardId: expected.leaderOutfitCardId,
+        memberCardIds: expected.memberCardIds,
+      },
+      investmentLayer: "one-copy-maximum",
+      chartKeys: ["m0206:expert"],
+      seed: 0x5eed,
+      accountState: BOARD,
+    });
+
+    expect(result.best).toEqual(expected);
+    expect(result.certificate).toMatchObject({
+      kind: "certified",
+      incumbentSource: "provided-seed",
+      incumbentSeedTeamSets: expect.any(Number),
+      countsReconciled: true,
+      optimalityGap: 0,
+    });
+  }, 30_000);
 });

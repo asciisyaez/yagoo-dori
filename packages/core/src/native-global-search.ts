@@ -26,6 +26,17 @@ type Candidate = Readonly<{
 export type NativeGlobalSearchInput = Readonly<{
   eligibleMemberCardIds: readonly string[];
   eligibleLeaderOutfitCardIds: readonly string[];
+  /**
+   * Optional exact incumbent seed. It only raises the starting lower bound;
+   * the certifying traversal still visits or soundly prunes every legal team.
+   * This lets an offline heuristic hand a strong candidate to the proof pass
+   * without allowing heuristic output to become a certificate. Equivalent
+   * Leader/Outfit cards may still be collapsed by the exact equivalence pass.
+   */
+  initialCandidate?: Readonly<{
+    leaderOutfitCardId: string;
+    memberCardIds: readonly string[];
+  }>;
   fixedMemberCardIds?: readonly string[];
   investmentLayer: InvestmentLayer;
   bloomStageByCardId?: Readonly<Record<string, BloomStage>>;
@@ -83,7 +94,7 @@ export type NativeGlobalSearchResult = Readonly<{
     eligibleLeaderOutfits: number;
     leaderEquivalenceClasses: number;
     collapsedLeaderOutfits: number;
-    incumbentSource: "canonical-beam-seed" | "first-exact-leaf";
+    incumbentSource: "provided-seed" | "canonical-beam-seed" | "first-exact-leaf";
     incumbentSeedTeamSets: number;
     incumbentSearchUtilityEvaluations: number;
   }>;
@@ -164,6 +175,10 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   if (eligibleMemberCardIds.length !== input.eligibleMemberCardIds.length) {
     throw new Error("Eligible Member IDs must be unique");
   }
+  const eligibleLeaderOutfitCardIds = [...new Set(input.eligibleLeaderOutfitCardIds)].sort();
+  if (eligibleLeaderOutfitCardIds.length !== input.eligibleLeaderOutfitCardIds.length) {
+    throw new Error("Eligible Leader/Outfit IDs must be unique");
+  }
   const fixedMemberCardIds = [...new Set(input.fixedMemberCardIds ?? [])].sort();
   if (fixedMemberCardIds.length !== (input.fixedMemberCardIds ?? []).length) {
     throw new Error("Fixed Member IDs must be unique");
@@ -181,6 +196,41 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   }
   if (fixedMemberCardIds.length > 5 || fixedFiveStars > maxFiveStarMembers) {
     throw new Error("Fixed Members violate the five-Member constraints");
+  }
+  const initialCandidate = input.initialCandidate;
+  if (initialCandidate) {
+    if (!eligibleLeaderOutfitCardIds.includes(initialCandidate.leaderOutfitCardId)) {
+      throw new Error("Initial incumbent Leader/Outfit must be eligible");
+    }
+    const initialMembers = [...new Set(initialCandidate.memberCardIds)].sort();
+    if (
+      initialMembers.length !== 5 ||
+      initialMembers.length !== initialCandidate.memberCardIds.length
+    ) {
+      throw new Error("Initial incumbent must contain five unique Members");
+    }
+    const initialTalents = new Set<string>();
+    let initialFiveStars = 0;
+    for (const cardId of initialMembers) {
+      if (!eligibleMemberCardIds.includes(cardId)) {
+        throw new Error("Every initial incumbent Member must be eligible");
+      }
+      const card = mechanicsCardById.get(cardId);
+      if (!card) throw new Error(`Unknown initial incumbent Member: ${cardId}`);
+      if (initialTalents.has(card.talentId)) {
+        throw new Error("Initial incumbent Members must have unique talents");
+      }
+      initialTalents.add(card.talentId);
+      if (card.rarity === 5) initialFiveStars += 1;
+    }
+    if (initialFiveStars > maxFiveStarMembers) {
+      throw new Error("Initial incumbent exceeds maxFiveStarMembers");
+    }
+    for (const fixedCardId of fixedMemberCardIds) {
+      if (!initialMembers.includes(fixedCardId)) {
+        throw new Error("Initial incumbent must include every fixed Member");
+      }
+    }
   }
 
   const grouped = new Map<string, string[]>();
@@ -211,7 +261,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
 
   const boundContext = compileNativeGlobalBoundContext({
     eligibleMemberCardIds,
-    eligibleLeaderOutfitCardIds: input.eligibleLeaderOutfitCardIds,
+    eligibleLeaderOutfitCardIds,
     investmentLayer: input.investmentLayer,
     ...(input.bloomStageByCardId
       ? { bloomStageByCardId: input.bloomStageByCardId }
@@ -232,7 +282,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   let exactLeaderTeamEvaluations = 0;
   let prunedLeaderTeamCandidates = 0;
   let maximumPrunedUpperCentralUtility: number | null = null;
-  let incumbentSource: "canonical-beam-seed" | "first-exact-leaf" = "first-exact-leaf";
+  let incumbentSource: "provided-seed" | "canonical-beam-seed" | "first-exact-leaf" = "first-exact-leaf";
   let incumbentSeedTeamSets = 0;
   let incumbentSearchUtilityEvaluations = 0;
 
@@ -258,10 +308,17 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     }
   };
 
-  const exactCandidate = (memberCardIds: readonly string[], countLeaf = true): void => {
+  const exactCandidate = (
+    memberCardIds: readonly string[],
+    countLeaf = true,
+    preferredLeaderOutfitCardId?: string,
+  ): void => {
     const members = asTeam(memberCardIds);
     if (countLeaf) exactLeafEvaluations += 1;
-    const leaderBranches = leaderRepresentatives
+    const candidateLeaderIds = preferredLeaderOutfitCardId
+      ? [preferredLeaderOutfitCardId, ...leaderRepresentatives]
+      : leaderRepresentatives;
+    const leaderBranches = [...new Set(candidateLeaderIds)]
       .map((leaderOutfitCardId) => {
         boundEvaluations += 1;
         return {
@@ -342,6 +399,16 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     }
   };
 
+  if (initialCandidate) {
+    exactCandidate(
+      asTeam(initialCandidate.memberCardIds),
+      false,
+      initialCandidate.leaderOutfitCardId,
+    );
+    incumbentSeedTeamSets += 1;
+    if (best) incumbentSource = "provided-seed";
+  }
+
   if (fixedMemberCardIds.length <= 1) {
     try {
       const seedSearch = searchNativeCanonicalCandidates({
@@ -379,7 +446,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         exactCandidate(team, false);
         incumbentSeedTeamSets += 1;
       }
-      if (best) incumbentSource = "canonical-beam-seed";
+      if (best && incumbentSource === "first-exact-leaf") incumbentSource = "canonical-beam-seed";
     } catch (error) {
       if (error instanceof NativeGlobalSearchTimeoutError) throw error;
       // Candidate generation is only an incumbent accelerator. The certifying

@@ -7,7 +7,8 @@ The release target is the public GitHub repository `asciisyaez/yagoo-dori`, publ
 - The normal build remains available for local standalone QA.
 - `pnpm build:pages` produces a static export in `apps/web/out` with the repository base path embedded at build time.
 - `.github/workflows/pages.yml` builds and deploys that export using GitHub's Pages artifact flow.
-- The entire Pages workflow is disabled unless the repository variable `PAGES_DEPLOY_ENABLED` is exactly `true`.
+- The entire Pages workflow is disabled unless both `PAGES_DEPLOY_ENABLED` and `PUBLIC_RELEASE_CHECKLIST_COMPLETE` are exactly `true`.
+- `PUBLIC_RELEASE_CHECKLIST_COMPLETE` is intentionally absent/false until the owner completes the manual public-release checklist below.
 - No repository setting, visibility, Pages source, or deployment variable is changed by local preparation.
 
 ## Preflight
@@ -26,9 +27,10 @@ Before enabling GitHub Pages:
 Perform these steps only after the public repository preflight is verified:
 
 1. In **Settings → Pages**, choose **GitHub Actions** as the publishing source.
-2. In **Settings → Secrets and variables → Actions → Variables**, add `PAGES_DEPLOY_ENABLED` with value `true`.
-3. Run **Deploy GitHub Pages** from the Actions tab.
-4. Confirm the deployment environment reports `https://asciisyaez.github.io/yagoo-dori/` and run the release smoke checks.
+2. In **Settings → Secrets and variables → Actions → Variables**, add `PAGES_DEPLOY_ENABLED` with value `true` only after the repository is ready.
+3. After completing every checklist item above, add `PUBLIC_RELEASE_CHECKLIST_COMPLETE=true`.
+4. Run **Deploy GitHub Pages** from the Actions tab.
+5. Confirm the deployment environment reports `https://asciisyaez.github.io/yagoo-dori/` and run the release smoke checks.
 
 ## Post-public hardening
 
@@ -39,4 +41,4 @@ Perform these steps only after the public repository preflight is verified:
 
 ## Rollback
 
-Set `PAGES_DEPLOY_ENABLED=false` to stop new deployments. Revert the faulty release commit on `main`, restore the last verified commit, and run the Pages workflow again. Git history and the Pages deployment log provide the release record; no mutable container tag is involved.
+Set `PUBLIC_RELEASE_CHECKLIST_COMPLETE=false` (and, if needed, `PAGES_DEPLOY_ENABLED=false`) to stop new deployments. Revert the faulty release commit on `main`, restore the last verified commit, and run the Pages workflow again after re-completing the checklist. Git history and the Pages deployment log provide the release record; no mutable container tag is involved.
