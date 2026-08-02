@@ -235,23 +235,73 @@ function optimisticCompletionSum(
   fiveStarBudget: number,
   value: (card: BoundCard) => number,
 ): number {
+  // This helper is on the hot path of every global-search bound.  The first
+  // version used string-keyed Maps for each tiny cardinality DP state.  That
+  // was simple, but on the 113-card roster it meant hundreds of allocations
+  // per bound (and made a proof pass spend most of its time rebuilding the
+  // same 0..5 x 0..5 state grid).  Keep the exact same legal-completion
+  // relaxation, but use a fixed numeric grid instead.  The callback remains
+  // the source of the card value, so this is a performance-only rewrite of a
+  // sound upper-bound primitive.
+  if (slots < 0 || fiveStarBudget < 0) return Number.NEGATIVE_INFINITY;
+  if (slots === 0) return selected.reduce((total, card) => total + value(card), 0);
   const cardsByTalent = new Map<string, BoundCard[]>();
   for (const card of remaining) {
     const cards = cardsByTalent.get(card.talentId) ?? [];
     cards.push(card);
     cardsByTalent.set(card.talentId, cards);
   }
+  if (cardsByTalent.size < slots) {
+    throw new Error("The partial selection has no legal five-talent completion");
+  }
+  const selectedValue = selected.reduce((total, card) => total + value(card), 0);
   if (fiveStarBudget >= slots) {
     const future = [...cardsByTalent.values()]
       .map((cards) => Math.max(...cards.map(value)))
       .sort((left, right) => right - left)
       .slice(0, slots);
-    if (future.length !== slots) {
-      throw new Error("The partial selection has no legal five-talent completion");
-    }
-    return selected.reduce((total, card) => total + value(card), 0) +
-      future.reduce((total, entry) => total + entry, 0);
+    return selectedValue + future.reduce((total, entry) => total + entry, 0);
   }
+  const width = fiveStarBudget + 1;
+  const stateCount = (slots + 1) * width;
+  let states = new Float64Array(stateCount);
+  states.fill(Number.NEGATIVE_INFINITY);
+  states[0] = 0;
+  for (const cards of cardsByTalent.values()) {
+    const next = states.slice();
+    for (let count = 0; count < slots; count += 1) {
+      for (let stars = 0; stars <= fiveStarBudget; stars += 1) {
+        const current = states[count * width + stars]!;
+        if (!Number.isFinite(current)) continue;
+        for (const card of cards) {
+          const nextStars = stars + (card.rarity === 5 ? 1 : 0);
+          if (nextStars > fiveStarBudget) continue;
+          const nextIndex = (count + 1) * width + nextStars;
+          const candidate = current + value(card);
+          if (candidate > next[nextIndex]!) next[nextIndex] = candidate;
+        }
+      }
+    }
+    states = next;
+  }
+  const future = Math.max(
+    ...Array.from({ length: fiveStarBudget + 1 }, (_, stars) =>
+      states[slots * width + stars]!,
+    ),
+  );
+  if (!Number.isFinite(future)) {
+    throw new Error("The partial selection has no legal five-talent completion");
+  }
+  return selectedValue + future;
+}
+
+/*
+ * Keep the old implementation's shape in this comment while reviewing the
+ * numeric-DP rewrite above.  It is intentionally not compiled: retaining the
+ * invariant here makes it easier to compare future optimizations against the
+ * original recurrence (one card per talent, exact slot and five-star caps).
+ */
+/*
   let states = new Map<string, number>([["0:0", 0]]);
   for (const cards of cardsByTalent.values()) {
     const next = new Map(states);
@@ -278,7 +328,7 @@ function optimisticCompletionSum(
     throw new Error("The partial selection has no legal five-talent completion");
   }
   return selected.reduce((total, card) => total + value(card), 0) + future;
-}
+*/
 
 function optimisticCompletionMaximum(
   selected: readonly BoundCard[],
@@ -495,7 +545,126 @@ type TriggerContext = Readonly<{
   remainingSlots: number;
   leaderCardIds: readonly string[];
   chart: CompiledChart;
+  facts: TriggerFacts;
 }>;
+
+/**
+ * Trigger feasibility is queried once for nearly every application on every
+ * bound.  Keep the exact "at most one card per talent" relaxation, but cache
+ * the counts/sets for the current subtree instead of repeatedly normalizing
+ * every card's grouping name inside `possibleApplications`.
+ */
+type TriggerFacts = Readonly<{
+  maxAttributeMatches: ReadonlyMap<string, number>;
+  maxGroupingMatches: ReadonlyMap<string, number>;
+  leaderTalentIds: ReadonlySet<string>;
+  leaderGroupingMatches: ReadonlySet<string>;
+}>;
+
+const groupingMembershipCache = new Map<string, boolean>();
+
+const knownTriggerGroupingIds = [
+  ...new Set(
+    [...mechanicsCardById.values()]
+      .flatMap((card) => [
+        ...card.skills.active,
+        ...card.skills.passive,
+        ...card.skills.special,
+        card.leaderOutfit,
+      ])
+      .flatMap((skill) => skill.applications)
+      .flatMap((application) => [
+        application.target?.characterGroupingId,
+        application.trigger?.characterGroupingId,
+      ])
+      .filter((value): value is string => Boolean(value)),
+  ),
+].sort();
+
+function cachedGroupingMembership(card: BoundCard, groupingId: string): boolean {
+  const key = `${card.cardId}|${groupingId}`;
+  const cached = groupingMembershipCache.get(key);
+  if (cached !== undefined) return cached;
+  const result = cardBelongsToCharacterGrouping(card.publicCard, groupingId);
+  groupingMembershipCache.set(key, result);
+  return result;
+}
+
+function triggerFacts(
+  selected: readonly BoundCard[],
+  remaining: readonly BoundCard[],
+  remainingSlots: number,
+  leaderCardIds: readonly string[],
+): TriggerFacts {
+  const selectedAttributes = new Map<string, number>();
+  const futureAttributes = new Map<string, Set<string>>();
+  const selectedGroupings = new Map<string, number>();
+  const futureGroupings = new Map<string, Set<string>>();
+  const addCard = (card: BoundCard, selectedCard: boolean): void => {
+    const attribute = card.publicCard.attribute;
+    if (selectedCard) {
+      selectedAttributes.set(attribute, (selectedAttributes.get(attribute) ?? 0) + 1);
+    } else {
+      const talents = futureAttributes.get(attribute) ?? new Set<string>();
+      talents.add(card.talentId);
+      futureAttributes.set(attribute, talents);
+    }
+    // The dataset has a small, finite set of group ids.  Derive memberships
+    // from the card's public grouping labels once and cache each lookup; no
+    // trigger can become impossible merely because a grouping is not present.
+    for (const groupingId of knownTriggerGroupingIds) {
+      if (!cachedGroupingMembership(card, groupingId)) continue;
+      if (selectedCard) {
+        selectedGroupings.set(groupingId, (selectedGroupings.get(groupingId) ?? 0) + 1);
+      } else {
+        const talents = futureGroupings.get(groupingId) ?? new Set<string>();
+        talents.add(card.talentId);
+        futureGroupings.set(groupingId, talents);
+      }
+    }
+  };
+  for (const card of selected) addCard(card, true);
+  for (const card of remaining) addCard(card, false);
+  const maxAttributeMatches = new Map<string, number>();
+  for (const [attribute, count] of selectedAttributes) {
+    maxAttributeMatches.set(
+      attribute,
+      count + Math.min(remainingSlots, futureAttributes.get(attribute)?.size ?? 0),
+    );
+  }
+  for (const [attribute, talents] of futureAttributes) {
+    if (!maxAttributeMatches.has(attribute)) {
+      maxAttributeMatches.set(attribute, Math.min(remainingSlots, talents.size));
+    }
+  }
+  const maxGroupingMatches = new Map<string, number>();
+  for (const [groupingId, count] of selectedGroupings) {
+    maxGroupingMatches.set(
+      groupingId,
+      count + Math.min(remainingSlots, futureGroupings.get(groupingId)?.size ?? 0),
+    );
+  }
+  for (const [groupingId, talents] of futureGroupings) {
+    if (!maxGroupingMatches.has(groupingId)) {
+      maxGroupingMatches.set(groupingId, Math.min(remainingSlots, talents.size));
+    }
+  }
+  const leaderTalentIds = new Set<string>();
+  const leaderGroupingMatches = new Set<string>();
+  for (const cardId of leaderCardIds) {
+    const leader = mechanicsCardById.get(cardId);
+    if (!leader) continue;
+    leaderTalentIds.add(leader.leaderOutfit.talentId);
+    const publicLeader = publicCardById.get(cardId);
+    if (!publicLeader) continue;
+    for (const groupingId of knownTriggerGroupingIds) {
+      if (cardBelongsToCharacterGrouping(publicLeader, groupingId)) {
+        leaderGroupingMatches.add(groupingId);
+      }
+    }
+  }
+  return { maxAttributeMatches, maxGroupingMatches, leaderTalentIds, leaderGroupingMatches };
+}
 
 const JUDGEMENT_ORDER = [
   "miss",
@@ -512,17 +681,6 @@ function normalizedTriggerJudgement(value: string): (typeof JUDGEMENT_ORDER)[num
   return JUDGEMENT_ORDER.find((judgement) => judgement === suffix) ?? null;
 }
 
-function maximumDeckMatches(
-  context: TriggerContext,
-  matches: (card: BoundCard) => boolean,
-): number {
-  const selectedMatches = context.selected.filter(matches).length;
-  const futureMatchingTalents = new Set(
-    context.remaining.filter(matches).map((card) => card.talentId),
-  ).size;
-  return selectedMatches + Math.min(context.remainingSlots, futureMatchingTalents);
-}
-
 /** True when a trigger can still pass in at least one legal completion. */
 function triggerCouldPass(
   trigger: NonNullable<SkillApplications[number]["trigger"]>,
@@ -536,34 +694,20 @@ function triggerCouldPass(
       return (
         threshold === null ||
         trigger.attribute === null ||
-        maximumDeckMatches(
-          context,
-          (card) => card.publicCard.attribute === trigger.attribute,
-        ) >= threshold
+        (context.facts.maxAttributeMatches.get(trigger.attribute) ?? 0) >= threshold
       );
     case "deck-character-group-count":
       return (
         threshold === null ||
         trigger.characterGroupingId === null ||
-        maximumDeckMatches(context, (card) =>
-          cardBelongsToCharacterGrouping(card.publicCard, trigger.characterGroupingId!),
-        ) >= threshold
+        (context.facts.maxGroupingMatches.get(trigger.characterGroupingId) ?? 0) >= threshold
       );
     case "leader-character":
-      return context.leaderCardIds.some((cardId) => {
-        const leader = mechanicsCardById.get(cardId);
-        return leader !== undefined && trigger.characterIds.includes(leader.leaderOutfit.talentId);
-      });
+      return trigger.characterIds.some((talentId) => context.facts.leaderTalentIds.has(talentId));
     case "leader-character-group":
       return (
         trigger.characterGroupingId === null ||
-        context.leaderCardIds.some((cardId) => {
-          const leader = publicCardById.get(cardId);
-          return (
-            leader !== undefined &&
-            cardBelongsToCharacterGrouping(leader, trigger.characterGroupingId!)
-          );
-        })
+        context.facts.leaderGroupingMatches.has(trigger.characterGroupingId)
       );
     case "judgement-at-least": {
       if (trigger.judgementType === null) return true;
@@ -961,6 +1105,7 @@ function boundNativeAggregateCentralUtilityInternal(
     remainingSlots,
     leaderCardIds,
     chart,
+    facts: triggerFacts(selected, remaining, remainingSlots, leaderCardIds),
   }));
 
   const baseParameters = optimisticCompletionSum(
