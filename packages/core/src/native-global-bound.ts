@@ -295,41 +295,6 @@ function optimisticCompletionSum(
   return selectedValue + future;
 }
 
-/*
- * Keep the old implementation's shape in this comment while reviewing the
- * numeric-DP rewrite above.  It is intentionally not compiled: retaining the
- * invariant here makes it easier to compare future optimizations against the
- * original recurrence (one card per talent, exact slot and five-star caps).
- */
-/*
-  let states = new Map<string, number>([["0:0", 0]]);
-  for (const cards of cardsByTalent.values()) {
-    const next = new Map(states);
-    for (const [key, current] of states) {
-      const [countText, starsText] = key.split(":");
-      const count = Number(countText);
-      const stars = Number(starsText);
-      if (count >= slots) continue;
-      for (const card of cards) {
-        const nextStars = stars + (card.rarity === 5 ? 1 : 0);
-        if (nextStars > fiveStarBudget) continue;
-        const nextKey = `${count + 1}:${nextStars}`;
-        next.set(nextKey, Math.max(next.get(nextKey) ?? Number.NEGATIVE_INFINITY, current + value(card)));
-      }
-    }
-    states = next;
-  }
-  const future = Math.max(
-    ...[...states.entries()]
-      .filter(([key]) => Number(key.split(":")[0]) === slots)
-      .map(([, result]) => result),
-  );
-  if (!Number.isFinite(future)) {
-    throw new Error("The partial selection has no legal five-talent completion");
-  }
-  return selected.reduce((total, card) => total + value(card), 0) + future;
-*/
-
 function optimisticCompletionMaximum(
   selected: readonly BoundCard[],
   remaining: readonly BoundCard[],
@@ -609,9 +574,9 @@ function triggerFacts(
       talents.add(card.talentId);
       futureAttributes.set(attribute, talents);
     }
-    // The dataset has a small, finite set of group ids.  Derive memberships
-    // from the card's public grouping labels once and cache each lookup; no
-    // trigger can become impossible merely because a grouping is not present.
+    // The dataset has a small, finite set of grouping ids used by mechanics.
+    // Cache each exact membership lookup; no trigger can become impossible
+    // merely because a grouping is absent from a particular card.
     for (const groupingId of knownTriggerGroupingIds) {
       if (!cachedGroupingMembership(card, groupingId)) continue;
       if (selectedCard) {
