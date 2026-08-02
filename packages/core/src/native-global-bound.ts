@@ -710,6 +710,81 @@ function completionPersistentSupportUpper(
   return memberSupport + leaderSupport;
 }
 
+/**
+ * Force one possible Active card into a completion before taking the best
+ * remaining cards for an additive contribution.  Keeping the forced card in
+ * the same completion makes the Active-card upper bound materially tighter
+ * than independently taking the five best support or Special cards.
+ */
+function forcedCompletionSum(
+  forcedCard: BoundCard,
+  selected: readonly BoundCard[],
+  remaining: readonly BoundCard[],
+  remainingSlots: number,
+  remainingFiveStarSlots: number,
+  value: (card: BoundCard) => number,
+): number {
+  const alreadySelected = selected.some((card) => card.cardId === forcedCard.cardId);
+  const forcedSelected = alreadySelected ? [...selected] : [...selected, forcedCard];
+  const forcedRemaining = alreadySelected
+    ? [...remaining]
+    : remaining.filter((card) => card.talentId !== forcedCard.talentId);
+  const forcedSlots = remainingSlots - (alreadySelected ? 0 : 1);
+  const forcedFiveStarSlots =
+    remainingFiveStarSlots - (!alreadySelected && forcedCard.rarity === 5 ? 1 : 0);
+  if (forcedSlots < 0 || forcedFiveStarSlots < 0) return Number.NEGATIVE_INFINITY;
+  try {
+    return optimisticCompletionSum(
+      forcedSelected,
+      forcedRemaining,
+      forcedSlots,
+      forcedFiveStarSlots,
+      value,
+    );
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === "The partial selection has no legal five-talent completion"
+    ) {
+      return Number.NEGATIVE_INFINITY;
+    }
+    throw error;
+  }
+}
+
+/**
+ * Upper-bound the expected maximum of at most five Active entries without
+ * pretending that one team can choose a different card for every note.  For
+ * each score threshold, the five largest candidate activation probabilities
+ * dominate every legal five-card team's threshold exceedance probability;
+ * averaging those probabilities and capping their union at one is an
+ * admissible (and much tighter than a raw sum) relaxation.
+ */
+function relaxedExpectedMaximumUpper(
+  entries: readonly { value: number; probability: number }[],
+  maximumEntries = TEAM_SIZE,
+): number {
+  const values = [
+    ...new Set(entries.map((entry) => entry.value).filter((value) => value > 0)),
+  ].sort((left, right) => right - left);
+  let total = 0;
+  for (let index = 0; index < values.length; index += 1) {
+    const high = values[index]!;
+    const low = values[index + 1] ?? 0;
+    const probability = Math.min(
+      1,
+      entries
+        .filter((entry) => entry.value >= high)
+        .map((entry) => Math.max(0, Math.min(1, entry.probability)))
+        .sort((left, right) => right - left)
+        .slice(0, maximumEntries)
+        .reduce((sum, value) => sum + value, 0),
+    );
+    total += (high - low) * probability;
+  }
+  return total;
+}
+
 function leaderEffectMaximum(
   leaderCardIds: readonly string[],
   kinds: ReadonlySet<string>,
@@ -1057,25 +1132,111 @@ function boundNativeAggregateCentralUtilityInternal(
         const scoreUp = maximumActiveScoreUp(
           possibleApplications(card.activeApplications, triggerContext),
         );
-        return (scoreUp * (1_000 + persistent + specialScoreSupportPermil)) / 1_000;
+        const cardSpecialScoreSupportPermil = forcedCompletionSum(
+          card,
+          selected,
+          remaining,
+          remainingSlots,
+          remainingFiveStarSlots,
+          (specialCard) =>
+            sumEffects(
+              possibleApplications(specialCard.specialApplications, triggerContext),
+              new Set(["score-support"]),
+            ) * durationCoverage(specialCard),
+        );
+        if (!Number.isFinite(cardSpecialScoreSupportPermil)) return 0;
+        return (scoreUp * (1_000 + persistent + cardSpecialScoreSupportPermil)) / 1_000;
       };
-      maximumActiveScoreUpPermil = Math.max(
-        0,
-        ...possibleActiveCards.map(effectiveActiveScoreUp),
-      );
-      probabilityWeightedActiveScoreUpPermil = optimisticCompletionSum(
+      const activeEntries = possibleActiveCards.map((card) => {
+        const cardActivationRateUpPermil = forcedCompletionSum(
+          card,
+          selected,
+          remaining,
+          remainingSlots,
+          remainingFiveStarSlots,
+          (specialCard) =>
+            sumEffects(
+              possibleApplications(specialCard.specialApplications, triggerContext),
+              new Set(["activation-rate-up"]),
+            ) * durationCoverage(specialCard),
+        );
+        const effectiveScoreUp = effectiveActiveScoreUp(card);
+        const scoreUp = maximumActiveScoreUp(
+          possibleApplications(card.activeApplications, triggerContext),
+        );
+        return {
+          card,
+          scoreUp,
+          value: effectiveScoreUp,
+          probability:
+            Number.isFinite(cardActivationRateUpPermil) && effectiveScoreUp > 0
+              ? averageActiveCoverage(
+                  card,
+                  cardActivationRateUpPermil,
+                  chart.noteCount,
+                  chart.durationMilliseconds,
+                  chart.checkHistogramByCardId.get(card.cardId),
+                )
+              : 0,
+        };
+      });
+      maximumActiveScoreUpPermil = Math.max(0, ...activeEntries.map((entry) => entry.value));
+      const soloEntries = activeEntries.map((entry) => ({
+        value: entry.scoreUp,
+        probability: entry.probability,
+      }));
+      const relaxedSolo = relaxedExpectedMaximumUpper(soloEntries);
+      const leaderSupportUpper = optimisticCompletionSum(
         selected,
         remaining,
         remainingSlots,
         remainingFiveStarSlots,
-        (card) =>
-          averageActiveCoverage(
-            card,
-            activationRateUpPermil,
-            chart.noteCount,
-            chart.durationMilliseconds,
-            chart.checkHistogramByCardId.get(card.cardId),
-          ) * effectiveActiveScoreUp(card),
+        (card) => {
+          const entry = activeEntries.find((candidate) => candidate.card.cardId === card.cardId);
+          if (!entry) return 0;
+          const leaderMaximum = Math.max(
+            ...leaderCardIds.map((leaderCardId) => {
+              const leader = mechanicsCardById.get(leaderCardId);
+              if (!leader) throw new Error(`Unknown Leader/Outfit card: ${leaderCardId}`);
+              return supportForRecipient(
+                possibleApplications(leader.leaderOutfit.applications, triggerContext),
+                card,
+                null,
+              );
+            }),
+          );
+          return (entry.scoreUp * entry.probability * leaderMaximum) / 1_000;
+        },
+      );
+      const memberSupportUpper = optimisticCompletionSum(
+        selected,
+        remaining,
+        remainingSlots,
+        remainingFiveStarSlots,
+        (source) => {
+          const sourceApplications = possibleApplications(source.passiveApplications, triggerContext);
+          const targetValues = activeEntries
+            .map((entry) =>
+              (entry.scoreUp * entry.probability *
+                supportForRecipient(sourceApplications, entry.card, source)) /
+              1_000,
+            )
+            .sort((left, right) => right - left)
+            .slice(0, TEAM_SIZE);
+          return targetValues.reduce((sum, value) => sum + value, 0);
+        },
+      );
+      const totalQ = [...activeEntries]
+        .map((entry) => entry.scoreUp * entry.probability)
+        .sort((left, right) => right - left)
+        .slice(0, TEAM_SIZE)
+        .reduce((sum, value) => sum + value, 0);
+      const specialSupportUpper = (relaxedSolo * specialScoreSupportPermil) / 1_000;
+      const additiveUpper =
+        relaxedSolo + leaderSupportUpper + memberSupportUpper + specialSupportUpper;
+      probabilityWeightedActiveScoreUpPermil = Math.min(
+        relaxedExpectedMaximumUpper(activeEntries),
+        additiveUpper,
       );
       activeAndSpecialPermil = Math.min(
         maximumActiveScoreUpPermil,

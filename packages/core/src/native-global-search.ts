@@ -343,38 +343,12 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
       : leaderRepresentatives;
     const allLeaderIds = [...new Set(candidateLeaderIds)];
     leaderTeamCandidates += allLeaderIds.length;
-    let leaderIds = allLeaderIds;
-    if (!countLeaf) {
-      const leaderBranches = allLeaderIds
-        .map((leaderOutfitCardId) => {
-          boundEvaluations += 1;
-          return {
-            leaderOutfitCardId,
-            upperCentralUtility: boundContext.bound({
-              partialMemberCardIds: members,
-              eligibleMemberCardIds: members,
-              eligibleLeaderOutfitCardIds: [leaderOutfitCardId],
-            }).upperCentralUtility,
-          };
-        })
-        .sort(
-          (left, right) =>
-            right.upperCentralUtility - left.upperCentralUtility ||
-            left.leaderOutfitCardId.localeCompare(right.leaderOutfitCardId),
-        );
-      leaderIds = [];
-      for (const leaderBranch of leaderBranches) {
-        if (best && leaderBranch.upperCentralUtility < best.relativeUtility.central) {
-          prunedLeaderTeamCandidates += 1;
-          continue;
-        }
-        leaderIds.push(leaderBranch.leaderOutfitCardId);
-      }
-    }
-    // Complete team leaves are already legal and are cheap to compare with
-    // the exact central evaluator. Rebuilding an optimistic bound for every
-    // Leader at each leaf costs more than the exact comparison, so only the
-    // non-counted incumbent seeds use the Leader bound for ordering/pruning.
+    // Complete teams are already legal. Incumbent seeds are an accelerator,
+    // not part of the certificate, so compare every equivalent Leader with
+    // the exact central evaluator instead of paying for a full optimistic
+    // bound for each seed/Leader pair. Counted leaves still use this same
+    // direct path; exhaustive pruning happens only at member subtrees.
+    const leaderIds = allLeaderIds;
     for (const leaderOutfitCardId of leaderIds) {
       exactLeaderTeamEvaluations += 1;
       const centralUtilities = input.chartKeys.map((chartKey) => {
