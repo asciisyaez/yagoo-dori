@@ -175,7 +175,9 @@ test("a five-talent roster calculates a legal Leader and five Members off the ma
   await page.getByRole("button", { name: "Calculate team", exact: true }).click();
 
   await expect(page.getByText("Recommended formation", { exact: true })).toBeVisible({ timeout: 90_000 });
-  await expect(page.getByRole("heading", { name: "Your strongest evaluated team" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /Strongest team (?:in the declared scope|found in the searched scope)/ }),
+  ).toBeVisible();
   await expect(page.getByText("Leader Outfit", { exact: true })).toBeVisible();
   await expect(page.getByText("Oshi lock fulfilled", { exact: true })).toBeVisible();
   await expect(page.getByText("Locked as both Member and Leader Outfit", { exact: true })).toBeVisible();

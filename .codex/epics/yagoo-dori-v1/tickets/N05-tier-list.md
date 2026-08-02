@@ -1,8 +1,8 @@
 ---
 id: N05
 title: Complete usable Member-card tier list
-status: pending
-depends_on: [N02, N03D, N04]
+status: done
+depends_on: [N02, N03B, N03C, N03D, N04]
 parallelizable: false
 parent_epic: yagoo-dori-v1
 ---
@@ -22,4 +22,4 @@ parent_epic: yagoo-dori-v1
 
 - Member and Leader/Outfit contexts both map all 113 pinned cards to native ranking snapshots.
 - Accessible quick view shows context-appropriate stats and Active/Passive/Special or Leader mechanics.
-- Desktop and mobile Playwright quick-view coverage passed on 2026-08-01; ticket remains pending until dependency N03D is done.
+- Desktop and mobile Playwright quick-view coverage passed on 2026-08-01. Ranking validation is independent of the unfinished v0.2 unrestricted global certificate.

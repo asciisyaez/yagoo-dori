@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-parity-diagnostic-v1",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "caseId": 0,
+  "input": {
+    "caseId": 0,
+    "leaderCardId": "card-06005-4-cmmn-0000-00",
+    "memberCardIds": [
+      "card-00021-4-cmmn-0000-00",
+      "card-00034-5-uniq-0027-00",
+      "card-00037-5-uniq-0030-00",
+      "card-00039-4-cmmn-0000-00",
+      "card-06003-4-cmmn-0000-00"
+    ],
+    "chartKey": "m0330:expert",
+    "investmentLayer": "low-investment",
+    "bloomStages": {
+      "card-00021-4-cmmn-0000-00": 1,
+      "card-00034-5-uniq-0027-00": 0,
+      "card-00037-5-uniq-0030-00": 4,
+      "card-00039-4-cmmn-0000-00": 5,
+      "card-06003-4-cmmn-0000-00": 1
+    },
+    "referenceCentralMicroUnits": 254832895262
+  },
+  "reference": {
+    "centralMicroUnits": 254832895262,
+    "relativeUtility": {
+      "lower": 211132.689346,
+      "central": 254832.895262,
+      "upper": 291236.538645
+    },
+    "components": {
+      "baseUnits": 112044,
+      "parameterUnits": 54925.87,
+      "activeUnits": 56586.174481,
+      "averageEffectiveActiveUpPermil": 505.035294,
+      "specialUnits": 31276.850781,
+      "specialScoreSupportUnits": 23769.384017,
+      "specialActivationRateUnits": 7507.466764,
+      "specialActivationRateUpPermil": 72.519084,
+      "persistentSupport": [
+        {
+          "cardId": "card-00021-4-cmmn-0000-00",
+          "supportPermil": {
+            "lower": 0,
+            "central": 0,
+            "upper": 0
+          }
+        },
+        {
+          "cardId": "card-00034-5-uniq-0027-00",
+          "supportPermil": {
+            "lower": 80,
+            "central": 80,
+            "upper": 80
+          }
+        },
+        {
+          "cardId": "card-00037-5-uniq-0030-00",
+          "supportPermil": {
+            "lower": 0,
+            "central": 0,
+            "upper": 0
+          }
+        },
+        {
+          "cardId": "card-00039-4-cmmn-0000-00",
+          "supportPermil": {
+            "lower": 0,
+            "central": 0,
+            "upper": 0
+          }
+        },
+        {
+          "cardId": "card-06003-4-cmmn-0000-00",
+          "supportPermil": {
+            "lower": 0,
+            "central": 0,
+            "upper": 0
+          }
+        }
+      ]
+    }
+  },
+  "compiled": {
+    "caseId": 0,
+    "centralMicroUnits": 254832895262,
+    "baseUnits": 112044,
+    "memberParameterUnits": 19910.87,
+    "leaderParameterUnits": 35015,
+    "activeAverageUpPermil": 784.183224856,
+    "specialSupportPermil": 422.519083969,
+    "specialActivationRateUpPermil": 72.519083969
+  },
+  "deltas": {
+    "centralMicroUnits": 0,
+    "baseUnits": 0,
+    "parameterUnits": -7.275957614183426e-12
+  },
+  "disposition": "Diagnostic only. It identifies semantic components for one mismatch; it is not a parity result or certificate."
+}

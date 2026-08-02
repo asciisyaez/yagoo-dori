@@ -292,15 +292,24 @@ export const TeamCalculatorResultSchema = z
           "bounded-search",
         ]),
         certificateKind: z.enum(["certified", "heuristic-bounded"]),
+        certificateId: z.string().regex(/^[a-f0-9]{64}$/).nullable(),
+        scopeHash: z.string().regex(/^[a-f0-9]{64}$/),
+        runRecordId: z.string().min(1),
         optimalityClaim: z.enum([
           "exhaustive-across-constraint-eligible-teams-leaders-and-frozen-corpus-under-canonical-order",
           "not-certified",
         ]),
         objective: z.literal("equal-chart-average-relative-utility"),
+        objectiveId: z.literal("yd-equal-chart-average-relative-utility-v1"),
+        evaluatorMethodologyVersion: z.literal("yd-native-utility-1.0.0"),
+        arithmeticMethodologyVersion: z.literal("yd-native-six-decimal-rounding-1.0.0"),
         comparisonOrder: z.literal("canonical-card-id-order"),
         teamSetsInScope: z.number().int().nonnegative(),
         teamSetsConsidered: z.number().int().nonnegative(),
+        teamSetsEvaluated: z.number().int().nonnegative(),
+        teamSetsPruned: z.number().int().nonnegative(),
         unsearchedTeamSets: z.number().int().nonnegative(),
+        optimalityGap: z.number().finite().nonnegative().nullable(),
         candidateGenerationMode: z.enum(["exhaustive", "bounded-native-search"]),
         candidateGenerationChartCount: z.number().int().min(0).max(30),
         candidateGenerationChartKeys: z.array(z.string().regex(/^m\d{4}:expert$/)).max(5),
@@ -323,6 +332,7 @@ export const TeamCalculatorResultSchema = z
         corpusUtilityEvaluations: z.number().int().positive(),
         utilityEvaluations: z.number().int().positive(),
         formationOrderGloballyCertified: z.literal(false),
+        formationOrderClaim: z.literal("conditional-on-selected-team"),
         canonicalCorpusOptimalityClaim: z.boolean(),
       })
       .strict(),
@@ -534,9 +544,23 @@ export const TeamCalculatorResultSchema = z
     });
     if (
       result.search.teamSetsConsidered > result.search.teamSetsInScope ||
-      result.search.teamSetsInScope - result.search.teamSetsConsidered !== result.search.unsearchedTeamSets
+      result.search.teamSetsInScope - result.search.teamSetsConsidered !== result.search.unsearchedTeamSets ||
+      result.search.teamSetsEvaluated !== result.search.teamSetsConsidered ||
+      result.search.teamSetsPruned !== 0
     ) {
       context.addIssue({ code: "custom", path: ["search"], message: "Search coverage counts must reconcile" });
+    }
+    if (
+      (result.search.resultClaim === "certified-within-canonical-corpus-scope" &&
+        (result.search.certificateId === null || result.search.optimalityGap !== 0)) ||
+      (result.search.resultClaim === "bounded-search" &&
+        (result.search.certificateId !== null || result.search.optimalityGap !== null))
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["search"],
+        message: "Certificate identity and optimality gap must match the declared search claim",
+      });
     }
     if (
       result.search.candidateGenerationChartKeys.length !==

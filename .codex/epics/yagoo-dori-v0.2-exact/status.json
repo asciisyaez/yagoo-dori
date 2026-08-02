@@ -1,0 +1,25 @@
+{
+  "objective": "Build a separately scoped, certifiable exact optimizer while preserving the live v0.1 product.",
+  "ticketOrder": ["X01", "X02", "X03", "X04", "X05", "X06"],
+  "weights": {"X01": 15, "X02": 25, "X03": 15, "X04": 25, "X05": 10, "X06": 10},
+  "completedSinceLastReport": [
+    "Reconciled the live v0.1 release and separated its weighted product status from v0.2 certification",
+    "Pinned the complete full-roster input tuple and SHA-256 scope manifest",
+    "Implemented canonical signed-integer micro-unit arithmetic, strict upper-bound pruning, comparator tie ordering, and boundary tests",
+    "Added the independent legal-team count primitive and reconciled 126445821 unrestricted Member team sets",
+    "Generated a scope-addressed parity IR and deterministic 100000-case corpus while retaining certificateEligible=false until a compiled per-case evaluator exists",
+    "Measured flat enumeration, the current hybrid branch-and-bound prototype, and MITM feasibility on the declared hardware",
+    "Added progression/Bloom variants and canonical intermediate rounding to the disposable compiled kernel; its full 100000-case lower/central/upper corpus now matches TypeScript exactly while the complete certification gate remains open",
+    "Added passing/failing trigger and target-cap fixtures plus generated corpus coverage for every card role, Bloom stage, investment layer, singer-bearing/non-singer chart, Leader/Member collision, and five-star cap count",
+    "Added an independent 56-team/224-Leader reduced-roster brute-force comparison; compiled and TypeScript lower/central/upper winners and all cases match exactly while certificateEligible remains false",
+    "Added deterministic reduced-roster metamorphic checks for Member permutation, equivalent Leaders, sharded/unsharded winner identity, deterministic ordering, independent branch-and-bound, reconciliation, and strict upper-bound pruning",
+    "Added an independent SHA-256 shard-manifest verifier and a non-certificate reduced fixture with contiguous-range and exact/pruned reconciliation checks",
+    "Completed the 100000-case compiled lower/central/upper parity corpus with per-card Bloom 0–5 coverage, added compiled trigger/target/override/rounding unit fixtures, and generated a reduced two-shard reference run with winner/tie/runner-up replay",
+    "Generated and independently verified a canonical 864-shard full-roster plan covering all 126445821 legal Member teams with stable talent prefixes, contiguous ordinal ranges, and resumable SHA-256 tokens; the plan remains explicitly unevaluated and non-certifying",
+    "Measured a parity-backed chart-specific Leader-resolution aggregation candidate on 32 reduced teams and two Expert charts: 1808 lower/central/upper comparisons matched exactly and representative utility calls fell 48.67%; an additional eight-case corpus sample covered all Bloom stages and investment layers with zero mismatches; resolution cost and full mechanic coverage remain open"
+  ],
+  "blockers": ["The disposable compiled prototype matches all 100000 generated lower/central/upper cases and its mechanic fixtures pass, but production serial/parallel full-scope shard replay, exact full-scope formulation, and an independently verified certificate remain open."],
+  "nextAction": "Expand the aggregation parity corpus across every mechanic family, Bloom/investment layer, singer state, and identity-sensitive fallback, then benchmark a compiled resolution pass before considering full-scope shard execution.",
+  "certificateState": "not-eligible",
+  "declaredFullRosterLegalTeamSets": 126445821
+}

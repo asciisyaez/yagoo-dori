@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "kind": "yd-exact-optimality-run-v1",
+  "runRecordId": "yd-exact-reduced-shards-v1",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+  "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+  "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+  "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+  "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+  "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+  "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+  "executionMode": "serial-reference-reduced-shard",
+  "certificateEligible": false,
+  "parityEligible": false,
+  "resultClaim": "exhaustive-declared-scope-fixture",
+  "declaredEligibleMemberCardIds": [
+    "card-00001-4-cmmn-0000-00",
+    "card-00004-5-uniq-0005-00",
+    "card-00005-5-uniq-0006-00",
+    "card-00013-4-cmmn-0000-00",
+    "card-00016-5-uniq-0014-00",
+    "card-00018-5-uniq-0004-00",
+    "card-00019-5-uniq-0016-00",
+    "card-00039-5-uniq-0032-00"
+  ],
+  "declaredEligibleLeaderOutfitCardIds": [
+    "card-00001-5-uniq-0000-00",
+    "card-00013-5-uniq-0002-00",
+    "card-00019-5-uniq-0016-00",
+    "card-00039-5-uniq-0032-00"
+  ],
+  "declaredLegalTeamSets": 56,
+  "winner": {
+    "leaderCardId": "card-00039-5-uniq-0032-00",
+    "memberCardIds": [
+      "card-00004-5-uniq-0005-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "lowerMicroUnits": 241336659452,
+    "centralMicroUnits": 316001872844,
+    "upperMicroUnits": 382455141862,
+    "optimalTieSet": [
+      "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00039-5-uniq-0032-00"
+    ]
+  },
+  "runnerUp": {
+    "key": "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00019-5-uniq-0016-00",
+    "centralMicroUnits": 315700401731
+  },
+  "exactMicroUnitGap": 301471113,
+  "shards": [
+    {
+      "schemaVersion": 1,
+      "shardId": "reduced-000",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+      "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+      "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+      "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+      "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+      "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+      "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+      "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+      "executionMode": "serial-reference-reduced-shard",
+      "range": {
+        "startInclusive": 0,
+        "endExclusive": 28
+      },
+      "legalTeamSets": 28,
+      "exactLeaves": 28,
+      "prunedTeamSets": 0,
+      "maximumPrunedUpperCentralMicroUnits": null,
+      "leaderClassesEvaluated": 4,
+      "localOptimalTieSet": [
+        "card-00039-5-uniq-0032-00|card-00001-4-cmmn-0000-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00"
+      ],
+      "elapsedMilliseconds": 0,
+      "peakMemoryBytes": 0,
+      "sha256": "9a8e8f3088cb88ee69cc580982e5126f2636b5ad4195e17732be9573017d1a2d"
+    },
+    {
+      "schemaVersion": 1,
+      "shardId": "reduced-001",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+      "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+      "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+      "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+      "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+      "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+      "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+      "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+      "executionMode": "serial-reference-reduced-shard",
+      "range": {
+        "startInclusive": 28,
+        "endExclusive": 56
+      },
+      "legalTeamSets": 28,
+      "exactLeaves": 28,
+      "prunedTeamSets": 0,
+      "maximumPrunedUpperCentralMicroUnits": null,
+      "leaderClassesEvaluated": 4,
+      "localOptimalTieSet": [
+        "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00039-5-uniq-0032-00"
+      ],
+      "elapsedMilliseconds": 0,
+      "peakMemoryBytes": 0,
+      "sha256": "c5f640151377a2d410b3a32f2b51ddbb1d002e6157cf16453ff08366c071d408"
+    }
+  ],
+  "recordHash": "d3e13748f178a64ecae93f329d76533d3638aff0ddd8325740a34a7884d64ccc"
+}

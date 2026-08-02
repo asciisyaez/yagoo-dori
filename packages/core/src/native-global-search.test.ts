@@ -4,6 +4,7 @@ import { mechanicsCardById, mechanicsData } from "./mechanics";
 import { compileNativeLeaderEquivalence } from "./native-leader-equivalence";
 import {
   NativeGlobalSearchTimeoutError,
+  countNativeLegalTeamSets,
   searchNativeGlobalTeams,
   type NativeGlobalSearchProgress,
 } from "./native-global-search";
@@ -124,6 +125,56 @@ function bruteForce(maxFiveStarMembers = 5, fixedCardId?: string): BruteCandidat
 }
 
 describe("native global team search", () => {
+  it("is invariant to Member input permutation for aggregate utility", () => {
+    // Keep the fixture legal: the roster contains two AZKi cards, but a team
+    // may field only one card per talent.
+    const members = [CARD.sora4, CARD.aki5, CARD.haato5, CARD.azki4, CARD.okayu5];
+    const forward = evaluateNativeRelativeUtility({
+      formation: {
+        leaderOutfitCardId: LEADERS[0]!,
+        members: members.map((cardId) => ({ cardId, investment: "one-copy-maximum" as const })),
+      },
+      chartKey: "m0206:expert",
+      seed: 0x5eed,
+      accountState: BOARD,
+    });
+    const reversed = evaluateNativeRelativeUtility({
+      formation: {
+        leaderOutfitCardId: LEADERS[0]!,
+        members: [...members].reverse().map((cardId) => ({ cardId, investment: "one-copy-maximum" as const })),
+      },
+      chartKey: "m0206:expert",
+      seed: 0x5eed,
+      accountState: BOARD,
+    });
+    expect(reversed.relativeUtility).toEqual(forward.relativeUtility);
+  });
+
+  it("gives equivalent Leader classes the same aggregate utility", () => {
+    const members = [CARD.sora4, CARD.aki5, CARD.haato5, CARD.azki4, CARD.okayu5].map((cardId) => ({
+      cardId,
+      investment: "one-copy-maximum" as const,
+    }));
+    const utilities = duplicateSenseLeaders.map((leaderOutfitCardId) =>
+      evaluateNativeRelativeUtility({
+        formation: { leaderOutfitCardId, members },
+        chartKey: "m0206:expert",
+        seed: 0x5eed,
+        accountState: BOARD,
+      }).relativeUtility,
+    );
+    expect(utilities[1]).toEqual(utilities[0]);
+  });
+
+  it("reconciles the declared unrestricted legal Member-team count", () => {
+    expect(
+      countNativeLegalTeamSets({
+        eligibleMemberCardIds: [...mechanicsData.cards].map((card) => card.cardId),
+        maxFiveStarMembers: 5,
+      }),
+    ).toBe(126_445_821);
+  });
+
   it("reports counters without issuing a certificate when a runtime budget expires", () => {
     let observed: NativeGlobalSearchProgress | null = null;
     try {

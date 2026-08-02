@@ -12,6 +12,19 @@ solver may be promoted only after differential tests agree with
 `evaluateNativeCentralUtility` across the complete mechanic catalog and a
 full-roster run reconciles every legal team set.
 
+The prototype comparator now rounds to the canonical six-decimal micro-unit
+boundary and does not use an epsilon for ties or pruning. A generated adapter
+now emits lower, central, and upper values and matches all 100,000 cases in the
+deterministic offline corpus exactly. This is an evaluator gate only: the full
+mechanic-state corpus, metamorphic tests, and independent full-scope certificate
+replay remain open.
+
+The generated parity IR and deterministic corpus are maintained by
+`pnpm optimizer:parity:ir` and `pnpm optimizer:parity`. A disposable per-case
+adapter is wired for differential diagnostics and records its sample parity
+report separately. No certificate claim is available until the complete parity
+gate and a declared-scope proof pass.
+
 Generate the local kernel with:
 
 ```text

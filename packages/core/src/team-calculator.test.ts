@@ -143,6 +143,31 @@ describe("owned-roster team calculator", () => {
     expect(result.score.absoluteLiveScoreAvailable).toBe(false);
   }, 30_000);
 
+  it("addresses every result to its exact owned-card, Bloom, Oshi, and corpus scope", () => {
+    const base = calculateOwnedRosterTeam(REQUEST, { evaluate: fastEvaluator() });
+    const changedBloom = calculateOwnedRosterTeam(
+      {
+        ...REQUEST,
+        ownedCards: REQUEST.ownedCards.map((ownedCard, index) =>
+          index === 0 ? { ...ownedCard, bloomStage: 1 as const } : ownedCard,
+        ),
+      },
+      { evaluate: fastEvaluator() },
+    );
+    const withOshi = calculateOwnedRosterTeam(
+      { ...REQUEST, oshi: { talentId: AKI_TALENT_ID, role: "member" as const } },
+      { evaluate: fastEvaluator() },
+    );
+
+    expect(base.search.scopeHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(base.search.certificateId).toBe(base.search.scopeHash);
+    expect(base.search.optimalityGap).toBe(0);
+    expect(base.search.formationOrderClaim).toBe("conditional-on-selected-team");
+    expect(changedBloom.search.scopeHash).not.toBe(base.search.scopeHash);
+    expect(withOshi.search.scopeHash).not.toBe(base.search.scopeHash);
+    expect(withOshi.search.certificateId).toBe(withOshi.search.scopeHash);
+  }, 30_000);
+
   it.each([
     {
       role: "member" as const,

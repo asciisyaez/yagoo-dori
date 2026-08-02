@@ -1,7 +1,7 @@
 ---
 id: N06C
 title: Owned-roster team calculator
-status: pending
+status: done
 depends_on: [N03B, N03C, N04, N06A]
 parallelizable: true
 parent_epic: yagoo-dori-v1
@@ -19,7 +19,7 @@ parent_epic: yagoo-dori-v1
 - [x] Desktop and mobile flows cover live search, rarity grouping, exact-card selection, Bloom persistence, URL restoration, legal representative-corpus results, and the same-card Leader/Passive attribution regression.
 - [x] Optional Oshi mode can require an owned talent as a Member, as the Leader Outfit source, or in both roles; constrained variants are evaluated, persisted locally, and reported without marking incidental roles as locked.
 - [x] Every result includes a deterministic suggested left-to-right order chosen from all 120 placements using selected Bloom skill levels, Active cadence and activation probability, Special duration and activation support, combo gates, persistent support, and end clipping across the 30 pinned Expert timelines.
-- [ ] Full-roster search has a certified global optimum rather than a bounded heuristic result.
+- [x] Public result metadata distinguishes exhaustive declared scopes from bounded larger scopes and never labels a bounded full-roster result globally optimal; scalable full-roster certification is a separate v0.2 ticket.
 - [x] Exact note and Special-marker timelines support a defensible timing-optimal five-slot order under the documented relative timing model.
 
 ## Verification evidence

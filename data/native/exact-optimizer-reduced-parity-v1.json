@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-reduced-bruteforce-v1",
+  "generatedAt": "2026-08-02T10:31:55.318Z",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074",
+  "fixtureRoster": {
+    "memberIds": [
+      "card-00001-4-cmmn-0000-00",
+      "card-00004-5-uniq-0005-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00013-4-cmmn-0000-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00019-5-uniq-0016-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "leaderIds": [
+      "card-00001-5-uniq-0000-00",
+      "card-00013-5-uniq-0002-00",
+      "card-00019-5-uniq-0016-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "chartKey": "m0206:expert"
+  },
+  "legalTeamSets": 56,
+  "casesEvaluated": 224,
+  "compiledOutputCount": 224,
+  "mismatchCount": 0,
+  "tsWinner": {
+    "leaderCardId": "card-00039-5-uniq-0032-00",
+    "memberCardIds": [
+      "card-00004-5-uniq-0005-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "centralMicroUnits": 316001872844
+  },
+  "compiledWinner": {
+    "leaderCardId": "card-00039-5-uniq-0032-00",
+    "memberCardIds": [
+      "card-00004-5-uniq-0005-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "centralMicroUnits": 316001872844
+  },
+  "winnerMatches": true,
+  "parityEligible": true,
+  "certificateEligible": false,
+  "mismatches": [],
+  "caseHash": "ad3846f7beb5c79b5c9b121468dc901b41aec9c65751ab173be75f2b8616f058",
+  "disposition": "Reduced-roster compiled evaluator and independent TypeScript brute force agree; this is not a full-roster certificate."
+}

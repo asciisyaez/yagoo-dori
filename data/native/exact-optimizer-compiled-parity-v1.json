@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-compiled-parity-v1",
+  "generatedAt": "2026-08-02T10:31:43.537Z",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074",
+  "kernelPath": "tools/exact-global-solver/kernel.json",
+  "samplePath": "data/native/exact-optimizer-parity-sample-v1.json",
+  "sampleCount": 100000,
+  "compiledOutputCount": 100000,
+  "mismatchCount": 0,
+  "firstMismatches": [],
+  "deltaMicroUnits": {
+    "lower": {
+      "minimum": 0,
+      "maximum": 0,
+      "maximumAbsolute": 0,
+      "meanAbsolute": 0
+    },
+    "central": {
+      "minimum": 0,
+      "maximum": 0,
+      "maximumAbsolute": 0,
+      "meanAbsolute": 0
+    },
+    "upper": {
+      "minimum": 0,
+      "maximum": 0,
+      "maximumAbsolute": 0,
+      "meanAbsolute": 0
+    }
+  },
+  "elapsedMilliseconds": 43063.288,
+  "certificateEligible": false,
+  "disposition": "Lower/central/upper parity passed for 100000 deterministic cases; the complete certification gate remains open until compiled mechanic fixtures, shard replay, and full-scope proof pass."
+}

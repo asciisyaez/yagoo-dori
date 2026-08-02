@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-shard-determinism-v1",
+  "fixture": "data/native/exact-optimizer-reduced-shard-run-v1.json",
+  "serialManifestHash": "a631c338e59244e3ffc44265c9032f1f621535fb4fe7101fa0f62585147dfa41",
+  "parallelManifestHash": "a631c338e59244e3ffc44265c9032f1f621535fb4fe7101fa0f62585147dfa41",
+  "resumedManifestHash": "a631c338e59244e3ffc44265c9032f1f621535fb4fe7101fa0f62585147dfa41",
+  "checks": {
+    "serialParallelByteIdentity": true,
+    "resumedRunByteIdentity": true,
+    "stableRangeOrder": true
+  },
+  "certificateEligible": false,
+  "disposition": "Reduced reference shard run is byte-identical under serial, reversed-order parallel reduction, and resumed-shard replay; full production certification remains open."
+}

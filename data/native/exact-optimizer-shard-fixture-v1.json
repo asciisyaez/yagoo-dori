@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "yd-exact-optimality-run-v1",
+  "runRecordId": "yd-shard-verifier-fixture-v1",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+  "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+  "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+  "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+  "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+  "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+  "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+  "executionMode": "serial-fixture",
+  "certificateEligible": false,
+  "parityEligible": false,
+  "resultClaim": "bounded-benchmark-fixture",
+  "declaredLegalTeamSets": 5,
+  "winner": {
+    "centralMicroUnits": 1000000
+  },
+  "shards": [
+    {
+      "schemaVersion": 1,
+      "shardId": "fixture-000",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+      "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+      "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+      "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+      "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+      "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+      "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+      "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+      "executionMode": "serial-fixture",
+      "range": {
+        "startInclusive": 0,
+        "endExclusive": 3
+      },
+      "legalTeamSets": 3,
+      "exactLeaves": 3,
+      "prunedTeamSets": 0,
+      "maximumPrunedUpperCentralMicroUnits": null,
+      "leaderClassesEvaluated": 1,
+      "localOptimalTieSet": [],
+      "elapsedMilliseconds": 1,
+      "peakMemoryBytes": 1,
+      "sha256": "8c0d87ff535a49da74ffc4f30df0ffb9d3034017fc50d6d96c4c022b3a42b0fc"
+    },
+    {
+      "schemaVersion": 1,
+      "shardId": "fixture-001",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+      "kernelHash": "b8752cf90187e4ca2545ebfda3f867446d9f68c2f1032235f20dc22d4818a5fa",
+      "rosterHash": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+      "mechanicsHash": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+      "chartCorpusHash": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
+      "objectiveId": "yd-equal-chart-average-relative-utility-v1",
+      "evaluatorMethodologyVersion": "yd-native-utility-1.0.0",
+      "arithmeticMethodologyVersion": "yd-canonical-micro-units-1.0.0",
+      "executionMode": "serial-fixture",
+      "range": {
+        "startInclusive": 3,
+        "endExclusive": 5
+      },
+      "legalTeamSets": 2,
+      "exactLeaves": 2,
+      "prunedTeamSets": 0,
+      "maximumPrunedUpperCentralMicroUnits": null,
+      "leaderClassesEvaluated": 1,
+      "localOptimalTieSet": [],
+      "elapsedMilliseconds": 1,
+      "peakMemoryBytes": 1,
+      "sha256": "a42ea789863164b7bdc9340c5b102cc21174a0b245a1b6f855e930a0ba6052ae"
+    }
+  ],
+  "recordHash": "0dd1d08e9e4222592a1d42ffc5be1b244bf889a34593a9b0c68cea798af2bb11"
+}

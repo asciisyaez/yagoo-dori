@@ -42,7 +42,7 @@ pnpm test:e2e:pages
 pnpm project:status
 ```
 
-`pnpm build:pages` produces the repository-subpath-safe static export in `apps/web/out`. See [`docs/release.md`](docs/release.md) for the clean-repository GitHub Pages release checklist.
+`pnpm build:pages` produces the repository-subpath-safe static export in `apps/web/out`. The v0.1 site is already live; see [`docs/release.md`](docs/release.md) for the guarded future-release and rollback procedure.
 
 ## Refreshing generated results
 

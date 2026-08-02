@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-formulation-benchmark-v1",
+  "generatedAt": "2026-08-02T10:32:44.815Z",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "certificateEligible": false,
+  "hardware": {
+    "platform": "win32",
+    "arch": "x64",
+    "cpuCount": 32,
+    "totalMemoryBytes": 66157592576,
+    "node": "v25.8.0",
+    "rustc": "rustc 1.94.1 (e408947bf 2026-03-25)",
+    "cargo": "cargo 1.94.1 (29ea6fb6a 2026-03-24)",
+    "compilerFlags": "default; fast-math/reassociation not enabled"
+  },
+  "chartCountTested": 30,
+  "flatExhaustiveBaseline": {
+    "reduced20": {
+      "eligibleCards": 20,
+      "legalTeamSets": 7616,
+      "exactLeafEvaluations": 0,
+      "teamSetsPerSecond": 4278651.685393324,
+      "elapsedMilliseconds": 1.78,
+      "note": "Flat baseline enumerated legal sets only; utility evaluation remains a separate measured cost."
+    },
+    "declaredFullRosterLegalTeamSets": 126445821,
+    "compiledParityThroughput": {
+      "samplePath": "data/native/exact-optimizer-parity-sample-v1.json",
+      "casesMeasured": 100000,
+      "elapsedMilliseconds": 43063.288,
+      "casesPerSecond": 2322.163602556312,
+      "lowerCentralUpperMismatchCount": 0,
+      "estimatedLeaderTeamChartEvaluations": 428651333190,
+      "estimatedSecondsAtMeasuredRate": 184591358.12744927,
+      "estimatedHoursAtMeasuredRate": 51275.3772576248,
+      "note": "Projection treats each Leader/team/chart tuple as one parity-valid evaluator call; it excludes any future exact aggregation or cache optimization and is not a proof result."
+    }
+  },
+  "hybridBranchAndBound": {
+    "reduced20": {
+      "status": "completed",
+      "elapsedMilliseconds": 16813.06,
+      "legalTeamSets": 7616,
+      "exactLeafEvaluations": 207,
+      "prunedTeamSets": 7409,
+      "boundEvaluations": 930,
+      "utilityEvaluations": 4014,
+      "leaderTeamEvaluations": 2007,
+      "certificateEligible": false,
+      "note": "Prototype result retained as a benchmark; it is not promoted to a v0.2 certificate."
+    },
+    "fullRosterBudgetProbe": {
+      "status": "timeout",
+      "elapsedMilliseconds": 4266.1603,
+      "nodesVisited": 0,
+      "exactLeafEvaluations": 0,
+      "prunedTeamSets": 0,
+      "boundEvaluations": 0,
+      "utilityEvaluations": 0,
+      "intervalUtilityEvaluations": 0,
+      "bestCentralUtility": null,
+      "certificateEligible": false,
+      "note": "Timeout output is a bounded measurement and cannot be labelled optimal or certified."
+    }
+  },
+  "meetInTheMiddle": {
+    "status": "rejected-for-certificate-spike",
+    "partition": "2-plus-3",
+    "crossPartitionInteractions": [
+      "deck attribute/group trigger counts",
+      "target caps and unresolved recipient subsets",
+      "conditional base/additive/override channels",
+      "Leader applications and singer-dependent chart facts",
+      "expected Active maxima and Special support windows"
+    ],
+    "reason": "No exact composable feature-state representation has been proven; an approximate join would not be a certificate."
+  },
+  "exactAggregationProbe": {
+    "methodologyVersion": "yd-native-leader-resolution-cache-1.0.0",
+    "reducedTeams": 32,
+    "reducedCharts": 2,
+    "reducedBaselineCalls": 7232,
+    "reducedGroupedCalls": 3712,
+    "reducedCallReductionFraction": 0.48672566371681414,
+    "reducedParityMismatches": 0,
+    "stratifiedCases": 8,
+    "stratifiedParityMismatches": 0,
+    "certificateEligible": false,
+    "note": "A parity-valid reduced aggregation candidate is recorded separately; resolution cost and complete mechanic coverage remain open."
+  },
+  "decision": "Keep flat enumeration as the mandatory proof baseline. The parity-valid compiled evaluator remains far beyond the current offline budget under the naive projection; the reduced Leader-resolution aggregation probe is a measured candidate only, so retain certificateEligible=false and expand its full mechanic gate before selecting production certification code."
+}

@@ -1,4 +1,12 @@
 import { type BloomStage, type InvestmentLayer } from "./formation-evaluator";
+import {
+  compareCanonicalCandidates,
+  fromCanonicalMicroUnits,
+  toCanonicalMicroUnits,
+  upperBoundToCanonicalMicroUnits,
+  type CanonicalCandidate,
+  type CanonicalUtilityTuple,
+} from "./exact-optimizer-arithmetic";
 import { mechanicsCardById } from "./mechanics";
 import {
   compileNativeGlobalBoundContext,
@@ -22,6 +30,10 @@ type Candidate = Readonly<{
   leaderOutfitCardId: string;
   memberCardIds: readonly [string, string, string, string, string];
   relativeUtility: UtilityInterval;
+}>;
+
+type SearchCandidate = Candidate & Readonly<{
+  canonicalUtility: CanonicalUtilityTuple;
 }>;
 
 export type NativeGlobalSearchInput = Readonly<{
@@ -101,23 +113,19 @@ export type NativeGlobalSearchResult = Readonly<{
   }>;
 }>;
 
-function round(value: number): number {
-  return Math.round(value * 1_000_000) / 1_000_000;
-}
-
-function compareCandidates(left: Candidate, right: Candidate): number {
-  if (left.relativeUtility.central !== right.relativeUtility.central) {
-    return right.relativeUtility.central - left.relativeUtility.central;
-  }
-  if (left.relativeUtility.lower !== right.relativeUtility.lower) {
-    return right.relativeUtility.lower - left.relativeUtility.lower;
-  }
-  if (left.relativeUtility.upper !== right.relativeUtility.upper) {
-    return right.relativeUtility.upper - left.relativeUtility.upper;
-  }
-  return `${left.leaderOutfitCardId}|${left.memberCardIds.join("|")}`.localeCompare(
-    `${right.leaderOutfitCardId}|${right.memberCardIds.join("|")}`,
-  );
+function compareCandidates(left: SearchCandidate, right: SearchCandidate): number {
+  const leftCanonical: CanonicalCandidate = {
+    leaderCardId: left.leaderOutfitCardId,
+    memberCardIds: left.memberCardIds,
+    utility: left.canonicalUtility,
+  };
+  const rightCanonical: CanonicalCandidate = {
+    leaderCardId: right.leaderOutfitCardId,
+    memberCardIds: right.memberCardIds,
+    utility: right.canonicalUtility,
+  };
+  // compareCanonicalCandidates is positive when the left candidate wins.
+  return -compareCanonicalCandidates(leftCanonical, rightCanonical);
 }
 
 function asTeam(ids: readonly string[]): readonly [string, string, string, string, string] {
@@ -151,6 +159,57 @@ function countCompletions(
   }
   cache.set(key, total);
   return total;
+}
+
+/**
+ * Count legal unordered five-Member card sets without evaluating utility. This
+ * is the independent accounting primitive used by the v0.2 flat-enumeration
+ * benchmark and certificate reducer.
+ */
+export function countNativeLegalTeamSets(input: Readonly<{
+  eligibleMemberCardIds: readonly string[];
+  fixedMemberCardIds?: readonly string[];
+  maxFiveStarMembers?: number;
+}>): number {
+  const eligible = [...new Set(input.eligibleMemberCardIds)].sort();
+  if (eligible.length !== input.eligibleMemberCardIds.length) {
+    throw new Error("Eligible Member IDs must be unique");
+  }
+  const fixed = [...new Set(input.fixedMemberCardIds ?? [])].sort();
+  if (fixed.length !== (input.fixedMemberCardIds ?? []).length) {
+    throw new Error("Fixed Member IDs must be unique");
+  }
+  const maxFiveStarMembers = input.maxFiveStarMembers ?? 5;
+  const fixedTalents = new Set<string>();
+  let fixedFiveStars = 0;
+  for (const cardId of fixed) {
+    if (!eligible.includes(cardId)) throw new Error(`Fixed Member is not eligible: ${cardId}`);
+    const card = mechanicsCardById.get(cardId);
+    if (!card) throw new Error(`Unknown fixed Member: ${cardId}`);
+    if (fixedTalents.has(card.talentId)) throw new Error("Fixed Members must have unique talents");
+    fixedTalents.add(card.talentId);
+    if (card.rarity === 5) fixedFiveStars += 1;
+  }
+  if (fixed.length > 5 || fixedFiveStars > maxFiveStarMembers) return 0;
+  const grouped = new Map<string, string[]>();
+  for (const cardId of eligible) {
+    const card = mechanicsCardById.get(cardId);
+    if (!card) throw new Error(`Unknown eligible Member: ${cardId}`);
+    if (fixedTalents.has(card.talentId)) continue;
+    const group = grouped.get(card.talentId) ?? [];
+    group.push(cardId);
+    grouped.set(card.talentId, group);
+  }
+  const groups: TalentGroup[] = [...grouped.entries()]
+    .map(([talentId, cardIds]) => ({ talentId, cardIds: [...cardIds].sort() }))
+    .sort((left, right) => left.talentId.localeCompare(right.talentId));
+  return countCompletions(
+    groups,
+    0,
+    5 - fixed.length,
+    maxFiveStarMembers - fixedFiveStars,
+    new Map<string, number>(),
+  );
 }
 
 /**
@@ -316,7 +375,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     chartKeys: input.chartKeys,
   });
   const leaderRepresentatives = boundContext.leaderRepresentativeCardIds;
-  let best: Candidate | null = null;
+  let best: SearchCandidate | null = null;
   let exactLeafEvaluations = 0;
   let prunedTeamSets = 0;
   let nodesVisited = 0;
@@ -392,11 +451,9 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
           accountState: input.accountState,
         });
       });
-      const central = round(
-        centralUtilities.reduce((sum, utility) => sum + utility, 0) /
-          centralUtilities.length,
-      );
-      if (best && central < best.relativeUtility.central) {
+      const central = centralUtilities.reduce((sum, utility) => sum + utility, 0) / centralUtilities.length;
+      const canonicalCentral = toCanonicalMicroUnits(central);
+      if (best && canonicalCentral < best.canonicalUtility.central) {
         prunedLeaderTeamCandidates += 1;
         continue;
       }
@@ -418,15 +475,36 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
           accountState: input.accountState,
         }).relativeUtility;
       });
-      const candidate: Candidate = {
+      const candidate: SearchCandidate = {
         leaderOutfitCardId,
         memberCardIds: members,
         relativeUtility: {
-          lower: round(utilities.reduce((sum, utility) => sum + utility.lower, 0) / utilities.length),
-          central: round(
+          lower: fromCanonicalMicroUnits(
+            toCanonicalMicroUnits(
+              utilities.reduce((sum, utility) => sum + utility.lower, 0) / utilities.length,
+            ),
+          ),
+          central: fromCanonicalMicroUnits(
+            toCanonicalMicroUnits(
+              utilities.reduce((sum, utility) => sum + utility.central, 0) / utilities.length,
+            ),
+          ),
+          upper: fromCanonicalMicroUnits(
+            toCanonicalMicroUnits(
+              utilities.reduce((sum, utility) => sum + utility.upper, 0) / utilities.length,
+            ),
+          ),
+        },
+        canonicalUtility: {
+          lower: toCanonicalMicroUnits(
+            utilities.reduce((sum, utility) => sum + utility.lower, 0) / utilities.length,
+          ),
+          central: toCanonicalMicroUnits(
             utilities.reduce((sum, utility) => sum + utility.central, 0) / utilities.length,
           ),
-          upper: round(utilities.reduce((sum, utility) => sum + utility.upper, 0) / utilities.length),
+          upper: toCanonicalMicroUnits(
+            utilities.reduce((sum, utility) => sum + utility.upper, 0) / utilities.length,
+          ),
         },
       };
       if (!best || compareCandidates(candidate, best) < 0) best = candidate;
@@ -530,7 +608,10 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     checkRuntime();
     nodesVisited += 1;
     if (nodesVisited % progressIntervalNodes === 0) input.onProgress?.(progress());
-    if (best && branch.bound.upperCentralUtility < best.relativeUtility.central) {
+    if (
+      best &&
+      upperBoundToCanonicalMicroUnits(branch.bound.upperCentralUtility) < best.canonicalUtility.central
+    ) {
       nodesPruned += 1;
       prunedTeamSets += branch.teamSets;
       maximumPrunedUpperCentralUtility = Math.max(
@@ -572,10 +653,17 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     throw new Error("Global-search certificate counts did not reconcile");
   }
 
+  const completedBest = best as SearchCandidate;
+  const publicBest: Candidate = {
+    leaderOutfitCardId: completedBest.leaderOutfitCardId,
+    memberCardIds: completedBest.memberCardIds,
+    relativeUtility: completedBest.relativeUtility,
+  };
+
   return {
     kind: "native-global-team-search",
     methodologyVersion: "yd-native-global-search-1.0.0",
-    best,
+    best: publicBest,
     certificate: {
       kind: "certified",
       optimalityClaim: "global-central-optimum-under-current-aggregate-model",

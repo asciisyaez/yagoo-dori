@@ -1,4 +1,5 @@
 import rankingBenchmarkJson from "../../../data/native/ranking-benchmark-v1.json";
+import { createHash } from "node:crypto";
 
 import { recommendFormationOrder } from "./formation-order-recommender";
 import { mechanicsCardById } from "./mechanics";
@@ -20,12 +21,16 @@ import {
   TeamCalculatorResultSchema,
   type TeamCalculatorBloomStage,
   type TeamCalculatorOshiRole,
+  type TeamCalculatorRequest,
   type TeamCalculatorResult,
 } from "./team-calculator-contract";
 
 export const TEAM_CALCULATOR_ROSTER_COMMIT = publicData.sourceSnapshots.english.commit;
 export const TEAM_CALCULATOR_DEFAULT_SEED = 0x5941_474f;
 export const TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS = 25;
+export const TEAM_CALCULATOR_OBJECTIVE_ID = "yd-equal-chart-average-relative-utility-v1" as const;
+export const TEAM_CALCULATOR_EVALUATOR_METHODOLOGY = "yd-native-utility-1.0.0" as const;
+export const TEAM_CALCULATOR_ARITHMETIC_METHODOLOGY = "yd-native-six-decimal-rounding-1.0.0" as const;
 
 const HEURISTIC_LOCAL_ITERATION_LIMIT = 1;
 const LOCAL_COARSE_FINALIST_COUNT = 48;
@@ -48,6 +53,18 @@ const CALCULATOR_BOARD_STATE = {
     evidenceRef: "calculator:neutral-board-v1",
   },
 };
+
+function canonicalizeScopeValue(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalizeScopeValue).join(",")}]`;
+  if (value && typeof value === "object") {
+    const object = value as Record<string, unknown>;
+    return `{${Object.keys(object)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalizeScopeValue(object[key])}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
 
 type SearchRunner = (
   input: NativeCanonicalCandidateSearchInput,
@@ -145,6 +162,37 @@ function loadRepresentativeCorpus(): {
 }
 
 export const TEAM_CALCULATOR_CORPUS = Object.freeze(loadRepresentativeCorpus());
+
+function calculateOwnedRosterScopeHash(
+  request: TeamCalculatorRequest,
+  ownedCards: ReadonlyArray<{ cardId: string; bloomStage: TeamCalculatorBloomStage }>,
+): string {
+  const scope = {
+    schemaVersion: request.schemaVersion,
+    rosterCommit: request.rosterCommit,
+    ownedCards: [...ownedCards]
+      .map(({ cardId, bloomStage }) => ({ cardId, bloomStage }))
+      .sort((left, right) => left.cardId.localeCompare(right.cardId)),
+    oshi: request.oshi ?? null,
+    leaderAndMemberEligibility: "all-owned-cards-with-one-card-per-talent",
+    maximumFiveStarMembers: 5,
+    investmentLayer: "one-copy-maximum",
+    corpus: {
+      benchmarkId: TEAM_CALCULATOR_CORPUS.benchmarkId,
+      entriesSha256: TEAM_CALCULATOR_CORPUS.entriesSha256,
+      entries: TEAM_CALCULATOR_CORPUS.entries,
+    },
+    seed: TEAM_CALCULATOR_DEFAULT_SEED,
+    accountState: CALCULATOR_BOARD_STATE,
+    objective: TEAM_CALCULATOR_OBJECTIVE_ID,
+    evaluatorMethodologyVersion: TEAM_CALCULATOR_EVALUATOR_METHODOLOGY,
+    arithmeticMethodologyVersion: TEAM_CALCULATOR_ARITHMETIC_METHODOLOGY,
+    formationOrderClaim: "conditional-on-selected-team",
+  };
+  return createHash("sha256")
+    .update(canonicalizeScopeValue(scope), "utf8")
+    .digest("hex");
+}
 
 type ChartProfile = Readonly<{
   entry: CorpusEntry;
@@ -475,6 +523,8 @@ export function calculateOwnedRosterTeam(
   const ownedCards = [...request.ownedCards]
     .sort((left, right) => left.cardId.localeCompare(right.cardId))
     .map((ownedCard) => ({ ...ownedCard, card: requirePublicCard(ownedCard.cardId) }));
+  const scopeHash = calculateOwnedRosterScopeHash(request, ownedCards);
+  const runRecordId = `yd-owned-roster-run-v3-${scopeHash}`;
   const ownedTalentCount = new Set(ownedCards.map((ownedCard) => ownedCard.card.talentId)).size;
   if (ownedTalentCount < 5) {
     throw new TeamCalculatorError(
@@ -1072,14 +1122,23 @@ export function calculateOwnedRosterTeam(
         ? "certified-within-canonical-corpus-scope"
         : "bounded-search",
       certificateKind: exhaustive ? "certified" : "heuristic-bounded",
+      certificateId: exhaustive ? scopeHash : null,
+      scopeHash,
+      runRecordId,
       optimalityClaim: exhaustive
         ? "exhaustive-across-constraint-eligible-teams-leaders-and-frozen-corpus-under-canonical-order"
         : "not-certified",
       objective: "equal-chart-average-relative-utility",
+      objectiveId: TEAM_CALCULATOR_OBJECTIVE_ID,
+      evaluatorMethodologyVersion: TEAM_CALCULATOR_EVALUATOR_METHODOLOGY,
+      arithmeticMethodologyVersion: TEAM_CALCULATOR_ARITHMETIC_METHODOLOGY,
       comparisonOrder: "canonical-card-id-order",
       teamSetsInScope: legalTeamSets,
       teamSetsConsidered: searchTeamKeys.size,
+      teamSetsEvaluated: searchTeamKeys.size,
+      teamSetsPruned: 0,
       unsearchedTeamSets: legalTeamSets - searchTeamKeys.size,
+      optimalityGap: exhaustive ? 0 : null,
       candidateGenerationMode: exhaustive ? "exhaustive" : "bounded-native-search",
       candidateGenerationChartCount,
       candidateGenerationChartKeys: exhaustive
@@ -1097,6 +1156,7 @@ export function calculateOwnedRosterTeam(
       corpusUtilityEvaluations: adapterUtilityEvaluations,
       utilityEvaluations: adapterUtilityEvaluations + nativeUtilityEvaluations,
       formationOrderGloballyCertified: false,
+      formationOrderClaim: "conditional-on-selected-team",
       canonicalCorpusOptimalityClaim: exhaustive,
     },
   };

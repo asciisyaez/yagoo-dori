@@ -14,9 +14,8 @@ concurrency:
 
 jobs:
   build:
-    # Keep production deployment off until the owner completes the explicit
-    # public-release checklist in docs/release.md. The second variable is
-    # intentionally absent/false in the repository until that manual action.
+    # v0.1 is already live. Keep future replacements guarded by both explicit
+    # owner-controlled gates described in docs/release.md.
     if: ${{ vars.PAGES_DEPLOY_ENABLED == 'true' && vars.PUBLIC_RELEASE_CHECKLIST_COMPLETE == 'true' }}
     permissions:
       contents: read

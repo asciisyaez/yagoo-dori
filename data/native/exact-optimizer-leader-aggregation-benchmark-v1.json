@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-leader-resolution-aggregation-benchmark-v1",
+  "generatedAt": "2026-08-02T10:24:22.346Z",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "methodologyVersion": "yd-native-leader-resolution-cache-1.0.0",
+  "certificateEligible": false,
+  "parityEligible": true,
+  "hardware": {
+    "platform": "win32",
+    "arch": "x64",
+    "cpuCount": 32,
+    "totalMemoryBytes": 66157592576,
+    "node": "v25.8.0"
+  },
+  "input": {
+    "reducedEligibleMemberCards": 20,
+    "reducedLegalTeamsSampled": 32,
+    "leaderOutfits": 113,
+    "chartKeys": [
+      "m0004:expert",
+      "m0012:expert"
+    ],
+    "investmentLayer": "one-copy-maximum",
+    "bloomStage": 0
+  },
+  "exactAggregationProbe": {
+    "baselineLeaderTeamChartUtilityCalls": 7232,
+    "resolvedLeaderGroupChartUtilityCalls": 3712,
+    "exactUtilityCallReductionFraction": 0.48672566371681414,
+    "averageResolvedGroupsPerTeamChart": 58,
+    "resolutionGroupHistogram": {
+      "116": 32
+    },
+    "parityCases": 1808,
+    "parityMismatches": 0,
+    "elapsedMilliseconds": 32056.064,
+    "note": "The grouped calls are exact native-evaluator calls for representatives whose structural class and chart-specific resolved Leader application graph are identical. Resolution itself is measured separately and remains part of the future compiled-kernel cost."
+  },
+  "stratifiedParityProbe": {
+    "casesSelected": 8,
+    "baselineLeaderChartUtilityCalls": 904,
+    "groupedLeaderChartUtilityCalls": 464,
+    "exactUtilityCallReductionFraction": 0.48672566371681414,
+    "coverageFlags": [
+      "bloom-stage:0",
+      "bloom-stage:1",
+      "bloom-stage:2",
+      "bloom-stage:3",
+      "bloom-stage:4",
+      "bloom-stage:5",
+      "bloom:0-4",
+      "bloom:0-5",
+      "bloom:1-5",
+      "bloom:2-5",
+      "five-star-members:0",
+      "five-star-members:1",
+      "five-star-members:2",
+      "five-star-members:3",
+      "five-star-members:4",
+      "investment:duplicate-enabled-ceiling",
+      "investment:low-investment",
+      "investment:one-copy-maximum",
+      "leader-member-talent-collision:false",
+      "leader-member-talent-collision:true",
+      "singer:unmatched"
+    ],
+    "parityMismatches": 0,
+    "note": "Cases are selected deterministically from the 100000-case corpus to cover investment, Bloom, singer, five-star, and same-talent collision states. This remains a sampled gate, not complete mechanic proof."
+  },
+  "decision": "Candidate exact aggregation is parity-valid on the declared reduced and stratified samples only. Measure resolution cost and repeat across the complete mechanic corpus before allowing it into a certifying full-scope worker."
+}

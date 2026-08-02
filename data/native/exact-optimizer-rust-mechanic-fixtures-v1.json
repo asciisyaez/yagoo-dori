@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-rust-mechanic-fixtures-v1",
+  "command": "cargo test --manifest-path tools/exact-global-solver/Cargo.toml -- --nocapture",
+  "status": 0,
+  "signal": null,
+  "fixtureFamilies": [
+    "combo-at-least pass/fail",
+    "deck-attribute-count pass/fail",
+    "deck-character-group-count pass/fail",
+    "life-at-least pass/fail",
+    "all/self/attribute/character-group targets",
+    "capped recipient enumeration",
+    "base and conditional-override Active combinations",
+    "JavaScript-compatible signed micro-unit rounding"
+  ],
+  "stdoutSha256": "57bb332d2ab92e42f9280605f5ae3b203beab7f8dfb317be7d9b6b67c7be0e9d",
+  "stderr": "Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s\n     Running unittests src\\main.rs (tools\\exact-global-solver\\target\\debug\\deps\\yagoo_dori_exact_global_solver-c5049a0ea56accd1.exe)",
+  "parityEligible": true,
+  "certificateEligible": false,
+  "disposition": "Compiled prototype mechanic fixtures pass; this validates prototype semantics only and does not promote the prototype to production or certify a roster result."
+}

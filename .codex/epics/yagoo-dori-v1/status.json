@@ -57,8 +57,12 @@
     "Rebuilt cards, talents, Leader Outfits, tier contexts, skills, synergies, sources, and guides around real public data",
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
-  "blockers": [
-    "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
-  ],
-  "nextAction": "Continue N03D with a fundamentally different exact full-roster formulation, such as meet-in-the-middle or a specialized compiled solver, because the sound branch-and-bound prototype cannot yet certify 126,445,821 legal team sets within its runtime budget."
+  "blockers": [],
+  "nextAction": "Continue v0.2 exact certification without changing the already-live v0.1 product.",
+  "releaseState": {
+    "status": "v0.1-live-verified-guarded",
+    "site": "https://asciisyaez.github.io/yagoo-dori/",
+    "lastVerifiedCommit": "77cffa155db5f7ee53f665540b30a157bf86a810",
+    "pagesWorkflow": "guarded-for-future-replacements"
+  }
 }

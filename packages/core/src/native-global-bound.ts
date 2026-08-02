@@ -5,6 +5,7 @@ import {
   type BloomStage,
   type InvestmentLayer,
 } from "./formation-evaluator";
+import { fromCanonicalMicroUnits, upperBoundToCanonicalMicroUnits } from "./exact-optimizer-arithmetic";
 import { mechanicsCardById, type CardMechanics } from "./mechanics";
 import { compileNativeLeaderEquivalence } from "./native-leader-equivalence";
 import { publicCardById, type PublicCard } from "./public-data";
@@ -962,11 +963,13 @@ function leaderEffectMaximum(
 }
 
 function ceilSix(value: number): number {
-  // Native utility publishes six-decimal central values. Round outward and add
-  // one micro-unit so binary floating-point cannot turn a mathematical upper
-  // bound into a one-ulp under-bound at the public comparison boundary.
-  return Math.ceil((value + Math.abs(value) * Number.EPSILON * 16) * 1_000_000) / 1_000_000 +
-    0.000_001;
+  // Keep the bound comparator-safe without a floating-point epsilon. First
+  // round toward positive infinity at the published boundary, then add one
+  // whole micro-unit as an explicit interval enclosure. Equality with the
+  // incumbent is still expanded by the strict search comparator.
+  return fromCanonicalMicroUnits(
+    (upperBoundToCanonicalMicroUnits(value) + 1) as ReturnType<typeof upperBoundToCanonicalMicroUnits>,
+  );
 }
 
 function activeOpportunityChecksAt(

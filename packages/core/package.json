@@ -24,12 +24,15 @@
     "./native-global-bound": "./src/native-global-bound.ts",
     "./native-global-search": "./src/native-global-search.ts",
     "./native-leader-equivalence": "./src/native-leader-equivalence.ts",
+    "./native-leader-resolution-cache": "./src/native-leader-resolution-cache.ts",
     "./native-search": "./src/native-search.ts",
     "./native-utility": "./src/native-utility.ts",
     "./score-kernel": "./src/score-kernel.ts",
     "./song-contexts": "./src/song-contexts.ts",
     "./team-calculator": "./src/team-calculator.ts",
-    "./team-calculator-contract": "./src/team-calculator-contract.ts"
+    "./team-calculator-contract": "./src/team-calculator-contract.ts",
+    "./exact-optimizer-arithmetic": "./src/exact-optimizer-arithmetic.ts",
+    "./exact-optimizer-scope": "./src/exact-optimizer-scope.ts"
   },
   "scripts": {
     "lint": "tsc --noEmit",

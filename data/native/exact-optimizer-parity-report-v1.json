@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-parity-report-v1",
+  "generatedAt": "2026-08-02T10:32:24.721Z",
+  "caseGenerationVersion": "yd-stratified-legal-case-generator-1.0.0",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074",
+  "caseHash": "5f9a22dc6b236fe6812a93166d7fc53e01a8d55bf2519275e873f99d85fc1a00",
+  "generatedCaseCount": 100000,
+  "referenceSampleCount": 100000,
+  "referenceSamplePath": "data/native/exact-optimizer-parity-sample-v1.json",
+  "offlineCorpusTarget": 100000,
+  "coverage": {
+    "effectKinds": [
+      "activation-rate-up",
+      "active-skill-effect-up",
+      "all-parameters-up",
+      "judgement-enhance",
+      "life-recovery",
+      "performance-up",
+      "score-support",
+      "score-up",
+      "sense-up",
+      "technique-up"
+    ],
+    "triggerKinds": [
+      "combo-at-least",
+      "deck-attribute-count",
+      "deck-character-group-count",
+      "life-at-least"
+    ],
+    "targetKinds": [
+      "all",
+      "attribute",
+      "character-group",
+      "self"
+    ],
+    "combinationModes": [
+      "additive",
+      "base",
+      "conditional-additive",
+      "conditional-base",
+      "conditional-override"
+    ],
+    "channels": [
+      "additional",
+      "primary"
+    ],
+    "memberCardCount": 113,
+    "leaderOutfitCardCount": 113
+  },
+  "caseCoverage": {
+    "memberCardIds": 113,
+    "leaderCardIds": 113,
+    "bloomStages": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "investmentLayers": [
+      "duplicate-enabled-ceiling",
+      "low-investment",
+      "one-copy-maximum"
+    ],
+    "chartKeys": 30,
+    "singerMatchedCases": 93390,
+    "singerUnmatchedCases": 6610,
+    "leaderMemberTalentCollisionCases": 9295,
+    "fiveStarMemberCounts": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "legalUniqueTalentCases": true,
+    "memberBloomStagesByCardId": {
+      "card-00001-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00001-5-uniq-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00002-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00002-5-uniq-0001-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00004-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00004-5-uniq-0005-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00005-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00005-5-uniq-0006-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00006-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00006-5-uniq-0007-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00007-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00007-5-uniq-0008-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00010-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00010-5-uniq-0010-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00011-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00011-5-uniq-0011-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00012-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00012-5-uniq-0012-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00012-5-uniq-0062-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00013-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00013-5-uniq-0002-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00014-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00014-5-uniq-0013-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00015-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00015-5-uniq-0003-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00016-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00016-5-uniq-0014-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00017-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00017-5-uniq-0015-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00018-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00018-5-uniq-0004-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00019-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00019-5-uniq-0016-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00021-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00021-5-uniq-0017-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00021-5-uniq-0064-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00022-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00022-5-uniq-0018-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00022-5-uniq-0063-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00023-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00023-5-uniq-0019-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00026-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00026-5-uniq-0021-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00026-5-uniq-0065-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00027-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00027-5-uniq-0022-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00028-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00028-5-uniq-0023-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00030-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00030-5-uniq-0024-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00031-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00031-5-uniq-0025-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00032-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00032-5-uniq-0026-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00034-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00034-5-uniq-0027-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00035-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00035-5-uniq-0028-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00036-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00036-5-uniq-0029-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00037-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00037-5-uniq-0030-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00039-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-00039-5-uniq-0032-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03001-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03001-5-uniq-0033-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03002-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03002-5-uniq-0034-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03003-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03003-5-uniq-0035-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03004-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03004-5-uniq-0036-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03005-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03005-5-uniq-0037-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03006-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03006-5-uniq-0038-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03007-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03007-5-uniq-0039-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03008-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03008-5-uniq-0040-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03009-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-03009-5-uniq-0041-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04001-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04001-5-uniq-0042-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04002-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04002-5-uniq-0043-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04003-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04003-5-uniq-0044-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04007-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04007-5-uniq-0047-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04010-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04010-5-uniq-0049-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04012-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04012-5-uniq-0051-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04013-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04013-5-uniq-0052-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04014-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04014-5-uniq-0053-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04015-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04015-5-uniq-0054-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04016-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04016-5-uniq-0055-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04017-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-04017-5-uniq-0056-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06002-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06002-5-uniq-0058-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06002-5-uniq-0066-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06003-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06003-5-uniq-0059-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06004-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06004-5-uniq-0060-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06005-4-cmmn-0000-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "card-06005-5-uniq-0061-00": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "mechanicFixtureSuite": "packages/core/src/exact-optimizer-parity-fixtures.test.ts",
+  "hardware": {
+    "platform": "win32",
+    "arch": "x64",
+    "cpuCount": 32,
+    "node": "v25.8.0"
+  },
+  "compiledKernelStatus": "validated-by-separate-central-sample-report",
+  "compiledParityReportPath": "data/native/exact-optimizer-compiled-parity-v1.json",
+  "rustMechanicFixtureReportPath": "data/native/exact-optimizer-rust-mechanic-fixtures-v1.json",
+  "compiledCasesEvaluated": 100000,
+  "compiledMismatchCount": 0,
+  "compiledMechanicFixtureStatus": "passed",
+  "certificateEligible": false,
+  "disposition": "IR and deterministic corpus generated; lower/central/upper parity matches 100000 cases and compiled mechanic fixtures pass. The complete bounds/shard/full-scope certificate gate remains open."
+}

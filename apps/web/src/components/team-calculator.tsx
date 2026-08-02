@@ -91,7 +91,10 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
   const alternatives = result.alternatives.filter((group) => group.cards.length > 0);
   const resultClaimLabel = result.search.resultClaim === "certified-within-canonical-corpus-scope"
     ? "All legal teams checked"
-    : "Best evaluated result";
+    : "Best result in searched scope";
+  const resultHeading = result.search.resultClaim === "certified-within-canonical-corpus-scope"
+    ? "Strongest team in the declared scope"
+    : "Strongest team found in the searched scope";
 
   const cardName = (cardId: string) => teamCardById.get(cardId) ?? "Matching Member";
 
@@ -101,7 +104,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
         <div className={styles.resultHeadingIcon}><Trophy aria-hidden="true" /></div>
         <div>
           <p>Recommended formation</p>
-          <h2 id="team-result-heading">Your strongest evaluated team</h2>
+          <h2 id="team-result-heading">{resultHeading}</h2>
           <span>Average performance across {result.corpus.chartCount} Expert charts</span>
         </div>
         <div className={styles.resultScore}>

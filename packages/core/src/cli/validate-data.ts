@@ -9,6 +9,7 @@ import { rankingCorpusTimelineData } from "../ranking-corpus-timelines";
 import { assertRelativeUtilityModelValidationCurrent } from "../relative-utility-model-validation";
 import { guideRatingTimelineByKey, guideRatingTimelineData } from "../guide-rating-timelines";
 import { songContextData } from "../song-contexts";
+import { exactOptimizerScope } from "../exact-optimizer-scope";
 
 assertRelativeUtilityModelValidationCurrent();
 
@@ -235,4 +236,9 @@ console.log(
 console.log(
   `Native output valid: 2 ranking contexts x ${nativeRankingData.lenses.length} lenses x ` +
     `${publicIds.size} cards, ${nativeGuideData.guides.length} generated guide.`,
+);
+console.log(
+  `Exact optimizer scope valid: ${exactOptimizerScope.scopeHash}, ` +
+    `${exactOptimizerScope.eligibility.eligibleMemberCardIds.length} Member and ` +
+    `${exactOptimizerScope.chartCorpus.entries.length} chart inputs pinned.`,
 );

@@ -78,50 +78,10 @@ export type NativeUtilityInput = Readonly<{
  * is a tested contract, not a second methodology.
  */
 export function evaluateNativeCentralUtility(input: NativeUtilityInput): number {
-  assertInputBoundary(input);
-  const chart = aggregateChartByKey.get(input.chartKey);
-  if (!chart) throw new Error(`Unknown exact aggregate chart context: ${input.chartKey}`);
-  const song = songById.get(chart.songId);
-  if (!song) throw new Error(`Chart ${chart.key} has no pinned song context`);
-
-  const legal = assertLegalFormation(input.formation);
-  const observation: TriggerObservation = {
-    combo: chart.fullComboNoteCount,
-    life: 1_000,
-    judgement: "perfect",
-    songSingerTalentIds: song.singerTalentIds,
-  };
-  const evaluator = evaluateFormation(input.formation, {
-    chart,
-    song,
-    policy: provisionalRuntimePolicy(input.seed, 1),
-    accountState: input.accountState,
-    observation,
-    runActiveSimulation: false,
-  });
-  const parameters = evaluator.members.map((member) => member.progression.parameters);
-  const memberCardIds = evaluator.members.map((member) => member.cardId);
-  const baseTotal = parameters.reduce(
-    (total, value) => total + value.performance + value.technique + value.sense,
-    0,
-  );
-  const parameterEffects = compileParameterEffects(evaluator, parameters);
-  const support = compilePersistentSupport(evaluator, memberCardIds);
-  const notes = uniformNotes(chart, song);
-  const activeProfiles = compileActiveProfiles(legal, evaluator, support, song, chart);
-  const states = noteActiveStates(notes, activeProfiles, legal, song);
-  const specials = compileSpecials(notes, legal, evaluator, song);
-  const activeWithSpecialPermil = aggregateActiveInterval(
-    states,
-    activeProfiles,
-    specials.supportByNote,
-    specials.activationRateWindows,
-  );
-  return round(
-    baseTotal +
-      parameterEffects.relativeUnits.central +
-      (activeWithSpecialPermil.central * baseTotal) / 1_000,
-  );
+  // Keep one reference operation/rounding path for the published central
+  // objective. The interval evaluator below is the source of lower/upper
+  // attribution; its central field is the canonical value used by search.
+  return evaluateNativeRelativeUtility(input).relativeUtility.central;
 }
 
 export type UtilityAssumption = {
