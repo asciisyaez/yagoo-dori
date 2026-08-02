@@ -1134,11 +1134,19 @@ function boundNativeAggregateCentralUtilityInternal(
     (card) => card.baseParameters,
   );
   const possibleRecipients = remainingSlots === 0 ? selected : [...selected, ...remaining];
-  const memberParameterEffects =
+  // Keep each source card paired with its own base parameters while relaxing
+  // recipient allocation over the possible roster. The previous two
+  // independent DPs could choose the five highest base cards and a different
+  // five highest passive sources, materially widening the bound. This is still
+  // an upper bound: every completed team has exactly one value for the paired
+  // callback, while its capped recipients are allowed to come from the full
+  // possible recipient pool.
+  const baseAndMemberParameterUpper =
     remainingSlots === 0
       ? selected.reduce(
           (total, card) =>
             total +
+            card.baseParameters +
             parameterApplicationCompleteCentral(
               possibleApplicationsInAnyChart(card.passiveApplications, triggerContexts),
               selected,
@@ -1152,12 +1160,14 @@ function boundNativeAggregateCentralUtilityInternal(
           remainingSlots,
           remainingFiveStarSlots,
           (card) =>
+            card.baseParameters +
             parameterApplicationUpper(
               possibleApplicationsInAnyChart(card.passiveApplications, triggerContexts),
               possibleRecipients,
               card,
             ),
         );
+  const memberParameterEffects = baseAndMemberParameterUpper - baseParameters;
   const leaderParameterEffects = Math.max(
     ...triggerContexts.map((context) =>
       remainingSlots === 0
