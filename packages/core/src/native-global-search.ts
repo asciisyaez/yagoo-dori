@@ -246,26 +246,49 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   const groups: TalentGroup[] = [...grouped.entries()]
     .map(([talentId, cardIds]) => ({ talentId, cardIds: [...cardIds].sort() }))
     .sort((left, right) => {
-      const leftMax = Math.max(
-        ...left.cardIds.map((cardId) => {
+      const groupPriority = (group: TalentGroup): number => Math.max(
+        ...group.cardIds.map((cardId) => {
           const card = mechanicsCardById.get(cardId);
           if (!card) throw new Error(`Unknown eligible Member: ${cardId}`);
           const publicCard = publicCardById.get(cardId);
           if (!publicCard) throw new Error(`Unknown public Member: ${cardId}`);
+          const state = card.progression.oneCopy;
+          const active = card.skills.active.find((skill) => skill.level === state.activeSkillLevel);
+          const special = card.skills.special.find((skill) => skill.level === state.specialSkillLevel);
+          const scoreUp = Math.max(
+            0,
+            ...(active?.applications ?? []).map((application) =>
+              application.effect?.kind === "score-up" ? application.effect.value ?? 0 : 0,
+            ),
+          );
+          const activeCoverage =
+            active?.activationProbabilityPermil !== null &&
+            active?.activationProbabilityPermil !== undefined &&
+            active?.cooldownMilliseconds !== null &&
+            active?.cooldownMilliseconds !== undefined &&
+            active?.durationMilliseconds !== null &&
+            active?.durationMilliseconds !== undefined
+              ? (active.activationProbabilityPermil / 1_000) *
+                Math.min(1, active.durationMilliseconds / active.cooldownMilliseconds)
+              : 0;
+          const specialSupport = (special?.applications ?? []).reduce(
+            (total, application) =>
+              total +
+              (application.effect?.kind === "score-support"
+                ? application.effect.value ?? 0
+                : 0),
+            0,
+          );
           const parameters = publicCard.parameters.maxPotential;
-          return parameters.performance + parameters.technique + parameters.sense;
+          return (
+            scoreUp * (1 + activeCoverage) +
+            specialSupport * 0.2 +
+            (parameters.performance + parameters.technique + parameters.sense) / 10_000
+          );
         }),
       );
-      const rightMax = Math.max(
-        ...right.cardIds.map((cardId) => {
-          const card = mechanicsCardById.get(cardId);
-          if (!card) throw new Error(`Unknown eligible Member: ${cardId}`);
-          const publicCard = publicCardById.get(cardId);
-          if (!publicCard) throw new Error(`Unknown public Member: ${cardId}`);
-          const parameters = publicCard.parameters.maxPotential;
-          return parameters.performance + parameters.technique + parameters.sense;
-        }),
-      );
+      const leftMax = groupPriority(left);
+      const rightMax = groupPriority(right);
       return rightMax - leftMax || left.talentId.localeCompare(right.talentId);
     });
   const suffixCardIds: string[][] = Array.from({ length: groups.length + 1 }, () => []);
