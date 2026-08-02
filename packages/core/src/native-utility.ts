@@ -2,15 +2,17 @@ import {
   assertLegalFormation,
   evaluateFormation,
   provisionalRuntimePolicy,
+  resolveCardInvestmentState,
   resolveActiveApplications,
   resolveLeaderApplications,
   type EvidenceGrade,
+  type FormationMember,
   type FormationInput,
   type LegalFormation,
   type SkillApplication,
   type TriggerObservation,
 } from "./formation-evaluator";
-import { mechanicsData, type CardMechanics } from "./mechanics";
+import { mechanicsCardById, mechanicsData, type CardMechanics } from "./mechanics";
 import { songContextData, type AggregateChartContext, type SongContext } from "./song-contexts";
 
 export const STANDARD_MANUAL_AP_FULL_LIFE_CONTEXT_ID =
@@ -220,6 +222,40 @@ type ActiveProfile = {
   baseUpPermil: number;
   conditionalOverrideUpPermil: number | null;
 };
+
+type NativeTeamActiveTiming = Readonly<{
+  cardId: string;
+  activeSkillLevel: number;
+  cooldownMilliseconds: number;
+  durationMilliseconds: number;
+  activationProbabilityPermil: number;
+}>;
+
+/**
+ * Leader-independent timing facts.  The cache is intentionally limited to
+ * Member card progression and chart timing; resolved applications, recipients,
+ * and Leader effects are never shared across Leaders.
+ */
+export type NativeUtilityTeamIntrinsic = Readonly<{
+  kind: "native-utility-team-intrinsic";
+  methodologyVersion: "yd-native-utility-team-intrinsic-1.0.0";
+  members: readonly FormationMember[];
+  activeTimingByMember: readonly NativeTeamActiveTiming[];
+}>;
+
+export type NativeActiveTraceExecution = Readonly<{
+  mode: "trace-preserving-state-runs" | "uncompressed-fallback";
+  noteCount: number;
+  baseStateRuns: number;
+  specialSupportStateRuns: number;
+  specialStateRuns: number;
+  fallbackReason: string | null;
+}>;
+
+export type NativeUtilityTraceEvaluation = Readonly<{
+  result: NativeUtilityResult;
+  activeTrace: NativeActiveTraceExecution;
+}>;
 type ActivationRateWindow = {
   startsAtMilliseconds: number;
   endsAtMilliseconds: number;
@@ -229,6 +265,11 @@ type ActivationRateWindow = {
 const aggregateChartByKey = new Map(songContextData.charts.map((chart) => [chart.key, chart]));
 const songById = new Map(songContextData.songs.map((song) => [song.id, song]));
 const uniformNotesByChartKey = new Map<string, UniformNote[]>();
+const teamIntrinsicByKey = new Map<string, NativeUtilityTeamIntrinsic>();
+const activeCheckCountsByTeam = new WeakMap<
+  NativeUtilityTeamIntrinsic,
+  Map<string, readonly Uint16Array[]>
+>();
 
 const PARAMETER_EFFECT_KINDS = new Set([
   "performance-up",
@@ -315,6 +356,114 @@ function uniformNotes(chart: AggregateChartContext, song: SongContext): UniformN
   }));
   uniformNotesByChartKey.set(chart.key, notes);
   return notes;
+}
+
+function teamIntrinsicKey(members: readonly FormationMember[]): string {
+  return members
+    .map((member) => `${member.cardId}@${member.investment}:${member.bloomStage ?? "none"}`)
+    .join("|");
+}
+
+/**
+ * Compile the Member-only Active timing layer once.  It deliberately excludes
+ * all application resolution and support values because either can depend on
+ * the concrete Leader/Outfit; those stay in the fixed-Leader dynamic trace.
+ */
+export function compileNativeUtilityTeamIntrinsic(
+  members: readonly FormationMember[],
+): NativeUtilityTeamIntrinsic {
+  if (members.length !== 5) {
+    throw new Error(`Native utility team intrinsic requires five Members; received ${members.length}`);
+  }
+  const copiedMembers = members.map((member) =>
+    member.bloomStage === undefined
+      ? { cardId: member.cardId, investment: member.investment }
+      : { cardId: member.cardId, investment: member.investment, bloomStage: member.bloomStage },
+  );
+  const cardIds = copiedMembers.map((member) => member.cardId);
+  if (new Set(cardIds).size !== cardIds.length) {
+    throw new Error("Native utility team intrinsic Member IDs must be unique");
+  }
+  const cards = copiedMembers.map((member) => {
+    const card = mechanicsCardById.get(member.cardId);
+    if (!card) throw new Error(`Unknown native utility Member: ${member.cardId}`);
+    return card;
+  });
+  if (new Set(cards.map((card) => card.talentId)).size !== cards.length) {
+    throw new Error("Native utility team intrinsic Members must have unique talents");
+  }
+  const activeTimingByMember = copiedMembers.map((member, index) => {
+    const mechanics = cards[index]!;
+    const state = resolveCardInvestmentState(
+      mechanics,
+      member.investment,
+      member.bloomStage,
+    );
+    const skill = exactSkillLevel(mechanics.skills.active, state.activeSkillLevel);
+    if (
+      skill.cooldownMilliseconds === null ||
+      skill.durationMilliseconds === null ||
+      skill.activationProbabilityPermil === null
+    ) {
+      throw new Error(`${member.cardId} lacks exact Active timing or probability`);
+    }
+    return Object.freeze({
+      cardId: member.cardId,
+      activeSkillLevel: state.activeSkillLevel,
+      cooldownMilliseconds: skill.cooldownMilliseconds,
+      durationMilliseconds: skill.durationMilliseconds,
+      activationProbabilityPermil: skill.activationProbabilityPermil,
+    });
+  });
+  return Object.freeze({
+    kind: "native-utility-team-intrinsic",
+    methodologyVersion: "yd-native-utility-team-intrinsic-1.0.0",
+    members: Object.freeze(copiedMembers),
+    activeTimingByMember: Object.freeze(activeTimingByMember),
+  });
+}
+
+function cachedNativeUtilityTeamIntrinsic(
+  members: readonly FormationMember[],
+): NativeUtilityTeamIntrinsic {
+  const key = teamIntrinsicKey(members);
+  const cached = teamIntrinsicByKey.get(key);
+  if (cached) return cached;
+  const intrinsic = compileNativeUtilityTeamIntrinsic(members);
+  teamIntrinsicByKey.set(key, intrinsic);
+  return intrinsic;
+}
+
+function cachedActiveCheckCounts(
+  intrinsic: NativeUtilityTeamIntrinsic,
+  chartKey: string,
+  notes: readonly UniformNote[],
+): readonly Uint16Array[] {
+  let byChart = activeCheckCountsByTeam.get(intrinsic);
+  if (!byChart) {
+    byChart = new Map<string, readonly Uint16Array[]>();
+    activeCheckCountsByTeam.set(intrinsic, byChart);
+  }
+  const cached = byChart.get(chartKey);
+  if (cached) return cached;
+  const countsByMember = intrinsic.activeTimingByMember.map((timing) => {
+    const counts = new Uint16Array(notes.length);
+    for (let noteIndex = 0; noteIndex < notes.length; noteIndex += 1) {
+      const count = activeOpportunityCheckCountAt(
+        notes[noteIndex]!.atMilliseconds,
+        timing.cooldownMilliseconds,
+        timing.durationMilliseconds,
+      );
+      if (count > 0xffff) {
+        throw new Error("Active check count exceeds compact uint16 trace capacity");
+      }
+      counts[noteIndex] = count;
+    }
+    return counts;
+  });
+  const frozen = Object.freeze(countsByMember);
+  byChart.set(chartKey, frozen);
+  return frozen;
 }
 
 function memberParameterForEffect(parameters: ParameterSet, effectKind: string): number {
@@ -487,7 +636,7 @@ function activeProbabilityForChecks(
   return 1 - noActivationProbability;
 }
 
-function expectedMaximum(values: readonly { value: number; probability: number }[]): number {
+export function expectedMaximum(values: readonly { value: number; probability: number }[]): number {
   const ordered = [...values]
     .filter((entry) => entry.value > 0 && entry.probability > 0)
     .sort((left, right) => right.value - left.value);
@@ -497,7 +646,7 @@ function expectedMaximum(values: readonly { value: number; probability: number }
     const value = ordered[index]!.value;
     let noMemberInGroup = 1;
     let cursor = index;
-    while (cursor < ordered.length && Math.abs(ordered[cursor]!.value - value) < 1e-9) {
+    while (cursor < ordered.length && ordered[cursor]!.value === value) {
       noMemberInGroup *= 1 - ordered[cursor]!.probability;
       cursor += 1;
     }
@@ -566,6 +715,349 @@ type NoteActiveState = {
   selectedUpPermil: RawInterval;
 };
 
+type ActiveSelectionSequence = Readonly<{
+  selections: readonly RawInterval[];
+  selectionIndexByNote: Uint8Array;
+}>;
+
+type CompiledActiveTrace = Readonly<{
+  profiles: readonly ActiveProfile[];
+  checkCountsByMember: readonly Uint16Array[];
+  selectionsByMember: readonly ActiveSelectionSequence[];
+  supported: boolean;
+  fallbackReason: string | null;
+}>;
+
+type CompressedActiveAggregate = Readonly<{
+  value: RawInterval;
+  stateRuns: number;
+}>;
+
+const STATIC_ACTIVE_TRIGGER_KINDS = new Set([
+  "combo-at-least",
+  "deck-attribute-count",
+  "deck-character-group-count",
+  "judgement-at-least",
+  "life-at-least",
+  "life-at-most",
+  "music-character",
+]);
+
+function activeOpportunityCheckCountAt(
+  atMilliseconds: number,
+  cooldownMilliseconds: number,
+  durationMilliseconds: number,
+): number {
+  const lastCheck = Math.floor(atMilliseconds / cooldownMilliseconds);
+  if (lastCheck < 1) return 0;
+  const firstPossible = Math.max(
+    1,
+    Math.floor((atMilliseconds - durationMilliseconds) / cooldownMilliseconds) + 1,
+  );
+  return Math.max(0, lastCheck - firstPossible + 1);
+}
+
+function activeProbabilityForCheckCount(
+  checkCount: number,
+  baseProbabilityPermil: number,
+  activationRateUpPermil = 0,
+): number {
+  const checkProbabilityPermil = Math.max(
+    0,
+    Math.min(1_000, baseProbabilityPermil + activationRateUpPermil),
+  );
+  let noActivationProbability = 1;
+  for (let index = 0; index < checkCount; index += 1) {
+    noActivationProbability *= 1 - checkProbabilityPermil / 1_000;
+  }
+  return 1 - noActivationProbability;
+}
+
+function activeSelectionSequence(
+  profile: ActiveProfile,
+  formation: LegalFormation,
+  song: SongContext,
+  noteCount: number,
+): ActiveSelectionSequence {
+  const starts = new Set<number>([1]);
+  let supported = true;
+  for (const application of profile.skill.applications) {
+    const trigger = application.trigger;
+    if (!trigger) continue;
+    if (!STATIC_ACTIVE_TRIGGER_KINDS.has(trigger.kind)) {
+      supported = false;
+      break;
+    }
+    if (trigger.kind === "combo-at-least" && trigger.threshold !== null) {
+      const start = Math.max(1, Math.min(noteCount + 1, Math.ceil(trigger.threshold)));
+      starts.add(start);
+    }
+  }
+  if (!supported) {
+    return { selections: Object.freeze([]), selectionIndexByNote: new Uint8Array(noteCount) };
+  }
+  const breakpoints = [...starts].sort((left, right) => left - right);
+  const selections = breakpoints.map((combo) =>
+    scoreUpInterval(profile.skill.applications, formation, {
+      combo,
+      life: 1_000,
+      judgement: "perfect",
+      songSingerTalentIds: song.singerTalentIds,
+    }),
+  );
+  if (selections.length > 255) {
+    // Uint8 state IDs are a compact hot-path contract. More than 255 Active
+    // breakpoints is unsupported until a wider representation is proven.
+    return { selections: Object.freeze([]), selectionIndexByNote: new Uint8Array(noteCount) };
+  }
+  const selectionIndexByNote = new Uint8Array(noteCount);
+  let breakpointIndex = 0;
+  for (let noteIndex = 0; noteIndex < noteCount; noteIndex += 1) {
+    const combo = noteIndex + 1;
+    while (
+      breakpointIndex + 1 < breakpoints.length &&
+      combo >= breakpoints[breakpointIndex + 1]!
+    ) {
+      breakpointIndex += 1;
+    }
+    selectionIndexByNote[noteIndex] = breakpointIndex;
+  }
+  return { selections: Object.freeze(selections), selectionIndexByNote };
+}
+
+function compileActiveTrace(
+  chartKey: string,
+  notes: readonly UniformNote[],
+  profiles: readonly ActiveProfile[],
+  formation: LegalFormation,
+  song: SongContext,
+  intrinsic: NativeUtilityTeamIntrinsic,
+): CompiledActiveTrace {
+  if (intrinsic.activeTimingByMember.length !== profiles.length) {
+    return {
+      profiles,
+      checkCountsByMember: Object.freeze([]),
+      selectionsByMember: Object.freeze([]),
+      supported: false,
+      fallbackReason: "team-intrinsic-member-count-mismatch",
+    };
+  }
+  const checkCountsByMember: Uint16Array[] = [];
+  const selectionsByMember: ActiveSelectionSequence[] = [];
+  const cachedCounts = cachedActiveCheckCounts(intrinsic, chartKey, notes);
+  for (let memberIndex = 0; memberIndex < profiles.length; memberIndex += 1) {
+    const profile = profiles[memberIndex]!;
+    const timing = intrinsic.activeTimingByMember[memberIndex]!;
+    if (
+      profile.cardId !== timing.cardId ||
+      profile.skill.cooldownMilliseconds !== timing.cooldownMilliseconds ||
+      profile.skill.durationMilliseconds !== timing.durationMilliseconds ||
+      profile.skill.activationProbabilityPermil !== timing.activationProbabilityPermil
+    ) {
+      return {
+        profiles,
+        checkCountsByMember: Object.freeze([]),
+        selectionsByMember: Object.freeze([]),
+        supported: false,
+        fallbackReason: "team-intrinsic-active-timing-mismatch",
+      };
+    }
+    const sequence = activeSelectionSequence(profile, formation, song, notes.length);
+    if (sequence.selections.length === 0) {
+      return {
+        profiles,
+        checkCountsByMember: Object.freeze([]),
+        selectionsByMember: Object.freeze([]),
+        supported: false,
+        fallbackReason: "unsupported-active-trigger-or-breakpoint-width",
+      };
+    }
+    checkCountsByMember.push(cachedCounts[memberIndex]!);
+    selectionsByMember.push(sequence);
+  }
+  return {
+    profiles,
+    checkCountsByMember: Object.freeze(checkCountsByMember),
+    selectionsByMember: Object.freeze(selectionsByMember),
+    supported: true,
+    fallbackReason: null,
+  };
+}
+
+function constantByNote(values: readonly number[]): number | null {
+  if (values.length === 0) return 0;
+  const first = values[0]!;
+  for (let index = 1; index < values.length; index += 1) {
+    if (values[index] !== first) return null;
+  }
+  return first;
+}
+
+function fullChartActivationRate(
+  windows: readonly ActivationRateWindow[],
+  durationMilliseconds: number,
+): number | null {
+  let total = 0;
+  for (const window of windows) {
+    if (window.startsAtMilliseconds !== 0 || window.endsAtMilliseconds !== durationMilliseconds) {
+      return null;
+    }
+    total += window.activationRateUpPermil;
+  }
+  return total;
+}
+
+export function expectedMaximumFive(
+  values: Float64Array,
+  probabilities: Float64Array,
+  order: Uint8Array,
+): number {
+  let orderLength = 0;
+  for (let index = 0; index < 5; index += 1) {
+    if (values[index]! > 0 && probabilities[index]! > 0) {
+      let insertAt = orderLength;
+      while (insertAt > 0 && values[index]! > values[order[insertAt - 1]!]!) {
+        order[insertAt] = order[insertAt - 1]!;
+        insertAt -= 1;
+      }
+      order[insertAt] = index;
+      orderLength += 1;
+    }
+  }
+  let result = 0;
+  let noHigherProbability = 1;
+  let index = 0;
+  while (index < orderLength) {
+    const value = values[order[index]!]!;
+    let noMemberInGroup = 1;
+    let cursor = index;
+    while (
+      cursor < orderLength &&
+      values[order[cursor]!]! === value
+    ) {
+      noMemberInGroup *= 1 - probabilities[order[cursor]!]!;
+      cursor += 1;
+    }
+    result += value * noHigherProbability * (1 - noMemberInGroup);
+    noHigherProbability *= noMemberInGroup;
+    index = cursor;
+  }
+  return result;
+}
+
+function fillCompressedActiveState(
+  trace: CompiledActiveTrace,
+  noteIndex: number,
+  additionalSupport: number,
+  activationRateUpPermil: number,
+  state: Float64Array,
+  centralValues: Float64Array,
+  centralProbabilities: Float64Array,
+  expectedOrder: Uint8Array,
+): readonly [number, number, number] {
+  let lower = 0;
+  let upper = 0;
+  for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
+    const profile = trace.profiles[memberIndex]!;
+    const selection = trace.selectionsByMember[memberIndex]!;
+    const selected = selection.selections[selection.selectionIndexByNote[noteIndex]!]!;
+    const checkCount = trace.checkCountsByMember[memberIndex]![noteIndex]!;
+    const lowerProbability = activeProbabilityForCheckCount(
+      checkCount,
+      profile.skill.activationProbabilityPermil!,
+    );
+    const centralProbability = activeProbabilityForCheckCount(
+      checkCount,
+      profile.skill.activationProbabilityPermil!,
+      activationRateUpPermil,
+    );
+    const lowerValue =
+      (selected.lower * (1_000 + profile.support.lower + additionalSupport)) / 1_000;
+    const centralValue =
+      (selected.central * (1_000 + profile.support.central + additionalSupport)) / 1_000;
+    const upperValue =
+      (selected.upper * (1_000 + profile.support.upper + additionalSupport)) / 1_000;
+    const offset = memberIndex * 6;
+    state[offset] = checkCount;
+    state[offset + 1] = lowerProbability;
+    state[offset + 2] = centralProbability;
+    state[offset + 3] = lowerValue;
+    state[offset + 4] = centralValue;
+    state[offset + 5] = upperValue;
+    lower = Math.max(lower, lowerProbability * lowerValue);
+    centralValues[memberIndex] = centralValue;
+    centralProbabilities[memberIndex] = centralProbability;
+    upper += centralProbability * upperValue;
+  }
+  return [lower, expectedMaximumFive(centralValues, centralProbabilities, expectedOrder), upper];
+}
+
+function equalCompressedActiveState(left: Float64Array, right: Float64Array): boolean {
+  for (let index = 0; index < left.length; index += 1) {
+    if (left[index] !== right[index]) return false;
+  }
+  return true;
+}
+
+function aggregateCompressedActiveInterval(
+  trace: CompiledActiveTrace,
+  noteCount: number,
+  additionalSupport: number,
+  activationRateUpPermil: number,
+): CompressedActiveAggregate {
+  const state = new Float64Array(30);
+  const nextState = new Float64Array(30);
+  const centralValues = new Float64Array(5);
+  const centralProbabilities = new Float64Array(5);
+  const nextCentralValues = new Float64Array(5);
+  const nextCentralProbabilities = new Float64Array(5);
+  const expectedOrder = new Uint8Array(5);
+  const nextExpectedOrder = new Uint8Array(5);
+  let lower = 0;
+  let central = 0;
+  let upper = 0;
+  let stateRuns = 0;
+  let start = 0;
+  while (start < noteCount) {
+    const contribution = fillCompressedActiveState(
+      trace,
+      start,
+      additionalSupport,
+      activationRateUpPermil,
+      state,
+      centralValues,
+      centralProbabilities,
+      expectedOrder,
+    );
+    let end = start + 1;
+    while (end < noteCount) {
+      fillCompressedActiveState(
+        trace,
+        end,
+        additionalSupport,
+        activationRateUpPermil,
+        nextState,
+        nextCentralValues,
+        nextCentralProbabilities,
+        nextExpectedOrder,
+      );
+      if (!equalCompressedActiveState(state, nextState)) break;
+      end += 1;
+    }
+    // Deliberately retain each source-order addition.  Multiplying a run by
+    // its multiplicity or reducing runs in parallel would change IEEE-754
+    // rounding and is rejected by the compression admissibility gate.
+    for (let noteIndex = start; noteIndex < end; noteIndex += 1) {
+      lower += contribution[0];
+      central += contribution[1];
+      upper += contribution[2];
+    }
+    stateRuns += 1;
+    start = end;
+  }
+  return { value: interval(lower / noteCount, central / noteCount, upper / noteCount), stateRuns };
+}
+
 function noteActiveStates(
   notes: readonly UniformNote[],
   profiles: readonly ActiveProfile[],
@@ -595,7 +1087,7 @@ function noteActiveStates(
   );
 }
 
-function aggregateActiveInterval(
+function aggregateActiveIntervalUncompressed(
   states: readonly NoteActiveState[][],
   profiles: readonly ActiveProfile[],
   additionalSupportByNote: readonly number[],
@@ -814,7 +1306,11 @@ function assumptions(input: NativeUtilityInput): UtilityAssumption[] {
   ];
 }
 
-export function evaluateNativeRelativeUtility(input: NativeUtilityInput): NativeUtilityResult {
+function evaluateNativeRelativeUtilityWithIntrinsic(
+  input: NativeUtilityInput,
+  intrinsic: NativeUtilityTeamIntrinsic,
+  forceUncompressed = false,
+): NativeUtilityTraceEvaluation {
   assertInputBoundary(input);
   const chart = aggregateChartByKey.get(input.chartKey);
   if (!chart) throw new Error(`Unknown exact aggregate chart context: ${input.chartKey}`);
@@ -857,28 +1353,92 @@ export function evaluateNativeRelativeUtility(input: NativeUtilityInput): Native
   );
   const notes = uniformNotes(chart, song);
   const activeProfiles = compileActiveProfiles(legal, evaluator, support, song, chart);
-  const states = noteActiveStates(notes, activeProfiles, legal, song);
-  const noSpecialEffect = notes.map(() => 0);
-  const noActivationRateWindows: ActivationRateWindow[] = [];
-  const activePermil = aggregateActiveInterval(
-    states,
-    activeProfiles,
-    noSpecialEffect,
-    noActivationRateWindows,
-  );
   const specials = compileSpecials(notes, legal, evaluator, song);
-  const activeWithSpecialSupportPermil = aggregateActiveInterval(
-    states,
+  const activeTrace = compileActiveTrace(
+    chart.key,
+    notes,
     activeProfiles,
-    specials.supportByNote,
-    noActivationRateWindows,
+    legal,
+    song,
+    intrinsic,
   );
-  const activeWithSpecialPermil = aggregateActiveInterval(
-    states,
-    activeProfiles,
-    specials.supportByNote,
+  const specialSupport = constantByNote(specials.supportByNote);
+  const specialActivationRate = fullChartActivationRate(
     specials.activationRateWindows,
+    song.playingMilliseconds,
   );
+  let fallbackStates: NoteActiveState[][] | null = null;
+  let activePermil: RawInterval;
+  let activeWithSpecialSupportPermil: RawInterval;
+  let activeWithSpecialPermil: RawInterval;
+  let activeTraceExecution: NativeActiveTraceExecution;
+  if (
+    !forceUncompressed &&
+    activeTrace.supported &&
+    specialSupport !== null &&
+    specialActivationRate !== null
+  ) {
+    const base = aggregateCompressedActiveInterval(activeTrace, notes.length, 0, 0);
+    const supportPass = aggregateCompressedActiveInterval(
+      activeTrace,
+      notes.length,
+      specialSupport,
+      0,
+    );
+    const specialPass = aggregateCompressedActiveInterval(
+      activeTrace,
+      notes.length,
+      specialSupport,
+      specialActivationRate,
+    );
+    activePermil = base.value;
+    activeWithSpecialSupportPermil = supportPass.value;
+    activeWithSpecialPermil = specialPass.value;
+    activeTraceExecution = {
+      mode: "trace-preserving-state-runs",
+      noteCount: notes.length,
+      baseStateRuns: base.stateRuns,
+      specialSupportStateRuns: supportPass.stateRuns,
+      specialStateRuns: specialPass.stateRuns,
+      fallbackReason: null,
+    };
+  } else {
+    fallbackStates = noteActiveStates(notes, activeProfiles, legal, song);
+    const noSpecialEffect = notes.map(() => 0);
+    const noActivationRateWindows: ActivationRateWindow[] = [];
+    activePermil = aggregateActiveIntervalUncompressed(
+      fallbackStates,
+      activeProfiles,
+      noSpecialEffect,
+      noActivationRateWindows,
+    );
+    activeWithSpecialSupportPermil = aggregateActiveIntervalUncompressed(
+      fallbackStates,
+      activeProfiles,
+      specials.supportByNote,
+      noActivationRateWindows,
+    );
+    activeWithSpecialPermil = aggregateActiveIntervalUncompressed(
+      fallbackStates,
+      activeProfiles,
+      specials.supportByNote,
+      specials.activationRateWindows,
+    );
+    activeTraceExecution = {
+      mode: "uncompressed-fallback",
+      noteCount: notes.length,
+      baseStateRuns: 0,
+      specialSupportStateRuns: 0,
+      specialStateRuns: 0,
+      fallbackReason:
+        forceUncompressed
+          ? "forced-uncompressed-cross-check"
+          : activeTrace.fallbackReason ??
+            (specialSupport === null
+              ? "special-support-is-not-constant-by-note"
+              : "activation-rate-window-is-not-full-chart"),
+    };
+  }
   const scoreSupportSpecialPermil = interval(
     0,
     Math.max(0, activeWithSpecialSupportPermil.central - activePermil.central),
@@ -924,17 +1484,40 @@ export function evaluateNativeRelativeUtility(input: NativeUtilityInput): Native
   );
 
   const activeByMember: ActiveMemberUtility[] = activeProfiles.map((profile, memberIndex) => {
-    const averageProbability = mean(states.map((note) => note[memberIndex]!.probability));
-    const averageBoostedProbability = mean(
-      states.map((note) => {
-        const state = note[memberIndex]!;
-        return activeProbabilityForChecks(
-          state.checkTimesMilliseconds,
-          state.baseProbabilityPermil,
-          specials.activationRateWindows,
+    let averageProbability: number;
+    let averageBoostedProbability: number;
+    if (activeTraceExecution.mode === "trace-preserving-state-runs") {
+      let probabilityTotal = 0;
+      let boostedProbabilityTotal = 0;
+      const checkCounts = activeTrace.checkCountsByMember[memberIndex]!;
+      for (let noteIndex = 0; noteIndex < checkCounts.length; noteIndex += 1) {
+        const checkCount = checkCounts[noteIndex]!;
+        probabilityTotal += activeProbabilityForCheckCount(
+          checkCount,
+          profile.skill.activationProbabilityPermil!,
         );
-      }),
-    );
+        boostedProbabilityTotal += activeProbabilityForCheckCount(
+          checkCount,
+          profile.skill.activationProbabilityPermil!,
+          specialActivationRate!,
+        );
+      }
+      averageProbability = probabilityTotal / checkCounts.length;
+      averageBoostedProbability = boostedProbabilityTotal / checkCounts.length;
+    } else {
+      const states = fallbackStates!;
+      averageProbability = mean(states.map((note) => note[memberIndex]!.probability));
+      averageBoostedProbability = mean(
+        states.map((note) => {
+          const state = note[memberIndex]!;
+          return activeProbabilityForChecks(
+            state.checkTimesMilliseconds,
+            state.baseProbabilityPermil,
+            specials.activationRateWindows,
+          );
+        }),
+      );
+    }
     const solo = interval(
       averageProbability *
         ((profile.fullComboSelection.lower * (1_000 + profile.support.lower)) / 1_000),
@@ -962,7 +1545,8 @@ export function evaluateNativeRelativeUtility(input: NativeUtilityInput): Native
   });
 
   return {
-    kind: "provisional-relative-utility",
+    result: {
+      kind: "provisional-relative-utility",
     methodologyVersion: "yd-native-utility-1.0.0",
     status: "provisional",
     context: {
@@ -1033,11 +1617,55 @@ export function evaluateNativeRelativeUtility(input: NativeUtilityInput): Native
         relativeUnits: exactInterval(0),
       },
     },
-    uncertainty: {
-      recipientAllocation: "enumerated",
-      stacking: "declared-additive-scenario",
-      activeOverlap: "conservative-interval",
-      specialTiming: AGGREGATE_SPECIAL_COVERAGE_MODEL_ID,
+      uncertainty: {
+        recipientAllocation: "enumerated",
+        stacking: "declared-additive-scenario",
+        activeOverlap: "conservative-interval",
+        specialTiming: AGGREGATE_SPECIAL_COVERAGE_MODEL_ID,
+      },
     },
+    activeTrace: activeTraceExecution,
   };
+}
+
+/**
+ * Evaluate with a caller-owned Member-only intrinsic cache.  The cache is
+ * checked against the formation before use, so a Leader-specific formation can
+ * never inherit another team's timing state.
+ */
+export function evaluateNativeRelativeUtilityWithCompiledTeam(
+  input: NativeUtilityInput,
+  intrinsic: NativeUtilityTeamIntrinsic,
+): NativeUtilityTraceEvaluation {
+  const inputKey = teamIntrinsicKey(input.formation.members);
+  const intrinsicKey = teamIntrinsicKey(intrinsic.members);
+  if (inputKey !== intrinsicKey) {
+    throw new Error("Native utility compiled team does not match formation Members");
+  }
+  return evaluateNativeRelativeUtilityWithIntrinsic(input, intrinsic);
+}
+
+/** Exposes execution evidence while retaining the existing result contract. */
+export function evaluateNativeRelativeUtilityWithTrace(
+  input: NativeUtilityInput,
+): NativeUtilityTraceEvaluation {
+  return evaluateNativeRelativeUtilityWithIntrinsic(
+    input,
+    cachedNativeUtilityTeamIntrinsic(input.formation.members),
+  );
+}
+
+/** Independent fallback path used only for exact compression cross-checks. */
+export function evaluateNativeRelativeUtilityUncompressed(
+  input: NativeUtilityInput,
+): NativeUtilityResult {
+  return evaluateNativeRelativeUtilityWithIntrinsic(
+    input,
+    cachedNativeUtilityTeamIntrinsic(input.formation.members),
+    true,
+  ).result;
+}
+
+export function evaluateNativeRelativeUtility(input: NativeUtilityInput): NativeUtilityResult {
+  return evaluateNativeRelativeUtilityWithTrace(input).result;
 }

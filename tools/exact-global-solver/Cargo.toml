@@ -7,3 +7,17 @@ edition = "2021"
 rayon = "1.11"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+# Research-only build profile for repeatable performance measurements.  It
+# deliberately does not enable fast-math or any floating-point reassociation:
+# the TypeScript serial trace remains the semantic authority until a complete
+# independent parity and replay gate exists.
+[profile.certification]
+inherits = "release"
+codegen-units = 1
+debug = false
+incremental = false
+lto = "thin"
+opt-level = 3
+panic = "abort"
+strip = "symbols"

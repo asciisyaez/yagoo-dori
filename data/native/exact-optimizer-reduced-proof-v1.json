@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 2,
+  "kind": "exact-optimizer-reduced-trace-proof",
+  "methodologyVersion": "yd-exact-optimizer-reduced-trace-proof-1.1.0",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "fixture": {
+    "memberCardIds": [
+      "card-00001-4-cmmn-0000-00",
+      "card-00004-5-uniq-0005-00",
+      "card-00005-5-uniq-0006-00",
+      "card-00013-4-cmmn-0000-00",
+      "card-00013-5-uniq-0002-00",
+      "card-00016-5-uniq-0014-00",
+      "card-00018-5-uniq-0004-00",
+      "card-00019-5-uniq-0016-00"
+    ],
+    "leaderOutfitCardIds": [
+      "card-00001-5-uniq-0000-00",
+      "card-00013-5-uniq-0002-00",
+      "card-00019-5-uniq-0016-00",
+      "card-00039-5-uniq-0032-00"
+    ],
+    "chartKeys": [
+      "m0206:expert",
+      "m0309:expert"
+    ],
+    "investmentLayer": "one-copy-maximum",
+    "legalTeamSets": 36
+  },
+  "exactTraceCrossCheck": {
+    "kernelEvaluations": 288,
+    "lowerCentralUpperMismatchCount": 0,
+    "serialRepeatMatches": true,
+    "serialResultHash": "b7f1d7f6a598a18cb19a377f5fa0af9ad5c5d635468ebfab235dff95ae13b6cb",
+    "repeatResultHash": "b7f1d7f6a598a18cb19a377f5fa0af9ad5c5d635468ebfab235dff95ae13b6cb"
+  },
+  "incumbent": {
+    "winner": {
+      "leaderOutfitCardId": "card-00039-5-uniq-0032-00",
+      "memberCardIds": [
+        "card-00004-5-uniq-0005-00",
+        "card-00005-5-uniq-0006-00",
+        "card-00016-5-uniq-0014-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00019-5-uniq-0016-00"
+      ],
+      "relativeUtility": {
+        "lower": 248677.299092,
+        "central": 312117.0628,
+        "upper": 360957.497622
+      },
+      "canonicalUtility": {
+        "lower": 248677299092,
+        "central": 312117062800,
+        "upper": 360957497622
+      }
+    },
+    "completeTieSet": [
+      "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00019-5-uniq-0016-00"
+    ],
+    "runnerUp": {
+      "key": "card-00001-5-uniq-0000-00|card-00004-5-uniq-0005-00|card-00013-5-uniq-0002-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00019-5-uniq-0016-00",
+      "centralMicroUnits": 311188953577
+    },
+    "fixedPointIterations": 1,
+    "frozenHash": "b0967da5e5b7060a3d94003baaac579e03eae76737b6feb222fdda572ce9dd1f"
+  },
+  "exhaustiveReference": {
+    "winner": {
+      "leaderOutfitCardId": "card-00039-5-uniq-0032-00",
+      "memberCardIds": [
+        "card-00004-5-uniq-0005-00",
+        "card-00005-5-uniq-0006-00",
+        "card-00016-5-uniq-0014-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00019-5-uniq-0016-00"
+      ],
+      "canonicalUtility": {
+        "lower": 248677299092,
+        "central": 312117062800,
+        "upper": 360957497622
+      }
+    },
+    "completeTieSet": [
+      "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00019-5-uniq-0016-00"
+    ],
+    "runnerUp": {
+      "key": "card-00001-5-uniq-0000-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00013-5-uniq-0002-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00",
+      "canonicalUtility": {
+        "lower": 244501246932,
+        "central": 311328313396,
+        "upper": 377705936094
+      }
+    }
+  },
+  "reducerResult": {
+    "winner": {
+      "leaderOutfitCardId": "card-00039-5-uniq-0032-00",
+      "memberCardIds": [
+        "card-00004-5-uniq-0005-00",
+        "card-00005-5-uniq-0006-00",
+        "card-00016-5-uniq-0014-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00019-5-uniq-0016-00"
+      ],
+      "canonicalUtility": {
+        "lower": 248677299092,
+        "central": 312117062800,
+        "upper": 360957497622
+      }
+    },
+    "proofCertificate": {
+      "legalTeamSets": 36,
+      "exactLeafEvaluations": 6,
+      "prunedTeamSets": 30,
+      "exactLeaderTeamEvaluations": 92,
+      "incumbentSeedLeaderTeamEvaluations": 68,
+      "expectedLeaderEquivalenceClasses": 4,
+      "expectedEligibleLeaderOutfits": 4,
+      "expectedLeaderClassTeamPairs": 144,
+      "expectedLeaderOutfitTeamPairs": 144,
+      "leaderEquivalenceClasses": 4,
+      "eligibleLeaderOutfits": 4,
+      "leaderClassTeamPairs": 144,
+      "leaderOutfitTeamPairs": 144,
+      "exactLeaderClassTeamPairs": 24,
+      "prunedLeaderClassTeamPairs": 120,
+      "exactLeaderOutfitTeamPairs": 24,
+      "prunedLeaderOutfitTeamPairs": 120,
+      "leaderClassPairCountsReconciled": true,
+      "leaderOutfitPairCountsReconciled": true,
+      "leaderPairCountsReconciled": true,
+      "leaderEquivalenceClassesMatchExpected": true,
+      "eligibleLeaderOutfitsMatchExpected": true,
+      "declaredClassPairsMatchExhaustive": true,
+      "declaredOutfitPairsMatchExhaustive": true,
+      "partitionedClassPairsMatchExhaustive": true,
+      "partitionedOutfitPairsMatchExhaustive": true,
+      "seedWorkExcludedFromProofPairs": true
+    },
+    "completeCanonicalAudit": {
+      "evaluatedLeaderOutfitTeamPairs": 144,
+      "winner": {
+        "leaderOutfitCardId": "card-00039-5-uniq-0032-00",
+        "memberCardIds": [
+          "card-00004-5-uniq-0005-00",
+          "card-00005-5-uniq-0006-00",
+          "card-00016-5-uniq-0014-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00019-5-uniq-0016-00"
+        ],
+        "canonicalUtility": {
+          "lower": 248677299092,
+          "central": 312117062800,
+          "upper": 360957497622
+        }
+      },
+      "completeTieSet": [
+        "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00019-5-uniq-0016-00"
+      ],
+      "runnerUp": {
+        "key": "card-00001-5-uniq-0000-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00013-5-uniq-0002-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00",
+        "canonicalUtility": {
+          "lower": 244501246932,
+          "central": 311328313396,
+          "upper": 377705936094
+        }
+      }
+    }
+  },
+  "comparison": {
+    "fixtureLegalTeamSetsMatch": true,
+    "reducerWinnerMatchesExhaustive": true,
+    "auditWinnerMatchesExhaustive": true,
+    "completeTieSetMatchesExhaustive": true,
+    "runnerUpMatchesExhaustive": true,
+    "completeCanonicalOutputMatchesExhaustive": true,
+    "reducerPairReconciliation": {
+      "expectedLeaderEquivalenceClasses": 4,
+      "expectedEligibleLeaderOutfits": 4,
+      "expectedLeaderClassTeamPairs": 144,
+      "expectedLeaderOutfitTeamPairs": 144,
+      "leaderEquivalenceClasses": 4,
+      "eligibleLeaderOutfits": 4,
+      "leaderClassTeamPairs": 144,
+      "leaderOutfitTeamPairs": 144,
+      "exactLeaderClassTeamPairs": 24,
+      "prunedLeaderClassTeamPairs": 120,
+      "exactLeaderOutfitTeamPairs": 24,
+      "prunedLeaderOutfitTeamPairs": 120,
+      "incumbentSeedLeaderTeamEvaluations": 68,
+      "leaderClassPairCountsReconciled": true,
+      "leaderOutfitPairCountsReconciled": true,
+      "leaderPairCountsReconciled": true,
+      "leaderEquivalenceClassesMatchExpected": true,
+      "eligibleLeaderOutfitsMatchExpected": true,
+      "declaredClassPairsMatchExhaustive": true,
+      "declaredOutfitPairsMatchExhaustive": true,
+      "partitionedClassPairsMatchExhaustive": true,
+      "partitionedOutfitPairsMatchExhaustive": true,
+      "seedWorkExcludedFromProofPairs": true
+    },
+    "auditPairReconciliation": {
+      "expectedLeaderEquivalenceClasses": 4,
+      "expectedEligibleLeaderOutfits": 4,
+      "expectedLeaderClassTeamPairs": 144,
+      "expectedLeaderOutfitTeamPairs": 144,
+      "leaderEquivalenceClasses": 4,
+      "eligibleLeaderOutfits": 4,
+      "leaderClassTeamPairs": 144,
+      "leaderOutfitTeamPairs": 144,
+      "exactLeaderClassTeamPairs": 144,
+      "prunedLeaderClassTeamPairs": 0,
+      "exactLeaderOutfitTeamPairs": 144,
+      "prunedLeaderOutfitTeamPairs": 0,
+      "incumbentSeedLeaderTeamEvaluations": 68,
+      "leaderClassPairCountsReconciled": true,
+      "leaderOutfitPairCountsReconciled": true,
+      "leaderPairCountsReconciled": true,
+      "leaderEquivalenceClassesMatchExpected": true,
+      "eligibleLeaderOutfitsMatchExpected": true,
+      "declaredClassPairsMatchExhaustive": true,
+      "declaredOutfitPairsMatchExhaustive": true,
+      "partitionedClassPairsMatchExhaustive": true,
+      "partitionedOutfitPairsMatchExhaustive": true,
+      "seedWorkExcludedFromProofPairs": true
+    }
+  },
+  "proofCascade": {
+    "b0UpperCentralMicroUnits": 335018528828,
+    "b1FixedLeaderBounds": 4,
+    "b2PartialLeaderBounds": 4,
+    "b3ExactLeafTeamSets": 6,
+    "strictPrunes": 17,
+    "equalitySurvivors": 0,
+    "countsReconciled": true,
+    "leaderClassPairCountsReconciled": true,
+    "leaderOutfitPairCountsReconciled": true,
+    "leaderPairCountsReconciled": true
+  },
+  "certificateEligible": false,
+  "disposition": "Reduced fixture cross-checks the compiled trace kernel against the independent uncompressed evaluator. It is not the declared 113-card, 30-chart full-scope certificate.",
+  "reportHash": "34501568dc92d918f27126c3c026fc55ee8d20dd33975f6248a57df998b70783"
+}

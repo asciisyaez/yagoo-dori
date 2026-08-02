@@ -30,12 +30,16 @@ the joint team/Leader/order space.
 ## Dependency graph
 
 ```text
-X01 specification + arithmetic ──► X02 complete parity ──┬──► X03 formulation benchmark
-                                                         └──► X04 sharded certificate
-X01 ──► X05 scope-safe integration and verifier ───────────────► X06 release validation
-X02 ──► X05
-X03 ──► X04
-X04 ──► X05 ──► X06
+X01 specification + arithmetic ──► X02 complete parity ──► X03 formulation benchmark
+                                                                  │
+                                                                  ▼
+                                                        X05 certifiable performance architecture
+                                                                  │
+                                                                  ▼
+                                                  X04 sharded certificate execution and verifier
+                                                                  │
+                                                                  ▼
+                                                               X06 validation
 ```
 
 ## Non-goals

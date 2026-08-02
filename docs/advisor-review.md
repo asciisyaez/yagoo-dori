@@ -25,7 +25,7 @@ from the open v0.2 certification work:
 | --- | --- |
 | Data, mechanics, evaluator, song corpus, UI, ranking output, guides, calculator, and QA | Implemented and verified according to their ticket evidence |
 | v0.1 product | **100.0% verified and live**, including the bounded calculator disclosure and Pages smoke checks |
-| v0.2 exact certification | **55.0% verified**; X01–X03 are complete, X04 is active, and its certificate state is not eligible |
+| v0.2 exact certification | **55.0% verified**; X01–X03 are complete, X04 execution is blocked behind active X05 performance architecture, and its certificate state is not eligible |
 | Full-roster exact proof | Open; no public global-optimum claim is made |
 
 The recommendation is to preserve the live v0.1 product and its guarded future
@@ -250,6 +250,7 @@ The native search can collapse equivalent Leader/Outfit effects for exact screen
 - The search exposes timeouts as non-certificates rather than returning a heuristic result with an “optimal” label.
 - The complete declared scope has a canonical 864-range shard plan covering all **126,445,821** legal Member teams. The plan has contiguous ordinal ranges, stable talent prefixes, and SHA-256 resume tokens, but every range is explicitly still unsearched.
 - A reduced aggregation probe groups only identical chart-specific resolved Leader application graphs. Its 1,808 lower/central/upper comparisons match the TypeScript reference exactly and it reduces representative utility calls by 48.67% in that sample; resolution cost and full mechanic coverage are still open.
+- The trace-preserving compiled path now has a deterministic 100,000-input lower/central/upper comparison against forced-uncompressed evaluation with zero endpoint mismatches, fallbacks, and direct-reference mismatches. The full root ledger also covers all 113 singleton-safe Leader classes over 113 Members and 30 charts; it produced zero strict root prunes against the bounded incumbent.
 
 ### 6.3 Why the full proof remains open
 
@@ -257,8 +258,9 @@ The sound upper bound still relaxes several components independently. At the ful
 
 - Its README explicitly marks it `certificateEligible: false`.
 - It does not yet implement every formation-evaluator rule, including all unresolved-trigger and recipient-resolution semantics.
-- Its 100,000-case lower/central/upper corpus now matches TypeScript exactly; its output is still not copied into rankings, guides, or calculator results.
+- Its 100,000-case lower/central/upper corpus now matches TypeScript exactly; trace-preserving compression evidence is still not copied into rankings, guides, or calculator results.
 - The full-scope shard plan is not a solver run: it is an execution contract, not a result, and cannot be reduced into a certificate until every range is exact-evaluated or safely pruned.
+- A 32-shard A/B/C stratified pilot has exact winner parity and real 8/16/32-worker replays, but its selected p95 no-pruning model is still 36,624.16 core-hours before unmeasured full B0 scaling. It is a no-go result, not a global-search certificate.
 - The aggregation probe is parity-valid only for its declared reduced sample. It must pass the complete mechanic/Bloom/investment/singer/fallback corpus and an independent reduced brute-force winner check before reuse.
 - A prototype speed-up without evaluator parity would create a false completion, so it is intentionally quarantined.
 

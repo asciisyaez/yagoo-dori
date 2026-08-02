@@ -8,6 +8,8 @@ import {
   STANDARD_MANUAL_AP_FULL_LIFE_CONTEXT_ID,
   divideUtilityIntervals,
   evaluateNativeCentralUtility,
+  expectedMaximum,
+  expectedMaximumFive,
   evaluateNativeRelativeUtility,
   type NativeUtilityInput,
   type UtilityInterval,
@@ -61,6 +63,56 @@ function objectKeysDeep(value: unknown): string[] {
   if (!value || typeof value !== "object") return [];
   return Object.entries(value).flatMap(([key, nested]) => [key, ...objectKeysDeep(nested)]);
 }
+
+describe("native expected-maximum equality grouping", () => {
+  const equalEntries = [
+    { value: 10, probability: 0.2 },
+    { value: 10, probability: 0.3 },
+    { value: 7, probability: 0.4 },
+  ] as const;
+
+  function expectedMaximumFiveFor(entries: readonly { value: number; probability: number }[]): number {
+    const values = new Float64Array(5);
+    const probabilities = new Float64Array(5);
+    entries.forEach((entry, index) => {
+      values[index] = entry.value;
+      probabilities[index] = entry.probability;
+    });
+    return expectedMaximumFive(
+      values,
+      probabilities,
+      new Uint8Array(5),
+    );
+  }
+
+  it("groups exactly equal values in both evaluators", () => {
+    const expected =
+      10 * (1 - (1 - 0.2) * (1 - 0.3)) +
+      7 * (1 - 0.2) * (1 - 0.3) * 0.4;
+
+    expect(expectedMaximum(equalEntries)).toBeCloseTo(expected, 12);
+    expect(expectedMaximumFiveFor(equalEntries)).toBeCloseTo(expected, 12);
+  });
+
+  it("does not collapse nearby unequal values into an arbitrary epsilon tie", () => {
+    const nearbyEntries = [
+      { value: 10, probability: 0.2 },
+      { value: 10 - 0.0000000005, probability: 0.3 },
+      { value: 7, probability: 0.4 },
+    ] as const;
+    const strictExpected =
+      10 * 0.2 +
+      (10 - 0.0000000005) * (1 - 0.2) * 0.3 +
+      7 * (1 - 0.2) * (1 - 0.3) * 0.4;
+    const epsilonCollapsed =
+      10 * (1 - (1 - 0.2) * (1 - 0.3)) +
+      7 * (1 - 0.2) * (1 - 0.3) * 0.4;
+
+    expect(strictExpected).toBeLessThan(epsilonCollapsed);
+    expect(expectedMaximum(nearbyEntries)).toBeCloseTo(strictExpected, 12);
+    expect(expectedMaximumFiveFor(nearbyEntries)).toBeCloseTo(strictExpected, 12);
+  });
+});
 
 describe("site-owned provisional native utility", () => {
   it.each([

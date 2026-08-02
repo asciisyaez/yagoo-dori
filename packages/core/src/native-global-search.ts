@@ -1,5 +1,7 @@
 import { type BloomStage, type InvestmentLayer } from "./formation-evaluator";
 import {
+  canonicalCandidateKey,
+  canonicalUtilityTie,
   compareCanonicalCandidates,
   fromCanonicalMicroUnits,
   toCanonicalMicroUnits,
@@ -60,6 +62,14 @@ export type NativeGlobalSearchInput = Readonly<{
   maximumRuntimeMilliseconds?: number;
   progressIntervalNodes?: number;
   onProgress?: (snapshot: NativeGlobalSearchProgress) => void;
+  /**
+   * Reduced-proof audit only: retain every exact candidate so a small fixture
+   * can compare the reducer's complete canonical output with an independent
+   * exhaustive evaluator. It deliberately disables subtree pruning, never
+   * changes the default certifying traversal, and must not be used for the
+   * declared full roster.
+   */
+  collectCompleteCanonicalOutput?: boolean;
 }>;
 
 export type NativeGlobalSearchProgress = Readonly<{
@@ -81,6 +91,75 @@ export class NativeGlobalSearchTimeoutError extends Error {
     this.name = "NativeGlobalSearchTimeoutError";
     this.progress = progress;
   }
+}
+
+export type NativeGlobalCanonicalCandidate = Readonly<{
+  leaderOutfitCardId: string;
+  memberCardIds: readonly [string, string, string, string, string];
+  canonicalUtility: CanonicalUtilityTuple;
+}>;
+
+export type NativeGlobalCompleteCanonicalOutput = Readonly<{
+  evaluatedLeaderOutfitTeamPairs: number;
+  winner: NativeGlobalCanonicalCandidate;
+  completeTieSet: readonly string[];
+  runnerUp: NativeGlobalCanonicalCandidate | null;
+}>;
+
+export type NativeGlobalLeaderPairReconciliation = Readonly<{
+  leaderClassTeamPairs: number;
+  leaderOutfitTeamPairs: number;
+  exactLeaderClassTeamPairs: number;
+  prunedLeaderClassTeamPairs: number;
+  exactLeaderOutfitTeamPairs: number;
+  prunedLeaderOutfitTeamPairs: number;
+  leaderClassPairCountsReconciled: true;
+  leaderOutfitPairCountsReconciled: true;
+  leaderPairCountsReconciled: true;
+}>;
+
+/**
+ * Reconcile only certifying traversal work. Incumbent-seed evaluations are
+ * deliberately absent: they raise the lower bound but cannot account for a
+ * legal pair in the proof partition.
+ */
+export function reconcileNativeGlobalLeaderPairCounts(input: Readonly<{
+  legalTeamSets: number;
+  exactLeafEvaluations: number;
+  prunedTeamSets: number;
+  leaderEquivalenceClasses: number;
+  eligibleLeaderOutfits: number;
+}>): NativeGlobalLeaderPairReconciliation {
+  const leaderClassTeamPairs = input.legalTeamSets * input.leaderEquivalenceClasses;
+  const leaderOutfitTeamPairs = input.legalTeamSets * input.eligibleLeaderOutfits;
+  const exactLeaderClassTeamPairs = input.exactLeafEvaluations * input.leaderEquivalenceClasses;
+  const prunedLeaderClassTeamPairs = input.prunedTeamSets * input.leaderEquivalenceClasses;
+  const exactLeaderOutfitTeamPairs = input.exactLeafEvaluations * input.eligibleLeaderOutfits;
+  const prunedLeaderOutfitTeamPairs = input.prunedTeamSets * input.eligibleLeaderOutfits;
+  const leaderClassPairCountsReconciled =
+    exactLeaderClassTeamPairs + prunedLeaderClassTeamPairs === leaderClassTeamPairs;
+  const leaderOutfitPairCountsReconciled =
+    exactLeaderOutfitTeamPairs + prunedLeaderOutfitTeamPairs === leaderOutfitTeamPairs;
+  const leaderPairCountsReconciled =
+    leaderClassPairCountsReconciled && leaderOutfitPairCountsReconciled;
+  if (!leaderPairCountsReconciled) {
+    throw new Error(
+      `Global-search Leader pair counts did not reconcile: ` +
+        `class ${exactLeaderClassTeamPairs}+${prunedLeaderClassTeamPairs} != ${leaderClassTeamPairs}; ` +
+        `Outfit ${exactLeaderOutfitTeamPairs}+${prunedLeaderOutfitTeamPairs} != ${leaderOutfitTeamPairs}`,
+    );
+  }
+  return {
+    leaderClassTeamPairs,
+    leaderOutfitTeamPairs,
+    exactLeaderClassTeamPairs,
+    prunedLeaderClassTeamPairs,
+    exactLeaderOutfitTeamPairs,
+    prunedLeaderOutfitTeamPairs,
+    leaderClassPairCountsReconciled,
+    leaderOutfitPairCountsReconciled,
+    leaderPairCountsReconciled,
+  };
 }
 
 export type NativeGlobalSearchResult = Readonly<{
@@ -109,8 +188,31 @@ export type NativeGlobalSearchResult = Readonly<{
     collapsedLeaderOutfits: number;
     incumbentSource: "provided-seed" | "canonical-beam-seed" | "first-exact-leaf";
     incumbentSeedTeamSets: number;
+    /** Accelerator work is explicitly outside exact/pruned proof accounting. */
+    incumbentSeedLeaderTeamEvaluations: number;
     incumbentSearchUtilityEvaluations: number;
+    /** Pair-space accounting includes all Outfit multiplicities, not just teams. */
+    leaderClassTeamPairs: number;
+    leaderOutfitTeamPairs: number;
+    exactLeaderClassTeamPairs: number;
+    prunedLeaderClassTeamPairs: number;
+    exactLeaderOutfitTeamPairs: number;
+    prunedLeaderOutfitTeamPairs: number;
+    leaderClassPairCountsReconciled: true;
+    leaderOutfitPairCountsReconciled: true;
+    leaderPairCountsReconciled: true;
+    proofCascade: Readonly<{
+      b0RootBounds: number;
+      b1FixedLeaderBounds: number;
+      b2PartialBounds: number;
+      b3ExactLeafTeamSets: number;
+      strictPrunes: number;
+      equalitySurvivors: number;
+      boundElapsedMilliseconds: number;
+      minimumSurvivingUpperCentralUtility: number | null;
+    }>;
   }>;
+  completeCanonicalOutput?: NativeGlobalCompleteCanonicalOutput;
 }>;
 
 function compareCandidates(left: SearchCandidate, right: SearchCandidate): number {
@@ -387,9 +489,15 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   let exactLeaderTeamEvaluations = 0;
   let prunedLeaderTeamCandidates = 0;
   let maximumPrunedUpperCentralUtility: number | null = null;
+  let minimumSurvivingUpperCentralUtility: number | null = null;
+  let equalitySurvivors = 0;
+  let boundElapsedMilliseconds = 0;
   let incumbentSource: "provided-seed" | "canonical-beam-seed" | "first-exact-leaf" = "first-exact-leaf";
   let incumbentSeedTeamSets = 0;
+  let incumbentSeedLeaderTeamEvaluations = 0;
   let incumbentSearchUtilityEvaluations = 0;
+  const completeCanonicalOutputCandidates: SearchCandidate[] | null =
+    input.collectCompleteCanonicalOutput ? [] : null;
 
   const progress = (): NativeGlobalSearchProgress => ({
     elapsedMilliseconds: performance.now() - startedAt,
@@ -420,11 +528,15 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   ): void => {
     const members = asTeam(memberCardIds);
     if (countLeaf) exactLeafEvaluations += 1;
+    // Class representatives are valid only for bounds and beam seeding.  B3
+    // evaluates every actual Outfit/team pair, retaining multiplicity and the
+    // canonical tie break even when a class has a safe representative.
     const candidateLeaderIds = preferredLeaderOutfitCardId
-      ? [preferredLeaderOutfitCardId, ...leaderRepresentatives]
-      : leaderRepresentatives;
+      ? [preferredLeaderOutfitCardId, ...eligibleLeaderOutfitCardIds]
+      : eligibleLeaderOutfitCardIds;
     const allLeaderIds = [...new Set(candidateLeaderIds)];
     leaderTeamCandidates += allLeaderIds.length;
+    if (!countLeaf) incumbentSeedLeaderTeamEvaluations += allLeaderIds.length;
     // Complete teams are already legal. Incumbent seeds are an accelerator,
     // not part of the certificate, so compare every equivalent Leader with
     // the exact central evaluator instead of paying for a full optimistic
@@ -453,7 +565,11 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
       });
       const central = centralUtilities.reduce((sum, utility) => sum + utility, 0) / centralUtilities.length;
       const canonicalCentral = toCanonicalMicroUnits(central);
-      if (best && canonicalCentral < best.canonicalUtility.central) {
+      if (
+        best &&
+        canonicalCentral < best.canonicalUtility.central &&
+        completeCanonicalOutputCandidates === null
+      ) {
         prunedLeaderTeamCandidates += 1;
         continue;
       }
@@ -507,6 +623,9 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
           ),
         },
       };
+      if (countLeaf && completeCanonicalOutputCandidates !== null) {
+        completeCanonicalOutputCandidates.push(candidate);
+      }
       if (!best || compareCandidates(candidate, best) < 0) best = candidate;
     }
   };
@@ -591,6 +710,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     const futureIds = suffixCardIds[groupIndex]!;
     boundEvaluations += 1;
     let bound: NativeGlobalBoundResult;
+    const boundStartedAt = performance.now();
     try {
       bound = boundContext.bound({
         partialMemberCardIds: selected,
@@ -601,6 +721,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         `Global bound rejected a counted subtree at group ${groupIndex} with Members ${selected.join(",")}: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
+    boundElapsedMilliseconds += performance.now() - boundStartedAt;
     return { groupIndex, selected, fiveStars, teamSets, bound };
   };
 
@@ -609,6 +730,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     nodesVisited += 1;
     if (nodesVisited % progressIntervalNodes === 0) input.onProgress?.(progress());
     if (
+      completeCanonicalOutputCandidates === null &&
       best &&
       upperBoundToCanonicalMicroUnits(branch.bound.upperCentralUtility) < best.canonicalUtility.central
     ) {
@@ -619,6 +741,14 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         branch.bound.upperCentralUtility,
       );
       return;
+    }
+    if (best) {
+      const upperCentral = upperBoundToCanonicalMicroUnits(branch.bound.upperCentralUtility);
+      minimumSurvivingUpperCentralUtility = Math.min(
+        minimumSurvivingUpperCentralUtility ?? Number.POSITIVE_INFINITY,
+        branch.bound.upperCentralUtility,
+      );
+      if (upperCentral === best.canonicalUtility.central) equalitySurvivors += 1;
     }
     if (branch.selected.length === 5) {
       exactCandidate(branch.selected);
@@ -649,8 +779,58 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   if (!root) throw new Error("No legal five-Member completion exists");
   visit(root);
   if (!best) throw new Error("Global search did not exact-evaluate a finalist");
-  if (exactLeafEvaluations + prunedTeamSets !== legalTeamSets) {
+  const countsReconciled = exactLeafEvaluations + prunedTeamSets === legalTeamSets;
+  if (!countsReconciled) {
     throw new Error("Global-search certificate counts did not reconcile");
+  }
+
+  const pairReconciliation = reconcileNativeGlobalLeaderPairCounts({
+    legalTeamSets,
+    exactLeafEvaluations,
+    prunedTeamSets,
+    leaderEquivalenceClasses: boundContext.leaderEquivalenceCounts.equivalenceClasses,
+    eligibleLeaderOutfits: eligibleLeaderOutfitCardIds.length,
+  });
+
+  let completeCanonicalOutput: NativeGlobalCompleteCanonicalOutput | undefined;
+  if (completeCanonicalOutputCandidates !== null) {
+    if (completeCanonicalOutputCandidates.length !== pairReconciliation.leaderOutfitTeamPairs) {
+      throw new Error(
+        `Complete canonical reducer audit evaluated ${completeCanonicalOutputCandidates.length} Outfit/team pairs; expected ${pairReconciliation.leaderOutfitTeamPairs}`,
+      );
+    }
+    const orderedCandidates = [...completeCanonicalOutputCandidates].sort(compareCandidates);
+    const winner = orderedCandidates[0];
+    if (!winner) throw new Error("Complete canonical reducer audit found no candidate");
+    const winnerKey = canonicalCandidateKey({
+      leaderCardId: winner.leaderOutfitCardId,
+      memberCardIds: winner.memberCardIds,
+    });
+    const canonicalCandidate = (candidate: SearchCandidate): NativeGlobalCanonicalCandidate => ({
+      leaderOutfitCardId: candidate.leaderOutfitCardId,
+      memberCardIds: candidate.memberCardIds,
+      canonicalUtility: candidate.canonicalUtility,
+    });
+    completeCanonicalOutput = {
+      evaluatedLeaderOutfitTeamPairs: completeCanonicalOutputCandidates.length,
+      winner: canonicalCandidate(winner),
+      completeTieSet: orderedCandidates
+        .filter((candidate) => canonicalUtilityTie(candidate.canonicalUtility, winner.canonicalUtility))
+        .map((candidate) => canonicalCandidateKey({
+          leaderCardId: candidate.leaderOutfitCardId,
+          memberCardIds: candidate.memberCardIds,
+        }))
+        .sort(),
+      runnerUp: (() => {
+        const candidate = orderedCandidates.find((entry) =>
+          canonicalCandidateKey({
+            leaderCardId: entry.leaderOutfitCardId,
+            memberCardIds: entry.memberCardIds,
+          }) !== winnerKey,
+        );
+        return candidate ? canonicalCandidate(candidate) : null;
+      })(),
+    };
   }
 
   const completedBest = best as SearchCandidate;
@@ -670,7 +850,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
       legalTeamSets,
       exactLeafEvaluations,
       prunedTeamSets,
-      countsReconciled: true,
+      countsReconciled,
       nodesVisited,
       nodesPruned,
       boundEvaluations,
@@ -686,7 +866,20 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
       collapsedLeaderOutfits: boundContext.leaderEquivalenceCounts.collapsedLeaderOutfits,
       incumbentSource,
       incumbentSeedTeamSets,
+      incumbentSeedLeaderTeamEvaluations,
       incumbentSearchUtilityEvaluations,
+      ...pairReconciliation,
+      proofCascade: {
+        b0RootBounds: 1,
+        b1FixedLeaderBounds: boundContext.leaderEquivalenceCounts.equivalenceClasses,
+        b2PartialBounds: boundEvaluations,
+        b3ExactLeafTeamSets: exactLeafEvaluations,
+        strictPrunes: nodesPruned,
+        equalitySurvivors,
+        boundElapsedMilliseconds,
+        minimumSurvivingUpperCentralUtility,
+      },
     },
+    ...(completeCanonicalOutput ? { completeCanonicalOutput } : {}),
   };
 }

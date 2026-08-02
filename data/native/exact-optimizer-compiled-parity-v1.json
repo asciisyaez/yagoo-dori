@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportId": "yd-exact-compiled-parity-v1",
-  "generatedAt": "2026-08-02T10:31:43.537Z",
+  "generatedAt": "2026-08-02T13:44:46.145Z",
   "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
   "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074",
   "kernelPath": "tools/exact-global-solver/kernel.json",
@@ -30,7 +30,40 @@
       "meanAbsolute": 0
     }
   },
-  "elapsedMilliseconds": 43063.288,
+  "tracePreservingParity": {
+    "methodologyVersion": "yd-exact-optimizer-trace-parity-1.0.0",
+    "sampleCount": 100000,
+    "compiledEvaluationCount": 100000,
+    "uncompressedEvaluationCount": 100000,
+    "sourceOrderCanonicalCaseCount": 100000,
+    "tupleCache": {
+      "capacity": 4096,
+      "uniqueInputTuples": 100000,
+      "cacheHits": 0,
+      "cacheMisses": 100000,
+      "evictions": 95904
+    },
+    "traceFallbackCount": 0,
+    "referenceCorpusMismatchCount": 0,
+    "compressedVsUncompressed": {
+      "caseMismatchCount": 0,
+      "endpointMismatchCounts": {
+        "lower": 0,
+        "central": 0,
+        "upper": 0
+      },
+      "firstMismatches": []
+    },
+    "traceStateRuns": 11668497,
+    "timing": {
+      "teamCompilationMilliseconds": 3088.058,
+      "compressedEvaluationMilliseconds": 70783.89,
+      "uncompressedEvaluationMilliseconds": 519291.891
+    },
+    "elapsedMilliseconds": 595120.05
+  },
+  "elapsedMilliseconds": 636246.439,
   "certificateEligible": false,
-  "disposition": "Lower/central/upper parity passed for 100000 deterministic cases; the complete certification gate remains open until compiled mechanic fixtures, shard replay, and full-scope proof pass."
+  "disposition": "Rust reference parity and trace-preserving versus uncompressed lower/central/upper parity passed for 100000 deterministic cases; the complete certification gate remains open until full-scope proof replay passes.",
+  "reportHash": "8a09e5fd04f6b6c6d6d1b991c7844c6b4e1fdd2345ca991fb20341f8bd57ac44"
 }

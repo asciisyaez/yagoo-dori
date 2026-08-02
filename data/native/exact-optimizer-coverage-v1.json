@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-optimizer-coverage-summary",
+  "methodologyVersion": "yd-exact-kernel-coverage-1.1.0",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "kernelVersion": "yd-exact-trace-kernel-1.0.0",
+  "traceVersion": "yd-exact-arithmetic-trace-1.0.0",
+  "executableLedgerHash": "05a5e919b10bac1f4c003bb7fb843d66ee7802bdab018f4d44dff6c55ac104a0",
+  "coverage": [
+    {
+      "id": "member-cards",
+      "entryCount": 113,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "7459cd1bc11fafff09bd446e915aec455cf80753adff1ff1349e8233013d84c7",
+      "caseIdHash": "43441357f565479f76762bbf6ce2c13f3034a03d091b6ecbd2e29e15ac970145"
+    },
+    {
+      "id": "leader-sources",
+      "entryCount": 113,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "7459cd1bc11fafff09bd446e915aec455cf80753adff1ff1349e8233013d84c7",
+      "caseIdHash": "43441357f565479f76762bbf6ce2c13f3034a03d091b6ecbd2e29e15ac970145"
+    },
+    {
+      "id": "application-records",
+      "entryCount": 1021,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "a2a2ee99a80d6ef5ddc9662e69d41f7b4e568da08714c16a24ae9235d4a11a61",
+      "caseIdHash": "3aa684e39ff9adc632faa2b5db56f133e3b0d174ebebf0f7e46075af539dc069"
+    },
+    {
+      "id": "effect-records",
+      "entryCount": 1021,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "a2a2ee99a80d6ef5ddc9662e69d41f7b4e568da08714c16a24ae9235d4a11a61",
+      "caseIdHash": "3aa684e39ff9adc632faa2b5db56f133e3b0d174ebebf0f7e46075af539dc069"
+    },
+    {
+      "id": "effect-families",
+      "entryCount": 2,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "9a68230b803114a6452a7deb9b8db86367d97f61e97f79016f9341611ec3e90b",
+      "caseIdHash": "75e776a21b49512bc16c8465f7bf4efae785b408f8bb1be0f5c3f969eb6d921f"
+    },
+    {
+      "id": "effect-kinds",
+      "entryCount": 10,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "cdb48db2d324c1fb3680d8ece90e66d809aa7af25e6d4f7923808c51ae92d395",
+      "caseIdHash": "35bfe141b0cd381c7ff65ed60bf04d926816675b23975f6c8bcd747132a92b80"
+    },
+    {
+      "id": "combinations",
+      "entryCount": 5,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3454,
+      "entryKeyHash": "6dae8115aa4472e0c7a914bb5784a5159f8f367af15346b5544f3d2c2a2facb2",
+      "caseIdHash": "71c208f49fc4eb95c4a1f272292925342e2352dc4b892623ec2c879e0dbd3282"
+    },
+    {
+      "id": "trigger-kinds",
+      "entryCount": 4,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 1946,
+      "entryKeyHash": "bdcd2e9fec211dc4e836fab1bad304d5b5640625db80bad79d150536ae3c4cbe",
+      "caseIdHash": "f5cf47a37fb6e9d34cc64b820e740669934db5f73060641fac30dc9ede71477a"
+    },
+    {
+      "id": "target-kinds",
+      "entryCount": 4,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 1554,
+      "entryKeyHash": "9d32678011de1c6ba449703708651cd46ff30bbe9820f05b66dd2b04efb72c48",
+      "caseIdHash": "cb07e98bd2d7e1e6cdab2452cee30b4907d447269f1e2a785fbc48d7e1eadbc8"
+    },
+    {
+      "id": "target-caps",
+      "entryCount": 2,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 792,
+      "entryKeyHash": "8fe68a9da02a38d895d27a8d530d1f6612d873eadec7ee65b453861280b3df62",
+      "caseIdHash": "03cd2bd14a55e8d1a2b921df7c8ee1fff65183ce46f6b2981b8e338b3cff60a2"
+    },
+    {
+      "id": "recipient-resolution",
+      "entryCount": 2,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 1554,
+      "entryKeyHash": "e36e18ff6c7c2273b9a778871da2d7f6b9fece99e7553e8d0bf4e40ec9ebb0cd",
+      "caseIdHash": "2f3762b8b4d0d8e5dfc1bfc30942779273ee121711ae091c710c864fa995e400"
+    },
+    {
+      "id": "trigger-boundaries",
+      "entryCount": 12,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 1065,
+      "entryKeyHash": "e02beccb83a88d73477124fae28b0349ab98551a595dd350f0a77fdc051d04d5",
+      "caseIdHash": "9dd6cc88d30fff058f28a4f27c3024463a1c906c22e94a920e76944c1bf3a952"
+    },
+    {
+      "id": "member-leader-same-talent-collisions",
+      "entryCount": 1,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 2920,
+      "entryKeyHash": "f25d22b087c0d5b7ed9aa6a65e1ded7943c84c140165b8059c8778b2a4813dba",
+      "caseIdHash": "80cf07034dedb9a45aa5eb74669b7e0930a7206e81a8f059409b2b49e4dc5062"
+    },
+    {
+      "id": "singer-states",
+      "entryCount": 2,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 2042,
+      "entryKeyHash": "364d5aab960c74ec86c8aa41dd8b6b8e35e5011314a94002ec7ad71415ac6ab0",
+      "caseIdHash": "90dda317204490581998bd8db2a4d6767d4a4d4b663d1955e210ba7249eb56cc"
+    },
+    {
+      "id": "investment-layers",
+      "entryCount": 3,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3,
+      "entryKeyHash": "08ad2702c8ee523a605899ad07a1ab3c35e61fcd632113c2cf2e4fd267c48bdb",
+      "caseIdHash": "8e00186fa48e16c943469097b668294cc55613d9de0699619df10afea3d19790"
+    },
+    {
+      "id": "bloom-stages",
+      "entryCount": 6,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 15,
+      "entryKeyHash": "0e470e71ce14889b73b0adf9c1270f81d0082d60e8dcc0a15cd409dc26e13246",
+      "caseIdHash": "9e6038f20a838232e1d4a705dc93382e220932d9b83bbce7ff10072033a9bbda"
+    },
+    {
+      "id": "rarity-and-legal-boundaries",
+      "entryCount": 7,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 3459,
+      "entryKeyHash": "b258740af85df816c74e798ca2b6c2b94ec899be90b0e7fdd7fb92191aa4a437",
+      "caseIdHash": "1e8574ebe99ed6749eb634a4437e3aa2d9ceadba98c772df6709ec09224b57ac"
+    },
+    {
+      "id": "rounding-and-tie-boundaries",
+      "entryCount": 4,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 4,
+      "entryKeyHash": "78852311b905f4bf0be1809c6daf1aab47504d022ba2f4d461dee456d989e4cf",
+      "caseIdHash": "933bce39cb35943571768c64f5666b13f3a2feb2efecc59f33db49a6e4e32455"
+    },
+    {
+      "id": "execution-paths",
+      "entryCount": 2,
+      "zeroEntryCount": 0,
+      "executedCaseCount": 6,
+      "entryKeyHash": "ac79f58cae4d4b64adfcc6fff1cdad407c4fd3f8dd7d0b5fe7874fa1b0b6b5b2",
+      "caseIdHash": "abc707cb6405a385f41f16689c79379584838d9121bc0778fefd6fae4c798107"
+    }
+  ],
+  "gates": {
+    "compression": {
+      "authorized": true,
+      "mode": "trace-preserving-replay-only",
+      "reason": "The current 100000-case trace-preserving versus forced-uncompressed lower/central/upper corpus passed with a content-valid report.",
+      "corpusCaseCount": 100000,
+      "traceFallbackCount": 0,
+      "endpointMismatchCounts": {
+        "lower": 0,
+        "central": 0,
+        "upper": 0
+      },
+      "elapsedMilliseconds": 595120.05,
+      "reportHash": "8a09e5fd04f6b6c6d6d1b991c7844c6b4e1fdd2345ca991fb20341f8bd57ac44",
+      "supplementalReducedCaseIds": [
+        "compression:low-investment:bloom-0",
+        "compression:one-copy-maximum:bloom-1",
+        "compression:duplicate-enabled-ceiling:bloom-2"
+      ],
+      "supplementalParityMismatches": 0
+    },
+    "rootBounds": {
+      "authorized": true,
+      "classCount": 113,
+      "singletonSafeClassCount": 113,
+      "fullScopeChartCount": 30,
+      "reportHash": "8b57490d3ffec00360fb5d13719431a02efb936ca83acdd9812e7c65b46c1b06",
+      "rootPruning": {
+        "entrants": 113,
+        "pruned": 0,
+        "survivors": 113
+      },
+      "reason": "All current singleton-safe Leader classes have content-valid whole-Leader root bounds over the declared 113-Member/30-chart scope."
+    },
+    "leaderEquivalence": {
+      "authorized": true,
+      "classes": 113,
+      "singletonFallback": true,
+      "multiplicityReconciled": true,
+      "caseCount": 708,
+      "mismatchCount": 0
+    },
+    "reducedBounds": {
+      "verified": true,
+      "scope": "reduced-fixture-only",
+      "stages": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "strictPruneOnly": true,
+      "caseIds": [
+        "bounds:B0",
+        "bounds:B1",
+        "bounds:B2",
+        "bounds:B3"
+      ]
+    },
+    "parallel": {
+      "authorized": true,
+      "workerCount": 2,
+      "caseIds": [
+        "parallel:compression:duplicate-enabled-ceiling:bloom-2",
+        "parallel:compression:low-investment:bloom-0",
+        "parallel:compression:one-copy-maximum:bloom-1"
+      ],
+      "serialDigest": "de68b29bcefdf0a28b5a9c522b0cb7a0718af7f5ab3d0c7ee68dd31efe8d6f60",
+      "parallelDigest": "de68b29bcefdf0a28b5a9c522b0cb7a0718af7f5ab3d0c7ee68dd31efe8d6f60"
+    },
+    "coverageAuthorization": {
+      "authorized": true,
+      "derivedFrom": [
+        "full-100000-trace-parity",
+        "full-113-class-root-bounds"
+      ],
+      "reason": "Coverage authorization derives from current full trace parity and current full fixed-Leader root-bound evidence; reduced B0/B1/B2/B3 remains a separate regression fixture."
+    }
+  },
+  "requiredZeroCoverage": [],
+  "certificateEligible": false,
+  "reportHash": "d2c80190025fe9ae1931aff2b750ce90540487dfd9d549e1f8f9e717fbf6f890"
+}

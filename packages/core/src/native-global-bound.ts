@@ -120,6 +120,33 @@ export type NativeGlobalBoundResult = Readonly<{
     specialDuration: "exact-duration-weighted";
     componentCompletions: "independent";
   }>;
+  /**
+   * Every returned upper bound is conditioned on one concrete Leader source.
+   * When callers provide several Leaders, the outer maximum selects one whole
+   * fixed-Leader bound; no component may borrow an effect from another Leader.
+   */
+  leaderConditioning: Readonly<{
+    fixedLeaderOutfitCardId: string;
+    consideredLeaderOutfitCardIds: readonly string[];
+  }>;
+}>;
+
+export type NativeLeaderRootBounds = Readonly<{
+  kind: "native-leader-root-bounds";
+  methodologyVersion: "yd-native-leader-root-bounds-1.0.0";
+  /** B0 is the outward-rounded max of whole B1 fixed-Leader bounds. */
+  b0: Readonly<{
+    upperCentralUtility: number;
+    upperCentralMicroUnits: number;
+  }>;
+  /** B1 keeps each Leader class whole and records Outfit multiplicity. */
+  b1: readonly Readonly<{
+    representativeCardId: string;
+    eligibleOutfitCardIds: readonly string[];
+    multiplicity: number;
+    upperCentralUtility: number;
+    upperCentralMicroUnits: number;
+  }>[];
 }>;
 
 function unique(values: readonly string[], label: string): string[] {
@@ -1057,6 +1084,32 @@ function boundNativeAggregateCentralUtilityInternal(
     "Leader/Outfit IDs",
   );
   const leaderCardIds = runtime?.leaderCardIds ?? declaredLeaderCardIds;
+  // A global optimistic bound may choose the best *whole* Leader, but it must
+  // never combine a parameter effect from Leader A with support from Leader B.
+  // Split the outer disjunction before any relaxed component calculation.
+  if (leaderCardIds.length > 1) {
+    const fixedLeaderBounds = leaderCardIds.map((fixedLeaderOutfitCardId) =>
+      boundNativeAggregateCentralUtilityInternal(
+        {
+          ...input,
+          eligibleLeaderOutfitCardIds: [fixedLeaderOutfitCardId],
+        },
+        runtime
+          ? { ...runtime, leaderCardIds: [fixedLeaderOutfitCardId] }
+          : undefined,
+      ),
+    );
+    const selected = fixedLeaderBounds.reduce((best, candidate) =>
+      candidate.upperCentralUtility > best.upperCentralUtility ? candidate : best,
+    );
+    return {
+      ...selected,
+      leaderConditioning: {
+        fixedLeaderOutfitCardId: selected.leaderConditioning.fixedLeaderOutfitCardId,
+        consideredLeaderOutfitCardIds: Object.freeze([...leaderCardIds]),
+      },
+    };
+  }
   const chartKeys = unique(input.chartKeys, "Chart keys");
   if (declaredLeaderCardIds.length === 0) throw new Error("At least one Leader/Outfit is required");
   if (chartKeys.length === 0) throw new Error("At least one aggregate chart is required");
@@ -1476,6 +1529,10 @@ function boundNativeAggregateCentralUtilityInternal(
       specialDuration: "exact-duration-weighted",
       componentCompletions: "independent",
     },
+    leaderConditioning: {
+      fixedLeaderOutfitCardId: leaderCardIds[0]!,
+      consideredLeaderOutfitCardIds: Object.freeze([...leaderCardIds]),
+    },
   };
 }
 
@@ -1581,6 +1638,58 @@ export function compileNativeGlobalBoundContext(
         narrowedRuntime,
       );
     },
+  };
+}
+
+/**
+ * B0/B1 root proof cascade.  B0 is only an outward-rounded comparison bound;
+ * B1 retains a fixed representative and every Outfit it stands for.  Callers
+ * use the same function with a non-empty partial roster for B2, then evaluate
+ * surviving complete pairs exactly as B3.
+ */
+export function compileNativeLeaderRootBounds(
+  input: NativeGlobalBoundInput,
+): NativeLeaderRootBounds {
+  const equivalence = compileNativeLeaderEquivalence({
+    eligibleLeaderOutfitCardIds: input.eligibleLeaderOutfitCardIds,
+  });
+  const context = compileNativeGlobalBoundContext({
+    eligibleMemberCardIds: input.eligibleMemberCardIds,
+    eligibleLeaderOutfitCardIds: input.eligibleLeaderOutfitCardIds,
+    investmentLayer: input.investmentLayer,
+    ...(input.bloomStageByCardId ? { bloomStageByCardId: input.bloomStageByCardId } : {}),
+    ...(input.maxFiveStarMembers === undefined
+      ? {}
+      : { maxFiveStarMembers: input.maxFiveStarMembers }),
+    chartKeys: input.chartKeys,
+  });
+  const b1 = equivalence.classes.map((leaderClass) => {
+    const bound = context.bound({
+      partialMemberCardIds: input.partialMemberCardIds,
+      eligibleLeaderOutfitCardIds: [leaderClass.representativeCardId],
+    });
+    const upperCentralMicroUnits = upperBoundToCanonicalMicroUnits(bound.upperCentralUtility);
+    return {
+      representativeCardId: leaderClass.representativeCardId,
+      eligibleOutfitCardIds: leaderClass.eligibleCardIds,
+      multiplicity: leaderClass.multiplicity,
+      upperCentralUtility: bound.upperCentralUtility,
+      upperCentralMicroUnits,
+    };
+  });
+  const b0UpperCentralMicroUnits = b1.reduce(
+    (maximum, entry) =>
+      entry.upperCentralMicroUnits > maximum ? entry.upperCentralMicroUnits : maximum,
+    b1[0]!.upperCentralMicroUnits,
+  );
+  return {
+    kind: "native-leader-root-bounds",
+    methodologyVersion: "yd-native-leader-root-bounds-1.0.0",
+    b0: {
+      upperCentralUtility: fromCanonicalMicroUnits(b0UpperCentralMicroUnits),
+      upperCentralMicroUnits: b0UpperCentralMicroUnits,
+    },
+    b1: Object.freeze(b1),
   };
 }
 

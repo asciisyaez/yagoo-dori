@@ -32,6 +32,12 @@
     "./team-calculator": "./src/team-calculator.ts",
     "./team-calculator-contract": "./src/team-calculator-contract.ts",
     "./exact-optimizer-arithmetic": "./src/exact-optimizer-arithmetic.ts",
+    "./exact-optimizer-coverage": "./src/exact-optimizer-coverage.ts",
+    "./exact-optimizer-parity": "./src/exact-optimizer-parity.ts",
+    "./exact-optimizer-incumbent": "./src/exact-optimizer-incumbent.ts",
+    "./exact-optimizer-kernel": "./src/exact-optimizer-kernel.ts",
+    "./exact-optimizer-leader-proof": "./src/exact-optimizer-leader-proof.ts",
+    "./exact-optimizer-trace": "./src/exact-optimizer-trace.ts",
     "./exact-optimizer-scope": "./src/exact-optimizer-scope.ts"
   },
   "scripts": {

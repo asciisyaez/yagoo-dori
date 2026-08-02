@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": 2,
+  "kind": "exact-optimizer-leader-root-bounds-full-scope",
+  "methodologyVersion": "yd-exact-optimizer-full-root-bounds-1.0.0",
+  "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "scope": {
+    "memberCardCount": 113,
+    "leaderOutfitCount": 113,
+    "chartCount": 30,
+    "investmentLayer": "one-copy-maximum",
+    "maxFiveStarMembers": 5
+  },
+  "leaderClasses": {
+    "classCount": 113,
+    "singletonSafeClassCount": 113,
+    "allSingletonSafe": true,
+    "collapsedLeaderOutfits": 0
+  },
+  "incumbent": {
+    "methodology": "bounded deterministic incumbent; not an optimality claim",
+    "leaderOutfitCardId": "card-06003-5-uniq-0059-00",
+    "memberCardIds": [
+      "card-00030-5-uniq-0024-00",
+      "card-03007-5-uniq-0039-00",
+      "card-04003-5-uniq-0044-00",
+      "card-06002-5-uniq-0058-00",
+      "card-06004-5-uniq-0060-00"
+    ],
+    "centralMicroUnits": 299101886535,
+    "canonicalUtility": {
+      "lower": 242000205371,
+      "central": 299101886535,
+      "upper": 353147414535
+    },
+    "frozenHash": "e2a15662a01385b434e1812365e6b8456a2f1c5e134c40a9783d549c0eeeac25"
+  },
+  "b0": {
+    "upperCentralUtility": 406542.193234,
+    "upperCentralMicroUnits": 406542193234
+  },
+  "fixedLeaderRecords": [
+    {
+      "representativeCardId": "card-00001-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00001-5-uniq-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00002-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00002-5-uniq-0001-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00004-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00004-5-uniq-0005-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00005-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00005-5-uniq-0006-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00006-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00006-5-uniq-0007-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00007-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00007-5-uniq-0008-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00010-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00010-5-uniq-0010-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00011-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00011-5-uniq-0011-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 396665.119859,
+      "upperCentralMicroUnits": 396665119859,
+      "incumbentGapMicroUnits": 97563233324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00012-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00012-5-uniq-0012-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00012-5-uniq-0062-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00013-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00013-5-uniq-0002-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00014-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00014-5-uniq-0013-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00015-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00015-5-uniq-0003-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00016-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00016-5-uniq-0014-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00017-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00017-5-uniq-0015-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00018-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00018-5-uniq-0004-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00019-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00019-5-uniq-0016-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 396665.119859,
+      "upperCentralMicroUnits": 396665119859,
+      "incumbentGapMicroUnits": 97563233324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00021-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384809.619859,
+      "upperCentralMicroUnits": 384809619859,
+      "incumbentGapMicroUnits": 85707733324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00021-5-uniq-0017-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00021-5-uniq-0064-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 402482.619859,
+      "upperCentralMicroUnits": 402482619859,
+      "incumbentGapMicroUnits": 103380733324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00022-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00022-5-uniq-0018-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00022-5-uniq-0063-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 406542.193234,
+      "upperCentralMicroUnits": 406542193234,
+      "incumbentGapMicroUnits": 107440306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00023-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00023-5-uniq-0019-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00026-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00026-5-uniq-0021-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00026-5-uniq-0065-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 402482.619859,
+      "upperCentralMicroUnits": 402482619859,
+      "incumbentGapMicroUnits": 103380733324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00027-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00027-5-uniq-0022-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00028-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00028-5-uniq-0023-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00030-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00030-5-uniq-0024-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00031-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00031-5-uniq-0025-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00032-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00032-5-uniq-0026-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00034-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00034-5-uniq-0027-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00035-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00035-5-uniq-0028-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00036-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 385616.033118,
+      "upperCentralMicroUnits": 385616033118,
+      "incumbentGapMicroUnits": 86514146583,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00036-5-uniq-0029-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00037-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00037-5-uniq-0030-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 396665.119859,
+      "upperCentralMicroUnits": 396665119859,
+      "incumbentGapMicroUnits": 97563233324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00039-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-00039-5-uniq-0032-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03001-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03001-5-uniq-0033-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03002-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03002-5-uniq-0034-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03003-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03003-5-uniq-0035-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03004-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03004-5-uniq-0036-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03005-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03005-5-uniq-0037-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03006-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03006-5-uniq-0038-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03007-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03007-5-uniq-0039-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03008-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03008-5-uniq-0040-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03009-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-03009-5-uniq-0041-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 390056.443234,
+      "upperCentralMicroUnits": 390056443234,
+      "incumbentGapMicroUnits": 90954556699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04001-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04001-5-uniq-0042-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04002-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04002-5-uniq-0043-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04003-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04003-5-uniq-0044-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04007-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04007-5-uniq-0047-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04010-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04010-5-uniq-0049-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395423.091833,
+      "upperCentralMicroUnits": 395423091833,
+      "incumbentGapMicroUnits": 96321205298,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04012-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04012-5-uniq-0051-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04013-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04013-5-uniq-0052-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04014-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384809.619859,
+      "upperCentralMicroUnits": 384809619859,
+      "incumbentGapMicroUnits": 85707733324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04014-5-uniq-0053-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04015-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04015-5-uniq-0054-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04016-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 385616.033118,
+      "upperCentralMicroUnits": 385616033118,
+      "incumbentGapMicroUnits": 86514146583,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04016-5-uniq-0055-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04017-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 378200.943234,
+      "upperCentralMicroUnits": 378200943234,
+      "incumbentGapMicroUnits": 79099056699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-04017-5-uniq-0056-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06002-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384128.693234,
+      "upperCentralMicroUnits": 384128693234,
+      "incumbentGapMicroUnits": 85026806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06002-5-uniq-0058-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06002-5-uniq-0066-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 403955.693234,
+      "upperCentralMicroUnits": 403955693234,
+      "incumbentGapMicroUnits": 104853806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06003-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 385616.033118,
+      "upperCentralMicroUnits": 385616033118,
+      "incumbentGapMicroUnits": 86514146583,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06003-5-uniq-0059-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 395984.193234,
+      "upperCentralMicroUnits": 395984193234,
+      "incumbentGapMicroUnits": 96882306699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06004-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 384809.619859,
+      "upperCentralMicroUnits": 384809619859,
+      "incumbentGapMicroUnits": 85707733324,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06004-5-uniq-0060-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06005-4-cmmn-0000-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 388436.693234,
+      "upperCentralMicroUnits": 388436693234,
+      "incumbentGapMicroUnits": 89334806699,
+      "prunedAtRoot": false
+    },
+    {
+      "representativeCardId": "card-06005-5-uniq-0061-00",
+      "multiplicity": 1,
+      "methodologyHash": "0818415ac42284b90fded1db3d50508f666c6fba7af1ad575337912b58c81254",
+      "upperCentralUtility": 398782.693234,
+      "upperCentralMicroUnits": 398782693234,
+      "incumbentGapMicroUnits": 99680806699,
+      "prunedAtRoot": false
+    }
+  ],
+  "rootPruning": {
+    "strictRule": "upperCentralMicroUnits < incumbentCentralMicroUnits",
+    "entrants": 113,
+    "pruned": 0,
+    "survivors": 113
+  },
+  "timing": {
+    "incumbentMilliseconds": 176307.845,
+    "fixedLeaderBoundsMilliseconds": 27567.454,
+    "totalMilliseconds": 203876.012
+  },
+  "coverageGate": {
+    "authorized": true,
+    "reason": "All 113 singleton-safe fixed-Leader classes have a whole-Leader B1 record over the declared 113-member/30-chart scope.",
+    "certificateEligible": false,
+    "limitation": "Root bounds are evidence only. They do not replace complete B2/B3 traversal or independent replay."
+  },
+  "certificateEligible": false,
+  "reportHash": "8b57490d3ffec00360fb5d13719431a02efb936ca83acdd9812e7c65b46c1b06"
+}

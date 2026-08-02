@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { mechanicsCardById } from "./mechanics";
 import {
   boundNativeAggregateCentralUtility,
+  compileNativeLeaderRootBounds,
   compileNativeGlobalBoundContext,
   type NativeGlobalBoundInput,
 } from "./native-global-bound";
@@ -152,6 +153,36 @@ describe("native global optimistic bound", () => {
       }),
     ).toThrow(/cannot expand/i);
   });
+
+  it("keeps B0 as an outward maximum of whole fixed-Leader B1 bounds", () => {
+    const root = compileNativeLeaderRootBounds({
+      partialMemberCardIds: [],
+      eligibleMemberCardIds: MEMBERS,
+      eligibleLeaderOutfitCardIds: LEADERS,
+      investmentLayer: "one-copy-maximum",
+      chartKeys: CHARTS,
+    });
+    expect(root.b1).toHaveLength(LEADERS.length);
+    expect(root.b1.every((entry) => entry.multiplicity === entry.eligibleOutfitCardIds.length)).toBe(
+      true,
+    );
+    expect(root.b0.upperCentralMicroUnits).toBe(
+      Math.max(...root.b1.map((entry) => entry.upperCentralMicroUnits)),
+    );
+    for (const entry of root.b1) {
+      const one = boundNativeAggregateCentralUtility({
+        partialMemberCardIds: [],
+        eligibleMemberCardIds: MEMBERS,
+        eligibleLeaderOutfitCardIds: [entry.representativeCardId],
+        investmentLayer: "one-copy-maximum",
+        chartKeys: CHARTS,
+      });
+      expect(entry.upperCentralUtility).toBe(one.upperCentralUtility);
+      expect(one.leaderConditioning.consideredLeaderOutfitCardIds).toEqual([
+        entry.representativeCardId,
+      ]);
+    }
+  }, 30_000);
 
   it("upper-bounds every legal completion and Leader across a reduced real roster", () => {
     for (const scenario of SCENARIOS) {

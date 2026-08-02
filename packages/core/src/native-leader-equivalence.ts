@@ -1,4 +1,5 @@
 import { mechanicsData, type CardMechanics } from "./mechanics";
+import { publicCardById } from "./public-data";
 
 const METHODOLOGY_VERSION = "yd-native-leader-equivalence-1.0.0" as const;
 
@@ -75,6 +76,10 @@ export type NativeLeaderEquivalenceClass = Readonly<{
   signature: string;
   representativeCardId: string;
   eligibleCardIds: readonly string[];
+  /** Identity is part of the proof key; different Leader talents never merge. */
+  leaderTalentIds: readonly string[];
+  /** Count is retained so class/team and Outfit/team pairs can be reconciled. */
+  multiplicity: number;
 }>;
 
 export type NativeLeaderEquivalenceResult = Readonly<{
@@ -170,10 +175,12 @@ function utilityApplication(application: SkillApplication): unknown {
     triggerGroupId: application.triggerGroupId,
     effect: application.effect
       ? {
+          id: application.effect.id,
           family: application.effect.family,
           kind: application.effect.kind,
           value: application.effect.value,
           unit: application.effect.unit,
+          targetId: application.effect.targetId,
         }
       : null,
     trigger: application.trigger
@@ -188,6 +195,7 @@ function utilityApplication(application: SkillApplication): unknown {
       : null,
     target: application.target
       ? {
+          id: application.target.id,
           kind: application.target.kind,
           attribute: application.target.attribute,
           characterGroupingId: application.target.characterGroupingId,
@@ -198,12 +206,19 @@ function utilityApplication(application: SkillApplication): unknown {
 }
 
 function structuralSignature(card: CardMechanics): string {
+  const publicCard = publicCardById.get(card.cardId);
   // Array order and group IDs are intentionally retained because application
-  // override/deduplication semantics consume both. Display text, source IDs,
-  // costume IDs, and descriptions do not enter aggregate utility.
-  return `leader-utility:${JSON.stringify(
-    card.leaderOutfit.applications.map(utilityApplication),
-  )}`;
+  // override/deduplication semantics consume both.  The Leader talent and the
+  // target/singer-relevant topology are deliberately included even when the
+  // current utility does not consume every field: this is a proof key, not an
+  // opportunistic cache key.  It is therefore safe to leave equivalence gains
+  // on the table rather than collapse identity-distinct Leader sources.
+  return `leader-utility:${JSON.stringify({
+    leaderTalentId: card.talentId,
+    leaderAttribute: publicCard?.attribute ?? null,
+    leaderGroups: publicCard ? [...publicCard.groups].sort() : [],
+    applications: card.leaderOutfit.applications.map(utilityApplication),
+  })}`;
 }
 
 export function compileNativeLeaderEquivalence(
@@ -242,6 +257,9 @@ export function compileNativeLeaderEquivalence(
         signature,
         representativeCardId: sorted[0]!,
         eligibleCardIds: sorted,
+        leaderTalentIds: [...new Set(sorted.map((cardId) => cardById.get(cardId)!.talentId))]
+          .sort((left, right) => left.localeCompare(right)),
+        multiplicity: sorted.length,
       };
     })
     .sort((left, right) => left.representativeCardId.localeCompare(right.representativeCardId));

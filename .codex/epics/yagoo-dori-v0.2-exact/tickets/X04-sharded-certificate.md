@@ -1,8 +1,8 @@
 ---
 id: X04
-title: Deterministic sharded certificate and verifier
-status: active
-depends_on: [X01, X02, X03]
+title: Deterministic sharded certificate plan and verifier
+status: blocked
+depends_on: [X01, X02, X03, X05]
 parallelizable: false
 parent_epic: yagoo-dori-v0.2-exact
 ---
@@ -64,3 +64,11 @@ comparisons with zero mismatches. A deterministic eight-case slice of the
 mismatches. It reduced representative utility calls by 48.67% in the reduced
 sample, but the resolution pass itself is not yet amortized and the result is
 explicitly not a full-scope speed claim or certificate.
+
+## Execution handoff
+
+The deterministic 864-shard plan and verifier are complete as a planning
+surface, but shard execution is blocked by X05's certifiable performance
+architecture. Do not start the planned full run until its factorization gate,
+trace-preserving kernel, proof cascade, independent replay evidence, and
+cost-model decision have an approved path below the declared budget.

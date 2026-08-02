@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 3,
+  "kind": "exact-optimizer-cost-model",
+  "methodologyVersion": "yd-exact-optimizer-cost-model-3.0.0",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "selectedArchitecture": "C-hybrid-team-sieve-fixed-leader-bound-compressed-exact",
+  "pilotReportHash": "11a91dd3897d1e89e22f58ccc164e617669d7594a718fa6f05a75dea3eb6b281",
+  "hardwareAndProfile": {
+    "researchBinary": {
+      "status": "built",
+      "profile": "certification",
+      "elapsedMilliseconds": 93.4364,
+      "semanticUse": "research-only; not selected as the certifying evaluator",
+      "fastMathOrReassociation": false
+    },
+    "cpuLogicalCount": 32,
+    "actualCandidateWorkers": 32
+  },
+  "stratifiedP95Measurements": {
+    "teamOnceMillisecondsPerTeam": 0.011830434782641005,
+    "B0MillisecondsPerFourLeaderTeamSieve": 0.592974248496996,
+    "B1MillisecondsPerFixedLeaderPair": 0.15123090668438546,
+    "compressedExactMillisecondsPerLeaderTeamChartState": 0.3025410511362073,
+    "leaderConditioningSeparateTiming": {
+      "status": "unavailable",
+      "reason": "Leader application resolution and trace evaluation occur in one exact kernel call; the model does not invent a sub-call split."
+    },
+    "compression": {
+      "status": "measured",
+      "source": "selected architecture exact-kernel p95 state timing; full 100k parity separately confirms zero fallback"
+    },
+    "observedPilotPruning": {
+      "B0": {
+        "entrants": 52160,
+        "pruned": 34655,
+        "survivors": 17505
+      },
+      "B1": {
+        "entrants": 17505,
+        "pruned": 6831,
+        "survivors": 10674
+      },
+      "B2": {
+        "entrants": 10674,
+        "pruned": 10374,
+        "survivors": 300
+      },
+      "projectionCredit": "zero; stratified pilot pruning is not extrapolated to the full scope"
+    }
+  },
+  "declaredWork": {
+    "legalMemberTeamSets": 126445821,
+    "eligibleLeaderOutfits": 113,
+    "aggregateCharts": 30,
+    "leaderTeamPairs": 14288377773,
+    "leaderTeamChartStates": 428651333190
+  },
+  "measuredMinimumNoPruningProjection": {
+    "components": [
+      {
+        "id": "team-once-compilation",
+        "unit": "legal-member-team",
+        "count": 126445821,
+        "p95MillisecondsPerUnit": 0.011830434782641005,
+        "projectedMilliseconds": 1495909.0388779985,
+        "status": "measured-and-projectable"
+      },
+      {
+        "id": "B1-fixed-leader-bound",
+        "unit": "leader-team-pair",
+        "count": 14288377773,
+        "p95MillisecondsPerUnit": 0.15123090668438546,
+        "projectedMilliseconds": 2160844325.6598105,
+        "status": "measured-and-projectable"
+      },
+      {
+        "id": "compressed-exact-leader-team-chart",
+        "unit": "leader-team-chart-state",
+        "count": 428651333190,
+        "p95MillisecondsPerUnit": 0.3025410511362073,
+        "projectedMilliseconds": 129684624914.23921,
+        "status": "measured-and-projectable"
+      }
+    ],
+    "B0Full113LeaderProjection": {
+      "status": "unavailable",
+      "reason": "The measured B0 sieve uses a four-Leader anchor bundle; scaling its whole-Leader maximum to 113 Leaders has not been measured and is excluded rather than fabricated."
+    },
+    "serialCoreHours": 36624.15698581608,
+    "interpretation": "Minimum measured cost before any unmeasured B0 full-class scaling, I/O, retries, aggregation, or independent replay. It intentionally grants zero pruning credit."
+  },
+  "parallelism": {
+    "candidateParallelismOnly": true,
+    "traceArithmeticRemainsSerial": true,
+    "measurements": [
+      {
+        "workers": 8,
+        "elapsedMilliseconds": 8506.0198,
+        "speedupVersusSingleThread": 4.343064743395025,
+        "parallelEfficiency": 0.5428830929243781,
+        "canonicalWinnerDigest": "b32d6264de78cf20217ce7afe708389c5964e55df041c805122444ae0aff7688",
+        "workerShardElapsedP50Milliseconds": 1388.6698,
+        "workerShardElapsedP95Milliseconds": 3967.1989,
+        "maximumWorkerRssBytes": 201728000
+      },
+      {
+        "workers": 16,
+        "elapsedMilliseconds": 7071.3934,
+        "speedupVersusSingleThread": 5.224174729127642,
+        "parallelEfficiency": 0.32651092057047765,
+        "canonicalWinnerDigest": "b32d6264de78cf20217ce7afe708389c5964e55df041c805122444ae0aff7688",
+        "workerShardElapsedP50Milliseconds": 2271.0884,
+        "workerShardElapsedP95Milliseconds": 6227.5089,
+        "maximumWorkerRssBytes": 200228864
+      },
+      {
+        "workers": 32,
+        "elapsedMilliseconds": 7945.1951,
+        "speedupVersusSingleThread": 4.6496271312456505,
+        "parallelEfficiency": 0.14530084785142658,
+        "canonicalWinnerDigest": "b32d6264de78cf20217ce7afe708389c5964e55df041c805122444ae0aff7688",
+        "workerShardElapsedP50Milliseconds": 3858.4376,
+        "workerShardElapsedP95Milliseconds": 6393.1969,
+        "maximumWorkerRssBytes": 202682368
+      }
+    ],
+    "wallHoursWith25PercentContingency": [
+      {
+        "workers": 1,
+        "source": "single-thread baseline",
+        "measuredSpeedup": 1,
+        "contingencyMultiplier": 1.25,
+        "wallHours": 45780.1962322701
+      },
+      {
+        "workers": 8,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 4.343064743395025,
+        "contingencyMultiplier": 1.25,
+        "wallHours": 10540.988665180059
+      },
+      {
+        "workers": 16,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 5.224174729127642,
+        "contingencyMultiplier": 1.25,
+        "wallHours": 8763.144153088979
+      },
+      {
+        "workers": 32,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 4.6496271312456505,
+        "contingencyMultiplier": 1.25,
+        "wallHours": 9845.993009767524
+      },
+      {
+        "workers": 32,
+        "source": "actual candidate-worker count (32)",
+        "measuredSpeedup": 4.6496271312456505,
+        "contingencyMultiplier": 1.25,
+        "wallHours": 9845.993009767524
+      }
+    ]
+  },
+  "decision": {
+    "fullRunAuthorized": false,
+    "thresholds": {
+      "maximumWallHours": 72,
+      "maximumCoreHours": 1000
+    },
+    "reasons": [
+      "The p95 no-pruning minimum already exceeds the declared offline budget before unmeasured B0 full-class work and independent replay.",
+      "The full 113-class root ledger produced zero root prunes against its bounded incumbent, so no root-pruning credit is asserted.",
+      "No full shard execution was launched."
+    ]
+  },
+  "certificateEligible": false,
+  "reportHash": "728f3a6bed3ff93517db26043c8c38ea88d2cfaa1cea8e042bc58c5f39bd67d5"
+}

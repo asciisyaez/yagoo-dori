@@ -5,6 +5,7 @@ import { compileNativeLeaderEquivalence } from "./native-leader-equivalence";
 import {
   NativeGlobalSearchTimeoutError,
   countNativeLegalTeamSets,
+  reconcileNativeGlobalLeaderPairCounts,
   searchNativeGlobalTeams,
   type NativeGlobalSearchProgress,
 } from "./native-global-search";
@@ -41,10 +42,10 @@ const MEMBERS = [
 const fullLeaderClasses = compileNativeLeaderEquivalence({
   eligibleLeaderOutfitCardIds: mechanicsData.cards.map((card) => card.cardId),
 });
-const duplicateSenseLeaders = fullLeaderClasses.classes.find((group) =>
+const sameClassLeaders = fullLeaderClasses.classes.find((group) =>
   group.eligibleCardIds.includes(CARD.sora4),
 )!.eligibleCardIds.slice(0, 2);
-const LEADERS = [...duplicateSenseLeaders, CARD.pekora5, CARD.flare5, CARD.iroha5] as const;
+const LEADERS = [...sameClassLeaders, CARD.pekora5, CARD.flare5, CARD.iroha5] as const;
 const BOARD: NeutralBoardAccountState = {
   board: {
     mode: "declared-neutral",
@@ -150,20 +151,47 @@ describe("native global team search", () => {
     expect(reversed.relativeUtility).toEqual(forward.relativeUtility);
   });
 
-  it("gives equivalent Leader classes the same aggregate utility", () => {
-    const members = [CARD.sora4, CARD.aki5, CARD.haato5, CARD.azki4, CARD.okayu5].map((cardId) => ({
-      cardId,
-      investment: "one-copy-maximum" as const,
-    }));
-    const utilities = duplicateSenseLeaders.map((leaderOutfitCardId) =>
-      evaluateNativeRelativeUtility({
-        formation: { leaderOutfitCardId, members },
-        chartKey: "m0206:expert",
-        seed: 0x5eed,
-        accountState: BOARD,
-      }).relativeUtility,
+  it("retains Leader identity when building the proof pair space", () => {
+    const identities = compileNativeLeaderEquivalence({
+      eligibleLeaderOutfitCardIds: LEADERS,
+    });
+    expect(identities.classes.flatMap((group) => group.eligibleCardIds).sort()).toEqual(
+      [...LEADERS].sort(),
     );
-    expect(utilities[1]).toEqual(utilities[0]);
+    expect(identities.classes.every((group) => group.leaderTalentIds.length === 1)).toBe(true);
+  });
+
+  it("reconciles exact and pruned class and Outfit pairs, including class multiplicity", () => {
+    const pairs = reconcileNativeGlobalLeaderPairCounts({
+      legalTeamSets: 7,
+      exactLeafEvaluations: 2,
+      prunedTeamSets: 5,
+      // Three classes represented by five actual Outfits proves that the
+      // Outfit space is not inferred from the class count.
+      leaderEquivalenceClasses: 3,
+      eligibleLeaderOutfits: 5,
+    });
+
+    expect(pairs).toEqual({
+      leaderClassTeamPairs: 21,
+      leaderOutfitTeamPairs: 35,
+      exactLeaderClassTeamPairs: 6,
+      prunedLeaderClassTeamPairs: 15,
+      exactLeaderOutfitTeamPairs: 10,
+      prunedLeaderOutfitTeamPairs: 25,
+      leaderClassPairCountsReconciled: true,
+      leaderOutfitPairCountsReconciled: true,
+      leaderPairCountsReconciled: true,
+    });
+    expect(() =>
+      reconcileNativeGlobalLeaderPairCounts({
+        legalTeamSets: 7,
+        exactLeafEvaluations: 2,
+        prunedTeamSets: 4,
+        leaderEquivalenceClasses: 3,
+        eligibleLeaderOutfits: 5,
+      }),
+    ).toThrow(/did not reconcile/i);
   });
 
   it("reconciles the declared unrestricted legal Member-team count", () => {
@@ -219,16 +247,41 @@ describe("native global team search", () => {
       countsReconciled: true,
       optimalityGap: 0,
       eligibleLeaderOutfits: LEADERS.length,
-      leaderEquivalenceClasses: LEADERS.length - 1,
-      collapsedLeaderOutfits: 1,
+      leaderEquivalenceClasses: compileNativeLeaderEquivalence({
+        eligibleLeaderOutfitCardIds: LEADERS,
+      }).counts.equivalenceClasses,
+      collapsedLeaderOutfits: compileNativeLeaderEquivalence({
+        eligibleLeaderOutfitCardIds: LEADERS,
+      }).counts.collapsedLeaderOutfits,
+      leaderClassTeamPairs:
+        legalTeams().length *
+        compileNativeLeaderEquivalence({
+          eligibleLeaderOutfitCardIds: LEADERS,
+        }).counts.equivalenceClasses,
+      leaderOutfitTeamPairs: legalTeams().length * LEADERS.length,
+      leaderClassPairCountsReconciled: true,
+      leaderOutfitPairCountsReconciled: true,
+      leaderPairCountsReconciled: true,
     });
     expect(result.certificate.prunedTeamSets).toBeGreaterThan(0);
     expect(result.certificate.nodesPruned).toBeGreaterThan(0);
     expect(
       result.certificate.exactLeafEvaluations + result.certificate.prunedTeamSets,
     ).toBe(result.certificate.legalTeamSets);
+    expect(
+      result.certificate.exactLeaderClassTeamPairs +
+        result.certificate.prunedLeaderClassTeamPairs,
+    ).toBe(result.certificate.leaderClassTeamPairs);
+    expect(
+      result.certificate.exactLeaderOutfitTeamPairs +
+        result.certificate.prunedLeaderOutfitTeamPairs,
+    ).toBe(result.certificate.leaderOutfitTeamPairs);
     expect(result.certificate.maximumPrunedUpperCentralUtility).toBeLessThan(
       result.best.relativeUtility.central,
+    );
+    expect(result.certificate.proofCascade.strictPrunes).toBeGreaterThan(0);
+    expect(result.certificate.proofCascade.b3ExactLeafTeamSets).toBe(
+      result.certificate.exactLeafEvaluations,
     );
   }, 30_000);
 
@@ -272,8 +325,20 @@ describe("native global team search", () => {
       kind: "certified",
       incumbentSource: "provided-seed",
       incumbentSeedTeamSets: expect.any(Number),
+      incumbentSeedLeaderTeamEvaluations: expect.any(Number),
       countsReconciled: true,
       optimalityGap: 0,
     });
+    // Seed candidates tighten the incumbent but must not be credited as proof
+    // coverage of exact/pruned legal pairs.
+    expect(result.certificate.incumbentSeedLeaderTeamEvaluations).toBeGreaterThan(0);
+    expect(result.certificate.exactLeaderTeamEvaluations).toBe(
+      result.certificate.incumbentSeedLeaderTeamEvaluations +
+        result.certificate.exactLeaderOutfitTeamPairs,
+    );
+    expect(
+      result.certificate.exactLeaderOutfitTeamPairs +
+        result.certificate.prunedLeaderOutfitTeamPairs,
+    ).toBe(result.certificate.leaderOutfitTeamPairs);
   }, 30_000);
 });
