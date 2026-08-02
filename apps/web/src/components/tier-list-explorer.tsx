@@ -91,10 +91,10 @@ function isTierContext(value: string | null): value is TierContext {
   return contexts.some((context) => context.id === value);
 }
 
-function moveWithinTablist(event: ReactKeyboardEvent<HTMLButtonElement>) {
+function moveWithinTablist(event: ReactKeyboardEvent<HTMLElement>) {
   if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
   const tabs = Array.from(
-    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("[role='tab']") ?? [],
+    event.currentTarget.parentElement?.querySelectorAll<HTMLElement>("[role='tab']") ?? [],
   );
   const currentIndex = tabs.indexOf(event.currentTarget);
   if (currentIndex < 0 || tabs.length === 0) return;
@@ -171,6 +171,14 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
   const attribute = searchParams.get("attribute") ?? "all";
   const generation = searchParams.get("generation") ?? "all";
 
+  const filterHref = (key: string, value: string, defaultValue = "all") => {
+    const next = new URLSearchParams(searchParams.toString());
+    if (value === defaultValue || value === "") next.delete(key);
+    else next.set(key, value);
+    const nextQuery = next.toString();
+    return nextQuery ? `${pathname}?${nextQuery}` : pathname;
+  };
+
   const setFilter = (key: string, value: string, defaultValue = "all") => {
     // Read the live URL so rapid control changes cannot overwrite a navigation
     // that has reached history before React receives the new search params.
@@ -223,35 +231,33 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
     <div className="tier-workspace">
       <div className="context-tabs entity-context-tabs" role="tablist" aria-label="Ranking context">
         {contexts.map((item) => (
-          <button
+          <Link
             aria-selected={context === item.id}
+            href={filterHref("context", item.id, DEFAULT_CONTEXT)}
             key={item.id}
             onKeyDown={moveWithinTablist}
-            onClick={() => setFilter("context", item.id, DEFAULT_CONTEXT)}
             role="tab"
             tabIndex={context === item.id ? 0 : -1}
-            type="button"
           >
             {item.label}
             <span>{item.caption}</span>
-          </button>
+          </Link>
         ))}
       </div>
 
       <div className="context-tabs context-tabs-three" role="tablist" aria-label="Ranking investment lens">
         {lenses.map((item) => (
-          <button
+          <Link
             aria-selected={lens === item.id}
+            href={filterHref("lens", item.id, DEFAULT_LENS)}
             key={item.id}
             onKeyDown={moveWithinTablist}
-            onClick={() => setFilter("lens", item.id, DEFAULT_LENS)}
             role="tab"
             tabIndex={lens === item.id ? 0 : -1}
-            type="button"
           >
             {item.label}
             <span>{item.caption}</span>
-          </button>
+          </Link>
         ))}
       </div>
 

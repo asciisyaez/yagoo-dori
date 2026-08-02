@@ -299,7 +299,7 @@
   padding: 0 0.75rem;
 }
 
-.context-tabs button {
+.context-tabs :is(button, a) {
   position: relative;
   display: grid;
   min-width: 190px;
@@ -311,9 +311,10 @@
   font-weight: 780;
   padding: 0.85rem 1rem 0.75rem;
   text-align: left;
+  text-decoration: none;
 }
 
-.context-tabs button::after {
+.context-tabs :is(button, a)::after {
   position: absolute;
   right: 1rem;
   bottom: 0;
@@ -323,25 +324,25 @@
   content: "";
 }
 
-.context-tabs button span {
+.context-tabs :is(button, a) span {
   color: #626a78;
   font-size: 0.59rem;
   font-weight: 600;
 }
 
-.context-tabs button[aria-selected="true"] {
+.context-tabs :is(button, a)[aria-selected="true"] {
   color: #fff;
 }
 
-.context-tabs button[aria-selected="true"]::after {
+.context-tabs :is(button, a)[aria-selected="true"]::after {
   background: var(--yd-cyan);
 }
 
-.context-tabs button[aria-selected="true"] span {
+.context-tabs :is(button, a)[aria-selected="true"] span {
   color: var(--yd-cyan-soft);
 }
 
-.context-tabs-three button {
+.context-tabs-three :is(button, a) {
   min-width: 0;
   flex: 1 1 0;
 }
@@ -351,14 +352,14 @@
   padding-inline: 0;
 }
 
-.entity-context-tabs button {
+.entity-context-tabs :is(button, a) {
   min-width: 0;
   flex: 1 1 0;
   padding-block: 1rem 0.85rem;
   padding-inline: 1.2rem;
 }
 
-.entity-context-tabs button::after {
+.entity-context-tabs :is(button, a)::after {
   right: 0;
   left: 0;
   height: 3px;
@@ -1837,7 +1838,7 @@
   .database-summary { width: 100%; }
   .database-summary > div { min-width: 0; flex: 1; }
   .context-tabs { padding: 0; }
-  .context-tabs button { min-width: 0; flex: 1; padding-inline: 0.65rem; }
+  .context-tabs :is(button, a) { min-width: 0; flex: 1; padding-inline: 0.65rem; }
   .attribute-filter { max-width: 100%; overflow-x: auto; }
   .generation-filter,
   .simple-select { flex: 1; }
