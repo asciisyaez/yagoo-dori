@@ -70,6 +70,59 @@ export type NativeUtilityInput = Readonly<{
   accountState: NeutralBoardAccountState;
 }>;
 
+/**
+ * Exact central value of the published aggregate utility interval. This
+ * intentionally omits the evidence/component document and the lower/upper
+ * attribution passes, making it suitable for exact-search screening. Its
+ * equality with `evaluateNativeRelativeUtility(...).relativeUtility.central`
+ * is a tested contract, not a second methodology.
+ */
+export function evaluateNativeCentralUtility(input: NativeUtilityInput): number {
+  assertInputBoundary(input);
+  const chart = aggregateChartByKey.get(input.chartKey);
+  if (!chart) throw new Error(`Unknown exact aggregate chart context: ${input.chartKey}`);
+  const song = songById.get(chart.songId);
+  if (!song) throw new Error(`Chart ${chart.key} has no pinned song context`);
+
+  const legal = assertLegalFormation(input.formation);
+  const observation: TriggerObservation = {
+    combo: chart.fullComboNoteCount,
+    life: 1_000,
+    judgement: "perfect",
+    songSingerTalentIds: song.singerTalentIds,
+  };
+  const evaluator = evaluateFormation(input.formation, {
+    chart,
+    song,
+    policy: provisionalRuntimePolicy(input.seed, 1),
+    accountState: input.accountState,
+    observation,
+  });
+  const parameters = evaluator.members.map((member) => member.progression.parameters);
+  const memberCardIds = evaluator.members.map((member) => member.cardId);
+  const baseTotal = parameters.reduce(
+    (total, value) => total + value.performance + value.technique + value.sense,
+    0,
+  );
+  const parameterEffects = compileParameterEffects(evaluator, parameters);
+  const support = compilePersistentSupport(evaluator, memberCardIds);
+  const notes = uniformNotes(chart, song);
+  const activeProfiles = compileActiveProfiles(legal, evaluator, support, song, chart);
+  const states = noteActiveStates(notes, activeProfiles, legal, song);
+  const specials = compileSpecials(notes, legal, evaluator, song);
+  const activeWithSpecialPermil = aggregateActiveInterval(
+    states,
+    activeProfiles,
+    specials.supportByNote,
+    specials.activationRateWindows,
+  );
+  return round(
+    baseTotal +
+      parameterEffects.relativeUnits.central +
+      (activeWithSpecialPermil.central * baseTotal) / 1_000,
+  );
+}
+
 export type UtilityAssumption = {
   id: string;
   evidenceGrade: EvidenceGrade;

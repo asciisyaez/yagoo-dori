@@ -16,6 +16,8 @@
     "N07": 5
   },
   "completedSinceLastReport": [
+    "Added an exact central-only search evaluator proven equal to the published relative utility across chart, investment, Bloom, and reduced-roster fixtures; rejected an experimental compiled shortcut after dynamic-trigger mismatch testing rather than weakening the proof",
+    "Audited the public score evidence and pinned tables, then machine-validated the fixed relative utility model, conservative capped-recipient intervals, exact timing corpus, deterministic output, complete ranking coverage, and absence of absolute-score claims",
     "Parsed and reconciled a pinned revision-51 chart corpus with 704 available charts, 405,819 exact timed note events, and 3,520 Special markers",
     "Replaced the calculator and guide general placement model with all-120-order audits across 30 exact pinned Expert timelines and manual-Perfect note coefficients",
     "Regenerated all seven guides under schema v5 with exact per-song placement audits for 38 singer-matched rating charts and visible placement-only alternatives",
@@ -38,7 +40,7 @@
     "Added an owned-roster Team calculator preview with live filtering, rarity groups, per-card Bloom, local persistence, a cancellable browser Worker, and legal Leader plus five-Member results averaged over the pinned 30-chart benchmark",
     "Audited all seven generated guides across 76 referenced Member cards and 14 Leader source cards, with browser and core regressions for exact card, Outfit, icon, and illustration identity",
     "Compiled every current Active, Passive, Special, Leader, Connect, Board, target, trigger, cap, and progression row into a source-linked 113-card mechanics catalog",
-    "Verified card parameter progression and conditional effect semantics against pinned data and independent fixtures while preserving unresolved runtime rules as hard score blockers",
+    "Verified card parameter progression and conditional effect semantics against pinned data and independent fixtures while preserving unresolved runtime rules as absolute-score claim boundaries",
     "Pinned 177 songs and 708 aggregate chart contexts with exact judgment, combo, Life, Auto, rating, and singer relationships without inventing note timelines",
     "Unified Member cards and Leader Outfits into one URL-backed database and profile flow while removing source-ledger and internal-process clutter from the public navigation",
     "Upgraded all 113 local card icons to 300 by 300 and all 113 illustrations to 2282 by 1284 with strict identity, uniqueness, dimension, and hash checks",
@@ -55,7 +57,6 @@
     "Added real-data regressions and desktop/mobile browser coverage"
   ],
   "blockers": [
-    "The actual runtime score equation and target-priority rules are not yet fully validated, so absolute Live Score claims remain unavailable",
     "Full-roster guide and calculator searches are deterministic and locally refined but are not yet certified global optima"
   ],
   "nextAction": "Continue N03D with a fundamentally different exact full-roster formulation, such as meet-in-the-middle or a specialized compiled solver, because the sound branch-and-bound prototype cannot yet certify 126,445,821 legal team sets within its runtime budget."

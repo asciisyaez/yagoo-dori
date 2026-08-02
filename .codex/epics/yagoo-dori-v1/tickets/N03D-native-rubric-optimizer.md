@@ -20,6 +20,8 @@ parent_epic: yagoo-dori-v1
 
 ## Verification evidence
 
+- `data/native/relative-utility-model-v1.json` is a schema-validated backstage audit bound to the pinned mechanics commit, exact timing revision, score-kernel rule boundary, all six complete 113-card ranking lenses, and deterministic interval tests.
+- The audit retains the unknown Unit Score equation and target resolver as explicit claim boundaries: absolute Live Score stays unavailable, while capped-recipient effects enumerate every legal subset with a guaranteed-minimum central value and maximum upper bound.
 - Guide methodology `yd-native-guide-1.2.0` persists chart-timed placement evidence from all 120 orders across 30 pinned Expert timelines, exact five-Special markers, and manual-Perfect note-type coefficients.
 - Replacement rows are re-evaluated under the same Leader, chart, progression, and modeled-order basis, with recipient and cadence deltas.
 - The full-roster proof search has a sound upper-bound certificate path and exact reduced-roster regressions, but current bounds do not yet finish the 113-card search within the declared runtime budget.

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "validationId": "yd-relative-utility-model-v1",
+  "auditedAt": "2026-08-02",
+  "scope": {
+    "objective": "quantitative-reproducible-relative-ranking-and-team-selection",
+    "outputUnit": "parameter-equivalent-relative-unit",
+    "absoluteLiveScoreClaimsAllowed": false
+  },
+  "evidenceSnapshot": {
+    "officialSystemUrl": "https://www.hololive-dreams.com/en/system",
+    "structuredRepository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
+    "structuredCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+    "timelineSourceId": "holodori-best-chart-corpus-r51",
+    "timelineApiRevision": 51,
+    "timelineParserRepository": "https://github.com/HolodoriDB/holodori-scores",
+    "timelineParserCommit": "0d31cd7710fe5f68933211ad312813d984542f41"
+  },
+  "absoluteScoreAudit": {
+    "status": "not-validated",
+    "implementedKernelRuleIds": [
+      "note-judgement-platform-coefficients",
+      "combo-score-bonus-breakpoints",
+      "music-score-coefficient",
+      "auto-live-restrictions"
+    ],
+    "unresolvedRuleIds": [
+      "combo-boundary-application-order",
+      "unit-score-equation",
+      "score-factor-operation-order",
+      "runtime-integer-rounding"
+    ],
+    "conclusion": "Pinned public data determines several exact score factors but does not determine the complete Unit Score conversion, factor order, combo-boundary semantics, or integer rounding. Absolute Live Score remains unavailable."
+  },
+  "targetSelectionAudit": {
+    "resolverStatus": "unknown",
+    "structuredPriorityFieldAvailable": false,
+    "rejectedSimpleResolvers": [
+      "formation-order",
+      "highest-target-stat",
+      "highest-total-stat",
+      "lowest-target-stat",
+      "rarity",
+      "level"
+    ],
+    "fixedPolicy": "enumerate-all-legal-capped-recipient-subsets",
+    "centralPolicy": "guaranteed-minimum",
+    "lowerBoundPolicy": "minimum-over-legal-recipient-subsets",
+    "upperBoundPolicy": "maximum-over-legal-recipient-subsets",
+    "claimsActualRecipients": false
+  },
+  "relativeModel": {
+    "status": "implementation-validated-fixed-model",
+    "methodologyVersion": "yd-native-utility-1.0.0",
+    "rankingMethodologyVersion": "yd-native-ranking-2.1.0",
+    "rankingSnapshotId": "2026-07-31-yd-native-2.1",
+    "benchmarkId": "launch-2026-07-31-matched-context-v1",
+    "benchmarkChartCount": 30,
+    "benchmarkReferenceChartCount": 21,
+    "benchmarkCurrentChartCount": 9,
+    "evaluatedCardCount": 113,
+    "memberLensCount": 3,
+    "leaderOutfitLensCount": 3,
+    "minimumMatchedContextsPerCardLens": 250,
+    "timedOrderAudit": {
+      "methodologyVersion": "yd-formation-order-timed-corpus-1.0.0",
+      "chartCount": 30,
+      "timedNoteEventCount": 29568,
+      "specialMarkerCount": 150,
+      "permutationsPerFormation": 120
+    },
+    "invariants": [
+      "same-input-same-output",
+      "central-search-kernel-equals-published-central-utility",
+      "every-interval-is-ordered",
+      "capped-recipient-uncertainty-is-enumerated",
+      "editorial-labels-cannot-enter-evaluation",
+      "absolute-score-fields-are-absent",
+      "all-ranking-lenses-cover-the-pinned-roster",
+      "all-timed-order-audits-check-120-permutations"
+    ]
+  },
+  "releaseDecision": {
+    "relativeRankingAndTeamSelectionAllowed": true,
+    "absoluteScoreEquationDisposition": "claim-boundary-not-release-blocker",
+    "targetPriorityDisposition": "bounded-uncertainty-not-release-blocker",
+    "remainingOptimizerRequirement": "certified-full-roster-global-optimum"
+  }
+}

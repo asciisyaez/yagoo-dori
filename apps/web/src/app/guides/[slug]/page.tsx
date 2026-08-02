@@ -1,6 +1,7 @@
 import {
   nativeGuideBySlug,
   nativeGuideData,
+  observedGuideSongBreakpoints,
   publicCardById,
   type NativeGuideFormation,
   type PublicCard,
@@ -391,6 +392,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         comparison.formationOrder.join("|") !== standard.formationOrder.join("|")),
   );
   const defaultSongCount = guide.ratingSongComparisons.length - songAlternatives.length;
+  const observedBreakpoints = observedGuideSongBreakpoints(guide);
 
   return (
     <div className={`database-page ${styles.guidePage}`}>
@@ -514,6 +516,39 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             );
           })}
         </div>
+        {observedBreakpoints.length > 0 && (
+          <aside className={styles.breakpointPanel} aria-label="Observed chart timing breakpoints">
+            <header>
+              <Clock3 aria-hidden="true" />
+              <div>
+                <h3>Observed chart-timing breakpoints</h3>
+                <p>
+                  Adjacent published charts ordered by runtime. Note layout and marker timing also
+                  change, so these are exact-chart transitions—not universal time thresholds.
+                </p>
+              </div>
+            </header>
+            <ol>
+              {observedBreakpoints.map((breakpoint) => {
+                const recommendedOrder = breakpoint.to.formationOrder
+                  .map((cardId) => requireCard(cardId).talentName)
+                  .join(" → ");
+                return (
+                  <li key={`${breakpoint.from.chartKey}:${breakpoint.to.chartKey}`}>
+                    <strong>
+                      {formatDuration(breakpoint.from.durationMilliseconds)} {breakpoint.from.songTitle}
+                      {" → "}
+                      {formatDuration(breakpoint.to.durationMilliseconds)} {breakpoint.to.songTitle}
+                    </strong>
+                    <small>
+                      {breakpoint.kind === "formation" ? "Formation" : "Placement"} changes to {recommendedOrder}
+                    </small>
+                  </li>
+                );
+              })}
+            </ol>
+          </aside>
+        )}
       </section>
 
       <section className={styles.basisSection} id="calculation-basis">

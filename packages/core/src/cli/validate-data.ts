@@ -6,8 +6,11 @@ import { nativeRankingChangelogData } from "../native-ranking-changelog-data";
 import { nativeRankingBenchmark } from "../native-ranking-benchmark";
 import { chartTimelineData } from "../chart-timelines";
 import { rankingCorpusTimelineData } from "../ranking-corpus-timelines";
+import { assertRelativeUtilityModelValidationCurrent } from "../relative-utility-model-validation";
 import { guideRatingTimelineByKey, guideRatingTimelineData } from "../guide-rating-timelines";
 import { songContextData } from "../song-contexts";
+
+assertRelativeUtilityModelValidationCurrent();
 
 const sampleIds = [
   "card-00013-5-uniq-0002-00",

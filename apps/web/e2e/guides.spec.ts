@@ -366,4 +366,10 @@ test("meaningful exact song-order changes are shown without publishing timing ti
 
   await expect(page.locator("#rating-song-comparisons article")).toHaveCount(3);
   await expect(page.getByText("Order change", { exact: true })).toHaveCount(2);
+  const breakpointPanel = page.getByLabel("Observed chart timing breakpoints");
+  await expect(breakpointPanel).toContainText("Observed chart-timing breakpoints");
+  await expect(breakpointPanel).toContainText(
+    "2:06 Bridal Dream → 2:21 ZenjinruiUsagikakeikaku!",
+  );
+  await expect(breakpointPanel).toContainText("not universal time thresholds");
 });

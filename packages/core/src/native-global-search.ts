@@ -5,6 +5,7 @@ import {
   type NativeGlobalBoundResult,
 } from "./native-global-bound";
 import {
+  evaluateNativeCentralUtility,
   evaluateNativeRelativeUtility,
   type NeutralBoardAccountState,
   type UtilityInterval,
@@ -44,6 +45,7 @@ export type NativeGlobalSearchProgress = Readonly<{
   prunedTeamSets: number;
   boundEvaluations: number;
   utilityEvaluations: number;
+  intervalUtilityEvaluations: number;
   bestCentralUtility: number | null;
 }>;
 
@@ -72,6 +74,7 @@ export type NativeGlobalSearchResult = Readonly<{
     nodesPruned: number;
     boundEvaluations: number;
     utilityEvaluations: number;
+    intervalUtilityEvaluations: number;
     leaderTeamCandidates: number;
     exactLeaderTeamEvaluations: number;
     prunedLeaderTeamCandidates: number;
@@ -224,6 +227,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
   let nodesPruned = 0;
   let boundEvaluations = 0;
   let utilityEvaluations = 0;
+  let intervalUtilityEvaluations = 0;
   let leaderTeamCandidates = 0;
   let exactLeaderTeamEvaluations = 0;
   let prunedLeaderTeamCandidates = 0;
@@ -239,6 +243,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
     prunedTeamSets,
     boundEvaluations,
     utilityEvaluations,
+    intervalUtilityEvaluations,
     bestCentralUtility: best?.relativeUtility.central ?? null,
   });
 
@@ -281,9 +286,32 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
         continue;
       }
       exactLeaderTeamEvaluations += 1;
-      const utilities = input.chartKeys.map((chartKey) => {
+      const centralUtilities = input.chartKeys.map((chartKey) => {
         checkRuntime();
         utilityEvaluations += 1;
+        return evaluateNativeCentralUtility({
+          formation: {
+            leaderOutfitCardId,
+            members: members.map((cardId) => {
+              const bloomStage = input.bloomStageByCardId?.[cardId];
+              return bloomStage === undefined
+                ? { cardId, investment: input.investmentLayer }
+                : { cardId, investment: input.investmentLayer, bloomStage };
+            }),
+          },
+          chartKey,
+          seed: input.seed,
+          accountState: input.accountState,
+        });
+      });
+      const central = round(
+        centralUtilities.reduce((sum, utility) => sum + utility, 0) /
+          centralUtilities.length,
+      );
+      if (best && central < best.relativeUtility.central) continue;
+      const utilities = input.chartKeys.map((chartKey) => {
+        checkRuntime();
+        intervalUtilityEvaluations += 1;
         return evaluateNativeRelativeUtility({
           formation: {
             leaderOutfitCardId,
@@ -461,6 +489,7 @@ export function searchNativeGlobalTeams(input: NativeGlobalSearchInput): NativeG
       nodesPruned,
       boundEvaluations,
       utilityEvaluations,
+      intervalUtilityEvaluations,
       leaderTeamCandidates,
       exactLeaderTeamEvaluations,
       prunedLeaderTeamCandidates,

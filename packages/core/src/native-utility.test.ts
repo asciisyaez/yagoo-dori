@@ -7,6 +7,7 @@ import {
   AGGREGATE_SPECIAL_COVERAGE_MODEL_ID,
   STANDARD_MANUAL_AP_FULL_LIFE_CONTEXT_ID,
   divideUtilityIntervals,
+  evaluateNativeCentralUtility,
   evaluateNativeRelativeUtility,
   type NativeUtilityInput,
   type UtilityInterval,
@@ -62,6 +63,27 @@ function objectKeysDeep(value: unknown): string[] {
 }
 
 describe("site-owned provisional native utility", () => {
+  it.each([
+    input,
+    { ...input, chartKey: "m0004:expert" },
+    {
+      ...input,
+      formation: {
+        ...input.formation,
+        leaderOutfitCardId: CARD_IDS.pekora,
+        members: input.formation.members.map((entry, index) => ({
+          ...entry,
+          investment: "low-investment" as const,
+          bloomStage: index as 0 | 1 | 2 | 3 | 4,
+        })),
+      },
+    },
+  ])("keeps the exact-search central kernel identical to the published utility", (candidate) => {
+    expect(evaluateNativeCentralUtility(candidate)).toBe(
+      evaluateNativeRelativeUtility(candidate).relativeUtility.central,
+    );
+  });
+
   it.each([
     {
       label: "positive numerator",

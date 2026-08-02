@@ -18,6 +18,7 @@
     "./native-ranking-scoring": "./src/native-ranking-scoring.ts",
     "./native-ranking-schema": "./src/native-ranking-schema.ts",
     "./ranking-corpus-timelines": "./src/ranking-corpus-timelines.ts",
+    "./relative-utility-model-validation": "./src/relative-utility-model-validation.ts",
     "./native-guide-data": "./src/native-guide-data.ts",
     "./native-guide-schema": "./src/native-guide-schema.ts",
     "./native-global-bound": "./src/native-global-bound.ts",
