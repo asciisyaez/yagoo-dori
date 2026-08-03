@@ -2,7 +2,7 @@
 id: X04
 title: Deterministic sharded certificate plan and verifier
 status: blocked
-depends_on: [X01, X02, X03, X05]
+depends_on: [X01, X02, X03, X06]
 parallelizable: false
 parent_epic: yagoo-dori-v0.2-exact
 ---

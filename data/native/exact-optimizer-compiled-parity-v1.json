@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportId": "yd-exact-compiled-parity-v1",
-  "generatedAt": "2026-08-02T13:44:46.145Z",
+  "generatedAt": "2026-08-03T13:43:02.066Z",
   "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
   "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074",
   "kernelPath": "tools/exact-global-solver/kernel.json",
@@ -56,14 +56,14 @@
     },
     "traceStateRuns": 11668497,
     "timing": {
-      "teamCompilationMilliseconds": 3088.058,
-      "compressedEvaluationMilliseconds": 70783.89,
-      "uncompressedEvaluationMilliseconds": 519291.891
+      "teamCompilationMilliseconds": 3396.932,
+      "compressedEvaluationMilliseconds": 51550.345,
+      "uncompressedEvaluationMilliseconds": 540860.996
     },
-    "elapsedMilliseconds": 595120.05
+    "elapsedMilliseconds": 597896.886
   },
-  "elapsedMilliseconds": 636246.439,
+  "elapsedMilliseconds": 641926.45,
   "certificateEligible": false,
   "disposition": "Rust reference parity and trace-preserving versus uncompressed lower/central/upper parity passed for 100000 deterministic cases; the complete certification gate remains open until full-scope proof replay passes.",
-  "reportHash": "8a09e5fd04f6b6c6d6d1b991c7844c6b4e1fdd2345ca991fb20341f8bd57ac44"
+  "reportHash": "54b0d78806746b9f53837de5af73bb93bdac0cf31fc0f3d27214605a12336e60"
 }

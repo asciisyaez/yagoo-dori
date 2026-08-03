@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-optimizer-dominance-feasibility-v1",
+  "methodologyVersion": "yd-exact-optimizer-dominance-feasibility-1.0.0",
+  "sourceArtifacts": {
+    "scopePath": "data/native/exact-optimizer-scope-v1.json",
+    "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+    "bulkParityPath": "data/native/exact-optimizer-bulk-parity-v1.json",
+    "bulkParityEvidenceDigest": "320da206dbc4fa61a496565f6f0259e609e6e9f7deda80373e0c0925dba7529f",
+    "bulkPerformancePath": "data/native/exact-optimizer-bulk-performance-v1.json",
+    "bulkPerformanceDeterministicReportHash": "86950326a7a1b96cc178271bc3fd5b54343373aa6b6771e7aff5917b84a46b33"
+  },
+  "phase": 7,
+  "attempted": false,
+  "disposition": "killed-before-pilot",
+  "killCriterion": {
+    "id": "continuation-complete-state-proof-unavailable",
+    "reached": true,
+    "statement": "Do not construct or measure a partial-team dominance frontier until one state key is proven sufficient to resume every legal suffix under the reference recurrence and comparator.",
+    "missingProofs": [
+      {
+        "requirement": "A partial state must retain a Leader-specific continuation, not merely a Member-set bound.",
+        "interaction": "Leader applications resolve recipients, support, and parameter effects after the completed five-Member formation is known; the existing B0/B1 contexts are outward bounds and cannot resume an exact suffix."
+      },
+      {
+        "requirement": "A dominance key must retain formation order, Member identity, Bloom/investment progression, trigger counters, and every unresolved Active/Special branch needed by later notes.",
+        "interaction": "The reference evaluator derives note-state contributions from the completed formation and chart timeline. Omitting any branch can change a later source-order contribution even when a partial central bound is equal."
+      },
+      {
+        "requirement": "A dominance relation must preserve the incoming binary64 enclosure and its source-order position for each lower/central/upper pass.",
+        "interaction": "The accepted bulk contract certifies only a complete canonical enclosure; an ambiguous component replays the smallest affected run left-to-right. A frontier that merges prefix accumulators would need a new RN-even continuation proof before it could prune."
+      },
+      {
+        "requirement": "A surviving state must carry the full candidate tie key and enough suffix identity to prove equality/finalist promotion to B3.",
+        "interaction": "B2 may prune only a certified strict central loss. Equal, fallback, and finalist states materialize B3, so a partial dominance relation cannot take equality credit without an exhaustive suffix and tie-order proof."
+      }
+    ],
+    "requiredEvidenceToReopen": [
+      "A continuation-complete state schema and proof that every legal suffix is represented exactly for each fixed Leader and chart.",
+      "An exhaustive reduced-roster suffix comparison that enumerates every omitted continuation and matches ordered lower/central/upper results and tie ordering.",
+      "A proof that any dominance prune is a strict canonical central loss, with equality/fallback/finalist promotion to B3 and complete accounting."
+    ]
+  },
+  "pilot": {
+    "status": "not-started",
+    "reason": "The kill criterion is met before a reduced roster or frontier is selected. No bounded state-dominance experiment is represented as measured.",
+    "reducedRoster": null,
+    "exhaustiveSuffixValidation": "not-run: no continuation-complete state representation exists to validate"
+  },
+  "proofCredit": {
+    "dominancePrunes": 0,
+    "candidateStatesConstructed": 0,
+    "frontierMetrics": "not-collected: attempted=false; no frontier was built or timed",
+    "fullScopeProjectionCredit": 0
+  },
+  "decision": {
+    "fullRunAuthorized": false,
+    "certificateEligible": false,
+    "nextUnblockedAction": "Design and prove a continuation-complete fixed-Leader partial state before selecting any reduced roster; then run exhaustive suffix validation before timing a dominance frontier."
+  },
+  "deterministicReportHash": "6645229373c3f3a68c133afb7f154815bf74a85df812b90f77265e7d476d1555"
+}

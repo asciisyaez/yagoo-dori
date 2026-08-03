@@ -44,12 +44,12 @@ The aggregate evaluator first builds a complete Active state for every note:
 - lower/central/upper supported values for all five Members.
 
 Adjacent equal five-Member states form a state run. The kernel calculates the
-five-way expected maximum once per run, then replays its contribution through
-the original note loop one addition at a time. It does not replace repeated
-addition with multiplication, batch-reduce notes, or parallel-reduce floating
-point values. The operation order remains source resolution, per-note expected
-maximum, ordered accumulation, per-chart rounding, then final aggregate
-rounding.
+five-way expected maximum once per run, then either proves an outward enclosure
+of the original repeated binary64 recurrence or replays that recurrence one
+addition at a time. It does not use multiplication, batch reduction, or a
+parallel reduction as the answer. The operation order remains source
+resolution, per-note expected maximum, ordered accumulation, per-chart
+rounding, then final aggregate rounding.
 
 Compression is admitted only when all current conditions hold:
 
@@ -65,11 +65,16 @@ unchanged; `evaluateNativeRelativeUtilityWithTrace` exposes the execution
 evidence, and `evaluateNativeRelativeUtilityUncompressed` is retained solely
 as the exact cross-check authority.
 
-`data/native/exact-optimizer-compiled-parity-v1.json` is the current
-trace-preserving gate: 100,000 deterministic complete inputs run through both
-the compiled and forced-uncompressed paths, with lower/central/upper canonical
-micro-units compared for every input. The current artifact records zero endpoint
-mismatches, zero trace fallbacks, and zero direct-reference mismatches.
+`data/native/exact-optimizer-compiled-parity-v1.json` remains the
+trace-preserving gate. `data/native/exact-optimizer-bulk-parity-v1.json` adds
+the current proof-carrying gate: a million binary64 boundary runs plus 100,000
+complete real inputs compare the Rust ordered oracle, TypeScript uncompressed
+reference, ordered state-run path, full bulk path, and certified B2 output.
+It records zero comparison mismatches, while preserving ordered replay for the
+inputs whose canonical enclosure is not a singleton.
+The bulk artifact's stable evidence digest excludes volatile runtime metadata;
+the two retained full-run legacy hashes are corroborating runtime records, not
+different parity outcomes.
 `data/native/exact-optimizer-coverage-v1.json` consumes that full evidence;
 its three reduced cases and two independent child-process partitions are
 supplemental regressions, not the authorization source. Candidate evaluations
@@ -83,8 +88,8 @@ The global path explicitly separates these stages:
 | --- | --- | --- |
 | B0 | outward-rounded root maximum | maximum of complete B1 results only |
 | B1 | root bound for one fixed Leader | no parameter/support component may come from another Leader |
-| B2 | bound for a partial Member selection and fixed Leader | strict upper-central comparison only |
-| B3 | exact completed Member/Leader pair evaluation | every actual Outfit ID is evaluated, not merely a bound representative |
+| B2 | central-only certified screen for a completed fixed-Leader state | only a strict central loss may prune; equality/fallback promotes |
+| B3 | exact completed Member/Leader pair evaluation | materializes lower/central/upper; every actual Outfit ID is evaluated, not merely a bound representative |
 
 Equality at the canonical central upper bound survives to B3. Certificate
 accounting reconciles both class/team and actual Outfit/team pair counts, which
@@ -104,6 +109,9 @@ pnpm optimizer:bounds:roots
 pnpm optimizer:coverage
 pnpm optimizer:proof:reduced
 pnpm optimizer:performance:pilot
+pnpm optimizer:architecture:rebaseline
+pnpm optimizer:bulk:performance
+pnpm optimizer:dominance:feasibility
 ```
 
 The reduced proof exercises 36 legal Member sets, four actual Leaders, and two
@@ -114,3 +122,10 @@ full root-bound evidence.
 The Rust `certification` Cargo profile is profiling-only and deliberately has
 no fast-math or reassociation flags. Its binary remains a disposable research
 prototype and is not part of this certifying execution path.
+
+Phase 7 has a concrete feasibility stop in
+`data/native/exact-optimizer-dominance-feasibility-v1.json`: no partial-team
+dominance frontier was constructed because a continuation-complete fixed-Leader
+state has not been proven. It records zero dominance pruning/projection credit.
+Any reopening requires that state proof plus exhaustive reduced-roster suffix
+validation before a frontier is timed.

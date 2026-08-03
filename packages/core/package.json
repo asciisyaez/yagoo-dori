@@ -32,6 +32,7 @@
     "./team-calculator": "./src/team-calculator.ts",
     "./team-calculator-contract": "./src/team-calculator-contract.ts",
     "./exact-optimizer-arithmetic": "./src/exact-optimizer-arithmetic.ts",
+    "./exact-optimizer-bulk-accumulation": "./src/exact-optimizer-bulk-accumulation.ts",
     "./exact-optimizer-coverage": "./src/exact-optimizer-coverage.ts",
     "./exact-optimizer-parity": "./src/exact-optimizer-parity.ts",
     "./exact-optimizer-incumbent": "./src/exact-optimizer-incumbent.ts",

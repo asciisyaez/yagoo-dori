@@ -33,13 +33,16 @@ the joint team/Leader/order space.
 X01 specification + arithmetic ──► X02 complete parity ──► X03 formulation benchmark
                                                                   │
                                                                   ▼
-                                                        X05 certifiable performance architecture
+                                                        X05 checkpointed performance architecture
+                                                                  │
+                                                                  ▼
+                                                   X06 guarded bulk accumulator and no-go evidence
                                                                   │
                                                                   ▼
                                                   X04 sharded certificate execution and verifier
                                                                   │
                                                                   ▼
-                                                               X06 validation
+                                                               X07 validation
 ```
 
 ## Non-goals

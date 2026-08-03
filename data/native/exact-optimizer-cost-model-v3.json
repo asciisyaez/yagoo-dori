@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-optimizer-cost-model",
+  "reportId": "yd-exact-optimizer-cost-model-v3",
+  "methodologyVersion": "yd-exact-optimizer-cost-model-4.0.0",
+  "sourceArtifacts": {
+    "bulkParityPath": "data/native/exact-optimizer-bulk-parity-v1.json",
+    "bulkParityEvidenceDigest": "320da206dbc4fa61a496565f6f0259e609e6e9f7deda80373e0c0925dba7529f",
+    "architectureRebaselinePath": "data/native/exact-optimizer-architecture-rebaseline-v1.json",
+    "architectureRebaselineDeterministicReportHash": "2cde48594359c44e94ed51aa51b9af0574fd9b9a7b8ececf6bd5177889951781",
+    "scopePath": "data/native/exact-optimizer-scope-v1.json",
+    "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+    "retainedP95CostModelPath": "data/native/exact-optimizer-cost-model-v2.json",
+    "retainedP95CostModelReportHash": "728f3a6bed3ff93517db26043c8c38ea88d2cfaa1cea8e042bc58c5f39bd67d5",
+    "bulkPerformancePath": "data/native/exact-optimizer-bulk-performance-v1.json",
+    "bulkPerformanceDeterministicReportHash": "86950326a7a1b96cc178271bc3fd5b54343373aa6b6771e7aff5917b84a46b33",
+    "predecessorCostModelPath": "data/native/exact-optimizer-cost-model-v2.json",
+    "predecessorCostModelReportHash": "728f3a6bed3ff93517db26043c8c38ea88d2cfaa1cea8e042bc58c5f39bd67d5"
+  },
+  "declaredWork": {
+    "legalMemberTeamSets": 126445821,
+    "eligibleLeaderOutfits": 113,
+    "aggregateCharts": 30,
+    "leaderTeamPairs": 14288377773,
+    "leaderTeamChartStates": 428651333190
+  },
+  "observedPerStateTiming": {
+    "source": "complete 100000-case real parity corpus; observed means, not p95 estimates",
+    "orderedStateRunMilliseconds": 0.52363324,
+    "fullBulkB3Milliseconds": 0.3634589,
+    "centralB2Milliseconds": 0.2415484
+  },
+  "diagnosticObservedMeanNoPruningCalculation": {
+    "fullB3Only": {
+      "stateCount": 428651333190,
+      "observedMeanMillisecondsPerState": 0.3634589,
+      "projectedMilliseconds": 155797142044.77087,
+      "serialCoreHours": 43276.98390132524,
+      "qualification": "Diagnostic lower-bound calculation only: observed mean rather than p95, and excludes team compilation, B0/B1, I/O, retry, merge, independent replay, and contingency. It is not the requested conservative projection."
+    },
+    "B2ThenB3WithZeroPruningCredit": {
+      "stateCount": 428651333190,
+      "observedMeanMillisecondsPerState": 0.6050073,
+      "projectedMilliseconds": 259337185734.6823,
+      "serialCoreHours": 72038.10714852286,
+      "qualification": "No central-loss pruning credit is assumed. This intentionally charges B2 and B3 for every state, so it cannot be mistaken for a savings claim."
+    },
+    "B0AndB1": {
+      "status": "not-projected",
+      "reason": "The new compact 30-chart C measurement is slower than A and its bound-context/process costs are not representative of full-scope throughput. No extrapolated pruning or parallelism credit is asserted."
+    },
+    "parallelism": {
+      "status": "not-projected",
+      "reason": "The 2/4/8/16/32 worker rebaseline preserves winner parity but is startup/context dominated and slower than serial C at every tested count; it is correctness evidence, not a scale model."
+    }
+  },
+  "conservativeP95ProjectionWith25PercentContingency": {
+    "status": "retained-conservative-bound",
+    "source": {
+      "path": "data/native/exact-optimizer-cost-model-v2.json",
+      "reportHash": "728f3a6bed3ff93517db26043c8c38ea88d2cfaa1cea8e042bc58c5f39bd67d5",
+      "methodology": "yd-exact-optimizer-cost-model-3.0.0"
+    },
+    "reason": "The complete 100000-case bulk corpus exposes aggregate elapsed totals, not per-state p95 samples, and the normalized 960-state rebaseline is intentionally not extrapolated. The prior scope-identical stratified-p95 no-pruning bound is retained without any bulk, dominance, pruning, or newer-worker speedup credit.",
+    "contingencyMultiplier": 1.25,
+    "rawCoreHours": 36624.15698581608,
+    "contingencyCoreHours": 45780.1962322701,
+    "p95WallHoursByCandidateWorkers": [
+      {
+        "workers": 1,
+        "source": "single-thread baseline",
+        "measuredSpeedup": 1,
+        "p95WallHoursWith25PercentContingency": 45780.1962322701
+      },
+      {
+        "workers": 8,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 4.343064743395025,
+        "p95WallHoursWith25PercentContingency": 10540.988665180059
+      },
+      {
+        "workers": 16,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 5.224174729127642,
+        "p95WallHoursWith25PercentContingency": 8763.144153088979
+      },
+      {
+        "workers": 32,
+        "source": "measured candidate-parallel pilot",
+        "measuredSpeedup": 4.6496271312456505,
+        "p95WallHoursWith25PercentContingency": 9845.993009767524
+      },
+      {
+        "workers": 32,
+        "source": "actual candidate-worker count (32)",
+        "measuredSpeedup": 4.6496271312456505,
+        "p95WallHoursWith25PercentContingency": 9845.993009767524
+      }
+    ],
+    "unavailableFields": {
+      "currentBulkPerStateP95Milliseconds": "unavailable: only aggregate complete-corpus elapsed totals exist",
+      "currentBulkCandidateWorkerP95Throughput": "unavailable: 2/4/8/16/32 replays are single-run deterministic-parity evidence only",
+      "full113LeaderB0Cost": "unavailable: the retained B0 measurement covers only a four-Leader bundle"
+    },
+    "fullRunAuthorized": false
+  },
+  "fastPathTarget": {
+    "targetRate": 0.999,
+    "fullB3ObservedRate": 0.99287,
+    "centralB2ObservedRate": 0.99605,
+    "fullB3TargetPassed": false,
+    "centralB2TargetPassed": false
+  },
+  "decision": {
+    "fullRunAuthorized": false,
+    "thresholds": {
+      "maximumP95WallHoursWithContingency": 72,
+      "maximumRawCoreHours": 800
+    },
+    "reasons": [
+      "Both fast-path rates miss the declared 99.9% target, so bulk cannot be selected as a universal dominance replacement.",
+      "Central B2 misses the 15x experiment target and flat A misses the 8x end-to-end experiment target.",
+      "The retained scope-identical stratified-p95 no-pruning bound is 36624.157 raw core-hours and 45780.196 core-hours with 25% contingency, both far above the 800 raw-core-hour gate.",
+      "The retained p95 candidate-worker wall bounds are all above 72 hours with contingency; no newer worker replay receives scale credit.",
+      "No full shard execution was launched."
+    ]
+  },
+  "certificateEligible": false,
+  "deterministicReportHash": "01fcf617f4c0593ceca48a02a65fc607e8ab33dc46bc786075d4560fb82b25c3"
+}

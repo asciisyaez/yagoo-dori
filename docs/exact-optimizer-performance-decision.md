@@ -2,88 +2,80 @@
 
 **Decision:** do not launch the full 864-shard plan.
 
-The selected execution contract is **C: hybrid team sieve → fixed-Leader
-bound → compressed exact trace**. It is selected for its explicit, sound B0/B1
-stages and trace-preserving B2 evaluation—not because the pilot claims it is
-the fastest possible formulation. Its semantic gate is separate:
-100,000 deterministic complete inputs match the forced-uncompressed evaluator
-at lower/central/upper canonical micro-units with zero trace fallbacks.
+The guarded bulk accumulator is retained only for individually certified
+complete inputs. It preserves left-to-right RN-even binary64 arithmetic, and
+an ambiguous canonical enclosure replays the smallest affected component in
+source order. B2 exposes a central value only for a certified strict loss;
+equality, finalists, and fallbacks promote to B3. Neither the accelerator nor
+this document authorizes a full run or a global certificate.
 
-The current compact evidence is in:
+## Stable evidence and normalized comparison
 
-- [`data/native/exact-optimizer-coverage-v1.json`](../data/native/exact-optimizer-coverage-v1.json)
-- [`data/native/exact-optimizer-reduced-proof-v1.json`](../data/native/exact-optimizer-reduced-proof-v1.json)
-- [`data/native/exact-optimizer-performance-pilot-v1.json`](../data/native/exact-optimizer-performance-pilot-v1.json)
-- [`data/native/exact-optimizer-cost-model-v2.json`](../data/native/exact-optimizer-cost-model-v2.json)
-- [`data/native/exact-optimizer-leader-root-bounds-v1.json`](../data/native/exact-optimizer-leader-root-bounds-v1.json)
+The complete 1,000,000-case boundary corpus and 100,000-case real corpus have
+zero containment failures, false certificates, and comparison mismatches. The
+parity artifact now uses a stable evidence digest that excludes generated time
+and runtime telemetry while retaining pinned scope/sample hashes, deterministic
+corpus digests, counts, fallback categories, mismatch counts, and claim flags.
 
-## Measured pilot
+The primary full run's old volatile report hash was
+`be71471f245bf33e8aa6394441fba264507b3cb863b3c422303e9ef6fda971c5`.
+Its accepted timings were 52,363.324 ms ordered state-run, 36,345.890 ms full
+B3, and 24,154.840 ms B2. The later interrupted duplicate's old volatile hash
+was `ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c`.
+It has the same stable evidence but different runtime values, which is why old
+report hashes are no longer used as parity evidence.
 
-The deterministic stratified pilot has 32 shards (four talent-prefix areas,
-seven- and eight-talent shard sizes, trigger/root-bound q25 and q75 Leader
-anchors, matched and unmatched singer charts, and easy/high-parameter plus
-hard/low-parameter seeds). It covers 52,160 legal team sets and 104,320 flat
-Leader×team×chart states. A (compressed team-first enumeration), B
-(fixed-Leader-first branch-and-bound), and C produce the same canonical winner
-for every shard; their trace fallback counts are zero.
+The current normalized architecture rebaseline runs the exact same 8 teams ×
+4 Leaders × 30 charts = 960 declared states for the independent ordered B3
+reference and A/B/C. It performs one warm-up and five serial measured repeats
+per path. The ordered reference and A/B/C have the same winner/tie digest.
+Current wall-clock p50 / p95 / worst values are 467.959 / 506.120 / 506.120 ms
+(ordered), 304.348 / 313.649 / 313.649 ms (A), 419.376 / 439.530 / 439.530 ms
+(B), and 1,239.226 / 1,258.107 / 1,258.107 ms (C); CPU and RSS snapshots are
+in the artifact. One-worker C is repeated timing. The 2/4/8/16/32-worker runs
+are single-run deterministic-parity replays only, not throughput or p95 scale
+measurements, and receive no projection credit.
 
-For C, the pilot observed 52,160 B0 entrants / 34,655 strict prunes / 17,505
-survivors; 17,505 B1 entrants / 6,831 prunes / 10,674 survivors; and 10,674
-B2 entrants / 10,374 prunes / 300 survivors. It made 21,412 exact central and
-21,412 interval evaluations. Its shard p50/p95 throughputs were 1,437.20 /
-1,637.33 teams/s, 300.01 / 403.34 Leader-team pairs/s, 600.03 / 806.67
-Leader-team-chart states/s, and 64,168.38 / 87,727.09 trace segments/s. Peak
-RSS was 385,310,720 bytes. Native branch-and-bound does not expose a
-per-state-segment counter, so B reports that metric as unavailable.
-
-The C p95 timings used by the cost model are 0.011830 ms per team-once
-compilation, 0.592974 ms per four-Leader B0 team sieve, 0.151231 ms per
-fixed-Leader B1 pair, and 0.302541 ms per compressed exact state. Leader
-conditioning and exact-trace evaluation are one kernel call, so the model
-records their separate sub-call timing as unavailable rather than inventing a
-split. The Rust `certification` profile built in 93.436 ms on the measured
-host; it remains research-only.
-
-Candidate-only replay was measured on the same 32-logical-CPU host: 8 workers
-gave 4.343x speedup (54.29% efficiency), 16 gave 5.224x (32.65%), and the
-actual 32-worker run gave 4.650x (14.53%). Each worker retains serial
-source-order trace arithmetic. Measured single-thread elapsed times are A =
-26.155 s, B = 5.272 s, and C = 36.942 s. B is 4.961x faster than A; C
-sustains 0.708x A's throughput (or is 1.412x slower than A by elapsed time); C takes
-approximately 7.007x B's elapsed time. These are whole-workload comparisons,
-not per-state kernel-speed claims.
+The coverage targets all miss: full B3 certifies 99,287/100,000 (99.287%) and
+B2 certifies 99,605/100,000 (99.605%), below 99.9%. The primary B2 experiment
+is 2.168x versus ordered state-run, below 15x, and normalized flat A is about
+1.538x versus ordered B3, below the 8x end-to-end target.
 
 ## Cost model and no-go gate
 
-The declared scope contains 126,445,821 legal Member teams, 113 actual
-Leader/Outfit IDs, and 30 aggregate charts: 428,651,333,190
-Leader×team×chart evaluations before any valid pruning credit. The selected
-stratified-p95, no-pruning minimum is 36,624.16 serial core-hours. It excludes
-full 113-Leader B0 scaling because only a four-Leader B0 bundle was measured;
-the model labels that work unavailable instead of extrapolating it.
+The declared scope is 126,445,821 legal Member teams × 113 Leader/Outfits ×
+30 charts = 428,651,333,190 Leader-team-chart states. The current complete
+bulk corpus has aggregate elapsed totals rather than per-state p95 samples,
+and the compact worker replays are deliberately not projected. Therefore
+`exact-optimizer-cost-model-v3.json` conservatively retains the
+scope-identical stratified-p95 no-pruning bound without granting bulk,
+dominance, pruning, or newer-worker speedup credit.
 
-With a 25% contingency, the recorded wall estimates are 45,780.20 hours at
-one worker, 10,540.99 at eight, 8,763.14 at sixteen, and 9,845.99 at thirty-two
-(also the actual candidate-worker count). The full 113-class root ledger
-records zero strict root prunes against its bounded incumbent, so the model
-claims no root-pruning credit. These measurements are far beyond the 72-hour /
-1,000-core-hour offline gate.
+That retained bound is 36,624.157 raw core-hours and 45,780.196 core-hours with
+25% contingency. Its p95 wall estimates with contingency are 45,780.196 hours
+at one worker, 10,540.989 at eight, 8,763.144 at sixteen, and 9,845.993 at
+thirty-two. All are far beyond the <=800 raw-core-hour and <=72-hour p95 gate.
+Unmeasured current-bulk per-state p95, current worker throughput p95, and
+full-113-Leader B0 cost are explicitly unavailable rather than fabricated.
 
-This is a no-go decision, not a request to weaken the objective. The full plan
-remains unevaluated, `certificateEligible` stays false, and no public ranking
-or deployment behavior changes.
+`fullRunAuthorized=false` and `certificateEligible=false` remain mandatory.
 
-## What could reopen the decision
+## Phase-7 dominance feasibility
 
-A new full-run proposal must first demonstrate all of the following on the
-same pinned scope:
+The required dominance feasibility artifact is a formal pre-pilot kill, not a
+prose-only conditional decision. It records `attempted:false`, zero states,
+zero dominance prunes, zero full-scope projection credit, and no frontier
+metrics. A partial-team frontier is not safe until a continuation-complete
+fixed-Leader state is proven to preserve formation/progression/trigger suffixes,
+Leader recipient resolution, the source-order binary64 enclosure, and B3
+equality/tie promotion. A reopening requires that proof and exhaustive
+reduced-roster suffix validation before any frontier is timed.
 
-1. a material measured reduction with exact trace and micro-unit parity;
-2. whole-Leader B0/B1/B2 bounds that never mix Leader components;
-3. actual Outfit-pair accounting and equality-survivor handling at B3;
-4. serial and independent-worker replay evidence; and
-5. a refreshed cost model below the declared wall-time and core-hour gates.
+Reproduce the compact evidence with:
 
-Until then, use the full-trace gate, full root ledger, reduced proof, and
-stratified pilot only for regression and architecture work. They do not certify
-a global optimum.
+```text
+pnpm optimizer:parity:bulk:rehash
+pnpm optimizer:architecture:rebaseline
+pnpm optimizer:bulk:performance
+pnpm optimizer:dominance:feasibility
+```

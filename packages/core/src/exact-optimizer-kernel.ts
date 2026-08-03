@@ -10,6 +10,7 @@ import {
 } from "./exact-optimizer-trace";
 import {
   compileNativeUtilityTeamIntrinsic,
+  evaluateNativeCentralUtilityWithCompiledTeam,
   evaluateNativeRelativeUtilityUncompressed,
   evaluateNativeRelativeUtilityWithCompiledTeam,
   type NativeUtilityInput,
@@ -52,6 +53,27 @@ export type ExactOptimizerKernelEvaluation = Readonly<{
   relativeUtility: UtilityInterval;
   canonicalUtility: CanonicalUtilityTuple;
 }>;
+
+/** B2 may observe only this central proof result; B3 must materialize the tuple. */
+export type ExactOptimizerCentralEvaluation =
+  | Readonly<{
+      kind: "bulk-certified-reference-equivalent";
+      methodologyVersion: typeof EXACT_OPTIMIZER_KERNEL_VERSION;
+      leaderOutfitCardId: string;
+      chartKey: string;
+      execution: ExactOptimizerKernelEvaluation["execution"];
+      centralMicroUnits: CanonicalUtilityTuple["central"];
+      fallbackReason: null;
+    }>
+  | Readonly<{
+      kind: "ordered-replay-required";
+      methodologyVersion: typeof EXACT_OPTIMIZER_KERNEL_VERSION;
+      leaderOutfitCardId: string;
+      chartKey: string;
+      execution: ExactOptimizerKernelEvaluation["execution"];
+      centralMicroUnits: null;
+      fallbackReason: string;
+    }>;
 
 const traceByChartKey = new Map<string, ExactArithmeticTrace>();
 
@@ -178,6 +200,66 @@ export function evaluateExactOptimizerTeamLeader(input: Readonly<{
       central: toCanonicalMicroUnits(relativeUtility.central),
       upper: toCanonicalMicroUnits(relativeUtility.upper),
     },
+  };
+}
+
+/**
+ * B2 central-only path. Strict-central losers may prune from this result;
+ * equal/higher candidates have no lower/upper information and must promote to
+ * the full B3 evaluator above.
+ */
+export function evaluateExactOptimizerTeamLeaderCentral(input: Readonly<{
+  team: ExactOptimizerTeam;
+  leaderOutfitCardId: string;
+  chartKey: string;
+  seed: number;
+  accountState: NeutralBoardAccountState;
+}>): ExactOptimizerCentralEvaluation {
+  const trace = traceForChart(input.chartKey);
+  const utilityInput: NativeUtilityInput = {
+    formation: {
+      leaderOutfitCardId: input.leaderOutfitCardId,
+      members: input.team.members,
+    },
+    chartKey: input.chartKey,
+    seed: input.seed,
+    accountState: input.accountState,
+  };
+  const evaluation = evaluateNativeCentralUtilityWithCompiledTeam(
+    utilityInput,
+    input.team.nativeTeamIntrinsic,
+  );
+  const admissibility = traceAdmissibility(
+    trace,
+    evaluation.activeTrace.mode,
+    evaluation.activeTrace.fallbackReason,
+  );
+  const common = {
+    methodologyVersion: EXACT_OPTIMIZER_KERNEL_VERSION,
+    leaderOutfitCardId: input.leaderOutfitCardId,
+    chartKey: input.chartKey,
+    execution: {
+      mode: evaluation.activeTrace.mode === "trace-preserving-state-runs"
+        ? "trace-preserving-state-runs"
+        : "uncompressed-reference" as const,
+      admissibility,
+      trace,
+      activeTrace: evaluation.activeTrace,
+    },
+  } as const;
+  if (evaluation.kind === "ordered-replay-required" || evaluation.central === null) {
+    return {
+      kind: "ordered-replay-required",
+      ...common,
+      centralMicroUnits: null,
+      fallbackReason: evaluation.fallbackReason ?? "unsupported-operation-path",
+    };
+  }
+  return {
+    kind: "bulk-certified-reference-equivalent",
+    ...common,
+    centralMicroUnits: toCanonicalMicroUnits(evaluation.central),
+    fallbackReason: null,
   };
 }
 

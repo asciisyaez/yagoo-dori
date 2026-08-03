@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 2,
+  "reportId": "yd-exact-optimizer-bulk-parity-v1",
+  "runnerVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
+  "generatedAt": "2026-08-02T16:03:17.732Z",
+  "synthetic": {
+    "methodologyVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
+    "caseCount": 1000000,
+    "referenceRecurrence": "s(i + 1) = RN-even-binary64(s(i) + x), evaluated in source order",
+    "referenceSteps": 91901590,
+    "categories": {
+      "canonical-half-micro-boundary": 93750,
+      "ulp-transition-below-power-of-two": 31250,
+      "ulp-transition-at-power-of-two": 31250,
+      "ulp-transition-above-power-of-two": 31250,
+      "normal-exponent-sweep": 187500,
+      "large-run-small-contribution": 31250,
+      "zero-contribution": 31250,
+      "minimum-normal-boundary": 31250,
+      "large-normal-boundary": 31250,
+      "expected-subnormal-fallback": 31250,
+      "expected-signed-zero-fallback": 31250,
+      "expected-nonfinite-fallback": 31250,
+      "expected-contribution-mismatch": 31250,
+      "expected-invalid-multiplicity": 31250,
+      "expected-negative-path-fallback": 31250,
+      "repeating-binary-fraction": 93750,
+      "mixed-normal-positive": 218750
+    },
+    "expectedFallbackReasons": {
+      "subnormal-assumption-not-proven": 31250,
+      "signed-zero-sensitive": 31250,
+      "unsupported-nonfinite-value": 31250,
+      "contribution-mismatch": 31250,
+      "invalid-multiplicity": 31250,
+      "unsupported-operation-path": 31250
+    },
+    "observedTransformFallbackReasons": {
+      "subnormal-assumption-not-proven": 31250,
+      "signed-zero-sensitive": 31250,
+      "unsupported-nonfinite-value": 31250,
+      "contribution-mismatch": 31250,
+      "invalid-multiplicity": 31250,
+      "unsupported-operation-path": 31250
+    },
+    "observedCanonicalFallbackReasons": {
+      "unsupported-nonfinite-value": 168174,
+      "canonical-boundary-overlap": 2125
+    },
+    "supportedRuns": 812500,
+    "transformFallbacks": 187500,
+    "canonicalCertificates": 642201,
+    "canonicalFallbacks": 170299,
+    "containmentFailures": 0,
+    "falseCertificates": 0,
+    "expectedFallbackFailures": 0,
+    "firstFailures": [],
+    "deterministicDigest": "4744485863c07554f17a002835cb1e2510c5841db3ba488bcb50db28b264da4a",
+    "passed": true,
+    "elapsedMilliseconds": 1422.191
+  },
+  "realCorpus": {
+    "methodologyVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
+    "input": {
+      "scopePath": "data/native/exact-optimizer-scope-v1.json",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+      "samplePath": "data/native/exact-optimizer-parity-sample-v1.json",
+      "sampleSha256": "49621cf12af9d7e7bdce2baf3c9d99f140ef862130058393d8c3c4ffc06236d0",
+      "expectedCorpusCases": 100000,
+      "evaluatedCases": 100000,
+      "reducedByDebugLimit": false
+    },
+    "orderedRustReference": {
+      "outputCount": 100000,
+      "elapsedMilliseconds": 32201.961,
+      "outputCountMatchesFullCorpus": true
+    },
+    "implementations": {
+      "typescriptReference": "evaluateNativeRelativeUtilityUncompressed",
+      "orderedStateRuns": "evaluateNativeRelativeUtilityWithOrderedStateRuns",
+      "bulkCertified": "evaluateExactOptimizerTeamLeader",
+      "centralB2": "evaluateExactOptimizerTeamLeaderCentral; strict-loss screening only"
+    },
+    "comparisonMismatches": {
+      "rustVsCorpus": 0,
+      "typescriptReferenceVsCorpus": 0,
+      "orderedStateRunsVsReference": 0,
+      "bulkVsOrderedStateRuns": 0,
+      "certifiedBulkVsReference": 0,
+      "certifiedCentralVsFull": 0
+    },
+    "firstMismatches": {
+      "rustVsCorpus": [],
+      "typescriptReferenceVsCorpus": [],
+      "orderedStateRunsVsReference": [],
+      "bulkVsOrderedStateRuns": [],
+      "certifiedBulkVsReference": [],
+      "certifiedCentralVsFull": []
+    },
+    "bulk": {
+      "finalCanonicalModes": {
+        "bulk-certified-reference-equivalent": 99287,
+        "not-attempted": 713
+      },
+      "fallbackReasons": {
+        "none": 99287,
+        "canonical-boundary-overlap": 713
+      },
+      "executionModes": {
+        "trace-preserving-state-runs": 100000
+      },
+      "totalStateRuns": 11668497
+    },
+    "centralB2": {
+      "kinds": {
+        "bulk-certified-reference-equivalent": 99605,
+        "ordered-replay-required": 395
+      },
+      "fallbackReasons": {
+        "canonical-boundary-overlap": 395
+      },
+      "equalityOrFinalistPolicy": "A B2 equality/finalist has no tuple and must promote to B3; only a certified strict central loss may prune."
+    },
+    "timing": {
+      "teamCompilationMilliseconds": 2880.059,
+      "typescriptReferenceMilliseconds": 506847.432,
+      "orderedStateRunMilliseconds": 64586.245,
+      "bulkMilliseconds": 43953.738,
+      "centralB2Milliseconds": 29754.372,
+      "totalElapsedMilliseconds": 681628.893
+    },
+    "deterministicDigest": "4b1345914f48ae7cd6966a6ba03ad5f36e1aa4507afbf288b6e9d6e74dab6bae",
+    "passed": true
+  },
+  "passed": true,
+  "certificateEligible": false,
+  "disposition": "Bulk accumulation parity evidence passed. This artifact validates a bounded optimization primitive and does not certify a global optimizer result.",
+  "elapsedMilliseconds": 683293.346,
+  "evidenceDigestMethodologyVersion": "yd-exact-optimizer-bulk-evidence-digest-1",
+  "deterministicEvidenceDigest": "320da206dbc4fa61a496565f6f0259e609e6e9f7deda80373e0c0925dba7529f",
+  "legacyVolatileReportHash": "ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c",
+  "legacyVolatileReportHashes": [
+    {
+      "hash": "be71471f245bf33e8aa6394441fba264507b3cb863b3c422303e9ef6fda971c5",
+      "label": "primary full run",
+      "qualification": "legacy volatile report hash; the identical evidence digest is authoritative"
+    },
+    {
+      "hash": "ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c",
+      "label": "interrupted duplicate full run",
+      "qualification": "legacy volatile report hash; timing differs but all evidence counters and corpus digests match the primary run"
+    }
+  ],
+  "runtimeMetadata": {
+    "generatedAt": "2026-08-02T16:03:17.732Z",
+    "totalElapsedMilliseconds": 683293.346,
+    "syntheticElapsedMilliseconds": 1422.191,
+    "orderedRustElapsedMilliseconds": 32201.961,
+    "realCorpusTiming": {
+      "teamCompilationMilliseconds": 2880.059,
+      "typescriptReferenceMilliseconds": 506847.432,
+      "orderedStateRunMilliseconds": 64586.245,
+      "bulkMilliseconds": 43953.738,
+      "centralB2Milliseconds": 29754.372,
+      "totalElapsedMilliseconds": 681628.893
+    }
+  }
+}

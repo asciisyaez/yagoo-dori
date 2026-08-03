@@ -1,7 +1,7 @@
 {
   "objective": "Build a separately scoped, certifiable exact optimizer while preserving the live v0.1 product.",
-  "ticketOrder": ["X01", "X02", "X03", "X04", "X05", "X06"],
-  "weights": {"X01": 15, "X02": 25, "X03": 15, "X04": 25, "X05": 10, "X06": 10},
+  "ticketOrder": ["X01", "X02", "X03", "X04", "X05", "X06", "X07"],
+  "weights": {"X01": 15, "X02": 25, "X03": 15, "X04": 25, "X05": 10, "X06": 5, "X07": 5},
   "completedSinceLastReport": [
     "Reconciled the live v0.1 release and separated its weighted product status from v0.2 certification",
     "Pinned the complete full-roster input tuple and SHA-256 scope manifest",
@@ -18,10 +18,12 @@
     "Generated and independently verified a canonical 864-shard full-roster plan covering all 126445821 legal Member teams with stable talent prefixes, contiguous ordinal ranges, and resumable SHA-256 tokens; the plan remains explicitly unevaluated and non-certifying",
     "Measured a parity-backed chart-specific Leader-resolution aggregation candidate on 32 reduced teams and two Expert charts: 1808 lower/central/upper comparisons matched exactly and representative utility calls fell 48.67%; an additional eight-case corpus sample covered all Bloom stages and investment layers with zero mismatches; resolution cost and full mechanic coverage remain open",
     "Moved X04 to execution-blocked and activated X05 certifiable performance architecture; current compact trace, coverage, reduced-proof, and cost-model artifacts remain non-certifying pending independent review",
-    "Replaced reduced compression authorization with a full 100000-input trace-preserving versus forced-uncompressed lower/central/upper gate (zero endpoint mismatches, fallback, and direct-reference mismatches), generated a 113-singleton-class full 113-Member/30-chart root ledger, and measured 32 stratified A/B/C shards with exact winner parity, candidate-worker replay, and a no-go p95 cost model; no full search was launched"
+    "Replaced reduced compression authorization with a full 100000-input trace-preserving versus forced-uncompressed lower/central/upper gate (zero endpoint mismatches, fallback, and direct-reference mismatches), generated a 113-singleton-class full 113-Member/30-chart root ledger, and measured 32 stratified A/B/C shards with exact winner parity, candidate-worker replay, and a no-go p95 cost model; no full search was launched",
+    "Checkpointed X05 as done at c0267720; migrated the guarded bulk accumulator to X06 and moved the former generic validation/public-copy audit to X07, splitting the former 10% X06 weight into 5% X06 plus 5% X07 while preserving the 100% total",
+    "Recorded stable bulk evidence hashing across the primary and interrupted duplicate full runs, normalized one-warm-up/five-repeat A/B/C evidence, retained the stratified-p95 25%-contingency no-go bound, and formally killed the unproven dominance frontier before it received any pruning credit"
   ],
   "blockers": ["X04 full-shard execution is blocked: the full-trace and full-root evidence gates pass, but the selected stratified-p95 no-pruning model is 36624 core-hours before unmeasured full B0 scaling; production full-scope replay and an independently verified certificate remain open."],
-  "nextAction": "Implement and benchmark an exact partial-team state-dominance/Pareto upper-bound layer ahead of B2, validate it on exhaustive reduced rosters, and rerun the same 32-shard go/no-go pilot without launching the 864-shard plan.",
+  "nextAction": "Design and prove a continuation-complete fixed-Leader partial state; only then select a reduced roster, exhaustively validate every suffix and tie/B3 promotion, and time a dominance frontier without launching the 864-shard plan.",
   "certificateState": "not-eligible",
   "declaredFullRosterLegalTeamSets": 126445821
 }

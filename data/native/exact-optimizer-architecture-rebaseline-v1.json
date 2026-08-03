@@ -1,0 +1,1596 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-optimizer-architecture-rebaseline-v1",
+  "runnerVersion": "yd-exact-optimizer-bulk-rebaseline-runner-1.0.0",
+  "generatedAt": "2026-08-03T13:29:21.216Z",
+  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+  "workload": {
+    "candidateSelection": "first eight distinct canonical Member tuples and first four canonical Leader IDs from the pinned 100k parity corpus; cross-product sorted by canonical candidate key",
+    "teams": [
+      [
+        "card-00021-4-cmmn-0000-00",
+        "card-00034-5-uniq-0027-00",
+        "card-00037-5-uniq-0030-00",
+        "card-00039-4-cmmn-0000-00",
+        "card-06003-4-cmmn-0000-00"
+      ],
+      [
+        "card-00013-5-uniq-0002-00",
+        "card-00037-5-uniq-0030-00",
+        "card-04003-4-cmmn-0000-00",
+        "card-04010-4-cmmn-0000-00",
+        "card-06003-5-uniq-0059-00"
+      ],
+      [
+        "card-00030-5-uniq-0024-00",
+        "card-00036-4-cmmn-0000-00",
+        "card-03009-4-cmmn-0000-00",
+        "card-04002-5-uniq-0043-00",
+        "card-06003-5-uniq-0059-00"
+      ],
+      [
+        "card-00014-4-cmmn-0000-00",
+        "card-00019-4-cmmn-0000-00",
+        "card-00022-5-uniq-0063-00",
+        "card-00032-4-cmmn-0000-00",
+        "card-04016-5-uniq-0055-00"
+      ],
+      [
+        "card-00004-4-cmmn-0000-00",
+        "card-03007-5-uniq-0039-00",
+        "card-03009-4-cmmn-0000-00",
+        "card-04010-5-uniq-0049-00",
+        "card-04015-4-cmmn-0000-00"
+      ],
+      [
+        "card-00006-5-uniq-0007-00",
+        "card-00017-4-cmmn-0000-00",
+        "card-03003-4-cmmn-0000-00",
+        "card-03007-4-cmmn-0000-00",
+        "card-06003-5-uniq-0059-00"
+      ],
+      [
+        "card-00007-4-cmmn-0000-00",
+        "card-00013-5-uniq-0002-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00022-5-uniq-0063-00",
+        "card-06004-5-uniq-0060-00"
+      ],
+      [
+        "card-00032-4-cmmn-0000-00",
+        "card-03005-4-cmmn-0000-00",
+        "card-03008-4-cmmn-0000-00",
+        "card-04016-4-cmmn-0000-00",
+        "card-06003-5-uniq-0059-00"
+      ]
+    ],
+    "leaders": [
+      "card-00001-4-cmmn-0000-00",
+      "card-00001-5-uniq-0000-00",
+      "card-00002-4-cmmn-0000-00",
+      "card-00002-5-uniq-0001-00"
+    ],
+    "incumbent": {
+      "leaderCardId": "card-00001-4-cmmn-0000-00",
+      "memberCardIds": [
+        "card-00004-4-cmmn-0000-00",
+        "card-03007-5-uniq-0039-00",
+        "card-03009-4-cmmn-0000-00",
+        "card-04010-5-uniq-0049-00",
+        "card-04015-4-cmmn-0000-00"
+      ]
+    },
+    "chartKeys": [
+      "m0004:expert",
+      "m0012:expert",
+      "m0032:expert",
+      "m0033:expert",
+      "m0038:expert",
+      "m0058:expert",
+      "m0063:expert",
+      "m0074:expert",
+      "m0095:expert",
+      "m0121:expert",
+      "m0131:expert",
+      "m0133:expert",
+      "m0149:expert",
+      "m0181:expert",
+      "m0186:expert",
+      "m0188:expert",
+      "m0198:expert",
+      "m0201:expert",
+      "m0206:expert",
+      "m0300:expert",
+      "m0302:expert",
+      "m0308:expert",
+      "m0309:expert",
+      "m0310:expert",
+      "m0311:expert",
+      "m0312:expert",
+      "m0329:expert",
+      "m0330:expert",
+      "m0337:expert",
+      "m0524:expert"
+    ],
+    "chartCount": 30,
+    "candidatePairs": 32,
+    "declaredChartStates": 960,
+    "workloadHash": "f8f6ae427b94e824c72c9b6b38957e6268b6194f257fcc2c00ddb309ab683cb6"
+  },
+  "measurementProtocol": {
+    "serialWarmupRunsPerPath": 1,
+    "serialMeasuredRepeatsPerPath": 5,
+    "commonUnit": "one fixed 32 candidate-pair × 30 chart workload (960 declared chart states)",
+    "serialOrderPerRepeat": [
+      "ordered-state B3 reference",
+      "A",
+      "B",
+      "C"
+    ],
+    "percentileMethod": "nearest-rank",
+    "allocationTelemetry": "Exact allocation counters are unavailable without an instrumentation build; process heap/RSS snapshots are recorded as diagnostics."
+  },
+  "architectures": [
+    {
+      "id": "A-flat-bulk-B2-then-B3",
+      "elapsedMilliseconds": 374.872,
+      "candidatePairs": 32,
+      "declaredChartStates": 960,
+      "winner": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "metrics": {
+        "teamCompilations": 8,
+        "fullB3Candidates": 11,
+        "fullB3ChartStates": 330,
+        "orderedB3ChartStates": 0,
+        "bulkB3ChartStates": 330,
+        "centralB2Candidates": 32,
+        "centralB2ChartStates": 960,
+        "centralB2Certificates": 952,
+        "centralB2Fallbacks": 8,
+        "centralStrictLossPrunes": 21,
+        "centralEqualityOrFinalistPromotions": 10,
+        "centralCertificateMismatches": 0,
+        "b0Entrants": 0,
+        "b0Pruned": 0,
+        "b1Entrants": 0,
+        "b1Pruned": 0,
+        "bulkFinalModes": {
+          "bulk-certified-reference-equivalent": 318,
+          "not-attempted": 12
+        },
+        "bulkFallbackReasons": {
+          "none": 318,
+          "canonical-boundary-overlap": 12
+        },
+        "centralFallbackReasons": {
+          "canonical-boundary-overlap": 8
+        },
+        "traceFallbacks": 0,
+        "teamCompilationMilliseconds": 0.23339999999961947,
+        "b0Milliseconds": 0,
+        "b1Milliseconds": 0,
+        "centralB2Milliseconds": 267.71180000000004,
+        "fullB3Milliseconds": 134.91110000000117,
+        "b0Survivors": 0,
+        "b1Survivors": 0,
+        "centralB2Survivors": 11
+      },
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 374.8716000000004,
+          "p95": 403.34349999999995,
+          "worst": 403.34349999999995,
+          "best": 361.7937000000002,
+          "mean": 379.45607999999993,
+          "values": [
+            403.34349999999995,
+            391.65700000000015,
+            361.7937000000002,
+            374.8716000000004,
+            365.614599999999
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 312,
+            "p95": 343,
+            "worst": 343
+          },
+          "system": {
+            "p50": 47,
+            "p95": 156,
+            "worst": 156
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 444760064,
+          "maximumObservedHeapUsedBytes": 251955960,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 3588096,
+              "heapUsed": 35058648,
+              "external": 2632885,
+              "arrayBuffers": 2632885
+            },
+            {
+              "rss": 2396160,
+              "heapUsed": 36644896,
+              "external": 2640750,
+              "arrayBuffers": 2640750
+            },
+            {
+              "rss": 3428352,
+              "heapUsed": 32358824,
+              "external": 2610145,
+              "arrayBuffers": 2610145
+            },
+            {
+              "rss": 1998848,
+              "heapUsed": 34080008,
+              "external": 2620890,
+              "arrayBuffers": 2620890
+            },
+            {
+              "rss": 1875968,
+              "heapUsed": 31569600,
+              "external": 2607750,
+              "arrayBuffers": 2607750
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "repeatDeterminism": {
+        "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "repeatWinnerDigests": [
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3"
+        ],
+        "repeatMetricsDigests": [
+          "6bf239b9b259dd74a1f7a1893abc1ba99f1005215b4884a863cee81535f94321",
+          "6bf239b9b259dd74a1f7a1893abc1ba99f1005215b4884a863cee81535f94321",
+          "6bf239b9b259dd74a1f7a1893abc1ba99f1005215b4884a863cee81535f94321",
+          "6bf239b9b259dd74a1f7a1893abc1ba99f1005215b4884a863cee81535f94321",
+          "6bf239b9b259dd74a1f7a1893abc1ba99f1005215b4884a863cee81535f94321"
+        ],
+        "winnersIdentical": true,
+        "metricsIdentical": true
+      }
+    },
+    {
+      "id": "B-fixed-leader-B1-then-B2-B3",
+      "elapsedMilliseconds": 498.497,
+      "candidatePairs": 32,
+      "declaredChartStates": 960,
+      "winner": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "metrics": {
+        "teamCompilations": 4,
+        "fullB3Candidates": 3,
+        "fullB3ChartStates": 90,
+        "orderedB3ChartStates": 0,
+        "bulkB3ChartStates": 90,
+        "centralB2Candidates": 7,
+        "centralB2ChartStates": 210,
+        "centralB2Certificates": 210,
+        "centralB2Fallbacks": 0,
+        "centralStrictLossPrunes": 4,
+        "centralEqualityOrFinalistPromotions": 2,
+        "centralCertificateMismatches": 0,
+        "b0Entrants": 0,
+        "b0Pruned": 0,
+        "b1Entrants": 31,
+        "b1Pruned": 25,
+        "bulkFinalModes": {
+          "bulk-certified-reference-equivalent": 90
+        },
+        "bulkFallbackReasons": {
+          "none": 90
+        },
+        "centralFallbackReasons": {},
+        "traceFallbacks": 0,
+        "teamCompilationMilliseconds": 0.16040000000157306,
+        "b0Milliseconds": 0,
+        "b1Milliseconds": 309.3134,
+        "centralB2Milliseconds": 65.52280000000064,
+        "fullB3Milliseconds": 34.651199999999335,
+        "b0Survivors": 0,
+        "b1Survivors": 6,
+        "centralB2Survivors": 3
+      },
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 498.4974000000002,
+          "p95": 542.2598000000007,
+          "worst": 542.2598000000007,
+          "best": 485.0492000000013,
+          "mean": 504.8996600000006,
+          "values": [
+            542.2598000000007,
+            494.4276,
+            504.26430000000073,
+            498.4974000000002,
+            485.0492000000013
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 438,
+            "p95": 515,
+            "worst": 515
+          },
+          "system": {
+            "p50": 47,
+            "p95": 125,
+            "worst": 125
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 450211840,
+          "maximumObservedHeapUsedBytes": 270089376,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 4251648,
+              "heapUsed": 10682392,
+              "external": 963835,
+              "arrayBuffers": 963835
+            },
+            {
+              "rss": 4833280,
+              "heapUsed": 11047344,
+              "external": 973320,
+              "arrayBuffers": 973320
+            },
+            {
+              "rss": 6029312,
+              "heapUsed": 10404416,
+              "external": 966585,
+              "arrayBuffers": 966585
+            },
+            {
+              "rss": 3477504,
+              "heapUsed": 9933400,
+              "external": 964640,
+              "arrayBuffers": 964640
+            },
+            {
+              "rss": 5451776,
+              "heapUsed": 18132288,
+              "external": 1029730,
+              "arrayBuffers": 1029730
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "repeatDeterminism": {
+        "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "repeatWinnerDigests": [
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3"
+        ],
+        "repeatMetricsDigests": [
+          "6325af63531241388aab38aebafb6202f1ce48b2bcf114d806a0f46489eb4715",
+          "6325af63531241388aab38aebafb6202f1ce48b2bcf114d806a0f46489eb4715",
+          "6325af63531241388aab38aebafb6202f1ce48b2bcf114d806a0f46489eb4715",
+          "6325af63531241388aab38aebafb6202f1ce48b2bcf114d806a0f46489eb4715",
+          "6325af63531241388aab38aebafb6202f1ce48b2bcf114d806a0f46489eb4715"
+        ],
+        "winnersIdentical": true,
+        "metricsIdentical": true
+      }
+    },
+    {
+      "id": "C-whole-leader-bounds-B2-B3",
+      "elapsedMilliseconds": 1399.302,
+      "candidatePairs": 32,
+      "declaredChartStates": 960,
+      "winner": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "metrics": {
+        "teamCompilations": 4,
+        "fullB3Candidates": 3,
+        "fullB3ChartStates": 90,
+        "orderedB3ChartStates": 0,
+        "bulkB3ChartStates": 90,
+        "centralB2Candidates": 7,
+        "centralB2ChartStates": 210,
+        "centralB2Certificates": 210,
+        "centralB2Fallbacks": 0,
+        "centralStrictLossPrunes": 4,
+        "centralEqualityOrFinalistPromotions": 2,
+        "centralCertificateMismatches": 0,
+        "b0Entrants": 31,
+        "b0Pruned": 21,
+        "b1Entrants": 10,
+        "b1Pruned": 4,
+        "bulkFinalModes": {
+          "bulk-certified-reference-equivalent": 90
+        },
+        "bulkFallbackReasons": {
+          "none": 90
+        },
+        "centralFallbackReasons": {},
+        "traceFallbacks": 0,
+        "teamCompilationMilliseconds": 0.15179999999872962,
+        "b0Milliseconds": 1076.910100000001,
+        "b1Milliseconds": 89.8730999999998,
+        "centralB2Milliseconds": 56.70770000000175,
+        "fullB3Milliseconds": 35.98250000000007,
+        "b0Survivors": 10,
+        "b1Survivors": 6,
+        "centralB2Survivors": 3
+      },
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 1399.3021000000008,
+          "p95": 1432.0482999999995,
+          "worst": 1432.0482999999995,
+          "best": 1386.9523000000008,
+          "mean": 1404.9895000000004,
+          "values": [
+            1432.0482999999995,
+            1409.0682000000006,
+            1399.3021000000008,
+            1397.5766000000003,
+            1386.9523000000008
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 1328,
+            "p95": 1360,
+            "worst": 1360
+          },
+          "system": {
+            "p50": 62,
+            "p95": 297,
+            "worst": 297
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 457322496,
+          "maximumObservedHeapUsedBytes": 270090504,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 5406720,
+              "heapUsed": -21246176,
+              "external": 1104330,
+              "arrayBuffers": 1104330
+            },
+            {
+              "rss": 5095424,
+              "heapUsed": -21445736,
+              "external": 1083070,
+              "arrayBuffers": 1083070
+            },
+            {
+              "rss": 5730304,
+              "heapUsed": -20228352,
+              "external": 1108100,
+              "arrayBuffers": 1108100
+            },
+            {
+              "rss": 5799936,
+              "heapUsed": -23275376,
+              "external": 1078515,
+              "arrayBuffers": 1078515
+            },
+            {
+              "rss": 7110656,
+              "heapUsed": -23469496,
+              "external": 1059180,
+              "arrayBuffers": 1059180
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "repeatDeterminism": {
+        "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "repeatWinnerDigests": [
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3"
+        ],
+        "repeatMetricsDigests": [
+          "6d18186c995168a22e1c062c120fa11563a5a88c3aaf40a437d710bf48cd7148",
+          "6d18186c995168a22e1c062c120fa11563a5a88c3aaf40a437d710bf48cd7148",
+          "6d18186c995168a22e1c062c120fa11563a5a88c3aaf40a437d710bf48cd7148",
+          "6d18186c995168a22e1c062c120fa11563a5a88c3aaf40a437d710bf48cd7148",
+          "6d18186c995168a22e1c062c120fa11563a5a88c3aaf40a437d710bf48cd7148"
+        ],
+        "winnersIdentical": true,
+        "metricsIdentical": true
+      }
+    }
+  ],
+  "orderedB3Reference": {
+    "id": "ordered-state-run-B3-reference",
+    "elapsedMilliseconds": 557.472,
+    "candidatePairs": 32,
+    "declaredChartStates": 960,
+    "winner": {
+      "leaderCardId": "card-00001-5-uniq-0000-00",
+      "memberCardIds": [
+        "card-00007-4-cmmn-0000-00",
+        "card-00013-5-uniq-0002-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00022-5-uniq-0063-00",
+        "card-06004-5-uniq-0060-00"
+      ],
+      "utility": {
+        "lower": 233942479877,
+        "central": 288274468030,
+        "upper": 338959638018
+      }
+    },
+    "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+    "metrics": {
+      "teamCompilations": 8,
+      "fullB3Candidates": 32,
+      "fullB3ChartStates": 960,
+      "orderedB3ChartStates": 960,
+      "bulkB3ChartStates": 0,
+      "centralB2Candidates": 0,
+      "centralB2ChartStates": 0,
+      "centralB2Certificates": 0,
+      "centralB2Fallbacks": 0,
+      "centralStrictLossPrunes": 0,
+      "centralEqualityOrFinalistPromotions": 0,
+      "centralCertificateMismatches": 0,
+      "b0Entrants": 0,
+      "b0Pruned": 0,
+      "b1Entrants": 0,
+      "b1Pruned": 0,
+      "bulkFinalModes": {},
+      "bulkFallbackReasons": {},
+      "centralFallbackReasons": {},
+      "traceFallbacks": 0,
+      "teamCompilationMilliseconds": 0.2604999999989559,
+      "b0Milliseconds": 0,
+      "b1Milliseconds": 0,
+      "centralB2Milliseconds": 0,
+      "fullB3Milliseconds": 540.291200000001,
+      "b0Survivors": 0,
+      "b1Survivors": 0,
+      "centralB2Survivors": 0
+    },
+    "timing": {
+      "measuredRepeats": 5,
+      "percentileMethod": "nearest-rank",
+      "wallMilliseconds": {
+        "p50": 557.472099999999,
+        "p95": 601.8635999999988,
+        "worst": 601.8635999999988,
+        "best": 540.9905000000003,
+        "mean": 562.7549199999996,
+        "values": [
+          540.9905000000003,
+          553.8033999999998,
+          557.472099999999,
+          559.6450000000004,
+          601.8635999999988
+        ]
+      },
+      "cpuMilliseconds": {
+        "user": {
+          "p50": 547,
+          "p95": 578,
+          "worst": 578
+        },
+        "system": {
+          "p50": 63,
+          "p95": 125,
+          "worst": 125
+        }
+      },
+      "memory": {
+        "maximumObservedRssBytes": 442884096,
+        "maximumObservedHeapUsedBytes": 236956272,
+        "perRepeatDeltaBytes": [
+          {
+            "rss": 626688,
+            "heapUsed": -7996424,
+            "external": 29886,
+            "arrayBuffers": 29846
+          },
+          {
+            "rss": 1032192,
+            "heapUsed": -16079216,
+            "external": 33740,
+            "arrayBuffers": 33740
+          },
+          {
+            "rss": 253952,
+            "heapUsed": -16890744,
+            "external": 46050,
+            "arrayBuffers": 46050
+          },
+          {
+            "rss": 1421312,
+            "heapUsed": -11581920,
+            "external": 66835,
+            "arrayBuffers": 66835
+          },
+          {
+            "rss": 1589248,
+            "heapUsed": -16571040,
+            "external": 34220,
+            "arrayBuffers": 34220
+          }
+        ],
+        "allocationMeasurement": {
+          "status": "unavailable",
+          "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+        }
+      }
+    },
+    "repeatDeterminism": {
+      "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "repeatWinnerDigests": [
+        "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+        "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3"
+      ],
+      "repeatMetricsDigests": [
+        "b6c354ce174aab374b3fc8fd4427f3005751a913d1bb998ed286584856b97052",
+        "b6c354ce174aab374b3fc8fd4427f3005751a913d1bb998ed286584856b97052",
+        "b6c354ce174aab374b3fc8fd4427f3005751a913d1bb998ed286584856b97052",
+        "b6c354ce174aab374b3fc8fd4427f3005751a913d1bb998ed286584856b97052",
+        "b6c354ce174aab374b3fc8fd4427f3005751a913d1bb998ed286584856b97052"
+      ],
+      "winnersIdentical": true,
+      "metricsIdentical": true
+    }
+  },
+  "parity": {
+    "orderedReferenceToA": {
+      "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "passed": true,
+      "expected": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "actual": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      }
+    },
+    "AtoB": {
+      "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "passed": true,
+      "expected": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "actual": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      }
+    },
+    "AtoC": {
+      "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "passed": true,
+      "expected": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      },
+      "actual": {
+        "leaderCardId": "card-00001-5-uniq-0000-00",
+        "memberCardIds": [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        "utility": {
+          "lower": 233942479877,
+          "central": 288274468030,
+          "upper": 338959638018
+        }
+      }
+    },
+    "allPassed": true
+  },
+  "parallel": {
+    "timingStatus": "mixed-serial-timing-and-parity-only-replay",
+    "timingUse": "not used for throughput, p95, cost, or scale projection",
+    "reason": "The one-worker serial C record has normalized repeated timing. Each 2/4/8/16/32-worker run was performed once only to independently replay the winner, so those values are not timing samples and are not used for p95, throughput, cost, or scale projection.",
+    "measurements": [
+      {
+        "workers": 1,
+        "measurementKind": "serial-repeated-timing",
+        "timingUse": "normalized serial architecture timing only; not used for full-scope scale projection",
+        "elapsedMilliseconds": 1399.302,
+        "timing": {
+          "measuredRepeats": 5,
+          "percentileMethod": "nearest-rank",
+          "wallMilliseconds": {
+            "p50": 1399.3021000000008,
+            "p95": 1432.0482999999995,
+            "worst": 1432.0482999999995,
+            "best": 1386.9523000000008,
+            "mean": 1404.9895000000004,
+            "values": [
+              1432.0482999999995,
+              1409.0682000000006,
+              1399.3021000000008,
+              1397.5766000000003,
+              1386.9523000000008
+            ]
+          },
+          "cpuMilliseconds": {
+            "user": {
+              "p50": 1328,
+              "p95": 1360,
+              "worst": 1360
+            },
+            "system": {
+              "p50": 62,
+              "p95": 297,
+              "worst": 297
+            }
+          },
+          "memory": {
+            "maximumObservedRssBytes": 457322496,
+            "maximumObservedHeapUsedBytes": 270090504,
+            "perRepeatDeltaBytes": [
+              {
+                "rss": 5406720,
+                "heapUsed": -21246176,
+                "external": 1104330,
+                "arrayBuffers": 1104330
+              },
+              {
+                "rss": 5095424,
+                "heapUsed": -21445736,
+                "external": 1083070,
+                "arrayBuffers": 1083070
+              },
+              {
+                "rss": 5730304,
+                "heapUsed": -20228352,
+                "external": 1108100,
+                "arrayBuffers": 1108100
+              },
+              {
+                "rss": 5799936,
+                "heapUsed": -23275376,
+                "external": 1078515,
+                "arrayBuffers": 1078515
+              },
+              {
+                "rss": 7110656,
+                "heapUsed": -23469496,
+                "external": 1059180,
+                "arrayBuffers": 1059180
+              }
+            ],
+            "allocationMeasurement": {
+              "status": "unavailable",
+              "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+            }
+          }
+        },
+        "outputParity": {
+          "passed": true,
+          "source": "serial C winner"
+        }
+      },
+      {
+        "workers": 2,
+        "elapsedMilliseconds": 1681.781,
+        "winner": {
+          "leaderCardId": "card-00001-5-uniq-0000-00",
+          "memberCardIds": [
+            "card-00007-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-00018-5-uniq-0004-00",
+            "card-00022-5-uniq-0063-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "utility": {
+            "lower": 233942479877,
+            "central": 288274468030,
+            "upper": 338959638018
+          }
+        },
+        "metrics": {
+          "teamCompilations": 6,
+          "fullB3Candidates": 6,
+          "fullB3ChartStates": 180,
+          "orderedB3ChartStates": 0,
+          "bulkB3ChartStates": 180,
+          "centralB2Candidates": 12,
+          "centralB2ChartStates": 360,
+          "centralB2Certificates": 360,
+          "centralB2Fallbacks": 0,
+          "centralStrictLossPrunes": 6,
+          "centralEqualityOrFinalistPromotions": 4,
+          "centralCertificateMismatches": 0,
+          "b0Entrants": 31,
+          "b0Pruned": 14,
+          "b1Entrants": 17,
+          "b1Pruned": 7,
+          "bulkFinalModes": {
+            "bulk-certified-reference-equivalent": 180
+          },
+          "bulkFallbackReasons": {
+            "none": 180
+          },
+          "centralFallbackReasons": {},
+          "traceFallbacks": 0,
+          "teamCompilationMilliseconds": 1.0722999999998137,
+          "b0Milliseconds": 1075.8892,
+          "b1Milliseconds": 144.25779999999975,
+          "centralB2Milliseconds": 155.19010000000014,
+          "fullB3Milliseconds": 107.60789999999974
+        },
+        "workerElapsedMilliseconds": [
+          968.123,
+          865.17
+        ],
+        "outputParity": {
+          "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "passed": true,
+          "expected": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          },
+          "actual": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          }
+        },
+        "speedupVersusSerialC": 0.8320358001428247,
+        "efficiencyVersusSerialC": 0.41601790007141237,
+        "measurementKind": "deterministic-parity-only-unrepeated",
+        "timingUse": "not timing evidence; not used for p50/p95/worst, throughput, cost, or scale projection"
+      },
+      {
+        "workers": 4,
+        "elapsedMilliseconds": 1529.664,
+        "winner": {
+          "leaderCardId": "card-00001-5-uniq-0000-00",
+          "memberCardIds": [
+            "card-00007-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-00018-5-uniq-0004-00",
+            "card-00022-5-uniq-0063-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "utility": {
+            "lower": 233942479877,
+            "central": 288274468030,
+            "upper": 338959638018
+          }
+        },
+        "metrics": {
+          "teamCompilations": 9,
+          "fullB3Candidates": 14,
+          "fullB3ChartStates": 420,
+          "orderedB3ChartStates": 0,
+          "bulkB3ChartStates": 420,
+          "centralB2Candidates": 20,
+          "centralB2ChartStates": 600,
+          "centralB2Certificates": 597,
+          "centralB2Fallbacks": 3,
+          "centralStrictLossPrunes": 6,
+          "centralEqualityOrFinalistPromotions": 10,
+          "centralCertificateMismatches": 0,
+          "b0Entrants": 31,
+          "b0Pruned": 7,
+          "b1Entrants": 24,
+          "b1Pruned": 8,
+          "bulkFinalModes": {
+            "bulk-certified-reference-equivalent": 417,
+            "not-attempted": 3
+          },
+          "bulkFallbackReasons": {
+            "none": 417,
+            "canonical-boundary-overlap": 3
+          },
+          "centralFallbackReasons": {
+            "canonical-boundary-overlap": 3
+          },
+          "traceFallbacks": 0,
+          "teamCompilationMilliseconds": 1.726699999999255,
+          "b0Milliseconds": 1197.8479000000002,
+          "b1Milliseconds": 217.0834000000002,
+          "centralB2Milliseconds": 298.09899999999993,
+          "fullB3Milliseconds": 279.05010000000027
+        },
+        "workerElapsedMilliseconds": [
+          698.251,
+          661.582,
+          646.58,
+          709.981
+        ],
+        "outputParity": {
+          "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "passed": true,
+          "expected": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          },
+          "actual": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          }
+        },
+        "speedupVersusSerialC": 0.9147773628718463,
+        "efficiencyVersusSerialC": 0.22869434071796158,
+        "measurementKind": "deterministic-parity-only-unrepeated",
+        "timingUse": "not timing evidence; not used for p50/p95/worst, throughput, cost, or scale projection"
+      },
+      {
+        "workers": 8,
+        "elapsedMilliseconds": 1687.372,
+        "winner": {
+          "leaderCardId": "card-00001-5-uniq-0000-00",
+          "memberCardIds": [
+            "card-00007-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-00018-5-uniq-0004-00",
+            "card-00022-5-uniq-0063-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "utility": {
+            "lower": 233942479877,
+            "central": 288274468030,
+            "upper": 338959638018
+          }
+        },
+        "metrics": {
+          "teamCompilations": 15,
+          "fullB3Candidates": 23,
+          "fullB3ChartStates": 690,
+          "orderedB3ChartStates": 0,
+          "bulkB3ChartStates": 690,
+          "centralB2Candidates": 29,
+          "centralB2ChartStates": 870,
+          "centralB2Certificates": 863,
+          "centralB2Fallbacks": 7,
+          "centralStrictLossPrunes": 6,
+          "centralEqualityOrFinalistPromotions": 15,
+          "centralCertificateMismatches": 0,
+          "b0Entrants": 31,
+          "b0Pruned": 0,
+          "b1Entrants": 31,
+          "b1Pruned": 10,
+          "bulkFinalModes": {
+            "bulk-certified-reference-equivalent": 679,
+            "not-attempted": 11
+          },
+          "bulkFallbackReasons": {
+            "none": 679,
+            "canonical-boundary-overlap": 11
+          },
+          "centralFallbackReasons": {
+            "canonical-boundary-overlap": 7
+          },
+          "traceFallbacks": 0,
+          "teamCompilationMilliseconds": 4.245000000000346,
+          "b0Milliseconds": 1482.2232000000006,
+          "b1Milliseconds": 338.2600999999986,
+          "centralB2Milliseconds": 574.8875999999993,
+          "fullB3Milliseconds": 598.1587999999999
+        },
+        "workerElapsedMilliseconds": [
+          574.881,
+          599.58,
+          577.417,
+          610.306,
+          557.512,
+          624.386,
+          521.872,
+          516.926
+        ],
+        "outputParity": {
+          "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "passed": true,
+          "expected": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          },
+          "actual": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          }
+        },
+        "speedupVersusSerialC": 0.8292789023404441,
+        "efficiencyVersusSerialC": 0.10365986279255551,
+        "measurementKind": "deterministic-parity-only-unrepeated",
+        "timingUse": "not timing evidence; not used for p50/p95/worst, throughput, cost, or scale projection"
+      },
+      {
+        "workers": 16,
+        "elapsedMilliseconds": 2216.989,
+        "winner": {
+          "leaderCardId": "card-00001-5-uniq-0000-00",
+          "memberCardIds": [
+            "card-00007-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-00018-5-uniq-0004-00",
+            "card-00022-5-uniq-0063-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "utility": {
+            "lower": 233942479877,
+            "central": 288274468030,
+            "upper": 338959638018
+          }
+        },
+        "metrics": {
+          "teamCompilations": 28,
+          "fullB3Candidates": 31,
+          "fullB3ChartStates": 930,
+          "orderedB3ChartStates": 0,
+          "bulkB3ChartStates": 930,
+          "centralB2Candidates": 38,
+          "centralB2ChartStates": 1140,
+          "centralB2Certificates": 1133,
+          "centralB2Fallbacks": 7,
+          "centralStrictLossPrunes": 7,
+          "centralEqualityOrFinalistPromotions": 15,
+          "centralCertificateMismatches": 0,
+          "b0Entrants": 31,
+          "b0Pruned": 0,
+          "b1Entrants": 31,
+          "b1Pruned": 9,
+          "bulkFinalModes": {
+            "bulk-certified-reference-equivalent": 919,
+            "not-attempted": 11
+          },
+          "bulkFallbackReasons": {
+            "none": 919,
+            "canonical-boundary-overlap": 11
+          },
+          "centralFallbackReasons": {
+            "canonical-boundary-overlap": 7
+          },
+          "traceFallbacks": 0,
+          "teamCompilationMilliseconds": 10.661900000000287,
+          "b0Milliseconds": 2277.8248999999987,
+          "b1Milliseconds": 471.8633000000002,
+          "centralB2Milliseconds": 1229.4395000000002,
+          "fullB3Milliseconds": 1287.5439000000006
+        },
+        "workerElapsedMilliseconds": [
+          611.776,
+          629.633,
+          620.734,
+          669.759,
+          654.164,
+          640.321,
+          575.536,
+          606.96,
+          613.169,
+          605.176,
+          610.515,
+          615.832,
+          571.549,
+          628.126,
+          576.412,
+          534.069
+        ],
+        "outputParity": {
+          "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "passed": true,
+          "expected": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          },
+          "actual": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          }
+        },
+        "speedupVersusSerialC": 0.631172279158805,
+        "efficiencyVersusSerialC": 0.039448267447425314,
+        "measurementKind": "deterministic-parity-only-unrepeated",
+        "timingUse": "not timing evidence; not used for p50/p95/worst, throughput, cost, or scale projection"
+      },
+      {
+        "workers": 32,
+        "elapsedMilliseconds": 4000.275,
+        "winner": {
+          "leaderCardId": "card-00001-5-uniq-0000-00",
+          "memberCardIds": [
+            "card-00007-4-cmmn-0000-00",
+            "card-00013-5-uniq-0002-00",
+            "card-00018-5-uniq-0004-00",
+            "card-00022-5-uniq-0063-00",
+            "card-06004-5-uniq-0060-00"
+          ],
+          "utility": {
+            "lower": 233942479877,
+            "central": 288274468030,
+            "upper": 338959638018
+          }
+        },
+        "metrics": {
+          "teamCompilations": 53,
+          "fullB3Candidates": 50,
+          "fullB3ChartStates": 1500,
+          "orderedB3ChartStates": 0,
+          "bulkB3ChartStates": 1500,
+          "centralB2Candidates": 55,
+          "centralB2ChartStates": 1650,
+          "centralB2Certificates": 1643,
+          "centralB2Fallbacks": 7,
+          "centralStrictLossPrunes": 5,
+          "centralEqualityOrFinalistPromotions": 18,
+          "centralCertificateMismatches": 0,
+          "b0Entrants": 31,
+          "b0Pruned": 0,
+          "b1Entrants": 31,
+          "b1Pruned": 8,
+          "bulkFinalModes": {
+            "bulk-certified-reference-equivalent": 1489,
+            "not-attempted": 11
+          },
+          "bulkFallbackReasons": {
+            "none": 1489,
+            "canonical-boundary-overlap": 11
+          },
+          "centralFallbackReasons": {
+            "canonical-boundary-overlap": 7
+          },
+          "traceFallbacks": 0,
+          "teamCompilationMilliseconds": 20.10269999999946,
+          "b0Milliseconds": 3209.4483999999984,
+          "b1Milliseconds": 608.1097000000004,
+          "centralB2Milliseconds": 2944.541800000002,
+          "fullB3Milliseconds": 3073.3890999999994
+        },
+        "workerElapsedMilliseconds": [
+          989.333,
+          1012.978,
+          873.818,
+          965.874,
+          1113.256,
+          1063.435,
+          830.28,
+          768.455,
+          734.092,
+          728.262,
+          804.279,
+          676.063,
+          753.121,
+          713.24,
+          652.111,
+          745.55,
+          646.209,
+          739.983,
+          568.57,
+          703.764,
+          702.689,
+          699.732,
+          559.482,
+          686.818,
+          677.663,
+          792.38,
+          663.447,
+          787.579,
+          658.81,
+          680.088,
+          693.217,
+          576.915
+        ],
+        "outputParity": {
+          "expectedWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "actualWinnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+          "passed": true,
+          "expected": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          },
+          "actual": {
+            "leaderCardId": "card-00001-5-uniq-0000-00",
+            "memberCardIds": [
+              "card-00007-4-cmmn-0000-00",
+              "card-00013-5-uniq-0002-00",
+              "card-00018-5-uniq-0004-00",
+              "card-00022-5-uniq-0063-00",
+              "card-06004-5-uniq-0060-00"
+            ],
+            "utility": {
+              "lower": 233942479877,
+              "central": 288274468030,
+              "upper": 338959638018
+            }
+          }
+        },
+        "speedupVersusSerialC": 0.34980145115023337,
+        "efficiencyVersusSerialC": 0.010931295348444793,
+        "measurementKind": "deterministic-parity-only-unrepeated",
+        "timingUse": "not timing evidence; not used for p50/p95/worst, throughput, cost, or scale projection"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "identical-30-chart-input-scope",
+      "target": "A, B, and C must use the same fixed 8-team × 4-Leader candidate pool, same incumbent, and all 30 scope charts.",
+      "actual": {
+        "candidatePairs": 32,
+        "chartCount": 30,
+        "declaredChartStates": 960,
+        "workloadHash": "f8f6ae427b94e824c72c9b6b38957e6268b6194f257fcc2c00ddb309ab683cb6"
+      },
+      "passed": true
+    },
+    {
+      "id": "A-B-C-canonical-winner-parity",
+      "target": "B and C winner tuple must equal source-order A exactly at lower/central/upper micro-units and tie key.",
+      "actual": {
+        "AtoB": true,
+        "AtoC": true
+      },
+      "passed": true
+    },
+    {
+      "id": "ordered-B3-reference-parity",
+      "target": "The independent ordered-state B3 reference winner must equal the flat bulk-B2/B3 A winner.",
+      "actual": {
+        "orderedReferenceToA": true
+      },
+      "passed": true
+    },
+    {
+      "id": "A-identical-central-workload",
+      "target": "A must attempt the bulk-certified B2 central evaluator for all 32 × 30 declared chart states before B3 promotion policy applies.",
+      "actual": {
+        "declaredChartStates": 960,
+        "attemptedCentralB2ChartStates": 960
+      },
+      "passed": true
+    },
+    {
+      "id": "B2-equality-and-fallback-promotion",
+      "target": "No equality, finalist, or B2 fallback may be pruned without B3 materialization.",
+      "actual": {
+        "A": {
+          "fallbackCount": 8,
+          "equalityOrFinalistPromotions": 10,
+          "centralCertificateMismatches": 0
+        },
+        "B": {
+          "fallbackCount": 0,
+          "equalityOrFinalistPromotions": 2,
+          "centralCertificateMismatches": 0
+        },
+        "C": {
+          "fallbackCount": 0,
+          "equalityOrFinalistPromotions": 2,
+          "centralCertificateMismatches": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "strict-bound-pruning-only",
+      "target": "B0/B1/B2 pruning comparisons must be strict less-than on canonical central micro-units.",
+      "actual": {
+        "implementation": "Each branch is `boundOrCentral < incumbent.central`; equality is recorded as a B3 promotion.",
+        "winnerParityAgainstA": true
+      },
+      "passed": true
+    },
+    {
+      "id": "serial-repeat-determinism-and-normalization",
+      "target": "One deterministic warm-up and five measured serial repeats per ordered reference/A/B/C path must preserve winner and metric digests; p50/p95/worst/CPU/RSS are recorded in a common workload unit.",
+      "actual": {
+        "warmupRunsPerPath": 1,
+        "measuredRepeatsPerPath": 5,
+        "warmupParity": [
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          }
+        ],
+        "measuredParity": [
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          },
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          },
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          },
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          },
+          {
+            "orderedReferenceToA": true,
+            "AtoB": true,
+            "AtoC": true
+          }
+        ],
+        "commonUnit": "one fixed 32 candidate-pair × 30 chart workload (960 declared chart states)",
+        "winnersIdentical": true,
+        "metricsIdentical": true,
+        "normalizedTimingPresent": true
+      },
+      "passed": true
+    },
+    {
+      "id": "candidate-worker-replay",
+      "target": "Each observed worker count must reduce independently computed C outputs to the serial C winner. These are parity-only runs, not repeated timing measurements.",
+      "actual": [
+        {
+          "workers": 1,
+          "passed": true
+        },
+        {
+          "workers": 2,
+          "passed": true
+        },
+        {
+          "workers": 4,
+          "passed": true
+        },
+        {
+          "workers": 8,
+          "passed": true
+        },
+        {
+          "workers": 16,
+          "passed": true
+        },
+        {
+          "workers": 32,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "certificateEligible": false,
+  "disposition": "Identical-scope rebaseline passed. It is a compact architecture measurement only; it neither executes the full shard plan nor certifies a global result.",
+  "elapsedMilliseconds": 28148.769,
+  "deterministicReportHash": "2cde48594359c44e94ed51aa51b9af0574fd9b9a7b8ececf6bd5177889951781"
+}

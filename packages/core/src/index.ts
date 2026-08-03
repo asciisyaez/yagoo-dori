@@ -26,6 +26,7 @@ export * from "./song-contexts";
 export * from "./team-calculator";
 export * from "./team-calculator-contract";
 export * from "./exact-optimizer-arithmetic";
+export * from "./exact-optimizer-bulk-accumulation";
 export * from "./exact-optimizer-incumbent";
 export * from "./exact-optimizer-kernel";
 export * from "./exact-optimizer-leader-proof";

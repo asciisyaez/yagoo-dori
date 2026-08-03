@@ -12,6 +12,22 @@ import {
   type SkillApplication,
   type TriggerObservation,
 } from "./formation-evaluator";
+import {
+  certifyCanonicalMicroUnitEnclosure,
+  certifyCanonicalUtilityInterval,
+  outwardBinary64Add,
+  outwardBinary64DividePositive,
+  outwardBinary64Max,
+  outwardBinary64Min,
+  outwardBinary64Multiply,
+  outwardBinary64Subtract,
+  pointBinary64Enclosure,
+  transformRepeatedBinary64Addition,
+  type Binary64Enclosure,
+  type ExactOptimizerBulkFallbackReason,
+  type OrderedReplayRequired,
+} from "./exact-optimizer-bulk-accumulation";
+import { fromCanonicalMicroUnits } from "./exact-optimizer-arithmetic";
 import { mechanicsCardById, mechanicsData, type CardMechanics } from "./mechanics";
 import { songContextData, type AggregateChartContext, type SongContext } from "./song-contexts";
 
@@ -250,11 +266,33 @@ export type NativeActiveTraceExecution = Readonly<{
   specialSupportStateRuns: number;
   specialStateRuns: number;
   fallbackReason: string | null;
+  bulk: Readonly<{
+    methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0";
+    mode: "bulk-certified-reference-equivalent" | "ordered-replay" | "not-attempted";
+    finalCanonical:
+      | "bulk-certified-reference-equivalent"
+      | "ordered-replay"
+      | "not-attempted";
+    certifiedRunCount: number;
+    orderedReplayRunCount: number;
+    fallbackReason: ExactOptimizerBulkFallbackReason | null;
+  }>;
 }>;
 
 export type NativeUtilityTraceEvaluation = Readonly<{
   result: NativeUtilityResult;
   activeTrace: NativeActiveTraceExecution;
+}>;
+
+/**
+ * B2's deliberately narrow contract: the central candidate value and proof
+ * telemetry only. B3/finalists must call the full interval evaluator below.
+ */
+export type NativeCentralUtilityTraceEvaluation = Readonly<{
+  kind: "bulk-certified-reference-equivalent" | "ordered-replay-required";
+  central: number | null;
+  activeTrace: NativeActiveTraceExecution;
+  fallbackReason: ExactOptimizerBulkFallbackReason | null;
 }>;
 type ActivationRateWindow = {
   startsAtMilliseconds: number;
@@ -724,13 +762,26 @@ type CompiledActiveTrace = Readonly<{
   profiles: readonly ActiveProfile[];
   checkCountsByMember: readonly Uint16Array[];
   selectionsByMember: readonly ActiveSelectionSequence[];
+  runs: readonly CompressedActiveRun[];
   supported: boolean;
   fallbackReason: string | null;
+}>;
+
+type CompressedActiveRun = Readonly<{
+  startInclusive: number;
+  endExclusive: number;
+  multiplicity: number;
 }>;
 
 type CompressedActiveAggregate = Readonly<{
   value: RawInterval;
   stateRuns: number;
+  bulk: NativeActiveTraceExecution["bulk"];
+  outputEnclosure: Readonly<{
+    lower: Binary64Enclosure;
+    central: Binary64Enclosure;
+    upper: Binary64Enclosure;
+  }>;
 }>;
 
 const STATIC_ACTIVE_TRIGGER_KINDS = new Set([
@@ -825,6 +876,43 @@ function activeSelectionSequence(
   return { selections: Object.freeze(selections), selectionIndexByNote };
 }
 
+/**
+ * Run boundaries depend only on the Member timing/check ledger and the
+ * resolved Active selection ledger. Support and activation-rate scalars are
+ * constant over an aggregate-chart pass, so one source-order run ledger is
+ * valid for the base, Special-support, and Special-activation passes.
+ */
+function compileCompressedActiveRuns(
+  checkCountsByMember: readonly Uint16Array[],
+  selectionsByMember: readonly ActiveSelectionSequence[],
+  noteCount: number,
+): readonly CompressedActiveRun[] {
+  const sameInputState = (left: number, right: number): boolean => {
+    for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
+      if (
+        checkCountsByMember[memberIndex]![left] !== checkCountsByMember[memberIndex]![right] ||
+        selectionsByMember[memberIndex]!.selectionIndexByNote[left] !==
+          selectionsByMember[memberIndex]!.selectionIndexByNote[right]
+      ) {
+        return false;
+      }
+    }
+    return true;
+  };
+  const runs: CompressedActiveRun[] = [];
+  let startInclusive = 0;
+  for (let noteIndex = 1; noteIndex <= noteCount; noteIndex += 1) {
+    if (noteIndex < noteCount && sameInputState(startInclusive, noteIndex)) continue;
+    runs.push({
+      startInclusive,
+      endExclusive: noteIndex,
+      multiplicity: noteIndex - startInclusive,
+    });
+    startInclusive = noteIndex;
+  }
+  return Object.freeze(runs);
+}
+
 function compileActiveTrace(
   chartKey: string,
   notes: readonly UniformNote[],
@@ -838,6 +926,7 @@ function compileActiveTrace(
       profiles,
       checkCountsByMember: Object.freeze([]),
       selectionsByMember: Object.freeze([]),
+      runs: Object.freeze([]),
       supported: false,
       fallbackReason: "team-intrinsic-member-count-mismatch",
     };
@@ -858,6 +947,7 @@ function compileActiveTrace(
         profiles,
         checkCountsByMember: Object.freeze([]),
         selectionsByMember: Object.freeze([]),
+        runs: Object.freeze([]),
         supported: false,
         fallbackReason: "team-intrinsic-active-timing-mismatch",
       };
@@ -868,6 +958,7 @@ function compileActiveTrace(
         profiles,
         checkCountsByMember: Object.freeze([]),
         selectionsByMember: Object.freeze([]),
+        runs: Object.freeze([]),
         supported: false,
         fallbackReason: "unsupported-active-trigger-or-breakpoint-width",
       };
@@ -879,6 +970,7 @@ function compileActiveTrace(
     profiles,
     checkCountsByMember: Object.freeze(checkCountsByMember),
     selectionsByMember: Object.freeze(selectionsByMember),
+    runs: compileCompressedActiveRuns(checkCountsByMember, selectionsByMember, notes.length),
     supported: true,
     fallbackReason: null,
   };
@@ -992,36 +1084,32 @@ function fillCompressedActiveState(
   return [lower, expectedMaximumFive(centralValues, centralProbabilities, expectedOrder), upper];
 }
 
-function equalCompressedActiveState(left: Float64Array, right: Float64Array): boolean {
-  for (let index = 0; index < left.length; index += 1) {
-    if (left[index] !== right[index]) return false;
-  }
-  return true;
+function pointOutputEnclosure(value: RawInterval): CompressedActiveAggregate["outputEnclosure"] {
+  return {
+    lower: pointBinary64Enclosure(value.lower),
+    central: pointBinary64Enclosure(value.central),
+    upper: pointBinary64Enclosure(value.upper),
+  };
 }
 
-function aggregateCompressedActiveInterval(
+function orderedReplayCompressedActiveInterval(
   trace: CompiledActiveTrace,
   noteCount: number,
   additionalSupport: number,
   activationRateUpPermil: number,
+  fallbackReason: ExactOptimizerBulkFallbackReason | null,
 ): CompressedActiveAggregate {
   const state = new Float64Array(30);
-  const nextState = new Float64Array(30);
   const centralValues = new Float64Array(5);
   const centralProbabilities = new Float64Array(5);
-  const nextCentralValues = new Float64Array(5);
-  const nextCentralProbabilities = new Float64Array(5);
   const expectedOrder = new Uint8Array(5);
-  const nextExpectedOrder = new Uint8Array(5);
   let lower = 0;
   let central = 0;
   let upper = 0;
-  let stateRuns = 0;
-  let start = 0;
-  while (start < noteCount) {
+  for (let noteIndex = 0; noteIndex < noteCount; noteIndex += 1) {
     const contribution = fillCompressedActiveState(
       trace,
-      start,
+      noteIndex,
       additionalSupport,
       activationRateUpPermil,
       state,
@@ -1029,33 +1117,337 @@ function aggregateCompressedActiveInterval(
       centralProbabilities,
       expectedOrder,
     );
-    let end = start + 1;
-    while (end < noteCount) {
-      fillCompressedActiveState(
+    lower += contribution[0];
+    central += contribution[1];
+    upper += contribution[2];
+  }
+  const value = interval(lower / noteCount, central / noteCount, upper / noteCount);
+  return {
+    value,
+    stateRuns: trace.runs.length,
+    bulk: {
+      methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+      mode: "ordered-replay",
+      finalCanonical: "not-attempted",
+      certifiedRunCount: 0,
+      orderedReplayRunCount: trace.runs.length,
+      fallbackReason,
+    },
+    outputEnclosure: pointOutputEnclosure(value),
+  };
+}
+
+function aggregateCompressedActiveInterval(
+  trace: CompiledActiveTrace,
+  noteCount: number,
+  additionalSupport: number,
+  activationRateUpPermil: number,
+  forceOrderedReplay = false,
+): CompressedActiveAggregate {
+  // This is an independently callable oracle for the compressed state trace.
+  // It retains the compiled source-order scheduler, but deliberately expands
+  // every note into the reference `sum += contribution` recurrence.  It is
+  // used by the bulk-parity harness, not as a production fallback reason.
+  if (forceOrderedReplay) {
+    return orderedReplayCompressedActiveInterval(
+      trace,
+      noteCount,
+      additionalSupport,
+      activationRateUpPermil,
+      null,
+    );
+  }
+  const state = new Float64Array(30);
+  const verificationState = new Float64Array(30);
+  const centralValues = new Float64Array(5);
+  const centralProbabilities = new Float64Array(5);
+  const expectedOrder = new Uint8Array(5);
+  const verificationCentralValues = new Float64Array(5);
+  const verificationCentralProbabilities = new Float64Array(5);
+  const verificationExpectedOrder = new Uint8Array(5);
+  let lower: Binary64Enclosure = pointBinary64Enclosure(0);
+  let central: Binary64Enclosure = pointBinary64Enclosure(0);
+  let upper: Binary64Enclosure = pointBinary64Enclosure(0);
+  let certifiedRunCount = 0;
+  for (const run of trace.runs) {
+    const contribution = fillCompressedActiveState(
+      trace,
+      run.startInclusive,
+      additionalSupport,
+      activationRateUpPermil,
+      state,
+      centralValues,
+      centralProbabilities,
+      expectedOrder,
+    );
+    const expectedContribution = run.multiplicity === 1
+      ? contribution
+      : fillCompressedActiveState(
+          trace,
+          run.endExclusive - 1,
+          additionalSupport,
+          activationRateUpPermil,
+          verificationState,
+          verificationCentralValues,
+          verificationCentralProbabilities,
+          verificationExpectedOrder,
+        );
+    const lowerRun = transformRepeatedBinary64Addition({
+      incoming: lower,
+      contribution: contribution[0],
+      expectedContribution: expectedContribution[0],
+      multiplicity: run.multiplicity,
+    });
+    const centralRun = transformRepeatedBinary64Addition({
+      incoming: central,
+      contribution: contribution[1],
+      expectedContribution: expectedContribution[1],
+      multiplicity: run.multiplicity,
+    });
+    const upperRun = transformRepeatedBinary64Addition({
+      incoming: upper,
+      contribution: contribution[2],
+      expectedContribution: expectedContribution[2],
+      multiplicity: run.multiplicity,
+    });
+    if (lowerRun.kind === "ordered-replay-required") {
+      return orderedReplayCompressedActiveInterval(
         trace,
-        end,
+        noteCount,
         additionalSupport,
         activationRateUpPermil,
-        nextState,
-        nextCentralValues,
-        nextCentralProbabilities,
-        nextExpectedOrder,
+        lowerRun.fallbackReason,
       );
-      if (!equalCompressedActiveState(state, nextState)) break;
-      end += 1;
     }
-    // Deliberately retain each source-order addition.  Multiplying a run by
-    // its multiplicity or reducing runs in parallel would change IEEE-754
-    // rounding and is rejected by the compression admissibility gate.
-    for (let noteIndex = start; noteIndex < end; noteIndex += 1) {
-      lower += contribution[0];
-      central += contribution[1];
-      upper += contribution[2];
+    if (centralRun.kind === "ordered-replay-required") {
+      return orderedReplayCompressedActiveInterval(
+        trace,
+        noteCount,
+        additionalSupport,
+        activationRateUpPermil,
+        centralRun.fallbackReason,
+      );
     }
-    stateRuns += 1;
-    start = end;
+    if (upperRun.kind === "ordered-replay-required") {
+      return orderedReplayCompressedActiveInterval(
+        trace,
+        noteCount,
+        additionalSupport,
+        activationRateUpPermil,
+        upperRun.fallbackReason,
+      );
+    }
+    lower = lowerRun.enclosure;
+    central = centralRun.enclosure;
+    upper = upperRun.enclosure;
+    certifiedRunCount += 1;
   }
-  return { value: interval(lower / noteCount, central / noteCount, upper / noteCount), stateRuns };
+  const lowerAverage = outwardBinary64DividePositive(lower, noteCount);
+  const centralAverage = outwardBinary64DividePositive(central, noteCount);
+  const upperAverage = outwardBinary64DividePositive(upper, noteCount);
+  if (!lowerAverage || !centralAverage || !upperAverage) {
+    return orderedReplayCompressedActiveInterval(
+      trace,
+      noteCount,
+      additionalSupport,
+      activationRateUpPermil,
+      "interval-width-overflow",
+    );
+  }
+  const canonical = certifyCanonicalUtilityInterval({
+    lower: lowerAverage,
+    central: centralAverage,
+    upper: upperAverage,
+  });
+  if (canonical.kind === "ordered-replay-required") {
+    return orderedReplayCompressedActiveInterval(
+      trace,
+      noteCount,
+      additionalSupport,
+      activationRateUpPermil,
+      canonical.fallbackReason,
+    );
+  }
+  return {
+    value: canonical.value,
+    stateRuns: trace.runs.length,
+    bulk: {
+      methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+      mode: "bulk-certified-reference-equivalent",
+      finalCanonical: "not-attempted",
+      certifiedRunCount,
+      orderedReplayRunCount: 0,
+      fallbackReason: null,
+    },
+    outputEnclosure: canonical.enclosure,
+  };
+}
+
+type CentralCompressedActiveAggregate =
+  | Readonly<{
+      kind: "bulk-certified-reference-equivalent";
+      value: number;
+      stateRuns: number;
+      certifiedRunCount: number;
+    }>
+  | Readonly<{
+      kind: "ordered-replay-required";
+      fallbackReason: ExactOptimizerBulkFallbackReason;
+      stateRuns: number;
+    }>;
+
+function orderedFiniteInterval(value: UtilityInterval): boolean {
+  return (
+    Number.isFinite(value.lower) &&
+    Number.isFinite(value.central) &&
+    Number.isFinite(value.upper) &&
+    !Object.is(value.lower, -0) &&
+    !Object.is(value.central, -0) &&
+    !Object.is(value.upper, -0) &&
+    value.lower <= value.central &&
+    value.central <= value.upper
+  );
+}
+
+/**
+ * Central B2 needs only the expected-maximum branch.  The interval-order
+ * precondition below is the proof that native `interval()` cannot clamp that
+ * central value: every selected Active/support interval is ordered and every
+ * contribution is non-negative, so lower <= central <= upper is preserved by
+ * source-order addition, division, positive scaling, and final addition.
+ */
+function centralBulkPrecondition(
+  trace: CompiledActiveTrace,
+  profiles: readonly ActiveProfile[],
+  baseTotal: number,
+  parameterEffects: UtilityInterval,
+): ExactOptimizerBulkFallbackReason | null {
+  if (!Number.isFinite(baseTotal) || baseTotal <= 0 || Object.is(baseTotal, -0)) {
+    return "unsupported-operation-path";
+  }
+  if (!orderedFiniteInterval(parameterEffects)) return "unsupported-operation-path";
+  if (trace.runs.length === 0 || trace.profiles.length !== 5) return "unsupported-operation-path";
+  for (const profile of profiles) {
+    if (!orderedFiniteInterval(profile.support) || !orderedFiniteInterval(profile.fullComboSelection)) {
+      return "unsupported-operation-path";
+    }
+    if (profile.support.lower < -1_000 || profile.fullComboSelection.lower < 0) {
+      return "unsupported-operation-path";
+    }
+  }
+  for (const selections of trace.selectionsByMember) {
+    for (const selection of selections.selections) {
+      if (!orderedFiniteInterval(selection) || selection.lower < 0) {
+        return "unsupported-operation-path";
+      }
+    }
+  }
+  return null;
+}
+
+function fillCompressedActiveCentralState(
+  trace: CompiledActiveTrace,
+  noteIndex: number,
+  additionalSupport: number,
+  activationRateUpPermil: number,
+  centralValues: Float64Array,
+  centralProbabilities: Float64Array,
+  expectedOrder: Uint8Array,
+): number {
+  for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
+    const profile = trace.profiles[memberIndex]!;
+    const selection = trace.selectionsByMember[memberIndex]!;
+    const selected = selection.selections[selection.selectionIndexByNote[noteIndex]!]!;
+    const checkCount = trace.checkCountsByMember[memberIndex]![noteIndex]!;
+    const centralProbability = activeProbabilityForCheckCount(
+      checkCount,
+      profile.skill.activationProbabilityPermil!,
+      activationRateUpPermil,
+    );
+    const centralValue =
+      (selected.central * (1_000 + profile.support.central + additionalSupport)) / 1_000;
+    if (!Number.isFinite(centralProbability) || !Number.isFinite(centralValue) || centralValue < 0) {
+      return Number.NaN;
+    }
+    centralValues[memberIndex] = centralValue;
+    centralProbabilities[memberIndex] = centralProbability;
+  }
+  return expectedMaximumFive(centralValues, centralProbabilities, expectedOrder);
+}
+
+function aggregateCompressedActiveCentral(
+  trace: CompiledActiveTrace,
+  noteCount: number,
+  additionalSupport: number,
+  activationRateUpPermil: number,
+): CentralCompressedActiveAggregate {
+  const centralValues = new Float64Array(5);
+  const centralProbabilities = new Float64Array(5);
+  const expectedOrder = new Uint8Array(5);
+  const verificationCentralValues = new Float64Array(5);
+  const verificationCentralProbabilities = new Float64Array(5);
+  const verificationExpectedOrder = new Uint8Array(5);
+  let sum = pointBinary64Enclosure(0);
+  let certifiedRunCount = 0;
+  for (const run of trace.runs) {
+    const contribution = fillCompressedActiveCentralState(
+      trace,
+      run.startInclusive,
+      additionalSupport,
+      activationRateUpPermil,
+      centralValues,
+      centralProbabilities,
+      expectedOrder,
+    );
+    const expectedContribution = run.multiplicity === 1
+      ? contribution
+      : fillCompressedActiveCentralState(
+          trace,
+          run.endExclusive - 1,
+          additionalSupport,
+          activationRateUpPermil,
+          verificationCentralValues,
+          verificationCentralProbabilities,
+          verificationExpectedOrder,
+        );
+    const transformed = transformRepeatedBinary64Addition({
+      incoming: sum,
+      contribution,
+      expectedContribution,
+      multiplicity: run.multiplicity,
+    });
+    if (transformed.kind === "ordered-replay-required") {
+      return {
+        kind: "ordered-replay-required",
+        fallbackReason: transformed.fallbackReason,
+        stateRuns: trace.runs.length,
+      };
+    }
+    sum = transformed.enclosure;
+    certifiedRunCount += 1;
+  }
+  const average = outwardBinary64DividePositive(sum, noteCount);
+  if (!average) {
+    return {
+      kind: "ordered-replay-required",
+      fallbackReason: "interval-width-overflow",
+      stateRuns: trace.runs.length,
+    };
+  }
+  const canonical = certifyCanonicalMicroUnitEnclosure(average);
+  if (canonical.kind === "ordered-replay-required") {
+    return {
+      kind: "ordered-replay-required",
+      fallbackReason: canonical.fallbackReason,
+      stateRuns: trace.runs.length,
+    };
+  }
+  return {
+    kind: "bulk-certified-reference-equivalent",
+    value: fromCanonicalMicroUnits(canonical.canonicalMicroUnits),
+    stateRuns: trace.runs.length,
+    certifiedRunCount,
+  };
 }
 
 function noteActiveStates(
@@ -1218,6 +1610,247 @@ function scaledInterval(source: RawInterval, scale: number): UtilityInterval {
   );
 }
 
+type EnclosedUtilityInterval = Readonly<{
+  value: UtilityInterval;
+  enclosure: Readonly<{
+    lower: Binary64Enclosure;
+    central: Binary64Enclosure;
+    upper: Binary64Enclosure;
+  }>;
+}>;
+
+type NativeBulkPostActiveProof = Readonly<{
+  kind: "bulk-certified-reference-equivalent";
+  scoreSupportSpecialPermil: UtilityInterval;
+  activationRateSpecialPermil: UtilityInterval;
+  specialPermil: UtilityInterval;
+  activeUnits: UtilityInterval;
+  scoreSupportSpecialUnits: UtilityInterval;
+  activationRateSpecialUnits: UtilityInterval;
+  specialUnits: UtilityInterval;
+  relativeUtility: UtilityInterval;
+}>;
+
+function isOrderedReplayProof(
+  value: EnclosedUtilityInterval | OrderedReplayRequired,
+): value is OrderedReplayRequired {
+  return "kind" in value && value.kind === "ordered-replay-required";
+}
+
+function bulkPostActiveFallback(
+  fallbackReason: ExactOptimizerBulkFallbackReason,
+): OrderedReplayRequired {
+  return { kind: "ordered-replay-required", fallbackReason, enclosure: null };
+}
+
+function pointUtilityEnclosure(value: UtilityInterval): Readonly<{
+  lower: Binary64Enclosure;
+  central: Binary64Enclosure;
+  upper: Binary64Enclosure;
+}> {
+  return pointOutputEnclosure(value);
+}
+
+function pointOrOutwardBinary64(
+  left: Binary64Enclosure,
+  right: Binary64Enclosure,
+  exact: (left: number, right: number) => number,
+  outward: (left: Binary64Enclosure, right: Binary64Enclosure) => Binary64Enclosure | null,
+): Binary64Enclosure | null {
+  if (Object.is(left.lower, left.upper) && Object.is(right.lower, right.upper)) {
+    const value = exact(left.lower, right.lower);
+    return Number.isFinite(value) && !Object.is(value, -0) ? pointBinary64Enclosure(value) : null;
+  }
+  return outward(left, right);
+}
+
+function proofAdd(left: Binary64Enclosure, right: Binary64Enclosure): Binary64Enclosure | null {
+  return pointOrOutwardBinary64(left, right, (a, b) => a + b, outwardBinary64Add);
+}
+
+function proofSubtract(left: Binary64Enclosure, right: Binary64Enclosure): Binary64Enclosure | null {
+  return pointOrOutwardBinary64(left, right, (a, b) => a - b, outwardBinary64Subtract);
+}
+
+function proofMultiply(left: Binary64Enclosure, right: Binary64Enclosure): Binary64Enclosure | null {
+  return pointOrOutwardBinary64(left, right, (a, b) => a * b, outwardBinary64Multiply);
+}
+
+function proofDividePositive(source: Binary64Enclosure, divisor: number): Binary64Enclosure | null {
+  if (Object.is(source.lower, source.upper)) {
+    const value = source.lower / divisor;
+    return Number.isFinite(value) && !Object.is(value, -0) ? pointBinary64Enclosure(value) : null;
+  }
+  return outwardBinary64DividePositive(source, divisor);
+}
+
+function proofMax(left: Binary64Enclosure, right: Binary64Enclosure): Binary64Enclosure | null {
+  return pointOrOutwardBinary64(left, right, Math.max, outwardBinary64Max);
+}
+
+function proofMin(left: Binary64Enclosure, right: Binary64Enclosure): Binary64Enclosure | null {
+  return pointOrOutwardBinary64(left, right, Math.min, outwardBinary64Min);
+}
+
+function proofUtilityInterval(
+  lower: Binary64Enclosure,
+  central: Binary64Enclosure,
+  upper: Binary64Enclosure,
+): EnclosedUtilityInterval | OrderedReplayRequired {
+  const certified = certifyCanonicalUtilityInterval({ lower, central, upper });
+  if (certified.kind === "ordered-replay-required") return certified;
+  return {
+    value: certified.value,
+    // `interval()` returns `microUnits / 1e6`; after a singleton proof those
+    // are exact point inputs to every later source-order operation.
+    enclosure: pointUtilityEnclosure(certified.value),
+  };
+}
+
+function proofScaledInterval(
+  source: EnclosedUtilityInterval,
+  scale: number,
+): EnclosedUtilityInterval | OrderedReplayRequired {
+  const scaleEnclosure = pointBinary64Enclosure(scale);
+  const thousand = 1_000;
+  const lower = proofMultiply(source.enclosure.lower, scaleEnclosure);
+  const central = proofMultiply(source.enclosure.central, scaleEnclosure);
+  const upper = proofMultiply(source.enclosure.upper, scaleEnclosure);
+  if (!lower || !central || !upper) return bulkPostActiveFallback("interval-width-overflow");
+  const lowerScaled = proofDividePositive(lower, thousand);
+  const centralScaled = proofDividePositive(central, thousand);
+  const upperScaled = proofDividePositive(upper, thousand);
+  if (!lowerScaled || !centralScaled || !upperScaled) {
+    return bulkPostActiveFallback("interval-width-overflow");
+  }
+  return proofUtilityInterval(lowerScaled, centralScaled, upperScaled);
+}
+
+function proofSpecialInterval(
+  centralDifference: Binary64Enclosure,
+  upperDifference: Binary64Enclosure,
+): EnclosedUtilityInterval | OrderedReplayRequired {
+  const zero = pointBinary64Enclosure(0);
+  const central = proofMax(zero, centralDifference);
+  const upper = proofMax(centralDifference, upperDifference);
+  if (!central || !upper) return bulkPostActiveFallback("interval-width-overflow");
+  return proofUtilityInterval(zero, central, upper);
+}
+
+/**
+ * Continue the bulk enclosure after the three Active averages. This mirrors
+ * native-utility's source-order Special subtraction/max branches, every
+ * `interval()` clamp, base-parameter scaling, parameter-effect addition, and
+ * final six-decimal boundary. It exists so an Active-average singleton alone
+ * is never treated as a final utility certificate.
+ */
+export function proveNativeBulkPostActiveCanonical(input: Readonly<{
+  baseTotal: number;
+  parameterEffects: UtilityInterval;
+  activePermil: UtilityInterval;
+  activeWithSpecialSupportPermil: UtilityInterval;
+  activeWithSpecialPermil: UtilityInterval;
+}>): NativeBulkPostActiveProof | OrderedReplayRequired {
+  const active = { value: input.activePermil, enclosure: pointUtilityEnclosure(input.activePermil) };
+  const support = {
+    value: input.activeWithSpecialSupportPermil,
+    enclosure: pointUtilityEnclosure(input.activeWithSpecialSupportPermil),
+  };
+  const special = {
+    value: input.activeWithSpecialPermil,
+    enclosure: pointUtilityEnclosure(input.activeWithSpecialPermil),
+  };
+  const scoreSupportCentralDifference = proofSubtract(
+    support.enclosure.central,
+    active.enclosure.central,
+  );
+  const scoreSupportUpperDifference = proofSubtract(
+    support.enclosure.upper,
+    active.enclosure.upper,
+  );
+  const activationCentralDifference = proofSubtract(
+    special.enclosure.central,
+    support.enclosure.central,
+  );
+  const activationUpperDifference = proofSubtract(
+    special.enclosure.upper,
+    support.enclosure.upper,
+  );
+  const specialCentralDifference = proofSubtract(
+    special.enclosure.central,
+    active.enclosure.central,
+  );
+  const specialUpperDifference = proofSubtract(
+    special.enclosure.upper,
+    active.enclosure.upper,
+  );
+  if (
+    !scoreSupportCentralDifference ||
+    !scoreSupportUpperDifference ||
+    !activationCentralDifference ||
+    !activationUpperDifference ||
+    !specialCentralDifference ||
+    !specialUpperDifference
+  ) {
+    return bulkPostActiveFallback("interval-width-overflow");
+  }
+  const scoreSupportSpecialPermil = proofSpecialInterval(
+    scoreSupportCentralDifference,
+    scoreSupportUpperDifference,
+  );
+  if (isOrderedReplayProof(scoreSupportSpecialPermil)) return scoreSupportSpecialPermil;
+  const activationRateSpecialPermil = proofSpecialInterval(
+    activationCentralDifference,
+    activationUpperDifference,
+  );
+  if (isOrderedReplayProof(activationRateSpecialPermil)) return activationRateSpecialPermil;
+  const specialPermil = proofSpecialInterval(specialCentralDifference, specialUpperDifference);
+  if (isOrderedReplayProof(specialPermil)) return specialPermil;
+
+  const activeUnits = proofScaledInterval(active, input.baseTotal);
+  if (isOrderedReplayProof(activeUnits)) return activeUnits;
+  const scoreSupportSpecialUnits = proofScaledInterval(scoreSupportSpecialPermil, input.baseTotal);
+  if (isOrderedReplayProof(scoreSupportSpecialUnits)) return scoreSupportSpecialUnits;
+  const activationRateSpecialUnits = proofScaledInterval(activationRateSpecialPermil, input.baseTotal);
+  if (isOrderedReplayProof(activationRateSpecialUnits)) return activationRateSpecialUnits;
+  const specialUnits = proofScaledInterval(specialPermil, input.baseTotal);
+  if (isOrderedReplayProof(specialUnits)) return specialUnits;
+
+  const base = pointBinary64Enclosure(input.baseTotal);
+  const parameterEffects = pointUtilityEnclosure(input.parameterEffects);
+  const lowerBaseAndParameter = proofAdd(base, parameterEffects.lower);
+  const centralBaseAndParameter = proofAdd(base, parameterEffects.central);
+  const upperBaseAndParameter = proofAdd(base, parameterEffects.upper);
+  if (!lowerBaseAndParameter || !centralBaseAndParameter || !upperBaseAndParameter) {
+    return bulkPostActiveFallback("interval-width-overflow");
+  }
+  const lowerWithActive = proofAdd(lowerBaseAndParameter, activeUnits.enclosure.lower);
+  const centralWithActive = proofAdd(centralBaseAndParameter, activeUnits.enclosure.central);
+  const upperWithActive = proofAdd(upperBaseAndParameter, activeUnits.enclosure.upper);
+  if (!lowerWithActive || !centralWithActive || !upperWithActive) {
+    return bulkPostActiveFallback("interval-width-overflow");
+  }
+  const lowerFinal = proofAdd(lowerWithActive, specialUnits.enclosure.lower);
+  const centralFinal = proofAdd(centralWithActive, specialUnits.enclosure.central);
+  const upperFinal = proofAdd(upperWithActive, specialUnits.enclosure.upper);
+  if (!lowerFinal || !centralFinal || !upperFinal) {
+    return bulkPostActiveFallback("interval-width-overflow");
+  }
+  const relativeUtility = proofUtilityInterval(lowerFinal, centralFinal, upperFinal);
+  if (isOrderedReplayProof(relativeUtility)) return relativeUtility;
+  return {
+    kind: "bulk-certified-reference-equivalent",
+    scoreSupportSpecialPermil: scoreSupportSpecialPermil.value,
+    activationRateSpecialPermil: activationRateSpecialPermil.value,
+    specialPermil: specialPermil.value,
+    activeUnits: activeUnits.value,
+    scoreSupportSpecialUnits: scoreSupportSpecialUnits.value,
+    activationRateSpecialUnits: activationRateSpecialUnits.value,
+    specialUnits: specialUnits.value,
+    relativeUtility: relativeUtility.value,
+  };
+}
+
 function assumptions(input: NativeUtilityInput): UtilityAssumption[] {
   return [
     {
@@ -1310,6 +1943,7 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
   input: NativeUtilityInput,
   intrinsic: NativeUtilityTeamIntrinsic,
   forceUncompressed = false,
+  forceOrderedStateRuns = false,
 ): NativeUtilityTraceEvaluation {
   assertInputBoundary(input);
   const chart = aggregateChartByKey.get(input.chartKey);
@@ -1372,28 +2006,82 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
   let activeWithSpecialSupportPermil: RawInterval;
   let activeWithSpecialPermil: RawInterval;
   let activeTraceExecution: NativeActiveTraceExecution;
+  let bulkPostActiveProof: NativeBulkPostActiveProof | null = null;
   if (
     !forceUncompressed &&
     activeTrace.supported &&
     specialSupport !== null &&
     specialActivationRate !== null
   ) {
-    const base = aggregateCompressedActiveInterval(activeTrace, notes.length, 0, 0);
-    const supportPass = aggregateCompressedActiveInterval(
+    let base = aggregateCompressedActiveInterval(
+      activeTrace,
+      notes.length,
+      0,
+      0,
+      forceOrderedStateRuns,
+    );
+    let supportPass = aggregateCompressedActiveInterval(
       activeTrace,
       notes.length,
       specialSupport,
       0,
+      forceOrderedStateRuns,
     );
-    const specialPass = aggregateCompressedActiveInterval(
+    let specialPass = aggregateCompressedActiveInterval(
       activeTrace,
       notes.length,
       specialSupport,
       specialActivationRate,
+      forceOrderedStateRuns,
     );
     activePermil = base.value;
     activeWithSpecialSupportPermil = supportPass.value;
     activeWithSpecialPermil = specialPass.value;
+    const allPassesBulkCertified =
+      base.bulk.mode === "bulk-certified-reference-equivalent" &&
+      supportPass.bulk.mode === "bulk-certified-reference-equivalent" &&
+      specialPass.bulk.mode === "bulk-certified-reference-equivalent";
+    let finalBulkFallbackReason: ExactOptimizerBulkFallbackReason | null = null;
+    if (allPassesBulkCertified) {
+      const postActiveProof = proveNativeBulkPostActiveCanonical({
+        baseTotal,
+        parameterEffects: parameterEffects.relativeUnits,
+        activePermil,
+        activeWithSpecialSupportPermil,
+        activeWithSpecialPermil,
+      });
+      if (postActiveProof.kind === "ordered-replay-required") {
+        finalBulkFallbackReason = postActiveProof.fallbackReason;
+        // The proof became ambiguous only after later source-order arithmetic.
+        // Replay the three Active components, not the complete formation.
+        base = orderedReplayCompressedActiveInterval(
+          activeTrace,
+          notes.length,
+          0,
+          0,
+          postActiveProof.fallbackReason,
+        );
+        supportPass = orderedReplayCompressedActiveInterval(
+          activeTrace,
+          notes.length,
+          specialSupport,
+          0,
+          postActiveProof.fallbackReason,
+        );
+        specialPass = orderedReplayCompressedActiveInterval(
+          activeTrace,
+          notes.length,
+          specialSupport,
+          specialActivationRate,
+          postActiveProof.fallbackReason,
+        );
+        activePermil = base.value;
+        activeWithSpecialSupportPermil = supportPass.value;
+        activeWithSpecialPermil = specialPass.value;
+      } else {
+        bulkPostActiveProof = postActiveProof;
+      }
+    }
     activeTraceExecution = {
       mode: "trace-preserving-state-runs",
       noteCount: notes.length,
@@ -1401,6 +2089,34 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
       specialSupportStateRuns: supportPass.stateRuns,
       specialStateRuns: specialPass.stateRuns,
       fallbackReason: null,
+      bulk: {
+        methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+        mode:
+          base.bulk.mode === "bulk-certified-reference-equivalent" &&
+          supportPass.bulk.mode === "bulk-certified-reference-equivalent" &&
+          specialPass.bulk.mode === "bulk-certified-reference-equivalent"
+            ? "bulk-certified-reference-equivalent"
+            : "ordered-replay",
+        finalCanonical:
+          bulkPostActiveProof !== null
+            ? "bulk-certified-reference-equivalent"
+            : finalBulkFallbackReason !== null
+              ? "ordered-replay"
+              : "not-attempted",
+        certifiedRunCount:
+          base.bulk.certifiedRunCount +
+          supportPass.bulk.certifiedRunCount +
+          specialPass.bulk.certifiedRunCount,
+        orderedReplayRunCount:
+          base.bulk.orderedReplayRunCount +
+          supportPass.bulk.orderedReplayRunCount +
+          specialPass.bulk.orderedReplayRunCount,
+        fallbackReason:
+          finalBulkFallbackReason ??
+          base.bulk.fallbackReason ??
+          supportPass.bulk.fallbackReason ??
+          specialPass.bulk.fallbackReason,
+      },
     };
   } else {
     fallbackStates = noteActiveStates(notes, activeProfiles, legal, song);
@@ -1437,6 +2153,14 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
             (specialSupport === null
               ? "special-support-is-not-constant-by-note"
               : "activation-rate-window-is-not-full-chart"),
+      bulk: {
+        methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+        mode: "not-attempted",
+        finalCanonical: "not-attempted",
+        certifiedRunCount: 0,
+        orderedReplayRunCount: 0,
+        fallbackReason: null,
+      },
     };
   }
   const scoreSupportSpecialPermil = interval(
@@ -1482,6 +2206,22 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
       activeUnits.upper +
       specialUnits.upper,
   );
+  if (bulkPostActiveProof) {
+    const sameInterval = (left: UtilityInterval, right: UtilityInterval): boolean =>
+      left.lower === right.lower && left.central === right.central && left.upper === right.upper;
+    if (
+      !sameInterval(scoreSupportSpecialPermil, bulkPostActiveProof.scoreSupportSpecialPermil) ||
+      !sameInterval(activationRateSpecialPermil, bulkPostActiveProof.activationRateSpecialPermil) ||
+      !sameInterval(specialPermil, bulkPostActiveProof.specialPermil) ||
+      !sameInterval(activeUnits, bulkPostActiveProof.activeUnits) ||
+      !sameInterval(scoreSupportSpecialUnits, bulkPostActiveProof.scoreSupportSpecialUnits) ||
+      !sameInterval(activationRateSpecialUnits, bulkPostActiveProof.activationRateSpecialUnits) ||
+      !sameInterval(specialUnits, bulkPostActiveProof.specialUnits) ||
+      !sameInterval(relativeUtility, bulkPostActiveProof.relativeUtility)
+    ) {
+      throw new Error("Bulk post-Active proof diverged from the ordered native arithmetic path");
+    }
+  }
 
   const activeByMember: ActiveMemberUtility[] = activeProfiles.map((profile, memberIndex) => {
     let averageProbability: number;
@@ -1645,6 +2385,198 @@ export function evaluateNativeRelativeUtilityWithCompiledTeam(
   return evaluateNativeRelativeUtilityWithIntrinsic(input, intrinsic);
 }
 
+/**
+ * Central-only B2 entrypoint. It intentionally returns no lower/upper tuple;
+ * callers may prune only on a strict certified central loss. Equality and
+ * finalist cases must promote to `evaluateNativeRelativeUtilityWithCompiledTeam`
+ * for B3 materialization.
+ */
+export function evaluateNativeCentralUtilityWithCompiledTeam(
+  input: NativeUtilityInput,
+  intrinsic: NativeUtilityTeamIntrinsic,
+): NativeCentralUtilityTraceEvaluation {
+  const inputKey = teamIntrinsicKey(input.formation.members);
+  const intrinsicKey = teamIntrinsicKey(intrinsic.members);
+  if (inputKey !== intrinsicKey) {
+    throw new Error("Native utility compiled team does not match formation Members");
+  }
+  assertInputBoundary(input);
+  const chart = aggregateChartByKey.get(input.chartKey);
+  if (!chart) throw new Error(`Unknown exact aggregate chart context: ${input.chartKey}`);
+  const song = songById.get(chart.songId);
+  if (!song) throw new Error(`Chart ${chart.key} has no pinned song context`);
+  const legal = assertLegalFormation(input.formation);
+  const observation: TriggerObservation = {
+    combo: chart.fullComboNoteCount,
+    life: 1_000,
+    judgement: "perfect",
+    songSingerTalentIds: song.singerTalentIds,
+  };
+  const evaluator = evaluateFormation(input.formation, {
+    chart,
+    song,
+    policy: provisionalRuntimePolicy(input.seed, 1),
+    accountState: input.accountState,
+    observation,
+    runActiveSimulation: false,
+  });
+  const baseMembers = evaluator.members.map((member) => ({
+    cardId: member.cardId,
+    parameters: member.progression.parameters,
+    total:
+      member.progression.parameters.performance +
+      member.progression.parameters.technique +
+      member.progression.parameters.sense,
+  }));
+  const baseTotal = baseMembers.reduce((total, member) => total + member.total, 0);
+  const parameterEffects = compileParameterEffects(
+    evaluator,
+    baseMembers.map((member) => member.parameters),
+  );
+  const support = compilePersistentSupport(
+    evaluator,
+    baseMembers.map((member) => member.cardId),
+  );
+  const notes = uniformNotes(chart, song);
+  const activeProfiles = compileActiveProfiles(legal, evaluator, support, song, chart);
+  const specials = compileSpecials(notes, legal, evaluator, song);
+  const activeTrace = compileActiveTrace(
+    chart.key,
+    notes,
+    activeProfiles,
+    legal,
+    song,
+    intrinsic,
+  );
+  const specialSupport = constantByNote(specials.supportByNote);
+  const specialActivationRate = fullChartActivationRate(
+    specials.activationRateWindows,
+    song.playingMilliseconds,
+  );
+  const fallback = (
+    fallbackReason: ExactOptimizerBulkFallbackReason,
+    baseStateRuns = 0,
+    supportStateRuns = 0,
+    specialStateRuns = 0,
+  ): NativeCentralUtilityTraceEvaluation => ({
+    kind: "ordered-replay-required",
+    central: null,
+    fallbackReason,
+    activeTrace: {
+      mode: "uncompressed-fallback",
+      noteCount: notes.length,
+      baseStateRuns,
+      specialSupportStateRuns: supportStateRuns,
+      specialStateRuns,
+      fallbackReason,
+      bulk: {
+        methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+        mode: "not-attempted",
+        finalCanonical: "not-attempted",
+        certifiedRunCount: 0,
+        orderedReplayRunCount: 0,
+        fallbackReason,
+      },
+    },
+  });
+  if (!activeTrace.supported || specialSupport === null || specialActivationRate === null) {
+    return fallback("unsupported-operation-path");
+  }
+  const precondition = centralBulkPrecondition(
+    activeTrace,
+    activeProfiles,
+    baseTotal,
+    parameterEffects.relativeUnits,
+  );
+  if (precondition) return fallback(precondition);
+
+  const base = aggregateCompressedActiveCentral(activeTrace, notes.length, 0, 0);
+  if (base.kind === "ordered-replay-required") {
+    return fallback(base.fallbackReason, base.stateRuns);
+  }
+  const supportPass = aggregateCompressedActiveCentral(
+    activeTrace,
+    notes.length,
+    specialSupport,
+    0,
+  );
+  if (supportPass.kind === "ordered-replay-required") {
+    return fallback(supportPass.fallbackReason, base.stateRuns, supportPass.stateRuns);
+  }
+  const specialPass = aggregateCompressedActiveCentral(
+    activeTrace,
+    notes.length,
+    specialSupport,
+    specialActivationRate,
+  );
+  if (specialPass.kind === "ordered-replay-required") {
+    return fallback(
+      specialPass.fallbackReason,
+      base.stateRuns,
+      supportPass.stateRuns,
+      specialPass.stateRuns,
+    );
+  }
+
+  // This is the central-only source-order continuation. The precondition above
+  // proves that every corresponding `interval()` clamp is identity on central.
+  const scoreSupportSpecialPermil = round(Math.max(0, supportPass.value - base.value));
+  const activationRateSpecialPermil = round(Math.max(0, specialPass.value - supportPass.value));
+  const specialPermil = round(Math.max(0, specialPass.value - base.value));
+  const activeUnits = round((base.value * baseTotal) / 1_000);
+  const scoreSupportSpecialUnits = round((scoreSupportSpecialPermil * baseTotal) / 1_000);
+  const activationRateSpecialUnits = round((activationRateSpecialPermil * baseTotal) / 1_000);
+  const specialUnits = round((specialPermil * baseTotal) / 1_000);
+  const central = round(
+    baseTotal + parameterEffects.relativeUnits.central + activeUnits + specialUnits,
+  );
+  const finalCanonical = certifyCanonicalMicroUnitEnclosure(pointBinary64Enclosure(central));
+  if (finalCanonical.kind === "ordered-replay-required") {
+    return fallback(
+      finalCanonical.fallbackReason,
+      base.stateRuns,
+      supportPass.stateRuns,
+      specialPass.stateRuns,
+    );
+  }
+  // Keep otherwise-unused central Special components in the exact source order
+  // so a future refactor cannot silently omit their clamp/rounding boundary.
+  if (
+    !Number.isFinite(scoreSupportSpecialUnits) ||
+    !Number.isFinite(activationRateSpecialUnits) ||
+    !Number.isFinite(central)
+  ) {
+    return fallback(
+      "unsupported-nonfinite-value",
+      base.stateRuns,
+      supportPass.stateRuns,
+      specialPass.stateRuns,
+    );
+  }
+  return {
+    kind: "bulk-certified-reference-equivalent",
+    central: fromCanonicalMicroUnits(finalCanonical.canonicalMicroUnits),
+    fallbackReason: null,
+    activeTrace: {
+      mode: "trace-preserving-state-runs",
+      noteCount: notes.length,
+      baseStateRuns: base.stateRuns,
+      specialSupportStateRuns: supportPass.stateRuns,
+      specialStateRuns: specialPass.stateRuns,
+      fallbackReason: null,
+      bulk: {
+        methodologyVersion: "yd-exact-optimizer-bulk-accumulation-1.0.0",
+        mode: "bulk-certified-reference-equivalent",
+        finalCanonical: "bulk-certified-reference-equivalent",
+        certifiedRunCount:
+          base.certifiedRunCount + supportPass.certifiedRunCount + specialPass.certifiedRunCount,
+        orderedReplayRunCount: 0,
+        fallbackReason: null,
+      },
+    },
+  };
+}
+
 /** Exposes execution evidence while retaining the existing result contract. */
 export function evaluateNativeRelativeUtilityWithTrace(
   input: NativeUtilityInput,
@@ -1664,6 +2596,25 @@ export function evaluateNativeRelativeUtilityUncompressed(
     cachedNativeUtilityTeamIntrinsic(input.formation.members),
     true,
   ).result;
+}
+
+/**
+ * Independent ordered reference over the compiled state-run scheduler.
+ *
+ * Unlike the bulk evaluator this expands every scheduled note contribution
+ * through the native binary64 `sum += contribution` recurrence.  Unlike the
+ * uncompressed cross-check it still proves that run scheduling itself has not
+ * changed.  It exists for parity/research evidence and is not a pruning path.
+ */
+export function evaluateNativeRelativeUtilityWithOrderedStateRuns(
+  input: NativeUtilityInput,
+): NativeUtilityTraceEvaluation {
+  return evaluateNativeRelativeUtilityWithIntrinsic(
+    input,
+    cachedNativeUtilityTeamIntrinsic(input.formation.members),
+    false,
+    true,
+  );
 }
 
 export function evaluateNativeRelativeUtility(input: NativeUtilityInput): NativeUtilityResult {

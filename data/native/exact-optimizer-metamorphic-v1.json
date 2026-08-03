@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportId": "yd-exact-metamorphic-v1",
-  "generatedAt": "2026-08-02T10:32:00.280Z",
+  "generatedAt": "2026-08-03T13:43:16.597Z",
   "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
   "fixture": "data/native/exact-optimizer-reduced-parity-cases-v1.json",
   "checks": {
@@ -18,8 +18,8 @@
     "shardA": 112,
     "shardB": 112,
     "legalTeamSets": 56,
-    "exactLeafEvaluations": 17,
-    "prunedTeamSets": 39
+    "exactLeafEvaluations": 6,
+    "prunedTeamSets": 50
   },
   "serialWinner": {
     "key": "card-00039-5-uniq-0032-00|card-00004-5-uniq-0005-00|card-00005-5-uniq-0006-00|card-00016-5-uniq-0014-00|card-00018-5-uniq-0004-00|card-00039-5-uniq-0032-00",

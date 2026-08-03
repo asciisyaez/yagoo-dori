@@ -3,8 +3,10 @@ import { describe, expect, it } from "vitest";
 import {
   compileExactOptimizerTeam,
   crossCheckExactOptimizerTeamLeader,
+  evaluateExactOptimizerTeamLeaderCentral,
   evaluateExactOptimizerTeamLeader,
 } from "./exact-optimizer-kernel";
+import { canPruneByStrictCentralUpperBound } from "./exact-optimizer-arithmetic";
 
 const BOARD = {
   board: {
@@ -49,5 +51,29 @@ describe("exact optimizer trace kernel", () => {
     expect(first.execution.admissibility).toMatchObject({ admissible: true, reasons: [] });
     expect(first.execution.activeTrace.baseStateRuns).toBeGreaterThan(0);
     expect(second.canonicalUtility.central).toBeTypeOf("number");
+  });
+
+  it("keeps B2 central-only and promotes equality rather than pruning it", () => {
+    const team = compileExactOptimizerTeam({
+      memberCardIds: [...MEMBERS],
+      investmentLayer: "one-copy-maximum",
+    });
+    const input = {
+      team,
+      leaderOutfitCardId: "card-00001-5-uniq-0000-00",
+      chartKey: "m0206:expert",
+      seed: 0x5eed,
+      accountState: BOARD,
+    };
+    const central = evaluateExactOptimizerTeamLeaderCentral(input);
+    const full = evaluateExactOptimizerTeamLeader(input);
+
+    expect(central.kind).toBe("bulk-certified-reference-equivalent");
+    if (central.kind === "ordered-replay-required") return;
+    expect(central.centralMicroUnits).toBe(full.canonicalUtility.central);
+    expect("canonicalUtility" in central).toBe(false);
+    expect(
+      canPruneByStrictCentralUpperBound(central.centralMicroUnits, full.canonicalUtility.central),
+    ).toBe(false);
   });
 });

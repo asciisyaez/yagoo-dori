@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-optimizer-bulk-performance-v1",
+  "methodologyVersion": "yd-exact-optimizer-bulk-performance-1.0.0",
+  "sourceArtifacts": {
+    "bulkParityPath": "data/native/exact-optimizer-bulk-parity-v1.json",
+    "bulkParityEvidenceDigest": "320da206dbc4fa61a496565f6f0259e609e6e9f7deda80373e0c0925dba7529f",
+    "architectureRebaselinePath": "data/native/exact-optimizer-architecture-rebaseline-v1.json",
+    "architectureRebaselineDeterministicReportHash": "2cde48594359c44e94ed51aa51b9af0574fd9b9a7b8ececf6bd5177889951781",
+    "scopePath": "data/native/exact-optimizer-scope-v1.json",
+    "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871",
+    "retainedP95CostModelPath": "data/native/exact-optimizer-cost-model-v2.json",
+    "retainedP95CostModelReportHash": "728f3a6bed3ff93517db26043c8c38ea88d2cfaa1cea8e042bc58c5f39bd67d5"
+  },
+  "evidence": {
+    "syntheticBoundaryCorpus": {
+      "cases": 1000000,
+      "containmentFailures": 0,
+      "falseCertificates": 0,
+      "expectedFallbackFailures": 0,
+      "passed": true
+    },
+    "realCorpus": {
+      "cases": 100000,
+      "allFourWayParityComparisonsPassed": true,
+      "comparisons": {
+        "rustVsCorpus": 0,
+        "typescriptReferenceVsCorpus": 0,
+        "orderedStateRunsVsReference": 0,
+        "bulkVsOrderedStateRuns": 0,
+        "certifiedBulkVsReference": 0,
+        "certifiedCentralVsFull": 0
+      }
+    }
+  },
+  "fastPathCoverage": {
+    "target": {
+      "minimumRate": 0.999,
+      "label": "99.9% of complete real-corpus inputs"
+    },
+    "fullB3": {
+      "certified": 99287,
+      "orderedReplayRequired": 713,
+      "certificationRate": 0.99287,
+      "percentage": 99.287,
+      "fallbackReasons": {
+        "none": 99287,
+        "canonical-boundary-overlap": 713
+      },
+      "targetPassed": false
+    },
+    "centralB2": {
+      "certified": 99605,
+      "orderedReplayRequired": 395,
+      "certificationRate": 0.99605,
+      "percentage": 99.605,
+      "fallbackReasons": {
+        "canonical-boundary-overlap": 395
+      },
+      "targetPassed": false
+    }
+  },
+  "observedCorpusTiming": {
+    "scope": "100000 complete real inputs; elapsed totals include each named implementation only",
+    "acceptedPrimaryRuntimeObservation": {
+      "legacyVolatileReportHash": "be71471f245bf33e8aa6394441fba264507b3cb863b3c422303e9ef6fda971c5",
+      "orderedStateRunMilliseconds": 52363.324,
+      "fullBulkB3Milliseconds": 36345.89,
+      "centralB2Milliseconds": 24154.84,
+      "qualification": "Accepted primary full-run runtime observation. It is corroborated by the stable corpus evidence digest but is not used for the p95 full-scope projection."
+    },
+    "orderedStateRun": {
+      "milliseconds": 52363.324,
+      "millisecondsPerState": 0.52363324
+    },
+    "fullBulkB3": {
+      "milliseconds": 36345.89,
+      "millisecondsPerState": 0.3634589
+    },
+    "centralB2": {
+      "milliseconds": 24154.84,
+      "millisecondsPerState": 0.2415484
+    },
+    "corroboratingDuplicateRuntimeObservation": {
+      "legacyVolatileReportHash": "ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c",
+      "orderedStateRunMilliseconds": 64586.245,
+      "fullBulkB3Milliseconds": 43953.738,
+      "centralB2Milliseconds": 29754.372,
+      "qualification": "Same stable corpus evidence digest; distinct runtime observation retained for traceability only and not substituted for the accepted primary runtime observation."
+    },
+    "speedups": {
+      "centralB2VersusOrderedStateRun": 2.1678191203088075,
+      "fullBulkB3VersusOrderedStateRun": 1.4406945049357713
+    }
+  },
+  "experimentTargets": {
+    "fastPathCoverage": {
+      "targetRate": 0.999,
+      "fullB3Passed": false,
+      "centralB2Passed": false
+    },
+    "centralB2VersusOrderedStateRun": {
+      "targetSpeedup": 15,
+      "actualSpeedup": 2.1678191203088075,
+      "passed": false
+    },
+    "endToEndFlatAVersusOrderedB3Reference": {
+      "targetSpeedup": 8,
+      "actualSpeedup": 1.4870995966623273,
+      "passed": false,
+      "scope": "identical 32 candidate-pair x 30 chart workload; p50 wall-clock ratio"
+    }
+  },
+  "identicalScopeArchitectureRebaseline": {
+    "workload": {
+      "candidateSelection": "first eight distinct canonical Member tuples and first four canonical Leader IDs from the pinned 100k parity corpus; cross-product sorted by canonical candidate key",
+      "teams": [
+        [
+          "card-00021-4-cmmn-0000-00",
+          "card-00034-5-uniq-0027-00",
+          "card-00037-5-uniq-0030-00",
+          "card-00039-4-cmmn-0000-00",
+          "card-06003-4-cmmn-0000-00"
+        ],
+        [
+          "card-00013-5-uniq-0002-00",
+          "card-00037-5-uniq-0030-00",
+          "card-04003-4-cmmn-0000-00",
+          "card-04010-4-cmmn-0000-00",
+          "card-06003-5-uniq-0059-00"
+        ],
+        [
+          "card-00030-5-uniq-0024-00",
+          "card-00036-4-cmmn-0000-00",
+          "card-03009-4-cmmn-0000-00",
+          "card-04002-5-uniq-0043-00",
+          "card-06003-5-uniq-0059-00"
+        ],
+        [
+          "card-00014-4-cmmn-0000-00",
+          "card-00019-4-cmmn-0000-00",
+          "card-00022-5-uniq-0063-00",
+          "card-00032-4-cmmn-0000-00",
+          "card-04016-5-uniq-0055-00"
+        ],
+        [
+          "card-00004-4-cmmn-0000-00",
+          "card-03007-5-uniq-0039-00",
+          "card-03009-4-cmmn-0000-00",
+          "card-04010-5-uniq-0049-00",
+          "card-04015-4-cmmn-0000-00"
+        ],
+        [
+          "card-00006-5-uniq-0007-00",
+          "card-00017-4-cmmn-0000-00",
+          "card-03003-4-cmmn-0000-00",
+          "card-03007-4-cmmn-0000-00",
+          "card-06003-5-uniq-0059-00"
+        ],
+        [
+          "card-00007-4-cmmn-0000-00",
+          "card-00013-5-uniq-0002-00",
+          "card-00018-5-uniq-0004-00",
+          "card-00022-5-uniq-0063-00",
+          "card-06004-5-uniq-0060-00"
+        ],
+        [
+          "card-00032-4-cmmn-0000-00",
+          "card-03005-4-cmmn-0000-00",
+          "card-03008-4-cmmn-0000-00",
+          "card-04016-4-cmmn-0000-00",
+          "card-06003-5-uniq-0059-00"
+        ]
+      ],
+      "leaders": [
+        "card-00001-4-cmmn-0000-00",
+        "card-00001-5-uniq-0000-00",
+        "card-00002-4-cmmn-0000-00",
+        "card-00002-5-uniq-0001-00"
+      ],
+      "incumbent": {
+        "leaderCardId": "card-00001-4-cmmn-0000-00",
+        "memberCardIds": [
+          "card-00004-4-cmmn-0000-00",
+          "card-03007-5-uniq-0039-00",
+          "card-03009-4-cmmn-0000-00",
+          "card-04010-5-uniq-0049-00",
+          "card-04015-4-cmmn-0000-00"
+        ]
+      },
+      "chartKeys": [
+        "m0004:expert",
+        "m0012:expert",
+        "m0032:expert",
+        "m0033:expert",
+        "m0038:expert",
+        "m0058:expert",
+        "m0063:expert",
+        "m0074:expert",
+        "m0095:expert",
+        "m0121:expert",
+        "m0131:expert",
+        "m0133:expert",
+        "m0149:expert",
+        "m0181:expert",
+        "m0186:expert",
+        "m0188:expert",
+        "m0198:expert",
+        "m0201:expert",
+        "m0206:expert",
+        "m0300:expert",
+        "m0302:expert",
+        "m0308:expert",
+        "m0309:expert",
+        "m0310:expert",
+        "m0311:expert",
+        "m0312:expert",
+        "m0329:expert",
+        "m0330:expert",
+        "m0337:expert",
+        "m0524:expert"
+      ],
+      "chartCount": 30,
+      "candidatePairs": 32,
+      "declaredChartStates": 960,
+      "workloadHash": "f8f6ae427b94e824c72c9b6b38957e6268b6194f257fcc2c00ddb309ab683cb6"
+    },
+    "measurementProtocol": {
+      "serialWarmupRunsPerPath": 1,
+      "serialMeasuredRepeatsPerPath": 5,
+      "commonUnit": "one fixed 32 candidate-pair × 30 chart workload (960 declared chart states)",
+      "serialOrderPerRepeat": [
+        "ordered-state B3 reference",
+        "A",
+        "B",
+        "C"
+      ],
+      "percentileMethod": "nearest-rank",
+      "allocationTelemetry": "Exact allocation counters are unavailable without an instrumentation build; process heap/RSS snapshots are recorded as diagnostics."
+    },
+    "orderedB3Reference": {
+      "elapsedMilliseconds": 557.472,
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 557.472099999999,
+          "p95": 601.8635999999988,
+          "worst": 601.8635999999988,
+          "best": 540.9905000000003,
+          "mean": 562.7549199999996,
+          "values": [
+            540.9905000000003,
+            553.8033999999998,
+            557.472099999999,
+            559.6450000000004,
+            601.8635999999988
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 547,
+            "p95": 578,
+            "worst": 578
+          },
+          "system": {
+            "p50": 63,
+            "p95": 125,
+            "worst": 125
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 442884096,
+          "maximumObservedHeapUsedBytes": 236956272,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 626688,
+              "heapUsed": -7996424,
+              "external": 29886,
+              "arrayBuffers": 29846
+            },
+            {
+              "rss": 1032192,
+              "heapUsed": -16079216,
+              "external": 33740,
+              "arrayBuffers": 33740
+            },
+            {
+              "rss": 253952,
+              "heapUsed": -16890744,
+              "external": 46050,
+              "arrayBuffers": 46050
+            },
+            {
+              "rss": 1421312,
+              "heapUsed": -11581920,
+              "external": 66835,
+              "arrayBuffers": 66835
+            },
+            {
+              "rss": 1589248,
+              "heapUsed": -16571040,
+              "external": 34220,
+              "arrayBuffers": 34220
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3"
+    },
+    "A": {
+      "elapsedMilliseconds": 374.872,
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 374.8716000000004,
+          "p95": 403.34349999999995,
+          "worst": 403.34349999999995,
+          "best": 361.7937000000002,
+          "mean": 379.45607999999993,
+          "values": [
+            403.34349999999995,
+            391.65700000000015,
+            361.7937000000002,
+            374.8716000000004,
+            365.614599999999
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 312,
+            "p95": 343,
+            "worst": 343
+          },
+          "system": {
+            "p50": 47,
+            "p95": 156,
+            "worst": 156
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 444760064,
+          "maximumObservedHeapUsedBytes": 251955960,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 3588096,
+              "heapUsed": 35058648,
+              "external": 2632885,
+              "arrayBuffers": 2632885
+            },
+            {
+              "rss": 2396160,
+              "heapUsed": 36644896,
+              "external": 2640750,
+              "arrayBuffers": 2640750
+            },
+            {
+              "rss": 3428352,
+              "heapUsed": 32358824,
+              "external": 2610145,
+              "arrayBuffers": 2610145
+            },
+            {
+              "rss": 1998848,
+              "heapUsed": 34080008,
+              "external": 2620890,
+              "arrayBuffers": 2620890
+            },
+            {
+              "rss": 1875968,
+              "heapUsed": 31569600,
+              "external": 2607750,
+              "arrayBuffers": 2607750
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "versusOrderedB3Reference": 1.4870995966623273,
+      "centralStatesAttempted": 960
+    },
+    "B": {
+      "elapsedMilliseconds": 498.497,
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 498.4974000000002,
+          "p95": 542.2598000000007,
+          "worst": 542.2598000000007,
+          "best": 485.0492000000013,
+          "mean": 504.8996600000006,
+          "values": [
+            542.2598000000007,
+            494.4276,
+            504.26430000000073,
+            498.4974000000002,
+            485.0492000000013
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 438,
+            "p95": 515,
+            "worst": 515
+          },
+          "system": {
+            "p50": 47,
+            "p95": 125,
+            "worst": 125
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 450211840,
+          "maximumObservedHeapUsedBytes": 270089376,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 4251648,
+              "heapUsed": 10682392,
+              "external": 963835,
+              "arrayBuffers": 963835
+            },
+            {
+              "rss": 4833280,
+              "heapUsed": 11047344,
+              "external": 973320,
+              "arrayBuffers": 973320
+            },
+            {
+              "rss": 6029312,
+              "heapUsed": 10404416,
+              "external": 966585,
+              "arrayBuffers": 966585
+            },
+            {
+              "rss": 3477504,
+              "heapUsed": 9933400,
+              "external": 964640,
+              "arrayBuffers": 964640
+            },
+            {
+              "rss": 5451776,
+              "heapUsed": 18132288,
+              "external": 1029730,
+              "arrayBuffers": 1029730
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "versusA": 0.7520045256039656
+    },
+    "C": {
+      "elapsedMilliseconds": 1399.302,
+      "timing": {
+        "measuredRepeats": 5,
+        "percentileMethod": "nearest-rank",
+        "wallMilliseconds": {
+          "p50": 1399.3021000000008,
+          "p95": 1432.0482999999995,
+          "worst": 1432.0482999999995,
+          "best": 1386.9523000000008,
+          "mean": 1404.9895000000004,
+          "values": [
+            1432.0482999999995,
+            1409.0682000000006,
+            1399.3021000000008,
+            1397.5766000000003,
+            1386.9523000000008
+          ]
+        },
+        "cpuMilliseconds": {
+          "user": {
+            "p50": 1328,
+            "p95": 1360,
+            "worst": 1360
+          },
+          "system": {
+            "p50": 62,
+            "p95": 297,
+            "worst": 297
+          }
+        },
+        "memory": {
+          "maximumObservedRssBytes": 457322496,
+          "maximumObservedHeapUsedBytes": 270090504,
+          "perRepeatDeltaBytes": [
+            {
+              "rss": 5406720,
+              "heapUsed": -21246176,
+              "external": 1104330,
+              "arrayBuffers": 1104330
+            },
+            {
+              "rss": 5095424,
+              "heapUsed": -21445736,
+              "external": 1083070,
+              "arrayBuffers": 1083070
+            },
+            {
+              "rss": 5730304,
+              "heapUsed": -20228352,
+              "external": 1108100,
+              "arrayBuffers": 1108100
+            },
+            {
+              "rss": 5799936,
+              "heapUsed": -23275376,
+              "external": 1078515,
+              "arrayBuffers": 1078515
+            },
+            {
+              "rss": 7110656,
+              "heapUsed": -23469496,
+              "external": 1059180,
+              "arrayBuffers": 1059180
+            }
+          ],
+          "allocationMeasurement": {
+            "status": "unavailable",
+            "reason": "Node exposes process heap snapshots, not exact allocation counters, without an instrumentation build. Heap deltas are diagnostic only."
+          }
+        }
+      },
+      "winnerDigest": "b650711471e82c4a7e1955968973730419f0b6b33fc9f6803a612cdede8609d3",
+      "versusA": 0.26789928121306195,
+      "note": "C prunes more candidates on this compact workload but its whole-Leader bound construction is slower; no C selection claim is made."
+    },
+    "allWinnerParityPassed": true,
+    "candidateWorkerReplay": {
+      "timingStatus": "mixed-serial-timing-and-parity-only-replay",
+      "timingUse": "not used for throughput, p95, cost, or scale projection",
+      "measurements": [
+        {
+          "workers": 1,
+          "elapsedMilliseconds": 1399.302,
+          "outputParityPassed": true
+        },
+        {
+          "workers": 2,
+          "elapsedMilliseconds": 1681.781,
+          "speedupVersusSerialC": 0.8320358001428247,
+          "outputParityPassed": true
+        },
+        {
+          "workers": 4,
+          "elapsedMilliseconds": 1529.664,
+          "speedupVersusSerialC": 0.9147773628718463,
+          "outputParityPassed": true
+        },
+        {
+          "workers": 8,
+          "elapsedMilliseconds": 1687.372,
+          "speedupVersusSerialC": 0.8292789023404441,
+          "outputParityPassed": true
+        },
+        {
+          "workers": 16,
+          "elapsedMilliseconds": 2216.989,
+          "speedupVersusSerialC": 0.631172279158805,
+          "outputParityPassed": true
+        },
+        {
+          "workers": 32,
+          "elapsedMilliseconds": 4000.275,
+          "speedupVersusSerialC": 0.34980145115023337,
+          "outputParityPassed": true
+        }
+      ]
+    },
+    "supersededSinglePassReference": {
+      "status": "superseded-by-normalized-repeated-measurement",
+      "orderedB3ReferenceMilliseconds": 485.331,
+      "flatABulkB2ThenB3Milliseconds": 309.113,
+      "flatAVersusOrderedB3Reference": 1.5700763151339479,
+      "note": "This corrected one-pass fair-scope result is retained for traceability only. The normalized warm-up plus five-repeat p50/p95/worst data above is the current architecture evidence."
+    }
+  },
+  "conditionalDominanceDecision": {
+    "status": "conditional-not-authorized",
+    "positiveEvidence": [
+      "The one-million boundary corpus and complete real corpus have zero false certificates and zero endpoint/parity mismatches.",
+      "Central B2 is faster than ordered state-run evaluation on the complete real corpus, but only its individually certified inputs may be screened.",
+      "The corrected identical-scope A/B/C workload preserves the ordered B3 winner and shows flat B2/B3 faster than the ordered B3 reference."
+    ],
+    "blockingEvidence": [
+      "Full B3 fast-path coverage is 99.287%, below the declared 99.9% target.",
+      "Central B2 fast-path coverage is 99.605%, below the declared 99.9% target.",
+      "Central B2 is 2.168x versus the ordered state-run path, below the declared 15x experiment target.",
+      "Flat A is 1.487x versus the ordered B3 reference, below the declared 8x end-to-end experiment target.",
+      "The compact C bound benchmark is slower than flat A, and its negative process-scaling ratios are not extrapolated."
+    ],
+    "permittedUse": [
+      "For an individual complete chart evaluation, use bulk output only when its final proof is certified; otherwise replay the affected Active component in source order.",
+      "Use B2 only for a certified strict central loss. Equality, finalist, and fallback cases must materialize B3."
+    ],
+    "prohibitedUse": [
+      "Do not call the bulk path a universally dominant replacement for ordered replay.",
+      "Do not authorize a full shard run or claim a global certificate from this evidence."
+    ],
+    "nextUnblockedResearchAction": "Reduce canonical-boundary fallback coverage with a narrower safe proof or state partition, then repeat the full 100000-case corpus before revisiting the 99.9% target."
+  },
+  "certificateEligible": false,
+  "deterministicReportHash": "86950326a7a1b96cc178271bc3fd5b54343373aa6b6771e7aff5917b84a46b33"
+}

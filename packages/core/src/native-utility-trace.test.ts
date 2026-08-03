@@ -2,10 +2,13 @@ import { describe, expect, it } from "vitest";
 
 import {
   compileNativeUtilityTeamIntrinsic,
+  evaluateNativeCentralUtilityWithCompiledTeam,
   evaluateNativeRelativeUtilityUncompressed,
   evaluateNativeRelativeUtilityWithCompiledTeam,
   evaluateNativeRelativeUtilityWithTrace,
+  proveNativeBulkPostActiveCanonical,
 } from "./native-utility";
+import { toCanonicalMicroUnits } from "./exact-optimizer-arithmetic";
 
 const BOARD = {
   board: {
@@ -65,9 +68,18 @@ describe("native utility trace-preserving state-run evaluator", () => {
       const input = { formation: fixture, chartKey: fixture.chartKey, seed: 0x5eed, accountState: BOARD };
       const compressed = evaluateNativeRelativeUtilityWithTrace(input);
       const uncompressed = evaluateNativeRelativeUtilityUncompressed(input);
+      const central = evaluateNativeCentralUtilityWithCompiledTeam(
+        input,
+        compileNativeUtilityTeamIntrinsic(fixture.members),
+      );
       expect(compressed.activeTrace.mode).toBe("trace-preserving-state-runs");
       expect(compressed.activeTrace.baseStateRuns).toBeGreaterThan(0);
       expect(compressed.result).toEqual(uncompressed);
+      expect(central.kind).toBe("bulk-certified-reference-equivalent");
+      if (central.kind === "bulk-certified-reference-equivalent") {
+        expect(central.central).toBe(uncompressed.relativeUtility.central);
+        expect(central.activeTrace.bulk.finalCanonical).toBe("bulk-certified-reference-equivalent");
+      }
     }
   });
 
@@ -95,5 +107,28 @@ describe("native utility trace-preserving state-run evaluator", () => {
     expect(first.activeTrace.mode).toBe("trace-preserving-state-runs");
     expect(second.activeTrace.mode).toBe("trace-preserving-state-runs");
     expect(intrinsic.activeTimingByMember).toHaveLength(5);
+  });
+
+  it("does not mistake an Active-average singleton for the final canonical utility", () => {
+    // The active average itself is one micro-unit, but the later base-parameter
+    // multiplication plus Special subtraction/max branch changes the final
+    // bucket by orders of magnitude. A proof that stopped at the Active pass
+    // would return the wrong canonical value here.
+    const proof = proveNativeBulkPostActiveCanonical({
+      baseTotal: 500_001,
+      parameterEffects: { lower: 0, central: 0, upper: 0 },
+      activePermil: { lower: 0.000001, central: 0.000001, upper: 0.000001 },
+      activeWithSpecialSupportPermil: { lower: 0.000001, central: 0.000001, upper: 0.000001 },
+      activeWithSpecialPermil: { lower: 0.000002, central: 0.000002, upper: 0.000002 },
+    });
+
+    expect(proof.kind).toBe("bulk-certified-reference-equivalent");
+    if (proof.kind === "ordered-replay-required") return;
+    expect(proof.activationRateSpecialPermil.central).toBe(0.000001);
+    expect(proof.relativeUtility.central).toBe(500_001.001);
+    expect(toCanonicalMicroUnits(proof.relativeUtility.central)).toBe(500_001_001_000);
+    expect(toCanonicalMicroUnits(proof.relativeUtility.central)).not.toBe(
+      toCanonicalMicroUnits(0.000001),
+    );
   });
 });
