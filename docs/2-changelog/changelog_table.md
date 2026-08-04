@@ -2,11 +2,22 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.3` | 1    | feat(exact): complete X07 scope-safe validation and public copy audit (v0.2 73%) |
 | `0.1.2` | 1    | feat(exact): complete X06 continuation-complete partial-state validation (v0.2 70%) |
 | `0.1.1` | 1    | chore: initialize TRIP workflow |
 
 # Changelog Summary
 
+- **v0.1.3 (X07 Scope-Safe Validation + Copy Audit - Week 1, 04-08-2026)**:
+  - **Restructure**: X07 split into done X07 (w3) + pending X08 (w2 behind
+    X04); all criteria preserved, weights total 100
+  - **Hardening**: negative-path regressions via production exports;
+    bounded pre-allocation deserialization + 14-case rejection runner on
+    the shard verifiers (valid paths byte-identical)
+  - **Copy discipline**: 78-occurrence audit with disposition ledger, zero
+    violations/unresolved (digest `414cb388…`); badge scope-qualified,
+    guide caveat rendered; read-only live smoke green
+  - **Status**: X07 done 3/3, v0.2 73%; flags false; nothing pushed/tagged
 - **v0.1.2 (X06 Partial-State Validation - Week 1, 04-08-2026)**:
   - **Audit**: Independent takeover audit of the inherited X06 work; evidence
     hash defect fixed, chain regenerated, B2 clamp-identity guard added with

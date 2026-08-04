@@ -292,7 +292,8 @@ Separately scoped research toward a certifiable full-roster global optimum
 
 File-based epics and tickets are the authoritative status store:
 `yagoo-dori-v1` (product, N01–N07, done) and `yagoo-dori-v0.2-exact`
-(X01→X02→X03→X05→X06→X04→X07). Tickets carry YAML front matter
+(X01→X02→X03→X05→X06, then X07 scope-safe validation off X06, and
+X04→X08 production-certificate validation). Tickets carry YAML front matter
 (`status: done|active|blocked|pending`, dependencies) and checkbox criteria.
 `pnpm project:status` computes weighted completion counting only `done`
 tickets. AGENTS.md mandates a start-and-end status report for every task.
@@ -370,6 +371,15 @@ flowchart LR
 - **Optimizer proof checks**: `optimizer:parity:*`, `optimizer:metamorphic`,
   `optimizer:proof:reduced`, `optimizer:shards:determinism` etc. are part of
   ticket acceptance, beyond `pnpm test`.
+- **Negative-path validation** (X07): the scope/coverage/contract guards
+  have re-signed mutation regressions through the production validation
+  exports; `optimizer:verify:rejections` proves both shard verifiers reject
+  14 distinct artifact corruptions (verifiers read via
+  `scripts/lib/read-bounded-json.mjs` — pre-allocation byte cap, depth cap,
+  prototype-key rejection); `copy:audit` classifies every public use of
+  best/optimal/exact/…/score against `scripts/copy-audit-ledger.json` and
+  writes `data/native/public-copy-audit-v1.json`; `smoke:live`
+  (env-gated, read-only) probes the deployed site.
 
 ## Performance Considerations
 
