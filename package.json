@@ -57,6 +57,7 @@
     "optimizer:dominance:feasibility": "node scripts/generate-exact-optimizer-dominance-feasibility.mjs",
     "optimizer:parity:rust-fixtures": "node scripts/run-exact-rust-mechanic-fixtures.mjs",
     "optimizer:parity:reduced": "node --import tsx/esm scripts/run-exact-reduced-bruteforce.mjs",
+    "optimizer:suffix:validation": "node --import tsx/esm scripts/run-exact-optimizer-suffix-validation.mjs",
     "optimizer:metamorphic": "node --import tsx/esm scripts/run-exact-metamorphic.mjs",
     "optimizer:shards:fixture": "node scripts/generate-exact-shard-fixture.mjs",
     "optimizer:shards:plan": "node --import tsx/esm scripts/generate-exact-full-shard-plan.mjs",

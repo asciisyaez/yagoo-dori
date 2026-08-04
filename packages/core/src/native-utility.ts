@@ -279,9 +279,50 @@ export type NativeActiveTraceExecution = Readonly<{
   }>;
 }>;
 
+export type NativeActiveRunContribution = Readonly<{
+  startInclusive: number;
+  endExclusive: number;
+  multiplicity: number;
+  contributions: Readonly<{
+    lower: string;
+    central: string;
+    upper: string;
+  }>;
+  expectedContributions: Readonly<{
+    lower: string;
+    central: string;
+    upper: string;
+  }>;
+}>;
+
+export type NativeActiveRunPass = Readonly<{
+  passName: "active-base" | "active-special-support" | "active-special-activation";
+  additionalSupport: number;
+  activationRateUpPermil: number;
+  runs: readonly NativeActiveRunContribution[];
+}>;
+
+export type NativeActiveRunLedger = Readonly<{
+  kind: "native-active-run-ledger";
+  chartKey: string;
+  noteCount: number;
+  passes: readonly [NativeActiveRunPass, NativeActiveRunPass, NativeActiveRunPass];
+  recordedAveragePermil?: Readonly<{
+    base: Readonly<{ lower: string; central: string; upper: string }>;
+    specialSupport: Readonly<{ lower: string; central: string; upper: string }>;
+    specialActivation: Readonly<{ lower: string; central: string; upper: string }>;
+  }>;
+}>;
+
 export type NativeUtilityTraceEvaluation = Readonly<{
   result: NativeUtilityResult;
   activeTrace: NativeActiveTraceExecution;
+}>;
+
+export type NativeUtilityRunLedgerEvaluation = NativeUtilityTraceEvaluation & Readonly<{
+  activeRunLedger: NativeActiveRunLedger & Readonly<{
+    recordedAveragePermil: NonNullable<NativeActiveRunLedger["recordedAveragePermil"]>;
+  }>;
 }>;
 
 /**
@@ -1084,6 +1125,122 @@ function fillCompressedActiveState(
   return [lower, expectedMaximumFive(centralValues, centralProbabilities, expectedOrder), upper];
 }
 
+function encodeNativeBinary64Bits(value: number): string {
+  const buffer = new ArrayBuffer(8);
+  const view = new DataView(buffer);
+  view.setFloat64(0, value, false);
+  return `0x${view.getUint32(0, false).toString(16).padStart(8, "0")}${view
+    .getUint32(4, false)
+    .toString(16)
+    .padStart(8, "0")}`;
+}
+
+function encodeNativeContribution(
+  contribution: readonly [number, number, number],
+): Readonly<{ lower: string; central: string; upper: string }> {
+  return Object.freeze({
+    lower: encodeNativeBinary64Bits(contribution[0]),
+    central: encodeNativeBinary64Bits(contribution[1]),
+    upper: encodeNativeBinary64Bits(contribution[2]),
+  });
+}
+
+function captureNativeActiveRunPass(
+  trace: CompiledActiveTrace,
+  passName: NativeActiveRunPass["passName"],
+  additionalSupport: number,
+  activationRateUpPermil: number,
+): NativeActiveRunPass {
+  const state = new Float64Array(30);
+  const centralValues = new Float64Array(5);
+  const centralProbabilities = new Float64Array(5);
+  const expectedOrder = new Uint8Array(5);
+  const verificationState = new Float64Array(30);
+  const verificationCentralValues = new Float64Array(5);
+  const verificationCentralProbabilities = new Float64Array(5);
+  const verificationExpectedOrder = new Uint8Array(5);
+  return Object.freeze({
+    passName,
+    additionalSupport,
+    activationRateUpPermil,
+    runs: Object.freeze(trace.runs.map((run) => {
+      const contribution = fillCompressedActiveState(
+        trace,
+        run.startInclusive,
+        additionalSupport,
+        activationRateUpPermil,
+        state,
+        centralValues,
+        centralProbabilities,
+        expectedOrder,
+      );
+      const expectedContribution = run.multiplicity === 1
+        ? contribution
+        : fillCompressedActiveState(
+            trace,
+            run.endExclusive - 1,
+            additionalSupport,
+            activationRateUpPermil,
+            verificationState,
+            verificationCentralValues,
+            verificationCentralProbabilities,
+            verificationExpectedOrder,
+          );
+      return Object.freeze({
+        startInclusive: run.startInclusive,
+        endExclusive: run.endExclusive,
+        multiplicity: run.multiplicity,
+        contributions: encodeNativeContribution(contribution),
+        expectedContributions: encodeNativeContribution(expectedContribution),
+      });
+    })),
+  });
+}
+
+function captureNativeActiveRunLedger(
+  chartKey: string,
+  noteCount: number,
+  trace: CompiledActiveTrace,
+  specialSupport: number,
+  specialActivationRate: number,
+): NativeActiveRunLedger {
+  if (!trace.supported || trace.runs.length === 0) {
+    throw new Error("Native active run instrumentation requires a supported compiled trace");
+  }
+  return Object.freeze({
+    kind: "native-active-run-ledger",
+    chartKey,
+    noteCount,
+    passes: Object.freeze([
+      captureNativeActiveRunPass(trace, "active-base", 0, 0),
+      captureNativeActiveRunPass(
+        trace,
+        "active-special-support",
+        specialSupport,
+        0,
+      ),
+      captureNativeActiveRunPass(
+        trace,
+        "active-special-activation",
+        specialSupport,
+        specialActivationRate,
+      ),
+    ]) as unknown as NativeActiveRunLedger["passes"],
+  });
+}
+
+function encodeNativeInterval(value: RawInterval): Readonly<{
+  lower: string;
+  central: string;
+  upper: string;
+}> {
+  return Object.freeze({
+    lower: encodeNativeBinary64Bits(value.lower),
+    central: encodeNativeBinary64Bits(value.central),
+    upper: encodeNativeBinary64Bits(value.upper),
+  });
+}
+
 function pointOutputEnclosure(value: RawInterval): CompressedActiveAggregate["outputEnclosure"] {
   return {
     lower: pointBinary64Enclosure(value.lower),
@@ -1310,11 +1467,16 @@ function orderedFiniteInterval(value: UtilityInterval): boolean {
 }
 
 /**
- * Central B2 needs only the expected-maximum branch.  The interval-order
- * precondition below is the proof that native `interval()` cannot clamp that
- * central value: every selected Active/support interval is ordered and every
- * contribution is non-negative, so lower <= central <= upper is preserved by
- * source-order addition, division, positive scaling, and final addition.
+ * Central B2 needs only the expected-maximum branch.  The input precondition
+ * below is necessary but not sufficient for the native `interval()` clamp to
+ * be the identity: the three lanes are computed by structurally different
+ * binary64 expressions, so input ordering alone cannot prove computed
+ * lower <= central <= upper per note.  `aggregateCompressedActiveCentral`
+ * therefore computes all three lane contributions at every certified run
+ * note and verifies the ordering directly; only then does monotone RN-even
+ * source-order addition and positive division carry the ordering to the
+ * averages, making the reference clamp the identity.  A violated ordering
+ * falls back to ordered replay instead of certifying.
  */
 function centralBulkPrecondition(
   trace: CompiledActiveTrace,
@@ -1345,75 +1507,63 @@ function centralBulkPrecondition(
   return null;
 }
 
-function fillCompressedActiveCentralState(
-  trace: CompiledActiveTrace,
-  noteIndex: number,
-  additionalSupport: number,
-  activationRateUpPermil: number,
-  centralValues: Float64Array,
-  centralProbabilities: Float64Array,
-  expectedOrder: Uint8Array,
-): number {
-  for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
-    const profile = trace.profiles[memberIndex]!;
-    const selection = trace.selectionsByMember[memberIndex]!;
-    const selected = selection.selections[selection.selectionIndexByNote[noteIndex]!]!;
-    const checkCount = trace.checkCountsByMember[memberIndex]![noteIndex]!;
-    const centralProbability = activeProbabilityForCheckCount(
-      checkCount,
-      profile.skill.activationProbabilityPermil!,
-      activationRateUpPermil,
-    );
-    const centralValue =
-      (selected.central * (1_000 + profile.support.central + additionalSupport)) / 1_000;
-    if (!Number.isFinite(centralProbability) || !Number.isFinite(centralValue) || centralValue < 0) {
-      return Number.NaN;
-    }
-    centralValues[memberIndex] = centralValue;
-    centralProbabilities[memberIndex] = centralProbability;
-  }
-  return expectedMaximumFive(centralValues, centralProbabilities, expectedOrder);
-}
-
 function aggregateCompressedActiveCentral(
   trace: CompiledActiveTrace,
   noteCount: number,
   additionalSupport: number,
   activationRateUpPermil: number,
 ): CentralCompressedActiveAggregate {
+  const state = new Float64Array(30);
   const centralValues = new Float64Array(5);
   const centralProbabilities = new Float64Array(5);
   const expectedOrder = new Uint8Array(5);
+  const verificationState = new Float64Array(30);
   const verificationCentralValues = new Float64Array(5);
   const verificationCentralProbabilities = new Float64Array(5);
   const verificationExpectedOrder = new Uint8Array(5);
   let sum = pointBinary64Enclosure(0);
   let certifiedRunCount = 0;
   for (const run of trace.runs) {
-    const contribution = fillCompressedActiveCentralState(
+    const triple = fillCompressedActiveState(
       trace,
       run.startInclusive,
       additionalSupport,
       activationRateUpPermil,
+      state,
       centralValues,
       centralProbabilities,
       expectedOrder,
     );
-    const expectedContribution = run.multiplicity === 1
-      ? contribution
-      : fillCompressedActiveCentralState(
+    const verificationTriple = run.multiplicity === 1
+      ? triple
+      : fillCompressedActiveState(
           trace,
           run.endExclusive - 1,
           additionalSupport,
           activationRateUpPermil,
+          verificationState,
           verificationCentralValues,
           verificationCentralProbabilities,
           verificationExpectedOrder,
         );
+    // Computed lane ordering at the certified notes is the load-bearing clamp
+    // proof (see centralBulkPrecondition); NaN in any lane fails these
+    // comparisons and falls back rather than certifying.
+    if (
+      !(triple[0] <= triple[1] && triple[1] <= triple[2]) ||
+      !(verificationTriple[0] <= verificationTriple[1] &&
+        verificationTriple[1] <= verificationTriple[2])
+    ) {
+      return {
+        kind: "ordered-replay-required",
+        fallbackReason: "unsupported-operation-path",
+        stateRuns: trace.runs.length,
+      };
+    }
     const transformed = transformRepeatedBinary64Addition({
       incoming: sum,
-      contribution,
-      expectedContribution,
+      contribution: triple[1],
+      expectedContribution: verificationTriple[1],
       multiplicity: run.multiplicity,
     });
     if (transformed.kind === "ordered-replay-required") {
@@ -1716,12 +1866,14 @@ function proofScaledInterval(
   const lower = proofMultiply(source.enclosure.lower, scaleEnclosure);
   const central = proofMultiply(source.enclosure.central, scaleEnclosure);
   const upper = proofMultiply(source.enclosure.upper, scaleEnclosure);
-  if (!lower || !central || !upper) return bulkPostActiveFallback("interval-width-overflow");
+  // Null covers non-finite and signed-zero results as well as invalid
+  // enclosures, so the generic path reason is the honest attribution.
+  if (!lower || !central || !upper) return bulkPostActiveFallback("unsupported-operation-path");
   const lowerScaled = proofDividePositive(lower, thousand);
   const centralScaled = proofDividePositive(central, thousand);
   const upperScaled = proofDividePositive(upper, thousand);
   if (!lowerScaled || !centralScaled || !upperScaled) {
-    return bulkPostActiveFallback("interval-width-overflow");
+    return bulkPostActiveFallback("unsupported-operation-path");
   }
   return proofUtilityInterval(lowerScaled, centralScaled, upperScaled);
 }
@@ -1733,7 +1885,7 @@ function proofSpecialInterval(
   const zero = pointBinary64Enclosure(0);
   const central = proofMax(zero, centralDifference);
   const upper = proofMax(centralDifference, upperDifference);
-  if (!central || !upper) return bulkPostActiveFallback("interval-width-overflow");
+  if (!central || !upper) return bulkPostActiveFallback("unsupported-operation-path");
   return proofUtilityInterval(zero, central, upper);
 }
 
@@ -1792,7 +1944,7 @@ export function proveNativeBulkPostActiveCanonical(input: Readonly<{
     !specialCentralDifference ||
     !specialUpperDifference
   ) {
-    return bulkPostActiveFallback("interval-width-overflow");
+    return bulkPostActiveFallback("unsupported-operation-path");
   }
   const scoreSupportSpecialPermil = proofSpecialInterval(
     scoreSupportCentralDifference,
@@ -1944,7 +2096,8 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
   intrinsic: NativeUtilityTeamIntrinsic,
   forceUncompressed = false,
   forceOrderedStateRuns = false,
-): NativeUtilityTraceEvaluation {
+  captureActiveRunLedger = false,
+): NativeUtilityTraceEvaluation & Readonly<{ activeRunLedger?: NativeActiveRunLedger }> {
   assertInputBoundary(input);
   const chart = aggregateChartByKey.get(input.chartKey);
   if (!chart) throw new Error(`Unknown exact aggregate chart context: ${input.chartKey}`);
@@ -2001,6 +2154,19 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
     specials.activationRateWindows,
     song.playingMilliseconds,
   );
+  let activeRunLedger: NativeActiveRunLedger | null = null;
+  if (captureActiveRunLedger) {
+    if (specialSupport === null || specialActivationRate === null) {
+      throw new Error("Native active run instrumentation requires constant support and full-chart activation");
+    }
+    activeRunLedger = captureNativeActiveRunLedger(
+      chart.key,
+      notes.length,
+      activeTrace,
+      specialSupport,
+      specialActivationRate,
+    );
+  }
   let fallbackStates: NoteActiveState[][] | null = null;
   let activePermil: RawInterval;
   let activeWithSpecialSupportPermil: RawInterval;
@@ -2284,6 +2450,16 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
     };
   });
 
+  const completedActiveRunLedger = activeRunLedger === null
+    ? null
+    : Object.freeze({
+        ...activeRunLedger,
+        recordedAveragePermil: Object.freeze({
+          base: encodeNativeInterval(activePermil),
+          specialSupport: encodeNativeInterval(activeWithSpecialSupportPermil),
+          specialActivation: encodeNativeInterval(activeWithSpecialPermil),
+        }),
+      });
   return {
     result: {
       kind: "provisional-relative-utility",
@@ -2365,6 +2541,7 @@ function evaluateNativeRelativeUtilityWithIntrinsic(
       },
     },
     activeTrace: activeTraceExecution,
+    ...(completedActiveRunLedger === null ? {} : { activeRunLedger: completedActiveRunLedger }),
   };
 }
 
@@ -2585,6 +2762,27 @@ export function evaluateNativeRelativeUtilityWithTrace(
     input,
     cachedNativeUtilityTeamIntrinsic(input.formation.members),
   );
+}
+
+/**
+ * Read-only exact-optimizer instrumentation. It uses the same compiled trace
+ * and lane contribution functions as the evaluator, but is opt-in and does
+ * not alter any existing evaluation result or telemetry path.
+ */
+export function evaluateNativeRelativeUtilityWithActiveRunLedger(
+  input: NativeUtilityInput,
+): NativeUtilityRunLedgerEvaluation {
+  const evaluation = evaluateNativeRelativeUtilityWithIntrinsic(
+    input,
+    cachedNativeUtilityTeamIntrinsic(input.formation.members),
+    false,
+    false,
+    true,
+  );
+  if (!evaluation.activeRunLedger?.recordedAveragePermil) {
+    throw new Error("Native active run instrumentation did not produce a complete ledger");
+  }
+  return evaluation as NativeUtilityRunLedgerEvaluation;
 }
 
 /** Independent fallback path used only for exact compression cross-checks. */

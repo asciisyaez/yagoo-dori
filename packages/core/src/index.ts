@@ -32,3 +32,4 @@ export * from "./exact-optimizer-kernel";
 export * from "./exact-optimizer-leader-proof";
 export * from "./exact-optimizer-scope";
 export * from "./exact-optimizer-trace";
+export * from "./exact-optimizer-partial-state";

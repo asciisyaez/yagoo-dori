@@ -373,10 +373,12 @@ export function transformRepeatedBinary64Addition(input: Readonly<{
     return fallback("unsupported-operation-path", input.incoming);
   }
 
-  // For every normal addition whose exact magnitude is below 2^e, RN-even
-  // incurs at most 2^(e-53) absolute error.  `+4` leaves a full factor-16
-  // headroom for the accumulated bound itself; n is explicitly limited to a
-  // safe integer, so n * 2^(e-53) cannot invalidate that headroom.
+  // For every normal addition whose exact magnitude is below 2^(e+4), RN-even
+  // incurs at most 2^(e+4-53) absolute error.  The factor-16 headroom holds
+  // for every admitted n <= 2^53 by the multiplicative growth bound: each
+  // rounded partial sum is at most (1 + 2^-53) times its exact counterpart,
+  // so after n additions the rounded sums stay below e * 2^(e+1) < 2^(e+4).
+  // An absolute-error induction alone does not close near n = 2^53.
   const additionExponentUpper = exactUpperSumExponent + 4;
   const perAdditionErrorUpperBound = powerOfTwo(additionExponentUpper - 53);
   if (

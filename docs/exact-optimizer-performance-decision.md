@@ -71,11 +71,43 @@ Leader recipient resolution, the source-order binary64 enclosure, and B3
 equality/tie promotion. A reopening requires that proof and exhaustive
 reduced-roster suffix validation before any frontier is timed.
 
+## Continuation-complete partial-state disposition (2026-08-04)
+
+The proof and validation that the Phase-7 kill demanded now exist for the
+pinned reduced scope. The state schema is documented in
+`docs/exact-optimizer-partial-state.md`, implemented in
+`packages/core/src/exact-optimizer-partial-state.ts`, and exhaustively
+validated by `pnpm optimizer:suffix:validation`
+(`data/native/exact-optimizer-suffix-validation-v1.json`, stable digest
+`3dbda66370d60928911b95e65294b56b79b09e66079259aea2c059aa8bb4eed5`,
+reproduced bit-identically across two complete runs): 56 legal sets × 4
+Leaders × 1 chart × all 120 formation orders × depths 0–5 produced 161,280
+state-resumption comparisons, 633,660 mutation checks, and 2,321,280
+accumulator boundary comparisons with zero mismatches.
+
+The honest limits of that result:
+
+- The validated state key is identity-like. Zero distinct-history collision
+  pairs were observed, so **no merge rule was exercised**: resumption
+  soundness is proven; merge-rule soundness is not claimed and cannot be
+  claimed from this evidence.
+- The dominance pilot remains `attempted:false` with zero pruning, timing,
+  or projection credit. The strict-loss prune proof with complete accounting
+  (reopening requirement 3) is outstanding — and because the sound key merges
+  nothing, a frontier over it cannot prune anything without a new versioned,
+  proven merge relation. Dominance therefore still offers no measured path to
+  the ≤800 core-hour gate; the fallback experiment ladder stands.
+- Sufficiency is claimed only for the reduced pinned scope; nothing here is a
+  full-roster claim, a certificate, or performance credit.
+
+`fullRunAuthorized=false` and `certificateEligible=false` remain mandatory.
+
 Reproduce the compact evidence with:
 
 ```text
 pnpm optimizer:parity:bulk:rehash
 pnpm optimizer:architecture:rebaseline
 pnpm optimizer:bulk:performance
+pnpm optimizer:suffix:validation
 pnpm optimizer:dominance:feasibility
 ```

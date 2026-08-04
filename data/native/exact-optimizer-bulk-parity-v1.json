@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "reportId": "yd-exact-optimizer-bulk-parity-v1",
   "runnerVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
-  "generatedAt": "2026-08-02T16:03:17.732Z",
+  "generatedAt": "2026-08-03T16:30:07.369Z",
   "synthetic": {
     "methodologyVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
     "caseCount": 1000000,
@@ -57,7 +57,7 @@
     "firstFailures": [],
     "deterministicDigest": "4744485863c07554f17a002835cb1e2510c5841db3ba488bcb50db28b264da4a",
     "passed": true,
-    "elapsedMilliseconds": 1422.191
+    "elapsedMilliseconds": 1476.728
   },
   "realCorpus": {
     "methodologyVersion": "yd-exact-optimizer-bulk-parity-runner-1.0.0",
@@ -72,7 +72,7 @@
     },
     "orderedRustReference": {
       "outputCount": 100000,
-      "elapsedMilliseconds": 32201.961,
+      "elapsedMilliseconds": 38611.293,
       "outputCountMatchesFullCorpus": true
     },
     "implementations": {
@@ -122,12 +122,12 @@
       "equalityOrFinalistPolicy": "A B2 equality/finalist has no tuple and must promote to B3; only a certified strict central loss may prune."
     },
     "timing": {
-      "teamCompilationMilliseconds": 2880.059,
-      "typescriptReferenceMilliseconds": 506847.432,
-      "orderedStateRunMilliseconds": 64586.245,
-      "bulkMilliseconds": 43953.738,
-      "centralB2Milliseconds": 29754.372,
-      "totalElapsedMilliseconds": 681628.893
+      "teamCompilationMilliseconds": 3287.493,
+      "typescriptReferenceMilliseconds": 505905.891,
+      "orderedStateRunMilliseconds": 62250.291,
+      "bulkMilliseconds": 43650.086,
+      "centralB2Milliseconds": 29107.708,
+      "totalElapsedMilliseconds": 684367.392
     },
     "deterministicDigest": "4b1345914f48ae7cd6966a6ba03ad5f36e1aa4507afbf288b6e9d6e74dab6bae",
     "passed": true
@@ -135,10 +135,24 @@
   "passed": true,
   "certificateEligible": false,
   "disposition": "Bulk accumulation parity evidence passed. This artifact validates a bounded optimization primitive and does not certify a global optimizer result.",
-  "elapsedMilliseconds": 683293.346,
+  "elapsedMilliseconds": 686075.424,
   "evidenceDigestMethodologyVersion": "yd-exact-optimizer-bulk-evidence-digest-1",
   "deterministicEvidenceDigest": "320da206dbc4fa61a496565f6f0259e609e6e9f7deda80373e0c0925dba7529f",
-  "legacyVolatileReportHash": "ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c",
+  "legacyVolatileReportHash": "06b9c0b10898b4e1e4c49cf3f71a5653208231ffebb1b5bee78ba47e3a81afb4",
+  "runtimeMetadata": {
+    "generatedAt": "2026-08-03T16:30:07.369Z",
+    "totalElapsedMilliseconds": 686075.424,
+    "syntheticElapsedMilliseconds": 1476.728,
+    "orderedRustElapsedMilliseconds": 38611.293,
+    "realCorpusTiming": {
+      "teamCompilationMilliseconds": 3287.493,
+      "typescriptReferenceMilliseconds": 505905.891,
+      "orderedStateRunMilliseconds": 62250.291,
+      "bulkMilliseconds": 43650.086,
+      "centralB2Milliseconds": 29107.708,
+      "totalElapsedMilliseconds": 684367.392
+    }
+  },
   "legacyVolatileReportHashes": [
     {
       "hash": "be71471f245bf33e8aa6394441fba264507b3cb863b3c422303e9ef6fda971c5",
@@ -146,23 +160,9 @@
       "qualification": "legacy volatile report hash; the identical evidence digest is authoritative"
     },
     {
-      "hash": "ae560e0ad55c681cf100c8297e5288e6914a3d57e4cd5f477c7ea69d8d6a526c",
+      "hash": "06b9c0b10898b4e1e4c49cf3f71a5653208231ffebb1b5bee78ba47e3a81afb4",
       "label": "interrupted duplicate full run",
       "qualification": "legacy volatile report hash; timing differs but all evidence counters and corpus digests match the primary run"
     }
-  ],
-  "runtimeMetadata": {
-    "generatedAt": "2026-08-02T16:03:17.732Z",
-    "totalElapsedMilliseconds": 683293.346,
-    "syntheticElapsedMilliseconds": 1422.191,
-    "orderedRustElapsedMilliseconds": 32201.961,
-    "realCorpusTiming": {
-      "teamCompilationMilliseconds": 2880.059,
-      "typescriptReferenceMilliseconds": 506847.432,
-      "orderedStateRunMilliseconds": 64586.245,
-      "bulkMilliseconds": 43953.738,
-      "centralB2Milliseconds": 29754.372,
-      "totalElapsedMilliseconds": 681628.893
-    }
-  }
+  ]
 }

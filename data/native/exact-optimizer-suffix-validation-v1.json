@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "reportId": "yd-exact-optimizer-suffix-validation-v1",
+  "runnerVersion": "yd-exact-optimizer-suffix-validation-runner-1.0.0",
+  "manifest": {
+    "manifestId": "yd-exact-optimizer-reduced-suffix-v1",
+    "schemaVersion": 1,
+    "status": "pinned",
+    "sourceScope": {
+      "path": "data/native/exact-optimizer-scope-v1.json",
+      "fileSha256": "c8f5999a40e0c832686309cf781672636f7222389f0a5f97180eb6ab88265683",
+      "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871"
+    },
+    "roster": {
+      "memberPool": [
+        "card-00001-4-cmmn-0000-00",
+        "card-00004-5-uniq-0005-00",
+        "card-00005-5-uniq-0006-00",
+        "card-00013-4-cmmn-0000-00",
+        "card-00016-5-uniq-0014-00",
+        "card-00018-5-uniq-0004-00",
+        "card-00019-5-uniq-0016-00",
+        "card-00039-5-uniq-0032-00"
+      ],
+      "leaderOutfitIds": [
+        "card-00001-5-uniq-0000-00",
+        "card-00013-5-uniq-0002-00",
+        "card-00019-5-uniq-0016-00",
+        "card-00039-5-uniq-0032-00"
+      ],
+      "legalMemberSetCount": 56,
+      "legalMemberSetRule": "combinations(memberPool, 5), retaining unique talentId and at most five rarity-5 Members, with each set sorted by cardId",
+      "orderedFormationPolicy": "all 120 permutations of each legal unordered set",
+      "caseCountInExistingSortedFixture": 224
+    },
+    "chart": {
+      "chartKeys": [
+        "m0206:expert"
+      ],
+      "expectedChartHash": "9b1d3743fceb9be12e4a2c4905904f7c",
+      "weighting": "one chart, weight 1",
+      "difficulty": "expert"
+    },
+    "investmentAndBloom": {
+      "memberInvestmentLayer": "one-copy-maximum",
+      "memberBloomStageByCardId": {
+        "card-00001-4-cmmn-0000-00": 0,
+        "card-00004-5-uniq-0005-00": 0,
+        "card-00005-5-uniq-0006-00": 0,
+        "card-00013-4-cmmn-0000-00": 0,
+        "card-00016-5-uniq-0014-00": 0,
+        "card-00018-5-uniq-0004-00": 0,
+        "card-00019-5-uniq-0016-00": 0,
+        "card-00039-5-uniq-0032-00": 0
+      },
+      "leaderInvestmentArgument": "none; Leader/Outfit is identified only by leaderCardId in the existing fixture",
+      "duplicateOnlyBoosts": false
+    },
+    "board": {
+      "stateId": "declared-neutral-board-v1",
+      "mode": "declared-neutral",
+      "evidenceGrade": "verified",
+      "evidenceRef": "fixture:exact-reduced-bruteforce",
+      "collectionBonus": "neutral-fixed",
+      "connectEffects": "neutral-fixed"
+    },
+    "arithmetic": {
+      "seed": 1497450319,
+      "evaluator": "yd-native-utility-1.0.0",
+      "arithmetic": "yd-canonical-micro-units-1.0.0",
+      "memberOrderForTieKey": "sorted-card-ids",
+      "accumulation": "ordered IEEE-754 binary64 with outward enclosures",
+      "centralBulkGuard": "computed lower <= central <= upper per certified run; violation replays ordered"
+    },
+    "sourceHashes": {
+      "reducedRosterScript": {
+        "path": "scripts/run-exact-reduced-bruteforce.mjs",
+        "sha256": "44084189cc88930566173e1f2c8d7302c523a385059b0fd943a671bd4ea31945"
+      },
+      "parityIr": {
+        "path": "data/native/exact-optimizer-parity-ir-v1.json",
+        "fileSha256": "9e856c8b9c981fe66e6b9401e14d18623cf95a331d213acb13c936ad597d2f7c",
+        "irHash": "04d20828c5c2f11624db23a1068e07f47243d0b75db34842fe28d84c73d59074"
+      },
+      "publicRoster": {
+        "path": "data/generated/holodori-public.json",
+        "sha256": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4"
+      },
+      "mechanics": {
+        "path": "data/generated/holodori-mechanics.json",
+        "sha256": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6"
+      },
+      "songs": {
+        "path": "data/generated/holodori-songs.json",
+        "sha256": "45a3d3c88c11fc365888abc3f11e80efd8bc1d8298aae879cab7a100cae87711"
+      },
+      "benchmark": {
+        "path": "data/native/ranking-benchmark-v1.json",
+        "sha256": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f"
+      },
+      "timelineProjection": {
+        "path": "data/generated/holodori-ranking-corpus-timelines.json",
+        "sha256": "8f08b78d4af766feb5afc4039cdccf32defb6a295ffcadb7a9763ec8473aab3b"
+      },
+      "timelineSourceManifest": {
+        "path": "data/native/chart-timeline-source.json",
+        "sha256": "b5bfc61f546a6f06ea26e82896d614c4feee849e27b6c5ecbca91f8cfa0e77f9"
+      },
+      "fullTimeline": {
+        "path": "data/generated/holodori-chart-timelines.json",
+        "sha256": "196c49c4825f4699316f88015ef554173e47af04072211fa46ef143b6aa11474"
+      }
+    },
+    "certificateState": {
+      "certificateEligible": false,
+      "fullRunAuthorized": false,
+      "dominancePilot": "not-in-scope"
+    }
+  },
+  "execution": {
+    "scopeMode": "full",
+    "limit": null,
+    "fullScopeEnumerated": true
+  },
+  "workPlan": {
+    "memberSets": 56,
+    "leaders": 4,
+    "charts": 1,
+    "formationOrders": 6720,
+    "prefixDepths": 6,
+    "prefixStates": 35204,
+    "legalSuffixes": 161280,
+    "realAccumulatorFormationCases": 26880,
+    "projectedFull": {
+      "memberSets": 56,
+      "formationOrders": 6720,
+      "prefixStates": 35204,
+      "legalSuffixes": 161280,
+      "realAccumulatorFormationCases": 26880
+    }
+  },
+  "counts": {
+    "memberSetsEnumerated": 56,
+    "formationOrdersEnumerated": 6720,
+    "prefixStatesEnumerated": 35204,
+    "legalSuffixes": 161280,
+    "resumeBoundaryComparisons": 161280,
+    "finalComparisons": 161280,
+    "realAccumulatorFormationCases": 26880,
+    "accumulatorPasses": 80640,
+    "accumulatorRuns": 2240640,
+    "accumulatorBoundaryComparisons": 2321280,
+    "referenceAverageComparisons": 241920,
+    "referenceAverageNotComparable": 0,
+    "referenceRecordedValueComparisons": 80640,
+    "collisionPairs": 0,
+    "distinctHistoryKeys": 35204,
+    "mutationChecks": 633660,
+    "mutationPassed": 633660
+  },
+  "mutationChecks": {
+    "attempted": 633660,
+    "passed": 633660,
+    "labels": {
+      "remaining action set": 35204,
+      "selected count": 35204,
+      "five-star budget": 35204,
+      "Leader/card identity": 35204,
+      "investment signature": 35204,
+      "attribute/group counts": 35204,
+      "Leader trigger truth": 35204,
+      "capped-target eligibility": 35204,
+      "chart key": 35204,
+      "chart hash": 35204,
+      "singer/order signature": 35204,
+      "persistent support": 35204,
+      "Special support/activation": 35204,
+      "ordered accumulator cursor": 35204,
+      "tie/finalist continuation": 35204,
+      "Bloom stage": 35200,
+      "Member parameters": 35200,
+      "Active timing/probability": 35200
+    }
+  },
+  "collisionResult": {
+    "collisionPairs": 0,
+    "disposition": "no merge rule exercised"
+  },
+  "mismatches": {
+    "total": 0,
+    "byKind": {},
+    "firstCounterexamples": []
+  },
+  "zeroMismatch": true,
+  "passed": true,
+  "certificateEligible": false,
+  "fullRunAuthorized": false,
+  "disposition": "Reduced-scope suffix and accumulator continuation validation completed; this does not prove full-roster dominance, a certificate, or performance credit.",
+  "deterministicDigest": "3dbda66370d60928911b95e65294b56b79b09e66079259aea2c059aa8bb4eed5",
+  "runtimeMetadata": {
+    "generatedAt": "2026-08-03T18:29:21.055Z",
+    "elapsedMilliseconds": 623830.786,
+    "rssBytes": 1705086976
+  }
+}

@@ -1,7 +1,7 @@
 ---
 id: X06
 title: Guarded bulk accumulation and dominance feasibility
-status: active
+status: done
 depends_on: [X05]
 parallelizable: false
 parent_epic: yagoo-dori-v0.2-exact
@@ -24,9 +24,14 @@ parent_epic: yagoo-dori-v0.2-exact
 - [x] Phase 7 records either a reduced exhaustive dominance proof or a concrete
   pre-pilot kill criterion with `attempted:false`, zero pruning credit, and no
   frontier metrics.
-- [ ] A continuation-complete fixed-Leader partial state is proven and then
+- [x] A continuation-complete fixed-Leader partial state is proven and then
   exhaustively suffix-validated on a reduced roster before any dominance
-  frontier receives timing or pruning credit.
+  frontier receives timing or pruning credit. (Continuation-completeness is
+  proven at the declared merge boundaries — formation identity and
+  accumulator arithmetic — per the ratified D-7 amendment in
+  `docs/1-plans/F_0.1.2_x06-continuation-complete-partial-state.plan.md`;
+  no dominance frontier was built and none received timing or pruning
+  credit.)
 
 ## Current implementation evidence
 
@@ -50,8 +55,18 @@ and <=72-hour p95 gates fail. Full B3 (99.287%), B2 (99.605%), 15x B2, and 8x
 end-to-end targets are all missed. `fullRunAuthorized=false` and
 `certificateEligible=false` remain mandatory.
 
-`pnpm optimizer:dominance:feasibility` produces the required formal Phase-7
-stop. No frontier is built because no continuation-complete state is proven to
-preserve fixed-Leader resolution, formation/progression/trigger suffixes,
-source-order binary64 enclosures, and B3 tie promotion. The artifact reports
-`attempted:false`, zero dominance prunes, and zero full-scope projection credit.
+`pnpm optimizer:dominance:feasibility` records the formal Phase-7 disposition.
+The continuation-complete fixed-Leader partial state is now designed
+(`docs/exact-optimizer-partial-state.md`), implemented
+(`packages/core/src/exact-optimizer-partial-state.ts`), and exhaustively
+suffix-validated on the pinned reduced scope by
+`pnpm optimizer:suffix:validation`: 161,280 state-resumption comparisons,
+633,660 mutation checks, and 2,321,280 accumulator boundary comparisons with
+zero mismatches, stable digest `3dbda663…` reproduced across two complete
+runs. Zero distinct-history collision pairs were observed, so no merge rule
+was exercised: resumption soundness is proven, merge-rule soundness is not
+claimed. The pilot remains `attempted:false` with zero dominance prunes and
+zero full-scope projection credit — the strict-loss prune proof with complete
+accounting is the outstanding reopening requirement, and the identity-like
+key merges nothing, so a frontier cannot earn pruning credit without a new
+versioned, proven merge relation.
