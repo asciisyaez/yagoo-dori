@@ -38,12 +38,20 @@ X01 specification + arithmetic ──► X02 complete parity ──► X03 formu
                                                                   ▼
                                                    X06 guarded bulk accumulator and no-go evidence
                                                                   │
-                                                                  ▼
-                                                  X04 sharded certificate execution and verifier
-                                                                  │
-                                                                  ▼
-                                                               X07 validation
+                                          ┌───────────────────────┴──────┐
+                                          ▼                              ▼
+                    X07 scope-safe validation + copy audit   X04 sharded certificate execution and verifier
+                                                                         │
+                                                                         ▼
+                                                          X08 production certificate validation
 ```
+
+The former single X07 validation ticket split on 2026-08-04: the
+X04-independent validation (machinery regressions against reduced-scope
+artifacts, public copy audit, verification order + read-only live smoke)
+became the new X07 (weight 3, depends only on X06), while the
+certificate-dependent remainder moved to X08 (weight 2, depends on X04).
+The former 5% X07 weight split 3% + 2%; the epic total remains 100%.
 
 ## Non-goals
 

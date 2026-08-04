@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+import { readBoundedJson } from "./lib/read-bounded-json.mjs";
+
 function canonicalize(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalize).join(",")}]`;
   if (value && typeof value === "object") {
@@ -31,7 +33,7 @@ if (!path || path === "--help") {
 }
 
 const recordPath = resolve(path);
-const record = JSON.parse(readFileSync(recordPath, "utf8"));
+const record = readBoundedJson(recordPath);
 const failures = [];
 const fail = (message) => failures.push(message);
 
@@ -59,7 +61,7 @@ if (!record.winner || !Number.isInteger(record.winner.centralMicroUnits)) {
 if (record.recordHash !== sha256(without(record, "recordHash"))) fail("recordHash mismatch");
 
 try {
-  const scope = JSON.parse(readFileSync(resolve("data/native/exact-optimizer-scope-v1.json"), "utf8"));
+  const scope = readBoundedJson(resolve("data/native/exact-optimizer-scope-v1.json"));
   if (record.scopeHash !== scope.scopeHash) fail("scopeHash does not match the checked-in scope manifest");
   if (record.kernelHash !== sha256Bytes(resolve("tools/exact-global-solver/kernel.json"))) {
     fail("kernelHash does not match the checked-in kernel bytes");
@@ -131,7 +133,7 @@ if (record.certificateEligible === true && record.parityEligible !== true) {
 }
 if (replayReduced) {
   try {
-    const reducedReport = JSON.parse(readFileSync(resolve("data/native/exact-optimizer-reduced-parity-v1.json"), "utf8"));
+    const reducedReport = readBoundedJson(resolve("data/native/exact-optimizer-reduced-parity-v1.json"));
     if (reducedReport.scopeHash !== record.scopeHash) fail("reduced replay scopeHash mismatch");
     if (reducedReport.parityEligible !== true || reducedReport.winnerMatches !== true) {
       fail("reduced replay report is not parity-eligible with a matching winner");

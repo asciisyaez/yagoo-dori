@@ -176,7 +176,17 @@ test("a five-talent roster calculates a legal Leader and five Members off the ma
 
   await expect(page.getByText("Recommended formation", { exact: true })).toBeVisible({ timeout: 90_000 });
   await expect(
-    page.getByRole("heading", { name: /Strongest team (?:in the declared scope|found in the searched scope)/ }),
+    page.getByRole("heading", {
+      name: /Strongest team (?:across the declared roster and 30-chart benchmark|in the declared scope|found in the searched scope)/,
+    }),
+  ).toBeVisible();
+  // The certified badge must always carry both scope qualifiers verbatim.
+  await expect(
+    page
+      .getByText("All legal teams from your owned roster checked across the 30-chart benchmark", {
+        exact: true,
+      })
+      .or(page.getByText("Best result in searched scope", { exact: true })),
   ).toBeVisible();
   await expect(page.getByText("Leader Outfit", { exact: true })).toBeVisible();
   await expect(page.getByText("Oshi lock fulfilled", { exact: true })).toBeVisible();

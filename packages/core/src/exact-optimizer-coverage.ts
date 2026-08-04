@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
@@ -197,20 +198,22 @@ function finiteNumber(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-function artifactFile(name: string): string {
-  return fileURLToPath(new URL(`../../../data/native/${name}`, import.meta.url));
+function artifactFile(name: string, artifactRoot?: string): string {
+  return artifactRoot
+    ? join(artifactRoot, name)
+    : fileURLToPath(new URL(`../../../data/native/${name}`, import.meta.url));
 }
 
-function readArtifact(name: string): Record<string, unknown> | null {
+function readArtifact(name: string, artifactRoot?: string): Record<string, unknown> | null {
   try {
-    return asRecord(JSON.parse(readFileSync(artifactFile(name), "utf8")) as unknown);
+    return asRecord(JSON.parse(readFileSync(artifactFile(name, artifactRoot), "utf8")) as unknown);
   } catch {
     return null;
   }
 }
 
-function readFullTraceParityEvidence(): FullTraceParityEvidence {
-  const artifact = readArtifact("exact-optimizer-compiled-parity-v1.json");
+function readFullTraceParityEvidence(artifactRoot?: string): FullTraceParityEvidence {
+  const artifact = readArtifact("exact-optimizer-compiled-parity-v1.json", artifactRoot);
   if (!artifact) {
     return {
       authorized: false,
@@ -226,15 +229,19 @@ function readFullTraceParityEvidence(): FullTraceParityEvidence {
   const reportHash = typeof artifact.reportHash === "string" ? artifact.reportHash : null;
   const { reportHash: _reportedHash, ...withoutHash } = artifact;
   const hashValid = reportHash !== null && reportHash === sha256(withoutHash);
+  const scopeMatches = artifact.scopeHash === exactOptimizerScope.scopeHash;
+  const sampleCountMatches = artifact.sampleCount === 100_000;
+  const certificateEligibilityMatches = artifact.certificateEligible === false;
   const endpointMismatchCounts = asRecord(summary?.compressedVsUncompressed?.endpointMismatchCounts);
   const lower = finiteNumber(endpointMismatchCounts?.lower) ?? 0;
   const central = finiteNumber(endpointMismatchCounts?.central) ?? 0;
   const upper = finiteNumber(endpointMismatchCounts?.upper) ?? 0;
   try {
     const authorized =
-      artifact.scopeHash === exactOptimizerScope.scopeHash &&
-      artifact.sampleCount === 100_000 &&
+      scopeMatches &&
+      sampleCountMatches &&
       hashValid &&
+      certificateEligibilityMatches &&
       summary !== null &&
       isFullExactOptimizerTraceParity(summary, 100_000);
     return {
@@ -246,7 +253,15 @@ function readFullTraceParityEvidence(): FullTraceParityEvidence {
       reportHash,
       reason: authorized
         ? "The current 100000-case trace-preserving versus forced-uncompressed lower/central/upper corpus passed with a content-valid report."
-        : "The trace parity artifact is stale, malformed, incomplete, fell back, or diverged.",
+        : !scopeMatches
+          ? "The full trace parity artifact scope hash is stale."
+          : !sampleCountMatches
+            ? "The full trace parity artifact sample count is stale."
+            : !hashValid
+              ? "The full trace parity artifact report hash is stale."
+              : !certificateEligibilityMatches
+                ? "The full trace parity artifact certificate eligibility is not false."
+                : "The trace parity artifact is stale, malformed, incomplete, fell back, or diverged.",
     };
   } catch {
     return {
@@ -261,8 +276,8 @@ function readFullTraceParityEvidence(): FullTraceParityEvidence {
   }
 }
 
-function readFullRootBoundEvidence(expectedClassCount: number): FullRootBoundEvidence {
-  const artifact = readArtifact("exact-optimizer-leader-root-bounds-v1.json");
+function readFullRootBoundEvidence(expectedClassCount: number, artifactRoot?: string): FullRootBoundEvidence {
+  const artifact = readArtifact("exact-optimizer-leader-root-bounds-v1.json", artifactRoot);
   if (!artifact) {
     return {
       authorized: false,
@@ -292,6 +307,8 @@ function readFullRootBoundEvidence(expectedClassCount: number): FullRootBoundEvi
   const reportHash = typeof artifact.reportHash === "string" ? artifact.reportHash : null;
   const { reportHash: _reportedHash, ...withoutHash } = artifact;
   const hashValid = reportHash !== null && reportHash === sha256(withoutHash);
+  const scopeMatches = artifact.scopeHash === exactOptimizerScope.scopeHash;
+  const certificateEligibilityMatches = artifact.certificateEligible === false;
   const classCount = finiteNumber(classes?.classCount);
   const singletonSafeClassCount = finiteNumber(classes?.singletonSafeClassCount);
   const chartCount = finiteNumber(scope?.chartCount);
@@ -310,7 +327,7 @@ function readFullRootBoundEvidence(expectedClassCount: number): FullRootBoundEvi
     );
   });
   const authorized =
-    artifact.scopeHash === exactOptimizerScope.scopeHash &&
+    scopeMatches &&
     artifact.kind === "exact-optimizer-leader-root-bounds-full-scope" &&
     scope?.memberCardCount === expectedClassCount &&
     scope?.leaderOutfitCount === expectedClassCount &&
@@ -324,7 +341,7 @@ function readFullRootBoundEvidence(expectedClassCount: number): FullRootBoundEvi
     parsedPruning.entrants === expectedClassCount &&
     parsedPruning.pruned + parsedPruning.survivors === expectedClassCount &&
     coverageGate?.authorized === true &&
-    artifact.certificateEligible === false &&
+    certificateEligibilityMatches &&
     hashValid;
   return {
     authorized,
@@ -335,7 +352,13 @@ function readFullRootBoundEvidence(expectedClassCount: number): FullRootBoundEvi
     rootPruning: parsedPruning,
     reason: authorized
       ? "All current singleton-safe Leader classes have content-valid whole-Leader root bounds over the declared 113-Member/30-chart scope."
-      : "The full fixed-Leader root-bound artifact is stale, malformed, incomplete, or not full scope.",
+      : !scopeMatches
+        ? "The full fixed-Leader root-bound artifact scope hash is stale."
+        : !hashValid
+          ? "The full fixed-Leader root-bound artifact report hash is stale."
+          : !certificateEligibilityMatches
+            ? "The full fixed-Leader root-bound artifact certificate eligibility is not false."
+            : "The full fixed-Leader root-bound artifact is stale, malformed, incomplete, or not full scope.",
   };
 }
 
@@ -901,7 +924,13 @@ function executeCoverageCases(
  * Build a ledger from actual catalog records and explicit proof-path facts.
  * Axes are independent inventories, not a fictitious Cartesian product.
  */
-export async function buildExactOptimizerCoverageLedger(): Promise<ExactOptimizerCoverageLedger> {
+export type ExactOptimizerCoverageBuildOptions = Readonly<{
+  artifactRoot?: string;
+}>;
+
+export async function buildExactOptimizerCoverageLedger(
+  options: ExactOptimizerCoverageBuildOptions = {},
+): Promise<ExactOptimizerCoverageLedger> {
   const records = applicationRecords();
   const cardIds = mechanicsData.cards.map((card) => card.cardId).sort((left, right) =>
     left.localeCompare(right),
@@ -911,8 +940,8 @@ export async function buildExactOptimizerCoverageLedger(): Promise<ExactOptimize
   const leaderEquivalence = compileNativeLeaderEquivalence({
     eligibleLeaderOutfitCardIds: cardIds,
   });
-  const fullTraceParity = readFullTraceParityEvidence();
-  const fullRootBounds = readFullRootBoundEvidence(cardIds.length);
+  const fullTraceParity = readFullTraceParityEvidence(options.artifactRoot);
+  const fullRootBounds = readFullRootBoundEvidence(cardIds.length, options.artifactRoot);
   const caseIdsFor = (predicate: (record: ApplicationRecord) => boolean): readonly string[] =>
     records
       .filter(predicate)

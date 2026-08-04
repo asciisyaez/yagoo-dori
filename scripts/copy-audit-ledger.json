@@ -1,0 +1,132 @@
+{
+  "entries": {
+    "data/generated/native-guides.json|Do my best!|best": {
+      "disposition": "non-technical",
+      "justification": "Best appears inside the official song title 'Do my best!', pinned upstream data, not a recommendation claim."
+    },
+    "apps/web/src/app/cards/[slug]/page.tsx|Build around this exact card|exact": {
+      "disposition": "non-technical",
+      "justification": "Exact identifies the selected card record in navigation, not an optimizer or certificate claim."
+    },
+    "apps/web/src/app/changelog/[snapshot]/page.tsx|; score and rank unchanged.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is the published relative ranking metric named in a historical change record."
+    },
+    "apps/web/src/app/changelog/[snapshot]/page.tsx|Score changes|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is the published relative ranking metric named in a historical change record."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|Adjacent published charts ordered by runtime. Note layout and marker timing also change, so these are exact-chart transitions—not universal time thresholds.|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Exact qualifies a transition between individually published chart timelines and rejects universal thresholds."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|Exact 5★ anchor, four 4★ Members, and a 4★ singer-matched Leader Outfit. Member progression:|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Exact describes the declared card and formation inputs for this guide, not global optimality."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|These are relative team comparisons under one fixed benchmark, not absolute Live Score forecasts. The model combines legal team rules, card parameters, progression, skill effects, and song context.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is explicitly limited to relative team comparisons under a fixed benchmark."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|Three legal formation recommendations for this exact card, with team synergies, replacement losses, skill cadence, and song-specific alternatives.|exact": {
+      "disposition": "non-technical",
+      "justification": "Exact identifies the featured card record in guide copy, not a proof or exhaustive search claim."
+    },
+    "apps/web/src/app/guides/page.tsx|hololive Dreams teams with exact cards, singer-matched Leader Outfits, legal lineups, rating-song comparisons, and practical replacements.|exact": {
+      "disposition": "non-technical",
+      "justification": "Exact identifies card-specific guide inputs in metadata copy, not a proof or exhaustive search claim."
+    },
+    "apps/web/src/app/methodology/page.tsx|Each band comes from deterministic matched substitutions across legal teams, current card mechanics, song contexts, and investment. Members and Leader Outfits are measured separately. This is relative team utility—not an absolute Live Score forecast.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is explicitly framed as relative team utility rather than an absolute forecast."
+    },
+    "apps/web/src/app/methodology/page.tsx|Mean of the strongest 10% of matched results—not a single best-case team.|best": {
+      "disposition": "allowed-scoped",
+      "justification": "Best is bounded to matched results and the displayed robust top-ten-percent metric."
+    },
+    "apps/web/src/app/methodology/page.tsx|Share of contexts where the result stays within 5% of the best legal alternative.|best": {
+      "disposition": "allowed-scoped",
+      "justification": "Best is bounded to the best legal alternative within each measured context."
+    },
+    "apps/web/src/app/page.tsx|Compare each Leader effect with the exact Member card that unlocks the Outfit.|exact": {
+      "disposition": "non-technical",
+      "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
+    },
+    "apps/web/src/app/page.tsx|Compare skills, stats, and Leader Outfits, then shape a five-Member formation around the cards you own and the song you want to score.|score": {
+      "disposition": "non-technical",
+      "justification": "Score is the ordinary game-action verb in a song-building instruction."
+    },
+    "apps/web/src/app/page.tsx|Exact five-card formations|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Exact describes the fixed five-card formation record shown by the database."
+    },
+    "apps/web/src/app/synergies/[slug]/page.tsx|Cards belonging to this in-game group. Group membership matters when a skill or Leader condition explicitly targets it; membership alone is not a score bonus.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is an explicitly bounded in-game mechanic claim about group targeting."
+    },
+    "apps/web/src/app/team-builder/page.tsx|Choose your exact cards and Bloom levels, then calculate a legal Leader and five-Member formation for general play.|exact": {
+      "disposition": "non-technical",
+      "justification": "Exact identifies the user-selected cards in a calculator instruction, not an exhaustive result."
+    },
+    "apps/web/src/components/team-calculator.tsx|Best result in searched scope|best": {
+      "disposition": "allowed-scoped",
+      "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
+    },
+    "apps/web/src/components/team-calculator.tsx|certified-within-canonical-corpus-scope|certified": {
+      "disposition": "allowed-scoped",
+      "justification": "Certified is a machine result discriminator naming the canonical corpus scope, not unscoped UI prose."
+    },
+    "apps/web/src/components/team-calculator.tsx|Relative team value, not a projected Live Score.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score is expressly qualified as relative team value and not a projection."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 11% to 2 [attribute=cute]Cute Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 11% to 2 [attribute=pure]Pure Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 8% to 2 [attribute=cute]Cute Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 8% to 2 [attribute=happy]Happy Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|Grants Score Support Effect of 8% to 2 [attribute=pure]Pure Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    "data/generated/native-guides.json|The winner clears the published tiny-margin threshold on this exact chart timeline under the documented relative timing model.|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Exact is limited to the published chart timeline and documented relative timing model."
+    },
+    "data/generated/native-guides.json|With 2 or more Gen 3 Members, Grants Score Support Effect of 12% to 2 Gen 3 Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated conditional in-game mechanic label."
+    },
+    "data/generated/native-guides.json|With 2 or more Gen 3 Members, Grants Score Support Effect of 9% to 2 Gen 3 Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated conditional in-game mechanic label."
+    },
+    "data/generated/native-guides.json|With 2 or more Myth Members, Grants Score Support Effect of 12% to 2 Myth Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated conditional in-game mechanic label."
+    },
+    "data/generated/native-guides.json|With 3 or more [attribute=happy]Happy Type[/attribute] Members, Grants Score Support Effect of 4% to 3 [attribute=happy]Happy Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated conditional in-game mechanic label."
+    },
+    "data/generated/native-guides.json|With 3 or more [attribute=pure]Pure Type[/attribute] Members, Grants Score Support Effect of 4% to 3 [attribute=pure]Pure Type[/attribute] Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated conditional in-game mechanic label."
+    }
+  }
+}

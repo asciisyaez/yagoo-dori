@@ -254,6 +254,61 @@ describe("team calculator contract", () => {
     expect(TeamCalculatorResultSchema.parse(resultFixture()).members).toHaveLength(5);
   });
 
+  it("rejects globally certified formation order and mismatched certificate claims", () => {
+    const globallyCertifiedBase = structuredClone(resultFixture());
+    const globallyCertified = {
+      ...globallyCertifiedBase,
+      search: {
+        ...globallyCertifiedBase.search,
+        formationOrderGloballyCertified: true,
+      },
+    };
+    const globallyCertifiedResult = TeamCalculatorResultSchema.safeParse(globallyCertified);
+
+    expect(globallyCertifiedResult.success).toBe(false);
+    if (!globallyCertifiedResult.success) {
+      expect(
+        globallyCertifiedResult.error.issues.some(
+          (issue) => issue.path.join(".") === "search.formationOrderGloballyCertified",
+        ),
+      ).toBe(true);
+    }
+
+    const mismatchedCertificate = structuredClone(resultFixture());
+    mismatchedCertificate.search = {
+      ...mismatchedCertificate.search,
+      resultClaim: "certified-within-canonical-corpus-scope",
+      certificateKind: "heuristic-bounded",
+      certificateId: "c".repeat(64),
+      optimalityClaim:
+        "exhaustive-across-constraint-eligible-teams-leaders-and-frozen-corpus-under-canonical-order",
+      optimalityGap: 0,
+      candidateGenerationMode: "exhaustive",
+      candidateGenerationChartCount: 0,
+      candidateGenerationChartKeys: [],
+      teamSetsInScope: 12,
+      teamSetsConsidered: 12,
+      teamSetsEvaluated: 12,
+      unsearchedTeamSets: 0,
+      initialLeaderTeamFormationsReranked: 12,
+      searchLeaderTeamFormationsReranked: 12,
+      localRefinementScope: "not-needed-exhaustive",
+      localRefinementStatus: "not-needed-exhaustive",
+      localRefinementIterations: 0,
+      canonicalCorpusOptimalityClaim: true,
+    };
+    const mismatchedCertificateResult = TeamCalculatorResultSchema.safeParse(mismatchedCertificate);
+
+    expect(mismatchedCertificateResult.success).toBe(false);
+    if (!mismatchedCertificateResult.success) {
+      expect(
+        mismatchedCertificateResult.error.issues.some(
+          (issue) => issue.message === "The public result claim must match the search certificate",
+        ),
+      ).toBe(true);
+    }
+  });
+
   it("keeps the displayed Member sequence, Bloom stages, and timing summary aligned", () => {
     const valid = resultFixture();
     expect(TeamCalculatorResultSchema.safeParse(valid).success).toBe(true);

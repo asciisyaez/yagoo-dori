@@ -36,6 +36,7 @@
     "data:sync:timelines": "pnpm --filter @yagoo-dori/core timelines:sync && pnpm --filter @yagoo-dori/core timelines:project && pnpm --filter @yagoo-dori/core timelines:project:guides",
     "assets:previews": "node scripts/generate-art-previews.mjs",
     "assets:check": "node scripts/check-assets.mjs",
+    "copy:audit": "node scripts/run-copy-audit.mjs",
     "project:status": "node scripts/project-status.mjs",
     "optimizer:scope": "node scripts/generate-exact-optimizer-scope.mjs",
     "optimizer:parity:ir": "node scripts/generate-exact-optimizer-parity-ir.mjs",
@@ -65,7 +66,9 @@
     "optimizer:shards:reduced": "node --import tsx/esm scripts/run-exact-reduced-shards.mjs",
     "optimizer:shards:verify:reduced": "node scripts/verify-exact-shards.mjs data/native/exact-optimizer-reduced-shard-run-v1.json --replay-reduced",
     "optimizer:shards:verify": "node scripts/verify-exact-shards.mjs data/native/exact-optimizer-shard-fixture-v1.json",
-    "optimizer:shards:determinism": "node scripts/test-exact-shard-determinism.mjs"
+    "optimizer:verify:rejections": "node scripts/test-exact-verifier-rejections.mjs",
+    "optimizer:shards:determinism": "node scripts/test-exact-shard-determinism.mjs",
+    "smoke:live": "node scripts/run-live-smoke.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0",

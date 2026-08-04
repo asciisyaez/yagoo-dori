@@ -149,24 +149,32 @@ export function computeExactOptimizerScopeHash(scope: Omit<ExactOptimizerScope, 
   return createHash("sha256").update(canonicalize(scope), "utf8").digest("hex");
 }
 
-const parsedScope = ExactOptimizerScopeSchema.parse(scopeJson);
-const { scopeHash, ...scopeWithoutHash } = parsedScope;
-if (computeExactOptimizerScopeHash(scopeWithoutHash) !== scopeHash) {
-  throw new Error("Exact optimizer scope hash does not match its canonical manifest");
+export function assertExactOptimizerScopeValid(
+  scope: ExactOptimizerScope,
+  cards: typeof publicCards,
+  mechanics: typeof mechanicsData,
+): void {
+  const { scopeHash, ...scopeWithoutHash } = scope;
+  if (computeExactOptimizerScopeHash(scopeWithoutHash) !== scopeHash) {
+    throw new Error("Exact optimizer scope hash does not match its canonical manifest");
+  }
+
+  const publicCardIds = [...cards].map((card) => card.id).sort();
+  if (
+    scope.eligibility.eligibleMemberCardIds.join("|") !== publicCardIds.join("|") ||
+    scope.eligibility.eligibleLeaderOutfitCardIds.join("|") !== publicCardIds.join("|")
+  ) {
+    throw new Error("Exact optimizer eligibility does not match the pinned public roster");
+  }
+  if (
+    Object.keys(scope.investment.bloomStageByCardId).sort().join("|") !== publicCardIds.join("|") ||
+    scope.roster.sourceCommit !== mechanics.sourceSnapshot.commit
+  ) {
+    throw new Error("Exact optimizer investment or roster source drifted from the mechanics catalog");
+  }
 }
 
-const publicCardIds = [...publicCards].map((card) => card.id).sort();
-if (
-  parsedScope.eligibility.eligibleMemberCardIds.join("|") !== publicCardIds.join("|") ||
-  parsedScope.eligibility.eligibleLeaderOutfitCardIds.join("|") !== publicCardIds.join("|")
-) {
-  throw new Error("Exact optimizer eligibility does not match the pinned public roster");
-}
-if (
-  Object.keys(parsedScope.investment.bloomStageByCardId).sort().join("|") !== publicCardIds.join("|") ||
-  parsedScope.roster.sourceCommit !== mechanicsData.sourceSnapshot.commit
-) {
-  throw new Error("Exact optimizer investment or roster source drifted from the mechanics catalog");
-}
+const parsedScope = ExactOptimizerScopeSchema.parse(scopeJson);
+assertExactOptimizerScopeValid(parsedScope, publicCards, mechanicsData);
 
 export const exactOptimizerScope: ExactOptimizerScope = parsedScope;

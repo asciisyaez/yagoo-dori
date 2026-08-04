@@ -208,6 +208,7 @@ function FormationSection({
             {formation.orderStatus === "indeterminate" && " The leading placements are effectively tied."}
           </p>
         </div>
+        <p className={styles.leaderCardSource}>{formation.searchCertificate.caveat}</p>
         <ul className={styles.formationTrack} aria-label={`${formation.label} Member lineup`}>
           {members.map((member, index) => (
             <li key={member.id}>

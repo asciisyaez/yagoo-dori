@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { countNativeLegalTeamSets } from "../packages/core/src/native-global-search.ts";
 import { exactOptimizerScope } from "../packages/core/src/exact-optimizer-scope.ts";
 import { mechanicsData } from "../packages/core/src/mechanics.ts";
+import { readBoundedJson } from "./lib/read-bounded-json.mjs";
 
 function canonicalize(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalize).join(",")}]`;
@@ -30,7 +31,7 @@ if (!path || path === "--help") {
   process.exit(path === "--help" ? 0 : 2);
 }
 
-const plan = JSON.parse(readFileSync(resolve(path), "utf8"));
+const plan = readBoundedJson(resolve(path));
 const failures = [];
 const fail = (message) => failures.push(message);
 const root = process.cwd();

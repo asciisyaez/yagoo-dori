@@ -90,10 +90,10 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
   ]);
   const alternatives = result.alternatives.filter((group) => group.cards.length > 0);
   const resultClaimLabel = result.search.resultClaim === "certified-within-canonical-corpus-scope"
-    ? "All legal teams checked"
+    ? "All legal teams from your owned roster checked across the 30-chart benchmark"
     : "Best result in searched scope";
   const resultHeading = result.search.resultClaim === "certified-within-canonical-corpus-scope"
-    ? "Strongest team in the declared scope"
+    ? "Strongest team across the declared roster and 30-chart benchmark"
     : "Strongest team found in the searched scope";
 
   const cardName = (cardId: string) => teamCardById.get(cardId) ?? "Matching Member";

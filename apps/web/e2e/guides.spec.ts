@@ -57,6 +57,8 @@ const AZKI_GUIDE = GUIDES[0];
 const PEKORA_GUIDE = GUIDES[1];
 const SUBARU_GUIDE = GUIDES[2];
 const DISCLAIMER = "Unofficial fan site; not affiliated with COVER Corp. or QualiArts.";
+const HEURISTIC_CAVEAT =
+  "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.";
 
 function requireCard(cardId: string): PublicCard {
   const card = publicCardById.get(cardId);
@@ -163,6 +165,8 @@ for (const guide of GUIDES) {
       const leader = requireCard(formation.leaderOutfitCardId);
       const leaderPanel = section.getByRole("link", { name: "Open Outfit", exact: true }).locator("..");
       await expect(section).toBeVisible();
+      expect(formation.searchCertificate.caveat).toBe(HEURISTIC_CAVEAT);
+      await expect(section.getByText(HEURISTIC_CAVEAT, { exact: true })).toBeVisible();
       await expect(leaderPanel).toContainText(
         `${leader.talentName} · ${leader.leaderOutfit.costumeName}`,
       );
@@ -356,8 +360,10 @@ test("generated guide renders three legal formations and decision details", asyn
   await expect(page.getByText("Standard build", { exact: true })).toBeVisible();
 
   await expect(page.getByText(DISCLAIMER, { exact: true })).toHaveCount(1);
+  // "unresolved" stays banned except inside the sanctioned searchCertificate
+  // caveat sentence, which legitimately reads "unresolved mechanics and…".
   await expect(page.locator("body")).not.toContainText(
-    /AppMedia|globally optimal|canonical display|heuristic coverage|unavailable|unresolved/i,
+    /AppMedia|globally optimal|canonical display|heuristic coverage|unavailable|unresolved(?! mechanics and unsearched teams)/i,
   );
 });
 
