@@ -269,10 +269,22 @@ Separately scoped research toward a certifiable full-roster global optimum
   speedup (2.168× vs 15×; 1.487× vs 8×) targets failed; cost model v3 retains
   36,624 raw core-hours against a ≤800 core-hour / ≤72 h p95 gate.
   `certificateEligible=false`, `fullRunAuthorized=false` are mandatory.
-- **Dominance feasibility**: formally killed before pilot
-  (`attempted:false`) — no continuation-complete fixed-Leader partial-state
-  schema has been proven; designing and exhaustively validating one on a
-  reduced roster is the active X06 criterion.
+- **Partial state** (`docs/exact-optimizer-partial-state.md`, X06):
+  a continuation-complete fixed-Leader partial-state schema
+  (`packages/core/src/exact-optimizer-partial-state.ts`) with canonical
+  binary64-bits serialization, state-only suffix resumption, and
+  pure-arithmetic accumulator checkpoint continuation — exhaustively
+  validated on a pinned reduced scope (56 sets × 4 Leaders × 120 orders,
+  zero mismatches, reproducible digest;
+  `data/native/exact-optimizer-suffix-validation-v1.json`).
+  Continuation-completeness holds at the declared merge boundaries
+  (formation identity; accumulator arithmetic); the identity-like key
+  produced zero distinct-history merges, so no merge rule is claimed.
+- **Dominance feasibility**: the pilot remains `attempted:false` with zero
+  pruning/timing/projection credit — the state-proof prerequisites are
+  satisfied for the reduced scope, but the strict-loss prune proof is
+  outstanding and the sound identity-like key merges nothing, so dominance
+  offers no measured speedup path without a new proven merge relation.
 - The Rust `tools/exact-global-solver` is a disposable parity prototype that
   must never feed rankings, guides, or calculator results.
 
