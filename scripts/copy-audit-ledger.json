@@ -36,18 +36,6 @@
       "disposition": "non-technical",
       "justification": "Exact identifies card-specific guide inputs in metadata copy, not a proof or exhaustive search claim."
     },
-    "apps/web/src/app/methodology/page.tsx|Each band comes from deterministic matched substitutions across legal teams, current card mechanics, song contexts, and investment. Members and Leader Outfits are measured separately. This is relative team utility—not an absolute Live Score forecast.|score": {
-      "disposition": "allowed-scoped",
-      "justification": "Score is explicitly framed as relative team utility rather than an absolute forecast."
-    },
-    "apps/web/src/app/methodology/page.tsx|Mean of the strongest 10% of matched results—not a single best-case team.|best": {
-      "disposition": "allowed-scoped",
-      "justification": "Best is bounded to matched results and the displayed robust top-ten-percent metric."
-    },
-    "apps/web/src/app/methodology/page.tsx|Share of contexts where the result stays within 5% of the best legal alternative.|best": {
-      "disposition": "allowed-scoped",
-      "justification": "Best is bounded to the best legal alternative within each measured context."
-    },
     "apps/web/src/app/page.tsx|Compare each Leader effect with the exact Member card that unlocks the Outfit.|exact": {
       "disposition": "non-technical",
       "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
@@ -131,6 +119,18 @@
     "data/generated/native-guides.json|With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.|score": {
       "disposition": "allowed-scoped",
       "justification": "Score names the in-game Score Support Effect from pinned skill text on the 2026-08 cards, not a published scoring claim."
+    },
+    "apps/web/src/app/methodology/page.tsx|Everything starts with a single number for a single legal formation — one Leader Outfit and five Member cards from five different talents — playing one Expert chart. That number is relative team utility. It is a modelled comparison quantity, not a projected Live Score, and the model publishes no absolute-points equation.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Live Score is named only to deny that the published quantity forecasts it; the same sentence states no absolute-points equation is published."
+    },
+    "apps/web/src/app/methodology/page.tsx|It is not a Live Score forecast.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Live Score appears inside an explicit denial that the measurement forecasts it."
+    },
+    "apps/web/src/app/methodology/page.tsx|Skills activate independently and the strongest active one is selected, evaluated as an exact expectation.|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Exact is bounded to the arithmetic of the modelled central lane expectation, not to any optimality or certification claim."
     }
   }
 }

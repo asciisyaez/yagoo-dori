@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "termCounts": {
-    "best": 4,
+    "best": 2,
     "optimal": 0,
-    "exact": 10,
+    "exact": 11,
     "exhaustive": 0,
     "global": 0,
     "certified": 2,
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 62
+    "score": 63
   },
   "dispositionCounts": {
     "allowed-scoped": 71,
@@ -94,30 +94,30 @@
     },
     {
       "file": "apps/web/src/app/methodology/page.tsx",
-      "context": "Each band comes from deterministic matched substitutions across legal teams, current card mechanics, song contexts, and investment. Members and Leader Outfits are measured separately. This is relative team utility—not an absolute Live Score forecast.",
+      "context": "Everything starts with a single number for a single legal formation — one Leader Outfit and five Member cards from five different talents — playing one Expert chart. That number is relative team utility. It is a modelled comparison quantity, not a projected Live Score, and the model publishes no absolute-points equation.",
       "term": "score",
-      "location": "apps/web/src/app/methodology/page.tsx:27",
+      "location": "apps/web/src/app/methodology/page.tsx:295",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
-      "justification": "Score is explicitly framed as relative team utility rather than an absolute forecast."
+      "justification": "Live Score is named only to deny that the published quantity forecasts it; the same sentence states no absolute-points equation is published."
     },
     {
       "file": "apps/web/src/app/methodology/page.tsx",
-      "context": "Mean of the strongest 10% of matched results—not a single best-case team.",
-      "term": "best",
-      "location": "apps/web/src/app/methodology/page.tsx:13",
-      "sourceKind": "source-string",
+      "context": "It is not a Live Score forecast.",
+      "term": "score",
+      "location": "apps/web/src/app/methodology/page.tsx:564",
+      "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
-      "justification": "Best is bounded to matched results and the displayed robust top-ten-percent metric."
+      "justification": "Live Score appears inside an explicit denial that the measurement forecasts it."
     },
     {
       "file": "apps/web/src/app/methodology/page.tsx",
-      "context": "Share of contexts where the result stays within 5% of the best legal alternative.",
-      "term": "best",
-      "location": "apps/web/src/app/methodology/page.tsx:14",
+      "context": "Skills activate independently and the strongest active one is selected, evaluated as an exact expectation.",
+      "term": "exact",
+      "location": "apps/web/src/app/methodology/page.tsx:132",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
-      "justification": "Best is bounded to the best legal alternative within each measured context."
+      "justification": "Exact is bounded to the arithmetic of the modelled central lane expectation, not to any optimality or certification claim."
     },
     {
       "file": "apps/web/src/app/page.tsx",
@@ -784,7 +784,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-08T08:49:19.003Z"
+    "generatedAt": "2026-08-08T10:59:09.531Z"
   },
-  "stableDigest": "2895b017cec44de2d04fbeab126f688a8e29b92e37b9ed1b0dab2de90600b332"
+  "stableDigest": "5f3f672f3033001bfcffab6283fe9c04c461746e65b30724e00d7a587bf3d507"
 }
