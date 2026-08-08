@@ -21,3 +21,6 @@ tools/exact-global-solver/small.json
 
 # TRIP/glance per-run gate state
 .trip/
+
+# Session handovers and their preserved investigation reports
+.claude/
