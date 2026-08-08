@@ -96,7 +96,7 @@
       "file": "apps/web/src/app/methodology/page.tsx",
       "context": "Everything starts with a single number for a single legal formation — one Leader Outfit and five Member cards from five different talents — playing one Expert chart. That number is relative team utility. It is a modelled comparison quantity, not a projected Live Score, and the model publishes no absolute-points equation.",
       "term": "score",
-      "location": "apps/web/src/app/methodology/page.tsx:295",
+      "location": "apps/web/src/app/methodology/page.tsx:313",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Live Score is named only to deny that the published quantity forecasts it; the same sentence states no absolute-points equation is published."
@@ -105,7 +105,7 @@
       "file": "apps/web/src/app/methodology/page.tsx",
       "context": "It is not a Live Score forecast.",
       "term": "score",
-      "location": "apps/web/src/app/methodology/page.tsx:564",
+      "location": "apps/web/src/app/methodology/page.tsx:618",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Live Score appears inside an explicit denial that the measurement forecasts it."
@@ -114,7 +114,7 @@
       "file": "apps/web/src/app/methodology/page.tsx",
       "context": "Skills activate independently and the strongest active one is selected, evaluated as an exact expectation.",
       "term": "exact",
-      "location": "apps/web/src/app/methodology/page.tsx:132",
+      "location": "apps/web/src/app/methodology/page.tsx:150",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Exact is bounded to the arithmetic of the modelled central lane expectation, not to any optimality or certification claim."
@@ -784,7 +784,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-08T10:59:09.531Z"
+    "generatedAt": "2026-08-08T12:27:38.845Z"
   },
-  "stableDigest": "5f3f672f3033001bfcffab6283fe9c04c461746e65b30724e00d7a587bf3d507"
+  "stableDigest": "1dbf23f77ca01762675b104e3f4dc63f2552592b0a6a0e7af74442a973d915ff"
 }

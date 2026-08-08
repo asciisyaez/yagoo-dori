@@ -62,6 +62,24 @@ const intervalWidths = allRows
   .sort((left, right) => left - right);
 const medianIntervalWidth = intervalWidths[Math.floor(intervalWidths.length / 2)] ?? 0;
 
+const highestCentralIndex = Math.max(...allRows.map((row) => row.entry.index.central));
+
+/** Cards whose published tier is not the same on every lens of their entity kind. */
+function tierDisagreementCount(lenses: readonly Lens[]): number {
+  const tiersByCard = new Map<string, Set<string>>();
+  for (const lens of lenses) {
+    for (const entry of lens.entries) {
+      const tiers = tiersByCard.get(entry.cardId) ?? new Set<string>();
+      tiers.add(entry.tier);
+      tiersByCard.set(entry.cardId, tiers);
+    }
+  }
+  return [...tiersByCard.values()].filter((tiers) => tiers.size > 1).length;
+}
+
+const memberLensDisagreements = tierDisagreementCount(memberLenses);
+const leaderLensDisagreements = tierDisagreementCount(leaderLenses);
+
 const memberMatchedContexts = memberLenses[0]!.entries.map(
   (entry) => entry.evaluation.matchedContexts,
 );
@@ -99,23 +117,23 @@ const metrics = [
     weight: "25%",
     formula: "P = mean of the highest ⌈n/10⌉ values of mᵢ",
     detail:
-      "The average of the strongest tenth of contexts, not a single lucky team. This is where cards that need a specific partner earn their place.",
+      "The average of the strongest tenth of contexts, not a single lucky team. This is where cards that need a specific partner earn their place. Each of the three lanes is ranked separately, so they can describe different subsets of contexts.",
   },
   {
     symbol: "B",
     name: "Team breadth",
     weight: "10%",
-    formula: "B = share of contexts where uᵢ ≥ 0.95 · maxᵢ",
+    formula: "B = share of contexts where u_candidate ≥ 0.95 · max( u_candidate, u_alternatives )",
     detail:
-      "How often the card lands within 5% of the strongest option available in that context. The comparison pool includes the card itself, so a card that is the strongest option counts here.",
+      "How often the card lands within 5% of the strongest option available in that context. Note this metric compares team utilities rather than the marginal above, and the comparison pool includes the card itself, so a card that is the strongest option counts here.",
   },
   {
     symbol: "E",
     name: "Investment efficiency",
     weight: "10%",
-    formula: "E = trapezoidal area under the contribution-versus-progression curve",
+    formula: "E = ( G_low + 2 · G_standard + G_max ) ÷ 4",
     detail:
-      "Value accumulated from entry level through the duplicate-enabled ceiling, so cards that arrive useful are separated from cards that need heavy investment.",
+      "The trapezoidal mean of general value across the progression curve, from entry level through the duplicate-enabled ceiling, so cards that arrive useful are separated from cards that need heavy investment. Being a mean across all three progression states, E is identical on all three lenses.",
   },
 ] as const;
 
@@ -143,9 +161,9 @@ const lanes = [
 function PipelineDiagram() {
   const stages = [
     { x: 8, label: "Card kit", sub: "parameters, skills" },
-    { x: 132, label: "Team utility", sub: "per Expert chart" },
-    { x: 256, label: "Chart average", sub: `${nativeRankingData.corpus.length} charts` },
-    { x: 380, label: "Matched value", sub: "vs. the cohort" },
+    { x: 132, label: "Team utility", sub: "one chart, one context" },
+    { x: 256, label: "Matched value", sub: "vs. the cohort" },
+    { x: 380, label: "Context average", sub: "per card" },
     { x: 504, label: "G · P · B · E", sub: "four metrics" },
     { x: 628, label: "Index", sub: "100 + 10z" },
     { x: 752, label: "Tier", sub: "gated band" },
@@ -247,8 +265,8 @@ function IndexHistogram() {
       </svg>
       <figcaption>
         Every {publicData.counts.total} Member cards on the Standard Manual lens. The cutoffs were
-        frozen from the launch roster, so a new release lands on this axis without moving anyone
-        already on it.
+        frozen from the launch roster, so a new release lands on this axis without shifting any
+        existing card&rsquo;s index.
       </figcaption>
     </figure>
   );
@@ -386,6 +404,12 @@ export default function MethodologyPage() {
           what was achievable there rather than raw utility. Averaging over many contexts is what
           separates a card that is reliably useful from one that happens to suit a single team.
         </p>
+        <p>
+          On the lower and upper lanes that subtraction is taken <strong>outward</strong> — the
+          pessimistic card against the optimistic stand-in, and the optimistic card against the
+          pessimistic stand-in. This step is where the ranges widen most: step two supplies the
+          endpoints, and this subtraction compounds them.
+        </p>
         <p className="methodology-note">
           This is a matched substitution value, not a Shapley value. No coalition game is inferred,
           because the runtime behaviour that would justify one is not observable. Interactions are
@@ -451,16 +475,23 @@ export default function MethodologyPage() {
           deviation, so one extreme release cannot rescale everyone else.
         </p>
         <p className="methodology-formula methodology-formula-block">
-          z(x) = ( x − median<sub>frozen</sub> ) ÷ MAD<sub>frozen</sub>
+          z(x) = ( x − median<sub>frozen</sub> ) ÷ ( 1.4826 · MAD<sub>frozen</sub> )
           <br />
           C = 0.55 · z(G) + 0.25 · z(P) + 0.10 · z(B) + 0.10 · z(E)
           <br />
           index = 100 + 10 · z(C)
         </p>
         <p>
+          The 1.4826 is the constant that makes a median absolute deviation a consistent estimator
+          of the standard deviation, so z is measured in robust standard deviations rather than in
+          raw MADs. The composite is standardised a second time, against its own frozen scale,
+          before it becomes an index.
+        </p>
+        <p>
           So <strong>index 100 is the launch cohort&rsquo;s median card</strong> and{" "}
-          <strong>ten index points is one median absolute deviation</strong> of the composite
-          distribution. Ten points is a large step, not a rounding difference.
+          <strong>ten index points is one robust standard deviation</strong> of the composite
+          distribution — roughly 6.7 index points to one median absolute deviation. Ten points is a
+          large step, not a rounding difference.
         </p>
       </section>
 
@@ -469,9 +500,11 @@ export default function MethodologyPage() {
         <h2>From index to letter</h2>
         <p>
           Member cutoffs were frozen from the launch index distribution and are never recalibrated,
-          which is what allows a new release to be added without moving any existing card. Leader
-          Outfits use absolute index bands instead — 120, 110, 100, 90 and 80 — because they were
-          never part of the launch calibration cohort.
+          which is what allows a new release to be added without moving any existing card&rsquo;s
+          index. Leader Outfits use absolute index bands instead — 120, 110, 100, 90 and 80. They
+          are standardised against their own frozen launch baseline in exactly the same way, but no
+          per-lens tier cutoffs were ever calibrated for them, so their bands are fixed round
+          numbers.
         </p>
         <IndexHistogram />
         <div className="methodology-boundaries">
@@ -530,29 +563,50 @@ export default function MethodologyPage() {
         <div className="methodology-gate-figures">
           <div>
             <b>{gateEffect.rawSS}</b>
-            <span>rows sit above the SS cutoff on their index</span>
+            <span>
+              of the {allRows.length} published rows ({publicData.counts.total} cards × {lensCount}{" "}
+              lenses) sit above the SS cutoff on their index
+            </span>
             <i>{gateEffect.publishedSS} are published as SS</i>
           </div>
           <div>
             <b>{gateEffect.rawD}</b>
-            <span>rows sit below the C cutoff on their index</span>
+            <span>of the same {allRows.length} rows sit below the C cutoff on their index</span>
             <i>{gateEffect.publishedD} are published as D</i>
           </div>
         </div>
         <p>
-          The reason is the width of the ranges from step two. The typical published index range is
-          about {Math.round(medianIntervalWidth)} points wide, so a card whose central index is 108
-          may still have a pessimistic reading near 55. A range that wide cannot clear a test that
-          asks for the <em>whole</em> range to sit above 120. The honest consequence is that{" "}
-          <strong>C currently means two different things</strong> — &ldquo;genuinely a C&rdquo; and
-          &ldquo;possibly a D, but the evidence is too loose to say so&rdquo; — and{" "}
-          <strong>S is the effective top of the ladder</strong>.
+          Two separate things stop them, and neither is simply a lack of precision.
         </p>
         <p>
-          For the same reason every row on the site is marked provisional internally: a rating is
-          only treated as settled when its range narrows to ten index points and its resampling
-          error drops below half a point, and no row currently qualifies. The tier list is published
-          as theorycraft, and the absolute-points model is deliberately marked unavailable.
+          <strong>For SS, the two rules are measured on different scales.</strong> The frozen Member
+          cutoff for SS sits near {standardBoundaries.SS.toFixed(1)}, while the gate asks for the
+          index range to clear an absolute 120. The highest central index anywhere on the site is{" "}
+          {highestCentralIndex.toFixed(1)}. Nothing on the roster reaches 120 even at its most
+          optimistic reading, so no Member card can pass that test however precisely it is measured.
+          The gate&rsquo;s other requirement — being in the top tenth of the roster — is met
+          comfortably by every one of those {gateEffect.rawSS} rows.
+        </p>
+        <p>
+          <strong>For D, one requirement is unmet everywhere.</strong> A card is only published D if
+          most of its measured contexts show a definitely negative contribution, and no context
+          anywhere in the data currently does. Range width matters here too — the typical published
+          index range is about {Math.round(medianIntervalWidth)} points wide — but the negative
+          contribution requirement alone blocks D across the entire roster.
+        </p>
+        <p>
+          The honest consequence is that <strong>C currently means two different things</strong> —
+          &ldquo;genuinely a C&rdquo; and &ldquo;possibly a D, but the evidence does not support
+          saying so&rdquo; — and <strong>S is the effective top of the ladder</strong>.
+        </p>
+        <p>
+          Every row on the site is also marked provisional internally. A rating is treated as
+          settled only when its index range is ten points or narrower, its resampling error is at
+          most half a point, and its source coverage is complete. Range width is the binding
+          constraint: the narrowest range on the site is still about{" "}
+          {Math.round(intervalWidths[0] ?? 0)} points, so no row qualifies, even though most rows
+          already meet the resampling-error condition. The tier list is published as theorycraft,
+          and the absolute-points model is deliberately marked unavailable.
         </p>
       </section>
 
@@ -582,10 +636,14 @@ export default function MethodologyPage() {
             card is to obtain are outside the model entirely.
           </li>
           <li>
-            <strong>The three Member progression lenses currently agree.</strong> Low Investment,
-            Standard Manual and Max Ceiling produce the same Member tier for every card on the
-            present roster, because the progression steps that separate them do not change the
-            terms that drive the index.
+            <strong>The three progression lenses mostly agree, but not entirely.</strong>{" "}
+            {memberLensDisagreements} of the {publicData.counts.total} Member cards and{" "}
+            {leaderLensDisagreements} Leader Outfits are placed in different tiers by different
+            lenses — Low Investment and Standard Manual are near-identical, and Max Ceiling is the
+            one that moves cards. The letters coincide as often as they do because the cutoffs are
+            frozen <em>per lens</em>, so most of the index lift a lens gives a card is absorbed by
+            the higher cutoff it is then measured against. The three lenses also produce identical
+            tier <em>counts</em>, which makes them look more interchangeable than they are.
           </li>
         </ul>
       </section>
