@@ -81,8 +81,8 @@ const CalculatorCardSchema = z
 export const TeamCalculatorResultSchema = z
   .object({
     kind: z.literal("owned-roster-team-calculation"),
-    schemaVersion: z.literal(3),
-    methodologyVersion: z.literal("yd-owned-roster-calculator-3.0.0"),
+    schemaVersion: z.literal(4),
+    methodologyVersion: z.literal("yd-owned-roster-calculator-4.0.0"),
     roster: z
       .object({
         commit: z.string().regex(/^[a-f0-9]{40}$/),
@@ -215,6 +215,106 @@ export const TeamCalculatorResultSchema = z
                   bloomStage: TeamCalculatorBloomStageSchema,
                   relativeUtility: UtilityIntervalSchema,
                   modeledUtilityLoss: UtilityIntervalSchema,
+                  replacementImpact: z
+                    .object({
+                      comparisonDesign: z.literal(
+                        "paired-per-chart-same-leader-and-canonical-order",
+                      ),
+                      beforeCentral: z.number().finite(),
+                      afterCentral: z.number().finite(),
+                      centralDelta: z.number().finite(),
+                      centralDeltaPercent: z.number().finite(),
+                      chartsImproved: z.number().int().min(0).max(30),
+                      chartsWorsened: z.number().int().min(0).max(30),
+                      chartsTied: z.number().int().min(0).max(30),
+                      perChartDeltaPercent: z
+                        .object({
+                          minimum: z.number().finite(),
+                          median: z.number().finite(),
+                          maximum: z.number().finite(),
+                        })
+                        .strict()
+                        .superRefine((range, context) => {
+                          if (range.minimum > range.median || range.median > range.maximum) {
+                            context.addIssue({
+                              code: "custom",
+                              message: "Per-chart percentage changes must be ordered",
+                            });
+                          }
+                        }),
+                      boundAgreement: z.enum([
+                        "improves-at-every-bound",
+                        "worsens-at-every-bound",
+                        "bound-dependent",
+                      ]),
+                      effectChanges: z.array(
+                        z
+                          .object({
+                            change: z.enum(["lost", "gained", "retargeted"]),
+                            source: z.enum(["leader", "passive"]),
+                            sourceCardId: z.string().min(1),
+                            sourceRemainsInTeam: z.boolean(),
+                            effectGroupId: z.string().min(1),
+                            effectKind: z.enum([
+                              "performance-up",
+                              "technique-up",
+                              "sense-up",
+                              "all-parameters-up",
+                            ]),
+                            valuePermil: z.number().int().nonnegative(),
+                            recipientCardIdsBefore: z.array(z.string().min(1)),
+                            recipientCardIdsAfter: z.array(z.string().min(1)),
+                            activeChartCountBefore: z.number().int().min(0).max(30),
+                            activeChartCountAfter: z.number().int().min(0).max(30),
+                          })
+                          .strict()
+                          .superRefine((row, context) => {
+                            const expected =
+                              row.recipientCardIdsAfter.length === 0
+                                ? "lost"
+                                : row.recipientCardIdsBefore.length === 0
+                                  ? "gained"
+                                  : "retargeted";
+                            if (row.change !== expected) {
+                              context.addIssue({
+                                code: "custom",
+                                path: ["change"],
+                                message: "Effect change class must match its before/after recipient sets",
+                              });
+                            }
+                          }),
+                      ),
+                      outgoingPassiveDescription: z.string().min(1),
+                      incomingPassiveDescription: z.string().min(1),
+                      outgoingPassiveSkillLevel: z.number().int().positive(),
+                      incomingPassiveSkillLevel: z.number().int().positive(),
+                      activeCooldownDeltaMilliseconds: z.number().int(),
+                      specialDurationDeltaMilliseconds: z.number().int(),
+                      formationOrderAffectsValue: z.literal(false),
+                    })
+                    .strict()
+                    .superRefine((impact, context) => {
+                      if (
+                        impact.chartsImproved + impact.chartsWorsened + impact.chartsTied !==
+                        30
+                      ) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["chartsTied"],
+                          message: "Per-chart outcomes must cover the frozen 30-chart corpus exactly once",
+                        });
+                      }
+                      if (
+                        Math.abs(impact.afterCentral - impact.beforeCentral - impact.centralDelta) >
+                        0.000_01
+                      ) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["centralDelta"],
+                          message: "Central delta must reconcile with the displayed before and after values",
+                        });
+                      }
+                    }),
                 }).strict(),
               )
               .max(3),
@@ -506,6 +606,119 @@ export const TeamCalculatorResultSchema = z
           message: "Replacement identity and returned coverage must reconcile",
         });
       }
+      const beforeMemberIds = new Set(memberCardIds);
+      alternative.cards.forEach((card, cardIndex) => {
+        const afterMemberIds = new Set(
+          memberCardIds.map((cardId) =>
+            cardId === alternative.replacesCardId ? card.cardId : cardId,
+          ),
+        );
+        const impact = card.replacementImpact;
+        if (
+          Math.abs(impact.beforeCentral - result.score.relativeUtility.central) > 0.000_01 ||
+          Math.abs(impact.afterCentral - card.relativeUtility.central) > 0.000_01 ||
+          Math.abs(impact.centralDelta + card.modeledUtilityLoss.central) > 0.000_01 ||
+          impact.formationOrderAffectsValue
+        ) {
+          context.addIssue({
+            code: "custom",
+            path: ["alternatives", alternativeIndex, "cards", cardIndex, "replacementImpact"],
+            message: "Replacement impact must reconcile with the selected and alternative utilities",
+          });
+        }
+        if (
+          Math.abs(
+            impact.centralDeltaPercent -
+              (impact.beforeCentral === 0
+                ? 0
+                : (impact.centralDelta / impact.beforeCentral) * 100),
+          ) > 0.000_1
+        ) {
+          context.addIssue({
+            code: "custom",
+            path: [
+              "alternatives",
+              alternativeIndex,
+              "cards",
+              cardIndex,
+              "replacementImpact",
+              "centralDeltaPercent",
+            ],
+            message: "Central percentage change must match the paired central delta",
+          });
+        }
+        const matchedBoundDeltas = (['lower', 'central', 'upper'] as const).map(
+          (bound) => card.relativeUtility[bound] - result.score.relativeUtility[bound],
+        );
+        const expectedBoundAgreement = matchedBoundDeltas.every((delta) => delta > 0.000_001)
+          ? "improves-at-every-bound"
+          : matchedBoundDeltas.every((delta) => delta < -0.000_001)
+            ? "worsens-at-every-bound"
+            : "bound-dependent";
+        if (impact.boundAgreement !== expectedBoundAgreement) {
+          context.addIssue({
+            code: "custom",
+            path: [
+              "alternatives",
+              alternativeIndex,
+              "cards",
+              cardIndex,
+              "replacementImpact",
+              "boundAgreement",
+            ],
+            message: "Bound agreement must compare matched before and after bounds",
+          });
+        }
+        const effectKeys = new Set<string>();
+        impact.effectChanges.forEach((effect, effectIndex) => {
+          const effectKey = [
+            effect.source,
+            effect.sourceCardId,
+            effect.effectGroupId,
+            effect.effectKind,
+            effect.valuePermil,
+          ].join("|");
+          if (effectKeys.has(effectKey)) {
+            context.addIssue({
+              code: "custom",
+              path: [
+                "alternatives",
+                alternativeIndex,
+                "cards",
+                cardIndex,
+                "replacementImpact",
+                "effectChanges",
+                effectIndex,
+              ],
+              message: "Each effect key may appear only once per replacement impact",
+            });
+          }
+          effectKeys.add(effectKey);
+          if (
+            effect.recipientCardIdsBefore.some((id) => !beforeMemberIds.has(id)) ||
+            effect.recipientCardIdsAfter.some((id) => !afterMemberIds.has(id)) ||
+            (effect.source === "leader" && effect.sourceCardId !== result.leader.cardId) ||
+            (effect.source === "passive" && !beforeMemberIds.has(effect.sourceCardId) &&
+              !afterMemberIds.has(effect.sourceCardId)) ||
+            effect.sourceRemainsInTeam !==
+              (effect.sourceCardId === result.leader.cardId || afterMemberIds.has(effect.sourceCardId))
+          ) {
+            context.addIssue({
+              code: "custom",
+              path: [
+                "alternatives",
+                alternativeIndex,
+                "cards",
+                cardIndex,
+                "replacementImpact",
+                "effectChanges",
+                effectIndex,
+              ],
+              message: "Replacement effect sources and recipients must reconcile with both teams",
+            });
+          }
+        });
+      });
       if (result.oshi && result.oshi.resolution.member.status === "fulfilled") {
         const remainingTalentIds = result.members
           .filter((member) => member.cardId !== alternative.replacesCardId)

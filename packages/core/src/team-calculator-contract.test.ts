@@ -31,6 +31,49 @@ function card(cardId: string, talentId: string) {
   };
 }
 
+type FixtureUtilityInterval = TeamCalculatorResult["score"]["relativeUtility"];
+type FixtureReplacementImpact =
+  TeamCalculatorResult["alternatives"][number]["cards"][number]["replacementImpact"];
+
+function replacementImpact(after: FixtureUtilityInterval): FixtureReplacementImpact {
+  const before = { lower: 99.6, central: 109.6, upper: 119.6 };
+  const centralDelta = after.central - before.central;
+  const centralDeltaPercent = (centralDelta / before.central) * 100;
+  const boundDeltas = (Object.keys(before) as Array<keyof FixtureUtilityInterval>).map(
+    (bound) => after[bound] - before[bound],
+  );
+  const improvesAtEveryBound = boundDeltas.every((delta) => delta > 0.000_001);
+  const worsensAtEveryBound = boundDeltas.every((delta) => delta < -0.000_001);
+  return {
+    comparisonDesign: "paired-per-chart-same-leader-and-canonical-order",
+    beforeCentral: before.central,
+    afterCentral: after.central,
+    centralDelta,
+    centralDeltaPercent,
+    chartsImproved: improvesAtEveryBound ? 30 : 0,
+    chartsWorsened: worsensAtEveryBound ? 30 : 0,
+    chartsTied: improvesAtEveryBound || worsensAtEveryBound ? 0 : 30,
+    perChartDeltaPercent: {
+      minimum: centralDeltaPercent,
+      median: centralDeltaPercent,
+      maximum: centralDeltaPercent,
+    },
+    boundAgreement: improvesAtEveryBound
+      ? "improves-at-every-bound"
+      : worsensAtEveryBound
+        ? "worsens-at-every-bound"
+        : "bound-dependent",
+    effectChanges: [],
+    outgoingPassiveDescription: "Fixture outgoing passive.",
+    incomingPassiveDescription: "Fixture incoming passive.",
+    outgoingPassiveSkillLevel: 1,
+    incomingPassiveSkillLevel: 1,
+    activeCooldownDeltaMilliseconds: 0,
+    specialDurationDeltaMilliseconds: 0,
+    formationOrderAffectsValue: false,
+  };
+}
+
 function resultFixture(): TeamCalculatorResult {
   const members = OWNED_CARDS.map((ownedCard, index) => ({
     ...card(ownedCard.cardId, `talent-${index}`),
@@ -38,8 +81,8 @@ function resultFixture(): TeamCalculatorResult {
   }));
   return {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 3,
-    methodologyVersion: "yd-owned-roster-calculator-3.0.0",
+    schemaVersion: 4,
+    methodologyVersion: "yd-owned-roster-calculator-4.0.0",
     roster: { commit: "a".repeat(40), ownedCardCount: 5, ownedTalentCount: 5 },
     oshi: null,
     corpus: {
@@ -133,7 +176,7 @@ function resultFixture(): TeamCalculatorResult {
       certificateKind: "heuristic-bounded",
       certificateId: null,
       scopeHash: "b".repeat(64),
-      runRecordId: "yd-owned-roster-run-v3-test",
+      runRecordId: "yd-owned-roster-run-v4-test",
       optimalityClaim: "not-certified",
       objective: "equal-chart-average-relative-utility",
       objectiveId: "yd-equal-chart-average-relative-utility-v1",
@@ -409,6 +452,7 @@ describe("team calculator contract", () => {
         bloomStage: 0,
         relativeUtility: { lower: 90, central: 100, upper: 110 },
         modeledUtilityLoss: { lower: -10.4, central: 9.6, upper: 29.6 },
+        replacementImpact: replacementImpact({ lower: 90, central: 100, upper: 110 }),
       },
     ];
     illegalReplacement.alternatives[0]!.coverage = {
@@ -434,6 +478,7 @@ describe("team calculator contract", () => {
         bloomStage: 0,
         relativeUtility: { lower: 110, central: 120, upper: 130 },
         modeledUtilityLoss: { lower: -30, central: -10.4, upper: 9.6 },
+        replacementImpact: replacementImpact({ lower: 110, central: 120, upper: 130 }),
       },
     ];
     result.alternatives[0]!.coverage = {
@@ -447,5 +492,51 @@ describe("team calculator contract", () => {
 
     expect(TeamCalculatorResultSchema.safeParse(result).success).toBe(true);
     expect(result.alternatives[0]!.cards[0]!.modeledUtilityLoss.central).toBeLessThan(0);
+  });
+
+  it("reconciles paired replacement impact and rejects drifted delta or effect classes", () => {
+    const valid = resultFixture();
+    valid.alternatives[0]!.cards = [
+      {
+        ...card("card-replacement", "talent-replacement"),
+        bloomStage: 0,
+        relativeUtility: { lower: 110, central: 120, upper: 130 },
+        modeledUtilityLoss: { lower: -30, central: -10.4, upper: 9.6 },
+        replacementImpact: replacementImpact({ lower: 110, central: 120, upper: 130 }),
+      },
+    ];
+    valid.alternatives[0]!.coverage = {
+      selectionMethod: "bounded-two-stage-screen",
+      eligibleCardCount: 1,
+      coarseScreenedCardCount: 1,
+      corpusProxyScreenedCardCount: 1,
+      fullCorpusRerankedCardCount: 1,
+      returnedCardCount: 1,
+    };
+    valid.alternatives[0]!.cards[0]!.replacementImpact.effectChanges = [
+      {
+        change: "lost",
+        source: "passive",
+        sourceCardId: valid.members[1]!.cardId,
+        sourceRemainsInTeam: true,
+        effectGroupId: "fixture-passive-effect",
+        effectKind: "all-parameters-up",
+        valuePermil: 240,
+        recipientCardIdsBefore: [valid.members[1]!.cardId],
+        recipientCardIdsAfter: [],
+        activeChartCountBefore: 30,
+        activeChartCountAfter: 0,
+      },
+    ];
+
+    expect(TeamCalculatorResultSchema.safeParse(valid).success).toBe(true);
+
+    const driftedDelta = structuredClone(valid);
+    driftedDelta.alternatives[0]!.cards[0]!.replacementImpact.centralDelta += 1;
+    expect(TeamCalculatorResultSchema.safeParse(driftedDelta).success).toBe(false);
+
+    const driftedClass = structuredClone(valid);
+    driftedClass.alternatives[0]!.cards[0]!.replacementImpact.effectChanges[0]!.change = "gained";
+    expect(TeamCalculatorResultSchema.safeParse(driftedClass).success).toBe(false);
   });
 });

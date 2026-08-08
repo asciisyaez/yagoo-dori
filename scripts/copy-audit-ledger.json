@@ -60,10 +60,6 @@
       "disposition": "allowed-scoped",
       "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
     },
-    "apps/web/src/components/team-calculator.tsx|certified-within-canonical-corpus-scope|certified": {
-      "disposition": "allowed-scoped",
-      "justification": "Certified is a machine result discriminator naming the canonical corpus scope, not unscoped UI prose."
-    },
     "apps/web/src/components/team-calculator.tsx|Relative team value, not a projected Live Score.|score": {
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."

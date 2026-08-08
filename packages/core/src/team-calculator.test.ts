@@ -66,6 +66,20 @@ function fastEvaluator(
       relativeUtility: { lower: central, central, upper: central },
       components: {
         ...template.components,
+        active: {
+          ...template.components.active,
+          byMember: template.components.active.byMember.map((member, index) => ({
+            ...member,
+            cardId: input.formation.members[index]!.cardId,
+          })),
+        },
+        special: {
+          ...template.components.special,
+          byFormationOrder: template.components.special.byFormationOrder.map((member, index) => ({
+            ...member,
+            cardId: input.formation.members[index]!.cardId,
+          })),
+        },
         parameterEffects: {
           ...template.components.parameterEffects,
           contributions: [],
@@ -166,6 +180,48 @@ describe("owned-roster team calculator", () => {
     expect(changedBloom.search.scopeHash).not.toBe(base.search.scopeHash);
     expect(withOshi.search.scopeHash).not.toBe(base.search.scopeHash);
     expect(withOshi.search.certificateId).toBe(withOshi.search.scopeHash);
+  }, 30_000);
+
+  it("emits paired replacement evidence from cached chart evaluations", () => {
+    let evaluateCalls = 0;
+    const evaluatedKeys = new Set<string>();
+    const evaluate = fastEvaluator();
+    const result = calculateOwnedRosterTeam(
+      { ...REQUEST, ownedCards: MULTI_VARIANT_OWNED },
+      {
+        evaluate: (input) => {
+          evaluateCalls += 1;
+          evaluatedKeys.add(`${input.formation.leaderOutfitCardId}|${input.formation.members.map((member) => member.cardId).join("|")}|${input.chartKey}`);
+          return evaluate(input);
+        },
+      },
+    );
+
+    expect(result.schemaVersion).toBe(4);
+    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-4.0.0");
+    expect(result.search.runRecordId).toMatch(/^yd-owned-roster-run-v4-/);
+    expect(result.alternatives.flatMap((group) => group.cards).length).toBeGreaterThan(0);
+    for (const group of result.alternatives) {
+      for (const card of group.cards) {
+        const impact = card.replacementImpact;
+        expect(impact.beforeCentral).toBe(result.score.relativeUtility.central);
+        expect(impact.afterCentral).toBe(card.relativeUtility.central);
+        expect(impact.centralDelta).toBeCloseTo(
+          card.relativeUtility.central - result.score.relativeUtility.central,
+          5,
+        );
+        expect(impact.chartsImproved + impact.chartsWorsened + impact.chartsTied).toBe(30);
+        expect(impact.formationOrderAffectsValue).toBe(false);
+        expect(impact.effectChanges.every((effect) =>
+          effect.recipientCardIdsBefore.every((id) => result.members.some((member) => member.cardId === id)) &&
+          effect.recipientCardIdsAfter.every((id) =>
+            result.members.some((member) => member.cardId === id) || id === card.cardId,
+          ),
+        )).toBe(true);
+      }
+    }
+    expect(evaluateCalls).toBe(result.search.corpusUtilityEvaluations);
+    expect(evaluateCalls).toBe(evaluatedKeys.size);
   }, 30_000);
 
   it.each([

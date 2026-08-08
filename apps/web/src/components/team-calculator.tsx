@@ -68,6 +68,63 @@ function formatSeconds(milliseconds: number) {
   return Number.isInteger(seconds) ? `${seconds}s` : `${seconds.toFixed(1)}s`;
 }
 
+function formatSignedUtility(value: number) {
+  if (Math.abs(value) < 0.5) return "0";
+  return `${value > 0 ? "+" : "−"}${formatUtility(Math.abs(value))}`;
+}
+
+function formatSignedPercent(value: number) {
+  if (Math.abs(value) < 0.05) return "Near tie (<0.05%)";
+  return `${value > 0 ? "+" : "−"}${Math.abs(value).toFixed(1)}%`;
+}
+
+function formatPermilPercent(value: number) {
+  return `${(value / 10).toFixed(1)}%`;
+}
+
+function formatBasisPoints(permil: number) {
+  return `${(permil * 10).toFixed(1)} bp`;
+}
+
+function formatSignedDuration(milliseconds: number) {
+  if (milliseconds === 0) return "0s";
+  return `${milliseconds > 0 ? "+" : "−"}${formatSeconds(Math.abs(milliseconds))}`;
+}
+
+function cleanDescription(description: string | null | undefined) {
+  return (description ?? "Effect description unavailable.")
+    .replace(/\[\/?[^\]]+\]/g, "")
+    .replace(/\\n/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function boundAgreementLabel(
+  agreement: TeamCalculatorResult["alternatives"][number]["cards"][number]["replacementImpact"]["boundAgreement"],
+) {
+  if (agreement === "improves-at-every-bound") return "Improves at every matched bound";
+  if (agreement === "worsens-at-every-bound") return "Worsens at every matched bound";
+  return "Bound-dependent";
+}
+
+function localRefinementLabel(result: TeamCalculatorResult) {
+  if (result.search.resultClaim !== "bounded-search") {
+    return "Not needed for the declared-corpus search.";
+  }
+  switch (result.search.localRefinementStatus) {
+    case "fixed-point":
+      return `Reached a fixed point after ${result.search.localRefinementIterations} iteration${result.search.localRefinementIterations === 1 ? "" : "s"}.`;
+    case "cycle-guard":
+      return `Stopped after ${result.search.localRefinementIterations} iteration${result.search.localRefinementIterations === 1 ? "" : "s"} when a repeated team was detected.`;
+    case "iteration-cap":
+      return `Stopped at the ${result.search.localRefinementIterations}-iteration cap; nearby swaps remain comparisons, not a claim about every roster combination.`;
+    case "bounded-pass-complete":
+      return "Completed the bounded local pass.";
+    default:
+      return "Local refinement status was not reported.";
+  }
+}
+
 function effectLabel(effectKind: TeamCalculatorResult["synergies"][number]["effectKind"]) {
   switch (effectKind) {
     case "performance-up": return "Performance";
@@ -88,15 +145,22 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
     [result.leader.cardId, result.leader.talentName],
     ...result.members.map((member) => [member.cardId, member.talentName] as const),
   ]);
+  const alternativeCardById = new Map(
+    result.alternatives.flatMap((group) =>
+      group.cards.map((card) => [card.cardId, card.talentName] as const),
+    ),
+  );
   const alternatives = result.alternatives.filter((group) => group.cards.length > 0);
-  const resultClaimLabel = result.search.resultClaim === "certified-within-canonical-corpus-scope"
-    ? "All legal teams from your owned roster checked across the 30-chart benchmark"
-    : "Best result in searched scope";
-  const resultHeading = result.search.resultClaim === "certified-within-canonical-corpus-scope"
-    ? "Strongest team across the declared roster and 30-chart benchmark"
-    : "Strongest team found in the searched scope";
+  const boundedSearch = result.search.resultClaim === "bounded-search";
+  const resultClaimLabel = boundedSearch
+    ? "Best result in searched scope"
+    : "All legal teams from your owned roster checked across the 30-chart benchmark";
+  const resultHeading = boundedSearch
+    ? "Strongest team found in the searched scope"
+    : "Strongest team across the declared roster and 30-chart benchmark";
 
-  const cardName = (cardId: string) => teamCardById.get(cardId) ?? "Matching Member";
+  const cardName = (cardId: string) =>
+    teamCardById.get(cardId) ?? alternativeCardById.get(cardId) ?? "Matching Member";
 
   return (
     <section className={styles.resultPanel} aria-labelledby="team-result-heading" aria-live="polite">
@@ -182,14 +246,103 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
             })}
           </div>
           <p className={styles.orderSummary} data-status={result.formationOrder.status}>
-            {result.formationOrder.status === "indeterminate"
-              ? "Timing outcomes were effectively tied; this is a stable starting order."
-              : result.formationOrder.kind === "timed-corpus"
-                ? `Chart-timed skill order at the selected Bloom levels · ${result.formationOrder.permutationsChecked} placements compared across ${result.formationOrder.corpusChartCount} pinned Expert charts.`
-                : `Skill timing at the selected Bloom levels · ${result.formationOrder.permutationsChecked} placements compared across ${result.formationOrder.corpusChartCount} Expert charts.`}
+            {result.formationOrder.confidence.statement} Win share {formatPermilPercent(result.formationOrder.confidence.winSharePermil)} · max regret {formatBasisPoints(result.formationOrder.confidence.maxRegretPermil)} · mean regret {formatBasisPoints(result.formationOrder.confidence.meanRegretPermil)}.
           </p>
         </div>
       </div>
+
+      <section className={styles.memberEvidencePanel} aria-labelledby="member-evidence-heading">
+        <header>
+          <div>
+            <span>Member field report</span>
+            <h3 id="member-evidence-heading">Why each Member is here</h3>
+          </div>
+          <p>One-for-one comparisons keep the Leader and the other four Members fixed.</p>
+        </header>
+        <div className={styles.memberEvidenceGrid}>
+          {result.members.map((member, index) => {
+            const timing = result.formationOrder.members[index]!;
+            const replacementGroup = result.alternatives.find(
+              (group) => group.replacesCardId === member.cardId,
+            );
+            const primaryAlternative = replacementGroup?.cards[0];
+            const relevantSynergies = result.synergies.filter((synergy) =>
+              synergy.sourceCardId === member.cardId ||
+              synergy.recipientAlternatives.some((recipients) => recipients.includes(member.cardId)),
+            );
+            const persistent = timing.active.persistentSupportPermilAcrossCorpus;
+            const oshiSelected = result.oshi?.resolution.member.selectedCardId === member.cardId;
+            const specialGateLabel = timing.special.comboGateThresholds.length > 0
+              ? `; combo thresholds ${timing.special.comboGateThresholds.join(", ")}`
+              : "";
+            return (
+              <article className={styles.memberEvidenceCard} key={member.cardId}>
+                <h4 className="sr-only">{member.talentName} Member evidence</h4>
+                <header>
+                  <Link href={`/cards/${member.slug}`}>
+                    <Image alt="" height={42} src={member.artPath} width={42} />
+                    <span><strong>{member.talentName}</strong><small>{member.title} · B{member.bloomStage}</small></span>
+                  </Link>
+                  <b>Slot {timing.slot}</b>
+                </header>
+                <details>
+                  <summary>Evidence for this Member</summary>
+                  <div className={styles.memberEvidenceBody}>
+                    <p><strong>Active:</strong> fires on {formatPermilPercent(timing.active.activationProbabilityPermil)} of checks; checks every {formatSeconds(timing.active.cooldownMilliseconds)} and lasts {formatSeconds(timing.active.durationMilliseconds)}.</p>
+                    {persistent.maximum > 0 && (
+                      <p><strong>Persistent support:</strong> {persistent.minimum === persistent.maximum ? `${persistent.minimum}‰` : `${persistent.minimum}–${persistent.maximum}‰`} across the benchmark.</p>
+                    )}
+                    <p><strong>Special:</strong> at full combo without a song match, +{formatPermilPercent(timing.special.scoreSupportPermilAtFullComboWithoutSongMatch)} support and +{formatPermilPercent(timing.special.activationRateUpPermilAtFullComboWithoutSongMatch)} activation rate for {formatSeconds(timing.special.durationMilliseconds)}{specialGateLabel}.</p>
+                    {oshiSelected && result.oshi && (
+                      <p><strong>Oshi:</strong> selected from {result.oshi.eligibleOwnedMemberCardIds.length} eligible owned Member{result.oshi.eligibleOwnedMemberCardIds.length === 1 ? "" : "s"}.</p>
+                    )}
+                    <div className={styles.memberEvidenceLinks}>
+                      <strong>Leader/Passive links</strong>
+                      {relevantSynergies.length > 0 ? (
+                        <ul>
+                          {relevantSynergies.map((synergy) => {
+                            const isSource = synergy.sourceCardId === member.cardId;
+                            const isRecipient = synergy.recipientAlternatives.some((recipients) => recipients.includes(member.cardId));
+                            const memberRelation = isSource && isRecipient
+                              ? "source + possible recipient"
+                              : isSource
+                                ? "source"
+                                : "possible recipient";
+                            const recipients = synergy.recipientAlternatives
+                              .map((recipientSet) => recipientSet.map(cardName).join(" + "))
+                              .join(" / ");
+                            return (
+                              <li key={`${synergy.source}-${synergy.sourceCardId}-${synergy.effectGroupId}`}>
+                                <span>{memberRelation}</span> {synergy.source} link from {cardName(synergy.sourceCardId)} · {effectLabel(synergy.effectKind)} +{synergy.valuePermil / 10}% · {recipients || "no listed recipients"} · {synergy.resolution === "resolved" ? "resolved" : "multiple possible targets"} ({synergy.activeChartCount}/30 charts)
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      ) : <p>No Leader or Passive link names this Member as a source or possible recipient.</p>}
+                    </div>
+                    <div className={styles.memberReplacementEvidence}>
+                      <strong>One-for-one replacement check</strong>
+                      {replacementGroup && primaryAlternative ? (
+                        <>
+                          <p>Primary rule: the strongest stand-in we evaluated was <Link href={`/cards/${primaryAlternative.slug}`}>{primaryAlternative.talentName}</Link>, with the Leader and other four Members held fixed.</p>
+                          <p>Swapping {member.talentName} for {primaryAlternative.talentName} moves modeled team value by {formatSignedUtility(primaryAlternative.replacementImpact.centralDelta)} ({formatSignedPercent(primaryAlternative.replacementImpact.centralDeltaPercent)}); the stand-in central modeled value is {formatUtility(primaryAlternative.relativeUtility.central)}.</p>
+                          {primaryAlternative.replacementImpact.centralDelta > 0 && (
+                            <p className={styles.memberEvidenceWarning}>This stand-in models higher than the selected Member. {result.search.localRefinementStatus === "iteration-cap" ? "The local refinement stopped at its cap, so this remains a comparison rather than a promoted team." : "The displayed result keeps the selected team and shows this as a comparison."}</p>
+                          )}
+                          <p>Coverage: {replacementGroup.coverage.eligibleCardCount} eligible stand-in{replacementGroup.coverage.eligibleCardCount === 1 ? "" : "s"}; {replacementGroup.coverage.fullCorpusRerankedCardCount} reached the full 30-chart benchmark; {replacementGroup.coverage.returnedCardCount} shown.</p>
+                        </>
+                      ) : (
+                        <p>No evaluated stand-in was returned for this slot. The selected Member remains explained by the timing, link, and roster evidence above.</p>
+                      )}
+                    </div>
+                  </div>
+                </details>
+              </article>
+            );
+          })}
+        </div>
+        <p className={styles.memberEvidenceNote}>These are one-for-one comparisons, not shares of the team total; the Active lane models one skill applying per note, so member contributions do not add up to the whole.</p>
+      </section>
 
       <div className={styles.resultDetailGrid}>
         <section className={styles.synergyPanel}>
@@ -198,7 +351,6 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
             {result.synergies.map((synergy, index) => {
               const sourceName = cardName(synergy.sourceCardId);
               const recipients = synergy.recipientAlternatives
-                .slice(0, 2)
                 .map((alternative) => alternative.map(cardName).join(" + "))
                 .join(" / ");
               const recipientLabel = recipients || "No matching recipients";
@@ -225,19 +377,22 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
 
         <section className={styles.searchSummary}>
           <span>{resultClaimLabel}</span>
+          <p className={styles.searchClaimDetail}><strong>Result claim:</strong> {boundedSearch ? "bounded search; searched scope only" : "declared roster scope"}.</p>
           <strong>{result.search.searchLeaderTeamFormationsReranked.toLocaleString("en-US")}</strong>
           <small>Leader and five-Member formations compared</small>
-          {result.search.resultClaim === "bounded-search" && result.search.unsearchedTeamSets > 0 && (
+          {boundedSearch && result.search.unsearchedTeamSets > 0 && (
             <p>{result.search.teamSetsConsidered.toLocaleString("en-US")} of {result.search.teamSetsInScope.toLocaleString("en-US")} legal Member sets reached the full benchmark.</p>
           )}
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
+          <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>
           <em>Relative team value, not a projected Live Score.</em>
         </section>
       </div>
 
       {alternatives.length > 0 && (
         <section className={styles.alternativesPanel}>
-          <header><div><span>Backups</span><h3>Top evaluated replacements</h3></div><small>With the recommended Leader</small></header>
+          <header><div><span>Swap impact report</span><h3>One-for-one replacements</h3></div><small>With the recommended Leader</small></header>
+          <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it moves both teams together, so it is not attached to a swap delta. Formation order does not move the before/after value here because calculator comparisons use canonical order.</p>
           <div className={styles.alternativeGroups}>
             {alternatives.map((group) => {
               const replaced = result.members.find((member) => member.cardId === group.replacesCardId);
@@ -248,22 +403,60 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                     <Image alt="" height={38} src={replaced.artPath} width={38} />
                     <span><small>Instead of</small><strong>{replaced.talentName}</strong></span>
                   </header>
-                  <div>
-                    {group.cards.slice(0, 3).map((alternative) => {
-                      const percentChange = result.score.relativeUtility.central === 0
-                        ? 0
-                        : (-alternative.modeledUtilityLoss.central / result.score.relativeUtility.central) * 100;
-                      const changeLabel = percentChange >= 0.05
-                        ? `+${percentChange.toFixed(1)}%`
-                        : percentChange <= -0.05
-                          ? `−${Math.abs(percentChange).toFixed(1)}%`
-                          : "Near tie";
+                  <div className={styles.alternativeReports}>
+                    {group.cards.map((alternative) => {
+                      const impact = alternative.replacementImpact;
+                      const chartChange = impact.centralDeltaPercent;
                       return (
-                        <Link href={`/cards/${alternative.slug}`} key={alternative.cardId}>
-                          <Image alt="" height={42} src={alternative.artPath} width={42} />
-                          <span><strong>{alternative.talentName}</strong><small>{alternative.title} · B{alternative.bloomStage}</small></span>
-                          <b data-improvement={percentChange >= 0.05}>{changeLabel}</b>
-                        </Link>
+                        <article className={styles.alternativeReport} key={alternative.cardId}>
+                          <h4 className="sr-only">{replaced.talentName} to {alternative.talentName} replacement impact</h4>
+                          <Link className={styles.alternativeIdentity} href={`/cards/${alternative.slug}`}>
+                            <Image alt="" height={42} src={alternative.artPath} width={42} />
+                            <span><strong>{alternative.talentName}</strong><small>{alternative.title} · B{alternative.bloomStage}</small></span>
+                          </Link>
+                          <div className={styles.alternativeValueLine}>
+                            <span>Team value</span>
+                            <strong>{formatUtility(result.score.relativeUtility.central)} → {formatUtility(alternative.relativeUtility.central)}</strong>
+                            <b data-improvement={impact.centralDelta > 0.05}>{formatSignedUtility(impact.centralDelta)}</b>
+                            <small>{formatSignedPercent(chartChange)}</small>
+                          </div>
+                          <p className={styles.alternativeRobustness}>Improved {impact.chartsImproved}/30 charts · worsened {impact.chartsWorsened}/30 · tied {impact.chartsTied}/30.</p>
+                          <p className={styles.alternativeRobustness}>Per-chart change {formatSignedPercent(impact.perChartDeltaPercent.minimum)} to {formatSignedPercent(impact.perChartDeltaPercent.maximum)}; median {formatSignedPercent(impact.perChartDeltaPercent.median)} · {boundAgreementLabel(impact.boundAgreement)}.</p>
+                          <details className={styles.impactDetails}>
+                            <summary>Inspect passive, cadence, and targeting changes</summary>
+                            <div className={styles.impactBody}>
+                              <div className={styles.passiveComparison}>
+                                <div><span>Passive before · Lv.{impact.outgoingPassiveSkillLevel}</span><p>{cleanDescription(impact.outgoingPassiveDescription)}</p></div>
+                                <ArrowRight aria-hidden="true" />
+                                <div><span>Passive after · Lv.{impact.incomingPassiveSkillLevel}</span><p>{cleanDescription(impact.incomingPassiveDescription)}</p></div>
+                              </div>
+                              <p className={styles.impactScalars}><strong>Active cadence delta:</strong> {formatSignedDuration(impact.activeCooldownDeltaMilliseconds)} incoming minus outgoing · <strong>Special window delta:</strong> {formatSignedDuration(impact.specialDurationDeltaMilliseconds)} incoming minus outgoing.</p>
+                              <div className={styles.effectChangeList}>
+                                <strong>Leader/Passive effect changes</strong>
+                                {impact.effectChanges.length > 0 ? (
+                                  <ul>
+                                    {impact.effectChanges.map((effect) => {
+                                      const beforeTargets = effect.recipientCardIdsBefore.length > 0
+                                        ? effect.recipientCardIdsBefore.map(cardName).join(", ")
+                                        : "none";
+                                      const afterTargets = effect.recipientCardIdsAfter.length > 0
+                                        ? effect.recipientCardIdsAfter.map(cardName).join(", ")
+                                        : "none";
+                                      const sourceStatus = effect.sourceRemainsInTeam
+                                        ? "source remains in team"
+                                        : "source leaves with outgoing card";
+                                      return (
+                                        <li key={`${effect.source}-${effect.sourceCardId}-${effect.effectGroupId}-${effect.effectKind}-${effect.valuePermil}`}>
+                                          <span data-change={effect.change}>{effect.change}</span> <strong>{effect.source} · {cardName(effect.sourceCardId)}</strong> · {sourceStatus} · {effectLabel(effect.effectKind)} +{effect.valuePermil / 10}% · before: {beforeTargets} · after: {afterTargets} · {effect.activeChartCountBefore}/30 → {effect.activeChartCountAfter}/30 charts
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
+                                ) : <p>No Leader or Passive effect recipient changed across the paired corpus.</p>}
+                              </div>
+                            </div>
+                          </details>
+                        </article>
                       );
                     })}
                   </div>

@@ -2,6 +2,7 @@ import rankingBenchmarkJson from "../../../data/native/ranking-benchmark-v1.json
 import { createHash } from "node:crypto";
 
 import { recommendFormationOrder } from "./formation-order-recommender";
+import { resolveCardInvestmentState } from "./formation-evaluator";
 import { mechanicsCardById } from "./mechanics";
 import {
   searchNativeCanonicalCandidates,
@@ -106,6 +107,17 @@ type AverageEvaluation = Readonly<{
   referenceAverage: UtilityInterval;
   currentAverage: UtilityInterval;
 }>;
+
+type SynergyRow = TeamCalculatorResult["synergies"][number];
+type SynergyAccumulator = {
+  source: "leader" | "passive";
+  sourceCardId: string;
+  effectGroupId: string;
+  effectKind: "performance-up" | "technique-up" | "sense-up" | "all-parameters-up";
+  valuePermil: number;
+  activeCharts: Set<string>;
+  alternatives: Map<string, string[]>;
+};
 
 export type TeamCalculatorDependencies = Readonly<{
   search?: SearchRunner;
@@ -496,6 +508,230 @@ function normalizedRecipientAlternatives(alternatives: ReadonlyArray<readonly st
   ].sort((left, right) => left.join("|").localeCompare(right.join("|")));
 }
 
+function synergyKey(row: Pick<SynergyRow, "source" | "sourceCardId" | "effectGroupId" | "effectKind" | "valuePermil">): string {
+  return [row.source, row.sourceCardId, row.effectGroupId, row.effectKind, row.valuePermil].join("|");
+}
+
+function accumulateCorpusSynergies(
+  candidate: Candidate,
+  evaluateRaw: (candidate: Candidate, chartKey: string) => NativeUtilityResult,
+): SynergyRow[] {
+  const synergyByKey = new Map<string, SynergyAccumulator>();
+  for (const entry of TEAM_CALCULATOR_CORPUS.entries) {
+    const utility = evaluateRaw(candidate, entry.chartKey);
+    for (const contribution of utility.components.parameterEffects.contributions) {
+      const key = synergyKey(contribution);
+      const accumulator = synergyByKey.get(key) ?? {
+        source: contribution.source,
+        sourceCardId: contribution.sourceCardId,
+        effectGroupId: contribution.effectGroupId,
+        effectKind: contribution.effectKind,
+        valuePermil: contribution.valuePermil,
+        activeCharts: new Set<string>(),
+        alternatives: new Map<string, string[]>(),
+      };
+      accumulator.activeCharts.add(entry.chartKey);
+      for (const indexes of contribution.recipientAlternatives) {
+        const alternative = indexes
+          .map((index) => candidate.memberCardIds[index])
+          .filter((cardId): cardId is string => cardId !== undefined);
+        const normalized = [...alternative].sort();
+        accumulator.alternatives.set(normalized.join("|"), normalized);
+      }
+      synergyByKey.set(key, accumulator);
+    }
+  }
+  return [...synergyByKey.values()]
+    .map((synergy) => {
+      const recipientAlternatives = normalizedRecipientAlternatives([
+        ...synergy.alternatives.values(),
+      ]);
+      return {
+        source: synergy.source,
+        sourceCardId: synergy.sourceCardId,
+        effectGroupId: synergy.effectGroupId,
+        effectKind: synergy.effectKind,
+        valuePermil: synergy.valuePermil,
+        recipientAlternatives,
+        resolution: recipientAlternatives.length === 1
+          ? "resolved" as const
+          : "multiple-possible-recipients" as const,
+        activeChartCount: synergy.activeCharts.size,
+        corpusChartCount: CORPUS_CHART_COUNT as 30,
+        activationSharePermil: Math.round((synergy.activeCharts.size * 1_000) / CORPUS_CHART_COUNT),
+      };
+    })
+    .sort(
+      (left, right) =>
+        left.source.localeCompare(right.source) ||
+        left.sourceCardId.localeCompare(right.sourceCardId) ||
+        left.effectGroupId.localeCompare(right.effectGroupId),
+    );
+}
+
+function targetIds(row: SynergyRow | undefined): string[] {
+  return row
+    ? [...new Set(row.recipientAlternatives.flat())].sort((left, right) => left.localeCompare(right))
+    : [];
+}
+
+function passiveDetails(cardId: string, bloomStage: TeamCalculatorBloomStage): {
+  description: string;
+  level: number;
+} {
+  const mechanics = mechanicsCardById.get(cardId);
+  const card = publicCardById.get(cardId);
+  if (!mechanics || !card) {
+    throw new TeamCalculatorError("calculation-failed", `Passive details are unavailable: ${cardId}`);
+  }
+  const level = resolveCardInvestmentState(mechanics, "one-copy-maximum", bloomStage).passiveSkillLevel;
+  return {
+    description:
+      card.skills.passive.find((skill) => skill.level === level)?.description ??
+      "Effect description unavailable.",
+    level,
+  };
+}
+
+function scalarComponent(
+  utility: NativeUtilityResult,
+  cardId: string,
+): { cooldownMilliseconds: number; specialDurationMilliseconds: number } {
+  const active = utility.components.active.byMember.find((member) => member.cardId === cardId);
+  const special = utility.components.special.byFormationOrder.find((member) => member.cardId === cardId);
+  if (!active || !special) {
+    throw new TeamCalculatorError("calculation-failed", `Cached timing details are unavailable: ${cardId}`);
+  }
+  return {
+    cooldownMilliseconds: active.cooldownMilliseconds,
+    specialDurationMilliseconds: special.durationMilliseconds,
+  };
+}
+
+type ReplacementImpact = TeamCalculatorResult["alternatives"][number]["cards"][number]["replacementImpact"];
+
+function buildReplacementImpact(input: {
+  selectedCandidate: Candidate;
+  alternativeCandidate: Candidate;
+  outgoingCardId: string;
+  incomingCardId: string;
+  selectedSynergies: readonly SynergyRow[];
+  alternativeSynergies: readonly SynergyRow[];
+  selectedAverage: AverageEvaluation;
+  alternativeAverage: AverageEvaluation;
+  evaluateRaw: (candidate: Candidate, chartKey: string) => NativeUtilityResult;
+  bloomStageByCardId: Readonly<Record<string, TeamCalculatorBloomStage>>;
+}): ReplacementImpact {
+  const beforeCentral = input.selectedAverage.relativeUtility.central;
+  const afterCentral = input.alternativeAverage.relativeUtility.central;
+  const centralDelta = round(afterCentral - beforeCentral);
+  const centralDeltaPercent = beforeCentral === 0 ? 0 : round((centralDelta / beforeCentral) * 100);
+  let chartsImproved = 0;
+  let chartsWorsened = 0;
+  let chartsTied = 0;
+  const perChartDeltaPercent = TEAM_CALCULATOR_CORPUS.entries.map((entry) => {
+    const before = input.evaluateRaw(input.selectedCandidate, entry.chartKey).relativeUtility.central;
+    const after = input.evaluateRaw(input.alternativeCandidate, entry.chartKey).relativeUtility.central;
+    const delta = after - before;
+    if (delta > IMPROVEMENT_EPSILON) chartsImproved += 1;
+    else if (delta < -IMPROVEMENT_EPSILON) chartsWorsened += 1;
+    else chartsTied += 1;
+    return before === 0 ? 0 : round((delta / before) * 100);
+  });
+  const boundDeltas = (["lower", "central", "upper"] as const).map(
+    (bound) => input.alternativeAverage.relativeUtility[bound] - input.selectedAverage.relativeUtility[bound],
+  );
+  const boundAgreement = boundDeltas.every((delta) => delta > IMPROVEMENT_EPSILON)
+    ? "improves-at-every-bound" as const
+    : boundDeltas.every((delta) => delta < -IMPROVEMENT_EPSILON)
+      ? "worsens-at-every-bound" as const
+      : "bound-dependent" as const;
+
+  const selectedByKey = new Map(input.selectedSynergies.map((row) => [synergyKey(row), row]));
+  const alternativeByKey = new Map(input.alternativeSynergies.map((row) => [synergyKey(row), row]));
+  const effectChanges: ReplacementImpact["effectChanges"] = [];
+  const effectKeys = [...new Set([...selectedByKey.keys(), ...alternativeByKey.keys()])].sort();
+  const sourceRemainsInTeam = (sourceCardId: string) =>
+    sourceCardId === input.selectedCandidate.leaderOutfitCardId ||
+    input.alternativeCandidate.memberCardIds.includes(sourceCardId);
+  for (const effectKey of effectKeys) {
+    const before = selectedByKey.get(effectKey);
+    const after = alternativeByKey.get(effectKey);
+    const beforeRecipients = targetIds(before);
+    const afterRecipients = targetIds(after);
+    const beforeCoverage = before?.activeChartCount ?? 0;
+    const afterCoverage = after?.activeChartCount ?? 0;
+    const change = !after
+      ? "lost" as const
+      : !before
+        ? "gained" as const
+        : beforeRecipients.join("|") !== afterRecipients.join("|") || beforeCoverage !== afterCoverage
+          ? "retargeted" as const
+          : null;
+    if (!change) continue;
+    const source = (after ?? before)!;
+    effectChanges.push({
+      change,
+      source: source.source,
+      sourceCardId: source.sourceCardId,
+      sourceRemainsInTeam: sourceRemainsInTeam(source.sourceCardId),
+      effectGroupId: source.effectGroupId,
+      effectKind: source.effectKind,
+      valuePermil: source.valuePermil,
+      recipientCardIdsBefore: beforeRecipients,
+      recipientCardIdsAfter: afterRecipients,
+      activeChartCountBefore: beforeCoverage,
+      activeChartCountAfter: afterCoverage,
+    });
+  }
+
+  const outgoingBloomStage = input.bloomStageByCardId[input.outgoingCardId];
+  const incomingBloomStage = input.bloomStageByCardId[input.incomingCardId];
+  if (outgoingBloomStage === undefined || incomingBloomStage === undefined) {
+    throw new TeamCalculatorError("calculation-failed", "Replacement Bloom state is unavailable.");
+  }
+  const outgoingPassive = passiveDetails(input.outgoingCardId, outgoingBloomStage);
+  const incomingPassive = passiveDetails(input.incomingCardId, incomingBloomStage);
+  const firstChartKey = TEAM_CALCULATOR_CORPUS.entries[0]?.chartKey;
+  if (!firstChartKey) {
+    throw new TeamCalculatorError("invalid-corpus", "The representative chart corpus is empty.");
+  }
+  const outgoingTiming = scalarComponent(
+    input.evaluateRaw(input.selectedCandidate, firstChartKey),
+    input.outgoingCardId,
+  );
+  const incomingTiming = scalarComponent(
+    input.evaluateRaw(input.alternativeCandidate, firstChartKey),
+    input.incomingCardId,
+  );
+  return {
+    comparisonDesign: "paired-per-chart-same-leader-and-canonical-order",
+    beforeCentral,
+    afterCentral,
+    centralDelta,
+    centralDeltaPercent,
+    chartsImproved,
+    chartsWorsened,
+    chartsTied,
+    perChartDeltaPercent: {
+      minimum: round(Math.min(...perChartDeltaPercent)),
+      median: round(median(perChartDeltaPercent)),
+      maximum: round(Math.max(...perChartDeltaPercent)),
+    },
+    boundAgreement,
+    effectChanges,
+    outgoingPassiveDescription: outgoingPassive.description,
+    incomingPassiveDescription: incomingPassive.description,
+    outgoingPassiveSkillLevel: outgoingPassive.level,
+    incomingPassiveSkillLevel: incomingPassive.level,
+    activeCooldownDeltaMilliseconds:
+      incomingTiming.cooldownMilliseconds - outgoingTiming.cooldownMilliseconds,
+    specialDurationDeltaMilliseconds:
+      incomingTiming.specialDurationMilliseconds - outgoingTiming.specialDurationMilliseconds,
+    formationOrderAffectsValue: false,
+  };
+}
+
 function boundedSearchStrategy(
   compactMemberOshiSearch = false,
 ): NativeCanonicalCandidateSearchInput["strategy"] {
@@ -532,7 +768,7 @@ export function calculateOwnedRosterTeam(
     .sort((left, right) => left.cardId.localeCompare(right.cardId))
     .map((ownedCard) => ({ ...ownedCard, card: requirePublicCard(ownedCard.cardId) }));
   const scopeHash = calculateOwnedRosterScopeHash(request, ownedCards);
-  const runRecordId = `yd-owned-roster-run-v3-${scopeHash}`;
+  const runRecordId = `yd-owned-roster-run-v4-${scopeHash}`;
   const ownedTalentCount = new Set(ownedCards.map((ownedCard) => ownedCard.card.talentId)).size;
   if (ownedTalentCount < 5) {
     throw new TeamCalculatorError(
@@ -876,72 +1112,7 @@ export function calculateOwnedRosterTeam(
     );
   }
 
-  type SynergyAccumulator = {
-    source: "leader" | "passive";
-    sourceCardId: string;
-    effectGroupId: string;
-    effectKind: "performance-up" | "technique-up" | "sense-up" | "all-parameters-up";
-    valuePermil: number;
-    activeCharts: Set<string>;
-    alternatives: Map<string, string[]>;
-  };
-  const synergyByKey = new Map<string, SynergyAccumulator>();
-  for (const entry of TEAM_CALCULATOR_CORPUS.entries) {
-    const utility = evaluateRaw(selectedCandidate, entry.chartKey);
-    for (const contribution of utility.components.parameterEffects.contributions) {
-      const key = [
-        contribution.source,
-        contribution.sourceCardId,
-        contribution.effectGroupId,
-        contribution.effectKind,
-        contribution.valuePermil,
-      ].join("|");
-      const accumulator = synergyByKey.get(key) ?? {
-        source: contribution.source,
-        sourceCardId: contribution.sourceCardId,
-        effectGroupId: contribution.effectGroupId,
-        effectKind: contribution.effectKind,
-        valuePermil: contribution.valuePermil,
-        activeCharts: new Set<string>(),
-        alternatives: new Map<string, string[]>(),
-      };
-      accumulator.activeCharts.add(entry.chartKey);
-      for (const indexes of contribution.recipientAlternatives) {
-        const alternative = indexes
-          .map((index) => selectedCandidate.memberCardIds[index])
-          .filter((cardId): cardId is string => cardId !== undefined);
-        const normalized = [...alternative].sort();
-        accumulator.alternatives.set(normalized.join("|"), normalized);
-      }
-      synergyByKey.set(key, accumulator);
-    }
-  }
-  const synergies = [...synergyByKey.values()]
-    .map((synergy) => {
-      const recipientAlternatives = normalizedRecipientAlternatives([
-        ...synergy.alternatives.values(),
-      ]);
-      return {
-        source: synergy.source,
-        sourceCardId: synergy.sourceCardId,
-        effectGroupId: synergy.effectGroupId,
-        effectKind: synergy.effectKind,
-        valuePermil: synergy.valuePermil,
-        recipientAlternatives,
-        resolution: recipientAlternatives.length === 1
-          ? "resolved" as const
-          : "multiple-possible-recipients" as const,
-        activeChartCount: synergy.activeCharts.size,
-        corpusChartCount: CORPUS_CHART_COUNT as 30,
-        activationSharePermil: Math.round((synergy.activeCharts.size * 1_000) / CORPUS_CHART_COUNT),
-      };
-    })
-    .sort(
-      (left, right) =>
-        left.source.localeCompare(right.source) ||
-        left.sourceCardId.localeCompare(right.sourceCardId) ||
-        left.effectGroupId.localeCompare(right.effectGroupId),
-    );
+  const synergies = accumulateCorpusSynergies(selectedCandidate, evaluateRaw);
 
   const exhaustive = legalTeamSets <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS;
   const alternatives = members.map((member) => {
@@ -991,11 +1162,24 @@ export function calculateOwnedRosterTeam(
           },
           "replacement",
         );
+        const replacementImpact = buildReplacementImpact({
+          selectedCandidate,
+          alternativeCandidate: candidate,
+          outgoingCardId: member.cardId,
+          incomingCardId: ownedCard.cardId,
+          selectedSynergies: synergies,
+          alternativeSynergies: accumulateCorpusSynergies(candidate, evaluateRaw),
+          selectedAverage: selected,
+          alternativeAverage: alternative,
+          evaluateRaw,
+          bloomStageByCardId,
+        });
         return {
           ...cardSummary(ownedCard.card),
           bloomStage: ownedCard.bloomStage,
           relativeUtility: alternative.relativeUtility,
           modeledUtilityLoss: subtractIntervals(selected.relativeUtility, alternative.relativeUtility),
+          replacementImpact,
         };
       })
       .sort(
@@ -1026,8 +1210,8 @@ export function calculateOwnedRosterTeam(
 
   const result: TeamCalculatorResult = {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 3,
-    methodologyVersion: "yd-owned-roster-calculator-3.0.0",
+    schemaVersion: 4,
+    methodologyVersion: "yd-owned-roster-calculator-4.0.0",
     roster: {
       commit: TEAM_CALCULATOR_ROSTER_COMMIT,
       ownedCardCount: ownedCards.length,

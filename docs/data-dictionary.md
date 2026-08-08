@@ -27,6 +27,6 @@
 
 ## Ranking metrics
 
-`G` is mean Shapley marginal contribution across matched legal teams. `P` is the mean of the top 10% of those contributions. `B` is the share of contexts where the optimized containing team is within 5% of the best legal team. `E` is normalized area under the contribution-versus-investment curve.
+`G` is the mean matched marginal from legal comparison teams; it is not a Shapley value or an additive Member share. `P` is the mean of the top 10% of those contributions. `B` is the share of contexts where candidate team utility is at least 95% of the strongest matched legal team. `E` is the trapezoidal mean `(G_low + 2*G_standard + G_max)/4`.
 
 Frozen median/MAD values are versioned inside the methodology definition. They do not change when a new card is appended. A methodology update creates a new identifier and changelog boundary.

@@ -6,19 +6,19 @@
     "exact": 11,
     "exhaustive": 0,
     "global": 0,
-    "certified": 2,
+    "certified": 0,
     "certificate": 0,
     "proof": 0,
     "proven": 0,
     "score": 63
   },
   "dispositionCounts": {
-    "allowed-scoped": 71,
+    "allowed-scoped": 69,
     "non-technical": 7,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 78,
+  "occurrenceCount": 76,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -168,34 +168,16 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
-      "location": "apps/web/src/components/team-calculator.tsx:94",
+      "location": "apps/web/src/components/team-calculator.tsx:156",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
     },
     {
       "file": "apps/web/src/components/team-calculator.tsx",
-      "context": "certified-within-canonical-corpus-scope",
-      "term": "certified",
-      "location": "apps/web/src/components/team-calculator.tsx:92",
-      "sourceKind": "source-string",
-      "disposition": "allowed-scoped",
-      "justification": "Certified is a machine result discriminator naming the canonical corpus scope, not unscoped UI prose."
-    },
-    {
-      "file": "apps/web/src/components/team-calculator.tsx",
-      "context": "certified-within-canonical-corpus-scope",
-      "term": "certified",
-      "location": "apps/web/src/components/team-calculator.tsx:95",
-      "sourceKind": "source-string",
-      "disposition": "allowed-scoped",
-      "justification": "Certified is a machine result discriminator naming the canonical corpus scope, not unscoped UI prose."
-    },
-    {
-      "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:234",
+      "location": "apps/web/src/components/team-calculator.tsx:388",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -784,7 +766,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-08T13:39:01.905Z"
+    "generatedAt": "2026-08-08T15:24:06.088Z"
   },
-  "stableDigest": "1dbf23f77ca01762675b104e3f4dc63f2552592b0a6a0e7af74442a973d915ff"
+  "stableDigest": "1b700035b01bea7e1008c46015865f8341db5805f77a5edfe9fa4d065928b713"
 }

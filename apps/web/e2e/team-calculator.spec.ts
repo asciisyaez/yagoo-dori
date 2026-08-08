@@ -154,7 +154,7 @@ test("restricted storage falls back to a usable session roster", async ({ isMobi
   await expect(page.getByText("B0", { exact: true })).toBeVisible();
 });
 
-test("a five-talent roster calculates a legal Leader and five Members off the main thread", async ({
+test("a six-card roster calculates a legal Leader and five Members off the main thread", async ({
   isMobile,
   page,
 }) => {
@@ -163,7 +163,7 @@ test("a five-talent roster calculates a legal Leader and five Members off the ma
 
   await page.goto("/team-builder?rarity=5", { waitUntil: "domcontentloaded" });
   const search = page.getByRole("searchbox", { name: "Search cards" });
-  for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu"]) {
+  for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu", "Nekomata Okayu"]) {
     await search.fill(talent);
     await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
   }
@@ -205,8 +205,23 @@ test("a five-talent roster calculates a legal Leader and five Members off the ma
   ]);
   await expect(page.locator("[class*='memberTiming']")).toHaveCount(5);
   await expect(page.locator("[class*='orderSummary']")).toContainText(
-    /120 placements compared|stable starting order/,
+    /Win share|stable starting order/,
   );
+  await expect(page.getByRole("heading", { name: "Why each Member is here" })).toBeVisible();
+  await expect(page.locator("[class*='memberEvidenceCard']")).toHaveCount(5);
+  await expect(page.getByText("Evidence for this Member", { exact: true })).toHaveCount(5);
+  const resultPanel = page.locator("[class*='resultPanel']");
+  await expect(resultPanel).toContainText("central modeled value");
+  await expect(resultPanel).not.toContainText("midpoint");
+  await expect(page.getByText(/Result claim:/)).toBeVisible();
+  await expect(page.getByText(/Local refinement:/)).toBeVisible();
+
+  const replacementReports = page.locator("[class*='alternativeReport']");
+  await expect(replacementReports.first()).toBeVisible();
+  await replacementReports.first().getByText("Inspect passive, cadence, and targeting changes", { exact: true }).click();
+  await expect(replacementReports.first().getByText("Passive before", { exact: false })).toBeVisible();
+  await expect(replacementReports.first().getByText(/Improved \d+\/30 charts/)).toBeVisible();
+  await expect(page.getByText(/Formation order does not move the before\/after value/)).toBeVisible();
 
   await page.getByRole("button", { name: /^Leader/ }).click();
   await page.getByRole("button", { name: "Calculate team", exact: true }).click();

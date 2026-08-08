@@ -1598,6 +1598,220 @@
   color: #a1a9b4;
 }
 
+.memberEvidencePanel {
+  border-bottom: 1px solid var(--yd-line);
+  background:
+    linear-gradient(110deg, rgba(37, 188, 233, 0.045), transparent 34%),
+    #12161d;
+  padding: 0.65rem;
+}
+
+.memberEvidencePanel > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid #303744;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: #181d25;
+  padding: 0.7rem;
+}
+
+.memberEvidencePanel > header > div {
+  display: grid;
+}
+
+.memberEvidencePanel > header span {
+  color: var(--yd-cyan);
+  font-size: 0.56rem;
+  font-weight: 820;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.memberEvidencePanel > header h3 {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.memberEvidencePanel > header p {
+  max-width: 370px;
+  margin: 0;
+  color: #808996;
+  font-size: 0.57rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.memberEvidenceGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  border: 1px solid #303744;
+  border-radius: 0 0 6px 6px;
+  background: #151920;
+  padding: 0.5rem;
+}
+
+.memberEvidenceCard {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #303744;
+  border-radius: 5px;
+  background: #11151b;
+}
+
+.memberEvidenceCard > header {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  padding: 0.42rem;
+}
+
+.memberEvidenceCard > header > a {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.memberEvidenceCard > header > a img {
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.memberEvidenceCard > header > a > span {
+  display: grid;
+  min-width: 0;
+}
+
+.memberEvidenceCard > header strong,
+.memberEvidenceCard > header small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.memberEvidenceCard > header strong {
+  font-size: 0.62rem;
+}
+
+.memberEvidenceCard > header small {
+  margin-top: 0.08rem;
+  color: #77808d;
+  font-size: 0.51rem;
+}
+
+.memberEvidenceCard > header > b {
+  flex: 0 0 auto;
+  border: 1px solid rgba(37, 188, 233, 0.24);
+  border-radius: 3px;
+  color: var(--yd-cyan-soft);
+  font-size: 0.5rem;
+  padding: 0.18rem 0.24rem;
+}
+
+.memberEvidenceCard details {
+  border-top: 1px solid #2c3440;
+}
+
+.memberEvidenceCard summary,
+.impactDetails summary {
+  cursor: pointer;
+  color: #a5d9e8;
+  font-size: 0.56rem;
+  font-weight: 760;
+  list-style-position: inside;
+  padding: 0.42rem;
+}
+
+.memberEvidenceCard summary:focus-visible,
+.impactDetails summary:focus-visible {
+  outline: 2px solid var(--yd-cyan-soft);
+  outline-offset: -2px;
+}
+
+.memberEvidenceBody {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+  padding: 0.45rem;
+}
+
+.memberEvidenceBody > p,
+.memberReplacementEvidence p,
+.memberEvidenceLinks > p {
+  margin: 0;
+  color: #a4acb8;
+  font-size: 0.54rem;
+  line-height: 1.45;
+}
+
+.memberEvidenceBody strong,
+.memberEvidenceLinks > strong,
+.memberReplacementEvidence > strong {
+  color: #dde2e8;
+  font-size: 0.55rem;
+}
+
+.memberEvidenceLinks {
+  display: grid;
+  gap: 0.18rem;
+  border-top: 1px solid #2b323d;
+  padding-top: 0.35rem;
+}
+
+.memberEvidenceLinks ul {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding-left: 0.9rem;
+}
+
+.memberEvidenceLinks li {
+  color: #9ca8b5;
+  font-size: 0.52rem;
+  line-height: 1.4;
+}
+
+.memberEvidenceLinks li span {
+  color: var(--yd-cyan-soft);
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.memberReplacementEvidence {
+  display: grid;
+  gap: 0.18rem;
+  border-top: 1px solid #2b323d;
+  padding-top: 0.35rem;
+}
+
+.memberReplacementEvidence a {
+  color: #9ddfed;
+  text-decoration: underline;
+  text-decoration-color: rgba(157, 223, 237, 0.35);
+  text-underline-offset: 2px;
+}
+
+.memberEvidenceWarning {
+  color: #f2c478 !important;
+}
+
+.memberEvidenceNote {
+  max-width: 850px;
+  margin: 0.48rem 0.25rem 0;
+  color: #737e8b;
+  font-size: 0.55rem;
+  line-height: 1.45;
+}
+
 .resultDetailGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 220px;
@@ -1748,6 +1962,17 @@
   line-height: 1.4;
 }
 
+.searchSummary .searchClaimDetail,
+.searchSummary .searchRefinement {
+  color: #8f9aa7;
+  font-size: 0.54rem;
+}
+
+.searchSummary .searchClaimDetail strong,
+.searchSummary .searchRefinement strong {
+  color: #c2cad4;
+}
+
 .searchSummary > div {
   display: grid;
   width: 100%;
@@ -1777,6 +2002,16 @@
 .alternativesPanel {
   background: #151920;
   padding-bottom: 0.65rem;
+}
+
+.alternativesDisclosure {
+  max-width: 980px;
+  margin: 0;
+  border-bottom: 1px solid #303744;
+  color: #858f9d;
+  font-size: 0.55rem;
+  line-height: 1.45;
+  padding: 0 0.72rem 0.62rem;
 }
 
 .alternativesPanel > header > small {
@@ -1828,6 +2063,168 @@
 
 .alternativeGroups > article > div {
   display: grid;
+}
+
+.alternativeReports {
+  gap: 0.45rem;
+  padding: 0.45rem;
+}
+
+.alternativeReport {
+  overflow: hidden;
+  border: 1px solid #303744;
+  border-radius: 5px;
+  background: #151a21;
+}
+
+.alternativeIdentity {
+  border-top: 0 !important;
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.alternativeIdentity:hover {
+  background: rgba(37, 188, 233, 0.055);
+}
+
+.alternativeValueLine {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.35rem;
+  border-top: 1px solid #2b323d;
+  padding: 0.42rem;
+}
+
+.alternativeValueLine > span,
+.alternativeValueLine > small {
+  color: #788391;
+  font-size: 0.51rem;
+}
+
+.alternativeValueLine > strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #e0e5eb;
+  font-size: 0.59rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.alternativeValueLine > b {
+  color: #f0a6a1;
+  font-size: 0.58rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.alternativeValueLine > b[data-improvement="true"] {
+  color: var(--yd-green);
+}
+
+.alternativeRobustness {
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+  color: #8d99a7;
+  font-size: 0.52rem;
+  line-height: 1.4;
+  padding: 0.35rem 0.42rem;
+}
+
+.impactDetails {
+  border-top: 1px solid #2b323d;
+}
+
+.impactDetails summary {
+  padding: 0.38rem 0.42rem;
+}
+
+.impactBody {
+  display: grid;
+  gap: 0.42rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+  padding: 0.42rem;
+}
+
+.passiveComparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.passiveComparison > div {
+  min-width: 0;
+}
+
+.passiveComparison span,
+.effectChangeList > strong {
+  color: #d3d9e1;
+  font-size: 0.53rem;
+  font-weight: 770;
+}
+
+.passiveComparison p,
+.impactScalars,
+.effectChangeList > p {
+  margin: 0.18rem 0 0;
+  color: #96a1ae;
+  font-size: 0.52rem;
+  line-height: 1.42;
+}
+
+.passiveComparison > svg {
+  width: 12px;
+  color: #657180;
+}
+
+.impactScalars {
+  border-top: 1px solid #2b323d;
+  padding-top: 0.35rem;
+}
+
+.effectChangeList {
+  display: grid;
+  gap: 0.18rem;
+  border-top: 1px solid #2b323d;
+  padding-top: 0.35rem;
+}
+
+.effectChangeList ul {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding-left: 0.9rem;
+}
+
+.effectChangeList li {
+  color: #99a5b2;
+  font-size: 0.51rem;
+  line-height: 1.42;
+}
+
+.effectChangeList li > span {
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #c7ced7;
+  font-size: 0.46rem;
+  font-weight: 820;
+  letter-spacing: 0.04em;
+  padding: 0.16rem 0.22rem;
+  text-transform: uppercase;
+}
+
+.effectChangeList li > span[data-change="lost"] {
+  background: rgba(241, 112, 145, 0.12);
+  color: #ef9cac;
+}
+
+.effectChangeList li > span[data-change="gained"] {
+  background: rgba(72, 216, 156, 0.12);
+  color: #8ce7c1;
+}
+
+.effectChangeList li > span[data-change="retargeted"] {
+  background: rgba(248, 186, 74, 0.12);
+  color: #f1c977;
 }
 
 .alternativeGroups a {
@@ -1905,6 +2302,10 @@
   }
 
   .memberResults {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .memberEvidenceGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -2160,6 +2561,20 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .memberEvidencePanel > header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .memberEvidencePanel > header p {
+    max-width: none;
+    text-align: left;
+  }
+
+  .memberEvidenceGrid {
+    grid-template-columns: 1fr;
+  }
+
   .resultDetailGrid {
     grid-template-columns: 1fr;
   }
@@ -2168,6 +2583,74 @@
     grid-template-columns: auto minmax(75px, 0.7fr) auto minmax(90px, 1fr);
     gap: 0.35rem;
     padding-inline: 0.45rem;
+  }
+
+  .alternativeValueLine {
+    grid-template-columns: 1fr auto;
+  }
+
+  .alternativeValueLine > strong {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .alternativeValueLine > span {
+    grid-row: 2;
+  }
+
+  .alternativeValueLine > b,
+  .alternativeValueLine > small {
+    grid-row: 2;
+  }
+
+  .passiveComparison {
+    grid-template-columns: 1fr;
+  }
+
+  .passiveComparison > svg {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+
+  .memberEvidenceCard > header small,
+  .memberEvidenceCard > header > b,
+  .memberEvidenceBody > p,
+  .memberReplacementEvidence p,
+  .memberEvidenceLinks > p,
+  .memberEvidenceLinks li,
+  .memberEvidenceNote,
+  .searchSummary .searchClaimDetail,
+  .searchSummary .searchRefinement,
+  .alternativesDisclosure,
+  .alternativeGroups > article > header small,
+  .alternativeGroups a small,
+  .alternativeValueLine > span,
+  .alternativeValueLine > small,
+  .alternativeValueLine > b,
+  .alternativeRobustness,
+  .passiveComparison p,
+  .impactScalars,
+  .effectChangeList > p,
+  .effectChangeList li {
+    font-size: 0.64rem;
+  }
+
+  .memberEvidenceCard summary,
+  .impactDetails summary {
+    font-size: 0.68rem;
+  }
+
+  .memberEvidenceBody strong,
+  .memberEvidenceLinks > strong,
+  .memberReplacementEvidence > strong,
+  .passiveComparison span,
+  .effectChangeList > strong {
+    font-size: 0.64rem;
+  }
+
+  .memberEvidenceLinks li span,
+  .effectChangeList li > span {
+    font-size: 0.62rem;
   }
 }
 
