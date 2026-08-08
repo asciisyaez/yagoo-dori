@@ -510,7 +510,7 @@ function runSearch(
   });
 }
 
-function expertChartKey(songId: string): string {
+export function expertChartKey(songId: string): string {
   const chart = songContextData.charts.find(
     (candidate) => candidate.songId === songId && candidate.difficulty === "expert",
   );

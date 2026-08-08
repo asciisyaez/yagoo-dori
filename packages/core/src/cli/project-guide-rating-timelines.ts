@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 import guideData from "../../../../data/generated/native-guides.json";
 import timelineData from "../../../../data/generated/holodori-chart-timelines.json";
+import { expertChartKey, selectGuideRatingSongs } from "../native-guide-generator";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..");
 const fullCorpusFile = join(root, "data", "generated", "holodori-chart-timelines.json");
@@ -18,16 +19,54 @@ function sha256(value: string | Uint8Array): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
+function argumentsFor(name: string): string[] {
+  const values: string[] = [];
+  for (let index = 0; index < process.argv.length; index += 1) {
+    const value = process.argv[index]!;
+    if (value === name) {
+      const next = process.argv[index + 1];
+      if (!next || next.startsWith("--")) throw new Error(`${name} requires a value`);
+      values.push(next);
+      index += 1;
+    } else if (value.startsWith(`${name}=`)) {
+      values.push(value.slice(name.length + 1));
+    }
+  }
+  return values.flatMap((value) => value.split(",")).map((value) => value.trim()).filter(Boolean);
+}
+
+// Published guides are otherwise the only source of chart keys, so a guide for a
+// brand-new anchor can never bootstrap: generating it needs timelines that only
+// get projected once it exists. Naming the anchor here projects exactly the
+// charts its guide will ask for, via the generator's own selection rule.
+const anchorCardIds = [...new Set(argumentsFor("--anchor-card-id"))].sort();
+const fixedLeaderOutfitCardId = argumentsFor("--leader-outfit-card-id")[0];
+
 const chartKeys = [
-  ...new Set(guideData.guides.flatMap((guide) =>
-    guide.ratingSongComparisons.map((comparison) => comparison.chartKey),
-  )),
+  ...new Set([
+    ...guideData.guides.flatMap((guide) =>
+      guide.ratingSongComparisons.map((comparison) => comparison.chartKey),
+    ),
+    ...anchorCardIds.flatMap((anchorCardId) =>
+      selectGuideRatingSongs(anchorCardId, fixedLeaderOutfitCardId).songs.map((song) =>
+        expertChartKey(song.id),
+      ),
+    ),
+  ]),
 ].sort();
 assert(chartKeys.length > 0, "Published guides contain no rating-song charts");
 const chartByKey = new Map(timelineData.charts.map((chart) => [chart.key, chart]));
+const unavailableReasonByKey = new Map(
+  timelineData.unavailableCharts.map((chart) => [chart.key, chart.reason]),
+);
 const charts = chartKeys.map((chartKey) => {
   const chart = chartByKey.get(chartKey);
-  assert(chart, `Published guide timeline is unavailable: ${chartKey}`);
+  const unavailableReason = unavailableReasonByKey.get(chartKey);
+  assert(
+    chart,
+    `Guide rating timeline is unavailable: ${chartKey}` +
+      (unavailableReason ? ` (${unavailableReason})` : " (not present in the pinned corpus)"),
+  );
   assert(chart.difficulty === "expert", `Guide rating timeline is not Expert: ${chartKey}`);
   assert(chart.feverMarkerMicroseconds, `Guide rating timeline has no Fever markers: ${chartKey}`);
   return {
