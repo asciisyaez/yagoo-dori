@@ -434,3 +434,70 @@ describe("owned-roster team calculator", () => {
     ).toThrow("Select cards from at least five different talents");
   });
 });
+
+// A twelve-talent roster is past TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS, so these
+// run on the bounded beam path with the real evaluator. Both cases failed
+// before the coordinate ascent was allowed to reach a fixpoint: the backups
+// panel advertised a Kazama Iroha swap worth +171.756 more than the team it was
+// shown beneath, and that same missed improvement made a chr-00039 Oshi — a
+// pure restriction that never enters the objective — outscore the unconstrained
+// run by the identical amount.
+const BOUNDED_ROSTER = [
+  "card-00039-5-uniq-0032-00",
+  "card-03005-5-uniq-0037-00",
+  "card-00005-5-uniq-0006-00",
+  "card-04003-5-uniq-0044-00",
+  "card-00018-5-uniq-0004-00",
+  "card-06005-5-uniq-0061-00",
+  "card-00019-5-uniq-0016-00",
+  "card-00014-5-uniq-0013-00",
+  "card-04007-5-uniq-0047-00",
+  "card-00015-5-uniq-0003-00",
+  "card-00004-5-uniq-0005-00",
+  "card-00013-5-uniq-0002-00",
+].map((cardId) => ({ cardId, bloomStage: 0 as const }));
+
+const BOUNDED_REQUEST = {
+  schemaVersion: 3 as const,
+  rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
+  ownedCards: BOUNDED_ROSTER,
+};
+
+describe("bounded owned-roster search consistency", () => {
+  it("never displays a replacement that outscores the team it is offered against", () => {
+    const result = calculateOwnedRosterTeam(BOUNDED_REQUEST);
+    // Guard against the assertion going vacuous if the exact path ever widens.
+    expect(result.search.resultClaim).toBe("bounded-search");
+
+    const headline = result.score.relativeUtility.central;
+    const improvingByLoss = result.alternatives.flatMap((group) =>
+      group.cards
+        .filter((card) => card.modeledUtilityLoss.central < 0)
+        .map((card) => `${card.cardId} instead of ${group.replacesCardId}`),
+    );
+    // Checked independently of the reported loss, so a sign or subtraction
+    // error in modeledUtilityLoss cannot hide the same defect.
+    const improvingByUtility = result.alternatives.flatMap((group) =>
+      group.cards
+        .filter((card) => card.relativeUtility.central > headline)
+        .map((card) => `${card.cardId} instead of ${group.replacesCardId}`),
+    );
+
+    expect(improvingByLoss).toEqual([]);
+    expect(improvingByUtility).toEqual([]);
+  }, 30_000);
+
+  it("does not let an Oshi restriction outscore the unrestricted search", () => {
+    const unconstrained = calculateOwnedRosterTeam(BOUNDED_REQUEST).score.relativeUtility.central;
+
+    for (const role of ["member", "leader", "member-and-leader"] as const) {
+      const constrained = calculateOwnedRosterTeam({
+        ...BOUNDED_REQUEST,
+        oshi: { talentId: "chr-00039", role },
+      });
+      // An Oshi only removes candidates, so its optimum cannot exceed the
+      // unrestricted one on the same roster.
+      expect(constrained.score.relativeUtility.central).toBeLessThanOrEqual(unconstrained);
+    }
+  }, 60_000);
+});
