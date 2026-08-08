@@ -1,1 +1,8 @@
 *.sus binary
+
+# Generated data artifacts are hashed byte-for-byte by tests and provenance
+# gates. Git must never translate their line endings, or the recorded sha256
+# stops matching on checkouts that would otherwise get CRLF.
+data/generated/*.json -text
+data/native/*.json -text
+data/native/baselines/*.json -text
