@@ -20,22 +20,48 @@ describe("pinned exact chart timeline corpus", () => {
     });
     expect(chartTimelineData.counts).toEqual({
       songs: 176,
-      charts: 704,
-      unavailableCharts: 4,
-      events: 405_819,
-      specialMarkers: 3_520,
+      charts: 703,
+      unavailableCharts: 25,
+      events: 405_623,
+      specialMarkers: 3_515,
       chartsWithDeclaredCountDisagreements: 1,
     });
-    expect(chartTimelineData.charts).toHaveLength(704);
+    expect(chartTimelineData.charts).toHaveLength(703);
     expect(chartTimelineData.unavailableCharts.map((chart) => chart.key).sort()).toEqual([
+      "m0318:easy",
+      "m0323:easy",
+      "m0323:expert",
+      "m0323:hard",
+      "m0323:normal",
+      "m0324:easy",
+      "m0324:expert",
+      "m0324:hard",
+      "m0324:normal",
+      "m0325:easy",
+      "m0325:expert",
+      "m0325:hard",
+      "m0325:normal",
+      "m0346:easy",
+      "m0346:expert",
+      "m0346:hard",
+      "m0346:normal",
+      "m0347:easy",
+      "m0347:expert",
+      "m0347:hard",
+      "m0347:normal",
       "m9999:easy",
       "m9999:expert",
       "m9999:hard",
       "m9999:normal",
     ]);
+
     expect(
-      chartTimelineData.unavailableCharts.every(
-        (chart) => chart.specialMarkerCount === 2 && chart.parsedEventCount === chart.fullComboNoteCount,
+      chartTimelineData.unavailableCharts.every((chart) =>
+        chart.reason === "source-chart-does-not-contain-five-special-markers"
+          ? chart.specialMarkerCount === 2 && chart.parsedEventCount === chart.fullComboNoteCount
+          : chart.reason === "source-api-unreachable-cloudflare-challenge-at-intake" &&
+            chart.specialMarkerCount === 0 &&
+            chart.parsedEventCount === 0,
       ),
     ).toBe(true);
   });

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-08-02T00:00:00.000Z",
-  "rosterCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+  "generatedAt": "2026-08-07T00:00:00.000Z",
+  "rosterCommit": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
   "guides": [
     {
       "id": "guide-card-00012-5-uniq-0062-00-standard-manual-v1",
@@ -9,7 +9,7 @@
       "title": "Oozora Subaru — Vibrant Sun Splash! team guide",
       "anchorCardId": "card-00012-5-uniq-0062-00",
       "anchorTalentId": "chr-00012",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -136,23 +136,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 5,
-              "candidatesScreened": 2484,
-              "improvingCandidatesAudited": 49,
-              "formationOrdersAudited": 5880,
+              "candidatesScreened": 2532,
+              "improvingCandidatesAudited": 50,
+              "formationOrdersAudited": 6000,
               "visitedFormations": 6
             }
           },
-          "finalistsEvaluated": 65,
-          "ordersAudited": 7800,
+          "finalistsEvaluated": 66,
+          "ordersAudited": 7920,
           "recipients": [
             {
               "source": "leader",
@@ -793,16 +793,16 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 2,
-              "candidatesScreened": 1230,
+              "candidatesScreened": 1254,
               "improvingCandidatesAudited": 45,
               "formationOrdersAudited": 5400,
               "visitedFormations": 3
@@ -2418,7 +2418,7 @@
       "title": "AZKi — A Flower in Full Bloom team guide",
       "anchorCardId": "card-00013-5-uniq-0002-00",
       "anchorTalentId": "chr-00013",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -2478,31 +2478,31 @@
           "members": [
             {
               "slot": 1,
-              "cardId": "card-00037-5-uniq-0030-00"
-            },
-            {
-              "slot": 2,
               "cardId": "card-00013-5-uniq-0002-00"
             },
             {
+              "slot": 2,
+              "cardId": "card-00018-5-uniq-0068-00"
+            },
+            {
               "slot": 3,
-              "cardId": "card-00015-5-uniq-0003-00"
+              "cardId": "card-06004-5-uniq-0060-00"
             },
             {
               "slot": 4,
-              "cardId": "card-06002-5-uniq-0058-00"
+              "cardId": "card-06005-5-uniq-0061-00"
             },
             {
               "slot": 5,
-              "cardId": "card-06004-5-uniq-0060-00"
+              "cardId": "card-00012-5-uniq-0062-00"
             }
           ],
           "formationOrder": [
-            "card-00037-5-uniq-0030-00",
             "card-00013-5-uniq-0002-00",
-            "card-00015-5-uniq-0003-00",
-            "card-06002-5-uniq-0058-00",
-            "card-06004-5-uniq-0060-00"
+            "card-00018-5-uniq-0068-00",
+            "card-06004-5-uniq-0060-00",
+            "card-06005-5-uniq-0061-00",
+            "card-00012-5-uniq-0062-00"
           ],
           "orderStatus": "indeterminate",
           "formationOrderModel": {
@@ -2511,50 +2511,50 @@
             "markerLayoutCount": 1,
             "timingScenarioCount": 30,
             "permutationsChecked": 120,
-            "maxRegretPermil": 2.916817,
-            "meanRegretPermil": 0.94639,
+            "maxRegretPermil": 39.998486,
+            "meanRegretPermil": 14.718333,
             "runnerUpGapPermil": 0,
-            "winSharePermil": 300,
+            "winSharePermil": 100,
             "exactTimelineAvailable": true,
             "noteTimelineAvailable": true,
             "changesModeledTimingUtility": true,
             "statement": "The chart-timed winner and runner-up are tied or separated by no more than one basis point; no meaningful order preference is claimed."
           },
           "relativeUtility": {
-            "lower": 306049.656834,
-            "central": 398900.28308,
-            "upper": 486568.74211
+            "lower": 298637.318264,
+            "central": 396814.122667,
+            "upper": 478358.896886
           },
           "staticParameters": {
             "base": {
-              "lower": 129544,
-              "central": 129544,
-              "upper": 129544
+              "lower": 129597,
+              "central": 129597,
+              "upper": 129597
             },
             "leaderAndPassiveGain": {
-              "lower": 105688.01,
-              "central": 105688.01,
-              "upper": 105992.45
+              "lower": 95973.74,
+              "central": 95973.74,
+              "upper": 95973.74
             },
             "effective": {
-              "lower": 235232.01,
-              "central": 235232.01,
-              "upper": 235536.45
+              "lower": 225570.74,
+              "central": 225570.74,
+              "upper": 225570.74
             }
           },
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5621205,
+            "teamSetsInScope": 6033435,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5621189,
+            "unsearchedTeamSets": 6033419,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 4,
-              "candidatesScreened": 2064,
+              "candidatesScreened": 2107,
               "improvingCandidatesAudited": 68,
               "formationOrdersAudited": 8160,
               "visitedFormations": 5
@@ -2571,32 +2571,18 @@
               "valuePermil": 1200,
               "resolution": "resolved",
               "commonToEveryAlternativeCardIds": [
+                "card-00012-5-uniq-0062-00",
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
-                "card-00037-5-uniq-0030-00",
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
+                "card-00018-5-uniq-0068-00",
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00"
               ],
               "possibleCardIds": [
+                "card-00012-5-uniq-0062-00",
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
-                "card-00037-5-uniq-0030-00",
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
-              ]
-            },
-            {
-              "source": "passive",
-              "sourceCardId": "card-00037-5-uniq-0030-00",
-              "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_2-2",
-              "effectKind": "sense-up",
-              "valuePermil": 430,
-              "resolution": "unresolved-enumerated-alternatives",
-              "commonToEveryAlternativeCardIds": [],
-              "possibleCardIds": [
-                "card-00013-5-uniq-0002-00",
-                "card-00037-5-uniq-0030-00",
-                "card-06002-5-uniq-0058-00"
+                "card-00018-5-uniq-0068-00",
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00"
               ]
             },
             {
@@ -2608,27 +2594,11 @@
               "resolution": "resolved",
               "commonToEveryAlternativeCardIds": [
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00"
+                "card-00018-5-uniq-0068-00"
               ],
               "possibleCardIds": [
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00"
-              ]
-            },
-            {
-              "source": "passive",
-              "sourceCardId": "card-06002-5-uniq-0058-00",
-              "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-character_grouping-grp-regloss-2",
-              "effectKind": "sense-up",
-              "valuePermil": 430,
-              "resolution": "resolved",
-              "commonToEveryAlternativeCardIds": [
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
-              ],
-              "possibleCardIds": [
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
+                "card-00018-5-uniq-0068-00"
               ]
             },
             {
@@ -2639,24 +2609,48 @@
               "valuePermil": 430,
               "resolution": "resolved",
               "commonToEveryAlternativeCardIds": [
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00"
               ],
               "possibleCardIds": [
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00"
+              ]
+            },
+            {
+              "source": "passive",
+              "sourceCardId": "card-06005-5-uniq-0061-00",
+              "effectGroupId": "live_passive_skill_effect-performance_up_permil_up-410-live_skill_effect_target-attribute-attribute_1-2",
+              "effectKind": "performance-up",
+              "valuePermil": 410,
+              "resolution": "resolved",
+              "commonToEveryAlternativeCardIds": [
+                "card-00018-5-uniq-0068-00",
+                "card-06005-5-uniq-0061-00"
+              ],
+              "possibleCardIds": [
+                "card-00018-5-uniq-0068-00",
+                "card-06005-5-uniq-0061-00"
+              ]
+            },
+            {
+              "source": "passive",
+              "sourceCardId": "card-00012-5-uniq-0062-00",
+              "effectGroupId": "live_passive_skill_effect-all_parameter_up_permil_up-150-live_skill_effect_target-attribute-attribute_2-2",
+              "effectKind": "all-parameters-up",
+              "valuePermil": 150,
+              "resolution": "resolved",
+              "commonToEveryAlternativeCardIds": [
+                "card-00012-5-uniq-0062-00",
+                "card-00013-5-uniq-0002-00"
+              ],
+              "possibleCardIds": [
+                "card-00012-5-uniq-0062-00",
+                "card-00013-5-uniq-0002-00"
               ]
             }
           ],
           "activeSkills": [
-            {
-              "cardId": "card-00037-5-uniq-0030-00",
-              "activationProbabilityPermil": 550,
-              "cooldownMilliseconds": 23000,
-              "durationMilliseconds": 8000,
-              "firstCheck": "one-cooldown-after-live-start",
-              "chartNoteCoverage": null
-            },
             {
               "cardId": "card-00013-5-uniq-0002-00",
               "activationProbabilityPermil": 550,
@@ -2666,18 +2660,10 @@
               "chartNoteCoverage": null
             },
             {
-              "cardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-00018-5-uniq-0068-00",
               "activationProbabilityPermil": 460,
-              "cooldownMilliseconds": 15000,
-              "durationMilliseconds": 6000,
-              "firstCheck": "one-cooldown-after-live-start",
-              "chartNoteCoverage": null
-            },
-            {
-              "cardId": "card-06002-5-uniq-0058-00",
-              "activationProbabilityPermil": 550,
-              "cooldownMilliseconds": 27000,
-              "durationMilliseconds": 12000,
+              "cooldownMilliseconds": 23000,
+              "durationMilliseconds": 8000,
               "firstCheck": "one-cooldown-after-live-start",
               "chartNoteCoverage": null
             },
@@ -2688,22 +2674,27 @@
               "durationMilliseconds": 8000,
               "firstCheck": "one-cooldown-after-live-start",
               "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-06005-5-uniq-0061-00",
+              "activationProbabilityPermil": 550,
+              "cooldownMilliseconds": 26000,
+              "durationMilliseconds": 9000,
+              "firstCheck": "one-cooldown-after-live-start",
+              "chartNoteCoverage": null
+            },
+            {
+              "cardId": "card-00012-5-uniq-0062-00",
+              "activationProbabilityPermil": 460,
+              "cooldownMilliseconds": 17000,
+              "durationMilliseconds": 7000,
+              "firstCheck": "one-cooldown-after-live-start",
+              "chartNoteCoverage": null
             }
           ],
           "specialSkills": [
             {
               "slot": 1,
-              "cardId": "card-00037-5-uniq-0030-00",
-              "durationMilliseconds": 10000,
-              "markerTime": "unavailable",
-              "startsAtMilliseconds": null,
-              "endsAtMilliseconds": null,
-              "chartNoteCoverage": null,
-              "scoreSupportPermil": 1450,
-              "activationRateUpPermil": 550
-            },
-            {
-              "slot": 2,
               "cardId": "card-00013-5-uniq-0002-00",
               "durationMilliseconds": 10000,
               "markerTime": "unavailable",
@@ -2714,8 +2705,19 @@
               "activationRateUpPermil": 500
             },
             {
+              "slot": 2,
+              "cardId": "card-00018-5-uniq-0068-00",
+              "durationMilliseconds": 12000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1200,
+              "activationRateUpPermil": 450
+            },
+            {
               "slot": 3,
-              "cardId": "card-00015-5-uniq-0003-00",
+              "cardId": "card-06004-5-uniq-0060-00",
               "durationMilliseconds": 10000,
               "markerTime": "unavailable",
               "startsAtMilliseconds": null,
@@ -2726,18 +2728,7 @@
             },
             {
               "slot": 4,
-              "cardId": "card-06002-5-uniq-0058-00",
-              "durationMilliseconds": 10000,
-              "markerTime": "unavailable",
-              "startsAtMilliseconds": null,
-              "endsAtMilliseconds": null,
-              "chartNoteCoverage": null,
-              "scoreSupportPermil": 1450,
-              "activationRateUpPermil": 0
-            },
-            {
-              "slot": 5,
-              "cardId": "card-06004-5-uniq-0060-00",
+              "cardId": "card-06005-5-uniq-0061-00",
               "durationMilliseconds": 10000,
               "markerTime": "unavailable",
               "startsAtMilliseconds": null,
@@ -2745,344 +2736,355 @@
               "chartNoteCoverage": null,
               "scoreSupportPermil": 1450,
               "activationRateUpPermil": 500
+            },
+            {
+              "slot": 5,
+              "cardId": "card-00012-5-uniq-0062-00",
+              "durationMilliseconds": 10000,
+              "markerTime": "unavailable",
+              "startsAtMilliseconds": null,
+              "endsAtMilliseconds": null,
+              "chartNoteCoverage": null,
+              "scoreSupportPermil": 1600,
+              "activationRateUpPermil": 0
             }
           ],
           "replacements": [
             {
-              "replacedCardId": "card-00015-5-uniq-0003-00",
-              "cardId": "card-00035-5-uniq-0028-00",
+              "replacedCardId": "card-00012-5-uniq-0062-00",
+              "cardId": "card-04013-5-uniq-0052-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -52.2015,
-                "central": 1.2117,
-                "upper": 59.8362
+                "lower": -63.442299999999996,
+                "central": 0.1238,
+                "upper": 62.1672
               },
               "suggestedOrder": [
-                "card-00037-5-uniq-0030-00",
-                "card-00035-5-uniq-0028-00",
+                "card-00018-5-uniq-0068-00",
                 "card-00013-5-uniq-0002-00",
-                "card-06004-5-uniq-0060-00",
-                "card-06002-5-uniq-0058-00"
-              ],
-              "orderStatus": "indeterminate",
-              "tradeoff": {
-                "benefit": "With 2 or more holoX Members, Grants All Stats UP 33% to self.",
-                "cost": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-                "activeCooldownDeltaMilliseconds": 3000,
-                "specialDurationDeltaMilliseconds": 2000,
-                "formationOrderChanged": true,
-                "recipientApplicationsAdded": 3,
-                "recipientApplicationsRemoved": 2,
-                "possibleRecipientCardIdsAdded": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00035-5-uniq-0028-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ],
-                "possibleRecipientCardIdsRemoved": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ]
-              }
-            },
-            {
-              "replacedCardId": "card-00015-5-uniq-0003-00",
-              "cardId": "card-00002-5-uniq-0001-00",
-              "rarity": 5,
-              "lossPercent": {
-                "lower": -58.027300000000004,
-                "central": 1.2457,
-                "upper": 60.980999999999995
-              },
-              "suggestedOrder": [
-                "card-00002-5-uniq-0001-00",
-                "card-00013-5-uniq-0002-00",
-                "card-00037-5-uniq-0030-00",
-                "card-06002-5-uniq-0058-00",
-                "card-06004-5-uniq-0060-00"
-              ],
-              "orderStatus": "indeterminate",
-              "tradeoff": {
-                "benefit": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-                "cost": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-                "activeCooldownDeltaMilliseconds": 3000,
-                "specialDurationDeltaMilliseconds": 0,
-                "formationOrderChanged": true,
-                "recipientApplicationsAdded": 2,
-                "recipientApplicationsRemoved": 2,
-                "possibleRecipientCardIdsAdded": [
-                  "card-00002-5-uniq-0001-00",
-                  "card-00013-5-uniq-0002-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ],
-                "possibleRecipientCardIdsRemoved": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ]
-              }
-            },
-            {
-              "replacedCardId": "card-00037-5-uniq-0030-00",
-              "cardId": "card-04003-5-uniq-0044-00",
-              "rarity": 5,
-              "lossPercent": {
-                "lower": -54.063700000000004,
-                "central": 1.2659,
-                "upper": 60.22
-              },
-              "suggestedOrder": [
-                "card-00013-5-uniq-0002-00",
-                "card-04003-5-uniq-0044-00",
-                "card-06002-5-uniq-0058-00",
-                "card-00015-5-uniq-0003-00",
-                "card-06004-5-uniq-0060-00"
-              ],
-              "orderStatus": "indeterminate",
-              "tradeoff": {
-                "benefit": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants All Stats UP 32% to self.",
-                "cost": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Sense UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
-                "activeCooldownDeltaMilliseconds": 9000,
-                "specialDurationDeltaMilliseconds": 4000,
-                "formationOrderChanged": true,
-                "recipientApplicationsAdded": 2,
-                "recipientApplicationsRemoved": 2,
-                "possibleRecipientCardIdsAdded": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-04003-5-uniq-0044-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ],
-                "possibleRecipientCardIdsRemoved": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ]
-              }
-            },
-            {
-              "replacedCardId": "card-00037-5-uniq-0030-00",
-              "cardId": "card-04017-5-uniq-0056-00",
-              "rarity": 5,
-              "lossPercent": {
-                "lower": -53.3479,
-                "central": 1.5152,
-                "upper": 60.3905
-              },
-              "suggestedOrder": [
-                "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
-                "card-04017-5-uniq-0056-00",
-                "card-06004-5-uniq-0060-00",
-                "card-06002-5-uniq-0058-00"
-              ],
-              "orderStatus": "indeterminate",
-              "tradeoff": {
-                "benefit": "Grants Score Support Effect of 11% to 2 [attribute=cute]Cute Type[/attribute] Members.",
-                "cost": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Sense UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
-                "activeCooldownDeltaMilliseconds": 2000,
-                "specialDurationDeltaMilliseconds": 1000,
-                "formationOrderChanged": true,
-                "recipientApplicationsAdded": 1,
-                "recipientApplicationsRemoved": 2,
-                "possibleRecipientCardIdsAdded": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-04017-5-uniq-0056-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ],
-                "possibleRecipientCardIdsRemoved": [
-                  "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
-                ]
-              }
-            },
-            {
-              "replacedCardId": "card-06002-5-uniq-0058-00",
-              "cardId": "card-06005-5-uniq-0061-00",
-              "rarity": 5,
-              "lossPercent": {
-                "lower": -62.0344,
-                "central": 0.5809,
-                "upper": 62.065099999999994
-              },
-              "suggestedOrder": [
-                "card-00037-5-uniq-0030-00",
-                "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
+                "card-04013-5-uniq-0052-00",
                 "card-06004-5-uniq-0060-00",
                 "card-06005-5-uniq-0061-00"
               ],
               "orderStatus": "indeterminate",
               "tradeoff": {
-                "benefit": "Grants Performance UP 41% to 2 [attribute=cute]Cute Type[/attribute] Members.",
-                "cost": "Grants Sense UP 43% to 2 ReGLOSS Members.",
-                "activeCooldownDeltaMilliseconds": -1000,
+                "benefit": "Grants Performance UP 43% to 2 Advent Members.",
+                "cost": "Grants All Stats UP 15% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "activeCooldownDeltaMilliseconds": 15000,
                 "specialDurationDeltaMilliseconds": 0,
                 "formationOrderChanged": true,
-                "recipientApplicationsAdded": 4,
-                "recipientApplicationsRemoved": 4,
+                "recipientApplicationsAdded": 2,
+                "recipientApplicationsRemoved": 2,
                 "possibleRecipientCardIdsAdded": [
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-04013-5-uniq-0052-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ],
+                "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ]
+              }
+            },
+            {
+              "replacedCardId": "card-00012-5-uniq-0062-00",
+              "cardId": "card-04014-5-uniq-0053-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -63.294,
+                "central": 0.1686,
+                "upper": 62.4374
+              },
+              "suggestedOrder": [
+                "card-00013-5-uniq-0002-00",
+                "card-00018-5-uniq-0068-00",
+                "card-04014-5-uniq-0053-00",
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00"
+              ],
+              "orderStatus": "indeterminate",
+              "tradeoff": {
+                "benefit": "Grants Score Support Effect of 11% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "cost": "Grants All Stats UP 15% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "activeCooldownDeltaMilliseconds": 10000,
+                "specialDurationDeltaMilliseconds": 0,
+                "formationOrderChanged": true,
+                "recipientApplicationsAdded": 1,
+                "recipientApplicationsRemoved": 2,
+                "possibleRecipientCardIdsAdded": [
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-04014-5-uniq-0053-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ],
+                "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ]
+              }
+            },
+            {
+              "replacedCardId": "card-00018-5-uniq-0068-00",
+              "cardId": "card-00037-5-uniq-0030-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -59.7074,
+                "central": 1.3104,
+                "upper": 60.968900000000005
+              },
+              "suggestedOrder": [
+                "card-00037-5-uniq-0030-00",
+                "card-00013-5-uniq-0002-00",
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00",
+                "card-00012-5-uniq-0062-00"
+              ],
+              "orderStatus": "indeterminate",
+              "tradeoff": {
+                "benefit": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Sense UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "cost": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
+                "activeCooldownDeltaMilliseconds": 0,
+                "specialDurationDeltaMilliseconds": -2000,
+                "formationOrderChanged": true,
+                "recipientApplicationsAdded": 5,
+                "recipientApplicationsRemoved": 4,
+                "possibleRecipientCardIdsAdded": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
                   "card-00037-5-uniq-0030-00",
                   "card-06004-5-uniq-0060-00",
                   "card-06005-5-uniq-0061-00"
                 ],
                 "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
                 ]
               }
             },
             {
-              "replacedCardId": "card-06002-5-uniq-0058-00",
-              "cardId": "card-00035-5-uniq-0028-00",
+              "replacedCardId": "card-00018-5-uniq-0068-00",
+              "cardId": "card-00015-5-uniq-0003-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -57.67529999999999,
-                "central": 1.5811,
-                "upper": 62.069399999999995
+                "lower": -60.843,
+                "central": 1.6457,
+                "upper": 61.8749
               },
               "suggestedOrder": [
-                "card-00035-5-uniq-0028-00",
-                "card-00037-5-uniq-0030-00",
                 "card-00013-5-uniq-0002-00",
                 "card-00015-5-uniq-0003-00",
-                "card-06004-5-uniq-0060-00"
+                "card-06004-5-uniq-0060-00",
+                "card-06005-5-uniq-0061-00",
+                "card-00012-5-uniq-0062-00"
               ],
               "orderStatus": "indeterminate",
               "tradeoff": {
-                "benefit": "With 2 or more holoX Members, Grants All Stats UP 33% to self.",
-                "cost": "Grants Sense UP 43% to 2 ReGLOSS Members.",
-                "activeCooldownDeltaMilliseconds": -9000,
-                "specialDurationDeltaMilliseconds": 2000,
+                "benefit": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
+                "cost": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
+                "activeCooldownDeltaMilliseconds": -8000,
+                "specialDurationDeltaMilliseconds": -2000,
                 "formationOrderChanged": true,
-                "recipientApplicationsAdded": 4,
-                "recipientApplicationsRemoved": 4,
+                "recipientApplicationsAdded": 3,
+                "recipientApplicationsRemoved": 3,
                 "possibleRecipientCardIdsAdded": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
                   "card-00015-5-uniq-0003-00",
-                  "card-00035-5-uniq-0028-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06004-5-uniq-0060-00"
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
                 ],
                 "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
                 ]
               }
             },
             {
               "replacedCardId": "card-06004-5-uniq-0060-00",
-              "cardId": "card-04013-5-uniq-0052-00",
+              "cardId": "card-00037-5-uniq-0030-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -53.9108,
-                "central": 1.5909,
-                "upper": 62.4275
+                "lower": -59.039699999999996,
+                "central": 1.2331999999999999,
+                "upper": 60.891600000000004
               },
               "suggestedOrder": [
                 "card-00037-5-uniq-0030-00",
+                "card-00018-5-uniq-0068-00",
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
-                "card-06002-5-uniq-0058-00",
-                "card-04013-5-uniq-0052-00"
+                "card-06005-5-uniq-0061-00",
+                "card-00012-5-uniq-0062-00"
               ],
               "orderStatus": "indeterminate",
               "tradeoff": {
-                "benefit": "Grants Performance UP 43% to 2 Advent Members.",
+                "benefit": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Sense UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
                 "cost": "Grants Sense UP 43% to 2 ReGLOSS Members.",
-                "activeCooldownDeltaMilliseconds": 10000,
+                "activeCooldownDeltaMilliseconds": 1000,
                 "specialDurationDeltaMilliseconds": 0,
                 "formationOrderChanged": true,
                 "recipientApplicationsAdded": 3,
                 "recipientApplicationsRemoved": 3,
                 "possibleRecipientCardIdsAdded": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
+                  "card-00018-5-uniq-0068-00",
                   "card-00037-5-uniq-0030-00",
-                  "card-04013-5-uniq-0052-00",
-                  "card-06002-5-uniq-0058-00"
+                  "card-06005-5-uniq-0061-00"
                 ],
                 "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00",
-                  "card-06004-5-uniq-0060-00"
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
                 ]
               }
             },
             {
               "replacedCardId": "card-06004-5-uniq-0060-00",
-              "cardId": "card-00034-5-uniq-0027-00",
+              "cardId": "card-00004-5-uniq-0005-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -55.1145,
-                "central": 1.9088999999999998,
-                "upper": 63.6888
+                "lower": -57.8534,
+                "central": 1.8324,
+                "upper": 62.08519999999999
               },
               "suggestedOrder": [
-                "card-00037-5-uniq-0030-00",
+                "card-00004-5-uniq-0005-00",
+                "card-00018-5-uniq-0068-00",
+                "card-00012-5-uniq-0062-00",
                 "card-00013-5-uniq-0002-00",
-                "card-00015-5-uniq-0003-00",
-                "card-00034-5-uniq-0027-00",
-                "card-06002-5-uniq-0058-00"
+                "card-06005-5-uniq-0061-00"
               ],
               "orderStatus": "indeterminate",
               "tradeoff": {
-                "benefit": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
+                "benefit": "Grants Sense UP 43% to 2 Gen 1 Members.",
                 "cost": "Grants Sense UP 43% to 2 ReGLOSS Members.",
                 "activeCooldownDeltaMilliseconds": -1000,
                 "specialDurationDeltaMilliseconds": 0,
                 "formationOrderChanged": true,
-                "recipientApplicationsAdded": 2,
+                "recipientApplicationsAdded": 3,
                 "recipientApplicationsRemoved": 3,
                 "possibleRecipientCardIdsAdded": [
+                  "card-00004-5-uniq-0005-00",
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00034-5-uniq-0027-00",
-                  "card-00037-5-uniq-0030-00",
-                  "card-06002-5-uniq-0058-00"
+                  "card-00018-5-uniq-0068-00",
+                  "card-06005-5-uniq-0061-00"
                 ],
                 "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
-                  "card-00015-5-uniq-0003-00",
-                  "card-00037-5-uniq-0030-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ]
+              }
+            },
+            {
+              "replacedCardId": "card-06005-5-uniq-0061-00",
+              "cardId": "card-06002-5-uniq-0058-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -55.9839,
+                "central": 1.3342,
+                "upper": 59.29990000000001
+              },
+              "suggestedOrder": [
+                "card-00013-5-uniq-0002-00",
+                "card-00018-5-uniq-0068-00",
+                "card-00012-5-uniq-0062-00",
+                "card-06002-5-uniq-0058-00",
+                "card-06004-5-uniq-0060-00"
+              ],
+              "orderStatus": "indeterminate",
+              "tradeoff": {
+                "benefit": "Grants Sense UP 43% to 2 ReGLOSS Members.",
+                "cost": "Grants Performance UP 41% to 2 [attribute=cute]Cute Type[/attribute] Members.",
+                "activeCooldownDeltaMilliseconds": 1000,
+                "specialDurationDeltaMilliseconds": 0,
+                "formationOrderChanged": true,
+                "recipientApplicationsAdded": 4,
+                "recipientApplicationsRemoved": 4,
+                "possibleRecipientCardIdsAdded": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
                   "card-06002-5-uniq-0058-00",
                   "card-06004-5-uniq-0060-00"
+                ],
+                "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
+                ]
+              }
+            },
+            {
+              "replacedCardId": "card-06005-5-uniq-0061-00",
+              "cardId": "card-00021-5-uniq-0017-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -58.075900000000004,
+                "central": 1.5921,
+                "upper": 62.296099999999996
+              },
+              "suggestedOrder": [
+                "card-00013-5-uniq-0002-00",
+                "card-00018-5-uniq-0068-00",
+                "card-00021-5-uniq-0017-00",
+                "card-06004-5-uniq-0060-00",
+                "card-00012-5-uniq-0062-00"
+              ],
+              "orderStatus": "indeterminate",
+              "tradeoff": {
+                "benefit": "Grants Performance UP 43% to 2 Gen 3 Members.",
+                "cost": "Grants Performance UP 41% to 2 [attribute=cute]Cute Type[/attribute] Members.",
+                "activeCooldownDeltaMilliseconds": 0,
+                "specialDurationDeltaMilliseconds": 0,
+                "formationOrderChanged": true,
+                "recipientApplicationsAdded": 4,
+                "recipientApplicationsRemoved": 4,
+                "possibleRecipientCardIdsAdded": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-00021-5-uniq-0017-00",
+                  "card-06004-5-uniq-0060-00"
+                ],
+                "possibleRecipientCardIdsRemoved": [
+                  "card-00012-5-uniq-0062-00",
+                  "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
+                  "card-06004-5-uniq-0060-00",
+                  "card-06005-5-uniq-0061-00"
                 ]
               }
             }
           ],
           "investmentOrder": [
             "card-00013-5-uniq-0002-00",
+            "card-06005-5-uniq-0061-00",
+            "card-00018-5-uniq-0068-00",
             "card-06004-5-uniq-0060-00",
-            "card-00037-5-uniq-0030-00",
-            "card-00015-5-uniq-0003-00",
-            "card-06002-5-uniq-0058-00"
+            "card-00012-5-uniq-0062-00"
           ]
         },
         {
@@ -3184,23 +3186,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5621205,
+            "teamSetsInScope": 6033435,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5621189,
+            "unsearchedTeamSets": 6033419,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 2,
-              "candidatesScreened": 1242,
-              "improvingCandidatesAudited": 27,
-              "formationOrdersAudited": 3240,
+              "candidatesScreened": 1260,
+              "improvingCandidatesAudited": 28,
+              "formationOrdersAudited": 3360,
               "visitedFormations": 3
             }
           },
-          "finalistsEvaluated": 43,
-          "ordersAudited": 5160,
+          "finalistsEvaluated": 44,
+          "ordersAudited": 5280,
           "recipients": [
             {
               "source": "leader",
@@ -4803,7 +4805,7 @@
       "title": "Usada Pekora — Playful Rabbit Field team guide",
       "anchorCardId": "card-00019-5-uniq-0016-00",
       "anchorTalentId": "chr-00019",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -4930,23 +4932,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5621205,
+            "teamSetsInScope": 6033435,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5621189,
+            "unsearchedTeamSets": 6033419,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 5,
-              "candidatesScreened": 2490,
-              "improvingCandidatesAudited": 94,
-              "formationOrdersAudited": 11280,
+              "candidatesScreened": 2538,
+              "improvingCandidatesAudited": 97,
+              "formationOrdersAudited": 11640,
               "visitedFormations": 6
             }
           },
-          "finalistsEvaluated": 110,
-          "ordersAudited": 13200,
+          "finalistsEvaluated": 113,
+          "ordersAudited": 13560,
           "recipients": [
             {
               "source": "leader",
@@ -5567,23 +5569,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5621205,
+            "teamSetsInScope": 6033435,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5621189,
+            "unsearchedTeamSets": 6033419,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 4,
-              "candidatesScreened": 2076,
-              "improvingCandidatesAudited": 100,
-              "formationOrdersAudited": 12000,
+              "candidatesScreened": 2116,
+              "improvingCandidatesAudited": 102,
+              "formationOrdersAudited": 12240,
               "visitedFormations": 5
             }
           },
-          "finalistsEvaluated": 116,
-          "ordersAudited": 13920,
+          "finalistsEvaluated": 118,
+          "ordersAudited": 14160,
           "recipients": [
             {
               "source": "leader",
@@ -6974,7 +6976,7 @@
       "title": "Shiranui Flare — Sparks at Sunset team guide",
       "anchorCardId": "card-00021-5-uniq-0064-00",
       "anchorTalentId": "chr-00021",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -7101,23 +7103,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 3,
-              "candidatesScreened": 1656,
-              "improvingCandidatesAudited": 58,
-              "formationOrdersAudited": 6960,
+              "candidatesScreened": 1685,
+              "improvingCandidatesAudited": 61,
+              "formationOrdersAudited": 7320,
               "visitedFormations": 4
             }
           },
-          "finalistsEvaluated": 74,
-          "ordersAudited": 8880,
+          "finalistsEvaluated": 77,
+          "ordersAudited": 9240,
           "recipients": [
             {
               "source": "leader",
@@ -7738,16 +7740,16 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 2,
-              "candidatesScreened": 1242,
+              "candidatesScreened": 1260,
               "improvingCandidatesAudited": 44,
               "formationOrdersAudited": 5280,
               "visitedFormations": 3
@@ -9408,7 +9410,7 @@
       "title": "Shirogane Noel — Serene Wave Knight team guide",
       "anchorCardId": "card-00022-5-uniq-0063-00",
       "anchorTalentId": "chr-00022",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -9535,23 +9537,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 2,
-              "candidatesScreened": 1233,
-              "improvingCandidatesAudited": 32,
-              "formationOrdersAudited": 3840,
+              "candidatesScreened": 1257,
+              "improvingCandidatesAudited": 34,
+              "formationOrdersAudited": 4080,
               "visitedFormations": 3
             }
           },
-          "finalistsEvaluated": 48,
-          "ordersAudited": 5760,
+          "finalistsEvaluated": 50,
+          "ordersAudited": 6000,
           "recipients": [
             {
               "source": "leader",
@@ -10170,23 +10172,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 2,
-              "candidatesScreened": 1230,
-              "improvingCandidatesAudited": 33,
-              "formationOrdersAudited": 3960,
+              "candidatesScreened": 1254,
+              "improvingCandidatesAudited": 35,
+              "formationOrdersAudited": 4200,
               "visitedFormations": 3
             }
           },
-          "finalistsEvaluated": 49,
-          "ordersAudited": 5880,
+          "finalistsEvaluated": 51,
+          "ordersAudited": 6120,
           "recipients": [
             {
               "source": "leader",
@@ -11700,7 +11702,7 @@
       "title": "Tsunomaki Watame — Floatie Float Time team guide",
       "anchorCardId": "card-00026-5-uniq-0065-00",
       "anchorTalentId": "chr-00026",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -11827,23 +11829,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 4,
-              "candidatesScreened": 2070,
-              "improvingCandidatesAudited": 66,
-              "formationOrdersAudited": 7920,
+              "candidatesScreened": 2104,
+              "improvingCandidatesAudited": 70,
+              "formationOrdersAudited": 8400,
               "visitedFormations": 5
             }
           },
-          "finalistsEvaluated": 82,
-          "ordersAudited": 9840,
+          "finalistsEvaluated": 86,
+          "ordersAudited": 10320,
           "recipients": [
             {
               "source": "leader",
@@ -12153,32 +12155,32 @@
             },
             {
               "replacedCardId": "card-00018-5-uniq-0004-00",
-              "cardId": "card-00012-5-uniq-0062-00",
+              "cardId": "card-00018-5-uniq-0068-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -69.7224,
-                "central": 1.0489,
-                "upper": 75.7578
+                "lower": -75.976,
+                "central": 0.6626,
+                "upper": 77.1674
               },
               "suggestedOrder": [
+                "card-00018-5-uniq-0068-00",
                 "card-00037-5-uniq-0030-00",
-                "card-00012-5-uniq-0062-00",
-                "card-00013-5-uniq-0002-00",
                 "card-00026-5-uniq-0065-00",
+                "card-00013-5-uniq-0002-00",
                 "card-00032-5-uniq-0026-00"
               ],
-              "orderStatus": "indeterminate",
+              "orderStatus": "timed-corpus",
               "tradeoff": {
-                "benefit": "Grants All Stats UP 15% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "benefit": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
                 "cost": "Grants Technique UP 41% to 2 [attribute=pure]Pure Type[/attribute] Members.",
-                "activeCooldownDeltaMilliseconds": -12000,
-                "specialDurationDeltaMilliseconds": 0,
+                "activeCooldownDeltaMilliseconds": -6000,
+                "specialDurationDeltaMilliseconds": 2000,
                 "formationOrderChanged": true,
-                "recipientApplicationsAdded": 4,
+                "recipientApplicationsAdded": 3,
                 "recipientApplicationsRemoved": 4,
                 "possibleRecipientCardIdsAdded": [
-                  "card-00012-5-uniq-0062-00",
                   "card-00013-5-uniq-0002-00",
+                  "card-00018-5-uniq-0068-00",
                   "card-00026-5-uniq-0065-00",
                   "card-00032-5-uniq-0026-00",
                   "card-00037-5-uniq-0030-00"
@@ -12464,23 +12466,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 3,
-              "candidatesScreened": 1656,
-              "improvingCandidatesAudited": 33,
-              "formationOrdersAudited": 3960,
+              "candidatesScreened": 1682,
+              "improvingCandidatesAudited": 34,
+              "formationOrdersAudited": 4080,
               "visitedFormations": 4
             }
           },
-          "finalistsEvaluated": 49,
-          "ordersAudited": 5880,
+          "finalistsEvaluated": 50,
+          "ordersAudited": 6000,
           "recipients": [
             {
               "source": "leader",
@@ -14063,7 +14065,7 @@
       "title": "Otonose Kanade — Breezy Smile Chords team guide",
       "anchorCardId": "card-06002-5-uniq-0066-00",
       "anchorTalentId": "chr-06002",
-      "snapshotId": "2026-07-31-yd-native-2.1",
+      "snapshotId": "2026-08-08-yd-native-2.1",
       "methodologyVersion": "yd-native-guide-1.2.0",
       "publicationState": "theorycraft-beta",
       "benchmark": {
@@ -14190,23 +14192,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 4,
-              "candidatesScreened": 2061,
-              "improvingCandidatesAudited": 52,
-              "formationOrdersAudited": 6240,
+              "candidatesScreened": 2101,
+              "improvingCandidatesAudited": 55,
+              "formationOrdersAudited": 6600,
               "visitedFormations": 5
             }
           },
-          "finalistsEvaluated": 68,
-          "ordersAudited": 8160,
+          "finalistsEvaluated": 71,
+          "ordersAudited": 8520,
           "recipients": [
             {
               "source": "leader",
@@ -14434,31 +14436,31 @@
             },
             {
               "replacedCardId": "card-00021-5-uniq-0017-00",
-              "cardId": "card-00010-5-uniq-0010-00",
+              "cardId": "card-00015-5-uniq-0067-00",
               "rarity": 5,
               "lossPercent": {
-                "lower": -40.7415,
-                "central": 6.5072,
-                "upper": 56.627
+                "lower": -38.848,
+                "central": 5.4986,
+                "upper": 55.4146
               },
               "suggestedOrder": [
                 "card-04013-5-uniq-0052-00",
-                "card-00010-5-uniq-0010-00",
+                "card-00015-5-uniq-0067-00",
                 "card-06002-5-uniq-0066-00",
-                "card-03009-5-uniq-0041-00",
-                "card-00022-5-uniq-0063-00"
+                "card-00022-5-uniq-0063-00",
+                "card-03009-5-uniq-0041-00"
               ],
-              "orderStatus": "indeterminate",
+              "orderStatus": "timed-corpus",
               "tradeoff": {
-                "benefit": "Grants Performance UP 41% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "benefit": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Performance UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
                 "cost": "Grants Performance UP 43% to 2 Gen 3 Members.",
-                "activeCooldownDeltaMilliseconds": 3000,
-                "specialDurationDeltaMilliseconds": 0,
+                "activeCooldownDeltaMilliseconds": 1000,
+                "specialDurationDeltaMilliseconds": 1000,
                 "formationOrderChanged": true,
                 "recipientApplicationsAdded": 2,
                 "recipientApplicationsRemoved": 2,
                 "possibleRecipientCardIdsAdded": [
-                  "card-00010-5-uniq-0010-00",
+                  "card-00015-5-uniq-0067-00",
                   "card-00022-5-uniq-0063-00",
                   "card-03009-5-uniq-0041-00",
                   "card-04013-5-uniq-0052-00",
@@ -14827,23 +14829,23 @@
           "searchCertificate": {
             "mode": "heuristic",
             "resultClaim": "recommended-under-provisional-relative-model",
-            "teamSetsInScope": 5423401,
+            "teamSetsInScope": 5824515,
             "teamSetsConsidered": 16,
-            "unsearchedTeamSets": 5423385,
+            "unsearchedTeamSets": 5824499,
             "caveat": "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.",
             "localRefinement": {
               "status": "fixed-point",
               "scope": "one-member-swap-or-leader-change",
               "selection": "strict-central-coordinate-ascent",
               "iterations": 4,
-              "candidatesScreened": 2061,
-              "improvingCandidatesAudited": 63,
-              "formationOrdersAudited": 7560,
+              "candidatesScreened": 2101,
+              "improvingCandidatesAudited": 65,
+              "formationOrdersAudited": 7800,
               "visitedFormations": 5
             }
           },
-          "finalistsEvaluated": 79,
-          "ordersAudited": 9480,
+          "finalistsEvaluated": 81,
+          "ordersAudited": 9720,
           "recipients": [
             {
               "source": "leader",
@@ -15030,6 +15032,47 @@
           "replacements": [
             {
               "replacedCardId": "card-00021-5-uniq-0017-00",
+              "cardId": "card-00015-5-uniq-0067-00",
+              "rarity": 5,
+              "lossPercent": {
+                "lower": -30.652600000000003,
+                "central": 4.2625,
+                "upper": 42.836
+              },
+              "suggestedOrder": [
+                "card-06002-5-uniq-0066-00",
+                "card-00015-5-uniq-0067-00",
+                "card-00022-5-uniq-0063-00",
+                "card-03009-5-uniq-0041-00",
+                "card-04013-5-uniq-0052-00"
+              ],
+              "orderStatus": "indeterminate",
+              "tradeoff": {
+                "benefit": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Performance UP 32% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+                "cost": "Grants Performance UP 32% to 2 Gen 3 Members.",
+                "activeCooldownDeltaMilliseconds": 1000,
+                "specialDurationDeltaMilliseconds": 1000,
+                "formationOrderChanged": true,
+                "recipientApplicationsAdded": 2,
+                "recipientApplicationsRemoved": 2,
+                "possibleRecipientCardIdsAdded": [
+                  "card-00015-5-uniq-0067-00",
+                  "card-00022-5-uniq-0063-00",
+                  "card-03009-5-uniq-0041-00",
+                  "card-04013-5-uniq-0052-00",
+                  "card-06002-5-uniq-0066-00"
+                ],
+                "possibleRecipientCardIdsRemoved": [
+                  "card-00021-5-uniq-0017-00",
+                  "card-00022-5-uniq-0063-00",
+                  "card-03009-5-uniq-0041-00",
+                  "card-04013-5-uniq-0052-00",
+                  "card-06002-5-uniq-0066-00"
+                ]
+              }
+            },
+            {
+              "replacedCardId": "card-00021-5-uniq-0017-00",
               "cardId": "card-04014-5-uniq-0053-00",
               "rarity": 5,
               "lossPercent": {
@@ -15058,47 +15101,6 @@
                   "card-03009-5-uniq-0041-00",
                   "card-04013-5-uniq-0052-00",
                   "card-04014-5-uniq-0053-00",
-                  "card-06002-5-uniq-0066-00"
-                ],
-                "possibleRecipientCardIdsRemoved": [
-                  "card-00021-5-uniq-0017-00",
-                  "card-00022-5-uniq-0063-00",
-                  "card-03009-5-uniq-0041-00",
-                  "card-04013-5-uniq-0052-00",
-                  "card-06002-5-uniq-0066-00"
-                ]
-              }
-            },
-            {
-              "replacedCardId": "card-00021-5-uniq-0017-00",
-              "cardId": "card-00010-5-uniq-0010-00",
-              "rarity": 5,
-              "lossPercent": {
-                "lower": -32.3047,
-                "central": 5.0931999999999995,
-                "upper": 43.9526
-              },
-              "suggestedOrder": [
-                "card-04013-5-uniq-0052-00",
-                "card-03009-5-uniq-0041-00",
-                "card-06002-5-uniq-0066-00",
-                "card-00022-5-uniq-0063-00",
-                "card-00010-5-uniq-0010-00"
-              ],
-              "orderStatus": "timed-corpus",
-              "tradeoff": {
-                "benefit": "Grants Performance UP 30% to 2 [attribute=pure]Pure Type[/attribute] Members.",
-                "cost": "Grants Performance UP 32% to 2 Gen 3 Members.",
-                "activeCooldownDeltaMilliseconds": 3000,
-                "specialDurationDeltaMilliseconds": 0,
-                "formationOrderChanged": true,
-                "recipientApplicationsAdded": 2,
-                "recipientApplicationsRemoved": 2,
-                "possibleRecipientCardIdsAdded": [
-                  "card-00010-5-uniq-0010-00",
-                  "card-00022-5-uniq-0063-00",
-                  "card-03009-5-uniq-0041-00",
-                  "card-04013-5-uniq-0052-00",
                   "card-06002-5-uniq-0066-00"
                 ],
                 "possibleRecipientCardIdsRemoved": [

@@ -161,7 +161,33 @@ export const UnavailableChartTimelineSchema = z
   .strict()
   .refine((chart) => chart.key === `${chart.songId}:${chart.difficulty}`, "Chart key mismatch")
   .refine((chart) => chart.parsedEventCount === chart.fullComboNoteCount, "Parsed event count mismatch")
-  .refine((chart) => chart.specialMarkerCount !== 5, "Unavailable chart unexpectedly has five markers");
+  .refine((chart) => chart.specialMarkerCount !== 5, "Unavailable chart unexpectedly has five markers")
+  .or(
+    // Charts whose source .sus could not be retrieved at intake: nothing was
+    // parsed, so every parsed counter is exactly zero. No scrape-protection
+    // bypass is permitted; these convert to exact timelines when the source
+    // becomes reachable again.
+    z
+      .object({
+        availability: z.literal("unavailable"),
+        key: z.string().regex(/^m\d{4}:(easy|normal|hard|expert)$/),
+        songId: z.string().regex(/^m\d{4}$/),
+        difficulty: DifficultySchema,
+        upstreamChartHash: z.string().regex(/^[a-f0-9]{32}$/),
+        fullComboNoteCount: z.number().int().positive(),
+        parsedEventCount: z.literal(0),
+        specialMarkerCount: z.literal(0),
+        reason: z.literal("source-api-unreachable-cloudflare-challenge-at-intake"),
+        source: z
+          .object({
+            api: z.string().url(),
+            note: z.string().min(1),
+          })
+          .strict(),
+      })
+      .strict()
+      .refine((chart) => chart.key === `${chart.songId}:${chart.difficulty}`, "Chart key mismatch"),
+  );
 
 export const ChartTimelineDataSchema = z
   .object({

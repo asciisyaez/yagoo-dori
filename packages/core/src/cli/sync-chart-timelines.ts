@@ -263,8 +263,8 @@ async function mapConcurrent<T, U>(
 }
 
 assert(/^\d{4}-\d{2}-\d{2}$/.test(retrievedAt), `Invalid --retrieved-at ${retrievedAt}`);
-assert(songData.charts.length === 708, `Expected 708 aggregate charts, received ${songData.charts.length}`);
-assert(new Set(songData.charts.map((chart) => chart.key)).size === 708, "Aggregate chart keys are not unique");
+assert(songData.charts.length === 728, `Expected 728 aggregate charts, received ${songData.charts.length}`);
+assert(new Set(songData.charts.map((chart) => chart.key)).size === 728, "Aggregate chart keys are not unique");
 const revisionBefore = await fetchRevision();
 assert(revisionBefore === expectedRevision, `Expected chart API revision ${expectedRevision}, received ${revisionBefore}`);
 

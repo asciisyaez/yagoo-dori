@@ -6,8 +6,8 @@ Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader 
 
 ## What is included
 
-- 54 talents, 59 five-star Member cards, and 54 four-star Member cards.
-- 113 linked Leader Outfits with locally served card icons and illustrations.
+- 54 talents, 61 five-star Member cards, and 54 four-star Member cards.
+- 115 linked Leader Outfits with locally served card icons and illustrations.
 - Searchable card, talent, Outfit, skill, synergy, guide, and changelog routes.
 - Three ranking lenses backed by pinned mechanics, a frozen 30-chart benchmark, matched substitutions, and deterministic uncertainty estimates.
 - A Bloom-aware team calculator with Oshi constraints and all-120-order placement analysis.

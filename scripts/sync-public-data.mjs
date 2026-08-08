@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,13 +13,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
-    masterVersion: "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be",
+    commit: "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
+    masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "d8929f3cf6845111eeb6fc96f7b12bffb23ecd78",
-    masterVersion: "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be",
+    commit: "4ab2389ae009a0a7961c482ba9407dc24035b557",
+    masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
@@ -65,7 +66,7 @@ const englishFiles = [
 
 const japaneseFiles = ["LangCard_Jpn.json", "LangCharacter_Jpn.json"];
 
-const minimumCardAssetCount = 113;
+const minimumCardAssetCount = 115;
 const minimumIllustrationDimensions = { width: 2282, height: 1284 };
 const requiredIconDimensions = { width: 300, height: 300 };
 
@@ -376,8 +377,11 @@ function uniqueMatches(matches) {
 function requireSingleMatch(card, kind, matches) {
   const unique = uniqueMatches(matches);
   if (unique.length !== 1) {
+    const detail = unique
+      .map((match) => `\n  alt="${match.alt}" page=${match.sourcePage} src=${match.sourceUrl}`)
+      .join("");
     throw new Error(
-      `${card.id}: expected one AppMedia ${kind} match for "${card.titleJa}", found ${unique.length}`,
+      `${card.id}: expected one AppMedia ${kind} match for "${card.titleJa}", found ${unique.length}${detail}`,
     );
   }
   return unique[0];
@@ -425,6 +429,9 @@ async function downloadArt(cards, talentNameJaById) {
       image.normalizedAlt.includes(titleNeedle) && image.normalizedAlt.includes(talentNeedle);
     const isIllustration = (image) => /_イラスト$/u.test(image.alt);
     const isThreeDimensional = (image) => /_3d$/iu.test(image.alt);
+    // AppMedia article-link thumbnails ("…のスキルとステータス") carry both the
+    // title and talent needles but are never the card icon.
+    const isArticleThumbnail = (image) => /のスキルとステータス$/u.test(image.alt);
     const override = appMediaAssetOverrideByCardId[card.id];
 
     let illustration;
@@ -472,7 +479,11 @@ async function downloadArt(cards, talentNameJaById) {
             card,
             "icon",
             talentPage.images.filter(
-              (image) => belongsToCard(image) && !isIllustration(image) && !isThreeDimensional(image),
+              (image) =>
+                belongsToCard(image) &&
+                !isIllustration(image) &&
+                !isThreeDimensional(image) &&
+                !isArticleThumbnail(image),
             ),
           ),
           matchMethod: appMediaTitleAliasByCardId[card.id]
@@ -516,13 +527,26 @@ async function downloadArt(cards, talentNameJaById) {
         `required ${requiredIconDimensions.width}x${requiredIconDimensions.height}`,
       );
     }
-    if (
+    const floorException = illustrationFloorExceptionByCardId[mapping.card.id];
+    if (floorException) {
+      if (
+        illustrationDimensions.width !== floorException.exactWidth ||
+        illustrationDimensions.height !== floorException.exactHeight
+      ) {
+        throw new Error(
+          `${mapping.card.id}: illustration is ${illustrationDimensions.width}x${illustrationDimensions.height}; ` +
+          `the documented floor exception pins exactly ${floorException.exactWidth}x${floorException.exactHeight} ` +
+          `(source changed - re-review the exception)`,
+        );
+      }
+    } else if (
       illustrationDimensions.width < minimumIllustrationDimensions.width ||
       illustrationDimensions.height < minimumIllustrationDimensions.height
     ) {
       throw new Error(
         `${mapping.card.id}: illustration is ${illustrationDimensions.width}x${illustrationDimensions.height}; ` +
-        `minimum ${minimumIllustrationDimensions.width}x${minimumIllustrationDimensions.height}`,
+        `minimum ${minimumIllustrationDimensions.width}x${minimumIllustrationDimensions.height} ` +
+        `(source: ${mapping.illustration.sourceUrl})`,
       );
     }
 

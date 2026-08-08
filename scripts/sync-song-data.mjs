@@ -7,8 +7,8 @@ const outputFile = join(root, "data", "generated", "holodori-songs.json");
 
 const sourceSnapshot = {
   repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-  commit: "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
-  masterVersion: "0b8b02c061dd6900cac86860443e3dfea22b8efe5ccc424b3b99a67821acc3be",
+  commit: "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
+  masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
 };
 const transformVersion = "song-contexts-v2";
 const retrievedAt = process.argv
@@ -448,8 +448,8 @@ const corpusEntry = ([chartKey, reason]) => {
   return { chartKey, expectedChartHash: chart.chartHash, reason };
 };
 
-assert(songs.length === 177, `Expected 177 songs, received ${songs.length}`);
-assert(charts.length === 708, `Expected 708 aggregate charts, received ${charts.length}`);
+assert(songs.length === 182, `Expected 182 songs, received ${songs.length}`);
+assert(charts.length === 728, `Expected 728 aggregate charts, received ${charts.length}`);
 assert(noteJudgements.length === 38, `Expected 38 LiveNote rules, received ${noteJudgements.length}`);
 assert(comboBonuses.length === 11, `Expected 11 combo rules, received ${comboBonuses.length}`);
 assert(

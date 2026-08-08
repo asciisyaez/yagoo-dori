@@ -29,13 +29,13 @@ describe("native Leader resolution cache", () => {
       investmentLayer: "one-copy-maximum",
     });
 
-    expect(result.counts.eligibleLeaderOutfits).toBe(113);
+    expect(result.counts.eligibleLeaderOutfits).toBe(115);
     expect(result.counts.structuralClasses).toBeGreaterThan(0);
-    expect(result.counts.structuralClasses).toBeLessThanOrEqual(113);
+    expect(result.counts.structuralClasses).toBeLessThanOrEqual(115);
     expect(result.counts.resolvedGroups).toBeGreaterThanOrEqual(result.counts.structuralClasses);
     expect(result.counts.resolvedGroups).toBeLessThanOrEqual(result.counts.eligibleLeaderOutfits);
     expect(result.groups.every((group) => group.signature.length > 0)).toBe(true);
-    expect(new Set(result.groups.map((group) => group.eligibleCardIds.flat()).flat()).size).toBe(113);
+    expect(new Set(result.groups.map((group) => group.eligibleCardIds.flat()).flat()).size).toBe(115);
   });
 
   it("matches the reference utility for every member of each resolved group", () => {

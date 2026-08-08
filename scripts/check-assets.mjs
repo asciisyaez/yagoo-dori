@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { basename, join } from "node:path";
+import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 
 const sourceManifestPath = "data/generated/card-art-manifest.json";
 const sourceManifestBytes = await readFile(sourceManifestPath);
@@ -11,7 +12,7 @@ const previewManifest = JSON.parse(
 const publicData = JSON.parse(await readFile("data/generated/holodori-public.json", "utf8"));
 const failures = [];
 const expectedCount = publicData.counts?.total;
-const expectedPreviewCount = 113;
+const expectedPreviewCount = 115;
 const requiredDimensions = {
   icon: { width: 300, height: 300 },
   illustration: { width: 2282, height: 1284 },
@@ -147,13 +148,21 @@ for (const asset of manifest.assets ?? []) {
         failures.push(`${asset.cardId}: ${kind} manifest dimensions do not match the local file`);
       }
       const required = requiredDimensions[kind];
+      const floorException =
+        kind === "illustration" ? illustrationFloorExceptionByCardId[asset.cardId] : undefined;
       const dimensionsValid = kind === "icon"
         ? dimensions.width === required.width && dimensions.height === required.height
-        : dimensions.width >= required.width && dimensions.height >= required.height;
+        : floorException
+          ? dimensions.width === floorException.exactWidth &&
+            dimensions.height === floorException.exactHeight
+          : dimensions.width >= required.width && dimensions.height >= required.height;
       if (!dimensionsValid) {
         failures.push(
-          `${asset.cardId}: ${kind} is ${dimensions.width}x${dimensions.height}; ` +
-          `${kind === "icon" ? "required" : "minimum"} ${required.width}x${required.height}`,
+          floorException
+            ? `${asset.cardId}: ${kind} is ${dimensions.width}x${dimensions.height}; ` +
+              `the documented floor exception pins exactly ${floorException.exactWidth}x${floorException.exactHeight}`
+            : `${asset.cardId}: ${kind} is ${dimensions.width}x${dimensions.height}; ` +
+              `${kind === "icon" ? "required" : "minimum"} ${required.width}x${required.height}`,
         );
       }
     } catch (error) {
@@ -298,6 +307,6 @@ if (failures.length > 0) {
 
 console.log(
   `Asset provenance check passed (${manifest.assets.length} icons at 300x300 and ` +
-  `${manifest.assets.length} illustrations at 2282x1284 or larger; ` +
+  `${manifest.assets.length} illustrations at 2282x1284 or larger (or documented floor exceptions); ` +
   `${previewManifest.previews.length} previews at 1024x576).`,
 );

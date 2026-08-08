@@ -4,7 +4,7 @@ import { basename, join } from "node:path";
 
 import sharp from "sharp";
 
-const EXPECTED_COUNT = 113;
+const EXPECTED_COUNT = 115;
 const SOURCE_MANIFEST_PATH = "data/generated/card-art-manifest.json";
 const PREVIEW_MANIFEST_PATH = "data/generated/card-art-preview-manifest.json";
 const PUBLIC_ROOT = join("apps", "web", "public");

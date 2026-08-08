@@ -11,6 +11,7 @@ import {
   validateExactOptimizerCoverageLedger,
   type ExactOptimizerCoverageLedger,
 } from "./exact-optimizer-coverage";
+import { exactOptimizerScope } from "./exact-optimizer-scope";
 
 const NATIVE_DATA_ROOT = fileURLToPath(new URL("../../../data/native/", import.meta.url));
 const COVERAGE_ARTIFACTS = [
@@ -50,6 +51,20 @@ async function buildWithArtifactMutation(
         copyFile(join(NATIVE_DATA_ROOT, name), join(artifactRoot, name)),
       ),
     );
+    // The recorded research artifacts are pinned to the pre-patch scope, so
+    // every reader would stop at the scope-stale guard before reaching the
+    // guard each test targets. Normalize both fixture copies to the CURRENT
+    // scope hash first (temp-dir scaffolding only; the real artifacts are
+    // never touched) so each specific mutation exercises its own guard.
+    await Promise.all(
+      COVERAGE_ARTIFACTS.map(async (name) => {
+        const path = join(artifactRoot, name);
+        const copy = JSON.parse(await readFile(path, "utf8")) as JsonObject;
+        copy.scopeHash = exactOptimizerScope.scopeHash;
+        resignArtifact(copy);
+        await writeFile(path, `${JSON.stringify(copy, null, 2)}\n`, "utf8");
+      }),
+    );
     const artifactPath = join(artifactRoot, artifactName);
     const artifact = JSON.parse(await readFile(artifactPath, "utf8")) as JsonObject;
     mutate(artifact);
@@ -62,32 +77,31 @@ async function buildWithArtifactMutation(
 }
 
 describe("exact optimizer coverage ledger", () => {
-  it("records nonzero independent coverage for every required current axis", async () => {
+  it("reports the recorded research evidence as honestly stale against the patched scope", async () => {
+    // The 2026-08 roster patch (113 -> 115 cards) minted a new scope hash.
+    // The recorded trace-parity and root-bound artifacts are pinned to the
+    // previous scope; until they are regenerated, the ledger must refuse
+    // authorization with the specific scope-stale reasons rather than carry
+    // pre-patch coverage forward. Structural per-card axes still enumerate
+    // the current 115-card roster.
     const ledger = await buildExactOptimizerCoverageLedger();
-    validateExactOptimizerCoverageLedger(ledger);
+    expect(() => validateExactOptimizerCoverageLedger(ledger)).toThrow(
+      /authorization gate is not satisfied/i,
+    );
 
     expect(ledger.requiredZeroCoverage).toEqual([]);
-    expect(ledger.coverage.find((axis) => axis.id === "member-cards")!.entries).toHaveLength(113);
-    expect(ledger.coverage.find((axis) => axis.id === "leader-sources")!.entries).toHaveLength(113);
+    expect(ledger.coverage.find((axis) => axis.id === "member-cards")!.entries).toHaveLength(115);
+    expect(ledger.coverage.find((axis) => axis.id === "leader-sources")!.entries).toHaveLength(115);
     expect(ledger.coverage.find((axis) => axis.id === "application-records")!.entries.length).toBeGreaterThan(0);
-    expect(ledger.gates).toMatchObject({
-      compression: {
-        authorized: true,
-        corpusCaseCount: 100_000,
-        traceFallbackCount: 0,
-        endpointMismatchCounts: { lower: 0, central: 0, upper: 0 },
-      },
-      rootBounds: {
-        authorized: true,
-        classCount: 113,
-        singletonSafeClassCount: 113,
-        fullScopeChartCount: 30,
-      },
-      leaderEquivalence: { authorized: true, multiplicityReconciled: true },
-      reducedBounds: { verified: true, scope: "reduced-fixture-only", strictPruneOnly: true },
-      parallel: { authorized: true, workerCount: 2 },
-      coverageAuthorization: { authorized: true },
+    expect(ledger.gates.compression).toMatchObject({
+      authorized: false,
+      reason: "The full trace parity artifact scope hash is stale.",
     });
+    expect(ledger.gates.rootBounds).toMatchObject({
+      authorized: false,
+      reason: "The full fixed-Leader root-bound artifact scope hash is stale.",
+    });
+    expect(ledger.gates.coverageAuthorization.authorized).toBe(false);
   }, 30_000);
 
   it("rejects a stale trace-parity report hash without granting coverage", async () => {

@@ -98,22 +98,33 @@ describe("native guide request resolution", () => {
 
 describe("native guide dataset merge", () => {
   it("rebases guides only across a score- and rank-neutral ranking transition", () => {
+    // The live changelog records a real roster patch (non-neutral), so the
+    // happy path uses a synthetic NEUTRAL transition ending at the current
+    // snapshot; the guard rejection below still exercises the live shape.
+    const neutralChangelog = structuredClone(nativeRankingChangelogData);
+    neutralChangelog.summary = {
+      ...neutralChangelog.summary,
+      added: 0,
+      removed: 0,
+      scoreChanged: 0,
+      rankChanged: 0,
+    };
     const stale = structuredClone(nativeGuideData);
     for (const guide of stale.guides) {
-      guide.snapshotId = nativeRankingChangelogData.from!.snapshotId;
+      guide.snapshotId = neutralChangelog.from!.snapshotId;
     }
     const rebased = rebaseNativeGuideDataSnapshot(
       GENERATED_AT,
       stale,
-      nativeRankingChangelogData,
+      neutralChangelog,
     );
     expect(new Set(rebased.guides.map((guide) => guide.snapshotId))).toEqual(
       new Set([nativeRankingData.snapshotId]),
     );
 
     expect(() => rebaseNativeGuideDataSnapshot(GENERATED_AT, stale, {
-      ...nativeRankingChangelogData,
-      summary: { ...nativeRankingChangelogData.summary, scoreChanged: 1 },
+      ...neutralChangelog,
+      summary: { ...neutralChangelog.summary, scoreChanged: 1 },
     })).toThrow(/unchanged roster, score index, and rank order/i);
   });
 

@@ -3,20 +3,20 @@
   "scopeId": "yd-exact-full-roster-v1",
   "roster": {
     "sourceRepository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    "sourceCommit": "1907a1b9f85beb22e9d255686a26e0bd5db223e9",
+    "sourceCommit": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
     "publicDataPath": "data/generated/holodori-public.json",
-    "publicDataSha256": "6705cc7e05c9e63fdd5e12a9fb0b8273f09de910d2e1390fb70ae41daa7858e4",
+    "publicDataSha256": "4f19beec03ef8384a4bce840401341d9de564fbf746c213d6847156c93c9adbe",
     "orderedCardIdsSha256": "464bc16340a7bee8c1ce0cb8e637fcffc9cadba82c2c3d2aee5f0ef506e80d9f",
-    "cardCount": 113
+    "cardCount": 115
   },
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "a181516762b8bbc2900082671c3eb3a339f9939cd7b66f71ec7dc6e22d0645c6",
+    "sha256": "2c1d0cdaea39a25fdc2f553c53c02d850b8ba42bc9e1a5a19dfa9ed46ada2f67",
     "evaluatorMethodologyVersion": "yd-native-utility-1.0.0"
   },
   "songCorpus": {
     "path": "data/generated/holodori-songs.json",
-    "sha256": "45a3d3c88c11fc365888abc3f11e80efd8bc1d8298aae879cab7a100cae87711",
+    "sha256": "622eabb2fc06b31a87c10412ae73206e0fb3389b2799444efd5abd03ae8bce21",
     "songCorpusVersion": "pinned-public-songs-v1"
   },
   "chartCorpus": {
@@ -251,12 +251,14 @@
       "card-00014-5-uniq-0013-00",
       "card-00015-4-cmmn-0000-00",
       "card-00015-5-uniq-0003-00",
+      "card-00015-5-uniq-0067-00",
       "card-00016-4-cmmn-0000-00",
       "card-00016-5-uniq-0014-00",
       "card-00017-4-cmmn-0000-00",
       "card-00017-5-uniq-0015-00",
       "card-00018-4-cmmn-0000-00",
       "card-00018-5-uniq-0004-00",
+      "card-00018-5-uniq-0068-00",
       "card-00019-4-cmmn-0000-00",
       "card-00019-5-uniq-0016-00",
       "card-00021-4-cmmn-0000-00",
@@ -366,12 +368,14 @@
       "card-00014-5-uniq-0013-00",
       "card-00015-4-cmmn-0000-00",
       "card-00015-5-uniq-0003-00",
+      "card-00015-5-uniq-0067-00",
       "card-00016-4-cmmn-0000-00",
       "card-00016-5-uniq-0014-00",
       "card-00017-4-cmmn-0000-00",
       "card-00017-5-uniq-0015-00",
       "card-00018-4-cmmn-0000-00",
       "card-00018-5-uniq-0004-00",
+      "card-00018-5-uniq-0068-00",
       "card-00019-4-cmmn-0000-00",
       "card-00019-5-uniq-0016-00",
       "card-00021-4-cmmn-0000-00",
@@ -488,12 +492,14 @@
       "card-00014-5-uniq-0013-00": 0,
       "card-00015-4-cmmn-0000-00": 0,
       "card-00015-5-uniq-0003-00": 0,
+      "card-00015-5-uniq-0067-00": 0,
       "card-00016-4-cmmn-0000-00": 0,
       "card-00016-5-uniq-0014-00": 0,
       "card-00017-4-cmmn-0000-00": 0,
       "card-00017-5-uniq-0015-00": 0,
       "card-00018-4-cmmn-0000-00": 0,
       "card-00018-5-uniq-0004-00": 0,
+      "card-00018-5-uniq-0068-00": 0,
       "card-00019-4-cmmn-0000-00": 0,
       "card-00019-5-uniq-0016-00": 0,
       "card-00021-4-cmmn-0000-00": 0,
@@ -612,5 +618,5 @@
     "methodologyVersion": "yd-formation-order-timed-corpus-1.0.0",
     "globallyCertified": false
   },
-  "scopeHash": "a53303691e95a289259b645b196ec3bea96fdc2609a6f527967d17fdc02e1871"
+  "scopeHash": "2933f82f62eb5a9a9652d34bd3d83da40e155cd61063ff05525cc8cffa6dade0"
 }

@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "2026-07-31-yd-native-2@2026-07-31T16:00:00.000Z->2026-07-31-yd-native-2.1@2026-08-01T14:00:00.000Z",
+  "id": "2026-07-31-yd-native-2.1@2026-08-01T14:00:00.000Z->2026-08-08-yd-native-2.1@2026-08-07T00:00:00.000Z",
   "from": {
-    "snapshotId": "2026-07-31-yd-native-2",
-    "generatedAt": "2026-07-31T16:00:00.000Z",
-    "methodologyVersion": "yd-native-ranking-2.0.0"
-  },
-  "to": {
     "snapshotId": "2026-07-31-yd-native-2.1",
     "generatedAt": "2026-08-01T14:00:00.000Z",
+    "methodologyVersion": "yd-native-ranking-2.1.0"
+  },
+  "to": {
+    "snapshotId": "2026-08-08-yd-native-2.1",
+    "generatedAt": "2026-08-07T00:00:00.000Z",
     "methodologyVersion": "yd-native-ranking-2.1.0"
   },
   "attributionPolicy": "exact-micro-index-sum-required",
   "rankDeltaConvention": "positive-means-rank-improved",
   "entries": [
     {
-      "entityKind": "member",
+      "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00002-4-cmmn-0000-00",
+      "cardId": "card-00001-5-uniq-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -33,7 +33,2832 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "C",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "C",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "C",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -42,15 +2867,15 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00004-5-uniq-0005-00",
+      "cardId": "card-00001-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -58,7 +2883,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -71,11 +2971,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -83,7 +2983,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -96,11 +3021,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -108,7 +3033,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -121,11 +3071,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -133,7 +3083,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -146,11 +3096,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -158,7 +3108,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -167,15 +3117,15 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00013-5-uniq-0002-00",
+      "cardId": "card-00011-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -183,7 +3133,132 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -196,11 +3271,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -208,7 +3283,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -221,11 +3321,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -233,7 +3333,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -246,11 +3421,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -258,7 +3433,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -267,15 +3442,15 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00021-5-uniq-0017-00",
+      "cardId": "card-00021-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -283,7 +3458,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -296,11 +3471,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -308,7 +3483,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -321,11 +3571,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -333,7 +3583,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -346,11 +3646,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -358,7 +3658,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -371,11 +3746,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -383,7 +3758,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -396,11 +3796,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -408,7 +3808,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -421,11 +3821,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -433,7 +3833,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -446,11 +3871,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -458,7 +3883,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -471,11 +3896,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -483,7 +3908,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -496,11 +3946,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -508,7 +3958,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -521,11 +3996,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -533,7 +4008,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -546,11 +4071,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -558,7 +4083,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -571,11 +4146,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -583,7 +4158,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -596,11 +4196,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -608,7 +4208,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -621,11 +4221,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -633,7 +4233,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -646,11 +4321,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -658,7 +4333,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -671,11 +4371,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -683,7 +4383,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -696,11 +4421,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -708,7 +4433,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -717,15 +4442,15 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-04016-5-uniq-0055-00",
+      "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -733,7 +4458,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -746,11 +4496,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -758,7 +4508,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -767,15 +4517,15 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-06004-5-uniq-0060-00",
+      "cardId": "card-06002-5-uniq-0058-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "B",
+        "to": "B",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -783,7 +4533,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -796,11 +4621,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -808,7 +4633,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -816,16 +4641,16 @@
     },
     {
       "entityKind": "member",
-      "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-06005-5-uniq-0061-00",
+      "investment": "low-investment",
+      "cardId": "card-00001-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -833,7 +4658,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -846,11 +4696,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -858,7 +4708,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -871,11 +4746,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -883,7 +4758,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -896,11 +4796,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -908,7 +4808,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -921,11 +4846,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -933,7 +4858,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -946,11 +4871,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -958,7 +4883,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -967,15 +4892,15 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
-      "cardId": "card-00013-5-uniq-0002-00",
+      "cardId": "card-00011-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -983,7 +4908,107 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -996,11 +5021,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1008,7 +5033,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1021,11 +5071,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1033,7 +5083,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1042,15 +5092,15 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
-      "cardId": "card-00021-5-uniq-0017-00",
+      "cardId": "card-00017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1058,7 +5108,207 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1071,11 +5321,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1083,7 +5333,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1096,11 +5396,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1108,7 +5408,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1121,11 +5446,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1133,7 +5458,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1146,11 +5496,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1158,7 +5508,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1171,11 +5546,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1183,7 +5558,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1196,11 +5571,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1208,7 +5583,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1221,11 +5646,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1233,7 +5658,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1246,11 +5671,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1258,7 +5683,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1271,11 +5721,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1283,7 +5733,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1296,11 +5796,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1308,7 +5808,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1321,11 +5846,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1333,7 +5858,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1346,11 +5921,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1358,7 +5933,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1371,11 +5971,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1383,7 +5983,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1396,11 +5996,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1408,7 +6008,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1421,11 +6021,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1433,7 +6033,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1446,11 +6096,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1458,7 +6108,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1467,15 +6117,15 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
-      "cardId": "card-04013-5-uniq-0052-00",
+      "cardId": "card-04014-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1483,7 +6133,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1496,11 +6146,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1508,7 +6158,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1521,11 +6196,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1533,7 +6208,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1542,15 +6217,15 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
-      "cardId": "card-04016-5-uniq-0055-00",
+      "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1558,7 +6233,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1571,11 +6246,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1583,7 +6258,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1592,15 +6267,15 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
-      "cardId": "card-06004-5-uniq-0060-00",
+      "cardId": "card-06002-5-uniq-0058-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "B",
+        "to": "B",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1608,7 +6283,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1621,11 +6371,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1633,7 +6383,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1641,16 +6391,16 @@
     },
     {
       "entityKind": "member",
-      "investment": "low-investment",
-      "cardId": "card-06005-5-uniq-0061-00",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1658,7 +6408,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1671,11 +6446,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1683,7 +6458,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1696,11 +6496,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1708,7 +6508,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1721,11 +6546,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1733,7 +6558,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1746,11 +6596,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1758,7 +6608,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1771,11 +6621,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1783,7 +6633,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1792,15 +6642,15 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
-      "cardId": "card-00013-5-uniq-0002-00",
+      "cardId": "card-00011-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1808,7 +6658,107 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1821,11 +6771,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1833,7 +6783,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1846,11 +6821,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1858,7 +6833,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1867,15 +6842,15 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
-      "cardId": "card-00021-5-uniq-0017-00",
+      "cardId": "card-00017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1883,7 +6858,207 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1896,11 +7071,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1908,7 +7083,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1921,11 +7146,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1933,7 +7158,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1946,11 +7196,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1958,7 +7208,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1971,11 +7246,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -1983,7 +7258,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -1996,11 +7296,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2008,7 +7308,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2021,11 +7321,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2033,7 +7333,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2046,11 +7396,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2058,7 +7408,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2071,11 +7421,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2083,7 +7433,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2096,11 +7471,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2108,7 +7483,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2121,11 +7546,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2133,7 +7558,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2146,11 +7596,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2158,7 +7608,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2171,11 +7671,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2183,7 +7683,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2196,11 +7721,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2208,7 +7733,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2221,11 +7746,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2233,7 +7758,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2246,11 +7771,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2258,7 +7783,57 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2271,11 +7846,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2283,7 +7858,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2292,15 +7867,15 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
-      "cardId": "card-04013-5-uniq-0052-00",
+      "cardId": "card-04014-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2308,7 +7883,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2321,11 +7896,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2333,7 +7908,32 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2346,11 +7946,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2358,7 +7958,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2367,15 +7967,15 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
-      "cardId": "card-04016-5-uniq-0055-00",
+      "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "C",
+        "to": "C",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2383,7 +7983,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2396,11 +7996,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2408,7 +8008,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2417,15 +8017,15 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
-      "cardId": "card-06004-5-uniq-0060-00",
+      "cardId": "card-06002-5-uniq-0058-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
+        "from": "B",
+        "to": "B",
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2433,7 +8033,82 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "B",
+        "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2446,11 +8121,11 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": "D",
+        "from": "C",
         "to": "C",
-        "steps": 1
+        "steps": 0
       },
       "stableTierDelta": {
         "from": "Provisional",
@@ -2458,32 +8133,7 @@
       },
       "attribution": [
         {
-          "reason": "methodology-correction",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "member",
-      "investment": "one-copy-maximum",
-      "cardId": "card-06005-5-uniq-0061-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": 0,
-      "tierDelta": {
-        "from": "SS",
-        "to": "S",
-        "steps": -1
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "methodology-correction",
+          "reason": "new-evidence",
           "deltaMicro": 0,
           "delta": 0
         }
@@ -2491,11 +8141,11 @@
     }
   ],
   "summary": {
-    "added": 0,
+    "added": 12,
     "removed": 0,
     "scoreChanged": 0,
-    "rankChanged": 0,
-    "tierChanged": 99,
-    "stableTierChanged": 0
+    "rankChanged": 313,
+    "tierChanged": 12,
+    "stableTierChanged": 12
   }
 }

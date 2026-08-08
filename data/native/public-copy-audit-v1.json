@@ -214,16 +214,6 @@
       "file": "data/generated/native-guides.json",
       "context": "Grants Score Support Effect of 11% to 2 [attribute=cute]Cute Type[/attribute] Members.",
       "term": "score",
-      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[3].tradeoff.benefit",
-      "sourceKind": "generated-prose",
-      "jsonPath": "guides[1].formations[0].replacements[3].tradeoff.benefit",
-      "disposition": "allowed-scoped",
-      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
-    },
-    {
-      "file": "data/generated/native-guides.json",
-      "context": "Grants Score Support Effect of 11% to 2 [attribute=cute]Cute Type[/attribute] Members.",
-      "term": "score",
       "location": "data/generated/native-guides.json:guides[4].formations[0].replacements[4].tradeoff.benefit",
       "sourceKind": "generated-prose",
       "jsonPath": "guides[4].formations[0].replacements[4].tradeoff.benefit",
@@ -244,39 +234,9 @@
       "file": "data/generated/native-guides.json",
       "context": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
       "term": "score",
-      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[0].tradeoff.cost",
+      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[3].tradeoff.benefit",
       "sourceKind": "generated-prose",
-      "jsonPath": "guides[1].formations[0].replacements[0].tradeoff.cost",
-      "disposition": "allowed-scoped",
-      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
-    },
-    {
-      "file": "data/generated/native-guides.json",
-      "context": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-      "term": "score",
-      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[1].tradeoff.benefit",
-      "sourceKind": "generated-prose",
-      "jsonPath": "guides[1].formations[0].replacements[1].tradeoff.benefit",
-      "disposition": "allowed-scoped",
-      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
-    },
-    {
-      "file": "data/generated/native-guides.json",
-      "context": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-      "term": "score",
-      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[1].tradeoff.cost",
-      "sourceKind": "generated-prose",
-      "jsonPath": "guides[1].formations[0].replacements[1].tradeoff.cost",
-      "disposition": "allowed-scoped",
-      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
-    },
-    {
-      "file": "data/generated/native-guides.json",
-      "context": "Grants Score Support Effect of 11% to 2 [attribute=happy]Happy Type[/attribute] Members.",
-      "term": "score",
-      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[7].tradeoff.benefit",
-      "sourceKind": "generated-prose",
-      "jsonPath": "guides[1].formations[0].replacements[7].tradeoff.benefit",
+      "jsonPath": "guides[1].formations[0].replacements[3].tradeoff.benefit",
       "disposition": "allowed-scoped",
       "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
     },
@@ -367,6 +327,16 @@
       "location": "data/generated/native-guides.json:guides[6].formations[0].replacements[6].tradeoff.benefit",
       "sourceKind": "generated-prose",
       "jsonPath": "guides[6].formations[0].replacements[6].tradeoff.benefit",
+      "disposition": "allowed-scoped",
+      "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
+    },
+    {
+      "file": "data/generated/native-guides.json",
+      "context": "Grants Score Support Effect of 11% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+      "term": "score",
+      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[1].tradeoff.benefit",
+      "sourceKind": "generated-prose",
+      "jsonPath": "guides[1].formations[0].replacements[1].tradeoff.benefit",
       "disposition": "allowed-scoped",
       "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
     },
@@ -574,9 +544,9 @@
       "file": "data/generated/native-guides.json",
       "context": "Grants Score Support Effect of 8% to 2 [attribute=pure]Pure Type[/attribute] Members.",
       "term": "score",
-      "location": "data/generated/native-guides.json:guides[6].formations[1].replacements[0].tradeoff.benefit",
+      "location": "data/generated/native-guides.json:guides[6].formations[1].replacements[1].tradeoff.benefit",
       "sourceKind": "generated-prose",
-      "jsonPath": "guides[6].formations[1].replacements[0].tradeoff.benefit",
+      "jsonPath": "guides[6].formations[1].replacements[1].tradeoff.benefit",
       "disposition": "allowed-scoped",
       "justification": "Score Support Effect is a generated in-game mechanic label, not a public ranking claim."
     },
@@ -599,6 +569,36 @@
       "jsonPath": "guides[2].ratingSongComparisons[2].formationOrderModel.statement",
       "disposition": "allowed-scoped",
       "justification": "Exact is limited to the published chart timeline and documented relative timing model."
+    },
+    {
+      "file": "data/generated/native-guides.json",
+      "context": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
+      "term": "score",
+      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[2].tradeoff.cost",
+      "sourceKind": "generated-prose",
+      "jsonPath": "guides[1].formations[0].replacements[2].tradeoff.cost",
+      "disposition": "allowed-scoped",
+      "justification": "Score names the in-game Score Support Effect from pinned skill text on the 2026-08 cards, not a published scoring claim."
+    },
+    {
+      "file": "data/generated/native-guides.json",
+      "context": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
+      "term": "score",
+      "location": "data/generated/native-guides.json:guides[1].formations[0].replacements[3].tradeoff.cost",
+      "sourceKind": "generated-prose",
+      "jsonPath": "guides[1].formations[0].replacements[3].tradeoff.cost",
+      "disposition": "allowed-scoped",
+      "justification": "Score names the in-game Score Support Effect from pinned skill text on the 2026-08 cards, not a published scoring claim."
+    },
+    {
+      "file": "data/generated/native-guides.json",
+      "context": "With 2 or more Gen 0 Members, Grants Score Support Effect of 12% to 2 Gen 0 Members.",
+      "term": "score",
+      "location": "data/generated/native-guides.json:guides[5].formations[0].replacements[3].tradeoff.benefit",
+      "sourceKind": "generated-prose",
+      "jsonPath": "guides[5].formations[0].replacements[3].tradeoff.benefit",
+      "disposition": "allowed-scoped",
+      "justification": "Score names the in-game Score Support Effect from pinned skill text on the 2026-08 cards, not a published scoring claim."
     },
     {
       "file": "data/generated/native-guides.json",
@@ -784,7 +784,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-04T14:30:39.745Z"
+    "generatedAt": "2026-08-08T08:49:19.003Z"
   },
-  "stableDigest": "414cb388dcf97898c0ed15d733c5105bb137b9956e1ab4bee12723c1dd1550da"
+  "stableDigest": "2895b017cec44de2d04fbeab126f688a8e29b92e37b9ed1b0dab2de90600b332"
 }

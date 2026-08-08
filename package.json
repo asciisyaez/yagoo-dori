@@ -1,6 +1,6 @@
 {
   "name": "yagoo-dori",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "packageManager": "pnpm@10.14.0",
   "engines": {
@@ -9,6 +9,7 @@
   "pnpm": {
     "overrides": {
       "postcss": "8.5.25",
+      "nanoid": ">=3.3.17",
       "sharp": "0.35.3"
     }
   },

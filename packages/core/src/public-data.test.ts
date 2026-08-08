@@ -15,16 +15,16 @@ describe("pinned public hololive Dreams dataset", () => {
     expect(publicData.counts).toEqual({
       talents: 54,
       fourStar: 54,
-      fiveStar: 59,
-      total: 113,
-      art: 113,
+      fiveStar: 61,
+      total: 115,
+      art: 115,
     });
-    expect(publicCards).toHaveLength(113);
+    expect(publicCards).toHaveLength(115);
     expect(publicTalents).toHaveLength(54);
-    expect(new Set(publicCards.map((card) => card.id)).size).toBe(113);
-    expect(new Set(publicCards.map((card) => card.slug)).size).toBe(113);
+    expect(new Set(publicCards.map((card) => card.id)).size).toBe(115);
+    expect(new Set(publicCards.map((card) => card.slug)).size).toBe(115);
     expect(publicCards.filter((card) => card.rarity === 4)).toHaveLength(54);
-    expect(publicCards.filter((card) => card.rarity === 5)).toHaveLength(59);
+    expect(publicCards.filter((card) => card.rarity === 5)).toHaveLength(61);
   });
 
   it("validates declared counts instead of hard-coding the launch roster size", () => {

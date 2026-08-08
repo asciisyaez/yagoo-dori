@@ -16,7 +16,12 @@ function canonicalize(value) {
 
 const benchmarkPath = "data/native/ranking-benchmark-v1.json";
 const benchmark = readJson(benchmarkPath);
-const cardIds = [...benchmark.cohort.orderedCardIds].sort();
+// Eligibility must equal the live public roster (the scope module enforces
+// exactly that at load time); the benchmark cohort is the FROZEN launch
+// substitution pool and legitimately lags roster growth.
+const cardIds = readJson("data/generated/holodori-public.json")
+  .cards.map((card) => card.id)
+  .sort();
 const chartEntries = [...benchmark.corpus.reference, ...benchmark.corpus.current]
   .map(({ chartKey, expectedChartHash }) => ({ chartKey, expectedChartHash, weightNumerator: 1, weightDenominator: 30 }));
 const timelineSource = readJson("data/native/chart-timeline-source.json");
@@ -25,8 +30,8 @@ const scope = {
   schemaVersion: 1,
   scopeId: "yd-exact-full-roster-v1",
   roster: {
-    sourceRepository: benchmark.sources.roster.repository,
-    sourceCommit: benchmark.sources.roster.commit,
+    sourceRepository: readJson("data/generated/holodori-mechanics.json").sourceSnapshot.repository,
+    sourceCommit: readJson("data/generated/holodori-mechanics.json").sourceSnapshot.commit,
     publicDataPath: "data/generated/holodori-public.json",
     publicDataSha256: sha256File("data/generated/holodori-public.json"),
     orderedCardIdsSha256: benchmark.cohort.orderedCardIdsSha256,

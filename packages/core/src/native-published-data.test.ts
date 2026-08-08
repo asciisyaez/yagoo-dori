@@ -16,7 +16,7 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "1907a1b9f85beb22e9d255686a26e0bd5db223e9";
+const PINNED_GUIDE_ROSTER_COMMIT = "b1f9535bbdc4473e384adab7b41a0e26e06363d7";
 
 const EXPECTED_GUIDE_IDENTITIES = [
   {
@@ -315,7 +315,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(76);
+    expect(referencedCardIds.size).toBe(79);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

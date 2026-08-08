@@ -2,6 +2,7 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.4` | 1    | feat(data): 2026-08 patch intake — two new summer 5★ cards, five new songs, regenerated rankings and guides |
 | `0.1.3` | 1    | feat(exact): complete X07 scope-safe validation and public copy audit (v0.2 73%) |
 | `0.1.2` | 1    | feat(exact): complete X06 continuation-complete partial-state validation (v0.2 70%) |
 | `0.1.1` | 1    | chore: initialize TRIP workflow |

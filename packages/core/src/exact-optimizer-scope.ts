@@ -20,7 +20,7 @@ export const ExactOptimizerScopeSchema = z
         publicDataPath: z.string().min(1),
         publicDataSha256: HashSchema,
         orderedCardIdsSha256: HashSchema,
-        cardCount: z.literal(113),
+        cardCount: z.literal(115),
       })
       .strict(),
     mechanics: z
@@ -74,8 +74,8 @@ export const ExactOptimizerScopeSchema = z
       .strict(),
     eligibility: z
       .object({
-        eligibleMemberCardIds: z.array(CardIdSchema).length(113),
-        eligibleLeaderOutfitCardIds: z.array(CardIdSchema).length(113),
+        eligibleMemberCardIds: z.array(CardIdSchema).length(115),
+        eligibleLeaderOutfitCardIds: z.array(CardIdSchema).length(115),
         fixedMemberCardIds: z.array(CardIdSchema).length(0),
         oshi: z.null(),
         maximumFiveStarMembers: z.literal(5),
