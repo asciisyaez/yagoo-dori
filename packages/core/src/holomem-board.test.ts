@@ -164,7 +164,12 @@ describe("holomem Board model", () => {
   });
 
   it("keeps the Board module outside utility, formation, calculator, and optimizer internals", () => {
-    for (const moduleName of ["holomem-board.ts", "holomem-board-connect.ts", "holomem-board-contract.ts"]) {
+    for (const moduleName of [
+      "holomem-board.ts",
+      "holomem-board-connect.ts",
+      "holomem-board-contract.ts",
+      "holomem-board-planner.ts",
+    ]) {
       const source = readFileSync(new URL(`./${moduleName}`, import.meta.url), "utf8");
       expect(source).not.toMatch(/from\s+["'][^"']*(?:native-utility|formation-evaluator|team-calculator(?:-[a-z-]+)?|exact-optimizer-[a-z-]+)[^"']*["']/);
       expect(source).not.toMatch(new RegExp(["Math", "random"].join("\\.")));

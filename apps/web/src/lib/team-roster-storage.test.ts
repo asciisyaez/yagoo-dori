@@ -5,6 +5,7 @@ import {
   emptyTeamRoster,
   loadTeamRoster,
   saveTeamRoster,
+  saveTeamRosterCalculatorFields,
 } from "./team-roster-storage";
 
 class MemoryStorage {
@@ -34,6 +35,7 @@ describe("team calculator roster persistence", () => {
     expect(loadTeamRoster(storage, "commit-a", new Set(["card-one", "card-two"]))).toEqual({
       roster,
       needsWrite: false,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
     });
   });
 
@@ -50,13 +52,16 @@ describe("team calculator roster persistence", () => {
 
     expect(loadTeamRoster(storage, "new-commit", new Set(["card-one"]))).toEqual({
       roster: {
-        version: 3,
+        version: 4,
         rosterCommit: "new-commit",
         cards: { "card-one": 2 },
         oshi: { enabled: false, talentId: null, role: "member" },
         requiredMemberCardIds: [],
+        playerLevel: null,
+        boards: {},
       },
       needsWrite: true,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
     });
   });
 
@@ -74,13 +79,16 @@ describe("team calculator roster persistence", () => {
 
     expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"]))).toEqual({
       roster: {
-        version: 3,
+        version: 4,
         rosterCommit: "commit-a",
         cards: { "card-one": 3 },
         oshi: { enabled: false, talentId: null, role: "member" },
         requiredMemberCardIds: [],
+        playerLevel: null,
+        boards: {},
       },
       needsWrite: true,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
     });
   });
 
@@ -116,7 +124,7 @@ describe("team calculator roster persistence", () => {
       "commit-a",
       new Set(["card-one", "card-two", "card-three", "card-four", "card-five", "card-six"]),
     );
-    expect(loaded.roster.version).toBe(3);
+    expect(loaded.roster.version).toBe(4);
     expect(loaded.roster.requiredMemberCardIds).toEqual([
       "card-five",
       "card-four",
@@ -125,6 +133,124 @@ describe("team calculator roster persistence", () => {
       "card-three",
     ].sort());
     expect(loaded.needsWrite).toBe(true);
+    expect(loaded.boardPrunes).toEqual({ nodes: 0, placements: 0, talents: 0 });
+  });
+
+  it("migrates v3 to v4 without inventing Board state", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      TEAM_ROSTER_STORAGE_KEY,
+      JSON.stringify({
+        version: 3,
+        rosterCommit: "commit-a",
+        cards: { "card-one": 2 },
+        requiredMemberCardIds: ["card-one"],
+      }),
+    );
+
+    expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"]))).toEqual({
+      roster: {
+        version: 4,
+        rosterCommit: "commit-a",
+        cards: { "card-one": 2 },
+        oshi: { enabled: false, talentId: null, role: "member" },
+        requiredMemberCardIds: ["card-one"],
+        playerLevel: null,
+        boards: {},
+      },
+      needsWrite: true,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
+    });
+  });
+
+  it("keeps boards across roster commits and reports field-level catalog pruning", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      TEAM_ROSTER_STORAGE_KEY,
+      JSON.stringify({
+        version: 4,
+        rosterCommit: "old-commit",
+        cards: { "card-keep": 1 },
+        oshi: { enabled: false, talentId: null, role: "member" },
+        requiredMemberCardIds: [],
+        playerLevel: 12,
+        boardAssumptions: { unitConnectExclusive: false },
+        boards: {
+          "talent-keep": {
+            rank: 10,
+            pointMode: "direct",
+            extraPoints: 4,
+            directPoints: 9,
+            unlockedNodeGroupIds: ["S-001", "G-keep", "G-removed"],
+            connectPlacements: {
+              "S-001": "card-keep",
+              "S-002": "removed-card",
+              "S-099": "card-keep",
+            },
+          },
+          "talent-removed": {
+            rank: 4,
+            pointMode: "estimate-from-rank",
+            extraPoints: 0,
+            directPoints: null,
+            unlockedNodeGroupIds: [],
+            connectPlacements: {},
+          },
+        },
+      }),
+    );
+
+    const loaded = loadTeamRoster(storage, "new-commit", new Set(["card-keep"]), {
+      validTalentIds: new Set(["talent-keep"]),
+      validBoardNodeGroupIds: new Set(["S-001", "G-keep"]),
+    });
+
+    expect(loaded.roster.rosterCommit).toBe("new-commit");
+    expect(loaded.roster.playerLevel).toBe(12);
+    expect(loaded.roster.boards).toEqual({
+      "talent-keep": {
+        rank: 10,
+        pointMode: "direct",
+        extraPoints: 4,
+        directPoints: 9,
+        unlockedNodeGroupIds: ["S-001", "G-keep"],
+        connectPlacements: { "S-001": "card-keep" },
+      },
+    });
+    expect(loaded.boardPrunes).toEqual({ nodes: 1, placements: 2, talents: 1 });
+    expect(loaded.needsWrite).toBe(true);
+  });
+
+  it("preserves persisted Board state when the calculator autosaves its own fields", () => {
+    const storage = new MemoryStorage();
+    const board = {
+      rank: 12,
+      pointMode: "estimate-from-rank" as const,
+      extraPoints: 3,
+      directPoints: null,
+      unlockedNodeGroupIds: ["B-001"],
+      connectPlacements: { "S-001": "card-one" },
+    };
+    saveTeamRoster(storage, {
+      ...emptyTeamRoster("commit-a"),
+      cards: { "card-one": 2 },
+      playerLevel: 12,
+      boards: { "talent-a": board },
+    });
+
+    // The calculator-owned write must not touch playerLevel/boards.
+    saveTeamRosterCalculatorFields(storage, {
+      rosterCommit: "commit-a",
+      cards: { "card-one": 5, "card-two": 0 },
+      oshi: { enabled: true, talentId: "talent-a", role: "leader" },
+      requiredMemberCardIds: ["card-one"],
+    });
+
+    const loaded = loadTeamRoster(storage, "commit-a", new Set(["card-one", "card-two"]));
+    expect(loaded.roster.cards).toEqual({ "card-one": 5, "card-two": 0 });
+    expect(loaded.roster.oshi).toEqual({ enabled: true, talentId: "talent-a", role: "leader" });
+    expect(loaded.roster.playerLevel).toBe(12);
+    expect(loaded.roster.boards).toEqual({ "talent-a": board });
   });
 
   it("recovers from malformed versions and invalid Bloom values", () => {
@@ -136,12 +262,14 @@ describe("team calculator roster persistence", () => {
     expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"]))).toEqual({
       roster: emptyTeamRoster("commit-a"),
       needsWrite: true,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
     });
 
     storage.setItem(TEAM_ROSTER_STORAGE_KEY, "not-json");
     expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"]))).toEqual({
       roster: emptyTeamRoster("commit-a"),
       needsWrite: true,
+      boardPrunes: { nodes: 0, placements: 0, talents: 0 },
     });
   });
 });

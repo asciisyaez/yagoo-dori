@@ -151,6 +151,10 @@
     "apps/web/src/app/guides/page.tsx|Choose a 5★ Member to see the recommended Leader Outfit, five-card lineups, practical replacements, and alternatives across the Expert charts that holomem sings. The in-game Holomem Score Rating itself totals the top 3 song scores played as Leader from all rating-eligible songs, at the highest difficulty score — a wider pool than any single guide covers.|score": {
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the proper noun Holomem Score Rating and in a factual statement of the in-game rating rule (top 3 Leader song scores, highest difficulty), sourced from the pinned help text; no scoring forecast is claimed."
+    },
+    "apps/web/src/lib/board-effect-labels.ts|live-score-bonus-add-permil-up-by-music-skill-tree-character-and-music-singer-type|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside a machine identifier key mirroring the upstream board effect-kind code; the template maps it to a neutral 'not evaluated' label and the identifier itself is never rendered as user-facing prose."
     }
   }
 }

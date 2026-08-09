@@ -10,15 +10,15 @@
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 83
+    "score": 84
   },
   "dispositionCounts": {
-    "allowed-scoped": 91,
+    "allowed-scoped": 92,
     "non-technical": 9,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 100,
+  "occurrenceCount": 101,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -231,7 +231,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
-      "location": "apps/web/src/components/team-calculator.tsx:176",
+      "location": "apps/web/src/components/team-calculator.tsx:177",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
@@ -240,10 +240,19 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:437",
+      "location": "apps/web/src/components/team-calculator.tsx:438",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
+    },
+    {
+      "file": "apps/web/src/lib/board-effect-labels.ts",
+      "context": "live-score-bonus-add-permil-up-by-music-skill-tree-character-and-music-singer-type",
+      "term": "score",
+      "location": "apps/web/src/lib/board-effect-labels.ts:56",
+      "sourceKind": "source-string",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside a machine identifier key mirroring the upstream board effect-kind code; the template maps it to a neutral 'not evaluated' label and the identifier itself is never rendered as user-facing prose."
     },
     {
       "file": "apps/web/src/lib/guide-song-alternatives.ts",
@@ -998,7 +1007,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T14:52:49.796Z"
+    "generatedAt": "2026-08-09T16:08:55.473Z"
   },
-  "stableDigest": "94c8468ba7009abdc3135d8560fb1611ca7ebbc53c93c756093a569aeecaa1d0"
+  "stableDigest": "7ce2950c1c63253f4d57e2b65b68006801e26b9a5f283bc9ea258272dd81dd25"
 }
