@@ -502,7 +502,7 @@ export const TeamCalculatorResultSchema = z
         replacementLeaderTeamFormationsReranked: z.number().int().nonnegative(),
         localRefinementScope: z.enum([
           "not-needed-exhaustive",
-          "two-stage-screened-one-member-swap-or-leader-change",
+          "two-stage-screened-single-or-joint-leader-and-member-moves-multi-start",
         ]),
         localRefinementStatus: z.enum([
           "not-needed-exhaustive",
@@ -994,7 +994,7 @@ export const TeamCalculatorResultSchema = z
           result.search.unsearchedTeamSets === 0 ||
           result.search.localRefinementStatus === "not-needed-exhaustive" ||
           result.search.localRefinementScope !==
-            "two-stage-screened-one-member-swap-or-leader-change"))
+            "two-stage-screened-single-or-joint-leader-and-member-moves-multi-start"))
     ) {
       context.addIssue({
         code: "custom",

@@ -206,7 +206,7 @@ function resultFixture(): TeamCalculatorResult {
       initialLeaderTeamFormationsReranked: 6,
       searchLeaderTeamFormationsReranked: 6,
       replacementLeaderTeamFormationsReranked: 0,
-      localRefinementScope: "two-stage-screened-one-member-swap-or-leader-change",
+      localRefinementScope: "two-stage-screened-single-or-joint-leader-and-member-moves-multi-start",
       localRefinementStatus: "fixed-point",
       localRefinementIterations: 1,
       candidateGenerationUtilityEvaluations: 20,

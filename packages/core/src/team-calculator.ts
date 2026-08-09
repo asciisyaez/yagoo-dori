@@ -42,6 +42,8 @@ export type TeamCalculatorEffortProfile = Readonly<{
   coarseKeep: number;
   proxyKeep: number;
   jointCoarseKeep: number;
+  jointLeaderComponentKeep: number;
+  jointSwapComponentKeep: number;
   ascentSeedCount: number;
   fanoutEnabled: boolean;
   fanoutLeaderCap: number | null;
@@ -59,6 +61,8 @@ export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
     coarseKeep: 64,
     proxyKeep: 16,
     jointCoarseKeep: 48,
+    jointLeaderComponentKeep: 8,
+    jointSwapComponentKeep: 12,
     ascentSeedCount: 1,
     fanoutEnabled: false,
     fanoutLeaderCap: null,
@@ -72,7 +76,11 @@ export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
     coarseKeep: 96,
     proxyKeep: 24,
     jointCoarseKeep: 96,
-    ascentSeedCount: 4,
+    jointLeaderComponentKeep: 24,
+    jointSwapComponentKeep: 32,
+    // Three thorough-profile starts; the protected standard lane is the
+    // fourth trajectory of the start budget (Sol review, Ticket B round 3).
+    ascentSeedCount: 3,
     fanoutEnabled: true,
     fanoutLeaderCap: 8,
     seedCandidatesMax: 8,
@@ -88,8 +96,6 @@ export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
 // backup at 1, and none did at a fixpoint. The longest observed ascent was 7
 // passes; 12 leaves headroom while still bounding the worst case.
 const HEURISTIC_LOCAL_ITERATION_LIMIT = 12;
-const LOCAL_COARSE_FINALIST_COUNT = 48;
-const LOCAL_CORPUS_FINALIST_COUNT = 12;
 const REPLACEMENT_COARSE_FINALIST_COUNT = 16;
 const REPLACEMENT_CORPUS_FINALIST_COUNT = 4;
 const IMPROVEMENT_EPSILON = 0.000_001;
@@ -524,6 +530,10 @@ function candidateKey(candidate: Candidate): string {
   return `${candidate.leaderOutfitCardId}|${candidate.memberCardIds.join("|")}`;
 }
 
+function seedKey(seed: Pick<Candidate, "leaderOutfitCardId" | "memberCardIds">): string {
+  return `${seed.leaderOutfitCardId}|${[...seed.memberCardIds].sort().join("|")}`;
+}
+
 function teamKey(memberCardIds: readonly string[]): string {
   return [...memberCardIds].sort().join("|");
 }
@@ -840,6 +850,29 @@ function boundedSearchStrategy(
   };
 }
 
+function baseParameterProxy(
+  cardId: string,
+  bloomStage: TeamCalculatorBloomStage,
+): number {
+  const mechanics = mechanicsCardById.get(cardId);
+  if (!mechanics) throw new Error(`Card mechanics are unavailable: ${cardId}`);
+  const state = resolveCardInvestmentState(mechanics, "one-copy-maximum", bloomStage);
+  const curve = mechanics.progression.levelCurve.find((row) => row.level === state.level);
+  if (!curve) throw new Error(`${cardId} has no level ${state.level} progression row`);
+  const multiplierPermil = 1_000 + state.allParameterPermilUp;
+  return (["performance", "technique", "sense"] as const).reduce(
+    (total, parameter) =>
+      total +
+      Math.ceil(
+        (curve.parameterBaseValue *
+          mechanics.parameterDistributionPermil[parameter] *
+          multiplierPermil) /
+          1_000_000,
+      ),
+    0,
+  );
+}
+
 /**
  * Calculates one general-purpose team against the frozen 21:9 reference/current
  * Expert corpus. Web callers invoke this synchronous deterministic core only in
@@ -948,6 +981,8 @@ export function calculateOwnedRosterTeam(
   const evaluate = dependencies.evaluate ?? evaluateNativeRelativeUtility;
   const rawCache = new Map<string, NativeUtilityResult>();
   const averageCache = new Map<string, AverageEvaluation>();
+  const searchEvaluations = new Map<string, AverageEvaluation>();
+  let bestSeen: AverageEvaluation | undefined;
   const coarseCache = new Map<string, UtilityInterval>();
   const proxyCache = new Map<string, UtilityInterval>();
   const searchTeamKeys = new Set<string>();
@@ -956,6 +991,11 @@ export function calculateOwnedRosterTeam(
   const requiredMemberCardIdSet = new Set(requiredMemberCardIds);
   let adapterUtilityEvaluations = 0;
   let nativeUtilityEvaluations = 0;
+
+  const rememberSearchEvaluation = (evaluation: AverageEvaluation): void => {
+    searchEvaluations.set(candidateKey(evaluation.candidate), evaluation);
+    if (!bestSeen || compareAverage(evaluation, bestSeen) < 0) bestSeen = evaluation;
+  };
 
   const candidateSatisfiesOshi = (candidate: Candidate): boolean => {
     if (requiredMemberCardIds.some((cardId) => !candidate.memberCardIds.includes(cardId))) return false;
@@ -1021,7 +1061,10 @@ export function calculateOwnedRosterTeam(
       replacementFormationKeys.add(key);
     }
     const cached = averageCache.get(key);
-    if (cached) return cached;
+    if (cached) {
+      if (purpose === "search") rememberSearchEvaluation(cached);
+      return cached;
+    }
     const reference: UtilityInterval[] = [];
     const current: UtilityInterval[] = [];
     for (const entry of TEAM_CALCULATOR_CORPUS.entries) {
@@ -1035,6 +1078,7 @@ export function calculateOwnedRosterTeam(
       currentAverage: averageIntervals(current),
     };
     averageCache.set(key, result);
+    if (purpose === "search") rememberSearchEvaluation(result);
     return result;
   };
 
@@ -1073,23 +1117,39 @@ export function calculateOwnedRosterTeam(
   };
 
   const candidateMap = new Map<string, Candidate>();
+  const preFanoutCandidateKeys = new Set<string>();
   const providedSeedCount = request.seedCandidates?.length ?? 0;
   const legalSeedCandidates: Candidate[] = [];
   const seenSeedKeys = new Set<string>();
   for (const seed of (request.seedCandidates ?? []).slice(0, effortProfile.seedCandidatesMax)) {
     const candidate: Candidate = {
       leaderOutfitCardId: seed.leaderOutfitCardId,
-      memberCardIds: asTeamTuple(seed.memberCardIds),
+      memberCardIds: asTeamTuple([...seed.memberCardIds].sort()),
     };
-    const key = candidateKey(candidate);
+    const key = seedKey(candidate);
     if (seenSeedKeys.has(key) || !candidateSatisfiesSeedLegality(candidate)) continue;
     seenSeedKeys.add(key);
     legalSeedCandidates.push(candidate);
   }
+  legalSeedCandidates.sort((left, right) => candidateKey(left).localeCompare(candidateKey(right)));
   let candidateGenerationChartCount = 0;
   let localRefinementStatus: TeamCalculatorResult["search"]["localRefinementStatus"] =
     "not-needed-exhaustive";
   let localRefinementIterations = 0;
+  let localRefinementSeedCount = 0;
+
+  const addNativeSearchCandidates = (input: NativeCanonicalCandidateSearchInput): void => {
+    const nativeResult = search(input);
+    nativeUtilityEvaluations += nativeResult.counts.utilityEvaluations;
+    for (const candidate of nativeResult.candidates) {
+      const normalizedCandidate: Candidate = {
+        leaderOutfitCardId: candidate.leaderOutfitCardId,
+        memberCardIds: asTeamTuple(candidate.memberCardIds),
+      };
+      if (!candidateSatisfiesOshi(normalizedCandidate)) continue;
+      candidateMap.set(candidateKey(normalizedCandidate), normalizedCandidate);
+    }
+  };
 
   if (legalTeamSets <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS) {
     const teams = enumerateLegalTeamSets(
@@ -1117,7 +1177,7 @@ export function calculateOwnedRosterTeam(
         : [null];
       for (const anchorCardId of memberAnchorCardIds) {
         for (const entry of TEAM_CALCULATOR_CANDIDATE_GENERATION_CHARTS) {
-          const nativeResult = search({
+          addNativeSearchCandidates({
             chartKey: entry.chartKey,
             seed: TEAM_CALCULATOR_DEFAULT_SEED,
             investmentLayer: "one-copy-maximum",
@@ -1138,14 +1198,86 @@ export function calculateOwnedRosterTeam(
               Boolean(requiredMemberTalentId !== undefined && !oshiConstraint?.leaderRequired),
             ),
           });
-          nativeUtilityEvaluations += nativeResult.counts.utilityEvaluations;
-          const nativeCandidates: Candidate[] = nativeResult.candidates.map((candidate) => ({
-            leaderOutfitCardId: candidate.leaderOutfitCardId,
-            memberCardIds: asTeamTuple(candidate.memberCardIds),
-          }));
-          for (const candidate of nativeCandidates) {
-            if (!candidateSatisfiesOshi(candidate)) continue;
-            candidateMap.set(candidateKey(candidate), candidate);
+        }
+      }
+
+      // Snapshot the pool before fan-out so the protected standard lane can be
+      // ranked over exactly the candidates a standalone standard run would see.
+      for (const key of candidateMap.keys()) preFanoutCandidateKeys.add(key);
+
+      if (effortProfile.fanoutEnabled) {
+        const proxyByCardId = new Map<string, number>();
+        const cardProxy = (cardId: string, bloomStage: TeamCalculatorBloomStage): number => {
+          const cached = proxyByCardId.get(cardId);
+          if (cached !== undefined) return cached;
+          const value = baseParameterProxy(cardId, bloomStage);
+          proxyByCardId.set(cardId, value);
+          return value;
+        };
+        const cardsByTalent = new Map<string, typeof ownedCards>();
+        for (const ownedCard of ownedCards) {
+          const variants = cardsByTalent.get(ownedCard.card.talentId) ?? [];
+          variants.push(ownedCard);
+          cardsByTalent.set(ownedCard.card.talentId, variants);
+        }
+        const requiredCardByTalent = new Map(
+          requiredMemberCards.map((ownedCard) => [ownedCard!.card.talentId, ownedCard!] as const),
+        );
+        const fanoutAnchors = [...cardsByTalent.entries()]
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([talentId, variants]) => {
+            const requiredCard = requiredCardByTalent.get(talentId);
+            if (requiredCard) return requiredCard.cardId;
+            return [...variants].sort(
+              (left, right) =>
+                cardProxy(right.cardId, right.bloomStage) - cardProxy(left.cardId, left.bloomStage) ||
+                left.cardId.localeCompare(right.cardId),
+            )[0]!.cardId;
+          });
+        const fanoutLeaderCardIds = [...eligibleLeaderCardIds]
+          .sort(
+            (left, right) =>
+              cardProxy(right, bloomStageByCardId[right]!) - cardProxy(left, bloomStageByCardId[left]!) ||
+              left.localeCompare(right),
+          )
+          .slice(0, effortProfile.fanoutLeaderCap ?? eligibleLeaderCardIds.length);
+        const fanoutRequiredCardIds = [...requiredMemberCardIds];
+        if (
+          oshiConstraint?.memberRequired &&
+          !fanoutRequiredCardIds.some(
+            (cardId) => cardById.get(cardId)!.talentId === oshiConstraint.talentId,
+          )
+        ) {
+          const oshiAnchor = [...oshiConstraint.eligibleCards].sort(
+            (left, right) =>
+              cardProxy(right.cardId, right.bloomStage) - cardProxy(left.cardId, left.bloomStage) ||
+              left.cardId.localeCompare(right.cardId),
+          )[0];
+          if (oshiAnchor) fanoutRequiredCardIds.push(oshiAnchor.cardId);
+        }
+        for (const anchorCardId of fanoutAnchors) {
+          const anchorTalentId = cardById.get(anchorCardId)!.talentId;
+          const anchorCardIds = fanoutRequiredCardIds.some(
+            (requiredCardId) => cardById.get(requiredCardId)!.talentId === anchorTalentId,
+          )
+            ? fanoutRequiredCardIds
+            : fanoutRequiredCardIds.length < 5
+              ? [...fanoutRequiredCardIds, anchorCardId]
+              : fanoutRequiredCardIds;
+          for (const entry of TEAM_CALCULATOR_COARSE_SCREENING_CHARTS) {
+            addNativeSearchCandidates({
+              chartKey: entry.chartKey,
+              seed: TEAM_CALCULATOR_DEFAULT_SEED,
+              investmentLayer: "one-copy-maximum",
+              bloomStageByCardId,
+              accountState: CALCULATOR_BOARD_STATE,
+              constraints: {
+                memberCardIds: ownedCardIds,
+                leaderOutfitCardIds: fanoutLeaderCardIds,
+                anchorCardIds,
+              },
+              strategy: boundedSearchStrategy(true),
+            });
           }
         }
       }
@@ -1165,7 +1297,7 @@ export function calculateOwnedRosterTeam(
     candidateMap.set(candidateKey(seed), seed);
   }
 
-  let rankedCandidates = [...candidateMap.values()]
+  const rankedCandidates = [...candidateMap.values()]
     .map((candidate) => evaluateAverage(candidate, "search"))
     .sort(compareAverage);
   let selected = rankedCandidates[0];
@@ -1175,63 +1307,176 @@ export function calculateOwnedRosterTeam(
   const initialLeaderTeamFormationsReranked = rankedCandidates.length;
 
   if (legalTeamSets > TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS) {
-    const visited = new Set<string>([candidateKey(selected.candidate)]);
-    localRefinementStatus = "fixed-point";
-    for (let pass = 0; pass < HEURISTIC_LOCAL_ITERATION_LIMIT; pass += 1) {
-      const neighbors = new Map<string, Candidate>();
-      for (const leaderOutfitCardId of eligibleLeaderCardIds) {
-        if (leaderOutfitCardId === selected.candidate.leaderOutfitCardId) continue;
-        const candidate = { leaderOutfitCardId, memberCardIds: selected.candidate.memberCardIds };
-        if (!candidateSatisfiesOshi(candidate)) continue;
-        neighbors.set(candidateKey(candidate), candidate);
+    const buildStarts = (
+      ranked: readonly AverageEvaluation[],
+      distinctMemberSetCount: number,
+    ): AverageEvaluation[] => {
+      const laneStarts: AverageEvaluation[] = [];
+      const laneStartKeys = new Set<string>();
+      const laneMemberKeys = new Set<string>();
+      for (const candidate of ranked) {
+        if (laneMemberKeys.size >= distinctMemberSetCount) break;
+        const membersKey = teamKey(candidate.candidate.memberCardIds);
+        if (laneMemberKeys.has(membersKey)) continue;
+        laneStarts.push(candidate);
+        laneStartKeys.add(candidateKey(candidate.candidate));
+        laneMemberKeys.add(membersKey);
       }
-      for (let slot = 0; slot < 5; slot += 1) {
-        if (requiredMemberCardIdSet.has(selected.candidate.memberCardIds[slot]!)) continue;
-        const otherIds = selected.candidate.memberCardIds.filter((_, index) => index !== slot);
-        const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
-        for (const ownedCard of ownedCards) {
-          if (otherIds.includes(ownedCard.cardId) || otherTalents.has(ownedCard.card.talentId)) continue;
-          const memberCardIds = [...selected.candidate.memberCardIds];
-          memberCardIds[slot] = ownedCard.cardId;
+      for (const seed of legalSeedCandidates) {
+        const evaluation = averageCache.get(candidateKey(seed));
+        if (!evaluation) throw new TeamCalculatorError("calculation-failed", "An adopted seed was not evaluated.");
+        const key = candidateKey(seed);
+        if (laneStartKeys.has(key)) continue;
+        laneStarts.push(evaluation);
+        laneStartKeys.add(key);
+      }
+      return laneStarts;
+    };
+
+    let sawCycleGuard = false;
+    let sawIterationCap = false;
+    const runAscentLane = (
+      laneStarts: readonly AverageEvaluation[],
+      laneProfile: TeamCalculatorEffortProfile,
+    ): void => {
+    const visited = new Set<string>();
+    for (const start of laneStarts) {
+      let current = start;
+      visited.add(candidateKey(current.candidate));
+      for (let pass = 0; pass < HEURISTIC_LOCAL_ITERATION_LIMIT; pass += 1) {
+        const leaderChangeNeighbors = new Map<string, Candidate>();
+        const memberSwapNeighbors = new Map<string, Candidate>();
+        for (const leaderOutfitCardId of eligibleLeaderCardIds) {
+          if (leaderOutfitCardId === current.candidate.leaderOutfitCardId) continue;
           const candidate = {
-            leaderOutfitCardId: selected.candidate.leaderOutfitCardId,
-            memberCardIds: asTeamTuple(memberCardIds),
+            leaderOutfitCardId,
+            memberCardIds: current.candidate.memberCardIds,
           };
           if (!candidateSatisfiesOshi(candidate)) continue;
-          neighbors.set(candidateKey(candidate), candidate);
+          leaderChangeNeighbors.set(candidateKey(candidate), candidate);
+        }
+        for (let slot = 0; slot < 5; slot += 1) {
+          if (requiredMemberCardIdSet.has(current.candidate.memberCardIds[slot]!)) continue;
+          const otherIds = current.candidate.memberCardIds.filter((_, index) => index !== slot);
+          const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
+          for (const ownedCard of ownedCards) {
+            if (
+              ownedCard.cardId === current.candidate.memberCardIds[slot] ||
+              otherIds.includes(ownedCard.cardId) ||
+              otherTalents.has(ownedCard.card.talentId)
+            ) {
+              continue;
+            }
+            const memberCardIds = [...current.candidate.memberCardIds];
+            memberCardIds[slot] = ownedCard.cardId;
+            const candidate = {
+              leaderOutfitCardId: current.candidate.leaderOutfitCardId,
+              memberCardIds: asTeamTuple(memberCardIds),
+            };
+            if (!candidateSatisfiesOshi(candidate)) continue;
+            memberSwapNeighbors.set(candidateKey(candidate), candidate);
+          }
+        }
+        const coarseLeaderChanges = [...leaderChangeNeighbors.values()]
+          .map((candidate) => ({ candidate, relativeUtility: evaluateCoarse(candidate) }))
+          .sort(compareScreened);
+        const coarseMemberSwaps = [...memberSwapNeighbors.values()]
+          .map((candidate) => ({ candidate, relativeUtility: evaluateCoarse(candidate) }))
+          .sort(compareScreened);
+        const coarseOrdinaryFinalists = [...coarseLeaderChanges, ...coarseMemberSwaps]
+          .sort(compareScreened)
+          .slice(0, laneProfile.coarseKeep)
+          .map((entry) => entry.candidate);
+        // Joint moves are component-guided rather than the full leader x swap
+        // Cartesian product: pairing only the coarse-strongest leader changes
+        // with the coarse-strongest member swaps bounds the extra coarse work
+        // to jointLeaderComponentKeep x jointSwapComponentKeep formations per
+        // pass, where the unfiltered product measured tens of seconds on large
+        // rosters. The never-below-best-seen incumbent keeps any narrowing
+        // strictly non-harmful.
+        const jointNeighbors = new Map<string, Candidate>();
+        const ordinaryKeys = new Set([
+          ...leaderChangeNeighbors.keys(),
+          ...memberSwapNeighbors.keys(),
+        ]);
+        const topJointLeaderIds = coarseLeaderChanges
+          .slice(0, laneProfile.jointLeaderComponentKeep)
+          .map((entry) => entry.candidate.leaderOutfitCardId);
+        const topJointSwapMembers = coarseMemberSwaps
+          .slice(0, laneProfile.jointSwapComponentKeep)
+          .map((entry) => entry.candidate.memberCardIds);
+        for (const memberCardIds of topJointSwapMembers) {
+          for (const leaderOutfitCardId of topJointLeaderIds) {
+            const jointCandidate = { leaderOutfitCardId, memberCardIds };
+            if (!candidateSatisfiesOshi(jointCandidate)) continue;
+            const key = candidateKey(jointCandidate);
+            if (ordinaryKeys.has(key)) continue;
+            jointNeighbors.set(key, jointCandidate);
+          }
+        }
+        const coarseJointFinalists = [...jointNeighbors.values()]
+          .map((candidate) => ({ candidate, relativeUtility: evaluateCoarse(candidate) }))
+          .sort(compareScreened)
+          .slice(0, laneProfile.jointCoarseKeep)
+          .map((entry) => entry.candidate);
+        const proxyFinalists = [...coarseOrdinaryFinalists, ...coarseJointFinalists]
+          .map((candidate) => ({ candidate, relativeUtility: evaluateProxy(candidate) }))
+          .sort(compareScreened)
+          .slice(0, laneProfile.proxyKeep)
+          .map((entry) => entry.candidate);
+        const neighborhood = proxyFinalists.map((candidate) => evaluateAverage(candidate, "search"));
+        const improvement = [...neighborhood].sort(compareAverage)[0];
+        localRefinementIterations += 1;
+        if (
+          !improvement ||
+          improvement.relativeUtility.central <= current.relativeUtility.central
+        ) {
+          break;
+        }
+        const key = candidateKey(improvement.candidate);
+        if (visited.has(key)) {
+          sawCycleGuard = true;
+          break;
+        }
+        current = improvement;
+        visited.add(key);
+        if (pass === HEURISTIC_LOCAL_ITERATION_LIMIT - 1) {
+          sawIterationCap = true;
         }
       }
-      const coarseFinalists = [...neighbors.values()]
-        .map((candidate) => ({ candidate, relativeUtility: evaluateCoarse(candidate) }))
-        .sort(compareScreened)
-        .slice(0, LOCAL_COARSE_FINALIST_COUNT)
-        .map((entry) => entry.candidate);
-      const proxyFinalists = coarseFinalists
-        .map((candidate) => ({ candidate, relativeUtility: evaluateProxy(candidate) }))
-        .sort(compareScreened)
-        .slice(0, LOCAL_CORPUS_FINALIST_COUNT)
-        .map((entry) => entry.candidate);
-      rankedCandidates = [
-        selected,
-        ...proxyFinalists.map((candidate) => evaluateAverage(candidate, "search")),
-      ].sort(compareAverage);
-      const improvement = rankedCandidates.find(
-        (candidate) =>
-          candidate.relativeUtility.central >
-          selected!.relativeUtility.central + IMPROVEMENT_EPSILON,
-      );
-      localRefinementIterations += 1;
-      if (!improvement) break;
-      const key = candidateKey(improvement.candidate);
-      if (visited.has(key)) {
-        localRefinementStatus = "cycle-guard";
-        break;
-      }
-      selected = improvement;
-      visited.add(key);
-      if (pass === HEURISTIC_LOCAL_ITERATION_LIMIT - 1) {
-        localRefinementStatus = "iteration-cap";
-      }
+    }
+    };
+
+    const thoroughStarts = buildStarts(rankedCandidates, effortProfile.ascentSeedCount);
+    runAscentLane(thoroughStarts, effortProfile);
+    let protectedLaneStartCount = 0;
+    if (effortTier === "thorough") {
+      // Protected standard lane: thorough must never return below what a
+      // standalone standard run would find. The lane replays standard's exact
+      // search - its pool is the pre-fan-out candidates plus the adopted seeds
+      // (precisely what a standalone standard run ranks), its keeps are the
+      // standard profile's, and it gets a fresh visited set so trajectory
+      // interleaving cannot clip it. Caches and the best-seen incumbent are
+      // shared, so the replay is cheap and its fixpoints join the selection.
+      const standardProfile = TEAM_CALCULATOR_EFFORT_PROFILES.standard;
+      const seedKeys = new Set(legalSeedCandidates.map((seed) => candidateKey(seed)));
+      const standardRanked = rankedCandidates.filter((evaluation) => {
+        const key = candidateKey(evaluation.candidate);
+        return preFanoutCandidateKeys.has(key) || seedKeys.has(key);
+      });
+      const standardStarts = buildStarts(standardRanked, standardProfile.ascentSeedCount);
+      runAscentLane(standardStarts, standardProfile);
+      protectedLaneStartCount = standardStarts.length;
+    }
+    localRefinementSeedCount = thoroughStarts.length + protectedLaneStartCount;
+    localRefinementStatus = sawIterationCap
+      ? "iteration-cap"
+      : sawCycleGuard
+        ? "cycle-guard"
+        : "fixed-point";
+    selected = bestSeen;
+    if (!selected) {
+      throw new TeamCalculatorError("calculation-failed", "The calculator produced no corpus-evaluated finalist.");
     }
   }
 
@@ -1556,7 +1801,7 @@ export function calculateOwnedRosterTeam(
               centralUtility: averageCache.get(candidateKey(seed))!.relativeUtility.central,
             })),
           },
-      localRefinementSeedCount: exhaustive ? 0 : 1,
+      localRefinementSeedCount: exhaustive ? 0 : localRefinementSeedCount,
       teamSetsInScope: legalTeamSets,
       teamSetsScreened: searchTeamKeys.size,
       teamSetsConsidered: searchTeamKeys.size,
@@ -1574,7 +1819,7 @@ export function calculateOwnedRosterTeam(
       replacementLeaderTeamFormationsReranked: replacementFormationKeys.size,
       localRefinementScope: exhaustive
         ? "not-needed-exhaustive"
-        : "two-stage-screened-one-member-swap-or-leader-change",
+        : "two-stage-screened-single-or-joint-leader-and-member-moves-multi-start",
       localRefinementStatus,
       localRefinementIterations,
       candidateGenerationUtilityEvaluations: nativeUtilityEvaluations,
