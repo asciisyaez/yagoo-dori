@@ -2,6 +2,7 @@ export * from "./formation-evaluator";
 export * from "./formation-order-recommender";
 export * from "./guide-song-breakpoints";
 export * from "./holomem-board";
+export * from "./holomem-board-suggester";
 export * from "./mechanics";
 export * from "./native-guide-generator";
 export * from "./native-guide-data";
