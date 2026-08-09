@@ -1396,6 +1396,82 @@
 
 .talent-card-grid { grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); }
 
+.talent-board-figure {
+  margin-top: 1.2rem;
+  border: 1px solid #2b313c;
+  background: linear-gradient(135deg, #151a23, #101319 72%);
+  padding: 1rem;
+}
+
+.talent-board-static-chip {
+  border: 1px solid #465468;
+  border-radius: 999px;
+  color: #c6cfda;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.55rem;
+  text-transform: uppercase;
+}
+
+.talent-board-intro {
+  max-width: 58rem;
+  color: var(--yd-muted);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.talent-board-figure .hb-board { margin-top: 0.9rem; }
+
+.talent-board-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.talent-board-reference-grid > section {
+  border-top: 1px solid #303846;
+  padding-top: 0.7rem;
+}
+
+.talent-board-reference-grid h3 {
+  margin: 0.25rem 0 0.65rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.talent-board-slot-list,
+.talent-board-variant-list {
+  display: grid;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.talent-board-slot-list li,
+.talent-board-variant-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border-bottom: 1px solid #252c37;
+  color: var(--yd-muted);
+  font-size: 0.7rem;
+  padding: 0.32rem 0;
+}
+
+.talent-board-slot-list strong,
+.talent-board-variant-list strong {
+  color: #e8edf4;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.65rem;
+}
+
+@media (max-width: 700px) {
+  .talent-board-reference-grid { grid-template-columns: 1fr; }
+}
+
 .talent-outfit-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

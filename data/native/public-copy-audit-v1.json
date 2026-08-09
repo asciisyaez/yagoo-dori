@@ -249,7 +249,7 @@
       "file": "apps/web/src/lib/board-effect-labels.ts",
       "context": "live-score-bonus-add-permil-up-by-music-skill-tree-character-and-music-singer-type",
       "term": "score",
-      "location": "apps/web/src/lib/board-effect-labels.ts:56",
+      "location": "apps/web/src/lib/board-effect-labels.ts:58",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside a machine identifier key mirroring the upstream board effect-kind code; the template maps it to a neutral 'not evaluated' label and the identifier itself is never rendered as user-facing prose."
@@ -1007,7 +1007,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T16:08:55.473Z"
+    "generatedAt": "2026-08-09T17:48:31.263Z"
   },
-  "stableDigest": "7ce2950c1c63253f4d57e2b65b68006801e26b9a5f283bc9ea258272dd81dd25"
+  "stableDigest": "621e06d64dc360953b7fecbd7cc472bcc57a6aa9c34bd0838004b9fe5102d9dc"
 }

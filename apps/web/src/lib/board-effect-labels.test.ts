@@ -57,4 +57,12 @@ describe("Board effect labels", () => {
       "Board effect future-effect-kind is not evaluated in suggestions.",
     );
   });
+
+  it("shows grouping values as reference-only labels", () => {
+    expect(boardEffectLabel({
+      ...effectForKind("all-parameter-up-for-character-grouping"),
+      flatValue: 50,
+      valueClass: "out-of-scope",
+    })).toBe("All parameters +50 for a generation grouping (reference only; not evaluated in suggestions).");
+  });
 });

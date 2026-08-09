@@ -9,6 +9,7 @@ import {
   buildBoardAdjacency,
   computeHolomemBoardModelHash,
   holomemBoardModel,
+  replayHolomemBoardAutoUnlock,
   resolveBoardNodeForTalent,
   type BoardNode,
   type HolomemBoardModel,
@@ -31,6 +32,49 @@ function resignedModel(mutate: (model: HolomemBoardModel) => void): HolomemBoard
 }
 
 describe("holomem Board model", () => {
+  it("replays the catalog auto-unlock order over a connected, gated frontier", () => {
+    const first = replayHolomemBoardAutoUnlock({
+      talentId: "chr-00001",
+      unlockedNodeGroupIds: [],
+      totalPoints: 2,
+      playerLevel: null,
+    });
+    expect(first.addedNodeGroupIds).toEqual(["B-001", "B-002"]);
+    expect(first.unlockedNodeGroupIds).toEqual(["B-001", "B-002"]);
+    expect(first.spentPoints).toBe(2);
+    expect(first.remainingPoints).toBe(0);
+
+    const affordableFallback = replayHolomemBoardAutoUnlock({
+      talentId: "chr-00001",
+      unlockedNodeGroupIds: [],
+      totalPoints: 6,
+      playerLevel: null,
+    });
+    expect(affordableFallback.addedNodeGroupIds).toEqual([
+      "B-001",
+      "B-002",
+      "B-003",
+      "B-004",
+      "B-005",
+      "G-001",
+    ]);
+
+    const gated = replayHolomemBoardAutoUnlock({
+      talentId: "chr-00001",
+      unlockedNodeGroupIds: ["B-001", "B-002", "B-003", "B-004", "B-005"],
+      totalPoints: 20,
+      playerLevel: 0,
+    });
+    expect(gated.unlockedNodeGroupIds).not.toContain("B-006");
+    expect(gated.addedNodeGroupIds.every((groupId, index, groups) => groupId !== groups[index - 1])).toBe(true);
+    expect(replayHolomemBoardAutoUnlock({
+      talentId: "chr-00001",
+      unlockedNodeGroupIds: ["B-001", "B-002", "B-003", "B-004", "B-005"],
+      totalPoints: 20,
+      playerLevel: 0,
+    })).toEqual(gated);
+  });
+
   it("derives the real deterministic 152-group, 171-edge topology", () => {
     expect(boardAdjacency.ruleId).toBe("board-derived-adjacency");
     expect(boardAdjacency.startGroupId).toBe("S-001");

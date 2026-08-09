@@ -29,13 +29,14 @@ export type BoardSvgProps = Readonly<{
   gateLabelByGroupId: ReadonlyMap<string, string>;
   zoom: number;
   editMode: boolean;
-  onToggleNode: (groupId: string) => void;
-  onInspectNode: (groupId: string) => void;
-  onFocusNode: (groupId: string) => void;
-  onConnectHover: (groupId: string | null) => void;
-  onConnectPin: (groupId: string) => void;
-  onZoomIn: () => void;
-  onZoomOut: () => void;
+  interactive?: boolean;
+  onToggleNode?: (groupId: string) => void;
+  onInspectNode?: (groupId: string) => void;
+  onFocusNode?: (groupId: string) => void;
+  onConnectHover?: (groupId: string | null) => void;
+  onConnectPin?: (groupId: string) => void;
+  onZoomIn?: () => void;
+  onZoomOut?: () => void;
 }>;
 
 const TREE_MODEL_ID = "tree-model-001";
@@ -117,6 +118,7 @@ export function BoardSvg({
   unlockedNodeGroupIds,
   zoom,
   editMode,
+  interactive = false,
   onToggleNode,
   onInspectNode,
   onFocusNode,
@@ -141,16 +143,16 @@ export function BoardSvg({
       .map((neighbor) => [groupId, neighbor] as const),
   );
   const isEligible = (candidateGroupId: string) =>
-    (nodeStates.get(candidateGroupId) ?? "locked") !== "dimmed";
-  const initialTabStopGroupId = firstEligibleGroupId(groups, isEligible);
+    interactive && (nodeStates.get(candidateGroupId) ?? "locked") !== "dimmed";
+  const initialTabStopGroupId = interactive ? firstEligibleGroupId(groups, isEligible) : null;
 
   return (
     <div className="hb-board hb-board-viewport" aria-label="Holomem Board grid">
-      <div className="hb-board-controls" aria-label="Board zoom controls">
+      {interactive && <div className="hb-board-controls" aria-label="Board zoom controls">
         <button onClick={onZoomOut} type="button" aria-label="Zoom out">−</button>
         <span>{Math.round(zoom * 100)}%</span>
         <button onClick={onZoomIn} type="button" aria-label="Zoom in">+</button>
-      </div>
+      </div>}
       <svg
         aria-label="Holomem Board skill grid"
         className="hb-board-svg"
@@ -207,34 +209,34 @@ export function BoardSvg({
             const title = nodeTitle(groupId, talentId);
             const accessibleTitle = state === "dimmed" ? `${title}. Not evaluated in suggestions.` : title;
             const dimmed = state === "dimmed";
+            const activate = () => {
+              if (overlayGroups.has(groupId)) onConnectPin?.(groupId);
+              else if (editMode) onToggleNode?.(groupId);
+              else onInspectNode?.(groupId);
+            };
             return (
               <g
-                aria-checked={state === "unlocked" || state === "selected"}
+                aria-checked={interactive ? state === "unlocked" || state === "selected" : undefined}
                 aria-label={accessibleTitle}
                 aria-disabled={dimmed || undefined}
                 className="hb-board-node"
                 data-group-id={groupId}
                 key={groupId}
-                onClick={dimmed ? undefined : () => {
-                  if (overlayGroups.has(groupId)) onConnectPin(groupId);
-                  else if (editMode) onToggleNode(groupId);
-                  else onInspectNode(groupId);
-                }}
-                onFocus={dimmed ? undefined : () => onFocusNode(groupId)}
-                onKeyDown={dimmed ? undefined : (event) => {
+                onClick={interactive && !dimmed ? activate : undefined}
+                onFocus={interactive && !dimmed ? () => onFocusNode?.(groupId) : undefined}
+                onKeyDown={interactive && !dimmed ? (event) => {
                   if (event.key === " " || event.key === "Enter") {
                     event.preventDefault();
-                    if (overlayGroups.has(groupId)) onConnectPin(groupId);
-                    else if (editMode) onToggleNode(groupId);
-                    else onInspectNode(groupId);
+                    activate();
                     return;
                   }
-                  handleKeyDown(event, groupId, isEligible, onFocusNode);
-                }}
-                onMouseEnter={dimmed ? undefined : () => onConnectHover(groupId)}
-                onMouseLeave={dimmed ? undefined : () => onConnectHover(null)}
-                role="checkbox"
-                tabIndex={dimmed ? -1 : focusedGroupId === groupId || (!focusedGroupId && groupId === initialTabStopGroupId) ? 0 : -1}
+                  handleKeyDown(event, groupId, isEligible, (target) => onFocusNode?.(target));
+                } : undefined}
+                onMouseEnter={interactive && !dimmed ? () => onConnectHover?.(groupId) : undefined}
+                onMouseLeave={interactive && !dimmed ? () => onConnectHover?.(null) : undefined}
+                pointerEvents={dimmed ? "none" : undefined}
+                role={interactive ? "checkbox" : undefined}
+                tabIndex={interactive ? dimmed ? -1 : focusedGroupId === groupId || (!focusedGroupId && groupId === initialTabStopGroupId) ? 0 : -1 : undefined}
               >
                 <title>{accessibleTitle}</title>
                 {node}

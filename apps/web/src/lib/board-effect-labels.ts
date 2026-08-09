@@ -34,6 +34,8 @@ function permilAmount(effect: BoardEffectLabelInput): string {
 }
 
 const NEUTRAL_TEMPLATE: BoardEffectLabelTemplate = () => "Not evaluated in suggestions.";
+const GROUPING_REFERENCE_TEMPLATE: BoardEffectLabelTemplate = (effect) =>
+  `All parameters +${effect.flatValue ?? 0} for a generation grouping (reference only; not evaluated in suggestions).`;
 
 export const BOARD_EFFECT_LABEL_TEMPLATES: Readonly<Record<string, BoardEffectLabelTemplate>> = Object.freeze({
   "performance-up": (effect) => `${prefix(effect)}${parameter(effect)}${flatAmount(effect)}`,
@@ -44,7 +46,7 @@ export const BOARD_EFFECT_LABEL_TEMPLATES: Readonly<Record<string, BoardEffectLa
   "technique-up-permil-up": (effect) => `${prefix(effect)}${parameter(effect)}${permilAmount(effect)}`,
   "sense-up-permil-up": (effect) => `${prefix(effect)}${parameter(effect)}${permilAmount(effect)}`,
   "all-parameter-up-permil-up": (effect) => `${prefix(effect)}${parameter(effect)}${permilAmount(effect)}`,
-  "all-parameter-up-for-character-grouping": NEUTRAL_TEMPLATE,
+  "all-parameter-up-for-character-grouping": GROUPING_REFERENCE_TEMPLATE,
   "life-up": NEUTRAL_TEMPLATE,
   "live-active-skill-activation-probability-up-permil-up": NEUTRAL_TEMPLATE,
   "live-active-skill-cool-time-shorten-permil-up": NEUTRAL_TEMPLATE,
@@ -59,6 +61,9 @@ export const BOARD_EFFECT_LABEL_TEMPLATES: Readonly<Record<string, BoardEffectLa
 });
 
 export function boardEffectLabel(effect: BoardEffectLabelInput): string {
+  if (effect.kind === "all-parameter-up-for-character-grouping" && effect.flatValue !== null) {
+    return GROUPING_REFERENCE_TEMPLATE(effect);
+  }
   if (effect.valueClass === "out-of-scope" || effect.valueClass === "unquantified" || effect.valueClass === "inactive" || effect.valueClass === "connector") {
     return NEUTRAL_TEMPLATE(effect);
   }
