@@ -288,6 +288,18 @@ keyboard navigation, and mobile readability are charter-mandated.
   Claims are `bounded-search`, conditional on the declared team and board
   state; same architectural boundary as `holomem-board.ts` (no evaluator,
   calculator, or exact-optimizer imports — source-text-tested).
+- `holomem-board-connect.ts` — Connect-slot recommender isolated from the
+  evaluator and calculator. It reuses the suggester's integer node objective,
+  derives card Connect level 1/2 from Bloom stage 5 under
+  `potential-progression-order`, resolves model-dependent extents (default
+  `tree-model-001`), and assigns owned 4★/5★ cards with a deterministic
+  Hungarian solve over micro-units. Cross-board card exclusivity is the
+  corroborated rule; active-team cards remain eligible under the explicit
+  `independent-user-confirmed` literal. Placements report locked slots,
+  footprint composition, and same-board overlaps, with claim
+  `conditionalOn: "current-team-and-declared-board-state"` and
+  `globallyCertified: false`. `multiplier-total` is the default amplification
+  model; `multiplier-additional` is supported and may reorder assignments.
 - Ranking generation: six lenses (member/leader-outfit × three investment
   profiles) against frozen robust baselines with deterministic bootstrap
   confidence, tie-aware ranks, hysteresis, and a public correction changelog.

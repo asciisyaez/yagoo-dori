@@ -164,9 +164,11 @@ describe("holomem Board model", () => {
   });
 
   it("keeps the Board module outside utility, formation, calculator, and optimizer internals", () => {
-    const source = readFileSync(new URL("./holomem-board.ts", import.meta.url), "utf8");
-    expect(source).not.toMatch(/from\s+["'][^"']*(?:native-utility|formation-evaluator|team-calculator(?:-[a-z-]+)?|exact-optimizer-[a-z-]+)[^"']*["']/);
-    expect(source).not.toMatch(new RegExp(["Math", "random"].join("\\.")));
-    expect(source).not.toMatch(/toBeCloseTo/);
+    for (const moduleName of ["holomem-board.ts", "holomem-board-connect.ts"]) {
+      const source = readFileSync(new URL(`./${moduleName}`, import.meta.url), "utf8");
+      expect(source).not.toMatch(/from\s+["'][^"']*(?:native-utility|formation-evaluator|team-calculator(?:-[a-z-]+)?|exact-optimizer-[a-z-]+)[^"']*["']/);
+      expect(source).not.toMatch(new RegExp(["Math", "random"].join("\\.")));
+      expect(source).not.toMatch(/toBeCloseTo/);
+    }
   });
 });
