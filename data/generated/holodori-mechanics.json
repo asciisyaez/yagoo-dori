@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "methodologyVersion": "yd-mechanics-catalog-1.1.0",
-  "retrievedAt": "2026-08-08",
+  "retrievedAt": "2026-08-09",
   "sourceSnapshot": {
     "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
     "commit": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
@@ -13,7 +13,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Card.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -21,7 +21,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardLevel.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -29,7 +29,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardLevelLimit.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -37,7 +37,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardPotential.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -45,7 +45,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Costume.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -53,7 +53,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveActiveSkillEffect.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -61,7 +61,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveActiveSkillLevel.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -69,7 +69,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveLeaderSkill.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -77,7 +77,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LivePassiveSkillEffect.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -85,7 +85,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LivePassiveSkillLevel.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -93,7 +93,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSkillEffectTarget.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -101,7 +101,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSkillTrigger.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -109,7 +109,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSpecialSkillLevel.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -117,7 +117,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeConnectEffect.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -125,7 +125,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeConnectEffectExtent.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -133,7 +133,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffect.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -141,7 +141,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectPassiveTrigger.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -149,7 +149,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectTarget.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -157,7 +157,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectValueLimit.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -165,7 +165,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeNode.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -173,7 +173,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeNodePosition.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -181,7 +181,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreePoint.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -189,7 +189,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CharacterLevel.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -197,7 +197,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Condition.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -205,7 +205,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangClientCommon_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -213,7 +213,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveActiveSkillEffect_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -221,7 +221,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLivePassiveSkillEffect_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -229,7 +229,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSkillEffectTarget_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -237,7 +237,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSkillTrigger_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -245,7 +245,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeConnectEffect_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -253,7 +253,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffect_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -261,7 +261,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffectPassiveTrigger_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -269,7 +269,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffectTarget_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -277,7 +277,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveActiveSkillLevel_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -285,7 +285,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLivePassiveSkillLevel_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -293,7 +293,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSpecialSkillLevel_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -301,7 +301,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveLeaderSkill_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -309,7 +309,7 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangHelpContent_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
@@ -317,87 +317,87 @@
       "kind": "structured",
       "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangSkillTreePoint_Eng.json",
       "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-08",
+      "retrievedAt": "2026-08-09",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "official:system",
       "kind": "official",
       "url": "https://www.hololive-dreams.com/en/system",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Human-reviewed corroboration for Leader Outfits, skill synergy, Board nodes, and Connect ranges."
     },
     {
       "id": "game8:skill-order",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801512",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Human-reviewed corroboration for the three Member skill families and left-to-right Special order."
     },
     {
       "id": "game8:sora-card",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801297",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Independent max-level parameter cross-check for the four-star Tokino Sora fixture."
     },
     {
       "id": "appmedia:score-guide",
       "kind": "corroboration",
       "url": "https://appmedia.jp/hololive-dreams/80248429",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Editorial cross-check only; no AppMedia ranking or weight enters the mechanics model."
     },
     {
       "id": "community:score-support-observation",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v8x5q3/score_up_vs_score_effect_up/",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Public score observations retained as provisional evidence, not a verified runtime equation."
     },
     {
       "id": "community:passive-target-test",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v5upec/passive_skill_question/",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Public target-selection observations retained to test candidate recipient rules."
     },
     {
       "id": "community:passive-target-counterexamples",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v6d9uh/questions_regarding_passive_buffs/",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Public counterexamples to simple formation-order and stat-priority recipient rules."
     },
     {
       "id": "community:active-overlap-observation",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v8shq4/a_small_understanding_on_the_rpg_element_of_the/",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Public overlap observations retained as a provisional policy, not a verified mechanic."
     },
     {
       "id": "appmedia:board-guide",
       "kind": "corroboration",
       "url": "https://appmedia.jp/hololive-dreams/80246215",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Human-reviewed corroboration for Board adjacency prerequisites and the point-income boundary."
     },
     {
       "id": "game8:board-connect",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801796",
-      "upstreamVersion": "retrieved-2026-08-08",
-      "retrievedAt": "2026-08-08",
+      "upstreamVersion": "retrieved-2026-08-09",
+      "retrievedAt": "2026-08-09",
       "transformation": "Human-reviewed corroboration for cross-board Connect-card placement exclusivity."
     }
   ],
@@ -500,12 +500,13 @@
     },
     {
       "id": "board-point-budget-by-rank",
-      "status": "verified",
+      "status": "corroborated",
       "blocksScoring": false,
       "statement": "Per-talent Board Pt income follows the CharacterLevel Holomem Rank table, with 361 cumulative points at Holomem Rank 50; SkillTreePoint provides one independent point pool for each of the 54 talents.",
       "sourceRefs": [
         "holodori-eng:CharacterLevel.json",
-        "holodori-eng:SkillTreePoint.json"
+        "holodori-eng:SkillTreePoint.json",
+        "appmedia:board-guide"
       ]
     },
     {

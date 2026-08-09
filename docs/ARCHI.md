@@ -162,8 +162,10 @@ yagoo-dori/
 
 - Server components render all static content; client islands (`"use client"`)
   are wrapped in `<Suspense>` and limited to interactive surfaces:
-  `team-calculator.tsx` (801 lines — roster picker, per-card Bloom, Oshi
-  constraints, Worker orchestration), `tier-list-explorer.tsx`,
+  `team-calculator.tsx` (~1.1k lines — roster picker, per-card Bloom, Oshi
+  constraints, required-Member locks with capacity/duplicate-talent guards,
+  per-Member selection evidence with a shared expand-all control, swap impact
+  reports, Worker orchestration), `tier-list-explorer.tsx`,
   `card-catalog.tsx`, `site-header.tsx` (desktop grouped sidebar + mobile
   drawer).
 - `site-image.tsx` wraps `next/image` (base path + preview/full-resolution art
@@ -238,12 +240,35 @@ keyboard navigation, and mobile readability are charter-mandated.
   `native-global-bound.ts` / `native-global-search.ts` — reduced-roster global
   certificate path with Leader equivalence classes and trigger-aware bounds.
 - `team-calculator.ts` + `team-calculator-contract.ts` — the zod-validated
-  product API consumed by the Web Worker (fixed seed, bounded exhaustiveness
-  threshold of 25 team sets, explicit `searchMode` labeling).
+  product API consumed by the Web Worker. Request schema v4 (`schemaVersion: 4`
+  with `ownedCards`, `requiredMemberCardIds` of up to five locked Member cards,
+  optional `oshi`); result schema v5 under
+  `yd-owned-roster-calculator-5.0.0` (per-Member selection evidence,
+  per-slot replacement impact with `effectChanges` classified by recipient
+  emptiness, `requiredMembers` fulfillment, `formationOrder` confidence, and a
+  `search` claim ledger whose `resultClaim` is
+  `certified-within-canonical-corpus-scope` or `bounded-search`). Fixed seed;
+  exhaustive enumeration below the 25-team-set threshold, else beam search plus
+  coordinate ascent run to a fixpoint; locks and Oshi constraints are enforced
+  in generation, refinement, and replacement analysis, and re-checked by
+  contract superRefine (talent uniqueness, lock fulfillment, budget and
+  sign-consistency reconciliation).
 - `holomem-board.ts` — isolated Board topology and per-talent variant model.
   It derives the orthogonal adjacency graph from all four pinned grid layouts,
   validates the timestamp-free `holomem-board-model-v1` evidence artifact and
-  budgets, and never feeds the calculator or certification scope.
+  budgets behind a hand-reviewed mechanics-hash gate
+  (`REVIEWED_MECHANICS_SHA256`), and never feeds the calculator or
+  certification scope.
+- `holomem-board-suggester.ts` — bounded-search Board node suggester:
+  position-aware objective in integer micro-units over pinned public stats
+  (required card identity and lens; a pinned quantified/unquantified
+  effect-kind partition that throws on unclassified kinds), width-64
+  budgeted-connected-beam over the full 152-group graph with
+  cheapest-path bundles, sorted-group-index tie order, a protected greedy
+  lane with a beam≥greedy throw, and a connectivity-preserving unlock order.
+  Claims are `bounded-search`, conditional on the declared team and board
+  state; same architectural boundary as `holomem-board.ts` (no evaluator,
+  calculator, or exact-optimizer imports — source-text-tested).
 - Ranking generation: six lenses (member/leader-outfit × three investment
   profiles) against frozen robust baselines with deterministic bootstrap
   confidence, tie-aware ranks, hysteresis, and a public correction changelog.

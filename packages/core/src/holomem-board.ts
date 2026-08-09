@@ -6,7 +6,12 @@ import { z } from "zod";
 import { mechanicsData, type MechanicsData } from "./mechanics";
 
 const HashSchema = z.string().regex(/^[a-f0-9]{64}$/);
-const REVIEWED_MECHANICS_SHA256 = "b9b8847b3860e719ca42a11ed86f4b87a9a60baa302ffdf57787d86bbc06695d";
+// Deliberate human-review gate: this constant is a hand-maintained copy of the
+// mechanics artifact hash. After any `pnpm data:sync:mechanics`, a reviewer
+// must inspect the mechanics diff, run `pnpm optimizer:scope` and
+// `pnpm board:model`, and then update THIS constant - the throw below exists
+// so a regenerated catalog cannot reach Board consumers without that review.
+const REVIEWED_MECHANICS_SHA256 = "6616e7c8c880a824aa10061066a9e2b5b7a0370166003cd27f311d98d45a3d23";
 const REVIEWED_ASSUMPTIONS = [
   { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
   { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },
@@ -227,7 +232,11 @@ export function assertHolomemBoardModelValid(model: HolomemBoardModel, catalogs:
     throw new Error("Holomem Board model hash does not match its canonical manifest");
   }
   if (model.mechanics.sha256 !== REVIEWED_MECHANICS_SHA256) {
-    throw new Error("Holomem Board mechanics SHA-256 does not match the reviewed artifact");
+    throw new Error(
+      "Holomem Board mechanics SHA-256 does not match REVIEWED_MECHANICS_SHA256 in holomem-board.ts. " +
+        "After a mechanics re-sync, review the catalog diff, run `pnpm optimizer:scope` and `pnpm board:model`, " +
+        "then update that constant in the same commit.",
+    );
   }
   if (canonicalize(model.assumptions) !== canonicalize(REVIEWED_ASSUMPTIONS)) {
     throw new Error("Holomem Board assumptions do not match the reviewed declarations");

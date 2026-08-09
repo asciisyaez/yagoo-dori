@@ -11,7 +11,7 @@
   },
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "b9b8847b3860e719ca42a11ed86f4b87a9a60baa302ffdf57787d86bbc06695d",
+    "sha256": "6616e7c8c880a824aa10061066a9e2b5b7a0370166003cd27f311d98d45a3d23",
     "evaluatorMethodologyVersion": "yd-native-utility-1.0.0"
   },
   "songCorpus": {
@@ -618,5 +618,5 @@
     "methodologyVersion": "yd-formation-order-timed-corpus-1.0.0",
     "globallyCertified": false
   },
-  "scopeHash": "2011bf1ba368dc57e2b69940796e487f600b3a7c967059f80b2f1f30301e3e04"
+  "scopeHash": "1fd79cbb29324c1aa34574b5f78ca4e6637e0fd08ba10640b29d17c2fe52840f"
 }

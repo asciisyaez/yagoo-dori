@@ -385,7 +385,7 @@ console.log(
 );
 console.log(
   `Native output valid: 2 ranking contexts x ${nativeRankingData.lenses.length} lenses x ` +
-    `${publicIds.size} cards, ${nativeGuideData.guides.length} generated guide.`,
+    `${publicIds.size} cards, ${nativeGuideData.guides.length} generated guides.`,
 );
 console.log(
   `Exact optimizer scope valid: ${exactOptimizerScope.scopeHash}, ` +

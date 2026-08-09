@@ -254,10 +254,15 @@ const runtimeRules = [
   },
   {
     id: "board-point-budget-by-rank",
-    status: "verified",
+    // Corroborated, not verified: the 361-point cumulative sum is read directly
+    // from CharacterLevel rows, but "this table IS the Holomem Rank income" and
+    // "one independent pool per talent" are readings of a one-row-per-character
+    // table corroborated by the wiki guide, not statements the pinned
+    // structured files make themselves.
+    status: "corroborated",
     blocksScoring: false,
     statement: "Per-talent Board Pt income follows the CharacterLevel Holomem Rank table, with 361 cumulative points at Holomem Rank 50; SkillTreePoint provides one independent point pool for each of the 54 talents.",
-    sourceRefs: ["holodori-eng:CharacterLevel.json", "holodori-eng:SkillTreePoint.json"],
+    sourceRefs: ["holodori-eng:CharacterLevel.json", "holodori-eng:SkillTreePoint.json", "appmedia:board-guide"],
   },
   {
     id: "board-achievement-point-income",

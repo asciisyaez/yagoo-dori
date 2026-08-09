@@ -58,8 +58,15 @@ achievement or exchange-shop income is an unresolved, user-declared budget exten
 not quantify it.
 
 Five non-scoring runtime rules bound later Board tooling: derived adjacency is corroborated; rank income
-and per-talent pools are verified; achievement income is unresolved; cross-board Connect-card reuse is
+and per-talent pools are corroborated (the 361-point sum reads directly from CharacterLevel rows, but the
+Holomem-Rank identity and pool independence are readings corroborated by the wiki guide, not statements
+the structured files make); achievement income is unresolved; cross-board Connect-card reuse is
 corroborated while simultaneous active-unit coexistence is undocumented; and Board stat stacking is
 unresolved. Recommendations must use a conservative envelope and must not claim absolute totals or
 jointly attainable stacking. These Board rules do not alter the certified `declared-neutral-board-v1`
 calculator scope.
+
+Regenerating the mechanics catalog crosses a deliberate human-review gate: after `pnpm data:sync:mechanics`,
+review the catalog diff, run `pnpm optimizer:scope` (scope repin) and `pnpm board:model` (Board evidence
+artifact), and update `REVIEWED_MECHANICS_SHA256` in `packages/core/src/holomem-board.ts` in the same
+commit - the Board module refuses to load a catalog whose hash has not been reviewed.
