@@ -240,6 +240,10 @@ keyboard navigation, and mobile readability are charter-mandated.
 - `team-calculator.ts` + `team-calculator-contract.ts` — the zod-validated
   product API consumed by the Web Worker (fixed seed, bounded exhaustiveness
   threshold of 25 team sets, explicit `searchMode` labeling).
+- `holomem-board.ts` — isolated Board topology and per-talent variant model.
+  It derives the orthogonal adjacency graph from all four pinned grid layouts,
+  validates the timestamp-free `holomem-board-model-v1` evidence artifact and
+  budgets, and never feeds the calculator or certification scope.
 - Ranking generation: six lenses (member/leader-outfit × three investment
   profiles) against frozen robust baselines with deterministic bootstrap
   confidence, tie-aware ranks, hysteresis, and a public correction changelog.

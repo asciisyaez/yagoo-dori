@@ -27,6 +27,7 @@
     "test:e2e:pages": "playwright test --config playwright.pages.config.ts",
     "test:e2e:update": "playwright test --update-snapshots",
     "data:validate": "pnpm --filter @yagoo-dori/core data:validate",
+    "board:model": "node scripts/generate-holomem-board-model.mjs",
     "rankings:generate": "pnpm --filter @yagoo-dori/core rankings:generate",
     "guides:generate": "pnpm --filter @yagoo-dori/core guides:generate",
     "guides:rebase": "pnpm --filter @yagoo-dori/core guides:rebase",
