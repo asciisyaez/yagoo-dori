@@ -332,7 +332,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
 
       <div className="tier-results-line" aria-live="polite">
         <span><Grid3X3 aria-hidden="true" /> {visible.length} {context === "outfits" ? "Outfits" : visible.length === 1 ? "card" : "cards"} shown</span>
-        <p>{activeLens.label} · Mobile · All Perfect</p>
+        <p>{activeLens.label} · Manual · All Perfect</p>
         <div className="tier-results-actions">
           <Link href="/methodology"><CircleHelp aria-hidden="true" /> How tiers work</Link>
         </div>

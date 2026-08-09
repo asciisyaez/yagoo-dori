@@ -434,13 +434,14 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
           <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>
           <em>Relative team value, not a projected Live Score.</em>
+          <p className={styles.searchClaimDetail}>The range spans the unresolved targeting and overlap readings; the central value is the ranked answer, not the midpoint. Team value is order-invariant in this model — formation order changes Special timing, shown separately below. The <Link href="/methodology">methodology page</Link> documents the shared evaluation model and its limits.</p>
         </section>
       </div>
 
       {alternatives.length > 0 && (
         <section className={styles.alternativesPanel}>
           <header><div><span>Swap impact report</span><h3>One-for-one replacements</h3></div><small>With the recommended Leader</small></header>
-          <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it usually moves both teams together — the range note on each report flags the cases where the bounds disagree — so it is not attached to a swap delta. Formation order does not move the before/after value because the modeled value is order-invariant: Special coverage is time-averaged across the song rather than credited to one starting order.</p>
+          <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it usually moves both teams together — the range note on each report flags the cases where the bounds disagree — so it is not attached to a swap delta. Formation order does not move the before/after value because the team-value model is order-invariant: it treats Special coverage as duration coverage rather than crediting one starting order. The separate order recommendation can still be chart-timed — order changes when Specials fire, not these totals.</p>
           <div className={styles.alternativeGroups}>
             {alternatives.map((group) => {
               const replaced = result.members.find((member) => member.cardId === group.replacesCardId);

@@ -382,8 +382,9 @@ export default function MethodologyPage() {
           central value is <strong>not</strong> the midpoint — central shares the lower lane&rsquo;s
           cautious answer to the targeting question and differs from it only on overlap. Candidate
           rules for resolving targets by highest stat, by rarity, by level and by formation order
-          were each tested and each contradicted by published behaviour, which is why the ambiguity
-          is carried rather than resolved.
+          were each tested and each contradicted by published behaviour — the tests and their
+          sources are recorded against the passive-target rules in the pinned data ledger — which
+          is why the ambiguity is carried rather than resolved.
         </p>
       </section>
 
@@ -629,6 +630,15 @@ export default function MethodologyPage() {
             <strong>It does not model note timing individually.</strong> Notes are placed on a
             uniform grid from the chart&rsquo;s note count and duration, and Special windows are
             treated as duration coverage rather than as marked moments.
+          </li>
+          <li>
+            <strong>It weights every note equally, and the game does not.</strong> The game&rsquo;s
+            own judgement table pays hold-continuation ticks a tenth of a normal note and flicks
+            1.05× (on mobile), and adds a combo bonus that climbs from +1% at 100 combo to +10% at
+            1,000; Fever is not modelled at all. Because skills fire in time windows and hold
+            sections cluster in time, two formations whose activation phases differ can order
+            differently in-game than under equal weighting — this is the model&rsquo;s largest
+            known unpriced fidelity gap.
           </li>
           <li>
             <strong>It does not model your account.</strong> Board, collection bonus and Connect

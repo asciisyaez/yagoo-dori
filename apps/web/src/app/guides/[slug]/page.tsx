@@ -438,7 +438,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             </div>
             <div><dt><Music2 aria-hidden="true" /> Song coverage</dt><dd>{guide.ratingSongComparisons.length} singer-matched Expert charts</dd></div>
             <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternativeCount === 0 ? "No change" : songAlternativeCount}</dd></div>
-            <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Mobile · Manual · All Perfect</dd></div>
+            <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Manual · All Perfect</dd></div>
           </dl>
           {hasSeparateStandardLeaderSource && (
             <aside
@@ -602,7 +602,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           The model combines legal team rules, card parameters, progression, skill effects, and song context.
         </p>
         <ul>
-          <li><Gauge aria-hidden="true" />Mobile · Manual · All Perfect/full combo · full 1,000 Life</li>
+          <li><Gauge aria-hidden="true" />Manual · All Perfect/full combo · full 1,000 Life</li>
           <li><Gauge aria-hidden="true" />Neutral Board contribution, 0% collection Member Upgrade Bonus, and no event bonus</li>
           <li><Music2 aria-hidden="true" />Rating-eligible Expert songs with the Leader talent listed as a singer</li>
           <li><Sparkles aria-hidden="true" />Performance, Technique, Sense, Leader effects, Passives, Active cadence, Specials, and target limits</li>
