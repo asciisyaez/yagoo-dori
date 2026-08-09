@@ -259,6 +259,12 @@ export type CalculatorOwnedRosterFields = {
   requiredMemberCardIds: string[];
 };
 
+export type BoardOwnedRosterFields = {
+  rosterCommit: string;
+  playerLevel: number | null;
+  boards: Record<string, StoredTalentBoard>;
+};
+
 // The Board planner owns playerLevel/boards; the team calculator owns the
 // rest. Carry the stored Board fields verbatim (load-time sanitization guards
 // consumers) so a calculator autosave can never erase persisted Board state.
@@ -294,5 +300,65 @@ export function saveTeamRosterCalculatorFields(
     cards: fields.cards,
     oshi: fields.oshi,
     requiredMemberCardIds: fields.requiredMemberCardIds,
+  });
+}
+
+// Calculator-owned fields carried VERBATIM from whatever is currently stored,
+// regardless of the record's version tag: a foreign or future version must
+// never cause the planner's write to erase readable cards, Oshi preferences,
+// or lock selections. Structural filters keep the static types honest; the
+// loader still sanitizes on every read.
+function readPreservedCalculatorFields(
+  storage: StorageReader,
+): Pick<StoredTeamRoster, "cards" | "oshi" | "requiredMemberCardIds"> {
+  const preserved: Pick<StoredTeamRoster, "cards" | "oshi" | "requiredMemberCardIds"> = {
+    cards: {},
+    oshi: { enabled: false, talentId: null, role: "member" },
+    requiredMemberCardIds: [],
+  };
+  const raw = storage.getItem(TEAM_ROSTER_STORAGE_KEY);
+  if (!raw) return preserved;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return preserved;
+  }
+  if (!isObject(parsed)) return preserved;
+  if (isObject(parsed.cards)) {
+    for (const [cardId, bloomStage] of Object.entries(parsed.cards)) {
+      if (isBloomStage(bloomStage)) preserved.cards[cardId] = bloomStage;
+    }
+  }
+  if (isObject(parsed.oshi)) {
+    preserved.oshi = {
+      enabled: parsed.oshi.enabled === true,
+      talentId:
+        typeof parsed.oshi.talentId === "string" && parsed.oshi.talentId.length > 0
+          ? parsed.oshi.talentId
+          : null,
+      role: isOshiRole(parsed.oshi.role) ? parsed.oshi.role : "member",
+    };
+  }
+  if (Array.isArray(parsed.requiredMemberCardIds)) {
+    preserved.requiredMemberCardIds = parsed.requiredMemberCardIds.filter(
+      (cardId): cardId is string => typeof cardId === "string",
+    );
+  }
+  return preserved;
+}
+
+// The Board planner owns playerLevel/boards; merge only those fields so a
+// planner autosave cannot erase cards, Oshi preferences, or calculator locks —
+// even when the stored record carries an unsupported version tag.
+export function saveTeamRosterBoardFields(
+  storage: StorageReader & StorageWriter,
+  fields: BoardOwnedRosterFields,
+): void {
+  saveTeamRoster(storage, {
+    ...emptyTeamRoster(fields.rosterCommit),
+    ...readPreservedCalculatorFields(storage),
+    playerLevel: fields.playerLevel,
+    boards: fields.boards,
   });
 }

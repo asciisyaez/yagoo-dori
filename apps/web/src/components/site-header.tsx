@@ -32,7 +32,10 @@ const navigation = [
   },
   {
     label: "Tools",
-    items: [{ href: "/team-builder", label: "Team calculator", icon: Calculator }],
+    items: [
+      { href: "/team-builder", label: "Team calculator", icon: Calculator },
+      { href: "/holomem-board", label: "Holomem Board", icon: Calculator },
+    ],
   },
   {
     label: "Learn",
