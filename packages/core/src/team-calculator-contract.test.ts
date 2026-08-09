@@ -81,10 +81,11 @@ function resultFixture(): TeamCalculatorResult {
   }));
   return {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 4,
-    methodologyVersion: "yd-owned-roster-calculator-4.0.0",
+    schemaVersion: 5,
+    methodologyVersion: "yd-owned-roster-calculator-5.0.0",
     roster: { commit: "a".repeat(40), ownedCardCount: 5, ownedTalentCount: 5 },
     oshi: null,
+    requiredMembers: null,
     corpus: {
       benchmarkId: "fixture-benchmark",
       entriesSha256: "b".repeat(64),
@@ -176,7 +177,7 @@ function resultFixture(): TeamCalculatorResult {
       certificateKind: "heuristic-bounded",
       certificateId: null,
       scopeHash: "b".repeat(64),
-      runRecordId: "yd-owned-roster-run-v4-test",
+      runRecordId: "yd-owned-roster-run-v5-test",
       optimalityClaim: "not-certified",
       objective: "equal-chart-average-relative-utility",
       objectiveId: "yd-equal-chart-average-relative-utility-v1",
@@ -217,14 +218,16 @@ function resultFixture(): TeamCalculatorResult {
 describe("team calculator contract", () => {
   it("accepts exact cards and Bloom stages without any song or chart selection", () => {
     const request = TeamCalculatorRequestSchema.parse({
-      schemaVersion: 3,
+      schemaVersion: 4,
       rosterCommit: "a".repeat(40),
       ownedCards: OWNED_CARDS,
+      requiredMemberCardIds: [],
     });
 
     expect(request).not.toHaveProperty("chartKey");
     expect(request).not.toHaveProperty("oshi");
     expect(request.ownedCards.map((ownedCard) => ownedCard.bloomStage)).toEqual([0, 1, 2, 3, 4]);
+    expect(request.requiredMemberCardIds).toEqual([]);
     expect(
       TeamCalculatorRequestSchema.safeParse({ ...request, chartKey: "m0206:expert" }).success,
     ).toBe(false);
@@ -232,46 +235,59 @@ describe("team calculator contract", () => {
 
   it("rejects duplicate card IDs and invalid Bloom", () => {
     const duplicate = TeamCalculatorRequestSchema.safeParse({
-      schemaVersion: 3,
+      schemaVersion: 4,
       rosterCommit: "a".repeat(40),
       ownedCards: [...OWNED_CARDS, OWNED_CARDS[0]],
+      requiredMemberCardIds: [],
     });
     const invalidBloom = TeamCalculatorRequestSchema.safeParse({
-      schemaVersion: 3,
+      schemaVersion: 4,
       rosterCommit: "a".repeat(40),
       ownedCards: OWNED_CARDS.map((ownedCard, index) =>
         index === 0 ? { ...ownedCard, bloomStage: 6 } : ownedCard,
       ),
+      requiredMemberCardIds: [],
     });
 
     expect(duplicate.success).toBe(false);
     expect(invalidBloom.success).toBe(false);
+    expect(
+      TeamCalculatorRequestSchema.safeParse({
+        schemaVersion: 4,
+        rosterCommit: "a".repeat(40),
+        ownedCards: OWNED_CARDS,
+        requiredMemberCardIds: [OWNED_CARDS[0]!.cardId, OWNED_CARDS[0]!.cardId],
+      }).success,
+    ).toBe(false);
   });
 
   it("accepts all public Oshi roles and rejects malformed talent or role values", () => {
     for (const role of ["member", "leader", "member-and-leader"] as const) {
       expect(
         TeamCalculatorRequestSchema.safeParse({
-          schemaVersion: 3,
+          schemaVersion: 4,
           rosterCommit: "a".repeat(40),
           ownedCards: OWNED_CARDS,
+          requiredMemberCardIds: [],
           oshi: { talentId: "talent-0", role },
         }).success,
       ).toBe(true);
     }
     expect(
       TeamCalculatorRequestSchema.safeParse({
-        schemaVersion: 3,
+        schemaVersion: 4,
         rosterCommit: "a".repeat(40),
         ownedCards: OWNED_CARDS,
+        requiredMemberCardIds: [],
         oshi: { talentId: "", role: "member" },
       }).success,
     ).toBe(false);
     expect(
       TeamCalculatorRequestSchema.safeParse({
-        schemaVersion: 3,
+        schemaVersion: 4,
         rosterCommit: "a".repeat(40),
         ownedCards: OWNED_CARDS,
+        requiredMemberCardIds: [],
         oshi: { talentId: "talent-0", role: "outfit" },
       }).success,
     ).toBe(false);
@@ -468,6 +484,23 @@ describe("team calculator contract", () => {
     expect(TeamCalculatorResultSchema.safeParse(wrongLeader).success).toBe(false);
     expect(TeamCalculatorResultSchema.safeParse(wrongLabel).success).toBe(false);
     expect(TeamCalculatorResultSchema.safeParse(illegalReplacement).success).toBe(false);
+  });
+
+  it("reconciles fulfilled required Members with the displayed five-card formation", () => {
+    const valid = resultFixture();
+    valid.requiredMembers = {
+      cardIds: [valid.members[0]!.cardId, valid.members[1]!.cardId],
+      status: "fulfilled",
+    };
+    expect(TeamCalculatorResultSchema.safeParse(valid).success).toBe(true);
+
+    const unselected = structuredClone(valid);
+    unselected.requiredMembers!.cardIds = ["card-not-selected"];
+    expect(TeamCalculatorResultSchema.safeParse(unselected).success).toBe(false);
+
+    const lockedReplacement = structuredClone(valid);
+    lockedReplacement.alternatives[0]!.coverage.eligibleCardCount = 1;
+    expect(TeamCalculatorResultSchema.safeParse(lockedReplacement).success).toBe(false);
   });
 
   it("allows a screened replacement to outperform the selected bounded-search team", () => {

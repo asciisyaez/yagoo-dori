@@ -129,6 +129,7 @@ export class TeamCalculatorError extends Error {
     | "invalid-request"
     | "stale-roster"
     | "unknown-card"
+    | "invalid-required-members"
     | "unowned-oshi"
     | "invalid-corpus"
     | "insufficient-talents"
@@ -193,6 +194,7 @@ function calculateOwnedRosterScopeHash(
     ownedCards: [...ownedCards]
       .map(({ cardId, bloomStage }) => ({ cardId, bloomStage }))
       .sort((left, right) => left.cardId.localeCompare(right.cardId)),
+    requiredMemberCardIds: [...request.requiredMemberCardIds].sort(),
     oshi: request.oshi ?? null,
     leaderAndMemberEligibility: "all-owned-cards-with-one-card-per-talent",
     maximumFiveStarMembers: 5,
@@ -350,19 +352,29 @@ function subtractIntervals(selected: UtilityInterval, alternative: UtilityInterv
   };
 }
 
-function countLegalTeamSets(cards: readonly PublicCard[], requiredTalentId?: string): number {
+function countLegalTeamSets(
+  cards: readonly PublicCard[],
+  requiredTalentId?: string,
+  requiredMemberCardIds: readonly string[] = [],
+): number {
   const variantsPerTalent = new Map<string, number>();
   for (const card of cards) {
     variantsPerTalent.set(card.talentId, (variantsPerTalent.get(card.talentId) ?? 0) + 1);
   }
-  const requiredVariantCount = requiredTalentId
+  const cardById = new Map(cards.map((card) => [card.id, card]));
+  const lockedCards = requiredMemberCardIds.map((cardId) => cardById.get(cardId));
+  if (lockedCards.some((card) => !card)) return 0;
+  const lockedTalents = new Set(lockedCards.map((card) => card!.talentId));
+  const oshiAlreadyLocked = requiredTalentId !== undefined && lockedTalents.has(requiredTalentId);
+  const requiredVariantCount = requiredTalentId && !oshiAlreadyLocked
     ? variantsPerTalent.get(requiredTalentId) ?? 0
     : 1;
-  if (requiredTalentId && requiredVariantCount === 0) return 0;
-  const targetMemberCount = requiredTalentId ? 4 : 5;
+  if (requiredTalentId && !oshiAlreadyLocked && requiredVariantCount === 0) return 0;
+  const targetMemberCount = 5 - requiredMemberCardIds.length - (requiredTalentId && !oshiAlreadyLocked ? 1 : 0);
+  if (targetMemberCount < 0) return 0;
   const ways = [1, 0, 0, 0, 0, 0];
   for (const [talentId, variantCount] of variantsPerTalent) {
-    if (talentId === requiredTalentId) continue;
+    if (lockedTalents.has(talentId) || (talentId === requiredTalentId && !oshiAlreadyLocked)) continue;
     for (let selected = 4; selected >= 0; selected -= 1) {
       ways[selected + 1] = Math.min(
         Number.MAX_SAFE_INTEGER,
@@ -378,16 +390,30 @@ function asTeamTuple(ids: readonly string[]): MemberTuple {
   return [...ids].sort() as unknown as MemberTuple;
 }
 
-function enumerateLegalTeamSets(cards: readonly PublicCard[], requiredTalentId?: string): MemberTuple[] {
+function enumerateLegalTeamSets(
+  cards: readonly PublicCard[],
+  requiredTalentId?: string,
+  requiredMemberCardIds: readonly string[] = [],
+): MemberTuple[] {
   const sorted = [...cards].sort((left, right) => left.id.localeCompare(right.id));
+  const lockedIds = new Set(requiredMemberCardIds);
+  const lockedCards = requiredMemberCardIds
+    .map((cardId) => sorted.find((card) => card.id === cardId))
+    .filter((card): card is PublicCard => card !== undefined);
+  const lockedTalents = new Set(lockedCards.map((card) => card.talentId));
+  const oshiAlreadyLocked = requiredTalentId !== undefined && lockedTalents.has(requiredTalentId);
+  const anchorIds = new Set(lockedCards.map((card) => card.id));
+  const remainingCards = sorted.filter(
+    (card) => !lockedIds.has(card.id) && !lockedTalents.has(card.talentId),
+  );
   const teams: MemberTuple[] = [];
   const visit = (start: number, selected: string[], talents: Set<string>): void => {
     if (selected.length === 5) {
       teams.push(asTeamTuple(selected));
       return;
     }
-    for (let index = start; index <= sorted.length - (5 - selected.length); index += 1) {
-      const card = sorted[index]!;
+    for (let index = start; index <= remainingCards.length - (5 - selected.length); index += 1) {
+      const card = remainingCards[index]!;
       if (talents.has(card.talentId)) continue;
       selected.push(card.id);
       talents.add(card.talentId);
@@ -396,9 +422,10 @@ function enumerateLegalTeamSets(cards: readonly PublicCard[], requiredTalentId?:
       selected.pop();
     }
   };
-  if (requiredTalentId) {
-    const requiredCards = sorted.filter((card) => card.talentId === requiredTalentId);
-    const remainingCards = sorted.filter((card) => card.talentId !== requiredTalentId);
+  if (requiredTalentId && !oshiAlreadyLocked) {
+    const requiredCards = sorted.filter(
+      (card) => card.talentId === requiredTalentId && !anchorIds.has(card.id),
+    );
     const visitRequired = (
       start: number,
       selected: string[],
@@ -423,10 +450,14 @@ function enumerateLegalTeamSets(cards: readonly PublicCard[], requiredTalentId?:
       }
     };
     for (const requiredCard of requiredCards) {
-      visitRequired(0, [requiredCard.id], new Set([requiredTalentId]));
+      visitRequired(
+        0,
+        [...requiredMemberCardIds, requiredCard.id],
+        new Set([...lockedTalents, requiredTalentId]),
+      );
     }
   } else {
-    visit(0, [], new Set());
+    visit(0, [...requiredMemberCardIds], new Set(lockedTalents));
   }
   return teams;
 }
@@ -767,8 +798,26 @@ export function calculateOwnedRosterTeam(
   const ownedCards = [...request.ownedCards]
     .sort((left, right) => left.cardId.localeCompare(right.cardId))
     .map((ownedCard) => ({ ...ownedCard, card: requirePublicCard(ownedCard.cardId) }));
+  const ownedCardById = new Map(ownedCards.map((ownedCard) => [ownedCard.cardId, ownedCard]));
+  const requiredMemberCardIds = [...request.requiredMemberCardIds].sort();
+  const requiredMemberCards = requiredMemberCardIds.map((cardId) => ownedCardById.get(cardId));
+  if (requiredMemberCards.some((ownedCard) => !ownedCard)) {
+    throw new TeamCalculatorError(
+      "invalid-required-members",
+      "Every required Member card must be selected in your owned roster.",
+    );
+  }
+  if (
+    new Set(requiredMemberCards.map((ownedCard) => ownedCard!.card.talentId)).size !==
+    requiredMemberCards.length
+  ) {
+    throw new TeamCalculatorError(
+      "invalid-required-members",
+      "Required Member cards must use different talents.",
+    );
+  }
   const scopeHash = calculateOwnedRosterScopeHash(request, ownedCards);
-  const runRecordId = `yd-owned-roster-run-v4-${scopeHash}`;
+  const runRecordId = `yd-owned-roster-run-v5-${scopeHash}`;
   const ownedTalentCount = new Set(ownedCards.map((ownedCard) => ownedCard.card.talentId)).size;
   if (ownedTalentCount < 5) {
     throw new TeamCalculatorError(
@@ -805,15 +854,27 @@ export function calculateOwnedRosterTeam(
   ) as Record<string, TeamCalculatorBloomStage>;
   const ownedCardIds = ownedCards.map((ownedCard) => ownedCard.cardId);
   const cardById = new Map(ownedCards.map((ownedCard) => [ownedCard.cardId, ownedCard.card]));
-  const requiredMemberTalentId = oshiConstraint?.memberRequired
+  const requiredMemberTalentId = oshiConstraint?.memberRequired &&
+    !requiredMemberCards.some((ownedCard) => ownedCard!.card.talentId === oshiConstraint.talentId)
     ? oshiConstraint.talentId
     : undefined;
+  if (
+    oshiConstraint?.memberRequired &&
+    requiredMemberTalentId !== undefined &&
+    requiredMemberCardIds.length >= 5
+  ) {
+    throw new TeamCalculatorError(
+      "invalid-required-members",
+      "The Oshi Member constraint needs one remaining slot; unlock a required Member card or lock the Oshi card.",
+    );
+  }
   const eligibleLeaderCardIds = oshiConstraint?.leaderRequired
     ? oshiConstraint.eligibleCards.map((ownedCard) => ownedCard.cardId)
     : ownedCardIds;
   const legalTeamSets = countLegalTeamSets(
     ownedCards.map((ownedCard) => ownedCard.card),
     requiredMemberTalentId,
+    requiredMemberCardIds,
   );
   const search = dependencies.search ?? searchNativeCanonicalCandidates;
   const evaluate = dependencies.evaluate ?? evaluateNativeRelativeUtility;
@@ -824,10 +885,12 @@ export function calculateOwnedRosterTeam(
   const searchTeamKeys = new Set<string>();
   const searchFormationKeys = new Set<string>();
   const replacementFormationKeys = new Set<string>();
+  const requiredMemberCardIdSet = new Set(requiredMemberCardIds);
   let adapterUtilityEvaluations = 0;
   let nativeUtilityEvaluations = 0;
 
   const candidateSatisfiesOshi = (candidate: Candidate): boolean => {
+    if (requiredMemberCardIds.some((cardId) => !candidate.memberCardIds.includes(cardId))) return false;
     if (!oshiConstraint) return true;
     const memberSatisfied =
       !oshiConstraint.memberRequired ||
@@ -939,6 +1002,7 @@ export function calculateOwnedRosterTeam(
     const teams = enumerateLegalTeamSets(
       ownedCards.map((ownedCard) => ownedCard.card),
       requiredMemberTalentId,
+      requiredMemberCardIds,
     );
     if (teams.length !== legalTeamSets) {
       throw new TeamCalculatorError("calculation-failed", "Legal team enumeration did not reconcile.");
@@ -953,8 +1017,10 @@ export function calculateOwnedRosterTeam(
   } else {
     candidateGenerationChartCount = TEAM_CALCULATOR_CANDIDATE_GENERATION_CHARTS.length;
     try {
-      const memberAnchorCardIds = oshiConstraint?.memberRequired
-        ? oshiConstraint.eligibleCards.map((ownedCard) => ownedCard.cardId)
+      const memberAnchorCardIds = requiredMemberTalentId !== undefined
+        ? oshiConstraint!.eligibleCards
+            .filter((ownedCard) => ownedCard.card.talentId === requiredMemberTalentId)
+            .map((ownedCard) => ownedCard.cardId)
         : [null];
       for (const anchorCardId of memberAnchorCardIds) {
         for (const entry of TEAM_CALCULATOR_CANDIDATE_GENERATION_CHARTS) {
@@ -967,7 +1033,9 @@ export function calculateOwnedRosterTeam(
             constraints: {
               memberCardIds: ownedCardIds,
               leaderOutfitCardIds: eligibleLeaderCardIds,
-              ...(anchorCardId ? { anchorCardId } : {}),
+              anchorCardIds: anchorCardId
+                ? [...requiredMemberCardIds, anchorCardId]
+                : requiredMemberCardIds,
             },
             strategy: boundedSearchStrategy(
               Boolean(oshiConstraint?.memberRequired && !oshiConstraint.leaderRequired),
@@ -1014,6 +1082,7 @@ export function calculateOwnedRosterTeam(
         neighbors.set(candidateKey(candidate), candidate);
       }
       for (let slot = 0; slot < 5; slot += 1) {
+        if (requiredMemberCardIdSet.has(selected.candidate.memberCardIds[slot]!)) continue;
         const otherIds = selected.candidate.memberCardIds.filter((_, index) => index !== slot);
         const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
         for (const ownedCard of ownedCards) {
@@ -1116,6 +1185,26 @@ export function calculateOwnedRosterTeam(
 
   const exhaustive = legalTeamSets <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS;
   const alternatives = members.map((member) => {
+    if (requiredMemberCardIdSet.has(member.cardId)) {
+      return {
+        replacesCardId: member.cardId,
+        fixedLeaderCardId: selectedCandidate.leaderOutfitCardId,
+        comparisonBasis:
+          "fixed-selected-leader-and-canonical-order-across-representative-corpus" as const,
+        lossSignConvention: "positive-means-selected-team-is-better" as const,
+        coverage: {
+          selectionMethod: exhaustive
+            ? "exhaustive-full-corpus" as const
+            : "bounded-two-stage-screen" as const,
+          eligibleCardCount: 0,
+          coarseScreenedCardCount: 0,
+          corpusProxyScreenedCardCount: 0,
+          fullCorpusRerankedCardCount: 0,
+          returnedCardCount: 0,
+        },
+        cards: [],
+      };
+    }
     const otherIds = selectedCandidate.memberCardIds.filter((cardId) => cardId !== member.cardId);
     const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
     const replacementCandidates = ownedCards
@@ -1210,8 +1299,8 @@ export function calculateOwnedRosterTeam(
 
   const result: TeamCalculatorResult = {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 4,
-    methodologyVersion: "yd-owned-roster-calculator-4.0.0",
+    schemaVersion: 5,
+    methodologyVersion: "yd-owned-roster-calculator-5.0.0",
     roster: {
       commit: TEAM_CALCULATOR_ROSTER_COMMIT,
       ownedCardCount: ownedCards.length,
@@ -1241,6 +1330,9 @@ export function calculateOwnedRosterTeam(
             overallStatus: "fulfilled",
           },
         }
+      : null,
+    requiredMembers: requiredMemberCardIds.length > 0
+      ? { cardIds: requiredMemberCardIds, status: "fulfilled" as const }
       : null,
     corpus: {
       benchmarkId: TEAM_CALCULATOR_CORPUS.benchmarkId,

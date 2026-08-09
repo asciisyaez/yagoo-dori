@@ -31,9 +31,10 @@ export const TeamCalculatorOshiSchema = z
 
 export const TeamCalculatorRequestSchema = z
   .object({
-    schemaVersion: z.literal(3),
+    schemaVersion: z.literal(4),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     ownedCards: z.array(TeamCalculatorOwnedCardSchema).min(5),
+    requiredMemberCardIds: z.array(z.string().min(1)).max(5),
     oshi: TeamCalculatorOshiSchema.optional(),
   })
   .strict()
@@ -48,6 +49,17 @@ export const TeamCalculatorRequestSchema = z
         });
       }
       seenCardIds.add(ownedCard.cardId);
+    });
+    const seenRequiredCardIds = new Set<string>();
+    request.requiredMemberCardIds.forEach((cardId, index) => {
+      if (seenRequiredCardIds.has(cardId)) {
+        context.addIssue({
+          code: "custom",
+          path: ["requiredMemberCardIds", index],
+          message: `Duplicate required Member card: ${cardId}`,
+        });
+      }
+      seenRequiredCardIds.add(cardId);
     });
   });
 
@@ -81,8 +93,8 @@ const CalculatorCardSchema = z
 export const TeamCalculatorResultSchema = z
   .object({
     kind: z.literal("owned-roster-team-calculation"),
-    schemaVersion: z.literal(4),
-    methodologyVersion: z.literal("yd-owned-roster-calculator-4.0.0"),
+    schemaVersion: z.literal(5),
+    methodologyVersion: z.literal("yd-owned-roster-calculator-5.0.0"),
     roster: z
       .object({
         commit: z.string().regex(/^[a-f0-9]{40}$/),
@@ -119,6 +131,13 @@ export const TeamCalculatorResultSchema = z
             overallStatus: z.literal("fulfilled"),
           })
           .strict(),
+      })
+      .strict()
+      .nullable(),
+    requiredMembers: z
+      .object({
+        cardIds: z.array(z.string().min(1)).max(5),
+        status: z.literal("fulfilled"),
       })
       .strict()
       .nullable(),
@@ -447,6 +466,19 @@ export const TeamCalculatorResultSchema = z
     if (new Set(result.members.map((member) => member.talentId)).size !== 5) {
       context.addIssue({ code: "custom", path: ["members"], message: "Member talents must be unique" });
     }
+    if (result.requiredMembers) {
+      const requiredIds = result.requiredMembers.cardIds;
+      if (
+        new Set(requiredIds).size !== requiredIds.length ||
+        requiredIds.some((cardId) => !memberCardIdSet.has(cardId))
+      ) {
+        context.addIssue({
+          code: "custom",
+          path: ["requiredMembers"],
+          message: "Required Members must be unique selected cards",
+        });
+      }
+    }
     const orderCardIds = result.formationOrder.cardIds;
     const orderComponents = result.formationOrder.members;
     const timedOrder = result.formationOrder.kind === "timed-corpus";
@@ -598,7 +630,14 @@ export const TeamCalculatorResultSchema = z
         coverage.returnedCardCount !== alternative.cards.length ||
         coverage.returnedCardCount > coverage.fullCorpusRerankedCardCount ||
         new Set(alternative.cards.map((card) => card.cardId)).size !== alternative.cards.length ||
-        alternative.cards.some((card) => memberCardIdSet.has(card.cardId))
+        alternative.cards.some((card) => memberCardIdSet.has(card.cardId)) ||
+        (result.requiredMembers?.cardIds.includes(alternative.replacesCardId) &&
+          (coverage.eligibleCardCount !== 0 ||
+            coverage.coarseScreenedCardCount !== 0 ||
+            coverage.corpusProxyScreenedCardCount !== 0 ||
+            coverage.fullCorpusRerankedCardCount !== 0 ||
+            coverage.returnedCardCount !== 0 ||
+            alternative.cards.length !== 0))
       ) {
         context.addIssue({
           code: "custom",

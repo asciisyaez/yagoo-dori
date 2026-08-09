@@ -26,6 +26,7 @@ describe("team calculator roster persistence", () => {
       ...emptyTeamRoster("commit-a"),
       cards: { "card-one": 0 as const, "card-two": 5 as const },
       oshi: { enabled: true, talentId: "talent-one", role: "member-and-leader" as const },
+      requiredMemberCardIds: ["card-two"],
     };
 
     saveTeamRoster(storage, roster);
@@ -49,10 +50,11 @@ describe("team calculator roster persistence", () => {
 
     expect(loadTeamRoster(storage, "new-commit", new Set(["card-one"]))).toEqual({
       roster: {
-        version: 2,
+        version: 3,
         rosterCommit: "new-commit",
         cards: { "card-one": 2 },
         oshi: { enabled: false, talentId: null, role: "member" },
+        requiredMemberCardIds: [],
       },
       needsWrite: true,
     });
@@ -72,13 +74,57 @@ describe("team calculator roster persistence", () => {
 
     expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"]))).toEqual({
       roster: {
-        version: 2,
+        version: 3,
         rosterCommit: "commit-a",
         cards: { "card-one": 3 },
         oshi: { enabled: false, talentId: null, role: "member" },
+        requiredMemberCardIds: [],
       },
       needsWrite: true,
     });
+  });
+
+  it("migrates v2 without locks and sanitizes v3 locks to selected owned cards", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      TEAM_ROSTER_STORAGE_KEY,
+      JSON.stringify({
+        version: 3,
+        rosterCommit: "commit-a",
+        cards: {
+          "card-one": 0,
+          "card-two": 1,
+          "card-three": 2,
+          "card-four": 3,
+          "card-five": 4,
+          "card-six": 5,
+        },
+        requiredMemberCardIds: [
+          "card-six",
+          "removed-card",
+          "card-one",
+          "card-six",
+          "card-five",
+          "card-four",
+          "card-three",
+        ],
+      }),
+    );
+
+    const loaded = loadTeamRoster(
+      storage,
+      "commit-a",
+      new Set(["card-one", "card-two", "card-three", "card-four", "card-five", "card-six"]),
+    );
+    expect(loaded.roster.version).toBe(3);
+    expect(loaded.roster.requiredMemberCardIds).toEqual([
+      "card-five",
+      "card-four",
+      "card-one",
+      "card-six",
+      "card-three",
+    ].sort());
+    expect(loaded.needsWrite).toBe(true);
   });
 
   it("recovers from malformed versions and invalid Bloom values", () => {

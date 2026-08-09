@@ -421,6 +421,76 @@ describe("native legal-team search", () => {
     expect(result.best.recipients.every((recipient) => recipient.valuePermil >= 0)).toBe(true);
   });
 
+  it("starts exact and beam enumeration with every plural Member anchor", () => {
+    const anchorCardIds = [CARD.azki5, CARD.okayu5] as const;
+    const { anchorCardId: _legacyAnchor, ...baseConstraints } = BASE_INPUT.constraints!;
+    const exact = searchNativeLegalTeams({
+      ...BASE_INPUT,
+      constraints: {
+        ...baseConstraints,
+        anchorCardIds,
+      },
+      strategy: {
+        mode: "exact",
+        maxTeamSets: 100,
+        auditedFinalists: 1,
+        alternativesPerSlot: 2,
+      },
+    });
+    expect(exact.constraints.anchorCardId).toBe(CARD.azki5);
+    expect(exact.constraints.anchorCardIds).toEqual([...anchorCardIds].sort());
+    expect(exact.counts.legalTeamSetsInScope).toBe(20);
+    expect(exact.best.members.map((member) => member.cardId)).toEqual(
+      expect.arrayContaining([...anchorCardIds]),
+    );
+    const anchoredReplacementGroups = exact.replacementsBySlot.filter((slot) =>
+      anchorCardIds.includes(slot.replacedCardId as typeof anchorCardIds[number]),
+    );
+    expect(anchoredReplacementGroups).toHaveLength(anchorCardIds.length);
+    expect(anchoredReplacementGroups.every(
+      (slot) => slot.anchored && slot.alternatives.length === 0,
+    )).toBe(true);
+
+    const beam = searchNativeCanonicalCandidates({
+      ...BASE_INPUT,
+      constraints: {
+        ...baseConstraints,
+        anchorCardIds,
+      },
+      strategy: {
+        mode: "beam",
+        beamWidth: 18,
+        finalistTeamCount: 4,
+        leadersPerTeam: 1,
+      },
+    });
+    expect(beam.candidates.length).toBeGreaterThan(0);
+    expect(beam.candidates.every((candidate) =>
+      anchorCardIds.every((cardId) => candidate.memberCardIds.includes(cardId)),
+    )).toBe(true);
+  });
+
+  it("rejects ambiguous, duplicate, excluded, and cap-conflicting plural anchors", () => {
+    const withAnchors = (anchorCardIds: readonly string[]) => ({
+      ...BASE_INPUT,
+      constraints: (() => {
+        const { anchorCardId: _legacyAnchor, ...withoutLegacy } = BASE_INPUT.constraints!;
+        return { ...withoutLegacy, anchorCardIds };
+      })(),
+    });
+    expect(() => searchNativeLegalTeams({
+      ...BASE_INPUT,
+      constraints: { ...BASE_INPUT.constraints, anchorCardId: CARD.azki5, anchorCardIds: [] },
+    })).toThrow(/cannot be used together/i);
+    expect(() => searchNativeLegalTeams(withAnchors([CARD.azki5, CARD.azki5]))).toThrow(/duplicate cards/i);
+    expect(() => searchNativeLegalTeams(withAnchors([CARD.azki4, CARD.azki5]))).toThrow(/duplicate Member talents/i);
+    expect(() => searchNativeLegalTeams(withAnchors([CARD.azki5, "card-00026-5-uniq-0021-00"]))).toThrow(/allowlist or rarity/i);
+    expect(() => searchNativeLegalTeams({
+      ...withAnchors([CARD.azki5, CARD.okayu5]),
+      constraints: { ...withAnchors([CARD.azki5, CARD.okayu5]).constraints, maxFiveStarMembers: 1 },
+    })).toThrow(/maxFiveStarMembers/i);
+  });
+
   it("rejects unknown, fractional, and out-of-range per-card Bloom stages", () => {
     expect(() =>
       searchNativeLegalTeams({
