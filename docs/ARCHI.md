@@ -272,6 +272,7 @@ keyboard navigation, and mobile readability are charter-mandated.
   refinement, replacement analysis, and seed validation, and re-checked by
   contract superRefine (talent uniqueness, lock fulfillment, seed telemetry,
   budget and sign-consistency reconciliation).
+- `packages/core/src/team-calculator-consistency.test.ts` provides permanent real-evaluator consistency coverage for search monotonicity, legal-seed dominance, determinism, and measured evaluation ceilings.
 - `holomem-board.ts` — isolated Board topology and per-talent variant model.
   It derives the orthogonal adjacency graph from all four pinned grid layouts,
   validates the timestamp-free `holomem-board-model-v1` evidence artifact and

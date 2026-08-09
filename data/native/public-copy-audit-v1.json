@@ -240,7 +240,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:436",
+      "location": "apps/web/src/components/team-calculator.tsx:437",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -998,7 +998,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T08:51:02.596Z"
+    "generatedAt": "2026-08-09T14:52:49.796Z"
   },
-  "stableDigest": "e1418e7d6c1e2068f0745edb0780258a27eae2e87fd6a316a2d61fb721ad059a"
+  "stableDigest": "94c8468ba7009abdc3135d8560fb1611ca7ebbc53c93c756093a569aeecaa1d0"
 }

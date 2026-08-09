@@ -18,6 +18,10 @@ const REQUEST: TeamCalculatorRequest = {
   })),
   requiredMemberCardIds: [],
   searchEffort: "thorough",
+  seedCandidates: [{
+    leaderOutfitCardId: "card-0",
+    memberCardIds: ["card-0", "card-1", "card-2", "card-3", "card-4"],
+  }],
 };
 
 class FakeWorker {
@@ -59,6 +63,7 @@ describe("team calculator worker client", () => {
     const worker = FakeWorker.instance;
     if (!worker) throw new Error("Worker was not created");
     expect(worker.posted).toEqual({ type: "calculate", payload: REQUEST });
+    expect(worker.posted?.payload.seedCandidates).toEqual(REQUEST.seedCandidates);
 
     const rejection = expect(task.result).rejects.toMatchObject({
       name: "TeamCalculatorWorkerError",
