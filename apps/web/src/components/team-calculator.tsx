@@ -431,6 +431,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
           {boundedSearch && result.search.teamSetsEvaluated < result.search.teamSetsInScope && (
             <p>{result.search.teamSetsEvaluated.toLocaleString("en-US")} of {result.search.teamSetsInScope.toLocaleString("en-US")} legal Member sets reached the full benchmark.</p>
           )}
+          {boundedSearch && <p className={styles.searchClaimDetail}>Constrained runs can occasionally exceed this bounded result; re-running keeps the better answer.</p>}
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
           <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>
           <em>Relative team value, not a projected Live Score.</em>
@@ -541,6 +542,9 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     | { status: "error"; message: string }
   >({ status: "idle" });
   const activeTask = useRef<TeamCalculatorTask | null>(null);
+  // Survives invalidateCalculation so edited-input re-runs still seed from the
+  // last successful answer (memory-only; never persisted).
+  const lastResult = useRef<TeamCalculatorResult | null>(null);
   const resultAnchor = useRef<HTMLDivElement>(null);
   const pendingSearch = useRef(initialSearch.toString());
 
@@ -777,6 +781,12 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     }
     if (!canCalculate) return;
 
+    // Seed from the last successful result even after roster/Oshi/lock edits
+    // invalidate the visible state — that cross-input re-run is exactly the
+    // case the seed guarantee exists for. Core validates the seed against the
+    // new inputs and drops it (reported, not an error) when it is no longer
+    // legal.
+    const previousResult = lastResult.current;
     setCalculationState({ status: "calculating" });
     const task = startTeamCalculation({
       schemaVersion: 5,
@@ -784,6 +794,14 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       ownedCards: selectedCards.map(({ card, bloomStage }) => ({ cardId: card.id, bloomStage })),
       requiredMemberCardIds: [...requiredMemberCardIds].sort(),
       searchEffort: "thorough",
+      ...(previousResult
+        ? {
+            seedCandidates: [{
+              leaderOutfitCardId: previousResult.leader.cardId,
+              memberCardIds: previousResult.members.map((member) => member.cardId),
+            }],
+          }
+        : {}),
       ...(oshiPreference.enabled && oshiPreference.talentId
         ? { oshi: { talentId: oshiPreference.talentId, role: oshiPreference.role } }
         : {}),
@@ -792,6 +810,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     void task.result.then((result) => {
       if (activeTask.current !== task) return;
       activeTask.current = null;
+      lastResult.current = result;
       setCalculationState({ status: "done", result });
       window.requestAnimationFrame(() => {
         resultAnchor.current?.scrollIntoView({
