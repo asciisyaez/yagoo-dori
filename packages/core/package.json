@@ -12,6 +12,7 @@
     "./holomem-board": "./src/holomem-board.ts",
     "./holomem-board-suggester": "./src/holomem-board-suggester.ts",
     "./holomem-board-connect": "./src/holomem-board-connect.ts",
+    "./holomem-board-contract": "./src/holomem-board-contract.ts",
     "./native-metrics": "./src/native-metrics.ts",
     "./native-ranking-benchmark": "./src/native-ranking-benchmark.ts",
     "./native-ranking-data": "./src/native-ranking-data.ts",

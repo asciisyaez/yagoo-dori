@@ -4,6 +4,7 @@ export * from "./guide-song-breakpoints";
 export * from "./holomem-board";
 export * from "./holomem-board-suggester";
 export * from "./holomem-board-connect";
+export * from "./holomem-board-contract";
 export * from "./mechanics";
 export * from "./native-guide-generator";
 export * from "./native-guide-data";

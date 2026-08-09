@@ -301,6 +301,16 @@ keyboard navigation, and mobile readability are charter-mandated.
   `conditionalOn: "current-team-and-declared-board-state"` and
   `globallyCertified: false`. `multiplier-total` is the default amplification
   model; `multiplier-additional` is supported and may reorder assignments.
+- **Worker protocol (`holomem-board-contract.ts`)** — worker-shareable Zod v1 boundary for the five
+  raw Board states and one global Connect request/result. It recomputes
+  cumulative rank income from the pinned `holomemRankPoints` catalog, validates
+  ledger arithmetic and prerequisite order, reconciles integer micro-unit
+  objectives, and checks cross-board placement structure. The response is
+  prose-free: node effects use structured fields only, while the claim is
+  fixed to `bounded-suggestion`, `derived-orthogonal-grid-adjacency`,
+  `additive-envelope-not-jointly-attainable`, and
+  `unitConnectRule: "independent-user-confirmed"` with
+  `globallyCertified: false`; the web worker/client is added by T6.
 - Ranking generation: six lenses (member/leader-outfit × three investment
   profiles) against frozen robust baselines with deterministic bootstrap
   confidence, tie-aware ranks, hysteresis, and a public correction changelog.
