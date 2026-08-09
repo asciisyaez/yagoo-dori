@@ -29,6 +29,7 @@ export type BoardEditorProps = Readonly<{
   editMode: boolean;
   copySources: readonly string[];
   onBoardChange: (patch: Partial<StoredTalentBoard>) => void;
+  onAutoUnlock: () => void;
   onToggleNode: (groupId: string) => void;
   onInspectNode: (groupId: string) => void;
   onFocusNode: (groupId: string) => void;
@@ -110,6 +111,7 @@ export function BoardEditor({
   editMode,
   copySources,
   onBoardChange,
+  onAutoUnlock,
   onToggleNode,
   onInspectNode,
   onFocusNode,
@@ -175,6 +177,11 @@ export function BoardEditor({
         {alreadySpent > totalAvailable && <span className="hb-plausibility-note">Declared cost is above the current estimate.</span>}
       </div>
       <div className="hb-board-actions">
+        <button
+          onClick={onAutoUnlock}
+          title="Derived from the catalog's auto-unlock priority; affordable nodes are taken in priority order"
+          type="button"
+        >Auto-unlock by catalog priority</button>
         <label>Copy from
           <select defaultValue="" onChange={(event) => { if (event.target.value) onCopyFrom(event.target.value); event.currentTarget.value = ""; }}>
             <option value="">Choose a member</option>
@@ -209,6 +216,7 @@ export function BoardEditor({
         onToggleNode={onToggleNode}
         onZoomIn={onZoomIn}
         onZoomOut={onZoomOut}
+        interactive
         selectedGroupId={selectedGroupId}
         suggestions={suggestions}
         talentId={talentId}

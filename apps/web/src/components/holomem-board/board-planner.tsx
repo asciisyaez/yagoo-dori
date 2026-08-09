@@ -4,7 +4,9 @@ import {
   mechanicsData,
   publicCards,
   publicData,
+  replayHolomemBoardAutoUnlock,
 } from "@yagoo-dori/core";
+import { holomemRankIncome } from "@yagoo-dori/core/holomem-board-contract";
 import type {
   HolomemBoardRequest,
   HolomemBoardResult,
@@ -441,6 +443,28 @@ export function BoardPlanner() {
   const currentTalentName = currentMember ? plannerCards.find((card) => card.talentId === currentMember.talentId)?.talentName ?? currentMember.talentId : "Board";
   const copySources = team?.members.filter((member) => member.talentId !== currentMember?.talentId).map((member) => member.talentId) ?? [];
 
+  const autoUnlock = useCallback(() => {
+    if (!currentMember || !currentBoard) return;
+    const totalPoints = currentBoard.pointMode === "direct"
+      ? currentBoard.directPoints ?? 0
+      : holomemRankIncome(currentBoard.rank) + currentBoard.extraPoints;
+    try {
+      const replay = replayHolomemBoardAutoUnlock({
+        talentId: currentMember.talentId,
+        unlockedNodeGroupIds: currentBoard.unlockedNodeGroupIds,
+        totalPoints,
+        playerLevel,
+      });
+      updateBoard(currentMember.talentId, { unlockedNodeGroupIds: [...replay.unlockedNodeGroupIds] });
+      setToast(replay.addedNodeGroupIds.length > 0
+        ? `Added ${replay.addedNodeGroupIds.length} nodes by catalog auto-unlock priority.`
+        : "No additional nodes fit the declared points and gates.");
+      window.setTimeout(() => setToast(null), 3_000);
+    } catch {
+      setRunError("The catalog auto-unlock priority could not be replayed for this Board.");
+    }
+  }, [currentBoard, currentMember, playerLevel, updateBoard]);
+
   const handleConnectHover = useCallback((groupId: string | null) => {
     if (!currentMember || !result || connectOverlay?.pinned) return;
     const assignment = groupId
@@ -524,6 +548,7 @@ export function BoardPlanner() {
             focusedGroupId={focusedGroupByTalent[currentMember.talentId] ?? null}
             highlightedPathGroupIds={currentPath}
             onBoardChange={(patch) => updateBoard(currentMember.talentId, patch)}
+            onAutoUnlock={autoUnlock}
             onClear={() => clearBoard(currentMember.talentId)}
             onConnectHover={handleConnectHover}
             onConnectPin={handleConnectPin}

@@ -79,6 +79,22 @@ export type BoardAdjacency = Readonly<{
   edgeCount: 171;
 }>;
 
+export type HolomemBoardAutoUnlockInput = Readonly<{
+  talentId: string;
+  unlockedNodeGroupIds: readonly string[];
+  totalPoints: number;
+  playerLevel: number | null;
+  catalogs?: MechanicsCatalogs;
+  adjacency?: BoardAdjacency;
+}>;
+
+export type HolomemBoardAutoUnlockResult = Readonly<{
+  unlockedNodeGroupIds: readonly string[];
+  addedNodeGroupIds: readonly string[];
+  spentPoints: number;
+  remainingPoints: number;
+}>;
+
 type MechanicsCatalogs = MechanicsData["catalogs"];
 
 function canonicalize(value: unknown): string {
@@ -220,6 +236,100 @@ export function resolveBoardNodeForTalent(
   if (defaults.length === 1) return defaults[0]!;
   if (defaults.length > 1) throw new Error(`Board node group ${groupId} has ambiguous defaults`);
   throw new Error(`Board node group ${groupId} is unresolved for talent ${talentId}`);
+}
+
+function boardNodeGateThresholds(
+  node: BoardNode,
+  catalogs: MechanicsCatalogs,
+): readonly number[] {
+  return [node.viewConditionGroupId, node.unlockConditionGroupId]
+    .filter((conditionId): conditionId is string => conditionId !== null)
+    .map((conditionId) => {
+      const condition = catalogs.boardNodeConditions.find((candidate) => candidate.id === conditionId);
+      if (!condition) throw new Error(`Board node condition ${conditionId} is missing`);
+      return condition.threshold;
+    });
+}
+
+function boardNodeGateMet(node: BoardNode, playerLevel: number | null, catalogs: MechanicsCatalogs): boolean {
+  if (playerLevel === null) return true;
+  return boardNodeGateThresholds(node, catalogs).every((threshold) => playerLevel >= threshold);
+}
+
+function reachableUnlockedGroups(
+  unlocked: ReadonlySet<string>,
+  adjacency: BoardAdjacency,
+): Set<string> {
+  const reachable = new Set<string>([adjacency.startGroupId]);
+  const pending: string[] = [adjacency.startGroupId];
+  while (pending.length > 0) {
+    const groupId = pending.shift()!;
+    for (const neighbor of adjacency.neighborsByGroupId.get(groupId) ?? []) {
+      if (!unlocked.has(neighbor) || reachable.has(neighbor)) continue;
+      reachable.add(neighbor);
+      pending.push(neighbor);
+    }
+  }
+  return reachable;
+}
+
+/**
+ * Replays the synced `autoSelectionPriority` over a declared Board as a
+ * derived catalog-priority sequence. The root is always implicit; only nodes
+ * on the derived reachable frontier can be selected, and gated nodes are
+ * skipped until their level is available. Declared fallback assumptions skip
+ * an unaffordable candidate and break equal-priority ties by group ID. This
+ * does not claim to reproduce the in-game button. A null player level means
+ * the caller has not declared a gate.
+ */
+export function replayHolomemBoardAutoUnlock(
+  input: HolomemBoardAutoUnlockInput,
+): HolomemBoardAutoUnlockResult {
+  const catalogs = input.catalogs ?? mechanicsData.catalogs;
+  const adjacency = input.adjacency ?? boardAdjacency;
+  if (!Number.isInteger(input.totalPoints) || input.totalPoints < 0) {
+    throw new Error("Auto-unlock total points must be a nonnegative integer");
+  }
+  if (input.playerLevel !== null && (!Number.isInteger(input.playerLevel) || input.playerLevel < 0)) {
+    throw new Error("Auto-unlock player level must be null or a nonnegative integer");
+  }
+
+  const groupIds = new Set(adjacency.neighborsByGroupId.keys());
+  const unlocked = new Set<string>([adjacency.startGroupId, ...input.unlockedNodeGroupIds]);
+  for (const groupId of unlocked) {
+    if (!groupIds.has(groupId)) throw new Error(`Declared Board state contains an unknown node group ${groupId}`);
+  }
+
+  const nodeByGroupId = new Map(
+    [...groupIds].map((groupId) => [groupId, resolveBoardNodeForTalent(groupId, input.talentId, catalogs)] as const),
+  );
+  let spentPoints = [...unlocked].reduce((total, groupId) => total + nodeByGroupId.get(groupId)!.pointCost, 0);
+  const addedNodeGroupIds: string[] = [];
+
+  while (spentPoints < input.totalPoints) {
+    const reachable = reachableUnlockedGroups(unlocked, adjacency);
+    const candidates = [...reachable]
+      .flatMap((groupId) => adjacency.neighborsByGroupId.get(groupId) ?? [])
+      .filter((groupId) => !unlocked.has(groupId))
+      .filter((groupId, index, groups) => groups.indexOf(groupId) === index)
+      .map((groupId) => ({ groupId, node: nodeByGroupId.get(groupId)! }))
+      .filter(({ node }) => node.autoSelectionPriority !== null)
+      .filter(({ node }) => boardNodeGateMet(node, input.playerLevel, catalogs))
+      .filter(({ node }) => spentPoints + node.pointCost <= input.totalPoints)
+      .sort((left, right) => left.node.autoSelectionPriority! - right.node.autoSelectionPriority! || left.groupId.localeCompare(right.groupId));
+    const next = candidates[0];
+    if (!next) break;
+    unlocked.add(next.groupId);
+    addedNodeGroupIds.push(next.groupId);
+    spentPoints += next.node.pointCost;
+  }
+
+  return {
+    unlockedNodeGroupIds: [...unlocked].filter((groupId) => groupId !== adjacency.startGroupId).sort(),
+    addedNodeGroupIds,
+    spentPoints,
+    remainingPoints: input.totalPoints - spentPoints,
+  };
 }
 
 export function computeHolomemBoardModelHash(model: Omit<HolomemBoardModel, "modelHash">): string {
