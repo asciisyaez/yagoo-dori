@@ -428,8 +428,8 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
           <p className={styles.searchClaimDetail}><strong>Result claim:</strong> {boundedSearch ? "bounded search; searched scope only" : "declared roster scope"}.</p>
           <strong>{result.search.searchLeaderTeamFormationsReranked.toLocaleString("en-US")}</strong>
           <small>Leader and five-Member formations compared</small>
-          {boundedSearch && result.search.unsearchedTeamSets > 0 && (
-            <p>{result.search.teamSetsConsidered.toLocaleString("en-US")} of {result.search.teamSetsInScope.toLocaleString("en-US")} legal Member sets reached the full benchmark.</p>
+          {boundedSearch && result.search.teamSetsEvaluated < result.search.teamSetsInScope && (
+            <p>{result.search.teamSetsEvaluated.toLocaleString("en-US")} of {result.search.teamSetsInScope.toLocaleString("en-US")} legal Member sets reached the full benchmark.</p>
           )}
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
           <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>

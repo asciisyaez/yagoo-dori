@@ -13,10 +13,12 @@ import {
 import { publicCards } from "./public-data";
 import {
   calculateOwnedRosterTeam,
+  enumerateLegalTeamSets,
   TEAM_CALCULATOR_CORPUS,
   TEAM_CALCULATOR_ROSTER_COMMIT,
   TeamCalculatorError,
 } from "./team-calculator";
+import { TeamCalculatorResultSchema } from "./team-calculator-contract";
 
 const OWNED = [
   { cardId: "card-00004-5-uniq-0005-00", bloomStage: 0 as const },
@@ -455,6 +457,10 @@ describe("owned-roster team calculator", () => {
       ...MULTI_VARIANT_OWNED,
       { cardId: "card-03005-5-uniq-0037-00", bloomStage: 0 as const },
       { cardId: "card-03001-5-uniq-0033-00", bloomStage: 0 as const },
+      { cardId: "card-04003-5-uniq-0044-00", bloomStage: 0 as const },
+      { cardId: "card-06005-5-uniq-0061-00", bloomStage: 0 as const },
+      { cardId: "card-00019-5-uniq-0016-00", bloomStage: 0 as const },
+      { cardId: "card-00014-5-uniq-0013-00", bloomStage: 0 as const },
     ];
     const anchorCalls: string[] = [];
     const fakeSearch = (
@@ -515,19 +521,22 @@ describe("owned-roster team calculator", () => {
     // Ticket B adds the thorough per-talent fan-out: the two Oshi variants
     // remain anchored in the original five-chart generation, and every owned
     // talent also receives the two compact coarse-chart searches.
-    expect(anchorCalls).toHaveLength(52);
+    const ownedTalentCount = new Set(
+      ownedCards.map((ownedCard) => publicCards.find((card) => card.id === ownedCard.cardId)!.talentId),
+    ).size;
+    expect(anchorCalls).toHaveLength(20 + ownedTalentCount * 4);
     expect(result).toEqual(repeated);
     expect(result.oshi?.resolution.member.status).toBe("fulfilled");
     expect(result.search).toMatchObject({
       resultClaim: "bounded-search",
       certificateKind: "heuristic-bounded",
       optimalityClaim: "not-certified",
-      teamSetsInScope: 70,
+      teamSetsInScope: 660,
       canonicalCorpusOptimalityClaim: false,
     });
-    expect(result.search.teamSetsConsidered).toBeLessThan(70);
+    expect(result.search.teamSetsConsidered).toBeLessThanOrEqual(660);
     expect(result.search.unsearchedTeamSets).toBe(
-      70 - result.search.teamSetsConsidered,
+      660 - result.search.teamSetsScreened,
     );
   }, 30_000);
 
@@ -673,6 +682,112 @@ function testFormationKey(
 }
 
 describe("bounded owned-roster search consistency", () => {
+  it("preserves the exact-path back-compat floor for a five-card roster", () => {
+    const result = calculateOwnedRosterTeam(REQUEST, { evaluate: fastEvaluator() });
+
+    expect(result.search).toMatchObject({
+      resultClaim: "certified-within-canonical-corpus-scope",
+      candidateGenerationMode: "exhaustive",
+      teamSetsInScope: 1,
+      teamSetsConsidered: 1,
+      teamSetsEvaluated: 1,
+      unsearchedTeamSets: 0,
+    });
+  }, 30_000);
+
+  it("rejects a certified claim that under-reports full-corpus evaluation", () => {
+    const result = calculateOwnedRosterTeam(REQUEST, { evaluate: fastEvaluator() });
+    const underReported = structuredClone(result);
+    // Chain order stays valid (evaluated ≤ considered), so only the explicit
+    // certified-branch pin on teamSetsEvaluated can catch the under-report.
+    underReported.search.teamSetsEvaluated = 0;
+
+    const parsed = TeamCalculatorResultSchema.safeParse(underReported);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(
+        parsed.error.issues.some(
+          (issue) => issue.message === "The public result claim must match the search certificate",
+        ),
+      ).toBe(true);
+    }
+  }, 30_000);
+
+  it("uses the formations budget band for an otherwise-bounded roster", () => {
+    const roster = BOUNDED_ROSTER.slice(0, 8);
+    const result = calculateOwnedRosterTeam(
+      {
+        ...BOUNDED_REQUEST,
+        ownedCards: roster,
+        searchEffort: "thorough" as const,
+      },
+      { evaluate: fastEvaluator() },
+    );
+
+    // Eight distinct talents produce 56 legal Member sets and eight eligible
+    // Leaders: 56 * 8 * 30 = 13,440, inside thorough's 34,560 budget while
+    // remaining above the 25-set compatibility floor.
+    expect(result.search.teamSetsInScope).toBe(56);
+    expect(result.search.resultClaim).toBe("certified-within-canonical-corpus-scope");
+    expect(result.search.candidateGenerationMode).toBe("exhaustive");
+    expect(result.search.unsearchedTeamSets).toBe(0);
+  }, 60_000);
+
+  it("enumerates deterministically and retains every old-roster set when a card is added", () => {
+    const oldCards = BOUNDED_ROSTER.slice(0, 8).map(
+      (ownedCard) => BOUNDED_CARD_BY_ID.get(ownedCard.cardId)!,
+    );
+    const oldCardIds = new Set(oldCards.map((card) => card.id));
+    const addedCard = publicCards.find(
+      (card) => !oldCardIds.has(card.id) && !oldCards.some((oldCard) => oldCard.talentId === card.talentId),
+    )!;
+    const expandedCards = [...oldCards, addedCard];
+    const oldKeys = new Set(
+      enumerateLegalTeamSets(oldCards).map((memberCardIds) => memberCardIds.join("|")),
+    );
+    const repeatedKeys = new Set(
+      enumerateLegalTeamSets([...oldCards].reverse()).map((memberCardIds) => memberCardIds.join("|")),
+    );
+    const expandedKeys = new Set(
+      enumerateLegalTeamSets(expandedCards).map((memberCardIds) => memberCardIds.join("|")),
+    );
+    const expandedRestrictedToOld = new Set(
+      [...expandedKeys].filter((key) => key.split("|").every((cardId) => oldCardIds.has(cardId))),
+    );
+
+    expect(addedCard).toBeDefined();
+    expect(repeatedKeys).toEqual(oldKeys);
+    expect(expandedRestrictedToOld).toEqual(oldKeys);
+  });
+
+  it("feeds the bounded candidate pool from the enumerated factory", () => {
+    const result = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, searchEffort: "standard" as const },
+      {
+        // The factory is the only candidate source in this fixture; a prior
+        // native-only implementation would have no finalist to evaluate.
+        search: fixedCandidateSearch([]),
+        evaluate: fastEvaluator(),
+      },
+    );
+
+    expect(result.search.resultClaim).toBe("bounded-search");
+    expect(result.search.candidateGenerationMode).toBe("bounded-native-search");
+    expect(result.search.initialLeaderTeamFormationsReranked).toBe(16);
+    expect(result.search.unsearchedTeamSets).toBeGreaterThan(0);
+    // Tier-separated telemetry: the factory coarse-screens all
+    // enumProxyKeepTeams member sets even though only enumFinalKeep candidates
+    // reach the corpus tier, so coarse-rejected sets must count as screened
+    // rather than unsearched.
+    expect(result.search.teamSetsScreened).toBeGreaterThanOrEqual(192);
+    expect(result.search.teamSetsScreened).toBeGreaterThan(result.search.teamSetsConsidered);
+    expect(result.search.teamSetsConsidered).toBeGreaterThanOrEqual(result.search.teamSetsEvaluated);
+    expect(result.search.teamSetsEvaluated).toBeGreaterThan(0);
+    expect(result.search.unsearchedTeamSets).toBe(
+      result.search.teamSetsInScope - result.search.teamSetsScreened,
+    );
+  }, 120_000);
+
   it("keeps a legal request seed at or below the returned central utility", () => {
     const baseline = calculateOwnedRosterTeam(BOUNDED_REQUEST, { evaluate: fastEvaluator() });
     const ownedIds = new Set(BOUNDED_ROSTER.map((ownedCard) => ownedCard.cardId));
@@ -888,9 +1003,10 @@ describe("bounded owned-roster search consistency", () => {
       { ...trapSeedRequest, searchEffort: "thorough" as const },
       { search: fixedCandidateSearch([BOUNDED_BASE_CANDIDATE]), evaluate },
     );
-    // Two thorough starts (trap seed + base) plus the protected standard
-    // lane's single start.
-    expect(thorough.search.localRefinementSeedCount).toBe(3);
+    // The three thorough-profile starts plus the adopted seed and the
+    // deterministic leader-anchored starts, with the protected standard lane
+    // included in the shared count.
+    expect(thorough.search.localRefinementSeedCount).toBe(8);
     expect(thorough.score.relativeUtility.central).toBe(1_200);
     expect(
       testFormationKey(thorough.leader.cardId, thorough.members.map((member) => member.cardId)),
@@ -953,8 +1069,9 @@ describe("bounded owned-roster search consistency", () => {
       new Set(BOUNDED_JOINT_CANDIDATE.memberCardIds),
     );
     expect(result.score.relativeUtility.central).toBe(10_000);
-    // One thorough start plus the protected standard lane's start.
-    expect(result.search.localRefinementSeedCount).toBe(2);
+    // The thorough starts include the leader-anchored trajectories and the
+    // protected standard lane's trajectory.
+    expect(result.search.localRefinementSeedCount).toBe(8);
   }, 60_000);
 
   it("re-runs multi-start joint search deterministically with seeds present", () => {

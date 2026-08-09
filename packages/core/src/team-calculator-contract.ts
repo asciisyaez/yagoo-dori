@@ -982,6 +982,10 @@ export const TeamCalculatorResultSchema = z
           result.search.candidateGenerationChartCount !== 0 ||
           result.search.unsearchedTeamSets !== 0 ||
           result.search.teamSetsConsidered !== result.search.teamSetsInScope ||
+          // A certified claim asserts every legal Member set received a
+          // full-corpus evaluation; with tier-separated telemetry this must be
+          // pinned on the evaluated counter explicitly.
+          result.search.teamSetsEvaluated !== result.search.teamSetsInScope ||
           result.search.localRefinementStatus !== "not-needed-exhaustive" ||
           result.search.localRefinementScope !== "not-needed-exhaustive" ||
           result.search.localRefinementIterations !== 0)) ||
@@ -991,7 +995,6 @@ export const TeamCalculatorResultSchema = z
           result.search.optimalityClaim !== "not-certified" ||
           result.search.candidateGenerationMode !== "bounded-native-search" ||
           result.search.candidateGenerationChartCount !== 5 ||
-          result.search.unsearchedTeamSets === 0 ||
           result.search.localRefinementStatus === "not-needed-exhaustive" ||
           result.search.localRefinementScope !==
             "two-stage-screened-single-or-joint-leader-and-member-moves-multi-start"))
@@ -1005,7 +1008,11 @@ export const TeamCalculatorResultSchema = z
     if (
       result.search.searchLeaderTeamFormationsReranked <
         result.search.initialLeaderTeamFormationsReranked ||
-      result.search.teamSetsConsidered > result.search.searchLeaderTeamFormationsReranked ||
+      // Only the corpus tier shares a unit with formation counts: every
+      // corpus-evaluated member set implies at least one reranked formation.
+      // The considered tier (proxy or better) may legitimately exceed the
+      // corpus formation count now that screening telemetry is tier-separated.
+      result.search.teamSetsEvaluated > result.search.searchLeaderTeamFormationsReranked ||
       result.search.utilityEvaluations !==
         result.search.candidateGenerationUtilityEvaluations +
           result.search.corpusUtilityEvaluations
