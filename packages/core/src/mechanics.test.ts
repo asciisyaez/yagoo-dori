@@ -64,6 +64,10 @@ describe("evidence-linked mechanics catalog", () => {
     expect(mechanicsData.catalogs.boardTargets).toHaveLength(79);
     expect(mechanicsData.catalogs.boardValueLimits).toHaveLength(2);
     expect(mechanicsData.catalogs.boardNodes).toHaveLength(323);
+    expect(mechanicsData.catalogs.boardNodePositions).toHaveLength(608);
+    expect(mechanicsData.catalogs.boardPointPools).toHaveLength(54);
+    expect(mechanicsData.catalogs.holomemRankPoints).toHaveLength(50);
+    expect(mechanicsData.catalogs.boardNodeConditions).toHaveLength(5);
 
     expect(new Set(mechanicsData.catalogs.activeEffects.map((effect) => effect.kind))).toEqual(
       new Set([
@@ -83,6 +87,41 @@ describe("evidence-linked mechanics catalog", () => {
         "active-skill-effect-up",
       ]),
     );
+  });
+
+  it("pins Board costs, player-level gates, and per-talent rank income", () => {
+    const nodes = mechanicsData.catalogs.boardNodes;
+    const freeNodes = nodes.filter((node) => node.pointCost === 0);
+    expect(freeNodes.map((node) => node.id)).toEqual(["S-001:1"]);
+
+    const connectionNodes = ["S-001", "S-002", "S-003", "S-004"].map(
+      (groupId) => nodes.find((node) => node.groupId === groupId && node.number === 1)!,
+    );
+    expect(connectionNodes.map((node) => node.pointCost)).toEqual([0, 1, 1, 1]);
+    const conditionById = new Map(
+      mechanicsData.catalogs.boardNodeConditions.map((condition) => [condition.id, condition.threshold]),
+    );
+    expect(connectionNodes.map((node) =>
+      node.viewConditionGroupId ? conditionById.get(node.viewConditionGroupId) : null,
+    )).toEqual([null, 10, 15, 20]);
+
+    expect(
+      nodes.reduce<Record<number, number>>((histogram, node) => {
+        histogram[node.pointCost] = (histogram[node.pointCost] ?? 0) + 1;
+        return histogram;
+      }, {}),
+    ).toEqual({ 0: 1, 1: 25, 2: 98, 3: 103, 4: 12, 5: 80, 6: 4 });
+    expect(mechanicsData.catalogs.holomemRankPoints.reduce((sum, row) => sum + row.points, 0)).toBe(361);
+    expect(mechanicsData.methodologyVersion).toBe("yd-mechanics-catalog-1.1.0");
+  });
+
+  it("rejects duplicate or extra Holomem Rank point rows", () => {
+    const broken = structuredClone(mechanicsData);
+    broken.catalogs.holomemRankPoints.push(
+      structuredClone(broken.catalogs.holomemRankPoints[49]!),
+    );
+
+    expect(MechanicsDataSchema.safeParse(broken).success).toBe(false);
   });
 
   it("compiles the eight mechanics goldens without prose parsing", () => {

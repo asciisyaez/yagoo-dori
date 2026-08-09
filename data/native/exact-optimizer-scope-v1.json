@@ -11,7 +11,7 @@
   },
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "2c1d0cdaea39a25fdc2f553c53c02d850b8ba42bc9e1a5a19dfa9ed46ada2f67",
+    "sha256": "b9b8847b3860e719ca42a11ed86f4b87a9a60baa302ffdf57787d86bbc06695d",
     "evaluatorMethodologyVersion": "yd-native-utility-1.0.0"
   },
   "songCorpus": {
@@ -24,7 +24,7 @@
     "benchmarkId": "launch-2026-07-31-matched-context-v1",
     "benchmarkSha256": "46ffad14b1376bf75d5b54fb7accd8e205c5d0b48fb7f94efb82b77c6d0aef6f",
     "timelineProjectionPath": "data/generated/holodori-ranking-corpus-timelines.json",
-    "timelineProjectionSha256": "8f08b78d4af766feb5afc4039cdccf32defb6a295ffcadb7a9763ec8473aab3b",
+    "timelineProjectionSha256": "3ce0a85597c951504749966e71c02d5e28a0094b91b677849841e13410e68e1e",
     "difficulty": "expert",
     "weighting": "equal-per-chart",
     "chartCount": 30,
@@ -221,7 +221,7 @@
     "sourceManifestPath": "data/native/chart-timeline-source.json",
     "sourceManifestSha256": "b5bfc61f546a6f06ea26e82896d614c4feee849e27b6c5ecbca91f8cfa0e77f9",
     "fullTimelinePath": "data/generated/holodori-chart-timelines.json",
-    "fullTimelineSha256": "196c49c4825f4699316f88015ef554173e47af04072211fa46ef143b6aa11474",
+    "fullTimelineSha256": "0c34e934a20e29e5ded8140ab31d12617f832ed723d2b56e535d3db19c276534",
     "revision": "holodori-best-chart-corpus-r51"
   },
   "eligibility": {
@@ -618,5 +618,5 @@
     "methodologyVersion": "yd-formation-order-timed-corpus-1.0.0",
     "globallyCertified": false
   },
-  "scopeHash": "2933f82f62eb5a9a9652d34bd3d83da40e155cd61063ff05525cc8cffa6dade0"
+  "scopeHash": "2011bf1ba368dc57e2b69940796e487f600b3a7c967059f80b2f1f30301e3e04"
 }

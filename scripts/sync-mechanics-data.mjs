@@ -36,6 +36,10 @@ const tableFiles = [
   "SkillTreeEffectTarget.json",
   "SkillTreeEffectValueLimit.json",
   "SkillTreeNode.json",
+  "SkillTreeNodePosition.json",
+  "SkillTreePoint.json",
+  "CharacterLevel.json",
+  "Condition.json",
 ];
 
 const languageFiles = [
@@ -53,6 +57,7 @@ const languageFiles = [
   "LangGeneratedLiveSpecialSkillLevel_Eng.json",
   "LangGeneratedLiveLeaderSkill_Eng.json",
   "LangHelpContent_Eng.json",
+  "LangSkillTreePoint_Eng.json",
 ];
 
 function rawUrl(file) {
@@ -165,6 +170,22 @@ const evidenceSources = [
     retrievedAt,
     transformation: "Public overlap observations retained as a provisional policy, not a verified mechanic.",
   },
+  {
+    id: "appmedia:board-guide",
+    kind: "corroboration",
+    url: "https://appmedia.jp/hololive-dreams/80246215",
+    upstreamVersion: `retrieved-${retrievedAt}`,
+    retrievedAt,
+    transformation: "Human-reviewed corroboration for Board adjacency prerequisites and the point-income boundary.",
+  },
+  {
+    id: "game8:board-connect",
+    kind: "corroboration",
+    url: "https://game8.jp/hololive-dreams/801796",
+    upstreamVersion: `retrieved-${retrievedAt}`,
+    retrievedAt,
+    transformation: "Human-reviewed corroboration for cross-board Connect-card placement exclusivity.",
+  },
 ];
 
 const runtimeRules = [
@@ -223,6 +244,41 @@ const runtimeRules = [
     blocksScoring: false,
     statement: "Cards placed in Connect nodes amplify Board effects inside the card-specific extent.",
     sourceRefs: ["official:system", "holodori-eng:SkillTreeConnectEffect.json", "holodori-eng:SkillTreeConnectEffectExtent.json"],
+  },
+  {
+    id: "board-derived-adjacency",
+    status: "corroborated",
+    blocksScoring: false,
+    statement: "A Board node can be unlocked only when an orthogonal-unit-neighbor path of unlocked nodes connects it to the free start Connect Node S-001; the neighbor relation is derived from SkillTreeNodePosition grid coordinates, not a published prerequisite table, and the derived edge set is identical across all four tree models.",
+    sourceRefs: ["holodori-eng:SkillTreeNodePosition.json", "holodori-eng:SkillTreeNode.json", "appmedia:board-guide"],
+  },
+  {
+    id: "board-point-budget-by-rank",
+    status: "verified",
+    blocksScoring: false,
+    statement: "Per-talent Board Pt income follows the CharacterLevel Holomem Rank table, with 361 cumulative points at Holomem Rank 50; SkillTreePoint provides one independent point pool for each of the 54 talents.",
+    sourceRefs: ["holodori-eng:CharacterLevel.json", "holodori-eng:SkillTreePoint.json"],
+  },
+  {
+    id: "board-achievement-point-income",
+    status: "unresolved",
+    blocksScoring: false,
+    statement: "The complete per-talent Board costs 447 points while rank income reaches 361; achievement and exchange-shop income may extend a user's budget, but its amount is not quantified by the pinned evidence and must be declared by the user.",
+    sourceRefs: ["appmedia:board-guide"],
+  },
+  {
+    id: "board-connect-placement-exclusivity",
+    status: "corroborated",
+    blocksScoring: false,
+    statement: "A card placed in a Connect Node on one member's Board cannot be placed on another member's Board; whether that card can simultaneously remain in the active unit is publicly undocumented.",
+    sourceRefs: ["game8:board-connect"],
+  },
+  {
+    id: "board-stat-stacking",
+    status: "unresolved",
+    blocksScoring: false,
+    statement: "How Board flat and permil boosts combine with other card and Leader effects is undocumented; Board recommendations use a conservative additive envelope and do not claim jointly attainable or absolute stat totals.",
+    sourceRefs: ["official:system", "appmedia:board-guide"],
   },
   {
     id: "active-conditional-override",
@@ -486,8 +542,75 @@ const boardNodes = rows("SkillTreeNode.json").map((row) => ({
   grade: Number(row.grade),
   effectId: row.skillTreeEffectId ?? null,
   characterIds: row.characterIds ?? [],
+  pointCost: Number(row.consumptionSkillTreePointQuantity ?? 0),
+  itemCosts: (row.consumptions ?? []).map((consumption) => ({
+    resourceType: enumSuffix(consumption.resourceType, "RESOURCE_TYPE_", "Board node consumption"),
+    resourceId: consumption.resourceId,
+    quantity: Number(consumption.quantity),
+  })),
+  viewConditionGroupId: row.viewConditionGroupId ?? null,
+  unlockConditionGroupId: row.unlockConditionGroupId ?? null,
+  autoSelectionPriority:
+    row.autoSelectionPriority === undefined ? null : Number(row.autoSelectionPriority),
   sourceRef: sourceId("SkillTreeNode.json"),
 }));
+
+const boardNodePositions = rows("SkillTreeNodePosition.json").map((row) => ({
+  treeModelId: row.groupId,
+  nodeGroupId: row.skillTreeNodeGroupId,
+  x: Number(row.positionX ?? 0),
+  y: Number(row.positionY ?? 0),
+  sourceRef: sourceId("SkillTreeNodePosition.json"),
+}));
+
+const boardPointPools = rows("SkillTreePoint.json").map((row) => ({
+  id: row.id,
+  talentId: row.characterId,
+  name: textById.get(row.nameLangId) ?? null,
+  sourceRef: sourceId("SkillTreePoint.json"),
+}));
+
+const characterLevelRows = rows("CharacterLevel.json");
+const characterLevelGroups = new Set(characterLevelRows.map((row) => row.groupId));
+if (characterLevelGroups.size !== 1 || !characterLevelGroups.has("level-group-1")) {
+  throw new Error("CharacterLevel must contain exactly one level-group-1 catalog");
+}
+const holomemRankPoints = characterLevelRows
+  .sort((left, right) => Number(left.level) - Number(right.level))
+  .map((row) => {
+    if (row.skillTreePointQuantity === undefined && Number(row.level) !== 1) {
+      throw new Error(`CharacterLevel rank ${row.level} is missing skillTreePointQuantity`);
+    }
+    return {
+      rank: Number(row.level),
+      points: Number(row.skillTreePointQuantity ?? 0),
+      sourceRef: sourceId("CharacterLevel.json"),
+    };
+  });
+
+const boardConditionGroupIds = new Set(
+  boardNodes.flatMap((node) => [node.viewConditionGroupId, node.unlockConditionGroupId]).filter(Boolean),
+);
+const boardNodeConditions = [...boardConditionGroupIds].sort().map((id) => {
+  const matchingRows = rows("Condition.json").filter((row) => row.groupId === id);
+  if (matchingRows.length !== 1) {
+    throw new Error(`Board node condition ${id} must resolve to exactly one upstream row`);
+  }
+  const [row] = matchingRows;
+  if (
+    !row.type?.endsWith("CONDITION_TYPE_PLAYER_LEVEL") ||
+    !row.minMaxType?.endsWith("CONDITION_MIN_MAX_TYPE_MIN") ||
+    row.min === undefined
+  ) {
+    throw new Error(`Board node condition ${id} is not a MIN player-level condition`);
+  }
+  return {
+    id,
+    kind: "player-level-at-least",
+    threshold: Number(row.min),
+    sourceRef: sourceId("Condition.json"),
+  };
+});
 
 function indexBy(records, field) {
   const result = new Map();
@@ -734,7 +857,7 @@ for (const node of boardNodes) {
 
 const payload = {
   schemaVersion: 1,
-  methodologyVersion: "yd-mechanics-catalog-1.0.0",
+  methodologyVersion: "yd-mechanics-catalog-1.1.0",
   retrievedAt,
   sourceSnapshot,
   evidenceSources,
@@ -752,6 +875,10 @@ const payload = {
     boardTargets,
     boardValueLimits,
     boardNodes,
+    boardNodePositions,
+    boardPointPools,
+    holomemRankPoints,
+    boardNodeConditions,
   },
   cards,
   coverage: {

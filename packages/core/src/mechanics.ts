@@ -182,6 +182,12 @@ const BoardValueLimitSchema = z.object({
   sourceRef: SourceRefSchema,
 });
 
+const BoardNodeItemCostSchema = z.object({
+  resourceType: z.string().min(1),
+  resourceId: z.string().min(1),
+  quantity: z.number().int().positive(),
+}).strict();
+
 const BoardNodeSchema = z.object({
   id: z.string().min(1),
   groupId: z.string().min(1),
@@ -190,8 +196,41 @@ const BoardNodeSchema = z.object({
   grade: z.number().int().positive(),
   effectId: z.string().min(1).nullable(),
   characterIds: z.array(z.string().min(1)),
+  pointCost: z.number().int().nonnegative(),
+  itemCosts: z.array(BoardNodeItemCostSchema),
+  viewConditionGroupId: z.string().min(1).nullable(),
+  unlockConditionGroupId: z.string().min(1).nullable(),
+  autoSelectionPriority: z.number().int().nullable(),
   sourceRef: SourceRefSchema,
-});
+}).strict();
+
+const BoardNodePositionSchema = z.object({
+  treeModelId: z.string().min(1),
+  nodeGroupId: z.string().min(1),
+  x: z.number().int(),
+  y: z.number().int(),
+  sourceRef: SourceRefSchema,
+}).strict();
+
+const BoardPointPoolSchema = z.object({
+  id: z.string().min(1),
+  talentId: z.string().min(1),
+  name: NullableTextSchema,
+  sourceRef: SourceRefSchema,
+}).strict();
+
+const HolomemRankPointSchema = z.object({
+  rank: z.number().int().min(1).max(50),
+  points: z.number().int().nonnegative(),
+  sourceRef: SourceRefSchema,
+}).strict();
+
+const BoardNodeConditionSchema = z.object({
+  id: z.string().min(1),
+  kind: z.literal("player-level-at-least"),
+  threshold: z.number().int().positive(),
+  sourceRef: SourceRefSchema,
+}).strict();
 
 const InvestmentStateSchema = z.object({
   level: z.number().int().positive(),
@@ -258,7 +297,7 @@ export const CardMechanicsSchema = z.object({
 
 export const MechanicsDataSchema = z.object({
   schemaVersion: z.literal(1),
-  methodologyVersion: z.literal("yd-mechanics-catalog-1.0.0"),
+  methodologyVersion: z.literal("yd-mechanics-catalog-1.1.0"),
   retrievedAt: z.iso.date(),
   sourceSnapshot: z.object({
     repository: z.url(),
@@ -280,6 +319,10 @@ export const MechanicsDataSchema = z.object({
     boardTargets: z.array(BoardTargetSchema),
     boardValueLimits: z.array(BoardValueLimitSchema),
     boardNodes: z.array(BoardNodeSchema),
+    boardNodePositions: z.array(BoardNodePositionSchema),
+    boardPointPools: z.array(BoardPointPoolSchema),
+    holomemRankPoints: z.array(HolomemRankPointSchema),
+    boardNodeConditions: z.array(BoardNodeConditionSchema),
   }),
   cards: z.array(CardMechanicsSchema).min(1),
   coverage: z.object({
@@ -297,6 +340,9 @@ export const MechanicsDataSchema = z.object({
   const triggerIds = new Set(data.catalogs.triggers.map((trigger) => trigger.id));
   const targetIds = new Set(data.catalogs.targets.map((target) => target.id));
   const extentIds = new Set(data.catalogs.connectExtents.map((extent) => extent.id));
+  const boardNodeConditionIds = new Set(data.catalogs.boardNodeConditions.map((condition) => condition.id));
+  const boardNodeGroups = new Set(data.catalogs.boardNodes.map((node) => node.groupId));
+  const boardPositionModels = new Set(data.catalogs.boardNodePositions.map((position) => position.treeModelId));
   const requireSource = (sourceRef: string, path: (string | number)[]) => {
     if (!sourceIds.has(sourceRef)) {
       context.addIssue({ code: "custom", path, message: `Unknown source ${sourceRef}` });
@@ -326,9 +372,16 @@ export const MechanicsDataSchema = z.object({
     ...data.catalogs.boardTargets,
     ...data.catalogs.boardValueLimits,
     ...data.catalogs.boardNodes,
+    ...data.catalogs.boardNodePositions,
+    ...data.catalogs.boardPointPools,
+    ...data.catalogs.holomemRankPoints,
+    ...data.catalogs.boardNodeConditions,
   ];
   for (const entry of sourceLinkedCatalogs) {
-    requireSource(entry.sourceRef, ["catalogs", "id" in entry ? entry.id : entry.kind]);
+    requireSource(entry.sourceRef, [
+      "catalogs",
+      "id" in entry ? entry.id : "kind" in entry ? entry.kind : entry.sourceRef,
+    ]);
   }
   for (const effect of data.catalogs.passiveEffects) {
     if (!targetIds.has(effect.targetId)) {
@@ -339,6 +392,72 @@ export const MechanicsDataSchema = z.object({
     if (!extentIds.has(effect.extentId)) {
       context.addIssue({ code: "custom", path: ["catalogs", "connectEffects", effect.id], message: `Unknown extent ${effect.extentId}` });
     }
+  }
+
+  for (const node of data.catalogs.boardNodes) {
+    for (const conditionId of [node.viewConditionGroupId, node.unlockConditionGroupId]) {
+      if (conditionId && !boardNodeConditionIds.has(conditionId)) {
+        context.addIssue({
+          code: "custom",
+          path: ["catalogs", "boardNodes", node.id],
+          message: `Unknown board node condition ${conditionId}`,
+        });
+      }
+    }
+  }
+
+  const positionsByGroup = new Map<string, typeof data.catalogs.boardNodePositions>();
+  for (const position of data.catalogs.boardNodePositions) {
+    const positions = positionsByGroup.get(position.nodeGroupId) ?? [];
+    positions.push(position);
+    positionsByGroup.set(position.nodeGroupId, positions);
+  }
+  for (const [groupId, positions] of positionsByGroup) {
+    if (!boardNodeGroups.has(groupId)) {
+      context.addIssue({
+        code: "custom",
+        path: ["catalogs", "boardNodePositions", groupId],
+        message: `Unknown board node group ${groupId}`,
+      });
+    }
+    if (positions.length !== 4 || new Set(positions.map((position) => position.treeModelId)).size !== 4) {
+      context.addIssue({
+        code: "custom",
+        path: ["catalogs", "boardNodePositions", groupId],
+        message: "Every board node group must have one position in each tree model",
+      });
+    }
+  }
+  for (const groupId of boardNodeGroups) {
+    const positions = data.catalogs.boardNodePositions.filter((position) => position.nodeGroupId === groupId);
+    if (positions.length !== boardPositionModels.size || positions.length !== 4) {
+      context.addIssue({
+        code: "custom",
+        path: ["catalogs", "boardNodePositions", groupId],
+        message: "Every board node group must have four positions",
+      });
+    }
+  }
+  const poolTalentIds = data.catalogs.boardPointPools.map((pool) => pool.talentId);
+  if (new Set(poolTalentIds).size !== poolTalentIds.length) {
+    context.addIssue({
+      code: "custom",
+      path: ["catalogs", "boardPointPools"],
+      message: "Board point pool talent IDs must be unique",
+    });
+  }
+  const ranks = data.catalogs.holomemRankPoints.map((entry) => entry.rank);
+  const orderedRanks = [...new Set(ranks)].sort((left, right) => left - right);
+  if (
+    ranks.length !== 50 ||
+    orderedRanks.length !== 50 ||
+    orderedRanks.some((rank, index) => rank !== index + 1)
+  ) {
+    context.addIssue({
+      code: "custom",
+      path: ["catalogs", "holomemRankPoints"],
+      message: "Holomem Rank point rows must be contiguous from 1 through 50",
+    });
   }
 
   const seenCards = new Set<string>();
