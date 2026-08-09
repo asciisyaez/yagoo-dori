@@ -81,8 +81,8 @@ function resultFixture(): TeamCalculatorResult {
   }));
   return {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 5,
-    methodologyVersion: "yd-owned-roster-calculator-5.0.0",
+    schemaVersion: 6,
+    methodologyVersion: "yd-owned-roster-calculator-6.0.0",
     roster: { commit: "a".repeat(40), ownedCardCount: 5, ownedTalentCount: 5 },
     oshi: null,
     requiredMembers: null,
@@ -177,14 +177,18 @@ function resultFixture(): TeamCalculatorResult {
       certificateKind: "heuristic-bounded",
       certificateId: null,
       scopeHash: "b".repeat(64),
-      runRecordId: "yd-owned-roster-run-v5-test",
+      runRecordId: "yd-owned-roster-run-v6-test",
       optimalityClaim: "not-certified",
       objective: "equal-chart-average-relative-utility",
       objectiveId: "yd-equal-chart-average-relative-utility-v1",
       evaluatorMethodologyVersion: "yd-native-utility-1.0.0",
       arithmeticMethodologyVersion: "yd-native-six-decimal-rounding-1.0.0",
       comparisonOrder: "canonical-card-id-order",
+      effortTier: "thorough",
+      seedCandidates: null,
+      localRefinementSeedCount: 1,
       teamSetsInScope: 12,
+      teamSetsScreened: 6,
       teamSetsConsidered: 6,
       teamSetsEvaluated: 6,
       teamSetsPruned: 0,
@@ -218,7 +222,7 @@ function resultFixture(): TeamCalculatorResult {
 describe("team calculator contract", () => {
   it("accepts exact cards and Bloom stages without any song or chart selection", () => {
     const request = TeamCalculatorRequestSchema.parse({
-      schemaVersion: 4,
+      schemaVersion: 5,
       rosterCommit: "a".repeat(40),
       ownedCards: OWNED_CARDS,
       requiredMemberCardIds: [],
@@ -233,15 +237,40 @@ describe("team calculator contract", () => {
     ).toBe(false);
   });
 
+  it("accepts the v5 effort and seed request fields with their strict shape", () => {
+    const request = TeamCalculatorRequestSchema.parse({
+      schemaVersion: 5,
+      rosterCommit: "a".repeat(40),
+      ownedCards: OWNED_CARDS,
+      requiredMemberCardIds: [],
+      searchEffort: "standard",
+      seedCandidates: [
+        {
+          leaderOutfitCardId: OWNED_CARDS[0]!.cardId,
+          memberCardIds: OWNED_CARDS.map((ownedCard) => ownedCard.cardId),
+        },
+      ],
+    });
+
+    expect(request.searchEffort).toBe("standard");
+    expect(request.seedCandidates).toHaveLength(1);
+    expect(
+      TeamCalculatorRequestSchema.safeParse({
+        ...request,
+        seedCandidates: Array.from({ length: 9 }, () => request.seedCandidates![0]),
+      }).success,
+    ).toBe(false);
+  });
+
   it("rejects duplicate card IDs and invalid Bloom", () => {
     const duplicate = TeamCalculatorRequestSchema.safeParse({
-      schemaVersion: 4,
+      schemaVersion: 5,
       rosterCommit: "a".repeat(40),
       ownedCards: [...OWNED_CARDS, OWNED_CARDS[0]],
       requiredMemberCardIds: [],
     });
     const invalidBloom = TeamCalculatorRequestSchema.safeParse({
-      schemaVersion: 4,
+      schemaVersion: 5,
       rosterCommit: "a".repeat(40),
       ownedCards: OWNED_CARDS.map((ownedCard, index) =>
         index === 0 ? { ...ownedCard, bloomStage: 6 } : ownedCard,
@@ -253,7 +282,7 @@ describe("team calculator contract", () => {
     expect(invalidBloom.success).toBe(false);
     expect(
       TeamCalculatorRequestSchema.safeParse({
-        schemaVersion: 4,
+        schemaVersion: 5,
         rosterCommit: "a".repeat(40),
         ownedCards: OWNED_CARDS,
         requiredMemberCardIds: [OWNED_CARDS[0]!.cardId, OWNED_CARDS[0]!.cardId],
@@ -265,7 +294,7 @@ describe("team calculator contract", () => {
     for (const role of ["member", "leader", "member-and-leader"] as const) {
       expect(
         TeamCalculatorRequestSchema.safeParse({
-          schemaVersion: 4,
+          schemaVersion: 5,
           rosterCommit: "a".repeat(40),
           ownedCards: OWNED_CARDS,
           requiredMemberCardIds: [],
@@ -275,7 +304,7 @@ describe("team calculator contract", () => {
     }
     expect(
       TeamCalculatorRequestSchema.safeParse({
-        schemaVersion: 4,
+        schemaVersion: 5,
         rosterCommit: "a".repeat(40),
         ownedCards: OWNED_CARDS,
         requiredMemberCardIds: [],
@@ -284,7 +313,7 @@ describe("team calculator contract", () => {
     ).toBe(false);
     expect(
       TeamCalculatorRequestSchema.safeParse({
-        schemaVersion: 4,
+        schemaVersion: 5,
         rosterCommit: "a".repeat(40),
         ownedCards: OWNED_CARDS,
         requiredMemberCardIds: [],
@@ -311,6 +340,97 @@ describe("team calculator contract", () => {
     expect(TeamCalculatorResultSchema.safeParse(corpusDrift).success).toBe(false);
     expect(TeamCalculatorResultSchema.safeParse(overclaim).success).toBe(false);
     expect(TeamCalculatorResultSchema.parse(resultFixture()).members).toHaveLength(5);
+  });
+
+  it("rejects a result whose evaluated count chain is out of order", () => {
+    const invalid = resultFixture();
+    invalid.search.teamSetsEvaluated = invalid.search.teamSetsConsidered + 1;
+
+    const parsed = TeamCalculatorResultSchema.safeParse(invalid);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(parsed.error.issues.some((issue) => issue.message === "Search coverage counts must reconcile")).toBe(true);
+    }
+  });
+
+  it("rejects seed telemetry whose counts do not reconcile", () => {
+    const invalid = resultFixture();
+    invalid.search.seedCandidates = {
+      provided: 1,
+      legal: 2,
+      adopted: 1,
+      maxAdoptedCentralUtility: 109.6,
+      evaluations: [{
+        leaderOutfitCardId: invalid.leader.cardId,
+        memberCardIds: invalid.members.map((member) => member.cardId),
+        centralUtility: 109.6,
+      }],
+    };
+
+    const parsed = TeamCalculatorResultSchema.safeParse(invalid);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(parsed.error.issues.some((issue) => issue.message === "Seed candidate counts and telemetry must reconcile")).toBe(true);
+    }
+  });
+
+  it("rejects seed telemetry that does not echo every adopted seed", () => {
+    const invalid = resultFixture();
+    invalid.search.seedCandidates = {
+      provided: 1,
+      legal: 1,
+      adopted: 1,
+      maxAdoptedCentralUtility: 100,
+      evaluations: [],
+    };
+
+    const parsed = TeamCalculatorResultSchema.safeParse(invalid);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(parsed.error.issues.some((issue) => issue.message === "Every adopted seed must be echoed with its evaluation")).toBe(true);
+    }
+  });
+
+  it("rejects a claimed seed maximum that disagrees with the echoed evaluations", () => {
+    const invalid = resultFixture();
+    invalid.search.seedCandidates = {
+      provided: 1,
+      legal: 1,
+      adopted: 1,
+      maxAdoptedCentralUtility: 90,
+      evaluations: [{
+        leaderOutfitCardId: invalid.leader.cardId,
+        memberCardIds: invalid.members.map((member) => member.cardId),
+        centralUtility: 100,
+      }],
+    };
+
+    const parsed = TeamCalculatorResultSchema.safeParse(invalid);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(parsed.error.issues.some((issue) => issue.message === "The claimed seed maximum must equal the maximum of the echoed evaluations")).toBe(true);
+    }
+  });
+
+  it("rejects an adopted seed central utility above the selected result", () => {
+    const invalid = resultFixture();
+    invalid.search.seedCandidates = {
+      provided: 1,
+      legal: 1,
+      adopted: 1,
+      maxAdoptedCentralUtility: 110,
+      evaluations: [{
+        leaderOutfitCardId: invalid.leader.cardId,
+        memberCardIds: invalid.members.map((member) => member.cardId),
+        centralUtility: 110,
+      }],
+    };
+
+    const parsed = TeamCalculatorResultSchema.safeParse(invalid);
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      expect(parsed.error.issues.some((issue) => issue.message === "The selected central utility must not be below an adopted seed")).toBe(true);
+    }
   });
 
   it("rejects globally certified formation order and mismatched certificate claims", () => {

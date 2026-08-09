@@ -778,10 +778,11 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
 
     setCalculationState({ status: "calculating" });
     const task = startTeamCalculation({
-      schemaVersion: 4,
+      schemaVersion: 5,
       rosterCommit,
       ownedCards: selectedCards.map(({ card, bloomStage }) => ({ cardId: card.id, bloomStage })),
       requiredMemberCardIds: [...requiredMemberCardIds].sort(),
+      searchEffort: "thorough",
       ...(oshiPreference.enabled && oshiPreference.talentId
         ? { oshi: { talentId: oshiPreference.talentId, role: oshiPreference.role } }
         : {}),

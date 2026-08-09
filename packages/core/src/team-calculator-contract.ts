@@ -22,6 +22,15 @@ export const TeamCalculatorOshiRoleSchema = z.enum([
   "member-and-leader",
 ]);
 
+export const TeamCalculatorSearchEffortSchema = z.enum(["standard", "thorough"]);
+
+const TeamCalculatorSeedCandidateSchema = z
+  .object({
+    leaderOutfitCardId: z.string().min(1),
+    memberCardIds: z.array(z.string().min(1)).length(5),
+  })
+  .strict();
+
 export const TeamCalculatorOshiSchema = z
   .object({
     talentId: z.string().min(1),
@@ -31,11 +40,13 @@ export const TeamCalculatorOshiSchema = z
 
 export const TeamCalculatorRequestSchema = z
   .object({
-    schemaVersion: z.literal(4),
+    schemaVersion: z.literal(5),
     rosterCommit: z.string().regex(/^[a-f0-9]{40}$/),
     ownedCards: z.array(TeamCalculatorOwnedCardSchema).min(5),
     requiredMemberCardIds: z.array(z.string().min(1)).max(5),
     oshi: TeamCalculatorOshiSchema.optional(),
+    searchEffort: TeamCalculatorSearchEffortSchema.optional(),
+    seedCandidates: z.array(TeamCalculatorSeedCandidateSchema).max(8).optional(),
   })
   .strict()
   .superRefine((request, context) => {
@@ -93,8 +104,8 @@ const CalculatorCardSchema = z
 export const TeamCalculatorResultSchema = z
   .object({
     kind: z.literal("owned-roster-team-calculation"),
-    schemaVersion: z.literal(5),
-    methodologyVersion: z.literal("yd-owned-roster-calculator-5.0.0"),
+    schemaVersion: z.literal(6),
+    methodologyVersion: z.literal("yd-owned-roster-calculator-6.0.0"),
     roster: z
       .object({
         commit: z.string().regex(/^[a-f0-9]{40}$/),
@@ -454,7 +465,30 @@ export const TeamCalculatorResultSchema = z
         evaluatorMethodologyVersion: z.literal("yd-native-utility-1.0.0"),
         arithmeticMethodologyVersion: z.literal("yd-native-six-decimal-rounding-1.0.0"),
         comparisonOrder: z.literal("canonical-card-id-order"),
+        effortTier: TeamCalculatorSearchEffortSchema,
+        seedCandidates: z
+          .object({
+            provided: z.number().int().nonnegative(),
+            legal: z.number().int().nonnegative(),
+            adopted: z.number().int().nonnegative(),
+            maxAdoptedCentralUtility: z.number().finite().nullable().optional(),
+            evaluations: z
+              .array(
+                z
+                  .object({
+                    leaderOutfitCardId: z.string().min(1),
+                    memberCardIds: z.array(z.string().min(1)).length(5),
+                    centralUtility: z.number().finite(),
+                  })
+                  .strict(),
+              )
+              .max(8),
+          })
+          .strict()
+          .nullable(),
+        localRefinementSeedCount: z.number().int().nonnegative(),
         teamSetsInScope: z.number().int().nonnegative(),
+        teamSetsScreened: z.number().int().nonnegative(),
         teamSetsConsidered: z.number().int().nonnegative(),
         teamSetsEvaluated: z.number().int().nonnegative(),
         teamSetsPruned: z.number().int().nonnegative(),
@@ -826,12 +860,78 @@ export const TeamCalculatorResultSchema = z
       }
     });
     if (
-      result.search.teamSetsConsidered > result.search.teamSetsInScope ||
-      result.search.teamSetsInScope - result.search.teamSetsConsidered !== result.search.unsearchedTeamSets ||
-      result.search.teamSetsEvaluated !== result.search.teamSetsConsidered ||
+      result.search.teamSetsEvaluated > result.search.teamSetsConsidered ||
+      result.search.teamSetsConsidered > result.search.teamSetsScreened ||
+      result.search.teamSetsScreened > result.search.teamSetsInScope ||
+      result.search.teamSetsInScope - result.search.teamSetsScreened !== result.search.unsearchedTeamSets ||
       result.search.teamSetsPruned !== 0
     ) {
       context.addIssue({ code: "custom", path: ["search"], message: "Search coverage counts must reconcile" });
+    }
+    if (
+      result.search.seedCandidates &&
+      (result.search.seedCandidates.legal > result.search.seedCandidates.provided ||
+        result.search.seedCandidates.adopted > result.search.seedCandidates.legal ||
+        (result.search.seedCandidates.adopted === 0 &&
+          result.search.seedCandidates.maxAdoptedCentralUtility !== null &&
+          result.search.seedCandidates.maxAdoptedCentralUtility !== undefined) ||
+        (result.search.seedCandidates.adopted > 0 &&
+          (result.search.seedCandidates.maxAdoptedCentralUtility === null ||
+            result.search.seedCandidates.maxAdoptedCentralUtility === undefined)))
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["search", "seedCandidates"],
+        message: "Seed candidate counts and telemetry must reconcile",
+      });
+    }
+    if (result.search.seedCandidates) {
+      // The claimed maximum is not trusted on its own: it must equal the max of
+      // the per-seed evaluations echoed alongside it, the echo must cover every
+      // adopted seed exactly once, and each echoed team must be talent-legal in
+      // shape. A caller that supplied the seeds can then verify identity; the
+      // contract verifies the arithmetic.
+      const seedTelemetry = result.search.seedCandidates;
+      if (seedTelemetry.evaluations.length !== seedTelemetry.adopted) {
+        context.addIssue({
+          code: "custom",
+          path: ["search", "seedCandidates", "evaluations"],
+          message: "Every adopted seed must be echoed with its evaluation",
+        });
+      }
+      const echoKeys = new Set(
+        seedTelemetry.evaluations.map(
+          (evaluation) => `${evaluation.leaderOutfitCardId}|${[...evaluation.memberCardIds].sort().join("|")}`,
+        ),
+      );
+      if (echoKeys.size !== seedTelemetry.evaluations.length) {
+        context.addIssue({
+          code: "custom",
+          path: ["search", "seedCandidates", "evaluations"],
+          message: "Echoed seed evaluations must be distinct teams",
+        });
+      }
+      const echoMax = seedTelemetry.evaluations.length > 0
+        ? Math.max(...seedTelemetry.evaluations.map((evaluation) => evaluation.centralUtility))
+        : null;
+      if (
+        (seedTelemetry.maxAdoptedCentralUtility ?? null) !== echoMax
+      ) {
+        context.addIssue({
+          code: "custom",
+          path: ["search", "seedCandidates", "maxAdoptedCentralUtility"],
+          message: "The claimed seed maximum must equal the maximum of the echoed evaluations",
+        });
+      }
+      for (const [index, evaluation] of seedTelemetry.evaluations.entries()) {
+        if (evaluation.centralUtility > result.score.relativeUtility.central) {
+          context.addIssue({
+            code: "custom",
+            path: ["search", "seedCandidates", "evaluations", index],
+            message: "The selected central utility must not be below an adopted seed",
+          });
+        }
+      }
     }
     if (
       (result.search.resultClaim === "certified-within-canonical-corpus-scope" &&
@@ -921,6 +1021,7 @@ export const TeamCalculatorResultSchema = z
 export type TeamCalculatorBloomStage = z.infer<typeof TeamCalculatorBloomStageSchema>;
 export type TeamCalculatorOwnedCard = z.infer<typeof TeamCalculatorOwnedCardSchema>;
 export type TeamCalculatorOshiRole = z.infer<typeof TeamCalculatorOshiRoleSchema>;
+export type TeamCalculatorSearchEffort = z.infer<typeof TeamCalculatorSearchEffortSchema>;
 export type TeamCalculatorOshi = z.infer<typeof TeamCalculatorOshiSchema>;
 export type TeamCalculatorRequest = z.infer<typeof TeamCalculatorRequestSchema>;
 export type TeamCalculatorResult = z.infer<typeof TeamCalculatorResultSchema>;

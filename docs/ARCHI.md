@@ -240,19 +240,24 @@ keyboard navigation, and mobile readability are charter-mandated.
   `native-global-bound.ts` / `native-global-search.ts` — reduced-roster global
   certificate path with Leader equivalence classes and trigger-aware bounds.
 - `team-calculator.ts` + `team-calculator-contract.ts` — the zod-validated
-  product API consumed by the Web Worker. Request schema v4 (`schemaVersion: 4`
+  product API consumed by the Web Worker. Request schema v5 (`schemaVersion: 5`
   with `ownedCards`, `requiredMemberCardIds` of up to five locked Member cards,
-  optional `oshi`); result schema v5 under
-  `yd-owned-roster-calculator-5.0.0` (per-Member selection evidence,
-  per-slot replacement impact with `effectChanges` classified by recipient
-  emptiness, `requiredMembers` fulfillment, `formationOrder` confidence, and a
-  `search` claim ledger whose `resultClaim` is
+  optional `oshi`, resolved `searchEffort`, and up to eight `seedCandidates`);
+  result schema v6 under `yd-owned-roster-calculator-6.0.0` (per-Member
+  selection evidence, per-slot replacement impact with `effectChanges`
+  classified by recipient emptiness, `requiredMembers` fulfillment,
+  `formationOrder` confidence, effort/seed telemetry, and a `search` claim
+  ledger whose `resultClaim` remains
   `certified-within-canonical-corpus-scope` or `bounded-search`). Fixed seed;
   exhaustive enumeration below the 25-team-set threshold, else beam search plus
-  coordinate ascent run to a fixpoint; locks and Oshi constraints are enforced
-  in generation, refinement, and replacement analysis, and re-checked by
-  contract superRefine (talent uniqueness, lock fulfillment, budget and
-  sign-consistency reconciliation).
+  coordinate ascent run to a fixpoint; legal request seeds bypass candidate
+  screens and receive full-corpus evaluation, while the contract enforces the
+  never-below-adopted-seed central-utility invariant and the
+  `teamSetsEvaluated ≤ teamSetsConsidered ≤ teamSetsScreened ≤ teamSetsInScope`
+  count chain. Locks and Oshi constraints are enforced in generation,
+  refinement, replacement analysis, and seed validation, and re-checked by
+  contract superRefine (talent uniqueness, lock fulfillment, seed telemetry,
+  budget and sign-consistency reconciliation).
 - `holomem-board.ts` — isolated Board topology and per-talent variant model.
   It derives the orthogonal adjacency graph from all four pinned grid layouts,
   validates the timestamp-free `holomem-board-model-v1` evidence artifact and

@@ -24,6 +24,7 @@ import {
   type TeamCalculatorOshiRole,
   type TeamCalculatorRequest,
   type TeamCalculatorResult,
+  type TeamCalculatorSearchEffort,
 } from "./team-calculator-contract";
 
 export const TEAM_CALCULATOR_ROSTER_COMMIT = publicData.sourceSnapshots.english.commit;
@@ -32,6 +33,51 @@ export const TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS = 25;
 export const TEAM_CALCULATOR_OBJECTIVE_ID = "yd-equal-chart-average-relative-utility-v1" as const;
 export const TEAM_CALCULATOR_EVALUATOR_METHODOLOGY = "yd-native-utility-1.0.0" as const;
 export const TEAM_CALCULATOR_ARITHMETIC_METHODOLOGY = "yd-native-six-decimal-rounding-1.0.0" as const;
+
+export type TeamCalculatorEffortProfile = Readonly<{
+  exactEvaluationBudget: number;
+  enumMaxTeamSets: number;
+  enumProxyKeepTeams: number;
+  enumLeadersPerTeam: number;
+  coarseKeep: number;
+  proxyKeep: number;
+  jointCoarseKeep: number;
+  ascentSeedCount: number;
+  fanoutEnabled: boolean;
+  fanoutLeaderCap: number | null;
+  seedCandidatesMax: number;
+}>;
+
+export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
+  Record<TeamCalculatorSearchEffort, TeamCalculatorEffortProfile>
+> = Object.freeze({
+  standard: Object.freeze({
+    exactEvaluationBudget: 26_880,
+    enumMaxTeamSets: 50_000,
+    enumProxyKeepTeams: 192,
+    enumLeadersPerTeam: 2,
+    coarseKeep: 64,
+    proxyKeep: 16,
+    jointCoarseKeep: 48,
+    ascentSeedCount: 1,
+    fanoutEnabled: false,
+    fanoutLeaderCap: null,
+    seedCandidatesMax: 8,
+  }),
+  thorough: Object.freeze({
+    exactEvaluationBudget: 44_800,
+    enumMaxTeamSets: 50_000,
+    enumProxyKeepTeams: 512,
+    enumLeadersPerTeam: 4,
+    coarseKeep: 96,
+    proxyKeep: 24,
+    jointCoarseKeep: 96,
+    ascentSeedCount: 4,
+    fanoutEnabled: true,
+    fanoutLeaderCap: 8,
+    seedCandidatesMax: 8,
+  }),
+});
 
 // The coordinate ascent must run to a fixpoint, not take a single step. At 1 it
 // adopted one improving swap and stopped, leaving the new incumbent's own
@@ -187,6 +233,7 @@ export const TEAM_CALCULATOR_CORPUS = Object.freeze(loadRepresentativeCorpus());
 function calculateOwnedRosterScopeHash(
   request: TeamCalculatorRequest,
   ownedCards: ReadonlyArray<{ cardId: string; bloomStage: TeamCalculatorBloomStage }>,
+  effortTier: TeamCalculatorSearchEffort,
 ): string {
   const scope = {
     schemaVersion: request.schemaVersion,
@@ -196,6 +243,17 @@ function calculateOwnedRosterScopeHash(
       .sort((left, right) => left.cardId.localeCompare(right.cardId)),
     requiredMemberCardIds: [...request.requiredMemberCardIds].sort(),
     oshi: request.oshi ?? null,
+    searchEffort: effortTier,
+    seedCandidates: [...(request.seedCandidates ?? [])]
+      .map((candidate) => ({
+        leaderOutfitCardId: candidate.leaderOutfitCardId,
+        memberCardIds: [...candidate.memberCardIds].sort(),
+      }))
+      .sort((left, right) =>
+        `${left.leaderOutfitCardId}|${left.memberCardIds.join("|")}`.localeCompare(
+          `${right.leaderOutfitCardId}|${right.memberCardIds.join("|")}`,
+        ),
+      ),
     leaderAndMemberEligibility: "all-owned-cards-with-one-card-per-talent",
     maximumFiveStarMembers: 5,
     investmentLayer: "one-copy-maximum",
@@ -802,6 +860,8 @@ export function calculateOwnedRosterTeam(
       "The saved roster is from an older card catalog. Review it before calculating again.",
     );
   }
+  const effortTier: TeamCalculatorSearchEffort = request.searchEffort ?? "thorough";
+  const effortProfile = TEAM_CALCULATOR_EFFORT_PROFILES[effortTier];
 
   const ownedCards = [...request.ownedCards]
     .sort((left, right) => left.cardId.localeCompare(right.cardId))
@@ -824,8 +884,8 @@ export function calculateOwnedRosterTeam(
       "Required Member cards must use different talents.",
     );
   }
-  const scopeHash = calculateOwnedRosterScopeHash(request, ownedCards);
-  const runRecordId = `yd-owned-roster-run-v5-${scopeHash}`;
+  const scopeHash = calculateOwnedRosterScopeHash(request, ownedCards, effortTier);
+  const runRecordId = `yd-owned-roster-run-v6-${scopeHash}`;
   const ownedTalentCount = new Set(ownedCards.map((ownedCard) => ownedCard.card.talentId)).size;
   if (ownedTalentCount < 5) {
     throw new TeamCalculatorError(
@@ -909,6 +969,18 @@ export function calculateOwnedRosterTeam(
       !oshiConstraint.leaderRequired ||
       cardById.get(candidate.leaderOutfitCardId)?.talentId === oshiConstraint.talentId;
     return memberSatisfied && leaderSatisfied;
+  };
+
+  const candidateSatisfiesSeedLegality = (candidate: Candidate): boolean => {
+    if (!ownedCardById.has(candidate.leaderOutfitCardId)) return false;
+    if (candidate.memberCardIds.length !== 5 || new Set(candidate.memberCardIds).size !== 5) {
+      return false;
+    }
+    if (candidate.memberCardIds.some((cardId) => !ownedCardById.has(cardId))) return false;
+    if (new Set(candidate.memberCardIds.map((cardId) => cardById.get(cardId)!.talentId)).size !== 5) {
+      return false;
+    }
+    return candidateSatisfiesOshi(candidate);
   };
 
   const evaluateRaw = (candidate: Candidate, chartKey: string): NativeUtilityResult => {
@@ -1001,6 +1073,19 @@ export function calculateOwnedRosterTeam(
   };
 
   const candidateMap = new Map<string, Candidate>();
+  const providedSeedCount = request.seedCandidates?.length ?? 0;
+  const legalSeedCandidates: Candidate[] = [];
+  const seenSeedKeys = new Set<string>();
+  for (const seed of (request.seedCandidates ?? []).slice(0, effortProfile.seedCandidatesMax)) {
+    const candidate: Candidate = {
+      leaderOutfitCardId: seed.leaderOutfitCardId,
+      memberCardIds: asTeamTuple(seed.memberCardIds),
+    };
+    const key = candidateKey(candidate);
+    if (seenSeedKeys.has(key) || !candidateSatisfiesSeedLegality(candidate)) continue;
+    seenSeedKeys.add(key);
+    legalSeedCandidates.push(candidate);
+  }
   let candidateGenerationChartCount = 0;
   let localRefinementStatus: TeamCalculatorResult["search"]["localRefinementStatus"] =
     "not-needed-exhaustive";
@@ -1073,6 +1158,13 @@ export function calculateOwnedRosterTeam(
     }
   }
 
+  // Request seeds are deliberately injected after native generation so they do
+  // not pass through any candidate-generation screen. They are full-corpus
+  // evaluated with the same cache and comparison rules as every other finalist.
+  for (const seed of legalSeedCandidates) {
+    candidateMap.set(candidateKey(seed), seed);
+  }
+
   let rankedCandidates = [...candidateMap.values()]
     .map((candidate) => evaluateAverage(candidate, "search"))
     .sort(compareAverage);
@@ -1141,6 +1233,22 @@ export function calculateOwnedRosterTeam(
         localRefinementStatus = "iteration-cap";
       }
     }
+  }
+
+  const adoptedSeedCentralUtilities = legalSeedCandidates.map(
+    (seed) => averageCache.get(candidateKey(seed))!.relativeUtility.central,
+  );
+  const maxAdoptedCentralUtility = adoptedSeedCentralUtilities.length > 0
+    ? Math.max(...adoptedSeedCentralUtilities)
+    : null;
+  if (
+    maxAdoptedCentralUtility !== null &&
+    selected.relativeUtility.central < maxAdoptedCentralUtility
+  ) {
+    throw new TeamCalculatorError(
+      "calculation-failed",
+      "The selected team fell below an adopted seed.",
+    );
   }
 
   const selectedCandidate = selected.candidate;
@@ -1311,8 +1419,8 @@ export function calculateOwnedRosterTeam(
 
   const result: TeamCalculatorResult = {
     kind: "owned-roster-team-calculation",
-    schemaVersion: 5,
-    methodologyVersion: "yd-owned-roster-calculator-5.0.0",
+    schemaVersion: 6,
+    methodologyVersion: "yd-owned-roster-calculator-6.0.0",
     roster: {
       commit: TEAM_CALCULATOR_ROSTER_COMMIT,
       ownedCardCount: ownedCards.length,
@@ -1429,7 +1537,28 @@ export function calculateOwnedRosterTeam(
       evaluatorMethodologyVersion: TEAM_CALCULATOR_EVALUATOR_METHODOLOGY,
       arithmeticMethodologyVersion: TEAM_CALCULATOR_ARITHMETIC_METHODOLOGY,
       comparisonOrder: "canonical-card-id-order",
+      effortTier,
+      seedCandidates: request.seedCandidates === undefined
+        ? null
+        : {
+            provided: providedSeedCount,
+            legal: legalSeedCandidates.length,
+            adopted: legalSeedCandidates.length,
+            maxAdoptedCentralUtility,
+            // Per-seed echo: identity plus evaluated central for every adopted
+            // seed, so the contract reconciles the claimed maximum against the
+            // list and a caller can verify the seeds it sent were the seeds
+            // evaluated. The contract cannot re-evaluate; identity plus
+            // arithmetic reconciliation is the enforceable ceiling.
+            evaluations: legalSeedCandidates.map((seed) => ({
+              leaderOutfitCardId: seed.leaderOutfitCardId,
+              memberCardIds: [...seed.memberCardIds],
+              centralUtility: averageCache.get(candidateKey(seed))!.relativeUtility.central,
+            })),
+          },
+      localRefinementSeedCount: exhaustive ? 0 : 1,
       teamSetsInScope: legalTeamSets,
+      teamSetsScreened: searchTeamKeys.size,
       teamSetsConsidered: searchTeamKeys.size,
       teamSetsEvaluated: searchTeamKeys.size,
       teamSetsPruned: 0,

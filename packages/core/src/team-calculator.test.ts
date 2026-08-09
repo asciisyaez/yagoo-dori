@@ -27,7 +27,7 @@ const OWNED = [
 ] as const;
 
 const REQUEST = {
-  schemaVersion: 4 as const,
+  schemaVersion: 5 as const,
   rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
   ownedCards: OWNED,
   requiredMemberCardIds: [],
@@ -44,7 +44,7 @@ const MULTI_VARIANT_OWNED = [
 
 function requestWithOshi(role: "member" | "leader" | "member-and-leader") {
   return {
-    schemaVersion: 4 as const,
+    schemaVersion: 5 as const,
     rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
     ownedCards: MULTI_VARIANT_OWNED,
     requiredMemberCardIds: [],
@@ -199,9 +199,9 @@ describe("owned-roster team calculator", () => {
       },
     );
 
-    expect(result.schemaVersion).toBe(5);
-    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-5.0.0");
-    expect(result.search.runRecordId).toMatch(/^yd-owned-roster-run-v5-/);
+    expect(result.schemaVersion).toBe(6);
+    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-6.0.0");
+    expect(result.search.runRecordId).toMatch(/^yd-owned-roster-run-v6-/);
     expect(result.alternatives.flatMap((group) => group.cards).length).toBeGreaterThan(0);
     for (const group of result.alternatives) {
       for (const card of group.cards) {
@@ -376,7 +376,7 @@ describe("owned-roster team calculator", () => {
       });
     }
     expect(result.alternatives).toHaveLength(5);
-    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-5.0.0");
+    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-6.0.0");
   }, 30_000);
 
   it("treats a locked Oshi card as satisfying the Member role without reserving another slot", () => {
@@ -465,7 +465,7 @@ describe("owned-roster team calculator", () => {
       };
     };
     const request = {
-      schemaVersion: 4 as const,
+      schemaVersion: 5 as const,
       rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
       ownedCards,
       requiredMemberCardIds: [],
@@ -588,13 +588,146 @@ const BOUNDED_ROSTER = [
 ].map((cardId) => ({ cardId, bloomStage: 0 as const }));
 
 const BOUNDED_REQUEST = {
-  schemaVersion: 4 as const,
+  schemaVersion: 5 as const,
   rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
   ownedCards: BOUNDED_ROSTER,
   requiredMemberCardIds: [],
 };
 
 describe("bounded owned-roster search consistency", () => {
+  it("keeps a legal request seed at or below the returned central utility", () => {
+    const baseline = calculateOwnedRosterTeam(BOUNDED_REQUEST, { evaluate: fastEvaluator() });
+    const ownedIds = new Set(BOUNDED_ROSTER.map((ownedCard) => ownedCard.cardId));
+    const extraCard = publicCards.find(
+      (card) => !ownedIds.has(card.id) && !BOUNDED_ROSTER.some((ownedCard) =>
+        publicCards.find((owned) => owned.id === ownedCard.cardId)?.talentId === card.talentId,
+      ),
+    );
+    if (!extraCard) throw new Error("The seed-dominance fixture needs an extra talent card.");
+
+    // Dominance is pinned, not just exercised: the seed team is the unique
+    // strictly-best formation under the injected evaluator, so the run can only
+    // pass by actually corpus-evaluating the seed and letting it win.
+    const seedLeader = baseline.leader.cardId;
+    const seedMembers = new Set(baseline.members.map((member) => member.cardId));
+    const seedAwareEvaluator = fastEvaluator((input) =>
+      input.formation.leaderOutfitCardId === seedLeader &&
+      input.formation.members.length === seedMembers.size &&
+      input.formation.members.every((member) => seedMembers.has(member.cardId))
+        ? 5_000
+        : 100,
+    );
+    const seeded = calculateOwnedRosterTeam(
+      {
+        ...BOUNDED_REQUEST,
+        ownedCards: [...BOUNDED_ROSTER, { cardId: extraCard.id, bloomStage: 0 as const }],
+        seedCandidates: [{
+          leaderOutfitCardId: baseline.leader.cardId,
+          memberCardIds: baseline.members.map((member) => member.cardId),
+        }],
+      },
+      { evaluate: seedAwareEvaluator },
+    );
+
+    expect(seeded.leader.cardId).toBe(seedLeader);
+    expect(new Set(seeded.members.map((member) => member.cardId))).toEqual(seedMembers);
+    expect(seeded.score.relativeUtility.central).toBe(5_000);
+    expect(seeded.search.seedCandidates).toMatchObject({
+      provided: 1,
+      legal: 1,
+      adopted: 1,
+      maxAdoptedCentralUtility: 5_000,
+    });
+    expect(seeded.search.seedCandidates?.evaluations).toEqual([
+      expect.objectContaining({ leaderOutfitCardId: seedLeader, centralUtility: 5_000 }),
+    ]);
+    expect(seeded.score.relativeUtility.central).toBeGreaterThanOrEqual(
+      baseline.score.relativeUtility.central,
+    );
+  }, 60_000);
+
+  it("keeps the scope hash effort- and seed-aware while seedless behavior stays identical", () => {
+    const omitted = calculateOwnedRosterTeam(BOUNDED_REQUEST, { evaluate: fastEvaluator() });
+    const thorough = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, searchEffort: "thorough" as const },
+      { evaluate: fastEvaluator() },
+    );
+    const standard = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, searchEffort: "standard" as const },
+      { evaluate: fastEvaluator() },
+    );
+
+    // Omitted effort resolves to thorough: identical result including the hash.
+    expect(omitted.search.effortTier).toBe("thorough");
+    expect(omitted.search.scopeHash).toBe(thorough.search.scopeHash);
+    // Standard changes the hash but, with no Ticket B/C machinery, nothing else.
+    expect(standard.search.effortTier).toBe("standard");
+    expect(standard.search.scopeHash).not.toBe(thorough.search.scopeHash);
+    expect(standard.score).toEqual(thorough.score);
+    expect(standard.members).toEqual(thorough.members);
+    expect(standard.leader).toEqual(thorough.leader);
+
+    // Seeds enter the hash canonically: presence changes it, ordering does not.
+    const seedA = {
+      leaderOutfitCardId: thorough.leader.cardId,
+      memberCardIds: thorough.members.map((member) => member.cardId),
+    };
+    const seedB = {
+      leaderOutfitCardId: thorough.leader.cardId,
+      memberCardIds: [...thorough.members.map((member) => member.cardId)].reverse(),
+    };
+    const seededOnce = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, seedCandidates: [seedA] },
+      { evaluate: fastEvaluator() },
+    );
+    const seededReordered = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, seedCandidates: [seedB] },
+      { evaluate: fastEvaluator() },
+    );
+    expect(seededOnce.search.scopeHash).not.toBe(thorough.search.scopeHash);
+    expect(seededReordered.search.scopeHash).toBe(seededOnce.search.scopeHash);
+  }, 120_000);
+
+  it("reports and drops an illegal unowned seed", () => {
+    const result = calculateOwnedRosterTeam(
+      {
+        ...BOUNDED_REQUEST,
+        seedCandidates: [{
+          leaderOutfitCardId: "card-not-owned",
+          memberCardIds: BOUNDED_ROSTER.slice(0, 5).map((ownedCard) => ownedCard.cardId),
+        }],
+      },
+      { evaluate: fastEvaluator() },
+    );
+
+    expect(result.search.seedCandidates).toEqual({
+      provided: 1,
+      legal: 0,
+      adopted: 0,
+      maxAdoptedCentralUtility: null,
+      evaluations: [],
+    });
+  }, 60_000);
+
+  it("is deterministic when legal request seeds are present", () => {
+    const baseline = calculateOwnedRosterTeam(BOUNDED_REQUEST, { evaluate: fastEvaluator() });
+    const seedRequest = {
+      ...BOUNDED_REQUEST,
+      searchEffort: "standard" as const,
+      seedCandidates: [{
+        leaderOutfitCardId: baseline.leader.cardId,
+        memberCardIds: baseline.members.map((member) => member.cardId),
+      }],
+    };
+    const first = calculateOwnedRosterTeam(seedRequest, { evaluate: fastEvaluator() });
+    const repeated = calculateOwnedRosterTeam(
+      { ...seedRequest, ownedCards: [...BOUNDED_ROSTER].reverse() },
+      { evaluate: fastEvaluator() },
+    );
+
+    expect(first).toEqual(repeated);
+  }, 60_000);
+
   it("keeps required cards through bounded generation, refinement, and replacements", () => {
     const requiredMemberCardIds = BOUNDED_ROSTER.slice(0, 2).map((ownedCard) => ownedCard.cardId);
     const result = calculateOwnedRosterTeam(

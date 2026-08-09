@@ -10,13 +10,14 @@ import {
 } from "./team-calculator-worker-client";
 
 const REQUEST: TeamCalculatorRequest = {
-  schemaVersion: 4,
+  schemaVersion: 5,
   rosterCommit: "a".repeat(40),
   ownedCards: Array.from({ length: 5 }, (_, index) => ({
     cardId: `card-${index}`,
     bloomStage: 0,
   })),
   requiredMemberCardIds: [],
+  searchEffort: "thorough",
 };
 
 class FakeWorker {
