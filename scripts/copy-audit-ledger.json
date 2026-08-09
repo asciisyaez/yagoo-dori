@@ -127,6 +127,22 @@
     "apps/web/src/app/methodology/page.tsx|Skills activate independently and the strongest active one is selected, evaluated as an exact expectation.|exact": {
       "disposition": "allowed-scoped",
       "justification": "Exact is bounded to the arithmetic of the modelled central lane expectation, not to any optimality or certification claim."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|Exact chart timing unavailable|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Scoped to whether pinned chart timing exists; copy withholds placement claims."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|exact|exact": {
+      "disposition": "non-technical",
+      "justification": "Internal timeline discriminant, not proof/optimizer claim."
+    },
+    "apps/web/src/app/guides/[slug]/page.tsx|Use the Standard formation while exact chart timing is unavailable.|exact": {
+      "disposition": "allowed-scoped",
+      "justification": "Missing timing evidence plus conservative fallback, no placement recommendation."
+    },
+    "apps/web/src/lib/guide-song-alternatives.ts|exact|exact": {
+      "disposition": "non-technical",
+      "justification": "Internal timeline-state discriminator preventing aggregate rows from becoming placement alternatives."
     }
   }
 }

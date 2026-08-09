@@ -22,6 +22,10 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
     await expect(disclaimer).toHaveCount(1);
     await expect(disclaimer).toBeVisible();
     await expect(footer.getByText(DISCLAIMER, { exact: true })).toHaveCount(1);
+    await expect(page.locator("body")).not.toContainText(/Art pending rights/i);
+    await expect(page.locator("body")).not.toContainText(/AppMedia/i);
+    await expect(page.locator("body")).not.toContainText(/illustrative (?:data|PI|score)/i);
+    await expect(page.locator("body")).not.toContainText(/Provisional/i);
   }
 });
 
@@ -224,18 +228,6 @@ test("AZKi profile renders the pinned real illustration, stats, skills, and Outf
   await expect(page.getByRole("heading", { name: "Special", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Graceful Scent" })).toBeVisible();
   await expect(page.getByText("Grants Sense UP 120% to all.", { exact: true })).toBeVisible();
-});
-
-test("public decision pages do not expose editorial or research-workflow placeholders", async ({ page }) => {
-  test.setTimeout(60_000);
-
-  for (const route of corePublicRoutes) {
-    await page.goto(route, GOTO_OPTIONS);
-    await expect(page.locator("body")).not.toContainText(/Art pending rights/i);
-    await expect(page.locator("body")).not.toContainText(/AppMedia/i);
-    await expect(page.locator("body")).not.toContainText(/illustrative (?:data|PI|score)/i);
-    await expect(page.locator("body")).not.toContainText(/Provisional/i);
-  }
 });
 
 test("skip link provides a keyboard path into the main content", async ({ page }) => {

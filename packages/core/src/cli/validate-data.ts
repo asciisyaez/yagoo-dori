@@ -1,5 +1,5 @@
 import { publicData, publicCards } from "../public-data";
-import { mechanicsData } from "../mechanics";
+import { mechanicsData, type MechanicsData } from "../mechanics";
 import { nativeGuideData } from "../native-guide-data";
 import { nativeRankingData } from "../native-ranking-data";
 import { nativeRankingChangelogData } from "../native-ranking-changelog-data";
@@ -7,11 +7,140 @@ import { nativeRankingBenchmark } from "../native-ranking-benchmark";
 import { chartTimelineData } from "../chart-timelines";
 import { rankingCorpusTimelineData } from "../ranking-corpus-timelines";
 import { assertRelativeUtilityModelValidationCurrent } from "../relative-utility-model-validation";
-import { guideRatingTimelineByKey, guideRatingTimelineData } from "../guide-rating-timelines";
+import {
+  guideRatingTimelineByKey,
+  guideRatingTimelineData,
+  guideRatingTimelineUnavailableByKey,
+} from "../guide-rating-timelines";
 import { songContextData } from "../song-contexts";
 import { exactOptimizerScope } from "../exact-optimizer-scope";
 
 assertRelativeUtilityModelValidationCurrent();
+
+function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentIds: Set<string>) {
+  const nodeGroupIds = [...new Set(catalogs.boardNodes.map((node) => node.groupId))].sort();
+  const positionModels = [...new Set(catalogs.boardNodePositions.map((position) => position.treeModelId))].sort();
+  if (nodeGroupIds.length !== 152 || positionModels.length !== 4) {
+    throw new Error("Board catalog must contain 152 node groups and four tree models.");
+  }
+
+  const positionsByModel = new Map<string, Map<string, { x: number; y: number }>>();
+  for (const position of catalogs.boardNodePositions) {
+    const model = positionsByModel.get(position.treeModelId) ?? new Map();
+    if (model.has(position.nodeGroupId)) {
+      throw new Error(`Duplicate Board position for ${position.treeModelId}/${position.nodeGroupId}.`);
+    }
+    model.set(position.nodeGroupId, { x: position.x, y: position.y });
+    positionsByModel.set(position.treeModelId, model);
+  }
+
+  const edgeSets = positionModels.map((modelId) => {
+    const positions = positionsByModel.get(modelId);
+    if (!positions || positions.size !== 152) {
+      throw new Error(`${modelId} must contain exactly 152 Board positions.`);
+    }
+    const cells = new Set([...positions.values()].map((cell) => `${cell.x},${cell.y}`));
+    if (cells.size !== positions.size) {
+      throw new Error(`${modelId} contains duplicate Board grid cells.`);
+    }
+    for (const groupId of nodeGroupIds) {
+      if (!positions.has(groupId)) {
+        throw new Error(`${modelId} is missing the ${groupId} Board position.`);
+      }
+    }
+    const edges = new Set<string>();
+    for (let leftIndex = 0; leftIndex < nodeGroupIds.length; leftIndex += 1) {
+      const leftId = nodeGroupIds[leftIndex]!;
+      const left = positions.get(leftId)!;
+      for (let rightIndex = leftIndex + 1; rightIndex < nodeGroupIds.length; rightIndex += 1) {
+        const rightId = nodeGroupIds[rightIndex]!;
+        const right = positions.get(rightId)!;
+        if (Math.abs(left.x - right.x) + Math.abs(left.y - right.y) === 1) {
+          edges.add(`${leftId}~${rightId}`);
+        }
+      }
+    }
+    return edges;
+  });
+
+  const canonicalEdges = edgeSets[0]!;
+  if (canonicalEdges.size !== 171 || edgeSets.some((edges) => edges.size !== canonicalEdges.size)) {
+    throw new Error("Board adjacency must contain 171 edges in every tree model.");
+  }
+  for (const edges of edgeSets.slice(1)) {
+    if ([...canonicalEdges].some((edge) => !edges.has(edge))) {
+      throw new Error("Board adjacency edge sets differ between tree models.");
+    }
+  }
+  const neighbors = new Map<string, Set<string>>(nodeGroupIds.map((groupId) => [groupId, new Set()]));
+  for (const edge of canonicalEdges) {
+    const [leftId, rightId] = edge.split("~");
+    neighbors.get(leftId!)!.add(rightId!);
+    neighbors.get(rightId!)!.add(leftId!);
+  }
+  const reached = new Set<string>(["S-001"]);
+  const queue = ["S-001"];
+  for (let index = 0; index < queue.length; index += 1) {
+    for (const neighbor of neighbors.get(queue[index]!) ?? []) {
+      if (!reached.has(neighbor)) {
+        reached.add(neighbor);
+        queue.push(neighbor);
+      }
+    }
+  }
+  if (reached.size !== 152) {
+    throw new Error(`Board adjacency is not connected from S-001 (${reached.size}/152).`);
+  }
+
+  const poolTalentIds = catalogs.boardPointPools.map((pool) => pool.talentId);
+  if (
+    new Set(poolTalentIds).size !== poolTalentIds.length ||
+    poolTalentIds.length !== publicTalentIds.size ||
+    poolTalentIds.some((talentId) => !publicTalentIds.has(talentId))
+  ) {
+    throw new Error("Board point pools do not match the current public talent set.");
+  }
+
+  const nodesByGroup = new Map<string, typeof catalogs.boardNodes>();
+  for (const node of catalogs.boardNodes) {
+    const group = nodesByGroup.get(node.groupId) ?? [];
+    group.push(node);
+    nodesByGroup.set(node.groupId, group);
+  }
+  const resolveNode = (groupId: string, talentId: string) => {
+    const group = nodesByGroup.get(groupId)!;
+    if (group.length === 1) return group[0]!;
+    const talentVariant = group.filter((node) => node.characterIds.includes(talentId));
+    if (talentVariant.length === 1) return talentVariant[0]!;
+    const defaultVariant = group.filter((node) => node.characterIds.length === 0);
+    if (talentVariant.length === 0 && defaultVariant.length === 1) return defaultVariant[0]!;
+    throw new Error(`Board node variant is ambiguous for ${groupId}/${talentId}.`);
+  };
+  for (const talentId of poolTalentIds) {
+    let wholeBoardCost = 0;
+    let inScopeCost = 0;
+    for (const groupId of nodeGroupIds) {
+      const node = resolveNode(groupId, talentId);
+      wholeBoardCost += node.pointCost;
+      if (["leader", "card", "connection"].includes(node.kind)) inScopeCost += node.pointCost;
+    }
+    if (wholeBoardCost !== 447 || inScopeCost !== 301) {
+      throw new Error(
+        `Board cost drift for ${talentId}: expected 447/301, got ${wholeBoardCost}/${inScopeCost}.`,
+      );
+    }
+  }
+
+  console.log(
+    `Board validation: ${poolTalentIds.length} pools, ${positionModels.length}x152 positions, ` +
+      `${canonicalEdges.size} invariant connected edges, uniform costs 447 whole/301 leader+card+connection.`,
+  );
+}
+
+assertBoardCatalogs(
+  mechanicsData.catalogs,
+  new Set(publicCards.map((card) => card.talentId)),
+);
 
 const sampleIds = [
   "card-00013-5-uniq-0002-00",
@@ -134,14 +263,35 @@ const publishedGuideChartKeys = new Set(
     guide.ratingSongComparisons.map((comparison) => comparison.chartKey),
   ),
 );
+const projectedGuideChartKeys = new Set([
+  ...guideRatingTimelineData.charts.map((chart) => chart.key),
+  ...guideRatingTimelineData.unavailableCharts.map((chart) => chart.key),
+]);
 if (
-  publishedGuideChartKeys.size !== guideRatingTimelineData.charts.length ||
-  [...publishedGuideChartKeys].some((chartKey) => !guideRatingTimelineByKey.has(chartKey))
+  publishedGuideChartKeys.size !== projectedGuideChartKeys.size ||
+  [...publishedGuideChartKeys].some((chartKey) => !projectedGuideChartKeys.has(chartKey))
 ) {
-  throw new Error("Compact guide timelines do not cover the exact published rating-song set.");
+  throw new Error("Compact guide timelines do not cover the published rating-song set.");
 }
 for (const guide of nativeGuideData.guides) {
   for (const comparison of guide.ratingSongComparisons) {
+    if (comparison.noteTimeline === "unavailable") {
+      const unavailable = guideRatingTimelineUnavailableByKey.get(comparison.chartKey);
+      const sourceUnavailable = unavailableChartByKey.get(comparison.chartKey);
+      if (
+        !unavailable ||
+        !sourceUnavailable ||
+        unavailable.expectedChartHash !== sourceUnavailable.upstreamChartHash ||
+        unavailable.fullComboNoteCount !== sourceUnavailable.fullComboNoteCount ||
+        unavailable.reason !== sourceUnavailable.reason ||
+        comparison.orderStatus !== "indeterminate" ||
+        comparison.comparisonMode !== "aggregate-formation-only" ||
+        (comparison.advantageOverReferencePercent !== null) !== comparison.changesReferenceFormation
+      ) {
+        throw new Error(`${guide.slug}/${comparison.chartKey} unavailable comparison evidence drifted.`);
+      }
+      continue;
+    }
     const compact = guideRatingTimelineByKey.get(comparison.chartKey);
     const exact = exactChartByKey.get(comparison.chartKey);
     if (
