@@ -9,6 +9,7 @@
     "./chart-timelines": "./src/chart-timelines.ts",
     "./guide-rating-timelines": "./src/guide-rating-timelines.ts",
     "./mechanics": "./src/mechanics.ts",
+    "./holomem-board": "./src/holomem-board.ts",
     "./native-metrics": "./src/native-metrics.ts",
     "./native-ranking-benchmark": "./src/native-ranking-benchmark.ts",
     "./native-ranking-data": "./src/native-ranking-data.ts",
