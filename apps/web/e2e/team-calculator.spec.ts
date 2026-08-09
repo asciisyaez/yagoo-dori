@@ -246,7 +246,7 @@ test("a six-card roster calculates a legal Leader and five Members off the main 
   ]);
   await expect(page.locator("[class*='memberTiming']")).toHaveCount(5);
   await expect(page.locator("[class*='orderSummary']")).toContainText(
-    /Win share|stable starting order/,
+    /Win share \d+\.\d% · max regret \d+\.\d bp/,
   );
   await expect(page.getByRole("heading", { name: "Why each Member is here" })).toBeVisible();
   await expect(page.locator("[class*='memberEvidenceCard']")).toHaveCount(5);

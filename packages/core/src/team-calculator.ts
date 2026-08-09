@@ -692,9 +692,17 @@ function buildReplacementImpact(input: {
     const afterRecipients = targetIds(after);
     const beforeCoverage = before?.activeChartCount ?? 0;
     const afterCoverage = after?.activeChartCount ?? 0;
-    const change = !after
-      ? "lost" as const
-      : !before
+    // Classify by recipient emptiness, not key presence: the contract re-derives
+    // change from the recipient arrays, and an effect whose target resolves to
+    // zero eligible recipients (possible for cross-attribute or cross-group
+    // passives a future patch may add) is present-but-reaching-nobody. Deriving
+    // both sides from the same arrays keeps producer and contract consistent by
+    // construction; on current data the two rules coincide.
+    const change = afterRecipients.length === 0
+      ? beforeRecipients.length === 0
+        ? null
+        : "lost" as const
+      : beforeRecipients.length === 0
         ? "gained" as const
         : beforeRecipients.join("|") !== afterRecipients.join("|") || beforeCoverage !== afterCoverage
           ? "retargeted" as const

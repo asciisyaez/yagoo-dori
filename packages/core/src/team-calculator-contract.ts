@@ -333,6 +333,37 @@ export const TeamCalculatorResultSchema = z
                           message: "Central delta must reconcile with the displayed before and after values",
                         });
                       }
+                      // Sign consistency between the per-chart tally and the averages: a
+                      // producer bug that swapped before/after in the per-chart loop but
+                      // not in the averages would otherwise ship silently.
+                      if (impact.chartsImproved === 30 && impact.centralDelta <= 0) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["chartsImproved"],
+                          message: "All-charts-improved requires a positive central delta",
+                        });
+                      }
+                      if (impact.chartsWorsened === 30 && impact.centralDelta >= 0) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["chartsWorsened"],
+                          message: "All-charts-worsened requires a negative central delta",
+                        });
+                      }
+                      if (impact.perChartDeltaPercent.maximum < 0 && impact.chartsImproved !== 0) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["chartsImproved"],
+                          message: "No chart can improve when every per-chart delta is negative",
+                        });
+                      }
+                      if (impact.perChartDeltaPercent.minimum > 0 && impact.chartsWorsened !== 0) {
+                        context.addIssue({
+                          code: "custom",
+                          path: ["chartsWorsened"],
+                          message: "No chart can worsen when every per-chart delta is positive",
+                        });
+                      }
                     }),
                 }).strict(),
               )

@@ -440,7 +440,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
       {alternatives.length > 0 && (
         <section className={styles.alternativesPanel}>
           <header><div><span>Swap impact report</span><h3>One-for-one replacements</h3></div><small>With the recommended Leader</small></header>
-          <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it moves both teams together, so it is not attached to a swap delta. Formation order does not move the before/after value here because calculator comparisons use canonical order.</p>
+          <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it usually moves both teams together — the range note on each report flags the cases where the bounds disagree — so it is not attached to a swap delta. Formation order does not move the before/after value because the modeled value is order-invariant: Special coverage is time-averaged across the song rather than credited to one starting order.</p>
           <div className={styles.alternativeGroups}>
             {alternatives.map((group) => {
               const replaced = result.members.find((member) => member.cardId === group.replacesCardId);
@@ -465,7 +465,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                           <div className={styles.alternativeValueLine}>
                             <span>Team value</span>
                             <strong>{formatUtility(result.score.relativeUtility.central)} → {formatUtility(alternative.relativeUtility.central)}</strong>
-                            <b data-improvement={impact.centralDelta > 0.05}>{formatSignedUtility(impact.centralDelta)}</b>
+                            <b data-improvement={impact.centralDelta >= 0.5}>{formatSignedUtility(impact.centralDelta)}</b>
                             <small>{formatSignedPercent(chartChange)}</small>
                           </div>
                           <p className={styles.alternativeRobustness}>Improved {impact.chartsImproved}/30 charts · worsened {impact.chartsWorsened}/30 · tied {impact.chartsTied}/30.</p>
