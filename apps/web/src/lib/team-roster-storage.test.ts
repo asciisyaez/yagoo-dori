@@ -5,6 +5,7 @@ import {
   emptyTeamRoster,
   loadTeamRoster,
   saveTeamRoster,
+  saveTeamRosterBoardFields,
   saveTeamRosterCalculatorFields,
 } from "./team-roster-storage";
 
@@ -251,6 +252,67 @@ describe("team calculator roster persistence", () => {
     expect(loaded.roster.oshi).toEqual({ enabled: true, talentId: "talent-a", role: "leader" });
     expect(loaded.roster.playerLevel).toBe(12);
     expect(loaded.roster.boards).toEqual({ "talent-a": board });
+  });
+
+  it("preserves calculator fields when the Board planner autosaves its own fields", () => {
+    const storage = new MemoryStorage();
+    saveTeamRoster(storage, {
+      ...emptyTeamRoster("commit-a"),
+      cards: { "card-one": 2 },
+      oshi: { enabled: true, talentId: "talent-a", role: "member" },
+      requiredMemberCardIds: ["card-one"],
+    });
+
+    const board = {
+      rank: 14,
+      pointMode: "direct" as const,
+      extraPoints: 0,
+      directPoints: 24,
+      unlockedNodeGroupIds: ["S-001"],
+      connectPlacements: { "S-002": "card-one" },
+    };
+    saveTeamRosterBoardFields(storage, {
+      rosterCommit: "commit-a",
+      playerLevel: 18,
+      boards: { "talent-a": board },
+    });
+
+    expect(loadTeamRoster(storage, "commit-a", new Set(["card-one"])).roster).toEqual({
+      ...emptyTeamRoster("commit-a"),
+      cards: { "card-one": 2 },
+      oshi: { enabled: true, talentId: "talent-a", role: "member" },
+      requiredMemberCardIds: ["card-one"],
+      playerLevel: 18,
+      boards: { "talent-a": board },
+    });
+  });
+
+  it("preserves readable calculator fields when the planner writes over an unsupported version", () => {
+    const storage = new MemoryStorage();
+    // A future/foreign version tag must not cost the user their calculator
+    // data when the Board planner autosaves.
+    storage.setItem(
+      TEAM_ROSTER_STORAGE_KEY,
+      JSON.stringify({
+        version: 999,
+        rosterCommit: "commit-a",
+        cards: { "card-one": 2 },
+        oshi: { enabled: true, talentId: "talent-a", role: "leader" },
+        requiredMemberCardIds: ["card-one"],
+      }),
+    );
+
+    saveTeamRosterBoardFields(storage, {
+      rosterCommit: "commit-a",
+      playerLevel: 7,
+      boards: {},
+    });
+
+    const loaded = loadTeamRoster(storage, "commit-a", new Set(["card-one"]));
+    expect(loaded.roster.cards).toEqual({ "card-one": 2 });
+    expect(loaded.roster.oshi).toEqual({ enabled: true, talentId: "talent-a", role: "leader" });
+    expect(loaded.roster.requiredMemberCardIds).toEqual(["card-one"]);
+    expect(loaded.roster.playerLevel).toBe(7);
   });
 
   it("recovers from malformed versions and invalid Bloom values", () => {
