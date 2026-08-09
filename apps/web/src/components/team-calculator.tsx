@@ -434,7 +434,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
           <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>
           <em>Relative team value, not a projected Live Score.</em>
-          <p className={styles.searchClaimDetail}>The range spans the unresolved targeting and overlap readings; the central value is the ranked answer, not the midpoint. Team value is order-invariant in this model — formation order changes Special timing, shown separately below. The <Link href="/methodology">methodology page</Link> documents the shared evaluation model and its limits.</p>
+          <p className={styles.searchClaimDetail}>The range spans the unresolved targeting and overlap readings; the central value is the ranked answer rather than the middle of the range. Team value is order-invariant in this model — formation order changes Special timing, shown separately below. The <Link href="/methodology">methodology page</Link> documents the shared evaluation model and its limits.</p>
         </section>
       </div>
 

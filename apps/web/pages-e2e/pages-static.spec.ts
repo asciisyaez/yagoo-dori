@@ -105,7 +105,7 @@ test("prefixed navigation, deep routes, metadata, and local artwork survive stat
   await expectVisibleLocalImages(page);
 
   await page.goto(prefixed("/guides/"), { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1, name: "Build teams for rating songs." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Build teams for each holomem’s own songs." })).toBeVisible();
   const guideLink = page.locator('a[href*="/guides/"]').filter({ has: page.locator("img") }).first();
   const guideHref = await guideLink.getAttribute("href");
   expect(guideHref).toMatch(new RegExp(`^${basePath}/guides/.+/$`));
