@@ -249,16 +249,26 @@ keyboard navigation, and mobile readability are charter-mandated.
   `formationOrder` confidence, effort/seed telemetry, and a `search` claim
   ledger whose `resultClaim` remains
   `certified-within-canonical-corpus-scope` or `bounded-search`). Fixed seed;
-  exhaustive enumeration below the 25-team-set threshold, else beam search plus
-  profile-scoped multi-start ascent (including joint leader-change/member-swap
-  neighbours) run to fixpoints; thorough effort also adds deterministic
-  per-talent anchor fan-out. Legal request seeds bypass candidate screens and
+  exhaustive evaluation when `teamSetsInScope * eligibleLeaders * 30` fits the
+  effort-tier evaluation budget, with the 25-team-set exact floor retained for
+  compatibility; otherwise bounded search enumerates all legal Member sets up
+  to the 200,000-set CPU-only factory cap, ranks them with the zero-evaluation
+  arithmetic proxy, and screens the profile-sized factory pool through
+  coarse→proxy keeps before it reaches the corpus-tier candidate pool. Bounded
+  runs then use beam search plus profile-scoped multi-start ascent (including
+  joint leader-change/member-swap neighbours) run to fixpoints; thorough effort
+  also adds deterministic per-talent fan-out and leader-anchored starts from
+  the factory's proxy-top Member sets. Legal request seeds bypass candidate screens and
   receive full-corpus evaluation. The bounded result is selected as the
   never-below-best-seen argmax over every full-corpus candidate evaluated in the
   run, while the contract enforces the
   never-below-adopted-seed central-utility invariant and the
   `teamSetsEvaluated ≤ teamSetsConsidered ≤ teamSetsScreened ≤ teamSetsInScope`
-  count chain. Locks and Oshi constraints are enforced in generation,
+  count chain, where the tiers are tracked separately during search (screened =
+  any evaluation tier touched the Member set, considered = the set advanced past
+  the coarse screen, evaluated = full-corpus) and downstream tiers are unioned
+  upward so the chain holds by construction; replacement-analysis screening does
+  not join these counters. Locks and Oshi constraints are enforced in generation,
   refinement, replacement analysis, and seed validation, and re-checked by
   contract superRefine (talent uniqueness, lock fulfillment, seed telemetry,
   budget and sign-consistency reconciliation).

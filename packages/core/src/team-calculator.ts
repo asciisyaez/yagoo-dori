@@ -39,6 +39,10 @@ export type TeamCalculatorEffortProfile = Readonly<{
   enumMaxTeamSets: number;
   enumProxyKeepTeams: number;
   enumLeadersPerTeam: number;
+  enumCoarseKeep: number;
+  enumFinalKeep: number;
+  enumLeaderStartCap: number;
+  enumLeaderStartSetKeep: number | null;
   coarseKeep: number;
   proxyKeep: number;
   jointCoarseKeep: number;
@@ -54,10 +58,14 @@ export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
   Record<TeamCalculatorSearchEffort, TeamCalculatorEffortProfile>
 > = Object.freeze({
   standard: Object.freeze({
-    exactEvaluationBudget: 26_880,
-    enumMaxTeamSets: 50_000,
+    exactEvaluationBudget: 8_640,
+    enumMaxTeamSets: 200_000,
     enumProxyKeepTeams: 192,
     enumLeadersPerTeam: 2,
+    enumCoarseKeep: 48,
+    enumFinalKeep: 16,
+    enumLeaderStartCap: 0,
+    enumLeaderStartSetKeep: null,
     coarseKeep: 64,
     proxyKeep: 16,
     jointCoarseKeep: 48,
@@ -69,10 +77,14 @@ export const TEAM_CALCULATOR_EFFORT_PROFILES: Readonly<
     seedCandidatesMax: 8,
   }),
   thorough: Object.freeze({
-    exactEvaluationBudget: 44_800,
-    enumMaxTeamSets: 50_000,
+    exactEvaluationBudget: 34_560,
+    enumMaxTeamSets: 200_000,
     enumProxyKeepTeams: 512,
     enumLeadersPerTeam: 4,
+    enumCoarseKeep: 128,
+    enumFinalKeep: 48,
+    enumLeaderStartCap: 4,
+    enumLeaderStartSetKeep: 32,
     coarseKeep: 96,
     proxyKeep: 24,
     jointCoarseKeep: 96,
@@ -132,6 +144,11 @@ type SearchRunner = (
 ) => NativeCanonicalCandidateSearchResult;
 type UtilityRunner = (input: NativeUtilityInput) => NativeUtilityResult;
 type MemberTuple = readonly [string, string, string, string, string];
+type OwnedCalculatorCard = Readonly<{
+  cardId: string;
+  bloomStage: TeamCalculatorBloomStage;
+  card: PublicCard;
+}>;
 type Candidate = Readonly<{
   leaderOutfitCardId: string;
   memberCardIds: MemberTuple;
@@ -454,7 +471,7 @@ function asTeamTuple(ids: readonly string[]): MemberTuple {
   return [...ids].sort() as unknown as MemberTuple;
 }
 
-function enumerateLegalTeamSets(
+export function enumerateLegalTeamSets(
   cards: readonly PublicCard[],
   requiredTalentId?: string,
   requiredMemberCardIds: readonly string[] = [],
@@ -873,6 +890,77 @@ function baseParameterProxy(
   );
 }
 
+function shouldUseExhaustiveSearch(
+  teamSetsInScope: number,
+  eligibleLeaderCount: number,
+  effortProfile: TeamCalculatorEffortProfile,
+): boolean {
+  return (
+    teamSetsInScope <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS ||
+    teamSetsInScope * eligibleLeaderCount * CORPUS_CHART_COUNT <= effortProfile.exactEvaluationBudget
+  );
+}
+
+function enumerateBoundedCandidatePool(input: Readonly<{
+  ownedCards: readonly OwnedCalculatorCard[];
+  eligibleLeaderCardIds: readonly string[];
+  requiredTalentId: string | undefined;
+  requiredMemberCardIds: readonly string[];
+  teamSetsInScope: number;
+  effortProfile: TeamCalculatorEffortProfile;
+}>): Readonly<{
+  memberSets: readonly MemberTuple[];
+  candidates: readonly Candidate[];
+}> {
+  const memberSets = enumerateLegalTeamSets(
+    input.ownedCards.map((ownedCard) => ownedCard.card),
+    input.requiredTalentId,
+    input.requiredMemberCardIds,
+  );
+  if (memberSets.length !== input.teamSetsInScope) {
+    throw new TeamCalculatorError(
+      "calculation-failed",
+      "Bounded member-set enumeration did not reconcile.",
+    );
+  }
+
+  const bloomStageByCardId = new Map(
+    input.ownedCards.map((ownedCard) => [ownedCard.cardId, ownedCard.bloomStage] as const),
+  );
+  const memberSetProxy = memberSets
+    .map((memberCardIds) => ({
+      memberCardIds,
+      proxy: memberCardIds.reduce(
+        (total, cardId) => total + baseParameterProxy(cardId, bloomStageByCardId.get(cardId)!),
+        0,
+      ),
+    }))
+    .sort(
+      (left, right) =>
+        right.proxy - left.proxy ||
+        teamKey(left.memberCardIds).localeCompare(teamKey(right.memberCardIds)),
+    )
+    .slice(0, input.effortProfile.enumProxyKeepTeams);
+  const rankedLeaderCardIds = [...input.eligibleLeaderCardIds]
+    .sort(
+      (left, right) =>
+        baseParameterProxy(right, bloomStageByCardId.get(right)!) -
+          baseParameterProxy(left, bloomStageByCardId.get(left)!) ||
+        left.localeCompare(right),
+    )
+    .slice(0, input.effortProfile.enumLeadersPerTeam);
+  const candidates: Candidate[] = [];
+  for (const memberSet of memberSetProxy) {
+    for (const leaderOutfitCardId of rankedLeaderCardIds) {
+      candidates.push({ leaderOutfitCardId, memberCardIds: memberSet.memberCardIds });
+    }
+  }
+  return {
+    memberSets: memberSetProxy.map((entry) => entry.memberCardIds),
+    candidates,
+  };
+}
+
 /**
  * Calculates one general-purpose team against the frozen 21:9 reference/current
  * Expert corpus. Web callers invoke this synchronous deterministic core only in
@@ -977,6 +1065,11 @@ export function calculateOwnedRosterTeam(
     requiredMemberTalentId,
     requiredMemberCardIds,
   );
+  const exhaustive = shouldUseExhaustiveSearch(
+    legalTeamSets,
+    eligibleLeaderCardIds.length,
+    effortProfile,
+  );
   const search = dependencies.search ?? searchNativeCanonicalCandidates;
   const evaluate = dependencies.evaluate ?? evaluateNativeRelativeUtility;
   const rawCache = new Map<string, NativeUtilityResult>();
@@ -986,6 +1079,11 @@ export function calculateOwnedRosterTeam(
   const coarseCache = new Map<string, UtilityInterval>();
   const proxyCache = new Map<string, UtilityInterval>();
   const searchTeamKeys = new Set<string>();
+  // Member sets touched at the cheaper screening tiers. Telemetry unions the
+  // downstream tiers so screened ⊇ considered ⊇ evaluated holds by
+  // construction even for seeds, which bypass the screens entirely.
+  const coarseTeamKeys = new Set<string>();
+  const proxyTeamKeys = new Set<string>();
   const searchFormationKeys = new Set<string>();
   const replacementFormationKeys = new Set<string>();
   const requiredMemberCardIdSet = new Set(requiredMemberCardIds);
@@ -1082,12 +1180,16 @@ export function calculateOwnedRosterTeam(
     return result;
   };
 
-  const evaluateProxy = (rawCandidate: Candidate): UtilityInterval => {
+  const evaluateProxy = (
+    rawCandidate: Candidate,
+    purpose: "search" | "replacement" = "search",
+  ): UtilityInterval => {
     const candidate: Candidate = {
       leaderOutfitCardId: rawCandidate.leaderOutfitCardId,
       memberCardIds: asTeamTuple(rawCandidate.memberCardIds),
     };
     const key = candidateKey(candidate);
+    if (purpose === "search") proxyTeamKeys.add(teamKey(candidate.memberCardIds));
     const cached = proxyCache.get(key);
     if (cached) return cached;
     const result = averageIntervals(
@@ -1099,12 +1201,16 @@ export function calculateOwnedRosterTeam(
     return result;
   };
 
-  const evaluateCoarse = (rawCandidate: Candidate): UtilityInterval => {
+  const evaluateCoarse = (
+    rawCandidate: Candidate,
+    purpose: "search" | "replacement" = "search",
+  ): UtilityInterval => {
     const candidate: Candidate = {
       leaderOutfitCardId: rawCandidate.leaderOutfitCardId,
       memberCardIds: asTeamTuple(rawCandidate.memberCardIds),
     };
     const key = candidateKey(candidate);
+    if (purpose === "search") coarseTeamKeys.add(teamKey(candidate.memberCardIds));
     const cached = coarseCache.get(key);
     if (cached) return cached;
     const result = averageIntervals(
@@ -1116,8 +1222,27 @@ export function calculateOwnedRosterTeam(
     return result;
   };
 
+  const screenFactoryPool = (
+    candidates: readonly Candidate[],
+    profile: TeamCalculatorEffortProfile,
+  ): Candidate[] => {
+    const coarseFinalists = candidates
+      .map((candidate) => ({ candidate, relativeUtility: evaluateCoarse(candidate) }))
+      .sort(compareScreened)
+      .slice(0, profile.enumCoarseKeep)
+      .map((entry) => entry.candidate);
+    return coarseFinalists
+      .map((candidate) => ({ candidate, relativeUtility: evaluateProxy(candidate) }))
+      .sort(compareScreened)
+      .slice(0, profile.enumFinalKeep)
+      .map((entry) => entry.candidate);
+  };
+
   const candidateMap = new Map<string, Candidate>();
   const preFanoutCandidateKeys = new Set<string>();
+  const standardEnumerationCandidateKeys = new Set<string>();
+  const standardEnumerationCandidates = new Map<string, Candidate>();
+  let factoryProxyMemberSets: readonly MemberTuple[] = [];
   const providedSeedCount = request.seedCandidates?.length ?? 0;
   const legalSeedCandidates: Candidate[] = [];
   const seenSeedKeys = new Set<string>();
@@ -1151,7 +1276,7 @@ export function calculateOwnedRosterTeam(
     }
   };
 
-  if (legalTeamSets <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS) {
+  if (exhaustive) {
     const teams = enumerateLegalTeamSets(
       ownedCards.map((ownedCard) => ownedCard.card),
       requiredMemberTalentId,
@@ -1201,9 +1326,44 @@ export function calculateOwnedRosterTeam(
         }
       }
 
-      // Snapshot the pool before fan-out so the protected standard lane can be
-      // ranked over exactly the candidates a standalone standard run would see.
+      // Keep the native pool separate from the profile-sized enumeration pool:
+      // thorough's protected standard lane must replay the same bounded pool
+      // that a standalone standard request would construct.
       for (const key of candidateMap.keys()) preFanoutCandidateKeys.add(key);
+
+      if (legalTeamSets <= effortProfile.enumMaxTeamSets) {
+        const factoryPool = enumerateBoundedCandidatePool({
+          ownedCards,
+          eligibleLeaderCardIds,
+          requiredTalentId: requiredMemberTalentId,
+          requiredMemberCardIds,
+          teamSetsInScope: legalTeamSets,
+          effortProfile,
+        });
+        factoryProxyMemberSets = factoryPool.memberSets;
+        for (const candidate of screenFactoryPool(factoryPool.candidates, effortProfile)) {
+          candidateMap.set(candidateKey(candidate), candidate);
+        }
+
+        if (effortTier === "thorough") {
+          const standardFactoryPool = enumerateBoundedCandidatePool({
+            ownedCards,
+            eligibleLeaderCardIds,
+            requiredTalentId: requiredMemberTalentId,
+            requiredMemberCardIds,
+            teamSetsInScope: legalTeamSets,
+            effortProfile: TEAM_CALCULATOR_EFFORT_PROFILES.standard,
+          });
+          for (const candidate of screenFactoryPool(
+            standardFactoryPool.candidates,
+            TEAM_CALCULATOR_EFFORT_PROFILES.standard,
+          )) {
+            const key = candidateKey(candidate);
+            standardEnumerationCandidateKeys.add(key);
+            standardEnumerationCandidates.set(key, candidate);
+          }
+        }
+      }
 
       if (effortProfile.fanoutEnabled) {
         const proxyByCardId = new Map<string, number>();
@@ -1306,7 +1466,7 @@ export function calculateOwnedRosterTeam(
   }
   const initialLeaderTeamFormationsReranked = rankedCandidates.length;
 
-  if (legalTeamSets > TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS) {
+  if (!exhaustive) {
     const buildStarts = (
       ranked: readonly AverageEvaluation[],
       distinctMemberSetCount: number,
@@ -1448,6 +1608,42 @@ export function calculateOwnedRosterTeam(
     };
 
     const thoroughStarts = buildStarts(rankedCandidates, effortProfile.ascentSeedCount);
+    const thoroughStartKeys = new Set(thoroughStarts.map((start) => candidateKey(start.candidate)));
+    if (
+      effortTier === "thorough" &&
+      effortProfile.enumLeaderStartCap > 0 &&
+      effortProfile.enumLeaderStartSetKeep !== null &&
+      factoryProxyMemberSets.length > 0
+    ) {
+      const proxyTopMemberSet = factoryProxyMemberSets[0]!;
+      const leadersRankedByCoarse = eligibleLeaderCardIds
+        .map((leaderOutfitCardId) => {
+          const candidate = { leaderOutfitCardId, memberCardIds: proxyTopMemberSet };
+          return { candidate, relativeUtility: evaluateCoarse(candidate) };
+        })
+        .filter(({ candidate }) => candidateSatisfiesOshi(candidate))
+        .sort(compareScreened)
+        .slice(0, effortProfile.enumLeaderStartCap);
+      for (const { candidate: leaderCandidate } of leadersRankedByCoarse) {
+        const leaderAnchoredCandidate = factoryProxyMemberSets
+          .slice(0, effortProfile.enumLeaderStartSetKeep)
+          .map((memberCardIds) => ({
+            candidate: { leaderOutfitCardId: leaderCandidate.leaderOutfitCardId, memberCardIds },
+            relativeUtility: evaluateCoarse({
+              leaderOutfitCardId: leaderCandidate.leaderOutfitCardId,
+              memberCardIds,
+            }),
+          }))
+          .filter(({ candidate }) => candidateSatisfiesOshi(candidate))
+          .sort(compareScreened)[0];
+        if (!leaderAnchoredCandidate) continue;
+        const evaluation = evaluateAverage(leaderAnchoredCandidate.candidate, "search");
+        const key = candidateKey(evaluation.candidate);
+        if (thoroughStartKeys.has(key)) continue;
+        thoroughStarts.push(evaluation);
+        thoroughStartKeys.add(key);
+      }
+    }
     runAscentLane(thoroughStarts, effortProfile);
     let protectedLaneStartCount = 0;
     if (effortTier === "thorough") {
@@ -1460,10 +1656,18 @@ export function calculateOwnedRosterTeam(
       // shared, so the replay is cheap and its fixpoints join the selection.
       const standardProfile = TEAM_CALCULATOR_EFFORT_PROFILES.standard;
       const seedKeys = new Set(legalSeedCandidates.map((seed) => candidateKey(seed)));
-      const standardRanked = rankedCandidates.filter((evaluation) => {
-        const key = candidateKey(evaluation.candidate);
-        return preFanoutCandidateKeys.has(key) || seedKeys.has(key);
-      });
+      const standardOnlyEvaluations = [...standardEnumerationCandidates.values()]
+        .map((candidate) => evaluateAverage(candidate, "search"));
+      const standardRanked = [...rankedCandidates, ...standardOnlyEvaluations]
+        .filter((evaluation) => {
+          const key = candidateKey(evaluation.candidate);
+          return (
+            preFanoutCandidateKeys.has(key) ||
+            standardEnumerationCandidateKeys.has(key) ||
+            seedKeys.has(key)
+          );
+        })
+        .sort(compareAverage);
       const standardStarts = buildStarts(standardRanked, standardProfile.ascentSeedCount);
       runAscentLane(standardStarts, standardProfile);
       protectedLaneStartCount = standardStarts.length;
@@ -1548,7 +1752,6 @@ export function calculateOwnedRosterTeam(
 
   const synergies = accumulateCorpusSynergies(selectedCandidate, evaluateRaw);
 
-  const exhaustive = legalTeamSets <= TEAM_CALCULATOR_MAX_EXACT_TEAM_SETS;
   const alternatives = members.map((member) => {
     if (requiredMemberCardIdSet.has(member.cardId)) {
       return {
@@ -1594,7 +1797,7 @@ export function calculateOwnedRosterTeam(
       : replacementCandidates
           .map((entry) => ({
             ...entry,
-            relativeUtility: evaluateCoarse(entry.candidate),
+            relativeUtility: evaluateCoarse(entry.candidate, "replacement"),
           }))
           .sort(compareScreened)
           .slice(0, REPLACEMENT_COARSE_FINALIST_COUNT);
@@ -1603,7 +1806,7 @@ export function calculateOwnedRosterTeam(
       : coarseReplacements
           .map((entry) => ({
             ...entry,
-            relativeUtility: evaluateProxy(entry.candidate),
+            relativeUtility: evaluateProxy(entry.candidate, "replacement"),
           }))
           .sort(compareScreened)
           .slice(0, REPLACEMENT_CORPUS_FINALIST_COUNT);
@@ -1661,6 +1864,14 @@ export function calculateOwnedRosterTeam(
       cards,
     };
   });
+
+  // Tiered member-set telemetry: screened = any tier touched the set,
+  // considered = the set advanced past the coarse screen (proxy or corpus),
+  // evaluated = the set received a full-corpus search evaluation. Downstream
+  // tiers are unioned so the count chain holds even for screen-bypassing seeds
+  // and for the exhaustive path, which never uses the cheaper tiers.
+  const consideredTeamKeys = new Set([...proxyTeamKeys, ...searchTeamKeys]);
+  const screenedTeamKeys = new Set([...coarseTeamKeys, ...consideredTeamKeys]);
 
   const result: TeamCalculatorResult = {
     kind: "owned-roster-team-calculation",
@@ -1803,11 +2014,11 @@ export function calculateOwnedRosterTeam(
           },
       localRefinementSeedCount: exhaustive ? 0 : localRefinementSeedCount,
       teamSetsInScope: legalTeamSets,
-      teamSetsScreened: searchTeamKeys.size,
-      teamSetsConsidered: searchTeamKeys.size,
+      teamSetsScreened: screenedTeamKeys.size,
+      teamSetsConsidered: consideredTeamKeys.size,
       teamSetsEvaluated: searchTeamKeys.size,
       teamSetsPruned: 0,
-      unsearchedTeamSets: legalTeamSets - searchTeamKeys.size,
+      unsearchedTeamSets: legalTeamSets - screenedTeamKeys.size,
       optimalityGap: exhaustive ? 0 : null,
       candidateGenerationMode: exhaustive ? "exhaustive" : "bounded-native-search",
       candidateGenerationChartCount,
