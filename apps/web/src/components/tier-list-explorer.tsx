@@ -60,7 +60,7 @@ const lenses: ReadonlyArray<{
   caption: string;
 }> = [
   { id: "one-copy-maximum", label: "Standard Manual", caption: "One copy · max non-dupe growth" },
-  { id: "low-investment", label: "Low Investment", caption: "Early progression" },
+  { id: "low-investment", label: "Low Investment", caption: "Entry level" },
   { id: "duplicate-enabled-ceiling", label: "Max Ceiling", caption: "Duplicate boosts enabled" },
 ];
 

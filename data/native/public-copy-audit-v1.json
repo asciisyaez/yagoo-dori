@@ -132,7 +132,7 @@
       "file": "apps/web/src/app/methodology/page.tsx",
       "context": "It is not a Live Score forecast.",
       "term": "score",
-      "location": "apps/web/src/app/methodology/page.tsx:618",
+      "location": "apps/web/src/app/methodology/page.tsx:621",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Live Score appears inside an explicit denial that the measurement forecasts it."
@@ -962,7 +962,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T05:55:47.488Z"
+    "generatedAt": "2026-08-09T08:35:59.578Z"
   },
-  "stableDigest": "277bf2132f7331d4443342075e94386c4be8791213234faa8b7db8734570ff5f"
+  "stableDigest": "0880a0eaade95072bab3a8189ae533829a585f1d125fc3c9e2db8ee9f91249e9"
 }

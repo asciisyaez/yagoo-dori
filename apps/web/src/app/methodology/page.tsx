@@ -330,8 +330,9 @@ export default function MethodologyPage() {
           <li>
             <strong>E<sub>param</sub></strong>
             <span>
-              Leader and Passive parameter effects, added together. Effects accumulate additively
-              with no cap and no cross-multiplication between categories.
+              Leader and Passive parameter effects, added together. The model accumulates effects
+              additively with no cap and no cross-multiplication between categories — a modelling
+              choice; the game does not document its stacking order.
             </span>
           </li>
           <li>
@@ -392,8 +393,8 @@ export default function MethodologyPage() {
         <p>
           A card is never scored alone. It is dropped into a fixed context — a specific chart, a
           specific Leader, a specific set of four partners and a specific formation slot — and then
-          every legal alternative from the frozen comparison cohort of {comparisonCohortSize} cards
-          is dropped into that same slot in turn. The card&rsquo;s value in that context is
+          every legal alternative from the frozen comparison cohort of {comparisonCohortSize} 4★
+          and 5★ cards is dropped into that same slot in turn. The card&rsquo;s value in that context is
         </p>
         <p className="methodology-formula methodology-formula-block">
           m<sub>i</sub> = ( u<sub>candidate</sub> − mean(u<sub>alternatives</sub>) ) ÷ max( u<sub>candidate</sub>, u<sub>alternatives</sub> )
@@ -420,7 +421,8 @@ export default function MethodologyPage() {
             <dt>Chart corpus</dt>
             <dd>
               {nativeRankingData.corpus.length} Expert charts — {referenceChartCount} frozen
-              reference charts plus the {currentChartCount} newest current charts
+              reference charts plus the {currentChartCount} newest current charts at the frozen
+              retrieval cutoff
             </dd>
           </div>
           <div>
@@ -442,7 +444,8 @@ export default function MethodologyPage() {
             <dt>Held fixed everywhere</dt>
             <dd>
               Manual play, all-Perfect judgement, full Life, no event bonus, and a declared-neutral
-              Board and collection state
+              Board and collection state. Everything here describes free Live play; event and
+              ranked modes are outside the model.
             </dd>
           </div>
         </div>
@@ -634,6 +637,18 @@ export default function MethodologyPage() {
           <li>
             <strong>It does not price availability.</strong> Banner history, rate-ups and how hard a
             card is to obtain are outside the model entirely.
+          </li>
+          <li>
+            <strong>Conditional skills are measured under an even partner rotation, and the two big
+            condition families sit at very different satisfaction rates there.</strong> Across the
+            frozen Member-lens contexts, attribute-count conditions (cute/pure/happy at least N) are
+            live in a median 82% of a card&rsquo;s matched contexts, while generation-count
+            conditions are live in a median 23% — and the two families do not overlap: every
+            generation-gated card is measured in-condition less often than every attribute-gated
+            card. A player who builds the generation around such a card plays it in-condition far
+            more often than the rotation does. The Peak metric (the top decile) is the designed
+            counterweight, but at an equal index a generation-gated card was measured under a
+            harder average condition than an attribute-gated one.
           </li>
           <li>
             <strong>The three progression lenses mostly agree, but not entirely.</strong>{" "}

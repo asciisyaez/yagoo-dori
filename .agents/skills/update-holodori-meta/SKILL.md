@@ -43,6 +43,14 @@ Present:
 - native ranking and guide deltas;
 - verification evidence.
 
+Tripwire — singer-conditional skills vs the frozen corpus: the frozen 30-chart
+ranking benchmark covers only 24 of 54 talents as singers, and the game ships a
+per-talent `music-character` trigger family that no current card uses. If a
+patch introduces a card whose skill uses a `music-character` (or other
+singer-conditional) trigger for a talent that sings nothing in the frozen
+corpus, that skill would be measured permanently inactive. Flag it to the user
+as a corpus-refreeze question instead of silently intaking the card.
+
 Do not commit, deploy, or publish unless the user separately requests it.
 
 ## Stop instead of guessing
