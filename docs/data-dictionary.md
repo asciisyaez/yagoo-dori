@@ -53,9 +53,10 @@ linked to a pinned HolodoriDB file through `sourceRef`; the two independent corr
 
 The row cost histogram is `{0:1,1:25,2:98,3:103,4:12,5:80,6:4}`. Resolving one applicable variant per
 group and talent yields a uniform 447-point whole-board cost and 301-point Leader + Card + Connection
-subtotal for all 54 talents. Rank income alone therefore leaves an 86-point whole-board gap. Additional
-achievement or exchange-shop income is an unresolved, user-declared budget extension; the catalog does
-not quantify it.
+subtotal for all 54 talents. Rank income alone therefore leaves an 86-point whole-board gap. The game's
+help text attributes Board Points to Holomem Rank increases and routes achievement and exchange rewards
+to node unlock materials, documenting no additional point channel — the gap may simply be unreachable.
+Any extra points a user holds remain a user-declared budget extension; the catalog does not quantify one.
 
 Five non-scoring runtime rules bound later Board tooling: derived adjacency is corroborated; rank income
 and per-talent pools are corroborated (the 361-point sum reads directly from CharacterLevel rows, but the

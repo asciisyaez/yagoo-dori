@@ -154,6 +154,7 @@ const BoardEffectSchema = z.object({
   passiveTriggerId: z.string().min(1).nullable(),
   characterTrigger: z.string().min(1),
   description: NullableTextSchema,
+  liveActiveSkillId: z.string().min(1).nullable(),
   sourceRef: SourceRefSchema,
 });
 

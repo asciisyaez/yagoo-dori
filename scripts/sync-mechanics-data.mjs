@@ -208,7 +208,26 @@ const runtimeRules = [
     status: "verified",
     blocksScoring: false,
     statement: "Member cards have Active, Passive, and once-per-Live Special skills.",
-    sourceRefs: ["game8:skill-order", "holodori-eng:Card.json"],
+    sourceRefs: ["game8:skill-order", "holodori-eng:Card.json", "holodori-eng:LangHelpContent_Eng.json"],
+  },
+  {
+    id: "active-probability-tiers",
+    // The ...PermilMultiply suffix is unexplained upstream, but Setting.json
+    // carries no base activation-probability constant for it to multiply, and
+    // the three observed values order exactly against the Low/Medium/High
+    // probability words in the English skill text - so the model reads the
+    // permil as the absolute per-check activation probability.
+    status: "corroborated",
+    blocksScoring: false,
+    statement: "LiveActiveSkillLevel.activationProbabilityPermilMultiply takes exactly the values 370, 460, and 550, rendered in skill text as Low, Medium, and High Probability; the pinned settings table carries no base activation-probability constant for it to multiply, so the value is read as the absolute per-check activation probability.",
+    sourceRefs: ["holodori-eng:LiveActiveSkillLevel.json", "holodori-eng:LangGeneratedLiveActiveSkillLevel_Eng.json"],
+  },
+  {
+    id: "member-upgrade-bonus-neutralized",
+    status: "verified",
+    blocksScoring: false,
+    statement: "Every owned Member at level 20 or above contributes a collection-wide Unit Score multiplier (CardLevel.liveDeckPowerPermyriadUp), summed across the whole collection and capped at 50%; because it multiplies every compared formation equally, the model holds it declared-neutral at zero in all relative comparisons.",
+    sourceRefs: ["holodori-eng:CardLevel.json", "holodori-eng:LangHelpContent_Eng.json"],
   },
   {
     id: "card-parameter-formula",
@@ -266,10 +285,17 @@ const runtimeRules = [
   },
   {
     id: "board-achievement-point-income",
+    // The game's own help text attributes Board Points to Holomem Rank
+    // increases and routes achievement/exchange rewards to node unlock
+    // MATERIALS, matching the SkillTreeNode split between
+    // consumptionSkillTreePointQuantity and the item consumptions array - so
+    // no additional point channel is documented, and the 86-point gap between
+    // rank income (361) and the full board (447) may simply be unreachable.
+    // A wiki guide claims extra point income; the help text contradicts it.
     status: "unresolved",
     blocksScoring: false,
-    statement: "The complete per-talent Board costs 447 points while rank income reaches 361; achievement and exchange-shop income may extend a user's budget, but its amount is not quantified by the pinned evidence and must be declared by the user.",
-    sourceRefs: ["appmedia:board-guide"],
+    statement: "The complete per-talent Board costs 447 points while Holomem Rank income reaches 361; the help text attributes Board Points to rank increases and routes achievement and exchange rewards to unlock materials, documenting no additional point channel, so any extra points a user holds must be user-declared rather than assumed.",
+    sourceRefs: ["holodori-eng:LangHelpContent_Eng.json", "holodori-eng:SkillTreeNode.json", "appmedia:board-guide"],
   },
   {
     id: "board-connect-placement-exclusivity",
@@ -350,10 +376,14 @@ const runtimeRules = [
   },
   {
     id: "auto-live-skill-policy",
-    status: "unresolved",
+    // The in-game help and FAQ document the policy (Auto applies Perfect-gated
+    // effects, per faq-live and help-rhythm), and the songs artifact encodes it
+    // as rules.autoLive; the full enabled-effect set on Auto still lacks a
+    // client-side observation, so this stays short of verified.
+    status: "corroborated",
     blocksScoring: true,
-    statement: "Auto Live scoring coefficients exist, but the exact set of enabled skill effects requires validation.",
-    sourceRefs: [],
+    statement: "Auto Live scoring coefficients exist and the help text documents Auto as satisfying Perfect-gated effects, but the exact set of enabled skill effects on Auto still requires client-side validation.",
+    sourceRefs: ["holodori-eng:LangHelpContent_Eng.json"],
   },
 ];
 
@@ -511,6 +541,9 @@ const boardEffects = rows("SkillTreeEffect.json").map((row) => ({
   passiveTriggerId: row.skillTreeEffectPassiveTriggerGroupId ?? null,
   characterTrigger: enumSuffix(row.characterTriggerType, "SKILL_TREE_EFFECT_CHARACTER_TRIGGER_TYPE_", "Board character trigger"),
   description: textById.get(row.descriptionLangId) ?? null,
+  // Carried so the leader-skill-grant effect kind is representable: two rows
+  // grant the Leader an additional Live Active skill by id.
+  liveActiveSkillId: row.liveActiveSkillId ?? null,
   sourceRef: sourceId("SkillTreeEffect.json"),
 }));
 

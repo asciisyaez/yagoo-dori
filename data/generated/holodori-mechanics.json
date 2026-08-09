@@ -432,7 +432,28 @@
       "statement": "Member cards have Active, Passive, and once-per-Live Special skills.",
       "sourceRefs": [
         "game8:skill-order",
-        "holodori-eng:Card.json"
+        "holodori-eng:Card.json",
+        "holodori-eng:LangHelpContent_Eng.json"
+      ]
+    },
+    {
+      "id": "active-probability-tiers",
+      "status": "corroborated",
+      "blocksScoring": false,
+      "statement": "LiveActiveSkillLevel.activationProbabilityPermilMultiply takes exactly the values 370, 460, and 550, rendered in skill text as Low, Medium, and High Probability; the pinned settings table carries no base activation-probability constant for it to multiply, so the value is read as the absolute per-check activation probability.",
+      "sourceRefs": [
+        "holodori-eng:LiveActiveSkillLevel.json",
+        "holodori-eng:LangGeneratedLiveActiveSkillLevel_Eng.json"
+      ]
+    },
+    {
+      "id": "member-upgrade-bonus-neutralized",
+      "status": "verified",
+      "blocksScoring": false,
+      "statement": "Every owned Member at level 20 or above contributes a collection-wide Unit Score multiplier (CardLevel.liveDeckPowerPermyriadUp), summed across the whole collection and capped at 50%; because it multiplies every compared formation equally, the model holds it declared-neutral at zero in all relative comparisons.",
+      "sourceRefs": [
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:LangHelpContent_Eng.json"
       ]
     },
     {
@@ -513,8 +534,10 @@
       "id": "board-achievement-point-income",
       "status": "unresolved",
       "blocksScoring": false,
-      "statement": "The complete per-talent Board costs 447 points while rank income reaches 361; achievement and exchange-shop income may extend a user's budget, but its amount is not quantified by the pinned evidence and must be declared by the user.",
+      "statement": "The complete per-talent Board costs 447 points while Holomem Rank income reaches 361; the help text attributes Board Points to rank increases and routes achievement and exchange rewards to unlock materials, documenting no additional point channel, so any extra points a user holds must be user-declared rather than assumed.",
       "sourceRefs": [
+        "holodori-eng:LangHelpContent_Eng.json",
+        "holodori-eng:SkillTreeNode.json",
         "appmedia:board-guide"
       ]
     },
@@ -624,10 +647,12 @@
     },
     {
       "id": "auto-live-skill-policy",
-      "status": "unresolved",
+      "status": "corroborated",
       "blocksScoring": true,
-      "statement": "Auto Live scoring coefficients exist, but the exact set of enabled skill effects requires validation.",
-      "sourceRefs": []
+      "statement": "Auto Live scoring coefficients exist and the help text documents Auto as satisfying Perfect-gated effects, but the exact set of enabled skill effects on Auto still requires client-side validation.",
+      "sourceRefs": [
+        "holodori-eng:LangHelpContent_Eng.json"
+      ]
     }
   ],
   "catalogs": {
@@ -7138,6 +7163,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Performance UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7148,6 +7174,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Performance UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7158,6 +7185,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Learn a Holomem Skill. For 7s, GOOD or higher becomes PERFECT. Every 20s with a Low Probability chance.",
+        "liveActiveSkillId": "live_active_skill-skill_tree-judgement_enhance",
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7168,6 +7196,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Learn a Holomem Skill. Restores 100 LIFE. Every 20s with a Medium Probability chance.",
+        "liveActiveSkillId": "live_active_skill-skill_tree-life_recovery",
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7178,6 +7207,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Enhance a Holomem Skill. For 10s, GOOD or higher becomes PERFECT. Every 20s with a Medium Probability chance.",
+        "liveActiveSkillId": "live_active_skill-skill_tree-judgement_enhance",
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7188,6 +7218,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 4.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7198,6 +7229,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 4.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7208,6 +7240,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your Holowork lineup. Cube Drop Rate from Holowork rewards UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7218,6 +7251,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7228,6 +7262,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants All Stats UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7238,6 +7273,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7248,6 +7284,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Advent.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7258,6 +7295,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Performance UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7268,6 +7306,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Sense UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7278,6 +7317,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Technique UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7288,6 +7328,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants All Stats UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7298,6 +7339,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants All Stats UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7308,6 +7350,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Performance UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7318,6 +7361,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Performance UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7328,6 +7372,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Sense UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7338,6 +7383,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Sense UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7348,6 +7394,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Sense UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7358,6 +7405,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Technique UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7368,6 +7416,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Technique UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7378,6 +7427,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Technique UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7388,6 +7438,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Score Support Effect of % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7398,6 +7449,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-solo",
         "characterTrigger": "always",
         "description": "Grants a Score Bonus UP % when playing a Song by FUWAMOCO.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7408,6 +7460,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-all",
         "characterTrigger": "always",
         "description": "When playing All Songs, Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7418,6 +7471,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-solo",
         "characterTrigger": "always",
         "description": "When playing Solo Songs by , Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7428,6 +7482,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Rewards obtained from Mega Circuit UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7438,6 +7493,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 5.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7448,6 +7504,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to holoX.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7458,6 +7515,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ReGLOSS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7468,6 +7526,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Advent.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7478,6 +7537,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to GAMERS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7488,6 +7548,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants All Stats UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7498,6 +7559,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to GAMERS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7508,6 +7570,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 0.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7518,6 +7581,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7528,6 +7592,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7538,6 +7603,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 0.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7548,6 +7614,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7558,6 +7625,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7568,6 +7636,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7578,6 +7647,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 4.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7588,6 +7658,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 5.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7598,6 +7669,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to holoX.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7608,6 +7680,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7618,6 +7691,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7628,6 +7702,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7638,6 +7713,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Myth.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7648,6 +7724,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Promise.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7658,6 +7735,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ReGLOSS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7668,6 +7746,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7678,6 +7757,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7688,6 +7768,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7698,6 +7779,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7708,6 +7790,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7718,6 +7801,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Myth.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7728,6 +7812,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Promise.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7738,6 +7823,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to GAMERS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7748,6 +7834,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Advent.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7758,6 +7845,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to GAMERS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7768,6 +7856,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 0.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7778,6 +7867,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7788,6 +7878,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7798,6 +7889,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 5.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7808,6 +7900,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to holoX.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7818,6 +7911,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ReGLOSS.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7828,6 +7922,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7838,6 +7933,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 1.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7848,6 +7944,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 2.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7858,6 +7955,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to ID Gen 3.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7868,6 +7966,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Myth.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7878,6 +7977,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants All Stats UP to Promise.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7888,6 +7988,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants LIFE UP .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7898,6 +7999,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Active Skill Activation Rate UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7908,6 +8010,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Active Skill Activation Rate UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7918,6 +8021,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Active Skill Activation Rate UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7928,6 +8032,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Active Skill Activation Frequency UP % to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7938,6 +8043,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character",
         "characterTrigger": "set-live-leader",
         "description": "When is included as a singer, Grants Score Support Effect of % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7948,6 +8054,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Score Support Effect of % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7958,6 +8065,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Score Support Effect of % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7968,6 +8076,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Member EXP UP % obtained at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7978,6 +8087,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Member EXP UP % obtained at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7988,6 +8098,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Member EXP UP % obtained at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -7998,6 +8109,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Hologold Drop Rate UP % at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8008,6 +8120,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Hologold Drop Rate UP % at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8018,6 +8131,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Hologold Drop Rate UP % at Live.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8028,6 +8142,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-all",
         "characterTrigger": "always",
         "description": "When playing All Songs, Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8038,6 +8153,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-group",
         "characterTrigger": "always",
         "description": "When playing Unit Songs featuring , Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8048,6 +8164,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-group",
         "characterTrigger": "always",
         "description": "When playing Unit Songs featuring , Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8058,6 +8175,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-solo",
         "characterTrigger": "always",
         "description": "When playing Solo Songs by , Grants a Score Bonus UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8068,6 +8186,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Rewards obtained from Pokajan! UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8078,6 +8197,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Rewards obtained from Collect Cooking UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8088,6 +8208,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Rewards obtained from Hoppin' Rope UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8098,6 +8219,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Performance UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8108,6 +8230,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Performance UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8118,6 +8241,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Performance UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8128,6 +8252,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Performance UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8138,6 +8263,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character",
         "characterTrigger": "set-live-leader",
         "description": "When is included as a singer, Grants Performance UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8148,6 +8274,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Sense UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8158,6 +8285,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Sense UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8168,6 +8296,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Sense UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8178,6 +8307,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Sense UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8188,6 +8318,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Sense UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8198,6 +8329,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character",
         "characterTrigger": "set-live-leader",
         "description": "When is included as a singer, Grants Sense UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8208,6 +8340,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character_and_music_singer_type-solo",
         "characterTrigger": "always",
         "description": "Grants a Score Bonus UP % when playing a Song by FUWAMOCO.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8218,6 +8351,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Technique UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8228,6 +8362,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Technique UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8238,6 +8373,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "set-live-leader",
         "description": "Grants Technique UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8248,6 +8384,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Technique UP to .",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8258,6 +8395,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "always",
         "description": "Grants Technique UP to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8268,6 +8406,7 @@
         "passiveTriggerId": "skill_tree_effect_passive_trigger-music_skill_tree_character",
         "characterTrigger": "set-live-leader",
         "description": "When is included as a singer, Grants Technique UP % to All.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8278,6 +8417,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your holowork lineup. Grants Lesson Pt Drop Rate UP % at holowork.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8288,6 +8428,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your holowork lineup. Grants Lesson Pt Drop Rate UP % at holowork.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8298,6 +8439,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your holowork lineup. Grants Lesson Pt Drop Rate UP % at holowork.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8308,6 +8450,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your Holowork lineup. Cube Drop Rate from Holowork rewards UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8318,6 +8461,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your Holowork lineup. Training Item Drop Rate from holowork rewards UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       },
       {
@@ -8328,6 +8472,7 @@
         "passiveTriggerId": null,
         "characterTrigger": "work",
         "description": "Activates when you add to your Holowork lineup. Training Item Drop Rate from holowork rewards UP %.",
+        "liveActiveSkillId": null,
         "sourceRef": "holodori-eng:SkillTreeEffect.json"
       }
     ],
@@ -23034,8 +23179,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -23831,8 +23975,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -24680,8 +24823,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -25513,8 +25655,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -26306,8 +26447,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -27165,8 +27305,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -27912,8 +28051,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -28735,8 +28873,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -29584,8 +29721,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -30381,8 +30517,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -31174,8 +31309,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -31997,8 +32131,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -32744,8 +32877,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -33567,8 +33699,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -34340,8 +34471,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -35153,8 +35283,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -35926,8 +36055,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -36759,8 +36887,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -37582,8 +37709,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -38329,8 +38455,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -39188,8 +39313,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -40017,8 +40141,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -40814,8 +40937,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -41643,8 +41765,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -42502,8 +42623,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -43335,8 +43455,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -44184,8 +44303,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -45007,8 +45125,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -45754,8 +45871,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -46587,8 +46703,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -47436,8 +47551,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -48295,8 +48409,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -49148,8 +49261,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -49997,8 +50109,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -50830,8 +50941,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -51613,8 +51723,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -52472,8 +52581,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -53377,8 +53485,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -54124,8 +54231,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -54967,8 +55073,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -55820,8 +55925,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -56593,8 +56697,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -57426,8 +57529,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -58255,8 +58357,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -59078,8 +59179,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -59983,8 +60083,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -60776,8 +60875,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -61609,8 +61707,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -62356,8 +62453,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -63179,8 +63275,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -63952,8 +64047,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -64785,8 +64879,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -65532,8 +65625,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -66355,8 +66447,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -67148,8 +67239,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -67991,8 +68081,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -68784,8 +68873,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -69643,8 +69731,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -70416,8 +70503,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -71213,8 +71299,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -72006,8 +72091,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -72849,8 +72933,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -73678,8 +73761,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -74567,8 +74649,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -75314,8 +75395,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -76147,8 +76227,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -76996,8 +77075,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -77829,8 +77907,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -78602,8 +78679,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -79435,8 +79511,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -80182,8 +80257,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -81015,8 +81089,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -81788,8 +81861,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -82611,8 +82683,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -83460,8 +83531,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -84257,8 +84327,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -85004,8 +85073,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -85827,8 +85895,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -86600,8 +86667,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -87397,8 +87463,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -88144,8 +88209,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -88967,8 +89031,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -89740,8 +89803,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -90583,8 +90645,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -91356,8 +91417,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -92189,8 +92249,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -92936,8 +92995,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -93769,8 +93827,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -94618,8 +94675,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -95461,8 +95517,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -96290,8 +96345,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -97123,8 +97177,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -97850,8 +97903,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -98673,8 +98725,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -99446,8 +99497,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -100223,8 +100273,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -100970,8 +101019,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -101829,8 +101877,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -102612,8 +102659,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -103471,8 +103517,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -104320,8 +104365,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -105117,8 +105161,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -105890,8 +105933,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -106749,8 +106791,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -107598,8 +107639,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -108431,8 +108471,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -109178,8 +109217,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -110011,8 +110049,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -110808,8 +110845,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -111581,8 +111617,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -112378,8 +112413,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -113161,8 +113195,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -114020,8 +114053,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -114813,8 +114845,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     },
@@ -115672,8 +115703,7 @@
         "effect-stacking-and-rounding",
         "special-timeline",
         "active-skill-collision",
-        "timed-note-events",
-        "auto-live-skill-policy"
+        "timed-note-events"
       ],
       "scoringEligible": false
     }
