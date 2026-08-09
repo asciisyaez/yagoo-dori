@@ -59,6 +59,24 @@ type TeamCalculatorProps = {
   rosterCommit: string;
 };
 
+function normalizeRequiredMemberCardIds(
+  cardIds: readonly string[],
+  cardById: ReadonlyMap<string, TeamBuilderCard>,
+  ownedCardIds: ReadonlySet<string>,
+): string[] {
+  const selectedTalentIds = new Set<string>();
+  return [...new Set(cardIds)]
+    .filter((cardId) => ownedCardIds.has(cardId) && cardById.has(cardId))
+    .sort()
+    .filter((cardId) => {
+      const talentId = cardById.get(cardId)!.talentId;
+      if (selectedTalentIds.has(talentId)) return false;
+      selectedTalentIds.add(talentId);
+      return true;
+    })
+    .slice(0, 5);
+}
+
 function formatUtility(value: number) {
   return Math.round(value).toLocaleString("en-US");
 }
@@ -141,6 +159,8 @@ function oshiResultLabel(role: NonNullable<TeamCalculatorResult["oshi"]>["role"]
 }
 
 function TeamResult({ result }: { result: TeamCalculatorResult }) {
+  const [evidenceExpanded, setEvidenceExpanded] = useState(false);
+  const requiredMemberIds = new Set(result.requiredMembers?.cardIds ?? []);
   const teamCardById = new Map([
     [result.leader.cardId, result.leader.talentName],
     ...result.members.map((member) => [member.cardId, member.talentName] as const),
@@ -189,6 +209,14 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
         </div>
       )}
 
+      {result.requiredMembers && (
+        <div className={styles.requiredResult} role="status">
+          <BadgeCheck aria-hidden="true" />
+          <span>Lineup locks fulfilled</span>
+          <strong>{result.requiredMembers.cardIds.length} required Member{result.requiredMembers.cardIds.length === 1 ? "" : "s"} retained</strong>
+        </div>
+      )}
+
       <div className={styles.teamFormation}>
         <article className={`${styles.leaderResult} ${styles[`result-${result.leader.attribute}`]} ${result.oshi?.resolution.leader.selectedCardId === result.leader.cardId ? styles.oshiSelectedResult : ""}`}>
           <Link
@@ -225,6 +253,9 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                   <i>{member.rarity}★</i>
                   <b>B{member.bloomStage}</b>
                   <span className={styles.orderSlot}>Slot {timing.slot}</span>
+                  {requiredMemberIds.has(member.cardId) && (
+                    <em className={styles.requiredResultBadge}>Required</em>
+                  )}
                   {result.oshi?.resolution.member.selectedCardId === member.cardId && (
                     <em className={styles.oshiResultBadge}><Heart aria-hidden="true" /> Oshi</em>
                   )}
@@ -257,9 +288,25 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
             <span>Member field report</span>
             <h3 id="member-evidence-heading">Why each Member is here</h3>
           </div>
-          <p>One-for-one comparisons keep the Leader and the other four Members fixed.</p>
+          <div className={styles.memberEvidenceHeaderActions}>
+            <p>One-for-one comparisons keep the Leader and the other four Members fixed.</p>
+            <button
+              aria-controls="member-evidence-grid"
+              aria-expanded={evidenceExpanded}
+              className={styles.evidenceToggle}
+              onClick={() => setEvidenceExpanded((expanded) => !expanded)}
+              type="button"
+            >
+              {evidenceExpanded ? "Hide evidence" : "Show evidence for all 5"}
+            </button>
+          </div>
         </header>
-        <div className={styles.memberEvidenceGrid}>
+        <div
+          aria-label="Evidence for all five Members"
+          className={styles.memberEvidenceGrid}
+          id="member-evidence-grid"
+          role="region"
+        >
           {result.members.map((member, index) => {
             const timing = result.formationOrder.members[index]!;
             const replacementGroup = result.alternatives.find(
@@ -272,6 +319,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
             );
             const persistent = timing.active.persistentSupportPermilAcrossCorpus;
             const oshiSelected = result.oshi?.resolution.member.selectedCardId === member.cardId;
+            const required = requiredMemberIds.has(member.cardId);
             const specialGateLabel = timing.special.comboGateThresholds.length > 0
               ? `; combo thresholds ${timing.special.comboGateThresholds.join(", ")}`
               : "";
@@ -283,11 +331,9 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                     <Image alt="" height={42} src={member.artPath} width={42} />
                     <span><strong>{member.talentName}</strong><small>{member.title} · B{member.bloomStage}</small></span>
                   </Link>
-                  <b>Slot {timing.slot}</b>
+                  <b>Slot {timing.slot}{required ? " · Required" : ""}</b>
                 </header>
-                <details>
-                  <summary>Evidence for this Member</summary>
-                  <div className={styles.memberEvidenceBody}>
+                <div className={styles.memberEvidenceBody} hidden={!evidenceExpanded}>
                     <p><strong>Active:</strong> fires on {formatPermilPercent(timing.active.activationProbabilityPermil)} of checks; checks every {formatSeconds(timing.active.cooldownMilliseconds)} and lasts {formatSeconds(timing.active.durationMilliseconds)}.</p>
                     {persistent.maximum > 0 && (
                       <p><strong>Persistent support:</strong> {persistent.minimum === persistent.maximum ? `${persistent.minimum}‰` : `${persistent.minimum}–${persistent.maximum}‰`} across the benchmark.</p>
@@ -295,6 +341,9 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                     <p><strong>Special:</strong> at full combo without a song match, +{formatPermilPercent(timing.special.scoreSupportPermilAtFullComboWithoutSongMatch)} support and +{formatPermilPercent(timing.special.activationRateUpPermilAtFullComboWithoutSongMatch)} activation rate for {formatSeconds(timing.special.durationMilliseconds)}{specialGateLabel}.</p>
                     {oshiSelected && result.oshi && (
                       <p><strong>Oshi:</strong> selected from {result.oshi.eligibleOwnedMemberCardIds.length} eligible owned Member{result.oshi.eligibleOwnedMemberCardIds.length === 1 ? "" : "s"}.</p>
+                    )}
+                    {required && (
+                      <p><strong>Lineup lock:</strong> this required Member was retained in the calculated formation.</p>
                     )}
                     <div className={styles.memberEvidenceLinks}>
                       <strong>Leader/Passive links</strong>
@@ -335,8 +384,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                         <p>No evaluated stand-in was returned for this slot. The selected Member remains explained by the timing, link, and roster evidence above.</p>
                       )}
                     </div>
-                  </div>
-                </details>
+                </div>
               </article>
             );
           })}
@@ -478,6 +526,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
   const [oshiPreference, setOshiPreference] = useState<StoredOshiPreference>(
     () => emptyTeamRoster(rosterCommit).oshi,
   );
+  const [requiredMemberCardIds, setRequiredMemberCardIds] = useState<string[]>([]);
   const [storageStatus, setStorageStatus] = useState<"loading" | "persistent" | "session">("loading");
   const [filters, setFilters] = useState(() => ({
     query: searchParams.get("q") ?? "",
@@ -506,6 +555,11 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       try {
         const loaded = loadTeamRoster(window.localStorage, rosterCommit, validCardIds);
         hydratedCards = loaded.roster.cards;
+        const hydratedRequiredMemberCardIds = normalizeRequiredMemberCardIds(
+          loaded.roster.requiredMemberCardIds,
+          cardById,
+          new Set(Object.keys(hydratedCards)),
+        );
         const savedOshiStillOwned =
           loaded.roster.oshi.talentId === null ||
           Object.keys(hydratedCards).some(
@@ -515,13 +569,24 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
           ? loaded.roster.oshi
           : { ...loaded.roster.oshi, talentId: null };
         setOwnedCards(hydratedCards);
+        setRequiredMemberCardIds(hydratedRequiredMemberCardIds);
         setOshiPreference(hydratedOshi);
-        if (loaded.needsWrite || !savedOshiStillOwned) {
-          saveTeamRoster(window.localStorage, { ...loaded.roster, oshi: hydratedOshi });
+        if (
+          loaded.needsWrite ||
+          !savedOshiStillOwned ||
+          JSON.stringify(loaded.roster.requiredMemberCardIds) !==
+            JSON.stringify(hydratedRequiredMemberCardIds)
+        ) {
+          saveTeamRoster(window.localStorage, {
+            ...loaded.roster,
+            oshi: hydratedOshi,
+            requiredMemberCardIds: hydratedRequiredMemberCardIds,
+          });
         }
         setStorageStatus("persistent");
       } catch {
         setOwnedCards(hydratedCards);
+        setRequiredMemberCardIds([]);
         setStorageStatus("session");
       }
     }, 0);
@@ -536,6 +601,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
         ...emptyTeamRoster(rosterCommit),
         cards: ownedCards,
         oshi: oshiPreference,
+        requiredMemberCardIds,
       });
     } catch {
       fallbackTimer = window.setTimeout(() => setStorageStatus("session"), 0);
@@ -543,7 +609,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     return () => {
       if (fallbackTimer !== null) window.clearTimeout(fallbackTimer);
     };
-  }, [ownedCards, oshiPreference, rosterCommit, storageStatus]);
+  }, [ownedCards, oshiPreference, requiredMemberCardIds, rosterCommit, storageStatus]);
 
   useEffect(() => () => {
     activeTask.current?.cancel();
@@ -621,12 +687,25 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
   const selectedOshiTalent = selectedTalents.find(
     ({ card }) => card.talentId === oshiPreference.talentId,
   );
+  const requiredMemberIdSet = new Set(requiredMemberCardIds);
+  const requiredMemberTalentIds = new Set(
+    requiredMemberCardIds
+      .map((cardId) => cardById.get(cardId)?.talentId)
+      .filter((talentId): talentId is string => talentId !== undefined),
+  );
   const talentsNeeded = Math.max(0, 5 - uniqueTalentCount);
   const oshiReady =
     !oshiPreference.enabled ||
     (oshiPreference.talentId !== null &&
       selectedTalents.some(({ card }) => card.talentId === oshiPreference.talentId));
-  const canCalculate = talentsNeeded === 0 && oshiReady;
+  const oshiRequiresMember =
+    oshiPreference.enabled &&
+    (oshiPreference.role === "member" || oshiPreference.role === "member-and-leader");
+  const oshiMemberAlreadyRequired =
+    oshiPreference.talentId !== null && requiredMemberTalentIds.has(oshiPreference.talentId);
+  const oshiCapacityConflict =
+    oshiRequiresMember && !oshiMemberAlreadyRequired && requiredMemberCardIds.length >= 5;
+  const canCalculate = talentsNeeded === 0 && oshiReady && !oshiCapacityConflict;
 
   const normalizedQuery = query.trim().toLowerCase();
   const visibleCards = cards
@@ -652,6 +731,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       const next = { ...ownedCards };
       delete next[cardId];
       setOwnedCards(next);
+      setRequiredMemberCardIds((current) => current.filter((requiredCardId) => requiredCardId !== cardId));
       const removedTalentId = cardById.get(cardId)?.talentId;
       if (
         oshiPreference.talentId === removedTalentId &&
@@ -667,6 +747,19 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
   const setBloom = (cardId: string, bloomStage: BloomStage) => {
     invalidateCalculation();
     setOwnedCards((current) => ({ ...current, [cardId]: bloomStage }));
+  };
+
+  const toggleRequiredMember = (cardId: string) => {
+    const card = cardById.get(cardId);
+    if (!card || !(cardId in ownedCards)) return;
+    invalidateCalculation();
+    setRequiredMemberCardIds((current) => {
+      if (current.includes(cardId)) return current.filter((requiredCardId) => requiredCardId !== cardId);
+      if (current.length >= 5 || current.some((requiredCardId) => cardById.get(requiredCardId)?.talentId === card.talentId)) {
+        return current;
+      }
+      return [...current, cardId].sort();
+    });
   };
 
   const updateOshi = (next: Partial<StoredOshiPreference>) => {
@@ -685,9 +778,10 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
 
     setCalculationState({ status: "calculating" });
     const task = startTeamCalculation({
-      schemaVersion: 3,
+      schemaVersion: 4,
       rosterCommit,
       ownedCards: selectedCards.map(({ card, bloomStage }) => ({ cardId: card.id, bloomStage })),
+      requiredMemberCardIds: [...requiredMemberCardIds].sort(),
       ...(oshiPreference.enabled && oshiPreference.talentId
         ? { oshi: { talentId: oshiPreference.talentId, role: oshiPreference.role } }
         : {}),
@@ -721,6 +815,8 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     ? `Add ${talentsNeeded} more ${talentsNeeded === 1 ? "talent" : "talents"}`
     : !oshiReady
       ? "Choose your Oshi"
+      : oshiCapacityConflict
+        ? "Unlock a required Member"
     : calculationState.status === "calculating"
       ? "Cancel calculation"
       : "Calculate team";
@@ -929,6 +1025,55 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
           )}
         </section>
 
+        <section className={styles.requiredPanel} aria-labelledby="required-members-heading">
+          <header>
+            <div>
+              <span>Lineup locks</span>
+              <h2 id="required-members-heading">Required Members</h2>
+              <p>Keep specific owned cards in the five-Member formation.</p>
+            </div>
+            <strong>{requiredMemberCardIds.length}/5</strong>
+          </header>
+          <div className={styles.requiredMemberGrid}>
+            {selectedCards.length === 0 ? (
+              <p>Select owned cards first, then mark the cards to keep.</p>
+            ) : selectedCards.map(({ card }) => {
+              const required = requiredMemberIdSet.has(card.id);
+              const duplicateTalentLock = !required && requiredMemberTalentIds.has(card.talentId);
+              const lockCapacityReached = !required && requiredMemberCardIds.length >= 5;
+              const disabledReason = duplicateTalentLock
+                ? "Only one card version per talent can be required."
+                : lockCapacityReached
+                  ? "All five Member slots are already locked."
+                  : undefined;
+              return (
+                <button
+                  aria-describedby="required-members-help"
+                  aria-label={`${required ? "Unrequire" : "Require"} ${card.talentName}, ${card.title}`}
+                  aria-pressed={required}
+                  className={styles.requiredMemberToggle}
+                  disabled={!storageReady || duplicateTalentLock || lockCapacityReached}
+                  key={card.id}
+                  onClick={() => toggleRequiredMember(card.id)}
+                  title={disabledReason}
+                  type="button"
+                >
+                  <Image alt="" height={42} src={card.artPath} width={42} />
+                  <span><strong>{card.talentName}</strong><small>{card.title}</small></span>
+                  <b>{required ? "Required" : duplicateTalentLock ? "Same talent" : lockCapacityReached ? "Full" : "Require"}</b>
+                </button>
+              );
+            })}
+          </div>
+          <p className={styles.requiredHelp} id="required-members-help">
+            {oshiCapacityConflict
+              ? "Your Oshi needs one remaining Member slot. Unlock one required card or require the Oshi card."
+              : requiredMemberCardIds.length >= 5
+                ? "All five Member slots are locked. Unlock one to require a different card."
+              : "Only one version of each talent can be required; locked cards stay selected in every calculation."}
+          </p>
+        </section>
+
         <div className={styles.resultAnchor} ref={resultAnchor}>
           {calculationState.status === "calculating" && (
             <section className={styles.calculatingPanel} aria-live="polite">
@@ -941,7 +1086,9 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
               <strong>Calculation stopped</strong><p>{calculationState.message}</p><button onClick={runCalculation} type="button">Try again</button>
             </section>
           )}
-          {calculationState.status === "done" && <TeamResult result={calculationState.result} />}
+          {calculationState.status === "done" && (
+            <TeamResult key={calculationState.result.search.runRecordId} result={calculationState.result} />
+          )}
         </div>
       </div>
 
@@ -951,6 +1098,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
               {selectedCards.length > 0 && <button aria-label="Clear selected roster" onClick={() => {
                 invalidateCalculation();
                 setOwnedCards({});
+                setRequiredMemberCardIds([]);
                 setOshiPreference(emptyTeamRoster(rosterCommit).oshi);
               }} type="button"><Trash2 aria-hidden="true" /> Clear</button>}
         </header>
@@ -982,10 +1130,10 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       <div className={styles.mobileAction}>
         <div>
           <strong>{selectedCards.length} {selectedCards.length === 1 ? "card" : "cards"} · {uniqueTalentCount}/5 talents</strong>
-          <span>{canCalculate ? "Ready to calculate" : talentsNeeded > 0 ? "Select five unique talents" : "Choose your Oshi"}</span>
+          <span>{canCalculate ? "Ready to calculate" : talentsNeeded > 0 ? "Select five unique talents" : oshiCapacityConflict ? "Unlock a required Member" : "Choose your Oshi"}</span>
         </div>
         <button aria-label={calculateLabel} disabled={!storageReady || (!canCalculate && calculationState.status !== "calculating")} onClick={runCalculation} type="button">
-          <Calculator aria-hidden="true" /> {calculationState.status === "calculating" ? "Cancel" : !oshiReady && talentsNeeded === 0 ? "Set Oshi" : "Calculate"}
+          <Calculator aria-hidden="true" /> {calculationState.status === "calculating" ? "Cancel" : oshiCapacityConflict ? "Unlock Member" : !oshiReady && talentsNeeded === 0 ? "Set Oshi" : "Calculate"}
         </button>
       </div>
 

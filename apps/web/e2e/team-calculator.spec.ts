@@ -40,6 +40,14 @@ test("exact card ownership, Bloom, and Oshi preferences persist across reloads",
   await bloom.selectOption("3");
   await expect(page.getByText("B3", { exact: true })).toBeVisible();
 
+  const requiredToggle = page.getByRole("button", {
+    name: `Require ${persistedCard.talent}, ${persistedCard.title}`,
+  });
+  await expect(requiredToggle).toHaveAttribute("aria-pressed", "false");
+  await requiredToggle.click();
+  await expect(requiredToggle).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByText("1/5", { exact: true })).toBeVisible();
+
   await page.getByRole("switch", { name: "Oshi mode" }).click();
   await page.getByRole("combobox", { name: "Oshi talent" }).selectOption({ label: "AZKi" });
   await page.getByRole("button", { name: /Both/ }).click();
@@ -53,6 +61,9 @@ test("exact card ownership, Bloom, and Oshi preferences persist across reloads",
   await expect(page.getByRole("combobox", {
     name: `${persistedCard.talent}, ${persistedCard.title} Bloom level`,
   })).toHaveValue("3");
+  await expect(page.getByRole("button", {
+    name: `Require ${persistedCard.talent}, ${persistedCard.title}`,
+  })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("switch", { name: "Oshi mode" })).toHaveAttribute("aria-checked", "true");
   await expect(page.getByRole("combobox", { name: "Oshi talent" })).toHaveValue("chr-00013");
   await expect(page.getByRole("button", { name: /Both/ })).toHaveAttribute("aria-pressed", "true");
@@ -101,6 +112,28 @@ test("multiple versions of one talent still count as one legal Member choice", a
     ? page.locator("[class*='mobileAction']").getByRole("button", { name: "Add 4 more talents" })
     : selectedRoster.getByRole("button", { name: "Add 4 more talents" });
   await expect(calculateButton).toBeDisabled();
+});
+
+test("required-card locks expose an accessible Oshi capacity conflict", async ({ page }) => {
+  await page.goto("/team-builder?rarity=5", { waitUntil: "domcontentloaded" });
+  const search = page.getByRole("searchbox", { name: "Search cards" });
+  for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu", "Nekomata Okayu"]) {
+    await search.fill(talent);
+    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
+  }
+  const requiredButtons = page.getByRole("button", { name: /^Require / });
+  for (let index = 0; index < 5; index += 1) await requiredButtons.first().click();
+  await expect(page.getByText("5/5", { exact: true })).toBeVisible();
+  await expect(requiredButtons).toHaveCount(1);
+  await expect(requiredButtons.first()).toBeDisabled();
+  await expect(requiredButtons.first()).toHaveAttribute("aria-describedby", "required-members-help");
+  await expect(page.getByText("All five Member slots are locked. Unlock one to require a different card.")).toBeVisible();
+
+  await page.getByRole("switch", { name: "Oshi mode" }).click();
+  await page.getByRole("combobox", { name: "Oshi talent" }).selectOption({ label: "Nekomata Okayu" });
+  await page.getByRole("button", { name: /^Member/ }).click();
+  await expect(page.getByText(/Oshi needs one remaining Member slot/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Unlock a required Member" })).toBeDisabled();
 });
 
 test("card ownership and Bloom remain keyboard-usable with reduced motion", async ({ page }) => {
@@ -168,6 +201,12 @@ test("a six-card roster calculates a legal Leader and five Members off the main 
     await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
   }
 
+  const requiredButtons = page.getByRole("button", { name: /^Require / });
+  await expect(requiredButtons).toHaveCount(6);
+  await requiredButtons.nth(0).click();
+  await requiredButtons.nth(0).click();
+  await expect(page.getByText("2/5", { exact: true })).toBeVisible();
+
   await expect(page.getByText("Roster ready", { exact: true })).toBeVisible();
   await page.getByRole("switch", { name: "Oshi mode" }).click();
   await page.getByRole("combobox", { name: "Oshi talent" }).selectOption({ label: "AZKi" });
@@ -190,6 +229,8 @@ test("a six-card roster calculates a legal Leader and five Members off the main 
   ).toBeVisible();
   await expect(page.getByText("Leader Outfit", { exact: true })).toBeVisible();
   await expect(page.getByText("Oshi lock fulfilled", { exact: true })).toBeVisible();
+  await expect(page.getByText("Lineup locks fulfilled", { exact: true })).toBeVisible();
+  await expect(page.locator("[class*='requiredResultBadge']")).toHaveCount(2);
   await expect(page.getByText("Locked as both Member and Leader Outfit", { exact: true })).toBeVisible();
   await expect(page.getByText("Oshi", { exact: true })).toHaveCount(2);
   await expect(page.locator("a[class*='memberResult']")).toHaveCount(5);
@@ -209,7 +250,14 @@ test("a six-card roster calculates a legal Leader and five Members off the main 
   );
   await expect(page.getByRole("heading", { name: "Why each Member is here" })).toBeVisible();
   await expect(page.locator("[class*='memberEvidenceCard']")).toHaveCount(5);
-  await expect(page.getByText("Evidence for this Member", { exact: true })).toHaveCount(5);
+  const evidenceToggle = page.getByRole("button", { name: "Show evidence for all 5" });
+  await expect(evidenceToggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("[class*='memberEvidenceBody'][hidden]")).toHaveCount(5);
+  await evidenceToggle.click();
+  await expect(page.getByRole("button", { name: "Hide evidence" })).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("[class*='memberEvidenceBody']:visible")).toHaveCount(5);
+  await page.getByRole("button", { name: "Hide evidence" }).click();
+  await expect(page.getByRole("button", { name: "Show evidence for all 5" })).toHaveAttribute("aria-expanded", "false");
   const resultPanel = page.locator("[class*='resultPanel']");
   await expect(resultPanel).toContainText("central modeled value");
   await expect(resultPanel).not.toContainText("midpoint");

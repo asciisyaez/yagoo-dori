@@ -168,7 +168,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
-      "location": "apps/web/src/components/team-calculator.tsx:156",
+      "location": "apps/web/src/components/team-calculator.tsx:176",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
@@ -177,7 +177,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:388",
+      "location": "apps/web/src/components/team-calculator.tsx:436",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -766,7 +766,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-08T15:24:06.088Z"
+    "generatedAt": "2026-08-09T04:18:37.336Z"
   },
-  "stableDigest": "1b700035b01bea7e1008c46015865f8341db5805f77a5edfe9fa4d065928b713"
+  "stableDigest": "7f0106fabb05947f2e5da1daec5a8040fccd237a89baabefd81125cec23fbdc7"
 }

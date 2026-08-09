@@ -27,9 +27,10 @@ const OWNED = [
 ] as const;
 
 const REQUEST = {
-  schemaVersion: 3 as const,
+  schemaVersion: 4 as const,
   rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
   ownedCards: OWNED,
+  requiredMemberCardIds: [],
 };
 
 const AKI_TALENT_ID = "chr-00004";
@@ -43,9 +44,10 @@ const MULTI_VARIANT_OWNED = [
 
 function requestWithOshi(role: "member" | "leader" | "member-and-leader") {
   return {
-    schemaVersion: 3 as const,
+    schemaVersion: 4 as const,
     rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
     ownedCards: MULTI_VARIANT_OWNED,
+    requiredMemberCardIds: [],
     oshi: { talentId: AKI_TALENT_ID, role },
   };
 }
@@ -197,9 +199,9 @@ describe("owned-roster team calculator", () => {
       },
     );
 
-    expect(result.schemaVersion).toBe(4);
-    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-4.0.0");
-    expect(result.search.runRecordId).toMatch(/^yd-owned-roster-run-v4-/);
+    expect(result.schemaVersion).toBe(5);
+    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-5.0.0");
+    expect(result.search.runRecordId).toMatch(/^yd-owned-roster-run-v5-/);
     expect(result.alternatives.flatMap((group) => group.cards).length).toBeGreaterThan(0);
     for (const group of result.alternatives) {
       for (const card of group.cards) {
@@ -346,6 +348,77 @@ describe("owned-roster team calculator", () => {
     }
   }, 30_000);
 
+  it("keeps exact required Member cards selected and returns no replacements for locked slots", () => {
+    const requiredMemberCardIds = [AKI_FIVE_STAR_ID, "card-00005-5-uniq-0006-00"];
+    const result = calculateOwnedRosterTeam(
+      {
+        ...REQUEST,
+        ownedCards: MULTI_VARIANT_OWNED,
+        requiredMemberCardIds,
+      },
+      { evaluate: fastEvaluator() },
+    );
+
+    expect(result.requiredMembers).toEqual({ cardIds: [...requiredMemberCardIds].sort(), status: "fulfilled" });
+    expect(result.members.map((member) => member.cardId)).toEqual(
+      expect.arrayContaining(requiredMemberCardIds),
+    );
+    for (const requiredCardId of requiredMemberCardIds) {
+      expect(result.alternatives.find((group) => group.replacesCardId === requiredCardId)).toMatchObject({
+        coverage: {
+          eligibleCardCount: 0,
+          coarseScreenedCardCount: 0,
+          corpusProxyScreenedCardCount: 0,
+          fullCorpusRerankedCardCount: 0,
+          returnedCardCount: 0,
+        },
+        cards: [],
+      });
+    }
+    expect(result.alternatives).toHaveLength(5);
+    expect(result.methodologyVersion).toBe("yd-owned-roster-calculator-5.0.0");
+  }, 30_000);
+
+  it("treats a locked Oshi card as satisfying the Member role without reserving another slot", () => {
+    const request = {
+      ...requestWithOshi("member-and-leader"),
+      requiredMemberCardIds: [AKI_FIVE_STAR_ID],
+    };
+    const result = calculateOwnedRosterTeam(request, { evaluate: fastEvaluator() });
+    expect(result.requiredMembers).toEqual({ cardIds: [AKI_FIVE_STAR_ID], status: "fulfilled" });
+    expect(result.oshi?.resolution.member.selectedCardId).toBe(AKI_FIVE_STAR_ID);
+    expect(result.oshi?.resolution.leader.selectedCardId).toBe(result.leader.cardId);
+  }, 30_000);
+
+  it("rejects unowned, duplicate-talent, and Oshi capacity conflicts before utility evaluation", () => {
+    let invoked = false;
+    const dependencies = {
+      evaluate: () => {
+        invoked = true;
+        throw new Error("must not run");
+      },
+    };
+    expect(() => calculateOwnedRosterTeam({
+      ...REQUEST,
+      requiredMemberCardIds: ["card-not-owned"],
+    }, dependencies)).toThrow(/must be selected in your owned roster/i);
+    expect(() => calculateOwnedRosterTeam({
+      ...requestWithOshi("member"),
+      requiredMemberCardIds: [AKI_FIVE_STAR_ID, AKI_FOUR_STAR_ID],
+    }, dependencies)).toThrow(/different talents/i);
+    const capacityRequest = {
+      ...REQUEST,
+      ownedCards: [
+        ...OWNED,
+        { cardId: "card-03003-5-uniq-0035-00", bloomStage: 0 as const },
+      ],
+      requiredMemberCardIds: OWNED.map((ownedCard) => ownedCard.cardId),
+      oshi: { talentId: "chr-03003", role: "member" as const },
+    };
+    expect(() => calculateOwnedRosterTeam(capacityRequest, dependencies)).toThrow(/remaining slot/i);
+    expect(invoked).toBe(false);
+  }, 30_000);
+
   it("anchors every owned Oshi variant in bounded generation and reports constrained coverage deterministically", () => {
     const ownedCards = [
       ...MULTI_VARIANT_OWNED,
@@ -356,7 +429,7 @@ describe("owned-roster team calculator", () => {
     const fakeSearch = (
       input: NativeCanonicalCandidateSearchInput,
     ): NativeCanonicalCandidateSearchResult => {
-      const anchorCardId = input.constraints?.anchorCardId;
+      const anchorCardId = input.constraints?.anchorCardIds?.[0];
       if (!anchorCardId) throw new Error("Member Oshi candidate generation requires an anchor");
       anchorCalls.push(anchorCardId);
       const allowedMemberIds = input.constraints!.memberCardIds!;
@@ -392,9 +465,10 @@ describe("owned-roster team calculator", () => {
       };
     };
     const request = {
-      schemaVersion: 3 as const,
+      schemaVersion: 4 as const,
       rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
       ownedCards,
+      requiredMemberCardIds: [],
       oshi: { talentId: AKI_TALENT_ID, role: "member" as const },
     };
     const result = calculateOwnedRosterTeam(request, {
@@ -514,12 +588,32 @@ const BOUNDED_ROSTER = [
 ].map((cardId) => ({ cardId, bloomStage: 0 as const }));
 
 const BOUNDED_REQUEST = {
-  schemaVersion: 3 as const,
+  schemaVersion: 4 as const,
   rosterCommit: TEAM_CALCULATOR_ROSTER_COMMIT,
   ownedCards: BOUNDED_ROSTER,
+  requiredMemberCardIds: [],
 };
 
 describe("bounded owned-roster search consistency", () => {
+  it("keeps required cards through bounded generation, refinement, and replacements", () => {
+    const requiredMemberCardIds = BOUNDED_ROSTER.slice(0, 2).map((ownedCard) => ownedCard.cardId);
+    const result = calculateOwnedRosterTeam(
+      { ...BOUNDED_REQUEST, requiredMemberCardIds },
+      { evaluate: fastEvaluator() },
+    );
+    expect(result.search.resultClaim).toBe("bounded-search");
+    expect(result.members.map((member) => member.cardId)).toEqual(
+      expect.arrayContaining(requiredMemberCardIds),
+    );
+    expect(result.alternatives).toHaveLength(5);
+    for (const requiredCardId of requiredMemberCardIds) {
+      const group = result.alternatives.find((alternative) => alternative.replacesCardId === requiredCardId)!;
+      expect(group.cards).toEqual([]);
+      expect(group.coverage.eligibleCardCount).toBe(0);
+      expect(group.coverage.returnedCardCount).toBe(0);
+    }
+  }, 60_000);
+
   it("never displays a replacement that outscores the team it is offered against", () => {
     const result = calculateOwnedRosterTeam(BOUNDED_REQUEST);
     // Guard against the assertion going vacuous if the exact path ever widens.

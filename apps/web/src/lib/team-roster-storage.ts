@@ -15,10 +15,11 @@ export type StoredOshiPreference = {
 };
 
 export type StoredTeamRoster = {
-  version: 2;
+  version: 3;
   rosterCommit: string;
   cards: Record<string, BloomStage>;
   oshi: StoredOshiPreference;
+  requiredMemberCardIds: string[];
 };
 
 type StorageReader = Pick<Storage, "getItem">;
@@ -39,10 +40,11 @@ function isOshiRole(value: unknown): value is StoredOshiRole {
 
 export function emptyTeamRoster(rosterCommit: string): StoredTeamRoster {
   return {
-    version: 2,
+    version: 3,
     rosterCommit,
     cards: {},
     oshi: { enabled: false, talentId: null, role: "member" },
+    requiredMemberCardIds: [],
   };
 }
 
@@ -71,9 +73,10 @@ export function loadTeamRoster(
     rosterCommit?: unknown;
     cards?: unknown;
     oshi?: unknown;
+    requiredMemberCardIds?: unknown;
   };
   if (
-    (candidate.version !== 1 && candidate.version !== 2) ||
+    (candidate.version !== 1 && candidate.version !== 2 && candidate.version !== 3) ||
     !candidate.cards ||
     typeof candidate.cards !== "object"
   ) {
@@ -88,7 +91,7 @@ export function loadTeamRoster(
   const candidateOshi = candidate.oshi && typeof candidate.oshi === "object"
     ? candidate.oshi as { enabled?: unknown; talentId?: unknown; role?: unknown }
     : null;
-  const oshi: StoredOshiPreference = candidate.version === 2 && candidateOshi
+  const oshi: StoredOshiPreference = (candidate.version === 2 || candidate.version === 3) && candidateOshi
     ? {
         enabled: candidateOshi.enabled === true,
         talentId:
@@ -99,15 +102,23 @@ export function loadTeamRoster(
       }
     : empty.oshi;
 
-  const roster: StoredTeamRoster = { version: 2, rosterCommit, cards, oshi };
+  const requiredMemberCardIds = candidate.version === 3 && Array.isArray(candidate.requiredMemberCardIds)
+    ? [...new Set(candidate.requiredMemberCardIds.filter(
+        (cardId): cardId is string => typeof cardId === "string" && validCardIds.has(cardId) && cardId in cards,
+      ))].sort().slice(0, 5)
+    : [];
+
+  const roster: StoredTeamRoster = { version: 3, rosterCommit, cards, oshi, requiredMemberCardIds };
   const needsWrite =
-    candidate.version !== 2 ||
+    candidate.version !== 3 ||
     candidate.rosterCommit !== rosterCommit ||
     Object.keys(cards).length !== Object.keys(candidate.cards).length ||
     !candidateOshi ||
     candidateOshi.enabled !== oshi.enabled ||
     candidateOshi.talentId !== oshi.talentId ||
-    candidateOshi.role !== oshi.role;
+    candidateOshi.role !== oshi.role ||
+    !Array.isArray(candidate.requiredMemberCardIds) ||
+    JSON.stringify(candidate.requiredMemberCardIds) !== JSON.stringify(requiredMemberCardIds);
   return { roster, needsWrite };
 }
 

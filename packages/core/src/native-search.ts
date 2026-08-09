@@ -18,6 +18,8 @@ export type NativeSearchInvestmentLayer =
 
 export type NativeSearchConstraints = Readonly<{
   anchorCardId?: string;
+  /** Exact Member cards that every candidate must include. */
+  anchorCardIds?: readonly string[];
   fixedLeaderOutfitCardId?: string;
   memberCardIds?: readonly string[];
   leaderOutfitCardIds?: readonly string[];
@@ -221,6 +223,7 @@ export type NativeSearchResult = Readonly<{
   certificate: NativeSearchCertificate;
   constraints: Readonly<{
     anchorCardId: string | null;
+    anchorCardIds: readonly string[];
     fixedLeaderOutfitCardId: string | null;
     memberCardIds: readonly string[];
     leaderOutfitCardIds: readonly string[];
@@ -568,6 +571,7 @@ function selectDiverseBeam(states: readonly BeamState[], beamWidth: number): Bea
 function normalizeInput(input: NativeSearchInput): {
   memberCards: SearchCard[];
   leaderCards: SearchCard[];
+  anchors: SearchCard[];
   anchor: SearchCard | null;
   fixedLeader: SearchCard | null;
   memberRarities: (4 | 5)[];
@@ -592,6 +596,27 @@ function normalizeInput(input: NativeSearchInput): {
   const song = songContextData.songs.find((candidate) => candidate.id === chart.songId);
   if (!song) throw new Error(`Chart ${input.chartKey} has no pinned song context`);
   const constraints = input.constraints ?? {};
+  if (constraints.anchorCardId !== undefined && constraints.anchorCardIds !== undefined) {
+    throw new Error("anchorCardId and anchorCardIds cannot be used together");
+  }
+  if (constraints.anchorCardIds !== undefined && !Array.isArray(constraints.anchorCardIds)) {
+    throw new Error("anchorCardIds must be an array of Member card IDs");
+  }
+  const rawAnchorIds = constraints.anchorCardIds !== undefined
+    ? [...constraints.anchorCardIds]
+    : constraints.anchorCardId !== undefined
+      ? [constraints.anchorCardId]
+      : [];
+  if (rawAnchorIds.length > 5) {
+    throw new Error("anchorCardIds cannot contain more than five Member cards");
+  }
+  if (rawAnchorIds.some((cardId) => typeof cardId !== "string" || cardId.length === 0)) {
+    throw new Error("anchorCardIds must contain non-empty card IDs");
+  }
+  const normalizedAnchorIds = uniqueSorted(rawAnchorIds);
+  if (normalizedAnchorIds.length !== rawAnchorIds.length) {
+    throw new Error("anchorCardIds cannot contain duplicate cards");
+  }
   const memberRarities = uniqueSorted(constraints.memberRarities ?? [4, 5]);
   const leaderRarities = uniqueSorted(constraints.leaderRarities ?? [4, 5]);
   if (memberRarities.length === 0 || leaderRarities.length === 0) {
@@ -649,27 +674,31 @@ function normalizeInput(input: NativeSearchInput): {
   const leaderCards = resolveAllowlist(constraints.leaderOutfitCardIds, "Leader/Outfit").filter(
     (card) => leaderRarities.includes(card.rarity),
   );
-  const rawAnchor = constraints.anchorCardId
-    ? cardById.get(constraints.anchorCardId) ?? null
-    : null;
+  const rawAnchors = normalizedAnchorIds.map((cardId) => cardById.get(cardId) ?? null);
   const fixedLeader = constraints.fixedLeaderOutfitCardId
     ? cardById.get(constraints.fixedLeaderOutfitCardId) ?? null
     : null;
-  if (constraints.anchorCardId && !rawAnchor) {
-    throw new Error(`Unknown anchor Member card: ${constraints.anchorCardId}`);
+  const unknownAnchor = normalizedAnchorIds.find((cardId, index) => !rawAnchors[index]);
+  if (unknownAnchor) {
+    throw new Error(`Unknown anchor Member card: ${unknownAnchor}`);
   }
   if (constraints.fixedLeaderOutfitCardId && !fixedLeader) {
     throw new Error(`Unknown fixed Leader/Outfit: ${constraints.fixedLeaderOutfitCardId}`);
   }
-  const anchor = rawAnchor
-    ? memberCards.find((card) => card.cardId === rawAnchor.cardId) ?? null
-    : null;
-  if (rawAnchor && !anchor) {
-    throw new Error("The anchor Member is excluded by the Member allowlist or rarity filter");
+  const anchors = rawAnchors.map((rawAnchor) => {
+    const anchor = memberCards.find((card) => card.cardId === rawAnchor!.cardId) ?? null;
+    if (!anchor) {
+      throw new Error("An anchor Member is excluded by the Member allowlist or rarity filter");
+    }
+    return anchor;
+  });
+  if (new Set(anchors.map((card) => card.talentId)).size !== anchors.length) {
+    throw new Error("anchorCardIds cannot contain duplicate Member talents");
   }
-  if (anchor?.rarity === 5 && maxFiveStarMembers === 0) {
-    throw new Error("The anchor Member violates maxFiveStarMembers");
+  if (anchors.filter((card) => card.rarity === 5).length > maxFiveStarMembers) {
+    throw new Error("The anchor Members violate maxFiveStarMembers");
   }
+  const anchor = anchors[0] ?? null;
   if (fixedLeader && !leaderCards.some((card) => card.cardId === fixedLeader.cardId)) {
     throw new Error("The fixed Leader/Outfit is excluded by the Leader allowlist or rarity filter");
   }
@@ -681,6 +710,7 @@ function normalizeInput(input: NativeSearchInput): {
   return {
     memberCards,
     leaderCards: eligibleLeaders,
+    anchors,
     anchor,
     fixedLeader,
     memberRarities,
@@ -700,10 +730,13 @@ function checkedCount(value: bigint, label: string): number {
 
 function countLegalTeamSets(
   cards: readonly SearchCard[],
-  anchor: SearchCard | null,
+  anchors: readonly SearchCard[],
   maxFiveStarMembers: number,
 ): number {
-  const remaining = anchor ? cards.filter((card) => card.talentId !== anchor.talentId) : cards;
+  const anchorTalents = new Set(anchors.map((card) => card.talentId));
+  const remaining = anchors.length > 0
+    ? cards.filter((card) => !anchorTalents.has(card.talentId))
+    : cards;
   const variantsByTalent = new Map<string, SearchCard[]>();
   for (const card of remaining) {
     const variants = variantsByTalent.get(card.talentId) ?? [];
@@ -713,8 +746,8 @@ function countLegalTeamSets(
   const groups = [...variantsByTalent.entries()].sort(([left], [right]) =>
     left.localeCompare(right),
   );
-  const initialSelected = anchor ? 1 : 0;
-  const initialFive = anchor?.rarity === 5 ? 1 : 0;
+  const initialSelected = anchors.length;
+  const initialFive = anchors.filter((card) => card.rarity === 5).length;
   let states = new Map<string, bigint>([[`${initialSelected}:${initialFive}`, 1n]]);
   for (const [, variants] of groups) {
     const next = new Map(states);
@@ -758,13 +791,16 @@ function teamSet(
 
 function enumerateExactTeams(
   cards: readonly SearchCard[],
-  anchor: SearchCard | null,
+  anchors: readonly SearchCard[],
   maxFiveStarMembers: number,
   layer: NativeSearchInvestmentLayer,
   song: SongContext,
 ): TeamSet[] {
-  const selected = anchor ? [anchor] : [];
-  const remaining = anchor ? cards.filter((card) => card.talentId !== anchor.talentId) : [...cards];
+  const selected = [...anchors];
+  const anchorTalents = new Set(anchors.map((card) => card.talentId));
+  const remaining = anchors.length > 0
+    ? cards.filter((card) => !anchorTalents.has(card.talentId))
+    : [...cards];
   const result: TeamSet[] = [];
   const visit = (startIndex: number, members: SearchCard[], talents: Set<string>, fiveStars: number): void => {
     if (members.length === 5) {
@@ -813,15 +849,18 @@ function compareBeamState(left: BeamState, right: BeamState): number {
 
 function enumerateBeamTeams(
   cards: readonly SearchCard[],
-  anchor: SearchCard | null,
+  anchors: readonly SearchCard[],
   maxFiveStarMembers: number,
   beamWidth: number,
   finalistCount: number,
   layer: NativeSearchInvestmentLayer,
   song: SongContext,
 ): TeamSet[] {
-  const remaining = anchor ? cards.filter((card) => card.talentId !== anchor.talentId) : [...cards];
-  const initialCards = anchor ? [anchor] : [];
+  const anchorTalents = new Set(anchors.map((card) => card.talentId));
+  const remaining = anchors.length > 0
+    ? cards.filter((card) => !anchorTalents.has(card.talentId))
+    : [...cards];
+  const initialCards = [...anchors];
   let states: BeamState[] = [
     {
       cards: initialCards,
@@ -963,7 +1002,7 @@ export function searchNativeCanonicalCandidates(
   });
   const legalTeamSetsInScope = countLegalTeamSets(
     normalized.memberCards,
-    normalized.anchor,
+    normalized.anchors,
     normalized.maxFiveStarMembers,
   );
   if (legalTeamSetsInScope === 0) {
@@ -971,7 +1010,7 @@ export function searchNativeCanonicalCandidates(
   }
   const teamSets = enumerateBeamTeams(
     normalized.memberCards,
-    normalized.anchor,
+    normalized.anchors,
     normalized.maxFiveStarMembers,
     beamWidth,
     finalistTeamCount,
@@ -1035,7 +1074,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
   const normalized = normalizeInput(input);
   const legalTeamSetsInScope = countLegalTeamSets(
     normalized.memberCards,
-    normalized.anchor,
+    normalized.anchors,
     normalized.maxFiveStarMembers,
   );
   if (legalTeamSetsInScope === 0) throw new Error("No legal five-Member team satisfies the constraints");
@@ -1062,7 +1101,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
     }
     teamSets = enumerateExactTeams(
       normalized.memberCards,
-      normalized.anchor,
+      normalized.anchors,
       normalized.maxFiveStarMembers,
       input.investmentLayer,
       normalized.song,
@@ -1092,7 +1131,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
     );
     teamSets = enumerateBeamTeams(
       normalized.memberCards,
-      normalized.anchor,
+      normalized.anchors,
       normalized.maxFiveStarMembers,
       beamWidth,
       finalistTeamCount,
@@ -1254,7 +1293,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
     while (true) {
       const screenedByKey = new Map<string, ScoredCandidate>();
       for (const [slot, replacedCardId] of best.memberCardIds.entries()) {
-        if (normalized.anchor?.cardId === replacedCardId) continue;
+        if (normalized.anchors.some((anchor) => anchor.cardId === replacedCardId)) continue;
         const otherIds = best.memberCardIds.filter((_, index) => index !== slot);
         const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
         const existingFiveStars = otherIds.filter(
@@ -1351,7 +1390,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
 
   let replacementEvaluations = 0;
   const replacementsBySlot = best.memberCardIds.map((replacedCardId, slot) => {
-    const anchored = normalized.anchor?.cardId === replacedCardId;
+    const anchored = normalized.anchors.some((anchor) => anchor.cardId === replacedCardId);
     const otherIds = best.memberCardIds.filter((_, index) => index !== slot);
     const otherTalents = new Set(otherIds.map((cardId) => cardById.get(cardId)!.talentId));
     const existingFiveStars = otherIds.filter((cardId) => cardById.get(cardId)!.rarity === 5).length;
@@ -1413,6 +1452,7 @@ export function searchNativeLegalTeams(input: NativeSearchInput): NativeSearchRe
     certificate,
     constraints: {
       anchorCardId: normalized.anchor?.cardId ?? null,
+      anchorCardIds: normalized.anchors.map((anchor) => anchor.cardId),
       fixedLeaderOutfitCardId: normalized.fixedLeader?.cardId ?? null,
       memberCardIds: normalized.memberCards.map((card) => card.cardId),
       leaderOutfitCardIds: normalized.leaderCards.map((card) => card.cardId),
