@@ -381,7 +381,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                           <p>Coverage: {replacementGroup.coverage.eligibleCardCount} eligible stand-in{replacementGroup.coverage.eligibleCardCount === 1 ? "" : "s"}; {replacementGroup.coverage.fullCorpusRerankedCardCount} reached the full 30-chart benchmark; {replacementGroup.coverage.returnedCardCount} shown.</p>
                         </>
                       ) : (
-                        <p>No evaluated stand-in was returned for this slot. The selected Member remains explained by the timing, link, and roster evidence above.</p>
+                        <p>{required ? "This slot is locked to a required card, so stand-ins were not evaluated for it." : "No evaluated stand-in was returned for this slot."} The selected Member remains explained by the timing, link, and roster evidence above.</p>
                       )}
                     </div>
                 </div>

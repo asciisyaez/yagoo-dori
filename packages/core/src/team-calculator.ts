@@ -1038,7 +1038,11 @@ export function calculateOwnedRosterTeam(
                 : requiredMemberCardIds,
             },
             strategy: boundedSearchStrategy(
-              Boolean(oshiConstraint?.memberRequired && !oshiConstraint.leaderRequired),
+              // Compact only while the per-variant anchor fan-out is active. When a
+              // required card already covers the Oshi Member role the fan-out
+              // collapses to a single pass, so the full finalist/leader budget is
+              // the correct bound again.
+              Boolean(requiredMemberTalentId !== undefined && !oshiConstraint?.leaderRequired),
             ),
           });
           nativeUtilityEvaluations += nativeResult.counts.utilityEvaluations;
