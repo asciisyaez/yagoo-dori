@@ -1,6 +1,9 @@
 import { mechanicsData } from "./mechanics";
 import { recommendFormationOrder } from "./formation-order-recommender";
-import { guideRatingTimelineByKey } from "./guide-rating-timelines";
+import {
+  guideRatingTimelineByKey,
+  resolveGuideRatingTimeline,
+} from "./guide-rating-timelines";
 import {
   NativeGuideDataSchema,
   NativeGuideFormationSchema,
@@ -154,8 +157,11 @@ function exactSongOrderEvaluation(
   chartKey: string,
 ): ReturnType<typeof recommendFormationOrder> {
   const bloomStage = PROGRESSION_LENSES[investment].bloomStage;
-  const timeline = guideRatingTimelineByKey.get(chartKey);
-  if (!timeline) throw new Error(`Published guide rating timeline is missing: ${chartKey}`);
+  const projection = resolveGuideRatingTimeline(chartKey);
+  if (projection.availability !== "exact") {
+    throw new Error(`Exact guide rating timeline is unavailable: ${chartKey}`);
+  }
+  const timeline = projection.chart;
   const cacheKey = [
     chartKey,
     leaderOutfitCardId,
@@ -180,6 +186,14 @@ function exactSongOrderEvaluation(
     exactSongOrderCache.set(cacheKey, model);
   }
   return model;
+}
+
+export function guideRatingTimelineState(chartKey: string) {
+  return resolveGuideRatingTimeline(chartKey);
+}
+
+function canonicalMemberIds(memberCardIds: readonly string[]): MemberCardIdTuple {
+  return [...memberCardIds].sort() as unknown as MemberCardIdTuple;
 }
 
 function subtractIntervals(selected: UtilityInterval, alternative: UtilityInterval): UtilityInterval {
@@ -762,6 +776,66 @@ export function generateNativeGuideData(
     );
     const candidateMembers = formation.members.map((member) => member.cardId) as unknown as MemberCardIdTuple;
     const defaultMembers = standard.members.map((member) => member.cardId) as unknown as MemberCardIdTuple;
+    const timelineState = guideRatingTimelineState(chartKey);
+    if (timelineState.availability === "recorded-unavailable") {
+      const candidateAggregate = modeledOrderEvaluation(
+        formation.leaderOutfitCardId,
+        candidateMembers,
+        "one-copy-maximum",
+        chartKey,
+      );
+      const defaultAggregate = modeledOrderEvaluation(
+        standard.leaderOutfitCardId,
+        defaultMembers,
+        "one-copy-maximum",
+        chartKey,
+      );
+      const candidateFormationChanged =
+        formation.leaderOutfitCardId !== standard.leaderOutfitCardId ||
+        [...candidateMembers].sort().join("\0") !== [...defaultMembers].sort().join("\0");
+      const robustlyBetter =
+        candidateFormationChanged &&
+        utilityIntervalStrictlyDominates(
+          candidateAggregate.utility.relativeUtility,
+          defaultAggregate.utility.relativeUtility,
+        );
+      const candidateCanonicalMembers = canonicalMemberIds(candidateMembers);
+      const defaultCanonicalMembers = canonicalMemberIds(defaultMembers);
+      const selectedMembers = robustlyBetter ? candidateCanonicalMembers : defaultCanonicalMembers;
+      const selectedUtility = robustlyBetter
+        ? candidateAggregate.utility
+        : defaultAggregate.utility;
+      const advantage =
+        ((candidateAggregate.utility.relativeUtility.central - defaultAggregate.utility.relativeUtility.central) /
+          Math.max(1, defaultAggregate.utility.relativeUtility.central)) *
+        100;
+      return {
+        songId: song.id,
+        songTitle: song.title,
+        chartKey,
+        difficulty: "expert" as const,
+        durationMilliseconds: song.playingMilliseconds,
+        noteCount: formation.context.noteCount,
+        scoreRatingEligible: true as const,
+        leaderSingerMatched: true as const,
+        platform: "mobile" as const,
+        chartFidelity: "aggregate" as const,
+        noteTimeline: "unavailable" as const,
+        comparisonMode: "aggregate-formation-only" as const,
+        timelineUnavailableReason: timelineState.chart.reason,
+        leaderOutfitCardId: robustlyBetter
+          ? formation.leaderOutfitCardId
+          : standard.leaderOutfitCardId,
+        formationOrder: selectedMembers,
+        orderStatus: "indeterminate" as const,
+        members: selectedMembers,
+        relativeUtility: serializable(selectedUtility.relativeUtility),
+        advantageOverReferencePercent: robustlyBetter
+          ? Math.round(advantage * 100) / 100
+          : null,
+        changesReferenceFormation: robustlyBetter,
+      };
+    }
     const candidateOrderModel = exactSongOrderEvaluation(
       formation.leaderOutfitCardId,
       candidateMembers,
@@ -807,7 +881,7 @@ export function generateNativeGuideData(
       defaultOnSong.relativeUtility,
     );
     const selectedOrderModel = robustlyBetter ? candidateOrderModel : defaultOrderModel;
-    const timeline = guideRatingTimelineByKey.get(chartKey)!;
+    const timeline = timelineState.chart;
     return {
       songId: song.id,
       songTitle: song.title,

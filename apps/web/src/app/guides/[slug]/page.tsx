@@ -9,6 +9,10 @@ import {
 import type { Metadata } from "next";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
+import {
+  classifyGuideSongComparison,
+  countGuideSongAlternatives,
+} from "@/lib/guide-song-alternatives";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -388,11 +392,17 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const anchorEditionLabel = anchor.id === "card-00012-5-uniq-0062-00" ? "summer" : "featured";
   const songAlternatives = guide.ratingSongComparisons.filter(
     (comparison) =>
-      comparison.changesReferenceFormation ||
-      (comparison.orderStatus === "timed-corpus" &&
-        comparison.formationOrder.join("|") !== standard.formationOrder.join("|")),
+      comparison.noteTimeline === "exact" &&
+      classifyGuideSongComparison(comparison, standard.formationOrder) !== "standard",
   );
-  const defaultSongCount = guide.ratingSongComparisons.length - songAlternatives.length;
+  const unavailableSongComparisons = guide.ratingSongComparisons.filter(
+    (comparison) => comparison.noteTimeline === "unavailable",
+  );
+  const songAlternativeCount = countGuideSongAlternatives(
+    guide.ratingSongComparisons,
+    standard.formationOrder,
+  );
+  const defaultSongCount = guide.ratingSongComparisons.length - songAlternativeCount;
   const observedBreakpoints = observedGuideSongBreakpoints(guide);
 
   return (
@@ -427,7 +437,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               </dd>
             </div>
             <div><dt><Music2 aria-hidden="true" /> Song coverage</dt><dd>{guide.ratingSongComparisons.length} singer-matched Expert charts</dd></div>
-            <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternatives.length === 0 ? "No change" : songAlternatives.length}</dd></div>
+            <div><dt><Clock3 aria-hidden="true" /> Song alternatives</dt><dd>{songAlternativeCount === 0 ? "No change" : songAlternativeCount}</dd></div>
             <div><dt><Gauge aria-hidden="true" /> Benchmark</dt><dd>Mobile · Manual · All Perfect</dd></div>
           </dl>
           {hasSeparateStandardLeaderSource && (
@@ -517,6 +527,39 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             );
           })}
         </div>
+        {unavailableSongComparisons.length > 0 && (
+          <aside className={styles.breakpointPanel} aria-label="Unavailable chart timing">
+            <header>
+              <Clock3 aria-hidden="true" />
+              <div>
+                <h3>Exact chart timing unavailable</h3>
+                <p>
+                  These singer-matched Expert charts have aggregate context only. The comparison
+                  can evaluate formation utility, but it cannot support a song-specific placement.
+                </p>
+              </div>
+            </header>
+            <ol>
+              {unavailableSongComparisons.map((comparison) => {
+                const leader = requireCard(comparison.leaderOutfitCardId);
+                const members = comparison.members.map(requireCard);
+                return (
+                  <li key={comparison.chartKey}>
+                    <strong>
+                      {formatDuration(comparison.durationMilliseconds)} {comparison.songTitle}
+                    </strong>
+                    <small>
+                      Aggregate formation comparison only. No placement recommendation.
+                      {comparison.changesReferenceFormation
+                        ? ` Model favors ${leader.talentName} · ${leader.leaderOutfit.costumeName} with ${members.map((member) => member.talentName).join(", ")}.`
+                        : " Use the Standard formation while exact chart timing is unavailable."}
+                    </small>
+                  </li>
+                );
+              })}
+            </ol>
+          </aside>
+        )}
         {observedBreakpoints.length > 0 && (
           <aside className={styles.breakpointPanel} aria-label="Observed chart timing breakpoints">
             <header>
