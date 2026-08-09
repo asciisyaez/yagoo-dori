@@ -7,7 +7,11 @@ import { nativeRankingBenchmark } from "../native-ranking-benchmark";
 import { chartTimelineData } from "../chart-timelines";
 import { rankingCorpusTimelineData } from "../ranking-corpus-timelines";
 import { assertRelativeUtilityModelValidationCurrent } from "../relative-utility-model-validation";
-import { guideRatingTimelineByKey, guideRatingTimelineData } from "../guide-rating-timelines";
+import {
+  guideRatingTimelineByKey,
+  guideRatingTimelineData,
+  guideRatingTimelineUnavailableByKey,
+} from "../guide-rating-timelines";
 import { songContextData } from "../song-contexts";
 import { exactOptimizerScope } from "../exact-optimizer-scope";
 
@@ -134,14 +138,35 @@ const publishedGuideChartKeys = new Set(
     guide.ratingSongComparisons.map((comparison) => comparison.chartKey),
   ),
 );
+const projectedGuideChartKeys = new Set([
+  ...guideRatingTimelineData.charts.map((chart) => chart.key),
+  ...guideRatingTimelineData.unavailableCharts.map((chart) => chart.key),
+]);
 if (
-  publishedGuideChartKeys.size !== guideRatingTimelineData.charts.length ||
-  [...publishedGuideChartKeys].some((chartKey) => !guideRatingTimelineByKey.has(chartKey))
+  publishedGuideChartKeys.size !== projectedGuideChartKeys.size ||
+  [...publishedGuideChartKeys].some((chartKey) => !projectedGuideChartKeys.has(chartKey))
 ) {
-  throw new Error("Compact guide timelines do not cover the exact published rating-song set.");
+  throw new Error("Compact guide timelines do not cover the published rating-song set.");
 }
 for (const guide of nativeGuideData.guides) {
   for (const comparison of guide.ratingSongComparisons) {
+    if (comparison.noteTimeline === "unavailable") {
+      const unavailable = guideRatingTimelineUnavailableByKey.get(comparison.chartKey);
+      const sourceUnavailable = unavailableChartByKey.get(comparison.chartKey);
+      if (
+        !unavailable ||
+        !sourceUnavailable ||
+        unavailable.expectedChartHash !== sourceUnavailable.upstreamChartHash ||
+        unavailable.fullComboNoteCount !== sourceUnavailable.fullComboNoteCount ||
+        unavailable.reason !== sourceUnavailable.reason ||
+        comparison.orderStatus !== "indeterminate" ||
+        comparison.comparisonMode !== "aggregate-formation-only" ||
+        (comparison.advantageOverReferencePercent !== null) !== comparison.changesReferenceFormation
+      ) {
+        throw new Error(`${guide.slug}/${comparison.chartKey} unavailable comparison evidence drifted.`);
+      }
+      continue;
+    }
     const compact = guideRatingTimelineByKey.get(comparison.chartKey);
     const exact = exactChartByKey.get(comparison.chartKey);
     if (

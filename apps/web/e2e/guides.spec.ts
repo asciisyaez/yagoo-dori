@@ -51,11 +51,26 @@ const GUIDES = [
     guideSlug: "otonose-kanade-breezy-smile-chords-card-06002-5-uniq-0066-00-team-guide",
     cardSlug: "otonose-kanade-breezy-smile-chords-card-06002-5-uniq-0066-00",
   },
+  {
+    talent: "Sakura Miko",
+    cardTitle: "Radiant Beach Shot",
+    standardLeaderCardTitle: "Sakura Bloom",
+    guideSlug: "sakura-miko-radiant-beach-shot-card-00015-5-uniq-0067-00-team-guide",
+    cardSlug: "sakura-miko-radiant-beach-shot-card-00015-5-uniq-0067-00",
+  },
+  {
+    talent: "Hoshimachi Suisei",
+    cardTitle: "Water Gun Arpeggio",
+    standardLeaderCardTitle: "Water Gun Arpeggio",
+    guideSlug: "hoshimachi-suisei-water-gun-arpeggio-card-00018-5-uniq-0068-00-team-guide",
+    cardSlug: "hoshimachi-suisei-water-gun-arpeggio-card-00018-5-uniq-0068-00",
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
 const PEKORA_GUIDE = GUIDES[1];
 const SUBARU_GUIDE = GUIDES[2];
+const MIKO_GUIDE = GUIDES[7];
 const DISCLAIMER = "Unofficial fan site; not affiliated with COVER Corp. or QualiArts.";
 const HEURISTIC_CAVEAT =
   "Only the reported team-set subset was evaluated; unresolved mechanics and unsearched teams limit the recommendation.";
@@ -378,4 +393,16 @@ test("meaningful exact song-order changes are shown without publishing timing ti
     "2:06 Bridal Dream → 2:21 ZenjinruiUsagikakeikaku!",
   );
   await expect(breakpointPanel).toContainText("not universal time thresholds");
+});
+
+test("recorded-unavailable chart rows stay aggregate-only", async ({ page }) => {
+  await page.goto(`/guides/${MIKO_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
+
+  const unavailablePanel = page.getByLabel("Unavailable chart timing");
+  await expect(unavailablePanel).toBeVisible();
+  await expect(unavailablePanel.locator("li")).toHaveCount(2);
+  await expect(unavailablePanel).toContainText(
+    "Aggregate formation comparison only. No placement recommendation.",
+  );
+  await expect(unavailablePanel).not.toContainText("Order change");
 });

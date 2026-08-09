@@ -56,44 +56,71 @@ const chartKeys = [
 ].sort();
 assert(chartKeys.length > 0, "Published guides contain no rating-song charts");
 const chartByKey = new Map(timelineData.charts.map((chart) => [chart.key, chart]));
+const unavailableChartByKey = new Map(
+  timelineData.unavailableCharts.map((chart) => [chart.key, chart]),
+);
 const unavailableReasonByKey = new Map(
   timelineData.unavailableCharts.map((chart) => [chart.key, chart.reason]),
 );
-const charts = chartKeys.map((chartKey) => {
+const charts = chartKeys.flatMap((chartKey) => {
   const chart = chartByKey.get(chartKey);
+  const unavailableChart = unavailableChartByKey.get(chartKey);
   const unavailableReason = unavailableReasonByKey.get(chartKey);
   assert(
-    chart,
-    `Guide rating timeline is unavailable: ${chartKey}` +
+    Boolean(chart) !== Boolean(unavailableChart),
+    `Guide rating timeline has conflicting or missing availability: ${chartKey}` +
       (unavailableReason ? ` (${unavailableReason})` : " (not present in the pinned corpus)"),
   );
-  assert(chart.difficulty === "expert", `Guide rating timeline is not Expert: ${chartKey}`);
-  assert(chart.feverMarkerMicroseconds, `Guide rating timeline has no Fever markers: ${chartKey}`);
-  return {
-    key: chart.key,
-    songId: chart.songId,
-    difficulty: chart.difficulty,
-    expectedChartHash: chart.upstreamChartHash,
-    fullComboNoteCount: chart.fullComboNoteCount,
-    events: chart.events,
-    specialMarkerMicroseconds: chart.specialMarkerMicroseconds,
-    specialStartsAtCombo: chart.specialStartsAtCombo,
-    feverMarkerMicroseconds: chart.feverMarkerMicroseconds,
-    source: {
-      apiRevision: chart.source.apiRevision,
-      susUrl: chart.source.sus.url,
-      susSha256: chart.source.sus.sha256,
-      metadataUrl: chart.source.metadata.url,
-      metadataSha256: chart.source.metadata.sha256,
-    },
-  };
+  if (chart) {
+    assert(chart.difficulty === "expert", `Guide rating timeline is not Expert: ${chartKey}`);
+    assert(chart.feverMarkerMicroseconds, `Guide rating timeline has no Fever markers: ${chartKey}`);
+    return [{
+      key: chart.key,
+      songId: chart.songId,
+      difficulty: chart.difficulty,
+      expectedChartHash: chart.upstreamChartHash,
+      fullComboNoteCount: chart.fullComboNoteCount,
+      events: chart.events,
+      specialMarkerMicroseconds: chart.specialMarkerMicroseconds,
+      specialStartsAtCombo: chart.specialStartsAtCombo,
+      feverMarkerMicroseconds: chart.feverMarkerMicroseconds,
+      source: {
+        apiRevision: chart.source.apiRevision,
+        susUrl: chart.source.sus.url,
+        susSha256: chart.source.sus.sha256,
+        metadataUrl: chart.source.metadata.url,
+        metadataSha256: chart.source.metadata.sha256,
+      },
+    }];
+  }
+  assert(unavailableChart, `Guide rating timeline is unavailable: ${chartKey}`);
+  assert(unavailableChart.difficulty === "expert", `Guide rating timeline is not Expert: ${chartKey}`);
+  return [];
+});
+const unavailableCharts = chartKeys.flatMap((chartKey) => {
+  const unavailableChart = unavailableChartByKey.get(chartKey);
+  if (!unavailableChart) return [];
+  return [{
+    availability: "unavailable" as const,
+    key: unavailableChart.key,
+    songId: unavailableChart.songId,
+    difficulty: unavailableChart.difficulty,
+    expectedChartHash: unavailableChart.upstreamChartHash,
+    fullComboNoteCount: unavailableChart.fullComboNoteCount,
+    reason: unavailableChart.reason,
+  }];
 });
 
 const orderedChartKeysSha256 = sha256(chartKeys.join("\n"));
 const orderedChartSourcesSha256 = sha256(
-  charts.map((chart) =>
-    `${chart.key}|${chart.expectedChartHash}|${chart.source.susSha256}|${chart.source.metadataSha256}`,
-  ).join("\n"),
+  chartKeys.map((chartKey) => {
+    const chart = chartByKey.get(chartKey);
+    if (chart) {
+      return `${chart.key}|${chart.upstreamChartHash}|${chart.source.sus.sha256}|${chart.source.metadata.sha256}`;
+    }
+    const unavailable = unavailableChartByKey.get(chartKey)!;
+    return `${unavailable.key}|${unavailable.upstreamChartHash}|${unavailable.reason}`;
+  }).join("\n"),
 );
 const fullCorpusSha256 = sha256(new Uint8Array(await readFile(fullCorpusFile)));
 const payload = {
@@ -114,8 +141,10 @@ const payload = {
     events: charts.reduce((sum, chart) => sum + chart.events.length, 0),
     specialMarkers: charts.length * 5,
     feverMarkers: charts.length * 4,
+    unavailableCharts: unavailableCharts.length,
   },
   charts,
+  unavailableCharts,
 };
 
 await mkdir(dirname(outputFile), { recursive: true });
