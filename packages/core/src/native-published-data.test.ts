@@ -6,6 +6,8 @@ import { describe, expect, it } from "vitest";
 import cardArtManifestJson from "../../../data/generated/card-art-manifest.json";
 
 import { mechanicsCardById } from "./mechanics";
+import { chartTimelineData } from "./chart-timelines";
+import { guideRatingTimelineUnavailableByKey } from "./guide-rating-timelines";
 import {
   nativeGuideByAnchorCardId,
   nativeGuideBySlug,
@@ -39,6 +41,28 @@ const EXPECTED_GUIDE_IDENTITIES = [
       premium: "card-00013-5-uniq-0002-00",
       standard: "card-00013-5-uniq-0002-00",
       "accessible-4-star": "card-00013-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00015-5-uniq-0067-00",
+    talentId: "chr-00015",
+    talentName: "Sakura Miko",
+    cardTitle: "Radiant Beach Shot",
+    leaders: {
+      premium: "card-00015-5-uniq-0067-00",
+      standard: "card-00015-5-uniq-0003-00",
+      "accessible-4-star": "card-00015-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00018-5-uniq-0068-00",
+    talentId: "chr-00018",
+    talentName: "Hoshimachi Suisei",
+    cardTitle: "Water Gun Arpeggio",
+    leaders: {
+      premium: "card-00018-5-uniq-0068-00",
+      standard: "card-00018-5-uniq-0068-00",
+      "accessible-4-star": "card-00018-4-cmmn-0000-00",
     },
   },
   {
@@ -123,6 +147,36 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Graceful Scent",
     leaderSkillId: "live_leader_skill-card-00013-5-uniq-0002-00",
   },
+  "card-00015-4-cmmn-0000-00": {
+    cardTitle: "Embrace the Glow",
+    costumeId: "cos-00015-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00015-4-cmmn-0000-00",
+  },
+  "card-00015-5-uniq-0003-00": {
+    cardTitle: "Sakura Bloom",
+    costumeId: "cos-00015-uniq-0003-00",
+    costumeName: "Splendor of Cherry Blossoms",
+    leaderSkillId: "live_leader_skill-card-00015-5-uniq-0003-00",
+  },
+  "card-00015-5-uniq-0067-00": {
+    cardTitle: "Radiant Beach Shot",
+    costumeId: "cos-00015-uniq-0067-00",
+    costumeName: "Radiance Smile",
+    leaderSkillId: "live_leader_skill-card-00015-5-uniq-0067-00",
+  },
+  "card-00018-4-cmmn-0000-00": {
+    cardTitle: "Radiant Floor Star",
+    costumeId: "cos-00018-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00018-4-cmmn-0000-00",
+  },
+  "card-00018-5-uniq-0068-00": {
+    cardTitle: "Water Gun Arpeggio",
+    costumeId: "cos-00018-uniq-0068-00",
+    costumeName: "Melody of the Tides",
+    leaderSkillId: "live_leader_skill-card-00018-5-uniq-0068-00",
+  },
   "card-00019-4-cmmn-0000-00": {
     cardTitle: "Vogue Hop Bunny",
     costumeId: "cos-00019-cmmn-0000-00",
@@ -188,6 +242,8 @@ const EXPECTED_LEADER_IDENTITIES = {
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
   "card-00012-5-uniq-0062-00",
   "card-00013-5-uniq-0002-00",
+  "card-00015-5-uniq-0067-00",
+  "card-00018-5-uniq-0068-00",
   "card-00019-5-uniq-0016-00",
   "card-00021-5-uniq-0064-00",
   "card-00022-5-uniq-0063-00",
@@ -315,7 +371,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(79);
+    expect(referencedCardIds.size).toBe(83);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);
@@ -623,6 +679,28 @@ describe("generated native publication data", () => {
         expect(song.singerTalentIds).toContain(guide.ratingSongScope.singerTalentId);
         expect(leader.talentId).toBe(guide.ratingSongScope.singerTalentId);
         expect(comparison.platform).toBe("mobile");
+        if (comparison.noteTimeline === "unavailable") {
+          const projected = guideRatingTimelineUnavailableByKey.get(comparison.chartKey);
+          const source = chartTimelineData.unavailableCharts.find(
+            (candidate) => candidate.key === comparison.chartKey,
+          );
+          expect(projected).toBeDefined();
+          expect(source).toBeDefined();
+          if (!projected || !source) throw new Error(`Missing unavailable timeline ${comparison.chartKey}`);
+          expect(projected.expectedChartHash).toBe(source.upstreamChartHash);
+          expect(projected.fullComboNoteCount).toBe(source.fullComboNoteCount);
+          expect(projected.reason).toBe(source.reason);
+          expect(comparison.comparisonMode).toBe("aggregate-formation-only");
+          expect(comparison.timelineUnavailableReason).toBe(source.reason);
+          expect(comparison.orderStatus).toBe("indeterminate");
+          expect(comparison.formationOrder).toEqual([...comparison.members].sort());
+          expect(comparison.advantageOverReferencePercent !== null).toBe(
+            comparison.changesReferenceFormation,
+          );
+          expect("formationOrderModel" in comparison).toBe(false);
+          expect("timelineEvidence" in comparison).toBe(false);
+          continue;
+        }
         expect(comparison.noteTimeline).toBe("exact");
         expect(comparison.formationOrderTimelineFidelity).toBe("exact-timed");
         expect(["modeled-general", "timed-corpus", "indeterminate"]).toContain(

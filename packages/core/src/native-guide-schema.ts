@@ -391,7 +391,7 @@ export const NativeGuideFormationSchema = z
     }
   });
 
-export const RatingSongComparisonSchema = z
+const ExactRatingSongComparisonSchema = z
   .object({
     songId: z.string().regex(/^m\d{4}$/),
     songTitle: z.string().min(1),
@@ -452,6 +452,61 @@ export const RatingSongComparisonSchema = z
       context.addIssue({ code: "custom", path: ["formationOrder"], message: "Comparison order must contain the five Members" });
     }
   });
+
+const UnavailableRatingSongComparisonSchema = z
+  .object({
+    songId: z.string().regex(/^m\d{4}$/),
+    songTitle: z.string().min(1),
+    chartKey: z.string().regex(/^m\d{4}:expert$/),
+    difficulty: z.literal("expert"),
+    durationMilliseconds: z.number().int().positive(),
+    noteCount: z.number().int().positive(),
+    scoreRatingEligible: z.literal(true),
+    leaderSingerMatched: z.literal(true),
+    platform: z.literal("mobile"),
+    chartFidelity: z.literal("aggregate"),
+    noteTimeline: z.literal("unavailable"),
+    comparisonMode: z.literal("aggregate-formation-only"),
+    timelineUnavailableReason: z.enum([
+      "source-chart-does-not-contain-five-special-markers",
+      "source-api-unreachable-cloudflare-challenge-at-intake",
+    ]),
+    leaderOutfitCardId: z.string().min(1),
+    formationOrder: z.array(z.string().min(1)).length(5),
+    orderStatus: z.literal("indeterminate"),
+    members: z.array(z.string().min(1)).length(5),
+    relativeUtility: SerializableIntervalSchema,
+    advantageOverReferencePercent: z.number().finite().positive().nullable(),
+    changesReferenceFormation: z.boolean(),
+  })
+  .strict()
+  .superRefine((entry, context) => {
+    if (entry.chartKey !== `${entry.songId}:expert`) {
+      context.addIssue({ code: "custom", path: ["chartKey"], message: "Comparison chart must match its rating song" });
+    }
+    if (new Set(entry.members).size !== 5) {
+      context.addIssue({ code: "custom", path: ["members"], message: "Unavailable comparison Members must be unique" });
+    }
+    if ([...entry.members].sort().join("\0") !== entry.formationOrder.join("\0")) {
+      context.addIssue({
+        code: "custom",
+        path: ["formationOrder"],
+        message: "Unavailable comparisons must use a deterministic unordered Member representation",
+      });
+    }
+    if (entry.changesReferenceFormation !== (entry.advantageOverReferencePercent !== null)) {
+      context.addIssue({
+        code: "custom",
+        path: ["advantageOverReferencePercent"],
+        message: "Only a robust aggregate formation change may publish a modeled advantage",
+      });
+    }
+  });
+
+export const RatingSongComparisonSchema = z.discriminatedUnion("noteTimeline", [
+  ExactRatingSongComparisonSchema,
+  UnavailableRatingSongComparisonSchema,
+]);
 
 const BenchmarkContextSchema = z
   .object({

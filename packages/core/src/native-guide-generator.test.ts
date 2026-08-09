@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_GUIDE_ANCHOR_CARD_ID,
   generateNativeGuideData,
+  guideRatingTimelineState,
   guideLeaderOutfitCardIdsForSong,
   mergeNativeGuideData,
   rebaseNativeGuideDataSnapshot,
@@ -69,6 +70,11 @@ describe("native guide request resolution", () => {
           song.scoreRatingEligible && song.singerTalentIds.includes(selection.singerTalentId),
       ),
     ).toBe(true);
+  });
+
+  it("requires a projected exact or recorded-unavailable state for every rating chart", () => {
+    expect(guideRatingTimelineState("m0032:expert").availability).toBe("exact");
+    expect(() => guideRatingTimelineState("m0999:expert")).toThrow(/projection is missing/i);
   });
 
   it("constrains every song search to Leader Outfits for its declared singer", () => {

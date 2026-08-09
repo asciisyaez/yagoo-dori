@@ -180,6 +180,29 @@ const comparisonFixture = {
   relativeUtility: { lower: 100, central: 110, upper: 120 },
 } as const;
 
+const unavailableComparisonFixture = {
+  songId: "m0325",
+  songTitle: "Unavailable fixture",
+  chartKey: "m0325:expert",
+  difficulty: "expert",
+  durationMilliseconds: 100_000,
+  noteCount: 500,
+  scoreRatingEligible: true,
+  leaderSingerMatched: true,
+  platform: "mobile",
+  chartFidelity: "aggregate",
+  noteTimeline: "unavailable",
+  comparisonMode: "aggregate-formation-only",
+  timelineUnavailableReason: "source-api-unreachable-cloudflare-challenge-at-intake",
+  leaderOutfitCardId: "leader",
+  formationOrder: ["card-1", "card-2", "card-3", "card-4", "card-5"],
+  orderStatus: "indeterminate",
+  members: ["card-1", "card-2", "card-3", "card-4", "card-5"],
+  relativeUtility: { lower: 100, central: 110, upper: 120 },
+  advantageOverReferencePercent: null,
+  changesReferenceFormation: false,
+} as const;
+
 function guideFixture(overrides: Partial<{
   id: string;
   slug: string;
@@ -560,6 +583,47 @@ describe("native guide publication schema", () => {
       RatingSongComparisonSchema.safeParse({
         ...comparisonFixture,
         advantageOverReferencePercent: 1.5,
+        changesReferenceFormation: false,
+      }).success,
+    ).toBe(false);
+  });
+
+  it("models recorded-unavailable rows as aggregate-only and rejects placement claims", () => {
+    expect(RatingSongComparisonSchema.safeParse(unavailableComparisonFixture).success).toBe(true);
+    expect(
+      RatingSongComparisonSchema.safeParse({
+        ...unavailableComparisonFixture,
+        advantageOverReferencePercent: 1.5,
+        changesReferenceFormation: true,
+      }).success,
+    ).toBe(true);
+    expect(
+      RatingSongComparisonSchema.safeParse({
+        ...unavailableComparisonFixture,
+        orderStatus: "timed-corpus",
+      }).success,
+    ).toBe(false);
+    expect(
+      RatingSongComparisonSchema.safeParse({
+        ...unavailableComparisonFixture,
+        formationOrder: ["card-2", "card-1", "card-3", "card-4", "card-5"],
+      }).success,
+    ).toBe(false);
+    expect(
+      RatingSongComparisonSchema.safeParse({
+        ...unavailableComparisonFixture,
+        changesReferenceFormation: true,
+        advantageOverReferencePercent: null,
+      }).success,
+    ).toBe(false);
+  });
+
+  it("keeps exact rows strict and does not accept unavailable-only fields", () => {
+    expect(
+      RatingSongComparisonSchema.safeParse({
+        ...comparisonFixture,
+        timelineUnavailableReason: "source-api-unreachable-cloudflare-challenge-at-intake",
+        advantageOverReferencePercent: null,
         changesReferenceFormation: false,
       }).success,
     ).toBe(false);

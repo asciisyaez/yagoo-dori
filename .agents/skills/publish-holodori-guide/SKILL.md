@@ -25,6 +25,12 @@ Build the guide from Yagoo-dori's native evaluator and pinned game data. Other g
 6. Calculate replacements by re-evaluating legal swaps in the same chart context. Report the relative-utility loss as an interval rather than an invented absolute Live Score.
 7. Preserve the search certificate. A locally fixed-point heuristic result is a recommended model result, not a proof of global optimality. Reserve "mathematically optimal" for an exhaustive, branch-and-bound, MILP, or independently checked proof.
 
+## Bootstrap the guide timeline projection
+
+1. Before generation, run `pnpm --filter @yagoo-dori/core timelines:project:guides --anchor-card-id=<exact 5-star card ID>` for every requested new anchor. Add `--leader-outfit-card-id=<exact card ID>` when the request fixes a Leader Outfit.
+2. Accept the indeterminate fallback only when the projection explicitly records a required Expert chart as unavailable. Stop on an unknown or missing projection key; never infer that absence means unavailability.
+3. For an unavailable chart, publish aggregate formation comparison only. Keep a chart alternative only when its full modeled utility interval strictly dominates the reference formation. Mark order indeterminate, make no song-specific placement claim, and verify the row contains no order-only change.
+
 ## Generate and review
 
 1. Run `pnpm --filter @yagoo-dori/core guides:generate --generated-at=<fixed ISO timestamp> --anchor-card-id=<exact 5-star card ID>`. Add `--leader-outfit-card-id=<exact card ID>` only when the request fixes a Leader Outfit. Do not hand-edit generated calculations.
