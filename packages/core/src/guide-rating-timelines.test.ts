@@ -31,6 +31,11 @@ describe("published guide rating-song exact timelines", () => {
       feverMarkers: guideRatingTimelineData.charts.length * 4,
       unavailableCharts: guideRatingTimelineData.unavailableCharts.length,
     });
+    // Literal intake tripwire: the schema already reconciles counts against the
+    // file's own contents, so without pinned sizes a projector run that drops or
+    // duplicates charts would stay self-consistent and pass silently.
+    expect(guideRatingTimelineData.charts).toHaveLength(41);
+    expect(guideRatingTimelineData.unavailableCharts).toHaveLength(3);
   });
 
   it("pins the exact full-corpus source used for the compact projection", () => {
