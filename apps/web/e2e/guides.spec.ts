@@ -89,7 +89,7 @@ test("guide library lists every generated exact-card build", async ({ isMobile, 
   await page.goto("/guides", { waitUntil: "domcontentloaded" });
 
   await expect(
-    page.getByRole("heading", { level: 1, name: "Build teams for rating songs." }),
+    page.getByRole("heading", { level: 1, name: "Build teams for each holomem’s own songs." }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Build around a 5★ Member" })).toBeVisible();
   await expect(page.getByRole("article")).toHaveCount(GUIDES.length);
@@ -370,7 +370,7 @@ test("generated guide renders three legal formations and decision details", asyn
   await expect(
     page.getByRole("heading", { name: "Use one build unless the chart changes the answer" }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Most rating songs" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Most studied charts" })).toBeVisible();
   await expect(page.locator("#rating-song-comparisons article")).toHaveCount(1);
   await expect(page.getByText("Standard build", { exact: true })).toBeVisible();
 

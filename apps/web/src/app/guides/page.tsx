@@ -40,10 +40,13 @@ export default function GuidesPage() {
         <div className="database-heading-icon"><BookOpenCheck aria-hidden="true" /></div>
         <div>
           <p className="db-eyebrow">Team guides</p>
-          <h1>Build teams for rating songs.</h1>
+          <h1>Build teams for each holomem&rsquo;s own songs.</h1>
           <p>
             Choose a 5★ Member to see the recommended Leader Outfit, five-card lineups,
-            practical replacements, and song-specific alternatives.
+            practical replacements, and alternatives across the Expert charts that holomem
+            sings. The in-game Holomem Score Rating itself totals the top 3 song scores
+            played as Leader from all rating-eligible songs, at the highest difficulty
+            score — a wider pool than any single guide covers.
           </p>
         </div>
         <dl className="database-summary">

@@ -10,15 +10,15 @@
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 79
+    "score": 83
   },
   "dispositionCounts": {
-    "allowed-scoped": 87,
+    "allowed-scoped": 91,
     "non-technical": 9,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 96,
+  "occurrenceCount": 100,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -85,6 +85,24 @@
     },
     {
       "file": "apps/web/src/app/guides/[slug]/page.tsx",
+      "context": "Rating-eligible Expert songs with the Leader talent listed as a singer — a study set, not the rating universe: the in-game Holomem Score Rating totals the top 3 song scores played as Leader across all rating-eligible songs, taking each song&rsquo;s highest score over every difficulty",
+      "term": "score",
+      "location": "apps/web/src/app/guides/[slug]/page.tsx:607",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the proper noun Holomem Score Rating and in a factual statement of the in-game rating rule (top 3 Leader song scores, highest difficulty), sourced from the pinned help text; no scoring forecast is claimed."
+    },
+    {
+      "file": "apps/web/src/app/guides/[slug]/page.tsx",
+      "context": "Rating-eligible Expert songs with the Leader talent listed as a singer — a study set, not the rating universe: the in-game Holomem Score Rating totals the top 3 song scores played as Leader across all rating-eligible songs, taking each song&rsquo;s highest score over every difficulty",
+      "term": "score",
+      "location": "apps/web/src/app/guides/[slug]/page.tsx:607",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the proper noun Holomem Score Rating and in a factual statement of the in-game rating rule (top 3 Leader song scores, highest difficulty), sourced from the pinned help text; no scoring forecast is claimed."
+    },
+    {
+      "file": "apps/web/src/app/guides/[slug]/page.tsx",
       "context": "These are relative team comparisons under one fixed benchmark, not absolute Live Score forecasts. The model combines legal team rules, card parameters, progression, skill effects, and song context.",
       "term": "score",
       "location": "apps/web/src/app/guides/[slug]/page.tsx:601",
@@ -109,6 +127,24 @@
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Missing timing evidence plus conservative fallback, no placement recommendation."
+    },
+    {
+      "file": "apps/web/src/app/guides/page.tsx",
+      "context": "Choose a 5★ Member to see the recommended Leader Outfit, five-card lineups, practical replacements, and alternatives across the Expert charts that holomem sings. The in-game Holomem Score Rating itself totals the top 3 song scores played as Leader from all rating-eligible songs, at the highest difficulty score — a wider pool than any single guide covers.",
+      "term": "score",
+      "location": "apps/web/src/app/guides/page.tsx:45",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the proper noun Holomem Score Rating and in a factual statement of the in-game rating rule (top 3 Leader song scores, highest difficulty), sourced from the pinned help text; no scoring forecast is claimed."
+    },
+    {
+      "file": "apps/web/src/app/guides/page.tsx",
+      "context": "Choose a 5★ Member to see the recommended Leader Outfit, five-card lineups, practical replacements, and alternatives across the Expert charts that holomem sings. The in-game Holomem Score Rating itself totals the top 3 song scores played as Leader from all rating-eligible songs, at the highest difficulty score — a wider pool than any single guide covers.",
+      "term": "score",
+      "location": "apps/web/src/app/guides/page.tsx:45",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the proper noun Holomem Score Rating and in a factual statement of the in-game rating rule (top 3 Leader song scores, highest difficulty), sourced from the pinned help text; no scoring forecast is claimed."
     },
     {
       "file": "apps/web/src/app/guides/page.tsx",
@@ -962,7 +998,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T08:41:29.846Z"
+    "generatedAt": "2026-08-09T08:51:02.596Z"
   },
-  "stableDigest": "b4bb8c3b1815927321c5560e871a25277ba85c8b81b99da90cd7e5a264f770a4"
+  "stableDigest": "e1418e7d6c1e2068f0745edb0780258a27eae2e87fd6a316a2d61fb721ad059a"
 }

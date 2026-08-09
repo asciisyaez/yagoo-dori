@@ -498,7 +498,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           <article className={styles.songSummary}>
             <header>
               <Music2 aria-hidden="true" />
-              <div><h3>Most rating songs</h3><p>{defaultSongCount} of {guide.ratingSongComparisons.length} current singer-matched Expert charts</p></div>
+              <div><h3>Most studied charts</h3><p>{defaultSongCount} of {guide.ratingSongComparisons.length} current singer-matched Expert charts{guide.ratingSongComparisons.some((comparison) => comparison.noteTimeline === "unavailable") ? " (aggregate-only comparisons counted)" : ""}</p></div>
               <span className={styles.defaultSong}>Standard build</span>
             </header>
             <p><Crown aria-hidden="true" /> Keep {standardLeader.talentName} · {standardLeader.leaderOutfit.costumeName} with the Standard formation above.</p>
@@ -604,7 +604,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <ul>
           <li><Gauge aria-hidden="true" />Manual · All Perfect/full combo · full 1,000 Life</li>
           <li><Gauge aria-hidden="true" />Neutral Board contribution, 0% collection Member Upgrade Bonus, and no event bonus</li>
-          <li><Music2 aria-hidden="true" />Rating-eligible Expert songs with the Leader talent listed as a singer</li>
+          <li><Music2 aria-hidden="true" />Rating-eligible Expert songs with the Leader talent listed as a singer — a study set, not the rating universe: the in-game Holomem Score Rating totals the top 3 song scores played as Leader across all rating-eligible songs, taking each song&rsquo;s highest score over every difficulty</li>
           <li><Sparkles aria-hidden="true" />Performance, Technique, Sense, Leader effects, Passives, Active cadence, Specials, and target limits</li>
         </ul>
       </section>
