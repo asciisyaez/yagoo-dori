@@ -1122,6 +1122,7 @@
 .selectedCard {
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) auto auto;
+  min-height: 46px;
   align-items: center;
   gap: 0.5rem;
   overflow: hidden;
@@ -1138,6 +1139,10 @@
 .selectedCard > span {
   display: grid;
   min-width: 0;
+  /* Vertical padding keeps the two text lines clear of the tile edges even
+     under OS text scaling or fallback fonts with taller metrics - the row is
+     sized by text plus padding, never by the 42px art alone. */
+  padding: 0.3rem 0;
 }
 
 .selectedCard strong,
@@ -1149,11 +1154,13 @@
 
 .selectedCard strong {
   font-size: 0.65rem;
+  line-height: 1.4;
 }
 
 .selectedCard small {
   color: #7f8794;
-  font-size: 0.54rem;
+  font-size: 0.58rem;
+  line-height: 1.4;
 }
 
 .selectedCard b {
