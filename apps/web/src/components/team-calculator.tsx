@@ -29,6 +29,7 @@ import {
   emptyTeamRoster,
   loadTeamRoster,
   saveTeamRoster,
+  saveTeamRosterCalculatorFields,
   type StoredOshiPreference,
   type StoredOshiRole,
 } from "@/lib/team-roster-storage";
@@ -602,8 +603,10 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     if (storageStatus !== "persistent") return;
     let fallbackTimer: number | null = null;
     try {
-      saveTeamRoster(window.localStorage, {
-        ...emptyTeamRoster(rosterCommit),
+      // Writes only the calculator-owned fields; persisted Board planner state
+      // (playerLevel/boards) is preserved by the storage layer.
+      saveTeamRosterCalculatorFields(window.localStorage, {
+        rosterCommit,
         cards: ownedCards,
         oshi: oshiPreference,
         requiredMemberCardIds,
