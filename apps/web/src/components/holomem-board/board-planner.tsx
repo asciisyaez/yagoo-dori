@@ -8,10 +8,11 @@ import {
   publicData,
   replayHolomemBoardAutoUnlock,
 } from "@yagoo-dori/core";
-import { holomemRankIncome } from "@yagoo-dori/core/holomem-board-contract";
-import type {
-  HolomemBoardRequest,
-  HolomemBoardResult,
+import {
+  HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
+  holomemRankIncome,
+  type HolomemBoardRequest,
+  type HolomemBoardResult,
 } from "@yagoo-dori/core/holomem-board-contract";
 import type { TeamCalculatorRequest } from "@yagoo-dori/core/team-calculator-contract";
 import { Network } from "lucide-react";
@@ -400,7 +401,7 @@ export function BoardPlanner() {
     const memberBoards = boardsForTeam(team, boards);
     if (team.members.some((member) => !memberBoards[member.talentId])) return null;
     return {
-      schemaVersion: 1,
+      schemaVersion: HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
       rosterCommit: ROSTER_COMMIT,
       playerLevel,
       team,

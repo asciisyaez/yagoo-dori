@@ -1,9 +1,5 @@
 import { boardAdjacency, type BoardGridCell } from "@yagoo-dori/core/holomem-board";
 
-function cellFor(treeModelId: string, groupId: string): BoardGridCell | null {
-  return boardAdjacency.cellByGroupIdByTreeModel.get(treeModelId)?.get(groupId) ?? null;
-}
-
 export type ArrowKey = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
 
 // Upstream grid coordinates are y-up (positive y is toward the top of the
@@ -15,27 +11,47 @@ const DIRECTIONS: Readonly<Record<ArrowKey, { x: number; y: number }>> = {
   ArrowRight: { x: 1, y: 0 },
 };
 
-// Roving-tabindex arrow movement along the derived board adjacency. Only
-// eligible (non-disabled) neighbors may receive focus: landing on a disabled
-// node would strand the roving tab stop on a tabIndex=-1 element.
+function cellKey(cell: BoardGridCell): string {
+  return `${cell.x},${cell.y}`;
+}
+
+// Roving-tabindex arrow movement follows the requested grid ray. Only eligible
+// (non-disabled) occupied cells may receive focus: an ineligible node is
+// skipped so the roving tab stop never lands on a tabIndex=-1 element.
 export function movementTarget(
   treeModelId: string,
   groupId: string,
   key: ArrowKey,
   isEligible: (candidateGroupId: string) => boolean,
 ): string | null {
-  const current = cellFor(treeModelId, groupId);
+  const positions = boardAdjacency.cellByGroupIdByTreeModel.get(treeModelId);
+  if (!positions) return null;
+  const current = positions.get(groupId);
   if (!current) return null;
-  const candidates = (boardAdjacency.neighborsByGroupId.get(groupId) ?? [])
-    .filter((neighbor) => isEligible(neighbor))
-    .map((neighbor) => ({ groupId: neighbor, cell: cellFor(treeModelId, neighbor) }))
-    .filter((candidate): candidate is { groupId: string; cell: BoardGridCell } => candidate.cell !== null);
+
+  const groupIdByCell = new Map<string, string>();
+  let minX = current.x;
+  let maxX = current.x;
+  let minY = current.y;
+  let maxY = current.y;
+  for (const [candidateGroupId, cell] of positions) {
+    groupIdByCell.set(cellKey(cell), candidateGroupId);
+    minX = Math.min(minX, cell.x);
+    maxX = Math.max(maxX, cell.x);
+    minY = Math.min(minY, cell.y);
+    maxY = Math.max(maxY, cell.y);
+  }
+
   const direction = DIRECTIONS[key];
-  const directed = candidates
-    .filter(({ cell }) => cell.x - current.x === direction.x && cell.y - current.y === direction.y)
-    .sort((left, right) => left.groupId.localeCompare(right.groupId));
-  if (directed[0]) return directed[0].groupId;
-  return candidates.sort((left, right) => left.groupId.localeCompare(right.groupId))[0]?.groupId ?? null;
+  let x = current.x + direction.x;
+  let y = current.y + direction.y;
+  while (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+    const candidateGroupId = groupIdByCell.get(cellKey({ x, y }));
+    if (candidateGroupId !== undefined && isEligible(candidateGroupId)) return candidateGroupId;
+    x += direction.x;
+    y += direction.y;
+  }
+  return null;
 }
 
 // The initial roving tab stop must also be an eligible node.

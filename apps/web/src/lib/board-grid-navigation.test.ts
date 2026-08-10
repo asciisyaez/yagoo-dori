@@ -4,9 +4,9 @@ import { firstEligibleGroupId, movementTarget } from "./board-grid-navigation";
 
 // Real derived-adjacency facts (grid coordinates are y-up, matching the
 // in-game board): on tree-model-001, S-001 sits at (0,0) with neighbors
-// B-001 (-1,0), G-001 (0,-1), R-001 (0,1), Y-001 (1,0). On tree-model-004
-// (e.g. Usada Pekora) the same neighbors sit mirrored: B-001 (1,0) and
-// Y-001 (-1,0).
+// B-001 (-1,0), G-001 (0,-1), R-001 (0,1), Y-001 (1,0), and the downward
+// ray continues G-001, G-002, G-005, G-006, … On tree-model-004 (e.g.
+// Usada Pekora) the x-axis is mirrored: B-001 (1,0) and Y-001 (-1,0).
 describe("board grid keyboard navigation", () => {
   it("moves to the directed neighbor when it is eligible", () => {
     expect(movementTarget("tree-model-001", "S-001", "ArrowUp", () => true)).toBe("R-001");
@@ -23,17 +23,25 @@ describe("board grid keyboard navigation", () => {
     expect(movementTarget("tree-model-004", "S-001", "ArrowUp", () => true)).toBe("R-001");
   });
 
-  it("never targets an ineligible (dimmed) node", () => {
-    // The review's stranding case: ArrowDown from the root toward dimmed
-    // G-001 must fall back to an eligible neighbor instead of stranding
-    // focus on a tabIndex=-1 element.
-    const eligible = (groupId: string) => groupId !== "G-001";
-    const target = movementTarget("tree-model-001", "S-001", "ArrowDown", eligible);
-    expect(target).not.toBe("G-001");
-    expect(target).toBe("B-001");
+  it("skips ineligible nodes along the same ray instead of changing direction", () => {
+    // The pass-2 finding: a Down press must never resolve to a perpendicular
+    // move. With G-001 dimmed, focus skips along the downward ray to G-002.
+    const skipOne = (groupId: string) => groupId !== "G-001";
+    expect(movementTarget("tree-model-001", "S-001", "ArrowDown", skipOne)).toBe("G-002");
+
+    const skipTwo = (groupId: string) => groupId !== "G-001" && groupId !== "G-002";
+    expect(movementTarget("tree-model-001", "S-001", "ArrowDown", skipTwo)).toBe("G-005");
+
+    // Mirrored model, same policy on the horizontal axis.
+    const skipRight = (groupId: string) => groupId !== "B-001";
+    expect(movementTarget("tree-model-004", "S-001", "ArrowRight", skipRight)).toBe("B-002");
   });
 
-  it("returns null when no neighbor is eligible", () => {
+  it("does not move at all when the requested ray has no eligible node", () => {
+    // Only the perpendicular B-001 is eligible: Down must return null rather
+    // than jump left.
+    const onlyLeftNeighbor = (groupId: string) => groupId === "B-001";
+    expect(movementTarget("tree-model-001", "S-001", "ArrowDown", onlyLeftNeighbor)).toBeNull();
     expect(movementTarget("tree-model-001", "S-001", "ArrowUp", () => false)).toBeNull();
   });
 

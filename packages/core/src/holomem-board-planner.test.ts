@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { HolomemBoardResultSchema, type HolomemBoardRequest } from "./holomem-board-contract";
+import {
+  HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
+  HolomemBoardResultSchema,
+  type HolomemBoardRequest,
+} from "./holomem-board-contract";
 import { planHolomemBoard } from "./holomem-board-planner";
 import { publicCards } from "./public-data";
 
@@ -16,7 +20,7 @@ function realRequest(): HolomemBoardRequest {
       }]),
   ).values()].slice(0, 5);
   return {
-    schemaVersion: 1,
+    schemaVersion: HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
     rosterCommit: "a".repeat(40),
     playerLevel: 50,
     team: { leader: members[0]!, members },
@@ -63,8 +67,14 @@ describe("Holomem Board planner", () => {
 
     const result = planHolomemBoard(request);
     const member = result.perMember.find((candidate) => candidate.talentId === firstTalentId)!;
+    expect(member.ledger.pointMode).toBe("direct");
+    expect(member.ledger.directPoints).toBe(1);
     expect(member.ledger.rankIncome).toBe(26);
     expect(member.ledger.totalAvailable).toBe(1);
     expect(member.ledger.suggestedCost).toBeLessThanOrEqual(1);
+
+    const estimateMember = result.perMember.find((candidate) => candidate.talentId !== firstTalentId)!;
+    expect(estimateMember.ledger.pointMode).toBe("estimate-from-rank");
+    expect(estimateMember.ledger.directPoints).toBeNull();
   });
 });
