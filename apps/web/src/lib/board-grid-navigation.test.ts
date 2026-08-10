@@ -21,6 +21,23 @@ describe("board grid keyboard navigation", () => {
     expect(movementTarget("tree-model-004", "S-001", "ArrowRight", () => true)).toBe("B-001");
     expect(movementTarget("tree-model-004", "S-001", "ArrowLeft", () => true)).toBe("Y-001");
     expect(movementTarget("tree-model-004", "S-001", "ArrowUp", () => true)).toBe("R-001");
+    // The remaining two models pair up with the first two around the root:
+    // 003 matches 001 (blue left), 002 matches 004 (blue right).
+    expect(movementTarget("tree-model-003", "S-001", "ArrowLeft", () => true)).toBe("B-001");
+    expect(movementTarget("tree-model-003", "S-001", "ArrowRight", () => true)).toBe("Y-001");
+    expect(movementTarget("tree-model-002", "S-001", "ArrowRight", () => true)).toBe("B-001");
+    expect(movementTarget("tree-model-002", "S-001", "ArrowLeft", () => true)).toBe("Y-001");
+  });
+
+  it("applies the same same-ray policy on every tree model", () => {
+    for (const treeModelId of ["tree-model-001", "tree-model-002", "tree-model-003", "tree-model-004"]) {
+      // Skip the immediate downward node: focus continues along the down ray.
+      const skipOne = (groupId: string) => groupId !== "G-001";
+      expect(movementTarget(treeModelId, "S-001", "ArrowDown", skipOne)).toBe("G-002");
+      // Only a perpendicular neighbor is eligible: no movement at all.
+      const onlyUpNeighbor = (groupId: string) => groupId === "R-001";
+      expect(movementTarget(treeModelId, "S-001", "ArrowDown", onlyUpNeighbor)).toBeNull();
+    }
   });
 
   it("skips ineligible nodes along the same ray instead of changing direction", () => {
