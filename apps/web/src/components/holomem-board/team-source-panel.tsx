@@ -1,8 +1,11 @@
+import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
+
 type TeamMember = Readonly<{ talentId: string; cardId: string; lens: "one-copy-max" | "max-potential" }>;
 
 export type PlannerCardOption = Readonly<{
   id: string;
   talentId: string;
+  generationOrder: number;
   talentName: string;
   title: string;
   rarity: 4 | 5;
@@ -40,7 +43,8 @@ export function TeamSourcePanel({
   onUseCalculator,
   onManualSelection,
 }: TeamSourcePanelProps) {
-  const cardById = new Map(cards.map((card) => [card.id, card]));
+  const orderedCards = [...cards].sort(comparePublicMemberCards);
+  const cardById = new Map(orderedCards.map((card) => [card.id, card]));
   const teamNames = team
     ? [team.leader, ...team.members].map((member) => cardById.get(member.cardId)?.talentName ?? member.talentId).join(", ")
     : "Choose five talents below";
@@ -70,7 +74,7 @@ export function TeamSourcePanel({
               onChange={(event) => onManualSelection({ ...manualSelection, leaderCardId: event.target.value })}
             >
               <option value="">Choose a card</option>
-              {cards.map((card) => <option key={card.id} value={card.id}>{cardLabel(card)}</option>)}
+              {orderedCards.map((card) => <option key={card.id} value={card.id}>{cardLabel(card)}</option>)}
             </select>
           </label>
           {manualSelection.memberCardIds.map((cardId, index) => (
@@ -85,7 +89,7 @@ export function TeamSourcePanel({
                 }}
               >
                 <option value="">Choose a card</option>
-                {cards.map((card) => <option key={card.id} value={card.id}>{cardLabel(card)}</option>)}
+                {orderedCards.map((card) => <option key={card.id} value={card.id}>{cardLabel(card)}</option>)}
               </select>
             </label>
           ))}

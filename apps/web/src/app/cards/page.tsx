@@ -1,4 +1,4 @@
-import { publicCards, publicData } from "@yagoo-dori/core";
+import { publicCards, publicCardsInGenerationOrder, publicData } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { LibraryBig } from "lucide-react";
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Browse every current hololive Dreams Member card and its linked Leader Outfit.",
 };
 
-const cards: CatalogCard[] = publicCards.map((card) => ({
+const cards: CatalogCard[] = publicCardsInGenerationOrder.map((card) => ({
   id: card.id,
   slug: card.slug,
   talentName: card.talentName,

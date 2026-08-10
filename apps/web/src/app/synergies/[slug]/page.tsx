@@ -1,4 +1,4 @@
-import { publicCards } from "@yagoo-dori/core";
+import { publicCards, publicCardsInGenerationOrder } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
@@ -27,11 +27,9 @@ export default async function SynergyPage({ params }: { params: Promise<{ slug: 
   const group = groups.find((candidate) => candidate.slug === slug);
   if (!group) notFound();
 
-  const memberCards = publicCards
-    .filter((card) => card.groups.includes(group.name))
-    .sort((left, right) => right.rarity - left.rarity || left.talentName.localeCompare(right.talentName));
+  const memberCards = publicCardsInGenerationOrder.filter((card) => card.groups.includes(group.name));
   const targetNeedle = group.name.toLowerCase();
-  const targetingCards = publicCards.flatMap((card) => {
+  const targetingCards = publicCardsInGenerationOrder.flatMap((card) => {
     const memberSkill = Object.values(card.skills)
       .flat()
       .find((level) => level.description?.toLowerCase().includes(targetNeedle))?.description;

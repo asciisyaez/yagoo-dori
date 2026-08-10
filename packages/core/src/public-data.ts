@@ -1,5 +1,7 @@
 import publicDataJson from "../../../data/generated/holodori-public.json";
 import { z } from "zod";
+import { comparePublicMemberCards } from "./member-card-order";
+export { comparePublicMemberCards } from "./member-card-order";
 
 export const PublicSkillLevelSchema = z.object({
   level: z.number().int().positive(),
@@ -23,6 +25,7 @@ export const PublicCardSchema = z.object({
   id: z.string().min(1),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   talentId: z.string().min(1),
+  generationOrder: z.number().int().positive(),
   talentName: z.string().min(1),
   title: z.string().min(1),
   titleJa: z.string().min(1),
@@ -135,6 +138,7 @@ export type PublicData = z.infer<typeof PublicDataSchema>;
 
 export const publicData: PublicData = PublicDataSchema.parse(publicDataJson);
 export const publicCards = publicData.cards;
+export const publicCardsInGenerationOrder = [...publicCards].sort(comparePublicMemberCards);
 
 export const publicCardById = new Map(publicCards.map((card) => [card.id, card]));
 export const publicCardBySlug = new Map(publicCards.map((card) => [card.slug, card]));
@@ -145,11 +149,14 @@ export const publicTalents = [...new Map(
     {
       id: card.talentId,
       name: card.talentName,
+      generationOrder: card.generationOrder,
       generation: card.generation,
       groups: card.groups,
       branch: card.branch,
       color: card.color,
-      cards: publicCards.filter((candidate) => candidate.talentId === card.talentId),
+      cards: publicCardsInGenerationOrder.filter((candidate) => candidate.talentId === card.talentId),
     },
   ]),
-).values()].sort((left, right) => left.name.localeCompare(right.name));
+).values()].sort((left, right) =>
+  left.generationOrder - right.generationOrder || left.id.localeCompare(right.id),
+);

@@ -1,4 +1,4 @@
-import { publicCards, publicData } from "@yagoo-dori/core";
+import { comparePublicMemberCards, publicCards, publicData } from "@yagoo-dori/core";
 import { Calculator } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
@@ -17,16 +17,12 @@ export const metadata: Metadata = {
 };
 
 const cards: TeamBuilderCard[] = [...publicCards]
-  .sort(
-    (left, right) =>
-      left.talentName.localeCompare(right.talentName) ||
-      right.rarity - left.rarity ||
-      left.title.localeCompare(right.title),
-  )
+  .sort(comparePublicMemberCards)
   .map((card) => ({
     id: card.id,
     slug: card.slug,
     talentId: card.talentId,
+    generationOrder: card.generationOrder,
     talentName: card.talentName,
     title: card.title,
     rarity: card.rarity,
