@@ -4,6 +4,7 @@ import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import { useSearchParams } from "next/navigation";
 import type { TeamCalculatorResult } from "@yagoo-dori/core/team-calculator-contract";
+import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
 import {
   ArrowRight,
   BadgeCheck,
@@ -45,6 +46,7 @@ export type TeamBuilderCard = {
   id: string;
   slug: string;
   talentId: string;
+  generationOrder: number;
   talentName: string;
   title: string;
   rarity: 4 | 5;
@@ -676,7 +678,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       return card ? { card, bloomStage } : null;
     })
     .filter((entry): entry is { card: TeamBuilderCard; bloomStage: BloomStage } => entry !== null)
-    .sort((left, right) => left.card.talentName.localeCompare(right.card.talentName));
+    .sort((left, right) => comparePublicMemberCards(left.card, right.card));
   const uniqueTalentCount = new Set(selectedCards.map(({ card }) => card.talentId)).size;
   const selectedTalents = [...selectedCards
     .reduce((talents, entry) => {
@@ -691,7 +693,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       return talents;
     }, new Map<string, (typeof selectedCards)[number]>())
     .values()]
-    .sort((left, right) => left.card.talentName.localeCompare(right.card.talentName));
+    .sort((left, right) => comparePublicMemberCards(left.card, right.card));
   const selectedOshiTalent = selectedTalents.find(
     ({ card }) => card.talentId === oshiPreference.talentId,
   );

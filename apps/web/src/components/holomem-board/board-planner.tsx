@@ -2,7 +2,9 @@
 
 import {
   mechanicsData,
+  comparePublicMemberCards,
   publicCards,
+  publicCardsInGenerationOrder,
   publicData,
   replayHolomemBoardAutoUnlock,
 } from "@yagoo-dori/core";
@@ -81,6 +83,7 @@ function plannerCard(card: (typeof publicCards)[number], bloomStage: 0 | 1 | 2 |
   return {
     id: card.id,
     talentId: card.talentId,
+    generationOrder: card.generationOrder,
     talentName: card.talentName,
     title: card.title,
     rarity: card.rarity,
@@ -91,7 +94,7 @@ function plannerCard(card: (typeof publicCards)[number], bloomStage: 0 | 1 | 2 |
 function uniqueTalentCardIds(cards: readonly PlannerCardOption[]): string[] {
   const seen = new Set<string>();
   return [...cards]
-    .sort((left, right) => left.talentName.localeCompare(right.talentName) || right.rarity - left.rarity || left.id.localeCompare(right.id))
+    .sort(comparePublicMemberCards)
     .filter((card) => {
       if (seen.has(card.talentId)) return false;
       seen.add(card.talentId);
@@ -213,7 +216,9 @@ export function BoardPlanner() {
           })
           .filter((card): card is PlannerCardOption => card !== null)
           .filter((card) => card.rarity === 4 || card.rarity === 5);
-        const cards = ownedCards.length >= 5 ? ownedCards : publicCards.map((card) => plannerCard(card, 0));
+        const cards = ownedCards.length >= 5
+          ? ownedCards
+          : publicCardsInGenerationOrder.map((card) => plannerCard(card, 0));
         const seedIds = uniqueTalentCardIds(cards);
         const selection: ManualTeamSelection = {
           leaderCardId: seedIds[0] ?? "",
@@ -442,7 +447,14 @@ export function BoardPlanner() {
     ? suggestionPath(currentMember.talentId, currentSelectedGroup, result, currentBoard)
     : new Set<string>();
   const currentTalentName = currentMember ? plannerCards.find((card) => card.talentId === currentMember.talentId)?.talentName ?? currentMember.talentId : "Board";
-  const copySources = team?.members.filter((member) => member.talentId !== currentMember?.talentId).map((member) => member.talentId) ?? [];
+  const copySources = team?.members
+    .filter((member) => member.talentId !== currentMember?.talentId)
+    .map((member) => member.talentId)
+    .sort((left, right) => {
+      const leftCard = plannerCards.find((card) => card.talentId === left);
+      const rightCard = plannerCards.find((card) => card.talentId === right);
+      return (leftCard && rightCard ? comparePublicMemberCards(leftCard, rightCard) : 0) || left.localeCompare(right);
+    }) ?? [];
 
   const autoUnlock = useCallback(() => {
     if (!currentMember || !currentBoard) return;

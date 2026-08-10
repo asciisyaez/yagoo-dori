@@ -130,7 +130,7 @@ test("required-card locks expose an accessible Oshi capacity conflict", async ({
   await expect(page.getByText("All five Member slots are locked. Unlock one to require a different card.")).toBeVisible();
 
   await page.getByRole("switch", { name: "Oshi mode" }).click();
-  await page.getByRole("combobox", { name: "Oshi talent" }).selectOption({ label: "Nekomata Okayu" });
+  await page.getByRole("combobox", { name: "Oshi talent" }).selectOption({ label: "Anya Melfissa" });
   await page.getByRole("button", { name: /^Member/ }).click();
   await expect(page.getByText(/Oshi needs one remaining Member slot/)).toBeVisible();
   await expect(page.getByRole("button", { name: "Unlock a required Member" })).toBeDisabled();
