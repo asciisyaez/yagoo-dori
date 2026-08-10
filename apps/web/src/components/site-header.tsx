@@ -11,6 +11,7 @@ import {
   Home,
   LibraryBig,
   Menu,
+  Network,
   UsersRound,
 } from "lucide-react";
 
@@ -34,7 +35,7 @@ const navigation = [
     label: "Tools",
     items: [
       { href: "/team-builder", label: "Team calculator", icon: Calculator },
-      { href: "/holomem-board", label: "Holomem Board", icon: Calculator },
+      { href: "/holomem-board", label: "Holomem Board", icon: Network },
     ],
   },
   {

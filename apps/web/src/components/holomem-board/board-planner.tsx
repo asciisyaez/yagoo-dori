@@ -12,6 +12,7 @@ import type {
   HolomemBoardResult,
 } from "@yagoo-dori/core/holomem-board-contract";
 import type { TeamCalculatorRequest } from "@yagoo-dori/core/team-calculator-contract";
+import { Network } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -494,6 +495,7 @@ export function BoardPlanner() {
   return (
     <div className="hb-planner">
       <header className="hb-planner-heading">
+        <div className="hb-heading-icon" aria-hidden="true"><Network /></div>
         <div>
           <p className="hb-eyebrow">Tools / Holomem Board</p>
           <h1>Plan your Board path</h1>

@@ -1,3 +1,14 @@
 .page {
+  width: min(1540px, calc(100% - clamp(1.5rem, 4vw, 4.5rem)));
   min-width: 0;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 2.7vw, 2.6rem) 0 5rem;
+}
+
+@media (max-width: 900px) {
+  .page {
+    width: min(100% - 1.2rem, 760px);
+    padding-top: 0.75rem;
+    padding-bottom: 7.5rem;
+  }
 }

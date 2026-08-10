@@ -41,7 +41,28 @@ export type BoardSvgProps = Readonly<{
 
 const TREE_MODEL_ID = "tree-model-001";
 const CELL_SIZE = 36;
-const ORIGIN = 24;
+const PADDING = 24;
+
+type BoardGeometry = Readonly<{
+  minX: number;
+  minY: number;
+  width: number;
+  height: number;
+}>;
+
+function boardGeometry(positions: ReadonlyMap<string, BoardGridCell>): BoardGeometry {
+  const cells = [...positions.values()];
+  const minX = Math.min(...cells.map((cell) => cell.x));
+  const maxX = Math.max(...cells.map((cell) => cell.x));
+  const minY = Math.min(...cells.map((cell) => cell.y));
+  const maxY = Math.max(...cells.map((cell) => cell.y));
+  return {
+    minX,
+    minY,
+    width: (maxX - minX + 1) * CELL_SIZE + 2 * PADDING,
+    height: (maxY - minY + 1) * CELL_SIZE + 2 * PADDING,
+  };
+}
 
 const NODE_KIND_LABELS: Readonly<Record<string, string>> = {
   "all-member": "All-member node",
@@ -59,10 +80,10 @@ const GLYPHS: Readonly<Record<string, string>> = {
   connection: "↔",
 };
 
-function center(cell: BoardGridCell): { x: number; y: number } {
+function center(cell: BoardGridCell, geometry: BoardGeometry): { x: number; y: number } {
   return {
-    x: ORIGIN + cell.x * CELL_SIZE + CELL_SIZE / 2,
-    y: ORIGIN + cell.y * CELL_SIZE + CELL_SIZE / 2,
+    x: PADDING + (cell.x - geometry.minX) * CELL_SIZE + CELL_SIZE / 2,
+    y: PADDING + (cell.y - geometry.minY) * CELL_SIZE + CELL_SIZE / 2,
   };
 }
 
@@ -129,6 +150,7 @@ export function BoardSvg({
 }: BoardSvgProps) {
   const positions = boardAdjacency.cellByGroupIdByTreeModel.get(TREE_MODEL_ID);
   if (!positions) return null;
+  const geometry = boardGeometry(positions);
   const suggestionByGroupId = new Map(suggestions.map((suggestion) => [suggestion.nodeGroupId, suggestion]));
   const overlayGroups = new Set(connectOverlay?.footprintNodeGroupIds ?? []);
   const overlayRenderGroups = new Set(connectOverlay ? [...overlayGroups, connectOverlay.hostSlot] : []);
@@ -156,10 +178,10 @@ export function BoardSvg({
       <svg
         aria-label="Holomem Board skill grid"
         className="hb-board-svg"
-        height={912 * zoom}
+        height={geometry.height * zoom}
         role="group"
-        viewBox="0 0 804 912"
-        width={804 * zoom}
+        viewBox={`0 0 ${geometry.width} ${geometry.height}`}
+        width={geometry.width * zoom}
       >
         <title>Holomem Board skill grid</title>
         <g className="hb-board-edges" aria-hidden="true">
@@ -167,8 +189,8 @@ export function BoardSvg({
             const leftCell = positions.get(left);
             const rightCell = positions.get(right);
             if (!leftCell || !rightCell) return null;
-            const a = center(leftCell);
-            const b = center(rightCell);
+            const a = center(leftCell, geometry);
+            const b = center(rightCell, geometry);
             return <line key={`${left}-${right}`} x1={a.x} x2={b.x} y1={a.y} y2={b.y} />;
           })}
         </g>
@@ -177,7 +199,7 @@ export function BoardSvg({
             if (!overlayRenderGroups.has(groupId)) return null;
             const cell = positions.get(groupId);
             if (!cell) return null;
-            const point = center(cell);
+            const point = center(cell, geometry);
             return (
               <g key={groupId}>
                 {overlayGroups.has(groupId) && <rect className="hb-connect-cell" height="34" rx="4" width="34" x={point.x - 17} y={point.y - 17} />}
@@ -191,7 +213,7 @@ export function BoardSvg({
           {groups.map((groupId) => {
             const cell = positions.get(groupId);
             if (!cell) return null;
-            const point = center(cell);
+            const point = center(cell, geometry);
             const state = nodeStates.get(groupId) ?? "locked";
             const suggestion = suggestionByGroupId.get(groupId);
             const selected = selectedGroupId === groupId || state === "selected";
