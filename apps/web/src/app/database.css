@@ -1699,7 +1699,6 @@
   min-width: 0;
 }
 
-.hb-planner-heading,
 .hb-section-heading,
 .hb-shared-fields,
 .hb-run-row,
@@ -1713,9 +1712,32 @@
 }
 
 .hb-planner-heading {
-  align-items: flex-start;
-  padding: 0.4rem 0 0.2rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.05rem;
+  overflow: hidden;
+  border: 1px solid var(--yd-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(37, 188, 233, 0.13), transparent 24rem),
+    linear-gradient(112deg, rgba(37, 188, 233, 0.08), transparent 34%),
+    var(--yd-panel);
+  padding: 1.35rem clamp(1rem, 2.4vw, 2rem);
 }
+
+.hb-heading-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(37, 188, 233, 0.32);
+  border-radius: 8px;
+  background: rgba(37, 188, 233, 0.1);
+  color: var(--yd-cyan-soft);
+}
+
+.hb-heading-icon svg { width: 23px; }
 
 .hb-planner-heading h1,
 .hb-section-heading h2,
@@ -1744,7 +1766,7 @@
 .hb-board-fields,
 .hb-manual-grid,
 .hb-connect-slots { display: grid; gap: 0.65rem; }
-.hb-board-fields { grid-template-columns: 8rem minmax(13rem, 1fr) 8rem; align-items: end; margin-top: 0.9rem; }
+.hb-board-fields { grid-template-columns: 8rem auto 9rem; justify-content: start; column-gap: 1.4rem; align-items: end; margin-top: 0.9rem; }
 .hb-board-fields label,
 .hb-shared-fields label,
 .hb-board-actions label,
@@ -1760,7 +1782,7 @@
 .hb-board-fields fieldset label { display: flex; align-items: center; gap: 0.3rem; font-weight: 500; }
 .hb-board-summary { justify-content: flex-start; flex-wrap: wrap; margin-top: 0.8rem; color: var(--yd-muted); font-size: 0.66rem; font-variant-numeric: tabular-nums; }
 .hb-plausibility-note { border-left: 2px solid #e4ad4d; color: #f0c766; padding-left: 0.45rem; }
-.hb-board-actions { justify-content: flex-start; margin-top: 0.75rem; }
+.hb-board-actions { align-items: flex-end; justify-content: flex-start; flex-wrap: wrap; margin-top: 0.75rem; }
 .hb-board-actions > button { border: 1px solid var(--yd-line); border-radius: 4px; background: #10141b; color: var(--yd-text); cursor: pointer; font: inherit; font-size: 0.66rem; padding: 0.55rem 0.7rem; }
 .hb-connect-slots { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0.85rem; }
 .hb-slot-chip { border: 1px solid var(--yd-line); border-radius: 5px; padding: 0.5rem; }
@@ -1778,7 +1800,7 @@
 .hb-board-viewport { position: relative; overflow: auto; min-height: 25rem; border: 1px solid #252c37; border-radius: 5px; background: #0d1117; padding: 0.75rem; }
 .hb-board-controls { position: sticky; z-index: 2; top: 0; display: flex; align-items: center; justify-content: flex-end; gap: 0.3rem; color: var(--yd-muted); font-size: 0.65rem; }
 .hb-board-controls button { width: 1.7rem; height: 1.7rem; border: 1px solid var(--yd-line); border-radius: 4px; background: #171d25; color: var(--yd-text); cursor: pointer; }
-.hb-board-svg { display: block; min-width: 804px; margin: 0 auto; }
+.hb-board-svg { display: block; margin: 0 auto; }
 .hb-board-edges line { stroke: #2d3541; stroke-width: 2; }
 .hb-board-node { outline: none; }
 .hb-node { stroke-width: 2; }
@@ -1802,9 +1824,9 @@
 .hb-node-inspector strong { color: var(--yd-text); }
 .hb-node-inspector small { color: var(--yd-dim); }
 .hb-toast { margin: 0.5rem 0 0; color: #f0c766; font-size: 0.66rem; }
-.hb-shared-fields { align-items: flex-end; }
-.hb-shared-fields > div { margin-right: auto; }
+.hb-shared-fields { align-items: flex-end; justify-content: flex-start; flex-wrap: wrap; gap: 1.2rem; }
 .hb-shared-fields label { min-width: 10rem; }
+.hb-shared-fields .hb-muted { max-width: 44ch; margin: 0 0 0.45rem; }
 .hb-run-row { align-items: flex-start; justify-content: flex-start; }
 .hb-run-button { min-width: 10rem; }
 .hb-error { margin: 0.6rem 0 0; color: #ff9b8e; font-size: 0.68rem; }
@@ -1849,7 +1871,8 @@
 .hb-empty-state { margin: 0; border: 1px dashed var(--yd-line); border-radius: 5px; color: var(--yd-muted); font-size: 0.7rem; padding: 1rem; text-align: center; }
 
 @media (max-width: 800px) {
-  .hb-planner-heading { display: grid; }
+  .hb-planner-heading { grid-template-columns: auto minmax(0, 1fr); }
+  .hb-heading-chip { display: none; }
   .hb-how-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hb-board-fields { grid-template-columns: 1fr 1fr; }
   .hb-board-fields fieldset { grid-column: 1 / -1; }
