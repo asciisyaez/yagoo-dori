@@ -77,6 +77,7 @@ describe("pinned public hololive Dreams dataset", () => {
     expect(azki).toBeDefined();
     expect(azki).toMatchObject({
       talentName: "AZKi",
+      generationOrder: 103,
       title: "A Flower in Full Bloom",
       rarity: 5,
       attribute: "pure",
