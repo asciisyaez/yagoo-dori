@@ -38,9 +38,15 @@ import {
   shortestConnectionPath,
 } from "@/lib/board-planner-logic";
 import {
+  dismissRosterBackupNotice,
+  loadRosterBackup,
   loadTeamRoster,
+  restoreRosterBackup,
   saveTeamRosterBoardFields,
   type BoardConnectSlot,
+  type BoardPruneCounts,
+  type LoadedTeamRoster,
+  type RosterBackup,
   type StoredTalentBoard,
   type StoredOshiPreference,
 } from "@/lib/team-roster-storage";
@@ -71,6 +77,35 @@ type BoardTeam = HolomemBoardRequest["team"];
 type ConnectOverlay = BoardConnectOverlay & Readonly<{
   talentId: string;
 }>;
+
+type BoardMigrationNotice = Readonly<{
+  counts: BoardPruneCounts;
+  talentNames: string[];
+  backupReady: boolean;
+}>;
+
+function hasBoardPrunes(counts: BoardPruneCounts): boolean {
+  return counts.talents > 0 || counts.nodes > 0 || counts.placements > 0;
+}
+
+function boardMigrationNoticeFor(
+  counts: BoardPruneCounts,
+  backup: RosterBackup | null,
+  backupReady: boolean,
+  talentNameByTalentId: ReadonlyMap<string, string>,
+): BoardMigrationNotice | null {
+  const effectiveCounts = hasBoardPrunes(counts)
+    ? counts
+    : backupReady && backup ? backup.boardPrunes : counts;
+  if (!hasBoardPrunes(effectiveCounts)) return null;
+  return {
+    counts: effectiveCounts,
+    backupReady,
+    talentNames: backupReady
+      ? backup?.prunedTalentIds.map((talentId) => talentNameByTalentId.get(talentId) ?? talentId) ?? []
+      : [],
+  };
+}
 
 function cloneBoard(board: StoredTalentBoard): StoredTalentBoard {
   return {
@@ -193,9 +228,12 @@ export function BoardPlanner() {
   const [sourceLoading, setSourceLoading] = useState(false);
   const [runError, setRunError] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [boardMigrationNotice, setBoardMigrationNotice] = useState<BoardMigrationNotice | null>(null);
   const boardTask = useRef<HolomemBoardPlanningTask | null>(null);
   const teamTask = useRef<TeamCalculatorTask | null>(null);
   const requestGeneration = useRef(0);
+  const skipNextRosterWrite = useRef(false);
+  const migrationWriteBlocked = useRef(false);
 
   const validCardIds = useMemo(() => new Set(publicCards.map((card) => card.id)), []);
   const cardById = useMemo(() => new Map(plannerCards.map((card) => [card.id, card])), [plannerCards]);
@@ -206,34 +244,58 @@ export function BoardPlanner() {
   );
   const validBoardNodeGroupIds = useMemo(() => new Set(mechanicsData.catalogs.boardNodes.map((node) => node.groupId)), []);
 
+  const applyLoadedRoster = useCallback((loaded: LoadedTeamRoster) => {
+    const nextOwnedCards = Object.entries(loaded.roster.cards)
+      .map(([cardId, bloomStage]) => {
+        const card = publicCards.find((candidate) => candidate.id === cardId);
+        return card ? plannerCard(card, bloomStage) : null;
+      })
+      .filter((card): card is PlannerCardOption => card !== null)
+      .filter((card) => card.rarity === 4 || card.rarity === 5);
+    const nextPlannerCards = nextOwnedCards.length >= 5
+      ? nextOwnedCards
+      : publicCardsInGenerationOrder.map((card) => plannerCard(card, 0));
+    const seedIds = uniqueTalentCardIds(nextPlannerCards);
+    const selection: ManualTeamSelection = {
+      leaderCardId: seedIds[0] ?? "",
+      memberCardIds: [seedIds[0] ?? "", ...seedIds.slice(1), "", ""].slice(0, 5),
+    };
+    const backup = loadRosterBackup(window.localStorage);
+    const currentPrunes = hasBoardPrunes(loaded.boardPrunes);
+    const backupReady = currentPrunes
+      ? loaded.backupReady === true && backup !== null
+      : backup !== null && hasBoardPrunes(backup.boardPrunes);
+    migrationWriteBlocked.current = currentPrunes && !backupReady;
+    const noticeBackup = backupReady ? backup : null;
+    const backupDismissed = backupReady && backup?.dismissed === true;
+
+    setPlannerCards(nextPlannerCards);
+    setOwnedCards(nextOwnedCards);
+    setCalculatorRequiredMemberCardIds(loaded.roster.requiredMemberCardIds);
+    setCalculatorOshi(loaded.roster.oshi);
+    setManualSelection(selection);
+    setBoards(loaded.roster.boards);
+    setPlayerLevel(loaded.roster.playerLevel);
+    setStorageAvailable(nextOwnedCards.length >= 5);
+    setTeam(null);
+    setResult(null);
+    setStale(false);
+    setSelectedTalentId(null);
+    setHistoryByTalent({});
+    setConnectOverlay(null);
+    setRunning(false);
+    setSourceLoading(false);
+    setRunError(null);
+    setToast(null);
+    setBoardMigrationNotice(backupDismissed ? null : boardMigrationNoticeFor(loaded.boardPrunes, noticeBackup, backupReady, talentNameByTalentId));
+  }, [migrationWriteBlocked, talentNameByTalentId]);
+
   useEffect(() => {
     const hydration = window.setTimeout(() => {
       try {
         const loaded = loadTeamRoster(window.localStorage, ROSTER_COMMIT, validCardIds, { validTalentIds, validBoardNodeGroupIds });
-        const ownedCards = Object.entries(loaded.roster.cards)
-          .map(([cardId, bloomStage]) => {
-            const card = publicCards.find((candidate) => candidate.id === cardId);
-            return card ? plannerCard(card, bloomStage) : null;
-          })
-          .filter((card): card is PlannerCardOption => card !== null)
-          .filter((card) => card.rarity === 4 || card.rarity === 5);
-        const cards = ownedCards.length >= 5
-          ? ownedCards
-          : publicCardsInGenerationOrder.map((card) => plannerCard(card, 0));
-        const seedIds = uniqueTalentCardIds(cards);
-        const selection: ManualTeamSelection = {
-          leaderCardId: seedIds[0] ?? "",
-          memberCardIds: [seedIds[0] ?? "", ...seedIds.slice(1), "", ""].slice(0, 5),
-        };
-        setPlannerCards(cards);
-        setOwnedCards(ownedCards);
-        setCalculatorRequiredMemberCardIds(loaded.roster.requiredMemberCardIds);
-        setCalculatorOshi(loaded.roster.oshi);
-        setManualSelection(selection);
-        setBoards(loaded.roster.boards);
-        setPlayerLevel(loaded.roster.playerLevel);
-        setStorageAvailable(ownedCards.length >= 5);
-        if (loaded.needsWrite) {
+        applyLoadedRoster(loaded);
+        if (loaded.needsWrite && !migrationWriteBlocked.current) {
           saveTeamRosterBoardFields(window.localStorage, {
             rosterCommit: ROSTER_COMMIT,
             playerLevel: loaded.roster.playerLevel,
@@ -246,18 +308,58 @@ export function BoardPlanner() {
         setCalculatorRequiredMemberCardIds([]);
         setCalculatorOshi({ enabled: false, talentId: null, role: "member" });
         setStorageAvailable(false);
+        setBoardMigrationNotice(null);
+        migrationWriteBlocked.current = false;
       }
       setHydrated(true);
     }, 0);
     return () => window.clearTimeout(hydration);
-  }, [validBoardNodeGroupIds, validCardIds, validTalentIds]);
+  }, [applyLoadedRoster, validBoardNodeGroupIds, validCardIds, validTalentIds]);
 
   useEffect(() => {
     if (!hydrated) return;
+    if (migrationWriteBlocked.current) return;
+    if (skipNextRosterWrite.current) {
+      skipNextRosterWrite.current = false;
+      return;
+    }
     try {
       saveTeamRosterBoardFields(window.localStorage, { rosterCommit: ROSTER_COMMIT, playerLevel, boards });
     } catch { /* Storage failures leave the in-memory planner usable. */ }
   }, [boards, hydrated, playerLevel]);
+
+  const keepMigratedData = useCallback(() => {
+    try {
+      if (boardMigrationNotice?.backupReady) dismissRosterBackupNotice(window.localStorage);
+      setBoardMigrationNotice(null);
+    } catch {
+      setRunError("The Board migration notice could not be dismissed.");
+    }
+  }, [boardMigrationNotice]);
+
+  const restoreBoardBackup = useCallback(() => {
+    try {
+      if (!boardMigrationNotice?.backupReady) {
+        setRunError("A current Board backup is not available.");
+        return;
+      }
+      const restored = restoreRosterBackup(window.localStorage, ROSTER_COMMIT, validCardIds, { validTalentIds, validBoardNodeGroupIds });
+      if (!restored) {
+        setRunError("No Board migration backup is available.");
+        return;
+      }
+      boardTask.current?.cancel();
+      teamTask.current?.cancel();
+      boardTask.current = null;
+      teamTask.current = null;
+      requestGeneration.current += 1;
+      dismissRosterBackupNotice(window.localStorage);
+      skipNextRosterWrite.current = true;
+      applyLoadedRoster(restored);
+    } catch {
+      setRunError("The Board migration backup could not be restored.");
+    }
+  }, [applyLoadedRoster, boardMigrationNotice, validBoardNodeGroupIds, validCardIds, validTalentIds]);
 
   useEffect(() => () => {
     boardTask.current?.cancel();
@@ -539,6 +641,35 @@ export function BoardPlanner() {
         rosterAvailable={storageAvailable}
         team={team}
       />
+      {boardMigrationNotice && (
+        <section className="hb-panel hb-migration-notice" aria-labelledby="hb-migration-notice-title" role="status">
+          <div className="hb-section-heading">
+            <div>
+              <p className="hb-eyebrow">Board storage update</p>
+              <h2 id="hb-migration-notice-title">Some saved Board data was migrated</h2>
+            </div>
+          </div>
+          <p className="hb-muted">
+            {boardMigrationNotice.backupReady
+              ? "Unsupported saved Board declarations were removed from the active planner state. A raw backup is available for this migration."
+              : "Unsupported saved Board declarations were removed from the active planner state, but the raw backup could not be confirmed. Migrated data has not been written to storage."}
+          </p>
+          <ul className="hb-muted">
+            {boardMigrationNotice.counts.talents > 0 && (
+              <li>
+                Talents: {boardMigrationNotice.counts.talents}
+                {boardMigrationNotice.talentNames.length > 0 && ` (${boardMigrationNotice.talentNames.join(", ")})`}
+              </li>
+            )}
+            {boardMigrationNotice.counts.nodes > 0 && <li>Nodes: {boardMigrationNotice.counts.nodes}</li>}
+            {boardMigrationNotice.counts.placements > 0 && <li>Connect placements: {boardMigrationNotice.counts.placements}</li>}
+          </ul>
+          <div className="hb-board-actions">
+            <button onClick={keepMigratedData} type="button">Keep migrated data</button>
+            <button className="hb-primary-button" disabled={!boardMigrationNotice.backupReady} onClick={restoreBoardBackup} type="button">Restore backup</button>
+          </div>
+        </section>
+      )}
       <section className="hb-panel hb-shared-fields" aria-labelledby="hb-shared-fields-title">
         <div>
           <p className="hb-eyebrow">Shared input</p>

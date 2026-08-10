@@ -2,8 +2,11 @@ import { describe, expect, it } from "vitest";
 
 import {
   TEAM_ROSTER_STORAGE_KEY,
+  dismissRosterBackupNotice,
   emptyTeamRoster,
+  loadRosterBackup,
   loadTeamRoster,
+  restoreRosterBackup,
   saveTeamRoster,
   saveTeamRosterBoardFields,
   saveTeamRosterCalculatorFields,
@@ -18,6 +21,10 @@ class MemoryStorage {
 
   setItem(key: string, value: string) {
     this.values.set(key, value);
+  }
+
+  removeItem(key: string) {
+    this.values.delete(key);
   }
 }
 
@@ -220,6 +227,107 @@ describe("team calculator roster persistence", () => {
     });
     expect(loaded.boardPrunes).toEqual({ nodes: 1, placements: 2, talents: 1 });
     expect(loaded.needsWrite).toBe(true);
+  });
+
+  it("captures a raw pre-migration backup when pruning occurs and keeps it across later writes", () => {
+    const storage = new MemoryStorage();
+    const rawRecord = JSON.stringify({
+      version: 4,
+      rosterCommit: "old-commit",
+      cards: { "card-keep": 1 },
+      oshi: { enabled: false, talentId: null, role: "member" },
+      requiredMemberCardIds: [],
+      playerLevel: 12,
+      boards: {
+        "talent-keep": {
+          rank: 10,
+          pointMode: "estimate-from-rank",
+          extraPoints: 0,
+          directPoints: null,
+          unlockedNodeGroupIds: ["S-001", "G-removed"],
+          connectPlacements: {},
+        },
+        "talent-removed": {
+          rank: 4,
+          pointMode: "estimate-from-rank",
+          extraPoints: 0,
+          directPoints: null,
+          unlockedNodeGroupIds: [],
+          connectPlacements: {},
+        },
+      },
+    });
+    storage.setItem(TEAM_ROSTER_STORAGE_KEY, rawRecord);
+    const catalogs = {
+      validTalentIds: new Set(["talent-keep"]),
+      validBoardNodeGroupIds: new Set(["S-001"]),
+    };
+
+    const loaded = loadTeamRoster(storage, "new-commit", new Set(["card-keep"]), catalogs);
+    expect(loaded.boardPrunes).toEqual({ nodes: 1, placements: 0, talents: 1 });
+    expect(loaded.backupReady).toBe(true);
+
+    const backup = loadRosterBackup(storage);
+    expect(backup).not.toBeNull();
+    expect(backup!.version).toBe(4);
+    expect(backup!.raw).toBe(rawRecord);
+    expect(backup!.dismissed).toBe(false);
+    expect(backup!.boardPrunes).toEqual({ nodes: 1, placements: 0, talents: 1 });
+    expect(backup!.prunedTalentIds).toEqual(["talent-removed"]);
+
+    // The planner's sanitized rewrite must not clobber the captured backup.
+    saveTeamRosterBoardFields(storage, {
+      rosterCommit: "new-commit",
+      playerLevel: loaded.roster.playerLevel,
+      boards: loaded.roster.boards,
+    });
+    const reloaded = loadTeamRoster(storage, "new-commit", new Set(["card-keep"]), catalogs);
+    expect(reloaded.boardPrunes).toEqual({ nodes: 0, placements: 0, talents: 0 });
+    expect(loadRosterBackup(storage)!.raw).toBe(rawRecord);
+  });
+
+  it("restores the raw backup and can dismiss the migration notice without deleting it", () => {
+    const storage = new MemoryStorage();
+    const rawRecord = JSON.stringify({
+      version: 4,
+      rosterCommit: "old-commit",
+      cards: { "card-keep": 1 },
+      oshi: { enabled: false, talentId: null, role: "member" },
+      requiredMemberCardIds: [],
+      playerLevel: null,
+      boards: {
+        "talent-removed": {
+          rank: 4,
+          pointMode: "estimate-from-rank",
+          extraPoints: 0,
+          directPoints: null,
+          unlockedNodeGroupIds: [],
+          connectPlacements: {},
+        },
+      },
+    });
+    storage.setItem(TEAM_ROSTER_STORAGE_KEY, rawRecord);
+    const catalogs = {
+      validTalentIds: new Set(["talent-keep"]),
+      validBoardNodeGroupIds: new Set(["S-001"]),
+    };
+
+    const loaded = loadTeamRoster(storage, "new-commit", new Set(["card-keep"]), catalogs);
+    expect(loaded.backupReady).toBe(true);
+
+    // Simulate the sanitized rewrite, then restore: the main key holds the
+    // raw record again and the load result reports the same pruning.
+    saveTeamRosterBoardFields(storage, { rosterCommit: "new-commit", playerLevel: null, boards: loaded.roster.boards });
+    const restored = restoreRosterBackup(storage, "new-commit", new Set(["card-keep"]), catalogs);
+    expect(restored).not.toBeNull();
+    expect(restored!.boardPrunes).toEqual({ nodes: 0, placements: 0, talents: 1 });
+    expect(storage.getItem(TEAM_ROSTER_STORAGE_KEY)).toBe(rawRecord);
+
+    dismissRosterBackupNotice(storage);
+    const backup = loadRosterBackup(storage);
+    expect(backup).not.toBeNull();
+    expect(backup!.dismissed).toBe(true);
+    expect(backup!.raw).toBe(rawRecord);
   });
 
   it("preserves persisted Board state when the calculator autosaves its own fields", () => {

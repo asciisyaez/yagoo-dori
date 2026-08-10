@@ -116,15 +116,26 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
             <span>Member card</span>
             {standardRanking && (
               <span className="native-tier-badge">
-                Member · {standardRanking.tier} tier
+                Member · provisional model tier {standardRanking.tier}
               </span>
             )}
             {standardLeaderRanking && (
               <span className="native-tier-badge">
-                Leader Outfit · {standardLeaderRanking.tier} tier
+                Leader Outfit · provisional model tier {standardLeaderRanking.tier}
               </span>
             )}
           </div>
+          {(standardRanking || standardLeaderRanking) && (
+            <p className="db-heading-note">
+              Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating. <Link href="/methodology">Methodology</Link>
+              {standardRanking && (
+                <> · Member index {standardRanking.index.lower.toFixed(1)}–{standardRanking.index.upper.toFixed(1)} range · {standardRanking.evaluation.matchedContexts.toLocaleString()} matched contexts vs the frozen launch cohort</>
+              )}
+              {standardLeaderRanking && (
+                <> · Leader Outfit index {standardLeaderRanking.index.lower.toFixed(1)}–{standardLeaderRanking.index.upper.toFixed(1)} range · {standardLeaderRanking.evaluation.matchedContexts.toLocaleString()} matched contexts vs the frozen launch cohort</>
+              )}
+            </p>
+          )}
         </div>
       </section>
 

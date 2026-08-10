@@ -156,6 +156,10 @@
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the explicit denial that tiers are Live Score ratings."
     },
+    "apps/web/src/app/cards/[slug]/page.tsx|Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Card profiles repeat the tier page's exact denial so a direct landing on a card cannot read a bare tier as a Live Score rating."
+    },
     "apps/web/src/components/holomem-board/suggestion-results.tsx|). Parameter-point equivalents under the envelope model, not a projected Live Score.|score": {
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the explicit denial that Board plan values are a projected Live Score."

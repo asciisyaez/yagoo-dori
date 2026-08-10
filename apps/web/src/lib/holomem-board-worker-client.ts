@@ -36,22 +36,39 @@ export class HolomemBoardWorkerError extends Error {
 }
 
 export function startHolomemBoardPlanning(request: HolomemBoardRequest): HolomemBoardPlanningTask {
-  const worker = new Worker(new URL("../workers/holomem-board.worker.ts", import.meta.url), {
-    type: "module",
-    name: "yagoo-dori-holomem-board",
-  });
+  let worker: Worker | null = null;
+  let cleanedUp = false;
   let settled = false;
   let rejectTask: ((reason: unknown) => void) | null = null;
 
   const cleanup = (): void => {
-    worker.onmessage = null;
-    worker.onerror = null;
-    worker.terminate();
+    if (cleanedUp) return;
+    cleanedUp = true;
+    const currentWorker = worker;
+    worker = null;
+    if (!currentWorker) return;
+    currentWorker.onmessage = null;
+    currentWorker.onerror = null;
+    currentWorker.terminate();
   };
 
   const result = new Promise<HolomemBoardResult>((resolve, reject) => {
     rejectTask = reject;
-    worker.onmessage = (event: MessageEvent<HolomemBoardWorkerResponseMessage>) => {
+    let currentWorker: Worker;
+    try {
+      currentWorker = new Worker(new URL("../workers/holomem-board.worker.ts", import.meta.url), {
+        type: "module",
+        name: "yagoo-dori-holomem-board",
+      });
+      worker = currentWorker;
+    } catch {
+      settled = true;
+      cleanup();
+      reject(new HolomemBoardWorkerError("worker-start-failed", "The Board worker could not start."));
+      return;
+    }
+
+    currentWorker.onmessage = (event: MessageEvent<HolomemBoardWorkerResponseMessage>) => {
       if (settled) return;
       settled = true;
       cleanup();
@@ -66,14 +83,21 @@ export function startHolomemBoardPlanning(request: HolomemBoardRequest): Holomem
       }
       resolve(parsed.data);
     };
-    worker.onerror = () => {
+    currentWorker.onerror = () => {
       if (settled) return;
       settled = true;
       cleanup();
       reject(new HolomemBoardWorkerError("worker-failed", "The Board plan could not finish."));
     };
     const message: HolomemBoardWorkerRequestMessage = { type: "calculate", payload: request };
-    worker.postMessage(message);
+    try {
+      currentWorker.postMessage(message);
+    } catch {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      reject(new HolomemBoardWorkerError("worker-post-failed", "The Board request could not be sent."));
+    }
   });
 
   return {
