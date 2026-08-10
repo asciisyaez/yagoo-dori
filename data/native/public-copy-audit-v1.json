@@ -24,7 +24,7 @@
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
       "context": "Build around this exact card",
       "term": "exact",
-      "location": "apps/web/src/app/cards/[slug]/page.tsx:201",
+      "location": "apps/web/src/app/cards/[slug]/page.tsx:204",
       "sourceKind": "jsx-text",
       "disposition": "non-technical",
       "justification": "Exact identifies the selected card record in navigation, not an optimizer or certificate claim."
@@ -204,7 +204,7 @@
       "file": "apps/web/src/app/synergies/[slug]/page.tsx",
       "context": "Cards belonging to this in-game group. Group membership matters when a skill or Leader condition explicitly targets it; membership alone is not a score bonus.",
       "term": "score",
-      "location": "apps/web/src/app/synergies/[slug]/page.tsx:54",
+      "location": "apps/web/src/app/synergies/[slug]/page.tsx:52",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is an explicitly bounded in-game mechanic claim about group targeting."
@@ -213,7 +213,7 @@
       "file": "apps/web/src/app/team-builder/page.tsx",
       "context": "Choose your exact cards and Bloom levels, then calculate a legal Leader and five-Member formation for general play.",
       "term": "exact",
-      "location": "apps/web/src/app/team-builder/page.tsx:49",
+      "location": "apps/web/src/app/team-builder/page.tsx:45",
       "sourceKind": "jsx-text",
       "disposition": "non-technical",
       "justification": "Exact identifies the user-selected cards in a calculator instruction, not an exhaustive result."
@@ -240,7 +240,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
-      "location": "apps/web/src/components/team-calculator.tsx:177",
+      "location": "apps/web/src/components/team-calculator.tsx:179",
       "sourceKind": "source-string",
       "disposition": "allowed-scoped",
       "justification": "Best is explicitly restricted to the searched scope in the non-certified branch."
@@ -249,7 +249,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:199",
+      "location": "apps/web/src/components/team-calculator.tsx:201",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -258,7 +258,7 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:439",
+      "location": "apps/web/src/components/team-calculator.tsx:441",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -1025,7 +1025,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-10T07:58:29.517Z"
+    "generatedAt": "2026-08-10T09:38:58.992Z"
   },
-  "stableDigest": "3ae95d5be6341f99e084a048a042bea4d59b65e69108c07f159fbb40e5fdeac2"
+  "stableDigest": "bb59d80d0d4ce59a3ffb8bd0a2472c6eb430f8a20f3f13bbf70ed599fe123768"
 }
