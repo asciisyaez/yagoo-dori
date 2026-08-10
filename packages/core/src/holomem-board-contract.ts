@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { mechanicsData, type MechanicsData } from "./mechanics";
 
-export const HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION = 1 as const;
+export const HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION = 2 as const;
 export const HOLOMEM_BOARD_DEFAULT_AMPLIFICATION_MODEL = "multiplier-total" as const;
 
 export const CONNECT_SLOT_IDS = ["S-001", "S-002", "S-003", "S-004"] as const;
@@ -220,6 +220,8 @@ const SuggestionSchema = z
 
 const LedgerSchema = z
   .object({
+    pointMode: HolomemBoardContractPointModeSchema,
+    directPoints: NullableNonnegativeIntegerSchema,
     rankIncome: NonnegativeIntegerSchema,
     extraPoints: NonnegativeIntegerSchema,
     totalAvailable: NonnegativeIntegerSchema,
@@ -436,6 +438,20 @@ export const HolomemBoardResultSchema = z
           message: "Objective reconciliation: the suggested plan must not fall below the greedy baseline",
         });
       }
+      if (member.ledger.pointMode === "estimate-from-rank" && member.ledger.rankIncome + member.ledger.extraPoints !== member.ledger.totalAvailable) {
+        context.addIssue({
+          code: "custom",
+          path: ["perMember", memberIndex, "ledger", "totalAvailable"],
+          message: "Ledger arithmetic: estimate-from-rank totalAvailable must equal rankIncome plus extraPoints",
+        });
+      }
+      if (member.ledger.pointMode === "direct" && (member.ledger.directPoints === null || member.ledger.directPoints !== member.ledger.totalAvailable)) {
+        context.addIssue({
+          code: "custom",
+          path: ["perMember", memberIndex, "ledger", "totalAvailable"],
+          message: "Ledger arithmetic: direct totalAvailable must equal directPoints",
+        });
+      }
       if (member.ledger.remainingAvailable !== member.ledger.totalAvailable - member.ledger.alreadySpent) {
         context.addIssue({
           code: "custom",
@@ -570,6 +586,20 @@ export const HolomemBoardContractSchema = z
       const expectedTotal = board.pointMode === "estimate-from-rank"
         ? rankIncome + board.extraPoints
         : board.directPoints;
+      if (member.ledger.pointMode !== board.pointMode) {
+        context.addIssue({
+          code: "custom",
+          path: ["result", "perMember", index, "ledger", "pointMode"],
+          message: `Ledger pointMode must match the declared Board state (${board.pointMode})`,
+        });
+      }
+      if (member.ledger.directPoints !== board.directPoints) {
+        context.addIssue({
+          code: "custom",
+          path: ["result", "perMember", index, "ledger", "directPoints"],
+          message: "Ledger directPoints must match the declared Board state",
+        });
+      }
       if (member.ledger.rankIncome !== rankIncome) {
         context.addIssue({
           code: "custom",
@@ -589,6 +619,20 @@ export const HolomemBoardContractSchema = z
           code: "custom",
           path: ["result", "perMember", index, "ledger", "totalAvailable"],
           message: `Ledger arithmetic: totalAvailable must be ${expectedTotal} for the declared point mode`,
+        });
+      }
+      if (board.pointMode === "estimate-from-rank" && member.ledger.rankIncome + member.ledger.extraPoints !== member.ledger.totalAvailable) {
+        context.addIssue({
+          code: "custom",
+          path: ["result", "perMember", index, "ledger", "totalAvailable"],
+          message: "Ledger arithmetic: estimate-from-rank totalAvailable must equal rankIncome plus extraPoints",
+        });
+      }
+      if (board.pointMode === "direct" && (member.ledger.directPoints === null || member.ledger.directPoints !== member.ledger.totalAvailable)) {
+        context.addIssue({
+          code: "custom",
+          path: ["result", "perMember", index, "ledger", "totalAvailable"],
+          message: "Ledger arithmetic: direct totalAvailable must equal directPoints",
         });
       }
     });

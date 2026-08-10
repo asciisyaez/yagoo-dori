@@ -1,4 +1,5 @@
 import {
+  HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
   HolomemBoardContractSchema,
   HolomemBoardRequestSchema,
   HolomemBoardResultSchema,
@@ -180,6 +181,8 @@ export function planHolomemBoard(request: HolomemBoardRequest): HolomemBoardResu
       cardId: member.cardId,
       position,
       ledger: {
+        pointMode: parsedRequest.boards[member.talentId]!.pointMode,
+        directPoints: parsedRequest.boards[member.talentId]!.directPoints,
         rankIncome,
         extraPoints: parsedRequest.boards[member.talentId]!.extraPoints,
         totalAvailable: total,
@@ -203,7 +206,7 @@ export function planHolomemBoard(request: HolomemBoardRequest): HolomemBoardResu
     ? recommendHolomemBoardConnect(connectRequest)
     : recommendHolomemBoardConnect({ ...connectRequest, amplificationModel: parsedRequest.amplificationModel });
   const rawResult = {
-    schemaVersion: 1 as const,
+    schemaVersion: HOLOMEM_BOARD_CONTRACT_SCHEMA_VERSION,
     claim: {
       kind: "bounded-suggestion" as const,
       conditionalOn: "current-team-and-declared-board-state" as const,

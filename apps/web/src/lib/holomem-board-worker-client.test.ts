@@ -10,7 +10,7 @@ import {
 } from "./holomem-board-worker-client";
 
 const REQUEST: HolomemBoardRequest = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   rosterCommit: "a".repeat(40),
   playerLevel: null,
   team: {
@@ -33,7 +33,7 @@ const REQUEST: HolomemBoardRequest = {
 };
 
 const RESULT = {
-  schemaVersion: 1 as const,
+  schemaVersion: 2 as const,
   claim: {
     kind: "bounded-suggestion" as const,
     conditionalOn: "current-team-and-declared-board-state" as const,
@@ -46,7 +46,7 @@ const RESULT = {
     talentId: member.talentId,
     cardId: member.cardId,
     position: index === 0 ? "leader" as const : "member" as const,
-    ledger: { rankIncome: 0, extraPoints: 0, totalAvailable: 0, alreadySpent: 0, remainingAvailable: 0, suggestedCost: 0 },
+    ledger: { pointMode: "estimate-from-rank" as const, directPoints: null, rankIncome: 0, extraPoints: 0, totalAvailable: 0, alreadySpent: 0, remainingAvailable: 0, suggestedCost: 0 },
     claimedMicroUnits: 0,
     greedyBaselineMicroUnits: 0,
     suggestions: [],

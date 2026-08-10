@@ -38,6 +38,21 @@ test("a fixed manual team can mark a node and run Board suggestions", async ({ i
   await page.locator('.hb-board-node[role="checkbox"][data-group-id="B-001"]').click();
   await expect(page.getByText("Declared cost: 1", { exact: true })).toBeVisible();
 
+  // Edit mode: checkbox semantics track real unlock membership, and every
+  // node's accessible name is unique (it leads with the group id).
+  const markedNode = page.locator('.hb-board-node[data-group-id="B-001"]');
+  await expect(markedNode).toHaveAttribute("aria-checked", "true");
+  await expect(markedNode).toHaveAttribute("aria-label", /^B-001: /);
+  const lockedNode = page.locator('.hb-board-node[data-group-id="B-002"]');
+  await expect(lockedNode).toHaveAttribute("aria-checked", "false");
+
+  // Inspect mode: activation inspects, so nodes are buttons with no checked
+  // state at all.
+  await page.getByRole("button", { name: "Inspect", exact: true }).click();
+  await expect(page.locator('.hb-board-node[role="button"][data-group-id="B-001"]')).toBeVisible();
+  await expect(page.locator('.hb-board-node[data-group-id="B-001"]')).not.toHaveAttribute("aria-checked");
+  await page.getByRole("button", { name: "Edit", exact: true }).click();
+
   await page.getByRole("button", { name: "Run suggestions", exact: true }).click();
   await expect(page.getByRole("heading", { name: "A bounded plan for the declared boards", exact: true })).toBeVisible({ timeout: 90_000 });
   for (const chip of ["bounded suggestion", "conditional on this team", "derived adjacency", "envelope stacking"]) {
@@ -56,6 +71,8 @@ test("talent pages render the static Holomem Board reference section", async ({ 
   await expect(board.getByText("G-008", { exact: true })).toBeVisible();
   await expect(board.getByText("G-011", { exact: true })).toBeVisible();
   await expect(board.getByText("G-021", { exact: true })).toBeVisible();
-  await expect(board.getByText("+50", { exact: false }).first()).toBeVisible();
+  // SVG <title> node names also contain effect values now; assert on the
+  // visible effect copy, not the hidden accessibility titles.
+  await expect(board.getByText("+50", { exact: false }).filter({ visible: true }).first()).toBeVisible();
   await expect(board.locator(".hb-board-controls")).toHaveCount(0);
 });

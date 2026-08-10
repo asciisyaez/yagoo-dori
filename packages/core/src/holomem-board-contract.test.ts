@@ -51,6 +51,8 @@ function emptyResult(request: HolomemBoardRequest = baseRequest()): HolomemBoard
       cardId: member.cardId,
       position: member.talentId === request.team.leader.talentId ? "leader" as const : "member" as const,
       ledger: {
+        pointMode: "estimate-from-rank" as const,
+        directPoints: null,
         rankIncome,
         extraPoints: 0,
         totalAvailable: rankIncome,
@@ -127,12 +129,12 @@ function placement(cardId: string, slot: string) {
 }
 
 describe("holomem Board worker contract", () => {
-  it("parses the reconciled v1 request/result shape and wires rank income", () => {
+  it("parses the reconciled v2 request/result shape and wires rank income", () => {
     const request = baseRequest();
     const result = emptyResult(request);
     const parsed = parseHolomemBoardContract({ request, result });
 
-    expect(parsed.request.schemaVersion).toBe(1);
+    expect(parsed.request.schemaVersion).toBe(2);
     expect(parsed.request.connectCandidates[0]).toEqual({ cardId: "connect-card", bloomStage: 0 });
     expect(parsed.result.perMember).toHaveLength(5);
     expect(parsed.result.perMember[0]!.position).toBe("leader");
@@ -270,9 +272,58 @@ describe("holomem Board worker contract", () => {
       directPoints: 17,
     };
     const result = emptyResult(request);
+    result.perMember[0]!.ledger.pointMode = "direct";
+    result.perMember[0]!.ledger.directPoints = 17;
     result.perMember[0]!.ledger.totalAvailable = 17;
     result.perMember[0]!.ledger.remainingAvailable = 17;
 
     expect(parseHolomemBoardContract({ request, result }).result.perMember[0]!.ledger.totalAvailable).toBe(17);
+  });
+
+  it("rejects a ledger whose pointMode or directPoints disagree with the declared Board state", () => {
+    const request = baseRequest();
+    const firstTalent = request.team.members[0]!.talentId;
+    request.boards[firstTalent] = {
+      ...request.boards[firstTalent]!,
+      pointMode: "direct",
+      directPoints: 17,
+    };
+
+    // Ledger still claims the estimate mode: pointMode mismatch must reject.
+    const staleModeResult = emptyResult(request);
+    staleModeResult.perMember[0]!.ledger.totalAvailable = 17;
+    staleModeResult.perMember[0]!.ledger.remainingAvailable = 17;
+    expect(messagesFor(request, staleModeResult).some((message) =>
+      message.includes("pointMode must match the declared Board state"),
+    )).toBe(true);
+
+    // Right mode, wrong echoed directPoints: must reject.
+    const staleBudgetResult = emptyResult(request);
+    staleBudgetResult.perMember[0]!.ledger.pointMode = "direct";
+    staleBudgetResult.perMember[0]!.ledger.directPoints = 16;
+    staleBudgetResult.perMember[0]!.ledger.totalAvailable = 17;
+    staleBudgetResult.perMember[0]!.ledger.remainingAvailable = 17;
+    expect(messagesFor(request, staleBudgetResult).some((message) =>
+      message.includes("directPoints must match the declared Board state"),
+    )).toBe(true);
+  });
+
+  it("rejects direct-mode ledger arithmetic where totalAvailable is not directPoints", () => {
+    const request = baseRequest();
+    const firstTalent = request.team.members[0]!.talentId;
+    request.boards[firstTalent] = {
+      ...request.boards[firstTalent]!,
+      pointMode: "direct",
+      directPoints: 17,
+    };
+    const result = emptyResult(request);
+    result.perMember[0]!.ledger.pointMode = "direct";
+    result.perMember[0]!.ledger.directPoints = 17;
+    result.perMember[0]!.ledger.totalAvailable = 18;
+    result.perMember[0]!.ledger.remainingAvailable = 18;
+
+    expect(messagesFor(request, result).some((message) =>
+      message.includes("Ledger arithmetic"),
+    )).toBe(true);
   });
 });

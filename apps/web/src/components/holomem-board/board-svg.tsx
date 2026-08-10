@@ -4,9 +4,11 @@ import {
   treeModelIdForTalent,
   type BoardGridCell,
 } from "@yagoo-dori/core/holomem-board";
+import { mechanicsData } from "@yagoo-dori/core/mechanics";
 import type { HolomemBoardContractSuggestion } from "@yagoo-dori/core/holomem-board-contract";
 import type { KeyboardEvent } from "react";
 
+import { boardEffectLabel, type BoardEffectLabelInput } from "@/lib/board-effect-labels";
 import { firstEligibleGroupId, movementTarget, type ArrowKey } from "@/lib/board-grid-navigation";
 
 export type BoardNodeVisualState = "locked" | "unlocked" | "suggested" | "gated" | "dimmed" | "selected";
@@ -121,12 +123,88 @@ function shapeForNode(kind: string, point: { x: number; y: number }, className: 
   return <circle className={className} cx={point.x} cy={point.y} r="14" />;
 }
 
-function nodeTitle(groupId: string, talentId: string): string {
+function parameterForEffectKind(kind: string | null): BoardEffectLabelInput["parameter"] {
+  if (kind === null) return null;
+  if (kind.startsWith("performance-")) return "performance";
+  if (kind.startsWith("technique-")) return "technique";
+  if (kind.startsWith("sense-")) return "sense";
+  if (kind.startsWith("all-parameter-")) return "all";
+  return null;
+}
+
+function nodeEffectSummary(
+  groupId: string,
+  talentId: string,
+  suggestion: HolomemBoardContractSuggestion | undefined,
+): string | null {
+  if (suggestion) {
+    return boardEffectLabel({ ...suggestion.effect, valueClass: suggestion.valueClass, appliesWhen: suggestion.appliesWhen });
+  }
   try {
     const node = resolveBoardNodeForTalent(groupId, talentId);
-    return `${NODE_KIND_LABELS[node.kind] ?? "Board node"}, ${node.pointCost} point${node.pointCost === 1 ? "" : "s"}`;
+    const effect = node.effectId === null
+      ? null
+      : mechanicsData.catalogs.boardEffects.find((candidate) => candidate.id === node.effectId) ?? null;
+    const isPermil = effect?.kind.endsWith("-permil-up") === true;
+    const valueClass: BoardEffectLabelInput["valueClass"] = node.kind === "connection"
+      ? "connector"
+      : node.kind !== "leader" && node.kind !== "card"
+        ? "out-of-scope"
+        : effect?.value === null || effect === null
+          ? "unquantified"
+          : isPermil
+            ? "permil"
+            : "flat";
+    if (!effect && node.kind !== "connection") return null;
+    return boardEffectLabel({
+      kind: effect?.kind ?? null,
+      trigger: effect?.characterTrigger ?? null,
+      parameter: parameterForEffectKind(effect?.kind ?? null),
+      flatValue: !isPermil && typeof effect?.value === "number" && Number.isInteger(effect.value) && effect.value >= 0 ? effect.value : null,
+      valuePermil: isPermil && typeof effect?.value === "number" && Number.isInteger(effect.value) && effect.value >= 0 ? effect.value : null,
+      valueClass,
+      appliesWhen: node.kind === "leader" ? "while-leading" : node.kind === "card" ? "always" : null,
+    });
   } catch {
-    return "Board node";
+    return null;
+  }
+}
+
+function nodeStatus(
+  state: BoardNodeVisualState,
+  unlocked: boolean,
+  gateLabel: string | undefined,
+): string {
+  if (unlocked) return "unlocked";
+  if (state === "gated") return `gated${gateLabel ? ` (${gateLabel})` : ""}`;
+  if (state === "dimmed") return "not evaluated";
+  return "locked";
+}
+
+function nodeTitle(
+  groupId: string,
+  talentId: string,
+  state: BoardNodeVisualState,
+  unlocked: boolean,
+  gateLabel: string | undefined,
+  suggestion: HolomemBoardContractSuggestion | undefined,
+): string {
+  try {
+    const node = resolveBoardNodeForTalent(groupId, talentId);
+    const effectSummary = nodeEffectSummary(groupId, talentId, suggestion);
+    const parts = [
+      `${groupId}: ${NODE_KIND_LABELS[node.kind] ?? "Board node"}`,
+      `${node.pointCost} point${node.pointCost === 1 ? "" : "s"}`,
+    ];
+    if (effectSummary && !(state === "dimmed" && effectSummary === "Not evaluated in suggestions.")) {
+      parts.push(effectSummary);
+    }
+    parts.push(nodeStatus(state, unlocked, gateLabel));
+    const title = parts.join(", ");
+    return state === "dimmed" ? `${title}. Not evaluated in suggestions.` : title;
+  } catch {
+    const title = `${groupId}: Board node, ${nodeStatus(state, unlocked, gateLabel)}`;
+    return state === "dimmed" ? `${title}. Not evaluated in suggestions.` : title;
   }
 }
 
@@ -252,8 +330,12 @@ export function BoardSvg({
               try { return resolveBoardNodeForTalent(groupId, talentId).kind; } catch { return "content"; }
             })();
             const node = shapeForNode(nodeKind, point, nodeClass);
-            const title = nodeTitle(groupId, talentId);
-            const accessibleTitle = state === "dimmed" ? `${title}. Not evaluated in suggestions.` : title;
+            const unlocked = unlockedNodeGroups.has(groupId);
+            const title = nodeTitle(groupId, talentId, state, unlocked, gateLabelByGroupId.get(groupId), suggestion);
+            // A node inside a pinned Connect overlay activates the overlay
+            // pin, not an unlock toggle — checkbox semantics would lie there.
+            const overlayPin = overlayGroups.has(groupId);
+            const role = interactive ? editMode && !overlayPin ? "checkbox" : "button" : undefined;
             const dimmed = state === "dimmed";
             const activate = () => {
               if (overlayGroups.has(groupId)) onConnectPin?.(groupId);
@@ -262,8 +344,8 @@ export function BoardSvg({
             };
             return (
               <g
-                aria-checked={interactive ? state === "unlocked" || state === "selected" : undefined}
-                aria-label={accessibleTitle}
+                aria-checked={role === "checkbox" ? unlocked : undefined}
+                aria-label={title}
                 aria-disabled={dimmed || undefined}
                 className="hb-board-node"
                 data-group-id={groupId}
@@ -281,10 +363,10 @@ export function BoardSvg({
                 onMouseEnter={interactive && !dimmed ? () => onConnectHover?.(groupId) : undefined}
                 onMouseLeave={interactive && !dimmed ? () => onConnectHover?.(null) : undefined}
                 pointerEvents={dimmed ? "none" : undefined}
-                role={interactive ? "checkbox" : undefined}
+                role={role}
                 tabIndex={interactive ? dimmed ? -1 : focusedGroupId === groupId || (!focusedGroupId && groupId === initialTabStopGroupId) ? 0 : -1 : undefined}
               >
-                <title>{accessibleTitle}</title>
+                <title>{title}</title>
                 {node}
                 <text className="hb-node-glyph" x={point.x} y={point.y + 5}>{GLYPHS[nodeKind] ?? "·"}</text>
                 {suggestion && <circle className="hb-suggested-ring" cx={point.x} cy={point.y} r="18" />}

@@ -59,17 +59,26 @@ export function SuggestionResults({
         <p className="hb-note">These suggestions serve the declared team only. A team imported from the Team calculator was chosen without Board or Connect value, so the team choice and the Board plan are separate recommendations, not a joint one.</p>
       </div>
       <div className="hb-member-results">
-        {result.perMember.map((member) => (
-          <details className="hb-member-result" key={member.talentId} onToggle={(event) => { if (event.currentTarget.open) onSelectMember(member.talentId); }}>
+        {result.perMember.map((member) => {
+          const directMode = member.ledger.pointMode === "direct";
+          const directBudget = member.ledger.directPoints ?? member.ledger.totalAvailable;
+          return (
+            <details className="hb-member-result" key={member.talentId} onToggle={(event) => { if (event.currentTarget.open) onSelectMember(member.talentId); }}>
             <summary>
               <span className="hb-result-number">{member.position === "leader" ? "L" : "M"}</span>
               <strong>{talentNameByTalentId.get(member.talentId) ?? member.talentId}</strong>
               <span>{member.suggestions.length} suggested unlocks</span>
             </summary>
             <div className="hb-ledger" aria-label="Budget ledger">
-              <span>Rank income <b>{formatUnits(member.ledger.rankIncome)}</b></span>
-              <span>Extra points <b>{formatUnits(member.ledger.extraPoints)}</b></span>
-              <span>Available <b>{formatUnits(member.ledger.totalAvailable)}</b></span>
+              {directMode ? (
+                <span>Direct budget <b>{formatUnits(directBudget)}</b></span>
+              ) : (
+                <>
+                  <span>Rank income <b>{formatUnits(member.ledger.rankIncome)}</b></span>
+                  <span>Extra points <b>{formatUnits(member.ledger.extraPoints)}</b></span>
+                  <span>Available <b>{formatUnits(member.ledger.totalAvailable)}</b></span>
+                </>
+              )}
               <span>Already spent <b>{formatUnits(member.ledger.alreadySpent)}</b></span>
               <span>Remaining <b>{formatUnits(member.ledger.remainingAvailable)}</b></span>
               <span>Suggested cost <b>{formatUnits(member.ledger.suggestedCost)}</b></span>
@@ -89,8 +98,9 @@ export function SuggestionResults({
                 </li>
               ))}
             </ol>
-          </details>
-        ))}
+            </details>
+          );
+        })}
       </div>
     </section>
   );
