@@ -3,7 +3,7 @@
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BarChart3,
   BookOpen,
@@ -77,14 +77,19 @@ function NavigationLinks({ mobile = false, onNavigate }: { mobile?: boolean; onN
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    if (!mobileOpen) return;
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileOpen(false);
+      if (event.key !== "Escape") return;
+      setMobileOpen(false);
+      mobileTriggerRef.current?.focus();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [mobileOpen]);
 
   return (
     <>
@@ -105,8 +110,10 @@ export function SiteHeader() {
           <button
             aria-controls="mobile-navigation-panel"
             aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             className="mobile-drawer-trigger"
             onClick={() => setMobileOpen((value) => !value)}
+            ref={mobileTriggerRef}
             type="button"
           >
             <Menu aria-hidden="true" /><span>Menu</span>

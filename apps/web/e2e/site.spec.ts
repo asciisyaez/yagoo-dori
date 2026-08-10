@@ -40,6 +40,22 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
+test("mobile drawer closes on Escape and returns focus to its trigger", async ({ isMobile, page }) => {
+  test.skip(!isMobile, "Mobile drawer assertion");
+  await page.goto("/", GOTO_OPTIONS);
+
+  const openTrigger = page.getByRole("button", { name: "Open menu" });
+  await openTrigger.click();
+  const closeTrigger = page.getByRole("button", { name: "Close menu" });
+  await expect(closeTrigger).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("#mobile-navigation-panel")).toBeVisible();
+
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#mobile-navigation-panel")).toHaveCount(0);
+  await expect(openTrigger).toHaveAttribute("aria-expanded", "false");
+  await expect(openTrigger).toBeFocused();
+});
+
 test("desktop presents a persistent grouped sidebar for the core database tasks", async ({
   isMobile,
   page,

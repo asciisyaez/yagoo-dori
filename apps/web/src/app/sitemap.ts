@@ -1,6 +1,8 @@
 import { nativeGuideData, publicCards } from "@yagoo-dori/core";
 import type { MetadataRoute } from "next";
 
+import { generateStaticParams as generateSkillStaticParams } from "./skills/[slug]/page";
+import { generateStaticParams as generateSynergyStaticParams } from "./synergies/[slug]/page";
 import { talentRecords } from "./talents/talent-records";
 
 const siteUrl = (
@@ -16,9 +18,6 @@ const STATIC_ROUTES = [
   "/holomem-board/",
   "/guides/",
   "/methodology/",
-  "/leaders/",
-  "/synergies/",
-  "/sources/",
 ] as const;
 
 export const dynamic = "force-static";
@@ -26,8 +25,9 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = STATIC_ROUTES.map((route) => ({ url: `${siteUrl}${route}` }));
   const cardEntries = publicCards.map((card) => ({ url: `${siteUrl}/cards/${card.slug}/` }));
-  const leaderEntries = publicCards.map((card) => ({ url: `${siteUrl}/leaders/${card.slug}/` }));
+  const skillEntries = generateSkillStaticParams().map(({ slug }) => ({ url: `${siteUrl}/skills/${slug}/` }));
+  const synergyEntries = generateSynergyStaticParams().map(({ slug }) => ({ url: `${siteUrl}/synergies/${slug}/` }));
   const talentEntries = talentRecords.map((talent) => ({ url: `${siteUrl}/talents/${talent.slug}/` }));
   const guideEntries = nativeGuideData.guides.map((guide) => ({ url: `${siteUrl}/guides/${guide.slug}/` }));
-  return [...staticEntries, ...cardEntries, ...leaderEntries, ...talentEntries, ...guideEntries];
+  return [...staticEntries, ...cardEntries, ...skillEntries, ...synergyEntries, ...talentEntries, ...guideEntries];
 }
