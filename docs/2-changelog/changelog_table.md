@@ -2,6 +2,7 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.8` | 1    | fix(board): per-talent tree models + orientation; feat: generation-order member listings; fix(trust): external-review triage batch |
 | `0.1.7` | 1    | fix(board): Board planner page framing and board SVG geometry |
 | `0.1.6` | 1    | feat: calculator search-quality gate closure + cross-run consistency, holomem Board planner and talent-page viewers (T4-T8) |
 | `0.1.5` | 1    | feat: member locks, selection evidence, calculator search upgrade, Miko/Suisei guides, fidelity corrections, holomem Board data foundation |
