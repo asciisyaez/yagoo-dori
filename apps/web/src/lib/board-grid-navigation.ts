@@ -1,16 +1,16 @@
 import { boardAdjacency, type BoardGridCell } from "@yagoo-dori/core/holomem-board";
 
-const TREE_MODEL_ID = "tree-model-001";
-
-function cellFor(groupId: string): BoardGridCell | null {
-  return boardAdjacency.cellByGroupIdByTreeModel.get(TREE_MODEL_ID)?.get(groupId) ?? null;
+function cellFor(treeModelId: string, groupId: string): BoardGridCell | null {
+  return boardAdjacency.cellByGroupIdByTreeModel.get(treeModelId)?.get(groupId) ?? null;
 }
 
 export type ArrowKey = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
 
+// Upstream grid coordinates are y-up (positive y is toward the top of the
+// rendered board), matching the y-flip in the board SVG renderer.
 const DIRECTIONS: Readonly<Record<ArrowKey, { x: number; y: number }>> = {
-  ArrowUp: { x: 0, y: -1 },
-  ArrowDown: { x: 0, y: 1 },
+  ArrowUp: { x: 0, y: 1 },
+  ArrowDown: { x: 0, y: -1 },
   ArrowLeft: { x: -1, y: 0 },
   ArrowRight: { x: 1, y: 0 },
 };
@@ -19,15 +19,16 @@ const DIRECTIONS: Readonly<Record<ArrowKey, { x: number; y: number }>> = {
 // eligible (non-disabled) neighbors may receive focus: landing on a disabled
 // node would strand the roving tab stop on a tabIndex=-1 element.
 export function movementTarget(
+  treeModelId: string,
   groupId: string,
   key: ArrowKey,
   isEligible: (candidateGroupId: string) => boolean,
 ): string | null {
-  const current = cellFor(groupId);
+  const current = cellFor(treeModelId, groupId);
   if (!current) return null;
   const candidates = (boardAdjacency.neighborsByGroupId.get(groupId) ?? [])
     .filter((neighbor) => isEligible(neighbor))
-    .map((neighbor) => ({ groupId: neighbor, cell: cellFor(neighbor) }))
+    .map((neighbor) => ({ groupId: neighbor, cell: cellFor(treeModelId, neighbor) }))
     .filter((candidate): candidate is { groupId: string; cell: BoardGridCell } => candidate.cell !== null);
   const direction = DIRECTIONS[key];
   const directed = candidates

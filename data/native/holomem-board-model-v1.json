@@ -4,7 +4,7 @@
   "methodologyVersion": "yd-holomem-board-1.0.0",
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "3225971cbe6abd2ebf10cdd8f3020f53815624268d8f3ec0122c581df993765a"
+    "sha256": "0b1b15817ec77ad23141ee44eeb34897573d03b6c9251a762790ab3776b53f19"
   },
   "adjacency": {
     "ruleId": "board-derived-adjacency",
@@ -61,9 +61,9 @@
     },
     {
       "id": "talent-to-tree-model",
-      "default": "tree-model-001",
-      "evidence": "unresolved",
-      "statement": "Talent-to-tree-model mapping defaults to tree-model-001; adjacency is model-invariant."
+      "default": "character-catalog",
+      "evidence": "verified",
+      "statement": "Each talent's tree model comes from the pinned Character.json skillTreeNodePositionGroupId field; adjacency is model-invariant, while node positions and Connect footprints are model-specific."
     },
     {
       "id": "connect-amplification",
@@ -91,5 +91,5 @@
     "Unit-Connect independence is user-confirmed, not source-documented; only cross-board exclusivity is corroborated.",
     "Other modeling assumptions are explicitly labeled."
   ],
-  "modelHash": "3fdf5ed91db10bf9a5d10a389ba3509ee214038aef7ac33729c5ab0286c8063c"
+  "modelHash": "7337bc3acc4f0a31a9bc043cae04abb0e580eeeb0c87fbd3e5b071f544decf75"
 }

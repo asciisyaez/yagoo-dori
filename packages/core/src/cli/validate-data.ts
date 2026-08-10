@@ -101,6 +101,20 @@ function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentId
     throw new Error("Board point pools do not match the current public talent set.");
   }
 
+  const profileTalentIds = catalogs.talentBoardProfiles.map((profile) => profile.talentId);
+  if (
+    new Set(profileTalentIds).size !== profileTalentIds.length ||
+    profileTalentIds.length !== publicTalentIds.size ||
+    profileTalentIds.some((talentId) => !publicTalentIds.has(talentId))
+  ) {
+    throw new Error("Talent Board tree-model profiles do not match the current public talent set.");
+  }
+  for (const profile of catalogs.talentBoardProfiles) {
+    if (!positionsByModel.has(profile.treeModelId)) {
+      throw new Error(`Talent ${profile.talentId} references unknown tree model ${profile.treeModelId}.`);
+    }
+  }
+
   const nodesByGroup = new Map<string, typeof catalogs.boardNodes>();
   for (const node of catalogs.boardNodes) {
     const group = nodesByGroup.get(node.groupId) ?? [];

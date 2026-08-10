@@ -128,7 +128,7 @@ const model = {
     { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
     { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },
     { id: "board-stat-stacking", default: "additive-envelope-not-jointly-attainable", evidence: "unresolved", statement: "Board stat boosts use an additive envelope and are not claimed jointly attainable." },
-    { id: "talent-to-tree-model", default: "tree-model-001", evidence: "unresolved", statement: "Talent-to-tree-model mapping defaults to tree-model-001; adjacency is model-invariant." },
+    { id: "talent-to-tree-model", default: "character-catalog", evidence: "verified", statement: "Each talent's tree model comes from the pinned Character.json skillTreeNodePositionGroupId field; adjacency is model-invariant, while node positions and Connect footprints are model-specific." },
     { id: "connect-amplification", default: "multiplier-total", evidence: "unresolved", statement: "Connect amplification defaults to multiplier-total." },
     { id: "connect-overlap", default: "independent-additive", evidence: "unresolved", statement: "Overlapping Connect amplification defaults to independent-additive." },
     { id: "cross-board-connect-restriction", default: "one-card-per-board-placement", evidence: "corroborated", statement: "A Connect card cannot be placed on more than one member board." },

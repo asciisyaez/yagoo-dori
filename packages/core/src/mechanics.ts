@@ -226,6 +226,12 @@ const HolomemRankPointSchema = z.object({
   sourceRef: SourceRefSchema,
 }).strict();
 
+const TalentBoardProfileSchema = z.object({
+  talentId: z.string().min(1),
+  treeModelId: z.enum(["tree-model-001", "tree-model-002", "tree-model-003", "tree-model-004"]),
+  sourceRef: SourceRefSchema,
+}).strict();
+
 const BoardNodeConditionSchema = z.object({
   id: z.string().min(1),
   kind: z.literal("player-level-at-least"),
@@ -298,7 +304,7 @@ export const CardMechanicsSchema = z.object({
 
 export const MechanicsDataSchema = z.object({
   schemaVersion: z.literal(1),
-  methodologyVersion: z.literal("yd-mechanics-catalog-1.1.0"),
+  methodologyVersion: z.literal("yd-mechanics-catalog-1.2.0"),
   retrievedAt: z.iso.date(),
   sourceSnapshot: z.object({
     repository: z.url(),
@@ -322,6 +328,7 @@ export const MechanicsDataSchema = z.object({
     boardNodes: z.array(BoardNodeSchema),
     boardNodePositions: z.array(BoardNodePositionSchema),
     boardPointPools: z.array(BoardPointPoolSchema),
+    talentBoardProfiles: z.array(TalentBoardProfileSchema),
     holomemRankPoints: z.array(HolomemRankPointSchema),
     boardNodeConditions: z.array(BoardNodeConditionSchema),
   }),
@@ -375,6 +382,7 @@ export const MechanicsDataSchema = z.object({
     ...data.catalogs.boardNodes,
     ...data.catalogs.boardNodePositions,
     ...data.catalogs.boardPointPools,
+    ...data.catalogs.talentBoardProfiles,
     ...data.catalogs.holomemRankPoints,
     ...data.catalogs.boardNodeConditions,
   ];

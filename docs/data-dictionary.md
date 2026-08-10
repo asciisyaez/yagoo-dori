@@ -47,6 +47,10 @@ linked to a pinned HolodoriDB file through `sourceRef`; the two independent corr
 - `boardPointPools` (54 rows) provides one independent Board Pt pool per current talent, with its
   nullable translated name. `holomemRankPoints` (50 rows) stores per-rank income from the single
   pinned `level-group-1`; cumulative income at rank 50 is 361 points.
+- `talentBoardProfiles` (54 rows) pins each playable talent's tree model from
+  `Character.json.skillTreeNodePositionGroupId` (distribution 15/14/13/12 across
+  `tree-model-001..004`). Adjacency is model-invariant; node positions and Connect footprints are
+  model-specific, and grid coordinates are y-up (positive y renders toward the top of the board).
 - `boardNodeConditions` (5 rows) resolves only the conditions referenced by nodes. The sync validates
   the upstream condition type and MIN semantics, then records the real threshold as
   `player-level-at-least`; thresholds are never parsed from condition IDs.

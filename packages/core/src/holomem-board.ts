@@ -11,12 +11,12 @@ const HashSchema = z.string().regex(/^[a-f0-9]{64}$/);
 // must inspect the mechanics diff, run `pnpm optimizer:scope` and
 // `pnpm board:model`, and then update THIS constant - the throw below exists
 // so a regenerated catalog cannot reach Board consumers without that review.
-const REVIEWED_MECHANICS_SHA256 = "3225971cbe6abd2ebf10cdd8f3020f53815624268d8f3ec0122c581df993765a";
+const REVIEWED_MECHANICS_SHA256 = "0b1b15817ec77ad23141ee44eeb34897573d03b6c9251a762790ab3776b53f19";
 const REVIEWED_ASSUMPTIONS = [
   { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
   { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },
   { id: "board-stat-stacking", default: "additive-envelope-not-jointly-attainable", evidence: "unresolved", statement: "Board stat boosts use an additive envelope and are not claimed jointly attainable." },
-  { id: "talent-to-tree-model", default: "tree-model-001", evidence: "unresolved", statement: "Talent-to-tree-model mapping defaults to tree-model-001; adjacency is model-invariant." },
+  { id: "talent-to-tree-model", default: "character-catalog", evidence: "verified", statement: "Each talent's tree model comes from the pinned Character.json skillTreeNodePositionGroupId field; adjacency is model-invariant, while node positions and Connect footprints are model-specific." },
   { id: "connect-amplification", default: "multiplier-total", evidence: "unresolved", statement: "Connect amplification defaults to multiplier-total." },
   { id: "connect-overlap", default: "independent-additive", evidence: "unresolved", statement: "Overlapping Connect amplification defaults to independent-additive." },
   { id: "cross-board-connect-restriction", default: "one-card-per-board-placement", evidence: "corroborated", statement: "A Connect card cannot be placed on more than one member board." },
@@ -32,7 +32,7 @@ const REVIEWED_NON_CLAIMS = [
 const AssumptionSchema = z.object({
   id: z.string().min(1),
   default: z.string().min(1),
-  evidence: z.enum(["user-confirmed", "corroborated", "unresolved"]),
+  evidence: z.enum(["verified", "user-confirmed", "corroborated", "unresolved"]),
   statement: z.string().min(1),
 }).strict();
 
@@ -236,6 +236,20 @@ export function resolveBoardNodeForTalent(
   if (defaults.length === 1) return defaults[0]!;
   if (defaults.length > 1) throw new Error(`Board node group ${groupId} has ambiguous defaults`);
   throw new Error(`Board node group ${groupId} is unresolved for talent ${talentId}`);
+}
+
+/**
+ * Pinned Character.json mapping from talent to its published tree model.
+ * Adjacency is model-invariant; node positions and Connect footprints are not.
+ */
+export const treeModelIdByTalentId: ReadonlyMap<string, string> = new Map(
+  mechanicsData.catalogs.talentBoardProfiles.map((profile) => [profile.talentId, profile.treeModelId]),
+);
+
+export function treeModelIdForTalent(talentId: string): string {
+  const treeModelId = treeModelIdByTalentId.get(talentId);
+  if (!treeModelId) throw new Error(`Talent ${talentId} has no pinned Board tree model`);
+  return treeModelId;
 }
 
 function boardNodeGateThresholds(

@@ -1,6 +1,7 @@
 import {
   boardAdjacency,
   resolveBoardNodeForTalent,
+  treeModelIdForTalent,
   type BoardGridCell,
 } from "@yagoo-dori/core/holomem-board";
 import type { HolomemBoardContractSuggestion } from "@yagoo-dori/core/holomem-board-contract";
@@ -39,13 +40,12 @@ export type BoardSvgProps = Readonly<{
   onZoomOut?: () => void;
 }>;
 
-const TREE_MODEL_ID = "tree-model-001";
 const CELL_SIZE = 36;
 const PADDING = 24;
 
 type BoardGeometry = Readonly<{
   minX: number;
-  minY: number;
+  maxY: number;
   width: number;
   height: number;
 }>;
@@ -58,7 +58,7 @@ function boardGeometry(positions: ReadonlyMap<string, BoardGridCell>): BoardGeom
   const maxY = Math.max(...cells.map((cell) => cell.y));
   return {
     minX,
-    minY,
+    maxY,
     width: (maxX - minX + 1) * CELL_SIZE + 2 * PADDING,
     height: (maxY - minY + 1) * CELL_SIZE + 2 * PADDING,
   };
@@ -80,10 +80,12 @@ const GLYPHS: Readonly<Record<string, string>> = {
   connection: "↔",
 };
 
+// Upstream grid coordinates are y-up (positive y is toward the top of the
+// in-game board); SVG user space is y-down, so the y axis flips here.
 function center(cell: BoardGridCell, geometry: BoardGeometry): { x: number; y: number } {
   return {
     x: PADDING + (cell.x - geometry.minX) * CELL_SIZE + CELL_SIZE / 2,
-    y: PADDING + (cell.y - geometry.minY) * CELL_SIZE + CELL_SIZE / 2,
+    y: PADDING + (geometry.maxY - cell.y) * CELL_SIZE + CELL_SIZE / 2,
   };
 }
 
@@ -91,13 +93,14 @@ const ARROW_KEYS: readonly ArrowKey[] = ["ArrowUp", "ArrowDown", "ArrowLeft", "A
 
 function handleKeyDown(
   event: KeyboardEvent<SVGGElement>,
+  treeModelId: string,
   groupId: string,
   isEligible: (candidateGroupId: string) => boolean,
   onFocusNode: (groupId: string) => void,
 ): void {
   if (!(ARROW_KEYS as readonly string[]).includes(event.key)) return;
   event.preventDefault();
-  const target = movementTarget(groupId, event.key as ArrowKey, isEligible);
+  const target = movementTarget(treeModelId, groupId, event.key as ArrowKey, isEligible);
   if (target) {
     onFocusNode(target);
     const nextElement = event.currentTarget.parentElement?.querySelector<SVGGElement>(`[data-group-id="${target}"]`);
@@ -148,7 +151,8 @@ export function BoardSvg({
   onZoomIn,
   onZoomOut,
 }: BoardSvgProps) {
-  const positions = boardAdjacency.cellByGroupIdByTreeModel.get(TREE_MODEL_ID);
+  const treeModelId = treeModelIdForTalent(talentId);
+  const positions = boardAdjacency.cellByGroupIdByTreeModel.get(treeModelId);
   if (!positions) return null;
   const geometry = boardGeometry(positions);
   const suggestionByGroupId = new Map(suggestions.map((suggestion) => [suggestion.nodeGroupId, suggestion]));
@@ -184,6 +188,26 @@ export function BoardSvg({
         width={geometry.width * zoom}
       >
         <title>Holomem Board skill grid</title>
+        <defs>
+          <pattern
+            height={CELL_SIZE}
+            id={`hb-grid-dots-${talentId}`}
+            patternUnits="userSpaceOnUse"
+            width={CELL_SIZE}
+            x={PADDING}
+            y={PADDING}
+          >
+            <circle className="hb-grid-dot" cx={CELL_SIZE / 2} cy={CELL_SIZE / 2} r="1.4" />
+          </pattern>
+        </defs>
+        <rect
+          aria-hidden="true"
+          fill={`url(#hb-grid-dots-${talentId})`}
+          height={geometry.height}
+          width={geometry.width}
+          x="0"
+          y="0"
+        />
         <g className="hb-board-edges" aria-hidden="true">
           {edges.map(([left, right]) => {
             const leftCell = positions.get(left);
@@ -252,7 +276,7 @@ export function BoardSvg({
                     activate();
                     return;
                   }
-                  handleKeyDown(event, groupId, isEligible, (target) => onFocusNode?.(target));
+                  handleKeyDown(event, treeModelId, groupId, isEligible, (target) => onFocusNode?.(target));
                 } : undefined}
                 onMouseEnter={interactive && !dimmed ? () => onConnectHover?.(groupId) : undefined}
                 onMouseLeave={interactive && !dimmed ? () => onConnectHover?.(null) : undefined}
