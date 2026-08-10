@@ -2,6 +2,7 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.9` | 1    | fix(trust): pass-2 review repairs — sitemap honesty, board keyboard/a11y, ledger v2, worker startup, migration backup safety, card tier disclosure |
 | `0.1.8` | 1    | fix(board): per-talent tree models + orientation; feat: generation-order member listings; fix(trust): external-review triage batch |
 | `0.1.7` | 1    | fix(board): Board planner page framing and board SVG geometry |
 | `0.1.6` | 1    | feat: calculator search-quality gate closure + cross-run consistency, holomem Board planner and talent-page viewers (T4-T8) |

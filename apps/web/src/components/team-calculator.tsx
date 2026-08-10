@@ -601,7 +601,10 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
             requiredMemberCardIds: hydratedRequiredMemberCardIds,
           });
         }
-        setStorageStatus("persistent");
+        // While the rewrite is blocked, autosaves must stay off too: session
+        // mode keeps the raw record untouched and tells the user their
+        // changes are not being persisted. A later reload retries the backup.
+        setStorageStatus(migrationWriteBlocked ? "session" : "persistent");
       } catch {
         setOwnedCards(hydratedCards);
         setRequiredMemberCardIds([]);
