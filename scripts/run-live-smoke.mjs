@@ -5,7 +5,7 @@
 // changes that are not yet deployed.
 const ORIGIN = "https://asciisyaez.github.io";
 const BASE_PATH = "/yagoo-dori";
-const ROUTES = ["/", "/cards/", "/tier-list/", "/team-builder/", "/guides/"];
+const ROUTES = ["/", "/cards/", "/tier-list/", "/team-builder/", "/guides/", "/talents/", "/methodology/", "/holomem-board/", "/sitemap.xml"];
 const DISCLAIMER = "Unofficial fan site; not affiliated with COVER Corp. or QualiArts.";
 
 if (process.env.YAGOO_DORI_LIVE_SMOKE !== "1") {

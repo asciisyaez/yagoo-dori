@@ -26,10 +26,21 @@ function rankingsFor(
   if (!lowInvestment || !standard || !ceiling) {
     throw new Error(`Native ranking snapshot is missing ${cardId}`);
   }
+  const placement = (entry: typeof lowInvestment) => ({
+    tier: entry.tier,
+    rank: entry.rank,
+    index: {
+      lower: entry.index.lower,
+      central: entry.index.central,
+      upper: entry.index.upper,
+    },
+    provisional: entry.stableTier === "Provisional",
+    matchedContexts: entry.evaluation.matchedContexts,
+  });
   return {
-    "low-investment": { tier: lowInvestment.tier, rank: lowInvestment.rank },
-    "one-copy-maximum": { tier: standard.tier, rank: standard.rank },
-    "duplicate-enabled-ceiling": { tier: ceiling.tier, rank: ceiling.rank },
+    "low-investment": placement(lowInvestment),
+    "one-copy-maximum": placement(standard),
+    "duplicate-enabled-ceiling": placement(ceiling),
   };
 }
 
@@ -95,6 +106,10 @@ export default function TierListPage() {
           <p>
             Compare every current 4★ and 5★ card as a Member or as its Leader Outfit. Switch
             context and investment lens, then filter the full roster.
+          </p>
+          <p className="db-heading-note">
+            Model tiers, published as provisional theorycraft against a frozen launch benchmark —
+            a relative comparison index, not an in-game Live Score rating.
           </p>
         </div>
         <dl className="database-summary">

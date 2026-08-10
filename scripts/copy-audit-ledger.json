@@ -40,10 +40,6 @@
       "disposition": "non-technical",
       "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
     },
-    "apps/web/src/app/page.tsx|Compare skills, stats, and Leader Outfits, then shape a five-Member formation around the cards you own and the song you want to score.|score": {
-      "disposition": "non-technical",
-      "justification": "Score is the ordinary game-action verb in a song-building instruction."
-    },
     "apps/web/src/app/page.tsx|Exact five-card formations|exact": {
       "disposition": "allowed-scoped",
       "justification": "Exact describes the fixed five-card formation record shown by the database."
@@ -155,6 +151,14 @@
     "apps/web/src/lib/board-effect-labels.ts|live-score-bonus-add-permil-up-by-music-skill-tree-character-and-music-singer-type|score": {
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside a machine identifier key mirroring the upstream board effect-kind code; the template maps it to a neutral 'not evaluated' label and the identifier itself is never rendered as user-facing prose."
+    },
+    "apps/web/src/app/tier-list/page.tsx|Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the explicit denial that tiers are Live Score ratings."
+    },
+    "apps/web/src/components/holomem-board/suggestion-results.tsx|). Parameter-point equivalents under the envelope model, not a projected Live Score.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the explicit denial that Board plan values are a projected Live Score."
     }
   }
 }

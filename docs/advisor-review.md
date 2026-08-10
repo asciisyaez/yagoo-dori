@@ -1,5 +1,10 @@
 # Yagoo-dori v1 — Advisor Review Brief
 
+> **HISTORICAL DOCUMENT** — snapshot of 2026-08-02 at the v0.1.0 candidate
+> (113-card roster, pre-release working tree). Counts, test tallies, and
+> release-state statements below describe that moment and are NOT current
+> facts; see docs/2-changelog/ and project:status for the present state.
+
 **Prepared:** 2026-08-02  
 **Repository:** [`asciisyaez/yagoo-dori`](https://github.com/asciisyaez/yagoo-dori)  
 **Live release:** [`asciisyaez.github.io/yagoo-dori`](https://asciisyaez.github.io/yagoo-dori/)  

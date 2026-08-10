@@ -18,6 +18,11 @@ const LOCKED_REASON_LABELS: Readonly<Record<string, string>> = {
   "slot-not-unlocked": "Slot not unlocked",
 };
 
+const AMPLIFICATION_MODEL_LABELS: Readonly<Record<string, string>> = {
+  "multiplier-total": "Amplification counted as the full multiplier",
+  "multiplier-additional": "Amplification counted as the added portion only",
+};
+
 const EXCLUSION_LABELS: Readonly<Record<string, string>> = {
   "duplicate-card-id": "Card appears more than once",
   "star-3-no-connect-effect": "Star-3 cards have no Connect effect",
@@ -32,6 +37,10 @@ const EXCLUSION_LABELS: Readonly<Record<string, string>> = {
 function cardName(cardId: string, cards: readonly PlannerCardOption[]): string {
   const card = cards.find((candidate) => candidate.id === cardId);
   return card ? `${card.talentName} · ${card.title}` : cardId;
+}
+
+function talentName(talentId: string, cards: readonly PlannerCardOption[]): string {
+  return cards.find((candidate) => candidate.talentId === talentId)?.talentName ?? talentId;
 }
 
 function previousPlacement(cardId: string, boards: Readonly<Record<string, StoredTalentBoard>>): { boardTalentId: string; slot: string } | null {
@@ -50,7 +59,7 @@ export function ConnectAssignments({ connect, cards, boards, stale }: ConnectAss
           <p className="hb-eyebrow">Connect</p>
           <h2 id="hb-connect-title">Suggested Connect placements</h2>
         </div>
-        <span className="hb-status-chip">{connect.amplificationModel}</span>
+        <span className="hb-status-chip">{AMPLIFICATION_MODEL_LABELS[connect.amplificationModel] ?? connect.amplificationModel}</span>
       </div>
       <div className="hb-connect-table-wrap">
         <table className="hb-connect-table">
@@ -59,12 +68,13 @@ export function ConnectAssignments({ connect, cards, boards, stale }: ConnectAss
             {connect.assignments.map((assignment) => {
               const previous = previousPlacement(assignment.cardId, boards);
               const isKeep = previous?.boardTalentId === assignment.boardTalentId && previous.slot === assignment.slot;
-              const disposition = isKeep ? "Keep" : previous ? `Move from ${previous.boardTalentId} / ${previous.slot}` : "New";
+              const disposition = isKeep ? "Keep" : previous ? `Move from ${talentName(previous.boardTalentId, cards)} / ${previous.slot}` : "New";
+              const unquantified = assignment.footprint.composition.nodeCount - assignment.footprint.composition.quantifiedNodeCount;
               return (
                 <tr key={`${assignment.boardTalentId}-${assignment.slot}`}>
                   <th scope="row">{cardName(assignment.cardId, cards)}</th>
-                  <td>{assignment.boardTalentId} / {assignment.slot}</td>
-                  <td>{assignment.footprint.composition.quantifiedNodeCount} nodes × {(assignment.amplificationPermil / 10).toFixed(1)}%</td>
+                  <td>{talentName(assignment.boardTalentId, cards)} / {assignment.slot}</td>
+                  <td>{assignment.footprint.composition.quantifiedNodeCount} evaluated nodes × {(assignment.amplificationPermil / 10).toFixed(1)}%{unquantified > 0 ? ` · ${unquantified} in range not evaluated` : ""}</td>
                   <td>{disposition}</td>
                 </tr>
               );
@@ -72,7 +82,7 @@ export function ConnectAssignments({ connect, cards, boards, stale }: ConnectAss
             {connect.lockedSlots.map((locked) => (
               <tr className="hb-connect-locked" key={`${locked.boardTalentId}-${locked.slot}`}>
                 <th scope="row">Locked slot</th>
-                <td>{locked.boardTalentId} / {locked.slot}</td>
+                <td>{talentName(locked.boardTalentId, cards)} / {locked.slot}</td>
                 <td>—</td>
                 <td>{locked.reasonCodes.map((reason) => LOCKED_REASON_LABELS[reason] ?? "Slot unavailable").join(" · ")}</td>
               </tr>

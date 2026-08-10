@@ -239,6 +239,15 @@ select {
   text-align: center;
 }
 
+.footer-version {
+  margin: 0.15rem 0 0;
+  color: #4d5460;
+  font-size: 0.58rem;
+  line-height: 1.35;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Home */
 .home-page {
   width: min(1480px, calc(100% - clamp(2rem, 5vw, 5rem)));

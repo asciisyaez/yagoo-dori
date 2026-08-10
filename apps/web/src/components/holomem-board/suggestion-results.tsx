@@ -24,6 +24,10 @@ function formatUnits(value: number): string {
   return value.toLocaleString("en-US");
 }
 
+function formatParameterValue(microUnits: number): string {
+  return (microUnits / 1_000_000).toLocaleString("en-US", { maximumFractionDigits: 2 });
+}
+
 export function SuggestionResults({
   result,
   stale,
@@ -52,6 +56,7 @@ export function SuggestionResults({
         <div className="hb-claim-chips">
           {CLAIM_CHIPS.map(([key]) => <span className="hb-claim-chip" key={key}>{claimChipValues[key]}</span>)}
         </div>
+        <p className="hb-note">These suggestions serve the declared team only. A team imported from the Team calculator was chosen without Board or Connect value, so the team choice and the Board plan are separate recommendations, not a joint one.</p>
       </div>
       <div className="hb-member-results">
         {result.perMember.map((member) => (
@@ -69,7 +74,7 @@ export function SuggestionResults({
               <span>Remaining <b>{formatUnits(member.ledger.remainingAvailable)}</b></span>
               <span>Suggested cost <b>{formatUnits(member.ledger.suggestedCost)}</b></span>
             </div>
-            <p className="hb-result-note">Baseline units: {formatUnits(member.greedyBaselineMicroUnits)} · Declared units: {formatUnits(member.claimedMicroUnits)}</p>
+            <p className="hb-result-note">Modeled parameter value: {formatParameterValue(member.claimedMicroUnits)} (greedy baseline {formatParameterValue(member.greedyBaselineMicroUnits)}). Parameter-point equivalents under the envelope model, not a projected Live Score.</p>
             <ol className="hb-suggestion-list">
               {member.suggestions.map((suggestion) => (
                 <li key={suggestion.nodeGroupId}>

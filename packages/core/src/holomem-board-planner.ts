@@ -13,6 +13,7 @@ import {
 } from "./holomem-board-connect";
 import { mechanicsData, type MechanicsData } from "./mechanics";
 import {
+  BOARD_SUGGESTER_BEAM_WIDTH,
   suggestHolomemBoardNodes,
   type BoardFocusPosition,
   type HolomemBoardSuggestion,
@@ -119,7 +120,7 @@ function suggestForBoard(
         suggestedUnlocks: [],
         search: {
           algorithm: "budgeted-connected-beam",
-          beamWidth: 64,
+          beamWidth: BOARD_SUGGESTER_BEAM_WIDTH,
           statesExplored: 0,
           greedyBaselineMicroUnits: 0,
           selectedMicroUnits: 0,

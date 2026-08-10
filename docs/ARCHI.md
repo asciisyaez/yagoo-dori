@@ -24,7 +24,7 @@ from the public repo `asciisyaez/yagoo-dori`.
 
 Architecturally it is three coupled systems:
 
-1. **A static Next.js site** (`apps/web`) — 654 exported routes covering cards,
+1. **A static Next.js site** (`apps/web`) — 665 exported routes (as of v0.1.7) covering cards,
    talents, Leader Outfits, skills, synergies, tier lists, guides, changelogs,
    and a client-side team calculator that runs the real optimizer in a Web
    Worker.
@@ -171,7 +171,7 @@ yagoo-dori/
 - `site-image.tsx` wraps `next/image` (base path + preview/full-resolution art
   swap); `site-link.tsx` wraps `next/link` forcing `prefetch={false}` (Next 16
   static-export RSC prefetch workaround).
-- Card art is the primary scanning unit (Prydwen-density IA); 113 local
+- Card art is the primary scanning unit (Prydwen-density IA); 115 local
   `.webp` icons/illustrations/previews under `apps/web/public/game/`.
 - Heavy computation runs off-main-thread: `team-calculator.worker.ts` imports
   `@yagoo-dori/core/team-calculator`; `team-calculator-worker-client.ts`
@@ -318,7 +318,7 @@ keyboard navigation, and mobile readability are charter-mandated.
 ## 14. Exact Optimizer & Certification Subsystem (v0.2)
 
 Separately scoped research toward a certifiable full-roster global optimum
-(126,445,821 legal Member teams × 113 Leader/Outfits), pinned by scope hash
+(137,891,541 legal Member teams × 115 Leader/Outfits on the current scope; the superseded launch scope was 126,445,821 × 113), pinned by scope hash
 `a53303691e…` (`data/native/exact-optimizer-scope-v1.json`).
 
 - **Spec** (`docs/exact-optimizer-spec.md`): frozen input tuple, lexicographic
@@ -391,7 +391,7 @@ flowchart LR
   NR --> VAL
   NG --> VAL
   subgraph Site [apps/web static build]
-    CORE[core zod-parses JSON at import] --> SSG[654 static routes]
+    CORE[core zod-parses JSON at import] --> SSG[665 static routes]
     CORE --> WORKER[team-calculator Web Worker]
   end
   GEN --> CORE

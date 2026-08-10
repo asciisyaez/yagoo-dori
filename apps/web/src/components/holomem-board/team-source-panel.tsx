@@ -58,6 +58,7 @@ export function TeamSourcePanel({
       <button className="hb-primary-button" disabled={!rosterAvailable || loading} onClick={onUseCalculator} type="button">
         {loading ? "Loading team…" : "Use my Team calculator result"}
       </button>
+      <p className="hb-note">The Team calculator selects teams without Board or Connect value; Board suggestions stay conditional on that separately chosen team.</p>
       {!rosterAvailable && <p className="hb-note">The manual team stays in this planner until you use the Team calculator.</p>}
       <details className="hb-manual-source" open={!rosterAvailable}>
         <summary>Manual talent picker</summary>

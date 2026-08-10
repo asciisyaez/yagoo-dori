@@ -315,4 +315,49 @@ describe("Holomem Board node objective", () => {
     expect(source).not.toMatch(/Math\.random/);
     expect(source).not.toMatch(/toBeCloseTo/);
   });
+
+  it("matches the exhaustive connected-subset value at small budgets (measured regret 0)", () => {
+    // Brute-force optimum over every connected, affordable set of added
+    // nodes, using the same objective the suggester reports. Small budgets
+    // keep the enumeration tractable while still exercising path/value
+    // trade-offs across the four root branches.
+    const objective = buildBoardNodeObjective(baseObjectiveInput);
+    const valueOf = (groupId: string) => objective.objectiveByGroupId.get(groupId)?.valueMicroUnits ?? 0;
+    const costOf = new Map(
+      [...boardAdjacency.neighborsByGroupId.keys()].map((groupId) => [
+        groupId,
+        mechanicsData.catalogs.boardNodes.find((node) => node.groupId === groupId)!.pointCost,
+      ]),
+    );
+
+    function exhaustiveMax(budget: number): number {
+      const seen = new Set<string>();
+      let bestValue = 0;
+      const walk = (unlocked: ReadonlySet<string>, spent: number, value: number) => {
+        const key = [...unlocked].sort().join("|");
+        if (seen.has(key)) return;
+        seen.add(key);
+        bestValue = Math.max(bestValue, value);
+        const frontier = new Set<string>();
+        for (const groupId of unlocked) {
+          for (const neighbor of boardAdjacency.neighborsByGroupId.get(groupId) ?? []) {
+            if (!unlocked.has(neighbor)) frontier.add(neighbor);
+          }
+        }
+        for (const candidate of [...frontier].sort()) {
+          const cost = costOf.get(candidate)!;
+          if (spent + cost > budget) continue;
+          walk(new Set([...unlocked, candidate]), spent + cost, value + valueOf(candidate));
+        }
+      };
+      walk(new Set(["S-001"]), 0, 0);
+      return bestValue;
+    }
+
+    for (const budget of [4, 6, 8]) {
+      const result = suggestHolomemBoardNodes({ ...baseInput, holomemRank: 1, extraPointsOwned: budget });
+      expect(result.budget.totalBudget).toBe(budget);
+      expect(result.search.selectedMicroUnits, `budget ${budget}`).toBe(exhaustiveMax(budget));
+    }
+  });
 });

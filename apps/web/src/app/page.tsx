@@ -57,8 +57,8 @@ export default function HomePage() {
           <p className="home-kicker"><span /> Cards · tiers · team building</p>
           <h1>Know every card. Build the right five.</h1>
           <p className="home-lead">
-            Compare skills, stats, and Leader Outfits, then shape a five-Member formation around
-            the cards you own and the song you want to score.
+            Compare skills, stats, and Leader Outfits, then shape a five-Member formation from
+            the cards you own, benchmarked for general play across 30 Expert charts.
           </p>
           <div className="home-actions">
             <Link className="primary-action" href="/tier-list">Open tier list <ArrowRight aria-hidden="true" /></Link>
