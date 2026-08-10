@@ -36,6 +36,7 @@
     "./song-contexts": "./src/song-contexts.ts",
     "./team-calculator": "./src/team-calculator.ts",
     "./team-calculator-contract": "./src/team-calculator-contract.ts",
+    "./member-card-order": "./src/member-card-order.ts",
     "./exact-optimizer-arithmetic": "./src/exact-optimizer-arithmetic.ts",
     "./exact-optimizer-bulk-accumulation": "./src/exact-optimizer-bulk-accumulation.ts",
     "./exact-optimizer-coverage": "./src/exact-optimizer-coverage.ts",

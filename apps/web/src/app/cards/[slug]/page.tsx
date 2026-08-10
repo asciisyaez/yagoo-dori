@@ -5,6 +5,7 @@ import {
   publicCardBySlug,
   publicCards,
 } from "@yagoo-dori/core";
+import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
 import type { Metadata } from "next";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
@@ -85,7 +86,9 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
   const standardLeaderRanking = nativeLeaderOutfitRankingEntryByLensAndCard
     .get("one-copy-maximum")
     ?.get(card.id);
-  const related = publicCards.filter((candidate) => candidate.talentId === card.talentId && candidate.id !== card.id);
+  const related = publicCards
+    .filter((candidate) => candidate.talentId === card.talentId && candidate.id !== card.id)
+    .sort(comparePublicMemberCards);
   const teamGuide = nativeGuideByAnchorCardId.get(card.id);
 
   return (

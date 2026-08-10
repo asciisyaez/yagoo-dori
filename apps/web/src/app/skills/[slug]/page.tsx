@@ -1,4 +1,4 @@
-import { publicCards } from "@yagoo-dori/core";
+import { publicCardsInGenerationOrder } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { Activity, ArrowLeft, ArrowRight, Clock3, Layers3, Target } from "lucide-react";
 
 const skillCategories = ["active", "passive", "special"] as const;
-const skillRecords = publicCards.flatMap((card) =>
+const skillRecords = publicCardsInGenerationOrder.flatMap((card) =>
   skillCategories.map((category) => ({
     slug: `${card.slug}--${category}`,
     card,

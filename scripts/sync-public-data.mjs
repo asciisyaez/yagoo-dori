@@ -662,6 +662,11 @@ const cards = english["Card.json"]
     const passive = passiveLevels.get(card.livePassiveSkillId) ?? [];
     const special = specialLevels.get(card.liveSpecialSkillId) ?? [];
     const talentName = character?.nameEng ?? card.characterId;
+    // Character.order is the pinned upstream display position; do not derive this from the ID.
+    const generationOrder = character?.order;
+    if (!Number.isInteger(generationOrder) || generationOrder <= 0) {
+      throw new Error(`${card.characterId}: missing pinned Character.order display position`);
+    }
     const groups = (character?.regularCharacterGroupingIds ?? [])
       .map((groupId) => characterGroups.get(groupId))
       .map((group) => englishText.get(group?.nameLangId))
@@ -671,6 +676,7 @@ const cards = english["Card.json"]
       id: card.id,
       slug: slugify(`${talentName}-${title}-${card.id}`),
       talentId: card.characterId,
+      generationOrder,
       talentName,
       title,
       titleJa,

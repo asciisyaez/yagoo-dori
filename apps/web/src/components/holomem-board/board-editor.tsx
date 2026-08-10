@@ -6,6 +6,7 @@ import {
 } from "@yagoo-dori/core/holomem-board";
 import { mechanicsData } from "@yagoo-dori/core/mechanics";
 import type { HolomemBoardContractSuggestion } from "@yagoo-dori/core/holomem-board-contract";
+import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
 
 import { boardEffectLabel } from "@/lib/board-effect-labels";
 import type { BoardConnectSlot, StoredTalentBoard } from "@/lib/team-roster-storage";
@@ -134,7 +135,9 @@ export function BoardEditor({
     .reduce((sum, entry) => sum + entry.points, 0);
   const totalAvailable = board.pointMode === "direct" ? board.directPoints ?? 0 : rankIncome + board.extraPoints;
   const selectedSuggestion = suggestionByGroupId(suggestions, selectedGroupId);
-  const placeableConnectCards = connectCards.filter((card) => card.rarity === 4 || card.rarity === 5).sort((left, right) => left.id.localeCompare(right.id));
+  const placeableConnectCards = connectCards
+    .filter((card) => card.rarity === 4 || card.rarity === 5)
+    .sort(comparePublicMemberCards);
   const states = nodeStates(talentId, board, suggestions, playerLevel, selectedGroupId);
   const gateLabelByGroupId = new Map(
     [...boardAdjacency.neighborsByGroupId.keys()]
