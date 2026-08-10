@@ -1,4 +1,4 @@
-import { boardAdjacency, type BoardAdjacency } from "./holomem-board";
+import { boardAdjacency, treeModelIdByTalentId, type BoardAdjacency } from "./holomem-board";
 import {
   buildBoardNodeObjective,
   type BoardFocusPosition,
@@ -171,10 +171,14 @@ function assertBloomStage(value: number): asserts value is HolomemBoardBloomStag
 }
 
 function resolveModelId(talentId: string, mapping: TreeModelIdByTalent | undefined): string {
-  if (!mapping) return DEFAULT_TREE_MODEL_ID;
-  return mapping instanceof Map
-    ? mapping.get(talentId) ?? DEFAULT_TREE_MODEL_ID
-    : (mapping as Readonly<Record<string, string>>)[talentId] ?? DEFAULT_TREE_MODEL_ID;
+  // Explicit request mappings win; otherwise use the pinned Character.json
+  // profile so footprint geometry follows each talent's published tree model.
+  const override = !mapping
+    ? undefined
+    : mapping instanceof Map
+      ? mapping.get(talentId)
+      : (mapping as Readonly<Record<string, string>>)[talentId];
+  return override ?? treeModelIdByTalentId.get(talentId) ?? DEFAULT_TREE_MODEL_ID;
 }
 
 function resolveAmplificationModel(model: ConnectAmplificationModel | undefined): ConnectAmplificationModel {

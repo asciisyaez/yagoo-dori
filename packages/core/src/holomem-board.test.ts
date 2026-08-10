@@ -11,6 +11,8 @@ import {
   holomemBoardModel,
   replayHolomemBoardAutoUnlock,
   resolveBoardNodeForTalent,
+  treeModelIdByTalentId,
+  treeModelIdForTalent,
   type BoardNode,
   type HolomemBoardModel,
 } from "./holomem-board";
@@ -89,6 +91,24 @@ describe("holomem Board model", () => {
     const input = clonedCatalogs();
     expect(buildBoardAdjacency(input)).toEqual(buildBoardAdjacency(input));
     expect(buildBoardAdjacency(structuredClone(input))).toEqual(buildBoardAdjacency(input));
+  });
+
+  it("maps every talent to its pinned Character.json tree model", () => {
+    expect(treeModelIdByTalentId.size).toBe(54);
+    const distribution = new Map<string, number>();
+    for (const treeModelId of treeModelIdByTalentId.values()) {
+      distribution.set(treeModelId, (distribution.get(treeModelId) ?? 0) + 1);
+      expect(boardAdjacency.treeModelIds).toContain(treeModelId);
+    }
+    expect([...distribution.entries()].sort()).toEqual([
+      ["tree-model-001", 15],
+      ["tree-model-002", 14],
+      ["tree-model-003", 13],
+      ["tree-model-004", 12],
+    ]);
+    // Usada Pekora's board is the user-observed mirrored layout, not 001.
+    expect(treeModelIdForTalent("chr-00019")).toBe("tree-model-004");
+    expect(() => treeModelIdForTalent("chr-99999")).toThrow(/no pinned Board tree model/);
   });
 
   it("rejects incomplete, duplicate, model-divergent, and rootless layouts", () => {

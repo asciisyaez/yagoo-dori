@@ -38,6 +38,7 @@ const tableFiles = [
   "SkillTreeNode.json",
   "SkillTreeNodePosition.json",
   "SkillTreePoint.json",
+  "Character.json",
   "CharacterLevel.json",
   "Condition.json",
 ];
@@ -608,6 +609,22 @@ const boardPointPools = rows("SkillTreePoint.json").map((row) => ({
   sourceRef: sourceId("SkillTreePoint.json"),
 }));
 
+const treeModelIds = new Set(boardNodePositions.map((position) => position.treeModelId));
+const talentBoardProfiles = rows("Character.json")
+  .filter((row) => row.isPlayable === true)
+  .map((row) => {
+    const treeModelId = row.skillTreeNodePositionGroupId;
+    if (!treeModelIds.has(treeModelId)) {
+      throw new Error(`Character ${row.id} references unknown tree model ${treeModelId}`);
+    }
+    return {
+      talentId: row.id,
+      treeModelId,
+      sourceRef: sourceId("Character.json"),
+    };
+  })
+  .sort((left, right) => left.talentId.localeCompare(right.talentId));
+
 const characterLevelRows = rows("CharacterLevel.json");
 const characterLevelGroups = new Set(characterLevelRows.map((row) => row.groupId));
 if (characterLevelGroups.size !== 1 || !characterLevelGroups.has("level-group-1")) {
@@ -895,7 +912,7 @@ for (const node of boardNodes) {
 
 const payload = {
   schemaVersion: 1,
-  methodologyVersion: "yd-mechanics-catalog-1.1.0",
+  methodologyVersion: "yd-mechanics-catalog-1.2.0",
   retrievedAt,
   sourceSnapshot,
   evidenceSources,
@@ -915,6 +932,7 @@ const payload = {
     boardNodes,
     boardNodePositions,
     boardPointPools,
+    talentBoardProfiles,
     holomemRankPoints,
     boardNodeConditions,
   },

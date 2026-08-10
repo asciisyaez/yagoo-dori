@@ -66,6 +66,7 @@ describe("evidence-linked mechanics catalog", () => {
     expect(mechanicsData.catalogs.boardNodes).toHaveLength(323);
     expect(mechanicsData.catalogs.boardNodePositions).toHaveLength(608);
     expect(mechanicsData.catalogs.boardPointPools).toHaveLength(54);
+    expect(mechanicsData.catalogs.talentBoardProfiles).toHaveLength(54);
     expect(mechanicsData.catalogs.holomemRankPoints).toHaveLength(50);
     expect(mechanicsData.catalogs.boardNodeConditions).toHaveLength(5);
 
@@ -112,7 +113,7 @@ describe("evidence-linked mechanics catalog", () => {
       }, {}),
     ).toEqual({ 0: 1, 1: 25, 2: 98, 3: 103, 4: 12, 5: 80, 6: 4 });
     expect(mechanicsData.catalogs.holomemRankPoints.reduce((sum, row) => sum + row.points, 0)).toBe(361);
-    expect(mechanicsData.methodologyVersion).toBe("yd-mechanics-catalog-1.1.0");
+    expect(mechanicsData.methodologyVersion).toBe("yd-mechanics-catalog-1.2.0");
   });
 
   it("rejects duplicate or extra Holomem Rank point rows", () => {

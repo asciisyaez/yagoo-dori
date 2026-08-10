@@ -1803,17 +1803,22 @@
 .hb-board-controls { position: sticky; z-index: 2; top: 0; display: flex; align-items: center; justify-content: flex-end; gap: 0.3rem; color: var(--yd-muted); font-size: 0.65rem; }
 .hb-board-controls button { width: 1.7rem; height: 1.7rem; border: 1px solid var(--yd-line); border-radius: 4px; background: #171d25; color: var(--yd-text); cursor: pointer; }
 .hb-board-svg { display: block; margin: 0 auto; }
-.hb-board-edges line { stroke: #2d3541; stroke-width: 2; }
+.hb-board-edges line { stroke: #262e3a; stroke-width: 2; }
 .hb-board-node { outline: none; }
+.hb-grid-dot { fill: #232c3a; }
 .hb-node { stroke-width: 2; }
-.hb-node-glyph { fill: #071016; font-size: 11px; font-weight: 900; pointer-events: none; text-anchor: middle; }
-.hb-node-order { fill: #071016; font-size: 9px; font-weight: 900; text-anchor: middle; }
-.hb-node-gate { fill: #071016; font-size: 6px; font-weight: 900; text-anchor: middle; }
-.hb-node--locked { fill: #202631; stroke: #46505d; }
-.hb-node--unlocked { fill: var(--hb-unlocked); stroke: #b1e8bb; }
-.hb-node--suggested { fill: var(--hb-suggested); stroke: #b8f0ff; stroke-dasharray: 4 3; }
-.hb-node--gated { fill: var(--hb-gated); stroke: #ffe7a4; }
-.hb-node--dimmed { fill: var(--hb-dimmed); stroke: #e4e99a; opacity: 0.7; pointer-events: none; }
+.hb-node-glyph { fill: #aab4c2; font-size: 11px; font-weight: 900; pointer-events: none; text-anchor: middle; }
+.hb-node-order { fill: #b8f0ff; font-size: 9px; font-weight: 900; text-anchor: middle; }
+.hb-node-gate { fill: #9aa4b2; font-size: 6px; font-weight: 900; text-anchor: middle; }
+.hb-node--locked { fill: #141a23; stroke: #46505d; }
+.hb-node--unlocked { fill: rgba(120, 208, 154, 0.2); stroke: var(--hb-unlocked); }
+.hb-node--unlocked + .hb-node-glyph { fill: #b1e8bb; }
+.hb-node--suggested { fill: rgba(37, 188, 233, 0.16); stroke: var(--hb-suggested); stroke-dasharray: 4 3; }
+.hb-node--suggested + .hb-node-glyph { fill: #b8f0ff; }
+.hb-node--gated { fill: rgba(240, 199, 102, 0.14); stroke: var(--hb-gated); }
+.hb-node--gated + .hb-node-glyph { fill: #ffe7a4; }
+.hb-node--dimmed { fill: rgba(179, 189, 98, 0.1); stroke: #757b46; opacity: 0.8; pointer-events: none; }
+.hb-node--dimmed + .hb-node-glyph { fill: #b3bd62; opacity: 0.8; }
 .hb-node--selected { stroke: #ffffff; stroke-width: 4; }
 .hb-node--path { filter: drop-shadow(0 0 4px rgba(37, 188, 233, 0.9)); }
 .hb-board-node:focus .hb-node { stroke: #ffffff; stroke-width: 4; }
