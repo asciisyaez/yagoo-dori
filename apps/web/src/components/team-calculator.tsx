@@ -190,12 +190,13 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
         <div>
           <p>Recommended formation</p>
           <h2 id="team-result-heading">{resultHeading}</h2>
-          <span>Average performance across {result.corpus.chartCount} Expert charts</span>
+          <span>Average performance across {result.corpus.chartCount} Expert charts · Board and Connect effects are not part of this objective</span>
         </div>
         <div className={styles.resultScore}>
-          <span>Relative utility</span>
+          <span>Model utility</span>
           <strong>{formatUtility(result.score.relativeUtility.central)}</strong>
           <small>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)} range</small>
+          <small>Relative team value, not a projected Live Score.</small>
         </div>
       </header>
 

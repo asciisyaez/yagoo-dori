@@ -32,6 +32,13 @@ export const metadata: Metadata = {
       ? { index: true, follow: true }
       : { index: false, follow: false },
   icons: { icon: sitePath("/yagoo-dori-mark.svg") },
+  alternates: { canonical: "./" },
+  openGraph: {
+    type: "website",
+    siteName: "Yagoo-dori",
+    url: "./",
+  },
+  twitter: { card: "summary" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

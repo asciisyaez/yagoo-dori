@@ -11,7 +11,7 @@ const corePublicRoutes = [
   `/cards/${AZKI_CARD_SLUG}`,
 ];
 
-test("renders the exact unofficial-site disclaimer once per public page", async ({ page }) => {
+test("renders the exact unofficial-site disclaimer once per public page", async ({ isMobile, page }) => {
   test.setTimeout(60_000);
 
   for (const route of corePublicRoutes) {
@@ -25,7 +25,18 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
     await expect(page.locator("body")).not.toContainText(/Art pending rights/i);
     await expect(page.locator("body")).not.toContainText(/AppMedia/i);
     await expect(page.locator("body")).not.toContainText(/illustrative (?:data|PI|score)/i);
-    await expect(page.locator("body")).not.toContainText(/Provisional/i);
+    if (route === "/tier-list") {
+      // The tier list deliberately discloses provisional status (UX honesty);
+      // every other core route must still never leak the internal term. The
+      // heading note collapses with the rest of the heading prose on mobile,
+      // where the always-visible results-line marker carries the disclosure.
+      await expect(page.getByText(/provisional model tiers/)).toBeVisible();
+      const headingNote = page.getByText(/Model tiers, published as provisional theorycraft/);
+      await expect(headingNote).toHaveCount(1);
+      if (!isMobile) await expect(headingNote).toBeVisible();
+    } else {
+      await expect(page.locator("body")).not.toContainText(/Provisional/i);
+    }
   }
 });
 

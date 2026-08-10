@@ -10,15 +10,15 @@
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 84
+    "score": 86
   },
   "dispositionCounts": {
-    "allowed-scoped": 92,
-    "non-technical": 9,
+    "allowed-scoped": 95,
+    "non-technical": 8,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 101,
+  "occurrenceCount": 103,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -168,7 +168,7 @@
       "file": "apps/web/src/app/methodology/page.tsx",
       "context": "It is not a Live Score forecast.",
       "term": "score",
-      "location": "apps/web/src/app/methodology/page.tsx:622",
+      "location": "apps/web/src/app/methodology/page.tsx:625",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Live Score appears inside an explicit denial that the measurement forecasts it."
@@ -190,15 +190,6 @@
       "sourceKind": "source-string",
       "disposition": "non-technical",
       "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
-    },
-    {
-      "file": "apps/web/src/app/page.tsx",
-      "context": "Compare skills, stats, and Leader Outfits, then shape a five-Member formation around the cards you own and the song you want to score.",
-      "term": "score",
-      "location": "apps/web/src/app/page.tsx:60",
-      "sourceKind": "jsx-text",
-      "disposition": "non-technical",
-      "justification": "Score is the ordinary game-action verb in a song-building instruction."
     },
     {
       "file": "apps/web/src/app/page.tsx",
@@ -228,6 +219,24 @@
       "justification": "Exact identifies the user-selected cards in a calculator instruction, not an exhaustive result."
     },
     {
+      "file": "apps/web/src/app/tier-list/page.tsx",
+      "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
+      "term": "score",
+      "location": "apps/web/src/app/tier-list/page.tsx:111",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the explicit denial that tiers are Live Score ratings."
+    },
+    {
+      "file": "apps/web/src/components/holomem-board/suggestion-results.tsx",
+      "context": "). Parameter-point equivalents under the envelope model, not a projected Live Score.",
+      "term": "score",
+      "location": "apps/web/src/components/holomem-board/suggestion-results.tsx:77",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the explicit denial that Board plan values are a projected Live Score."
+    },
+    {
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
@@ -240,7 +249,16 @@
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/team-calculator.tsx:438",
+      "location": "apps/web/src/components/team-calculator.tsx:199",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score is expressly qualified as relative team value and not a projection."
+    },
+    {
+      "file": "apps/web/src/components/team-calculator.tsx",
+      "context": "Relative team value, not a projected Live Score.",
+      "term": "score",
+      "location": "apps/web/src/components/team-calculator.tsx:439",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
@@ -1007,7 +1025,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-09T17:48:31.263Z"
+    "generatedAt": "2026-08-10T07:58:29.517Z"
   },
-  "stableDigest": "621e06d64dc360953b7fecbd7cc472bcc57a6aa9c34bd0838004b9fe5102d9dc"
+  "stableDigest": "3ae95d5be6341f99e084a048a042bea4d59b65e69108c07f159fbb40e5fdeac2"
 }

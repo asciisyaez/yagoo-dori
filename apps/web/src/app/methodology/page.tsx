@@ -129,11 +129,11 @@ const metrics = [
   },
   {
     symbol: "E",
-    name: "Investment efficiency",
+    name: "Progression value",
     weight: "10%",
     formula: "E = ( G_low + 2 · G_standard + G_max ) ÷ 4",
     detail:
-      "The trapezoidal mean of general value across the progression curve, from entry level through the duplicate-enabled ceiling, so cards that arrive useful are separated from cards that need heavy investment. Being a mean across all three progression states, E is identical on all three lenses.",
+      "The trapezoidal mean of general value across three model progression states — entry level, one-copy maximum, and the duplicate-enabled ceiling — so cards that arrive useful are separated from cards that need heavy investment. The x-axis is those model states, not a real resource or copy cost, which is why this is named progression value rather than cost efficiency. Being a mean across all three progression states, E is identical on all three lenses.",
   },
 ] as const;
 
@@ -148,7 +148,7 @@ const lanes = [
     id: "central",
     label: "Central",
     rule: "Skills activate independently and the strongest active one is selected, evaluated as an exact expectation.",
-    targeting: "Unresolved targets still resolve to the guaranteed recipient, so central is not the midpoint.",
+    targeting: "Unresolved stat-effect targets still resolve to the guaranteed recipient, so central is not the midpoint. Where an Active application carries several enumerated readings, central takes their plain average.",
   },
   {
     id: "upper",
@@ -379,8 +379,11 @@ export default function MethodologyPage() {
         <p>
           Read the range as the span between a deliberately pessimistic and a deliberately optimistic
           reading of the same formation. It is <strong>not</strong> a confidence interval, and the
-          central value is <strong>not</strong> the midpoint — central shares the lower lane&rsquo;s
-          cautious answer to the targeting question and differs from it only on overlap. Candidate
+          central value is <strong>not</strong> the midpoint — central is a named composition of three
+          deterministic rules: it keeps the lower lane&rsquo;s guaranteed-recipient floor for unresolved
+          stat-effect targeting, takes the plain average of the enumerated readings where an Active
+          application is ambiguous, and treats overlapping activations as an independent expected
+          maximum. Candidate
           rules for resolving targets by highest stat, by rarity, by level and by formation order
           were each tested and each contradicted by published behaviour — the tests and their
           sources are recorded against the passive-target rules in the pinned data ledger — which

@@ -775,6 +775,8 @@
 .tier-quick-view-copy { padding: 2.25rem 1.45rem 1.45rem; }
 .tier-quick-view-copy h2 { margin: 0.12rem 0 0; font-size: clamp(1.6rem, 4vw, 2.2rem); }
 .tier-quick-view-title { margin: 0.18rem 0 0.8rem; color: #b8c0cc; font-size: 0.88rem; }
+.tier-quick-view-index { margin: 0.45rem 0 0; color: var(--yd-muted); font-size: 0.67rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.db-heading-note { margin: 0.4rem 0 0; color: var(--yd-dim); font-size: 0.68rem; line-height: 1.5; }
 
 .tier-quick-view-tags {
   display: flex;
@@ -2337,7 +2339,7 @@
   .generation-filter select,
   .simple-select select { width: 100%; max-width: none; }
   .tier-list-page .database-heading { margin-bottom: 0.75rem; padding: 0.85rem 1rem; }
-  .tier-list-page .database-heading > div:nth-child(2) > p:last-child,
+  .tier-list-page .database-heading > div:nth-child(2) > p:not(.db-eyebrow),
   .tier-list-page .database-summary { display: none; }
   .tier-filter-bar .card-search { order: 0; }
   .tier-filter-bar .compact-filter,

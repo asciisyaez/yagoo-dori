@@ -27,7 +27,7 @@ export type BoardEditorProps = Readonly<{
   toast: string | null;
   zoom: number;
   editMode: boolean;
-  copySources: readonly string[];
+  copySources: readonly { talentId: string; label: string }[];
   onBoardChange: (patch: Partial<StoredTalentBoard>) => void;
   onAutoUnlock: () => void;
   onToggleNode: (groupId: string) => void;
@@ -185,7 +185,7 @@ export function BoardEditor({
         <label>Copy from
           <select defaultValue="" onChange={(event) => { if (event.target.value) onCopyFrom(event.target.value); event.currentTarget.value = ""; }}>
             <option value="">Choose a member</option>
-            {copySources.map((source) => <option key={source} value={source}>{source}</option>)}
+            {copySources.map((source) => <option key={source.talentId} value={source.talentId}>{source.label}</option>)}
           </select>
         </label>
         <button onClick={onClear} type="button">Clear</button>

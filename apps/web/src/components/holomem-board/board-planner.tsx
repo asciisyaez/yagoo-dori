@@ -442,7 +442,12 @@ export function BoardPlanner() {
     ? suggestionPath(currentMember.talentId, currentSelectedGroup, result, currentBoard)
     : new Set<string>();
   const currentTalentName = currentMember ? plannerCards.find((card) => card.talentId === currentMember.talentId)?.talentName ?? currentMember.talentId : "Board";
-  const copySources = team?.members.filter((member) => member.talentId !== currentMember?.talentId).map((member) => member.talentId) ?? [];
+  const copySources = team?.members
+    .filter((member) => member.talentId !== currentMember?.talentId)
+    .map((member) => ({
+      talentId: member.talentId,
+      label: talentNameByTalentId.get(member.talentId) ?? member.talentId,
+    })) ?? [];
 
   const autoUnlock = useCallback(() => {
     if (!currentMember || !currentBoard) return;

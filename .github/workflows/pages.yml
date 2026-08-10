@@ -58,6 +58,12 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Check binary assets
+        run: pnpm assets:check
+
+      - name: Validate generated data
+        run: pnpm data:validate
+
       - name: Build static export
         run: pnpm build:pages
         env:

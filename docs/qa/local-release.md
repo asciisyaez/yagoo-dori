@@ -1,5 +1,10 @@
 # GitHub Pages release evidence
 
+> **HISTORICAL DOCUMENT** — release-QA evidence for the 2026-08-01 v0.1.0
+> Pages candidate (654 routes, 113 cards, launch test tallies). Kept as the
+> release record for that activation; current counts live in the changelogs
+> and build output, not here.
+
 N07 release QA validates the static site under a non-root repository path before any GitHub setting is changed.
 
 ## Static build

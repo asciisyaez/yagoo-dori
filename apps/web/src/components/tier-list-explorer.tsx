@@ -11,6 +11,9 @@ import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent }
 type TierPlacement = {
   tier: NativeModelBand;
   rank: number;
+  index: { lower: number; central: number; upper: number };
+  provisional: boolean;
+  matchedContexts: number;
 };
 
 export type TierCard = {
@@ -332,7 +335,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
 
       <div className="tier-results-line" aria-live="polite">
         <span><Grid3X3 aria-hidden="true" /> {visible.length} {context === "outfits" ? "Outfits" : visible.length === 1 ? "card" : "cards"} shown</span>
-        <p>{activeLens.label} · Manual · All Perfect</p>
+        <p>{activeLens.label} · Manual · All Perfect · provisional model tiers</p>
         <div className="tier-results-actions">
           <Link href="/methodology"><CircleHelp aria-hidden="true" /> How tiers work</Link>
         </div>
@@ -364,7 +367,13 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                     reducedMotion={reducedMotion}
                   />
                 ))}
-                {group.cards.length === 0 && <p className="empty-tier-band">No cards in this tier.</p>}
+                {group.cards.length === 0 && (
+                  <p className="empty-tier-band">
+                    {group.id === "SS" && "No current card clears the SS evidence gate — its absolute index requirement sits above every card's most optimistic reading, so S is the current effective top. See the methodology page."}
+                    {group.id === "D" && "The D evidence gate requires mostly definitely-negative contexts, which no current card shows — cards near the bottom publish as C instead. See the methodology page."}
+                    {group.id !== "SS" && group.id !== "D" && "No cards in this tier."}
+                  </p>
+                )}
               </div>
             </motion.section>
           ))}
@@ -407,7 +416,13 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                 <span>{selectedCard.attribute}</span>
                 <span>{selectedCard.rankings[lens].tier} tier</span>
                 <span>#{selectedCard.rankings[lens].rank}</span>
+                {selectedCard.rankings[lens].provisional && <span>Provisional</span>}
               </div>
+              <p className="tier-quick-view-index">
+                Model index {selectedCard.rankings[lens].index.central.toFixed(1)}
+                {" "}({selectedCard.rankings[lens].index.lower.toFixed(1)}–{selectedCard.rankings[lens].index.upper.toFixed(1)} range)
+                {" "}· {selectedCard.rankings[lens].matchedContexts.toLocaleString()} matched contexts vs the frozen launch cohort
+              </p>
 
               {context === "members" ? (
                 <>
