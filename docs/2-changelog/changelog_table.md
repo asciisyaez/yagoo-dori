@@ -2,6 +2,7 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.7` | 1    | fix(board): Board planner page framing and board SVG geometry |
 | `0.1.6` | 1    | feat: calculator search-quality gate closure + cross-run consistency, holomem Board planner and talent-page viewers (T4-T8) |
 | `0.1.5` | 1    | feat: member locks, selection evidence, calculator search upgrade, Miko/Suisei guides, fidelity corrections, holomem Board data foundation |
 | `0.1.4` | 1    | feat(data): 2026-08 patch intake — two new summer 5★ cards, five new songs, regenerated rankings and guides |
