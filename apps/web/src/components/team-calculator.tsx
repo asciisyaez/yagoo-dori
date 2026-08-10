@@ -580,11 +580,20 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
         setOwnedCards(hydratedCards);
         setRequiredMemberCardIds(hydratedRequiredMemberCardIds);
         setOshiPreference(hydratedOshi);
+        // A load that pruned Board declarations may only be written back once
+        // the raw pre-migration backup is confirmed; otherwise this rewrite
+        // would be the sole surviving copy and the pruned data would be lost.
+        const boardPruned =
+          loaded.boardPrunes.nodes > 0 ||
+          loaded.boardPrunes.placements > 0 ||
+          loaded.boardPrunes.talents > 0;
+        const migrationWriteBlocked = boardPruned && loaded.backupReady !== true;
         if (
-          loaded.needsWrite ||
-          !savedOshiStillOwned ||
-          JSON.stringify(loaded.roster.requiredMemberCardIds) !==
-            JSON.stringify(hydratedRequiredMemberCardIds)
+          !migrationWriteBlocked &&
+          (loaded.needsWrite ||
+            !savedOshiStillOwned ||
+            JSON.stringify(loaded.roster.requiredMemberCardIds) !==
+              JSON.stringify(hydratedRequiredMemberCardIds))
         ) {
           saveTeamRoster(window.localStorage, {
             ...loaded.roster,

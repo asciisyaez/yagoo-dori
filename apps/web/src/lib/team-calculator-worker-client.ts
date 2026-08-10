@@ -41,22 +41,39 @@ export class TeamCalculatorWorkerError extends Error {
  * request handler or on React's main thread.
  */
 export function startTeamCalculation(request: TeamCalculatorRequest): TeamCalculatorTask {
-  const worker = new Worker(new URL("../workers/team-calculator.worker.ts", import.meta.url), {
-    type: "module",
-    name: "yagoo-dori-team-calculator",
-  });
+  let worker: Worker | null = null;
+  let cleanedUp = false;
   let settled = false;
   let rejectTask: ((reason: unknown) => void) | null = null;
 
   const cleanup = (): void => {
-    worker.onmessage = null;
-    worker.onerror = null;
-    worker.terminate();
+    if (cleanedUp) return;
+    cleanedUp = true;
+    const currentWorker = worker;
+    worker = null;
+    if (!currentWorker) return;
+    currentWorker.onmessage = null;
+    currentWorker.onerror = null;
+    currentWorker.terminate();
   };
 
   const result = new Promise<TeamCalculatorResult>((resolve, reject) => {
     rejectTask = reject;
-    worker.onmessage = (event: MessageEvent<TeamCalculatorWorkerResponseMessage>) => {
+    let currentWorker: Worker;
+    try {
+      currentWorker = new Worker(new URL("../workers/team-calculator.worker.ts", import.meta.url), {
+        type: "module",
+        name: "yagoo-dori-team-calculator",
+      });
+      worker = currentWorker;
+    } catch {
+      settled = true;
+      cleanup();
+      reject(new TeamCalculatorWorkerError("worker-start-failed", "The team calculation worker could not start."));
+      return;
+    }
+
+    currentWorker.onmessage = (event: MessageEvent<TeamCalculatorWorkerResponseMessage>) => {
       if (settled) return;
       settled = true;
       cleanup();
@@ -71,14 +88,21 @@ export function startTeamCalculation(request: TeamCalculatorRequest): TeamCalcul
       }
       resolve(parsed.data);
     };
-    worker.onerror = () => {
+    currentWorker.onerror = () => {
       if (settled) return;
       settled = true;
       cleanup();
       reject(new TeamCalculatorWorkerError("worker-failed", "The team calculation could not finish."));
     };
     const message: TeamCalculatorWorkerRequestMessage = { type: "calculate", payload: request };
-    worker.postMessage(message);
+    try {
+      currentWorker.postMessage(message);
+    } catch {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      reject(new TeamCalculatorWorkerError("worker-post-failed", "The team calculation request could not be sent."));
+    }
   });
 
   return {

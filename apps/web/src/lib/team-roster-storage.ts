@@ -1,12 +1,16 @@
 export const TEAM_ROSTER_STORAGE_KEY = "yagoo-dori:team-calculator-roster";
+export const TEAM_ROSTER_BACKUP_KEY_PREFIX = `${TEAM_ROSTER_STORAGE_KEY}:backup-v`;
+export const TEAM_ROSTER_BACKUP_METADATA_KEY = `${TEAM_ROSTER_STORAGE_KEY}:backup-metadata`;
 
 export const BLOOM_STAGES = [0, 1, 2, 3, 4, 5] as const;
 export const BOARD_CONNECT_SLOTS = ["S-001", "S-002", "S-003", "S-004"] as const;
 export const BOARD_POINT_MODES = ["estimate-from-rank", "direct"] as const;
+const STORED_ROSTER_VERSIONS = [1, 2, 3, 4] as const;
 
 export type BloomStage = (typeof BLOOM_STAGES)[number];
 export type BoardConnectSlot = (typeof BOARD_CONNECT_SLOTS)[number];
 export type BoardPointMode = (typeof BOARD_POINT_MODES)[number];
+export type RosterBackupVersion = (typeof STORED_ROSTER_VERSIONS)[number];
 
 export const TEAM_OSHI_ROLES = ["member", "leader", "member-and-leader"] as const;
 
@@ -50,12 +54,26 @@ export type TeamRosterCatalogs = {
 
 type StorageReader = Pick<Storage, "getItem">;
 type StorageWriter = Pick<Storage, "setItem">;
+type StorageRemover = Pick<Storage, "removeItem">;
+type StorageStore = StorageReader & StorageWriter & Partial<StorageRemover>;
 
 export type LoadedTeamRoster = {
   roster: StoredTeamRoster;
   needsWrite: boolean;
   boardPrunes: BoardPruneCounts;
+  backupReady?: boolean;
 };
+
+export type RosterBackup = Readonly<{
+  key: string;
+  version: RosterBackupVersion;
+  raw: string;
+  dismissed: boolean;
+  boardPrunes: BoardPruneCounts;
+  prunedTalentIds: string[];
+}>;
+
+type RosterBackupMetadata = Omit<RosterBackup, "raw">;
 
 function zeroBoardPrunes(): BoardPruneCounts {
   return { nodes: 0, placements: 0, talents: 0 };
@@ -89,6 +107,149 @@ function sameRecord(left: Record<string, unknown>, right: Record<string, unknown
   const leftKeys = Object.keys(left).sort();
   const rightKeys = Object.keys(right).sort();
   return JSON.stringify(leftKeys) === JSON.stringify(rightKeys) && leftKeys.every((key) => left[key] === right[key]);
+}
+
+function isRosterBackupVersion(value: unknown): value is RosterBackupVersion {
+  return typeof value === "number" && STORED_ROSTER_VERSIONS.includes(value as RosterBackupVersion);
+}
+
+function backupKey(version: RosterBackupVersion): string {
+  return `${TEAM_ROSTER_BACKUP_KEY_PREFIX}${version}`;
+}
+
+function normalizedTalentIds(value: unknown): string[] {
+  return Array.isArray(value)
+    ? [...new Set(value.filter((talentId): talentId is string => typeof talentId === "string"))].sort()
+    : [];
+}
+
+function normalizedBoardPrunes(value: unknown): BoardPruneCounts | null {
+  if (value === undefined) return zeroBoardPrunes();
+  if (!isObject(value) || !isNonnegativeInteger(value.nodes) || !isNonnegativeInteger(value.placements) || !isNonnegativeInteger(value.talents)) {
+    return null;
+  }
+  return { nodes: value.nodes, placements: value.placements, talents: value.talents };
+}
+
+function sameBoardPrunes(left: BoardPruneCounts, right: BoardPruneCounts): boolean {
+  return left.nodes === right.nodes && left.placements === right.placements && left.talents === right.talents;
+}
+
+function readBackupMetadata(storage: StorageReader): RosterBackupMetadata | null {
+  const raw = storage.getItem(TEAM_ROSTER_BACKUP_METADATA_KEY);
+  if (!raw) return null;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return null;
+  }
+  const boardPrunes = isObject(parsed) ? normalizedBoardPrunes(parsed.boardPrunes) : null;
+  if (!isObject(parsed) || !isRosterBackupVersion(parsed.version) || parsed.key !== backupKey(parsed.version) || typeof parsed.dismissed !== "boolean" || !boardPrunes) {
+    return null;
+  }
+  return {
+    key: parsed.key,
+    version: parsed.version,
+    dismissed: parsed.dismissed,
+    boardPrunes,
+    prunedTalentIds: normalizedTalentIds(parsed.prunedTalentIds),
+  };
+}
+
+function rawBackup(storage: StorageReader, version: RosterBackupVersion): string | null {
+  const raw = storage.getItem(backupKey(version));
+  return raw && raw.length > 0 ? raw : null;
+}
+
+export function loadRosterBackup(storage: StorageReader): RosterBackup | null {
+  let selected: { key: string; version: RosterBackupVersion; raw: string } | null = null;
+  for (const version of [...STORED_ROSTER_VERSIONS].reverse()) {
+    const raw = rawBackup(storage, version);
+    if (raw) {
+      selected = { key: backupKey(version), version, raw };
+      break;
+    }
+  }
+  if (!selected) return null;
+
+  const metadata = readBackupMetadata(storage);
+  if (metadata?.key === selected.key) return { ...metadata, raw: selected.raw };
+  return {
+    ...selected,
+    dismissed: false,
+    boardPrunes: zeroBoardPrunes(),
+    prunedTalentIds: [],
+  };
+}
+
+function backupMatchesCurrent(
+  storage: StorageReader,
+  raw: string,
+  version: RosterBackupVersion,
+  boardPrunes: BoardPruneCounts,
+  prunedTalentIds: readonly string[],
+): boolean {
+  try {
+    const backup = loadRosterBackup(storage);
+    return backup !== null
+      && backup.version === version
+      && backup.raw === raw
+      && sameBoardPrunes(backup.boardPrunes, boardPrunes)
+      && JSON.stringify(backup.prunedTalentIds) === JSON.stringify(normalizedTalentIds(prunedTalentIds));
+  } catch {
+    return false;
+  }
+}
+
+function captureRosterBackup(
+  storage: StorageReader,
+  raw: string,
+  version: RosterBackupVersion,
+  boardPrunes: BoardPruneCounts,
+  prunedTalentIds: readonly string[],
+): boolean {
+  const store = storage as StorageStore;
+  if (typeof store.setItem !== "function") return false;
+
+  try {
+    const existing = loadRosterBackup(storage);
+    const candidateTalentIds = normalizedTalentIds(prunedTalentIds);
+    const sameFlow = existing && existing.version === version
+      && existing.raw === raw
+      && sameBoardPrunes(existing.boardPrunes, boardPrunes)
+      && JSON.stringify(existing.prunedTalentIds) === JSON.stringify(candidateTalentIds);
+    if (existing && (existing.version > version || sameFlow)) {
+      if (!readBackupMetadata(storage)) {
+        store.setItem(TEAM_ROSTER_BACKUP_METADATA_KEY, JSON.stringify({
+          key: existing.key,
+          version: existing.version,
+          dismissed: existing.dismissed,
+          boardPrunes: existing.boardPrunes,
+          prunedTalentIds: existing.prunedTalentIds,
+        }));
+      }
+      return backupMatchesCurrent(storage, raw, version, boardPrunes, candidateTalentIds);
+    }
+
+    const key = backupKey(version);
+    store.setItem(key, raw);
+    store.setItem(TEAM_ROSTER_BACKUP_METADATA_KEY, JSON.stringify({
+      key,
+      version,
+      dismissed: false,
+      boardPrunes,
+      prunedTalentIds: candidateTalentIds,
+    }));
+    if (typeof store.removeItem === "function") {
+      for (const otherVersion of STORED_ROSTER_VERSIONS) {
+        if (otherVersion !== version) store.removeItem(backupKey(otherVersion));
+      }
+    }
+  } catch {
+    // A storage quota or privacy failure must not make the planner unusable.
+  }
+  return backupMatchesCurrent(storage, raw, version, boardPrunes, prunedTalentIds);
 }
 
 export function emptyTeamRoster(rosterCommit: string): StoredTeamRoster {
@@ -176,7 +337,7 @@ export function loadTeamRoster(
     boardAssumptions?: unknown;
   };
   if (
-    (candidate.version !== 1 && candidate.version !== 2 && candidate.version !== 3 && candidate.version !== 4) ||
+    !isRosterBackupVersion(candidate.version) ||
     !isObject(candidate.cards)
   ) {
     return { roster: empty, needsWrite: true, boardPrunes };
@@ -209,15 +370,20 @@ export function loadTeamRoster(
 
   const playerLevel = candidate.version === 4 && isPlayerLevel(candidate.playerLevel) ? candidate.playerLevel : null;
   const boards: Record<string, StoredTalentBoard> = {};
+  const prunedTalentIds: string[] = [];
   if (candidate.version === 4 && isObject(candidate.boards)) {
     for (const [talentId, rawBoard] of Object.entries(candidate.boards)) {
       if (catalogs && !catalogs.validTalentIds.has(talentId)) {
         boardPrunes.talents += 1;
+        prunedTalentIds.push(talentId);
         continue;
       }
       const board = sanitizeBoard(rawBoard, validCardIds, catalogs, boardPrunes);
       if (board) boards[talentId] = board;
-      else boardPrunes.talents += 1;
+      else {
+        boardPrunes.talents += 1;
+        prunedTalentIds.push(talentId);
+      }
     }
   }
 
@@ -245,7 +411,39 @@ export function loadTeamRoster(
     rawPlayerLevel !== playerLevel ||
     JSON.stringify(rawBoards) !== JSON.stringify(boards) ||
     Object.prototype.hasOwnProperty.call(candidate, "boardAssumptions");
+  if (boardPrunes.nodes > 0 || boardPrunes.placements > 0 || boardPrunes.talents > 0) {
+    return {
+      roster,
+      needsWrite,
+      boardPrunes,
+      backupReady: captureRosterBackup(storage, raw, candidate.version, boardPrunes, prunedTalentIds),
+    };
+  }
   return { roster, needsWrite, boardPrunes };
+}
+
+export function dismissRosterBackupNotice(storage: StorageReader & StorageWriter): void {
+  const backup = loadRosterBackup(storage);
+  if (!backup) return;
+  storage.setItem(TEAM_ROSTER_BACKUP_METADATA_KEY, JSON.stringify({
+    key: backup.key,
+    version: backup.version,
+    dismissed: true,
+    boardPrunes: backup.boardPrunes,
+    prunedTalentIds: backup.prunedTalentIds,
+  }));
+}
+
+export function restoreRosterBackup(
+  storage: StorageReader & StorageWriter,
+  rosterCommit: string,
+  validCardIds: ReadonlySet<string>,
+  catalogs?: TeamRosterCatalogs,
+): LoadedTeamRoster | null {
+  const backup = loadRosterBackup(storage);
+  if (!backup) return null;
+  storage.setItem(TEAM_ROSTER_STORAGE_KEY, backup.raw);
+  return loadTeamRoster(storage, rosterCommit, validCardIds, catalogs);
 }
 
 export function saveTeamRoster(storage: StorageWriter, roster: StoredTeamRoster): void {

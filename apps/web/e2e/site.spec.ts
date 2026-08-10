@@ -34,6 +34,13 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
       const headingNote = page.getByText(/Model tiers, published as provisional theorycraft/);
       await expect(headingNote).toHaveCount(1);
       if (!isMobile) await expect(headingNote).toBeVisible();
+    } else if (route.startsWith("/cards/")) {
+      // Card profiles are direct landing pages: their tier badges must carry
+      // the same provisional-model disclosure as the tier page.
+      await expect(page.getByText(/provisional model tier (SS|[SABCD])\b/).first()).toBeVisible();
+      const cardNote = page.getByText(/Model tiers, published as provisional theorycraft/);
+      await expect(cardNote).toHaveCount(1);
+      await expect(cardNote).toBeVisible();
     } else {
       await expect(page.locator("body")).not.toContainText(/Provisional/i);
     }

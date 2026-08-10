@@ -99,4 +99,32 @@ describe("team calculator worker client", () => {
     await expect(task.result).rejects.toMatchObject({ code: "invalid-worker-result" });
     expect(worker.terminated).toBe(true);
   });
+
+  it("normalizes a synchronous Worker construction failure into a rejected task", async () => {
+    vi.stubGlobal("Worker", class {
+      constructor() {
+        throw new Error("blocked");
+      }
+    });
+
+    const task = startTeamCalculation(REQUEST);
+    await expect(task.result).rejects.toMatchObject({ code: "worker-start-failed" });
+    expect(() => task.cancel()).not.toThrow();
+  });
+
+  it("normalizes a synchronous postMessage failure and still terminates the worker", async () => {
+    class PostFailWorker extends FakeWorker {
+      override postMessage(): void {
+        throw new Error("detached");
+      }
+    }
+    vi.stubGlobal("Worker", PostFailWorker);
+
+    const task = startTeamCalculation(REQUEST);
+    const worker = FakeWorker.instance;
+    if (!worker) throw new Error("Worker was not created");
+    await expect(task.result).rejects.toMatchObject({ code: "worker-post-failed" });
+    expect(worker.terminated).toBe(true);
+    expect(() => task.cancel()).not.toThrow();
+  });
 });
