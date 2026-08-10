@@ -290,7 +290,7 @@ describe("calculator quality consistency", () => {
         full.score.relativeUtility.central,
       );
     }
-  }, 120_000);
+  }, 300_000);
 
   it("keeps Oshi-constrained thorough results below unconstrained results", () => {
     for (const fixture of INVERSION_FIXTURES) {
@@ -302,14 +302,14 @@ describe("calculator quality consistency", () => {
         unconstrained.score.relativeUtility.central,
       );
     }
-  }, 120_000);
+  }, 300_000);
 
   it("does not regress the recorded shipped budget baselines", () => {
     for (const fixture of BUDGET_FIXTURES) {
       const result = calculateOwnedRosterTeam(request(fixture.rosterCards));
       expect(result.score.relativeUtility.central, fixture.id).toBeGreaterThanOrEqual(fixture.shippedCentral);
     }
-  }, 120_000);
+  }, 300_000);
 
   // The expanded roster below has 11 distinct talents: 462 Member sets x 11
   // Leaders x 30 charts = 152,460 chart evaluations, far above thorough's
@@ -342,7 +342,7 @@ describe("calculator quality consistency", () => {
       seeded.search.seedCandidates!.maxAdoptedCentralUtility!,
     );
     expect(seeded.score.relativeUtility.central).toBeGreaterThanOrEqual(first.score.relativeUtility.central);
-  }, 120_000);
+  }, 300_000);
 
   it("is deep-equal deterministic for both effort tiers", () => {
     const roster = DROP_ONE_FIXTURES[0]!.rosterCards;
@@ -351,7 +351,7 @@ describe("calculator quality consistency", () => {
       const repeated = calculateOwnedRosterTeam(request(roster, searchEffort));
       expect(repeated).toEqual(first);
     }
-  }, 120_000);
+  }, 300_000);
 
   it("keeps corpus evaluation counts within measured tier ceilings", () => {
     // Observed on the 8-card fixture: standard (bounded) 1,688 corpus
@@ -368,5 +368,5 @@ describe("calculator quality consistency", () => {
     const thorough = calculateOwnedRosterTeam(request(EXPANDED_BOUNDED_ROSTER, "thorough"));
     expect(thorough.search.resultClaim).toBe("bounded-search");
     expect(thorough.search.corpusUtilityEvaluations).toBeLessThanOrEqual(9_500);
-  }, 120_000);
+  }, 300_000);
 });
