@@ -36,6 +36,7 @@ export type RollCompareCard = {
   title: string;
   rarity: 4 | 5;
   artPath: string;
+  isNew: boolean;
   modelTier: string | null;
 };
 
@@ -268,6 +269,8 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       ? true
       : `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery),
   );
+  const recentlyAddedCards = filteredCards.filter((card) => card.isNew);
+  const generationCards = filteredCards.filter((card) => !card.isNew);
   const ownedTalentCount = new Set(
     Object.keys(ownedCards)
       .map((cardId) => cardById.get(cardId)?.talentId)
@@ -425,6 +428,23 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   }
 
   const compareLabel = calculationState.status === "calculating" ? "Cancel comparison" : "Compare teams";
+  const renderPickerCard = (card: RollCompareCard) => (
+    <button
+      aria-pressed={selectedCardId === card.id}
+      className={styles.pickerCard}
+      data-selected={selectedCardId === card.id}
+      key={card.id}
+      onClick={() => selectCard(card)}
+      type="button"
+    >
+      <span className={styles.pickerArt}>
+        <Image alt="" fill sizes="(max-width: 560px) 42vw, 150px" src={card.artPath} />
+        <b className={styles.rarity}>{card.rarity}★</b>
+        {card.isNew && <b className={styles.newChip}>New</b>}
+      </span>
+      <span className={styles.pickerCopy}><strong>{card.talentName}</strong><span>{card.title}</span></span>
+    </button>
+  );
 
   return (
     <>
@@ -433,7 +453,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           <div>
             <p className={styles.panelEyebrow}>Step 1 · Pick a card</p>
             <h2 id="roll-compare-picker-heading">Choose an unowned Member card</h2>
-            <p>Cards appear in generation order. Search by talent or card title.</p>
+            <p>Recently added cards appear first, then cards in generation order. Search by talent or card title.</p>
           </div>
           <div className={styles.pickerCount}><strong>{availableCards.length}</strong> available</div>
         </header>
@@ -453,22 +473,19 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
         </div>
 
         <div className={styles.cardList}>
-          {filteredCards.length > 0 ? filteredCards.map((card) => (
-            <button
-              aria-pressed={selectedCardId === card.id}
-              className={styles.pickerCard}
-              data-selected={selectedCardId === card.id}
-              key={card.id}
-              onClick={() => selectCard(card)}
-              type="button"
-            >
-              <span className={styles.pickerArt}>
-                <Image alt="" fill sizes="(max-width: 560px) 42vw, 150px" src={card.artPath} />
-                <b className={styles.rarity}>{card.rarity}★</b>
-              </span>
-              <span className={styles.pickerCopy}><strong>{card.talentName}</strong><span>{card.title}</span></span>
-            </button>
-          )) : <p className={styles.noMatches}>No unowned cards match that search.</p>}
+          {filteredCards.length > 0 ? (
+            <>
+              {recentlyAddedCards.length > 0 && (
+                <section aria-labelledby="recently-added-heading" className={styles.cardGroup}>
+                  <h3 className={styles.cardGroupHeading} id="recently-added-heading">Recently added</h3>
+                  <div className={styles.cardGroupGrid}>{recentlyAddedCards.map(renderPickerCard)}</div>
+                </section>
+              )}
+              {generationCards.length > 0 && (
+                <div className={styles.cardGroupGrid}>{generationCards.map(renderPickerCard)}</div>
+              )}
+            </>
+          ) : <p className={styles.noMatches}>No unowned cards match that search.</p>}
         </div>
 
         {selectedCard && (

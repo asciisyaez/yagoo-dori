@@ -228,6 +228,31 @@
   padding: 0.65rem;
 }
 
+.cardGroup,
+.cardGroupGrid {
+  grid-column: 1 / -1;
+}
+
+.cardGroup {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.cardGroupHeading {
+  margin: 0;
+  color: var(--yd-cyan);
+  font-size: 0.58rem;
+  font-weight: 820;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.cardGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(142px, 1fr));
+  gap: 0.45rem;
+}
+
 .pickerCard {
   display: grid;
   min-width: 0;
@@ -267,6 +292,19 @@
   background: rgba(6, 8, 12, 0.82);
   color: #ffe07d;
   font-size: 0.52rem;
+  padding: 0.18rem 0.24rem;
+}
+
+.newChip {
+  position: absolute;
+  top: 0.32rem;
+  right: 0.32rem;
+  border: 1px solid rgba(37, 188, 233, 0.45);
+  border-radius: 3px;
+  background: rgba(37, 188, 233, 0.92);
+  color: #061016;
+  font-size: 0.52rem;
+  font-weight: 850;
   padding: 0.18rem 0.24rem;
 }
 
@@ -882,6 +920,11 @@
 
   .pickerControls {
     display: block;
+  }
+
+  .cardGroupGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
   }
 
   .search {

@@ -240,7 +240,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
       "term": "score",
-      "location": "apps/web/src/components/roll-compare.tsx:492",
+      "location": "apps/web/src/components/roll-compare.tsx:509",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "The roll-compare picker repeats the tier page's exact denial beside the picked card's provisional tier badge."
@@ -249,7 +249,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/roll-compare.tsx:227",
+      "location": "apps/web/src/components/roll-compare.tsx:228",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the calculator's exact denial that comparison utilities are a projected Live Score."
@@ -1034,7 +1034,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-11T05:19:27.880Z"
+    "generatedAt": "2026-08-11T06:26:59.042Z"
   },
-  "stableDigest": "c4aa7d8548822be1dd90abd249265fe5a3d986a3c7cbe14aaa77322b3027368e"
+  "stableDigest": "e1bd65ea78c3443a00352efdc6b0858f0ffd5242d80c62bca1f2c3c8bea68481"
 }

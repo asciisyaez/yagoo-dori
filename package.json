@@ -36,6 +36,7 @@
     "data:sync:mechanics": "node scripts/sync-mechanics-data.mjs",
     "data:sync:songs": "node scripts/sync-song-data.mjs",
     "data:sync:timelines": "pnpm --filter @yagoo-dori/core timelines:sync && pnpm --filter @yagoo-dori/core timelines:project && pnpm --filter @yagoo-dori/core timelines:project:guides",
+    "data:patch-intake": "node scripts/run-patch-intake.mjs",
     "assets:previews": "node scripts/generate-art-previews.mjs",
     "assets:check": "node scripts/check-assets.mjs",
     "copy:audit": "node scripts/run-copy-audit.mjs",

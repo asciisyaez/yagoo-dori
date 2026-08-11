@@ -45,6 +45,30 @@ const retrievedAt = process.argv
   ?.split("=")[1] ?? new Date().toISOString().slice(0, 10);
 const skipArt = process.argv.includes("--skip-art");
 
+async function readExistingPublicData() {
+  try {
+    return JSON.parse(await readFile(outputFile, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+const existingPublicData = await readExistingPublicData();
+const existingCardById = new Map(
+  (existingPublicData?.cards ?? []).map((card) => [card.id, card]),
+);
+
+function firstSeenAtFor(cardId) {
+  const existingCard = existingCardById.get(cardId);
+  if (existingCard) {
+    return Object.prototype.hasOwnProperty.call(existingCard, "firstSeenAt")
+      ? existingCard.firstSeenAt
+      : existingPublicData.retrievedAt;
+  }
+  return retrievedAt;
+}
+
 const englishFiles = [
   "Card.json",
   "CardLevel.json",
@@ -674,6 +698,7 @@ const cards = english["Card.json"]
 
     return {
       id: card.id,
+      firstSeenAt: firstSeenAtFor(card.id),
       slug: slugify(`${talentName}-${title}-${card.id}`),
       talentId: card.characterId,
       generationOrder,
