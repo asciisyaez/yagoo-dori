@@ -8,6 +8,7 @@ import {
   BarChart3,
   BookOpen,
   Calculator,
+  ArrowRightLeft,
   Home,
   LibraryBig,
   Menu,
@@ -34,6 +35,7 @@ const navigation = [
     label: "Tools",
     items: [
       { href: "/team-builder", label: "Team calculator", icon: Calculator },
+      { href: "/roll-compare", label: "Roll compare", icon: ArrowRightLeft },
     ],
   },
   {
