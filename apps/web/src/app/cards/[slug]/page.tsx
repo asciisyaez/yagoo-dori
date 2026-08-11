@@ -7,6 +7,7 @@ import {
 } from "@yagoo-dori/core";
 import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
 import type { Metadata } from "next";
+import { RollCompareCta } from "@/components/roll-compare-cta";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import { notFound } from "next/navigation";
@@ -136,6 +137,7 @@ export default async function CardPage({ params }: { params: Promise<{ slug: str
               )}
             </p>
           )}
+          <RollCompareCta cardId={card.id} />
         </div>
       </section>
 

@@ -10,21 +10,21 @@
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 85
+    "score": 87
   },
   "dispositionCounts": {
-    "allowed-scoped": 94,
+    "allowed-scoped": 96,
     "non-technical": 8,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 102,
+  "occurrenceCount": 104,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
       "context": "Build around this exact card",
       "term": "exact",
-      "location": "apps/web/src/app/cards/[slug]/page.tsx:215",
+      "location": "apps/web/src/app/cards/[slug]/page.tsx:217",
       "sourceKind": "jsx-text",
       "disposition": "non-technical",
       "justification": "Exact identifies the selected card record in navigation, not an optimizer or certificate claim."
@@ -33,7 +33,7 @@
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
       "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
       "term": "score",
-      "location": "apps/web/src/app/cards/[slug]/page.tsx:130",
+      "location": "apps/web/src/app/cards/[slug]/page.tsx:131",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Card profiles repeat the tier page's exact denial so a direct landing on a card cannot read a bare tier as a Live Score rating."
@@ -235,6 +235,24 @@
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the explicit denial that tiers are Live Score ratings."
+    },
+    {
+      "file": "apps/web/src/components/roll-compare.tsx",
+      "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
+      "term": "score",
+      "location": "apps/web/src/components/roll-compare.tsx:482",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "The roll-compare picker repeats the tier page's exact denial beside the picked card's provisional tier badge."
+    },
+    {
+      "file": "apps/web/src/components/roll-compare.tsx",
+      "context": "Relative team value, not a projected Live Score.",
+      "term": "score",
+      "location": "apps/web/src/components/roll-compare.tsx:223",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Score appears only inside the calculator's exact denial that comparison utilities are a projected Live Score."
     },
     {
       "file": "apps/web/src/components/team-calculator.tsx",
@@ -1016,7 +1034,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-11T04:03:55.396Z"
+    "generatedAt": "2026-08-11T04:47:26.735Z"
   },
-  "stableDigest": "96f6108ff29b4c12612ad18b7d6a384b718096c955a3a8c7f358044c8783d79d"
+  "stableDigest": "17e1a559773c549b9eff28bf5cd674243ee240350ca0cb53d706badbd281cbaf"
 }
