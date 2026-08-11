@@ -10,15 +10,15 @@
     "certificate": 0,
     "proof": 0,
     "proven": 0,
-    "score": 87
+    "score": 85
   },
   "dispositionCounts": {
-    "allowed-scoped": 96,
+    "allowed-scoped": 94,
     "non-technical": 8,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 104,
+  "occurrenceCount": 102,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -237,15 +237,6 @@
       "justification": "Score appears only inside the explicit denial that tiers are Live Score ratings."
     },
     {
-      "file": "apps/web/src/components/holomem-board/suggestion-results.tsx",
-      "context": "). Parameter-point equivalents under the envelope model, not a projected Live Score.",
-      "term": "score",
-      "location": "apps/web/src/components/holomem-board/suggestion-results.tsx:86",
-      "sourceKind": "jsx-text",
-      "disposition": "allowed-scoped",
-      "justification": "Score appears only inside the explicit denial that Board plan values are a projected Live Score."
-    },
-    {
       "file": "apps/web/src/components/team-calculator.tsx",
       "context": "Best result in searched scope",
       "term": "best",
@@ -271,15 +262,6 @@
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score is expressly qualified as relative team value and not a projection."
-    },
-    {
-      "file": "apps/web/src/lib/board-effect-labels.ts",
-      "context": "live-score-bonus-add-permil-up-by-music-skill-tree-character-and-music-singer-type",
-      "term": "score",
-      "location": "apps/web/src/lib/board-effect-labels.ts:58",
-      "sourceKind": "source-string",
-      "disposition": "allowed-scoped",
-      "justification": "Score appears only inside a machine identifier key mirroring the upstream board effect-kind code; the template maps it to a neutral 'not evaluated' label and the identifier itself is never rendered as user-facing prose."
     },
     {
       "file": "apps/web/src/lib/guide-song-alternatives.ts",
@@ -1034,7 +1016,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-08-10T14:59:03.651Z"
+    "generatedAt": "2026-08-11T04:03:55.396Z"
   },
-  "stableDigest": "7d2f7f1802109a15f32394518d4697170a5d2c8c9f6884d887addb391e140a10"
+  "stableDigest": "96f6108ff29b4c12612ad18b7d6a384b718096c955a3a8c7f358044c8783d79d"
 }
