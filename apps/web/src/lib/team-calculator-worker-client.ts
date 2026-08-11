@@ -1,8 +1,44 @@
 import type {
+  TeamCalculatorOwnedCard,
+  TeamCalculatorOshiRole,
   TeamCalculatorRequest,
   TeamCalculatorResult,
+  TeamCalculatorSearchEffort,
 } from "@yagoo-dori/core/team-calculator-contract";
 import { TeamCalculatorResultSchema } from "@yagoo-dori/core/team-calculator-contract";
+
+type TeamCalculatorOshiPreference = Readonly<{
+  enabled: boolean;
+  talentId: string | null;
+  role: TeamCalculatorOshiRole;
+}>;
+
+type BuildTeamCalculatorRequestOptions = Readonly<{
+  rosterCommit: string;
+  ownedCards: ReadonlyArray<TeamCalculatorOwnedCard>;
+  requiredMemberCardIds: ReadonlyArray<string>;
+  oshi?: TeamCalculatorOshiPreference;
+  searchEffort: TeamCalculatorSearchEffort;
+}>;
+
+export function buildTeamCalculatorRequest({
+  rosterCommit,
+  ownedCards,
+  requiredMemberCardIds,
+  oshi,
+  searchEffort,
+}: BuildTeamCalculatorRequestOptions): TeamCalculatorRequest {
+  return {
+    schemaVersion: 5,
+    rosterCommit,
+    ownedCards: [...ownedCards],
+    requiredMemberCardIds: [...requiredMemberCardIds],
+    searchEffort,
+    ...(oshi?.enabled && oshi.talentId
+      ? { oshi: { talentId: oshi.talentId, role: oshi.role } }
+      : {}),
+  };
+}
 
 export type TeamCalculatorWorkerRequestMessage = Readonly<{
   type: "calculate";

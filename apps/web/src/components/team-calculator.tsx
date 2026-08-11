@@ -36,9 +36,17 @@ import {
 } from "@/lib/team-roster-storage";
 import {
   startTeamCalculation,
+  buildTeamCalculatorRequest,
   type TeamCalculatorTask,
   TeamCalculatorWorkerError,
 } from "@/lib/team-calculator-worker-client";
+import {
+  formatSignedPercent,
+  formatSignedUtility,
+  formatUtility,
+  normalizeRequiredMemberCardIds,
+  savedOshiStillOwned,
+} from "@/lib/team-result-format";
 
 import styles from "@/app/team-builder/team-builder.module.css";
 
@@ -62,41 +70,9 @@ type TeamCalculatorProps = {
   rosterCommit: string;
 };
 
-function normalizeRequiredMemberCardIds(
-  cardIds: readonly string[],
-  cardById: ReadonlyMap<string, TeamBuilderCard>,
-  ownedCardIds: ReadonlySet<string>,
-): string[] {
-  const selectedTalentIds = new Set<string>();
-  return [...new Set(cardIds)]
-    .filter((cardId) => ownedCardIds.has(cardId) && cardById.has(cardId))
-    .sort()
-    .filter((cardId) => {
-      const talentId = cardById.get(cardId)!.talentId;
-      if (selectedTalentIds.has(talentId)) return false;
-      selectedTalentIds.add(talentId);
-      return true;
-    })
-    .slice(0, 5);
-}
-
-function formatUtility(value: number) {
-  return Math.round(value).toLocaleString("en-US");
-}
-
 function formatSeconds(milliseconds: number) {
   const seconds = milliseconds / 1_000;
   return Number.isInteger(seconds) ? `${seconds}s` : `${seconds.toFixed(1)}s`;
-}
-
-function formatSignedUtility(value: number) {
-  if (Math.abs(value) < 0.5) return "0";
-  return `${value > 0 ? "+" : "−"}${formatUtility(Math.abs(value))}`;
-}
-
-function formatSignedPercent(value: number) {
-  if (Math.abs(value) < 0.05) return "Near tie (<0.05%)";
-  return `${value > 0 ? "+" : "−"}${Math.abs(value).toFixed(1)}%`;
 }
 
 function formatPermilPercent(value: number) {
@@ -564,17 +540,18 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
       try {
         const loaded = loadTeamRoster(window.localStorage, rosterCommit, validCardIds);
         hydratedCards = loaded.roster.cards;
+        const hydratedOwnedCardIds = new Set(Object.keys(hydratedCards));
         const hydratedRequiredMemberCardIds = normalizeRequiredMemberCardIds(
           loaded.roster.requiredMemberCardIds,
           cardById,
-          new Set(Object.keys(hydratedCards)),
+          hydratedOwnedCardIds,
         );
-        const savedOshiStillOwned =
-          loaded.roster.oshi.talentId === null ||
-          Object.keys(hydratedCards).some(
-            (cardId) => cardById.get(cardId)?.talentId === loaded.roster.oshi.talentId,
-          );
-        const hydratedOshi = savedOshiStillOwned
+        const oshiStillOwned = savedOshiStillOwned(
+          loaded.roster.oshi,
+          hydratedOwnedCardIds,
+          cardById,
+        );
+        const hydratedOshi = oshiStillOwned
           ? loaded.roster.oshi
           : { ...loaded.roster.oshi, talentId: null };
         setOwnedCards(hydratedCards);
@@ -591,7 +568,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
         if (
           !migrationWriteBlocked &&
           (loaded.needsWrite ||
-            !savedOshiStillOwned ||
+            !oshiStillOwned ||
             JSON.stringify(loaded.roster.requiredMemberCardIds) !==
               JSON.stringify(hydratedRequiredMemberCardIds))
         ) {
@@ -807,11 +784,13 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
     const previousResult = lastResult.current;
     setCalculationState({ status: "calculating" });
     const task = startTeamCalculation({
-      schemaVersion: 5,
-      rosterCommit,
-      ownedCards: selectedCards.map(({ card, bloomStage }) => ({ cardId: card.id, bloomStage })),
-      requiredMemberCardIds: [...requiredMemberCardIds].sort(),
-      searchEffort: "thorough",
+      ...buildTeamCalculatorRequest({
+        rosterCommit,
+        ownedCards: selectedCards.map(({ card, bloomStage }) => ({ cardId: card.id, bloomStage })),
+        requiredMemberCardIds: [...requiredMemberCardIds].sort(),
+        oshi: oshiPreference,
+        searchEffort: "thorough",
+      }),
       ...(previousResult
         ? {
             seedCandidates: [{
@@ -819,9 +798,6 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
               memberCardIds: previousResult.members.map((member) => member.cardId),
             }],
           }
-        : {}),
-      ...(oshiPreference.enabled && oshiPreference.talentId
-        ? { oshi: { talentId: oshiPreference.talentId, role: oshiPreference.role } }
         : {}),
     });
     activeTask.current = task;
