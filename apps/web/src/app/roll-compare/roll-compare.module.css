@@ -385,8 +385,7 @@
 }
 
 .tierDisclosure a,
-.disclosure a,
-.memberLink {
+.disclosure a {
   color: #9ddfed;
   text-decoration: underline;
   text-decoration-color: rgba(157, 223, 237, 0.35);
@@ -828,7 +827,6 @@
   color: #757d89;
 }
 
-.focusLink:focus-visible,
 .pickerCard:focus-visible,
 .search button:focus-visible,
 .clearSelection:focus-visible,

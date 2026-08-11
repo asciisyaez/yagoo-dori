@@ -17,8 +17,10 @@ import styles from "./roll-compare.module.css";
 export const metadata: Metadata = {
   title: "Roll compare",
   description:
-    "Compare your saved team with one unowned hololive Dreams Member card.",
+    "Compare your saved team with one unowned hololive Dreams Member card using the standard search effort.",
 };
+
+const oneCopyRankingEntryByCard = nativeRankingEntryByLensAndCard.get("one-copy-maximum");
 
 const cards: RollCompareCard[] = publicCardsInGenerationOrder.map((card) => ({
   id: card.id,
@@ -27,11 +29,8 @@ const cards: RollCompareCard[] = publicCardsInGenerationOrder.map((card) => ({
   talentName: card.talentName,
   title: card.title,
   rarity: card.rarity,
-  attribute: card.attribute,
   artPath: card.artPath,
-  modelTier: nativeRankingEntryByLensAndCard
-    .get("one-copy-maximum")
-    ?.get(card.id)?.tier ?? null,
+  modelTier: oneCopyRankingEntryByCard?.get(card.id)?.tier ?? null,
 }));
 
 export default function RollComparePage() {
@@ -43,7 +42,7 @@ export default function RollComparePage() {
           <p>Tools / Roll compare</p>
           <h1>Should you roll?</h1>
           <span>
-            Compare your saved roster with one unowned card using the same model as the team calculator.
+            Compare your saved roster with one unowned card using the same model as the team calculator, at standard search effort.
           </span>
         </div>
       </header>

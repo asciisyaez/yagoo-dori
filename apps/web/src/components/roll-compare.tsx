@@ -9,14 +9,22 @@ import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import {
   type BloomStage,
-  emptyTeamRoster,
   loadTeamRoster,
+  type StoredOshiRole,
 } from "@/lib/team-roster-storage";
 import {
+  buildTeamCalculatorRequest,
   startTeamCalculation,
   type TeamCalculatorTask,
   TeamCalculatorWorkerError,
 } from "@/lib/team-calculator-worker-client";
+import {
+  formatSignedPercent,
+  formatSignedUtility,
+  formatUtility,
+  normalizeRequiredMemberCardIds,
+  savedOshiStillOwned,
+} from "@/lib/team-result-format";
 
 import styles from "@/app/roll-compare/roll-compare.module.css";
 
@@ -27,7 +35,6 @@ export type RollCompareCard = {
   talentName: string;
   title: string;
   rarity: 4 | 5;
-  attribute: "cute" | "pure" | "happy";
   artPath: string;
   modelTier: string | null;
 };
@@ -41,7 +48,6 @@ type ComparisonResult = {
   baseline: TeamCalculatorResult;
   hypothetical: TeamCalculatorResult;
   pickedCardId: string;
-  pickedCardJoined: boolean;
   joinedAsMember: boolean;
   joinedAsLeader: boolean;
   delta: number;
@@ -56,41 +62,8 @@ type CalculationState =
   | { status: "done"; comparison: ComparisonResult }
   | { status: "error"; message: string };
 
-function formatUtility(value: number): string {
-  return Math.round(value).toLocaleString("en-US");
-}
-
-function formatSignedUtility(value: number): string {
-  if (Math.abs(value) < 0.5) return "0";
-  return `${value > 0 ? "+" : "−"}${formatUtility(Math.abs(value))}`;
-}
-
-function formatSignedPercent(value: number | null): string {
-  if (value === null) return "—";
-  if (Math.abs(value) < 0.05) return "Near tie (<0.05%)";
-  return `${value > 0 ? "+" : "−"}${Math.abs(value).toFixed(1)}%`;
-}
-
 function cardMatchesParam(card: RollCompareCard, value: string | null): boolean {
   return value !== null && (card.id === value || card.slug === value);
-}
-
-function normalizeRequiredMemberCardIds(
-  cardIds: readonly string[],
-  cardById: ReadonlyMap<string, RollCompareCard>,
-  ownedCardIds: ReadonlySet<string>,
-): string[] {
-  const selectedTalentIds = new Set<string>();
-  return [...new Set(cardIds)]
-    .filter((cardId) => ownedCardIds.has(cardId) && cardById.has(cardId))
-    .sort()
-    .filter((cardId) => {
-      const talentId = cardById.get(cardId)!.talentId;
-      if (selectedTalentIds.has(talentId)) return false;
-      selectedTalentIds.add(talentId);
-      return true;
-    })
-    .slice(0, 5);
 }
 
 function buildComparison(
@@ -110,7 +83,6 @@ function buildComparison(
     baseline,
     hypothetical,
     pickedCardId,
-    pickedCardJoined: joinedAsMember || joinedAsLeader,
     joinedAsMember,
     joinedAsLeader,
     delta,
@@ -118,6 +90,23 @@ function buildComparison(
     displaced: baseline.members.filter((member) => !hypotheticalMemberIds.has(member.cardId)),
     stayed: baseline.members.filter((member) => hypotheticalMemberIds.has(member.cardId)),
   };
+}
+
+function verdictDetail(comparison: ComparisonResult): string {
+  const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
+  if (pickedCardJoined && comparison.delta <= 0) {
+    return "The swap is neutral or worse under the model.";
+  }
+  if (!pickedCardJoined) {
+    return "The second run did not use the picked card as a Member or Leader Outfit.";
+  }
+  if (comparison.joinedAsMember && comparison.joinedAsLeader) {
+    return "The second run fielded the picked card as a Member and led with its Leader Outfit.";
+  }
+  if (comparison.joinedAsMember) {
+    return "The second run included the picked card in its five-Member lineup.";
+  }
+  return "The second run led with the picked card's Leader Outfit.";
 }
 
 function ResultTeam({
@@ -191,21 +180,33 @@ function ResultTeam({
   );
 }
 
+function DiffSection({
+  heading,
+  members,
+  emptyLabel,
+}: {
+  heading: string;
+  members: TeamCalculatorResult["members"];
+  emptyLabel: string;
+}) {
+  return (
+    <div className={styles.diffSection}>
+      <h3>{heading}</h3>
+      <ul className={styles.diffList}>
+        {members.length > 0 ? members.map((member) => (
+          <li key={member.cardId}>{member.talentName}</li>
+        )) : <li data-empty="true">{emptyLabel}</li>}
+      </ul>
+    </div>
+  );
+}
+
 function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResult; pickedCard: RollCompareCard }) {
-  const improves = comparison.pickedCardJoined && comparison.delta > 0;
+  const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
+  const improves = pickedCardJoined && comparison.delta > 0;
   const verdict = improves
     ? `${pickedCard.talentName} joins your strongest found team`
     : `${pickedCard.talentName} does not strengthen your team`;
-  const joinedDetail = comparison.joinedAsMember && comparison.joinedAsLeader
-    ? "The second run fielded the picked card as a Member and led with its Leader Outfit."
-    : comparison.joinedAsMember
-      ? "The second run included the picked card in its five-Member lineup."
-      : "The second run led with the picked card's Leader Outfit.";
-  const verdictDetail = comparison.pickedCardJoined && comparison.delta <= 0
-    ? "The swap is neutral or worse under the model."
-    : comparison.pickedCardJoined
-      ? joinedDetail
-      : "The second run did not use the picked card as a Member or Leader Outfit.";
 
   return (
     <section className={styles.resultPanel} aria-live="polite" aria-labelledby="roll-compare-result-heading">
@@ -213,13 +214,16 @@ function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResu
         <div>
           <span id="roll-compare-result-heading">Verdict</span>
           <strong>{verdict}</strong>
-          <small>{verdictDetail}</small>
+          <small>{verdictDetail(comparison)}</small>
         </div>
         <b>{formatSignedUtility(comparison.delta)} · {formatSignedPercent(comparison.deltaPercent)}</b>
       </div>
 
       <div className={styles.comparisonDisclosure}>
-        <p className={styles.disclosure}>Average performance across 30 Expert charts · Board and Connect effects are not part of this objective</p>
+        <p className={styles.disclosure}>Average performance across {comparison.baseline.corpus.chartCount} Expert charts · Board and Connect effects are not part of this objective</p>
+        {(comparison.baseline.search.resultClaim === "bounded-search" || comparison.hypothetical.search.resultClaim === "bounded-search") && (
+          <p className={styles.disclosure}>Both teams come from bounded standard-effort searches; treat very small differences as a tie.</p>
+        )}
         <p className={styles.disclosure}>Relative team value, not a projected Live Score.</p>
       </div>
 
@@ -229,22 +233,8 @@ function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResu
       </div>
 
       <div className={styles.diff}>
-        <div className={styles.diffSection}>
-          <h3>Displaced from the five Members</h3>
-          <ul className={styles.diffList}>
-            {comparison.displaced.length > 0 ? comparison.displaced.map((member) => (
-              <li key={member.cardId}>{member.talentName}</li>
-            )) : <li data-empty="true">No Member displaced</li>}
-          </ul>
-        </div>
-        <div className={styles.diffSection}>
-          <h3>Stayed in the five Members</h3>
-          <ul className={styles.diffList}>
-            {comparison.stayed.length > 0 ? comparison.stayed.map((member) => (
-              <li key={member.cardId}>{member.talentName}</li>
-            )) : <li data-empty="true">No baseline Member stayed</li>}
-          </ul>
-        </div>
+        <DiffSection heading="Displaced from the five Members" members={comparison.displaced} emptyLabel="No Member displaced" />
+        <DiffSection heading="Stayed in the five Members" members={comparison.stayed} emptyLabel="No baseline Member stayed" />
       </div>
     </section>
   );
@@ -254,18 +244,19 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   const searchParams = useSearchParams();
   const requestedCardParam = searchParams.get("card");
   const [ownedCards, setOwnedCards] = useState<Record<string, BloomStage>>({});
-  const [oshi, setOshi] = useState(emptyTeamRoster(rosterCommit).oshi);
+  const [oshi, setOshi] = useState<{ talentId: string; role: StoredOshiRole }>();
   const [requiredMemberCardIds, setRequiredMemberCardIds] = useState<string[]>([]);
-  const [storageStatus, setStorageStatus] = useState<"loading" | "ready" | "session">("loading");
+  const [hydrated, setHydrated] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [calculationState, setCalculationState] = useState<CalculationState>({ status: "idle" });
   const activeTask = useRef<TeamCalculatorTask | null>(null);
   const calculationGeneration = useRef(0);
+  const baselineResultCache = useRef<{ key: string; result: TeamCalculatorResult } | null>(null);
   const resultAnchor = useRef<HTMLDivElement | null>(null);
 
   const cardById = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
-  const validCardIds = useMemo(() => new Set(cards.map((card) => card.id)), [cards]);
+  const validCardIds = useMemo(() => new Set(cardById.keys()), [cardById]);
   const availableCards = useMemo(
     () => cards.filter((card) => !(card.id in ownedCards)),
     [cards, ownedCards],
@@ -277,32 +268,39 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       ? true
       : `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery),
   );
-  const ownedCount = Object.keys(ownedCards).length;
+  const ownedTalentCount = new Set(
+    Object.keys(ownedCards)
+      .map((cardId) => cardById.get(cardId)?.talentId)
+      .filter((talentId): talentId is string => talentId !== undefined),
+  ).size;
 
   useEffect(() => {
     const hydration = window.setTimeout(() => {
       try {
         const loaded = loadTeamRoster(window.localStorage, rosterCommit, validCardIds);
         const loadedCards = loaded.roster.cards;
-        const savedOshiStillOwned =
-          loaded.roster.oshi.talentId === null ||
-          Object.keys(loadedCards).some((cardId) => cardById.get(cardId)?.talentId === loaded.roster.oshi.talentId);
+        const loadedOwnedCardIds = new Set(Object.keys(loadedCards));
+        const oshiStillOwned = savedOshiStillOwned(loaded.roster.oshi, loadedOwnedCardIds, cardById);
         setOwnedCards(loadedCards);
         setRequiredMemberCardIds(normalizeRequiredMemberCardIds(
           loaded.roster.requiredMemberCardIds,
           cardById,
-          new Set(Object.keys(loadedCards)),
+          loadedOwnedCardIds,
         ));
-        setOshi(savedOshiStillOwned ? loaded.roster.oshi : { ...loaded.roster.oshi, talentId: null });
+        setOshi(
+          oshiStillOwned && loaded.roster.oshi.enabled && loaded.roster.oshi.talentId
+            ? { talentId: loaded.roster.oshi.talentId, role: loaded.roster.oshi.role }
+            : undefined,
+        );
         const requestedCard = cards.find((card) => cardMatchesParam(card, requestedCardParam));
         setSelectedCardId(requestedCard && !(requestedCard.id in loadedCards) ? requestedCard.id : null);
-        setStorageStatus("ready");
+        setHydrated(true);
       } catch {
         setOwnedCards({});
         setRequiredMemberCardIds([]);
-        setOshi(emptyTeamRoster(rosterCommit).oshi);
+        setOshi(undefined);
         setSelectedCardId(null);
-        setStorageStatus("session");
+        setHydrated(true);
       }
     }, 0);
     return () => window.clearTimeout(hydration);
@@ -314,13 +312,23 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     activeTask.current = null;
   }, []);
 
+  const writeCardParam = (cardId: string | null) => {
+    const next = new URLSearchParams(window.location.search);
+    if (cardId === null) next.delete("card");
+    else next.set("card", cardId);
+    const queryString = next.toString();
+    window.history.replaceState(
+      window.history.state,
+      "",
+      queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname,
+    );
+  };
+
   const selectCard = (card: RollCompareCard) => {
     if (card.id in ownedCards) return;
     cancelCalculation();
     setSelectedCardId(card.id);
-    const next = new URLSearchParams(window.location.search);
-    next.set("card", card.id);
-    window.history.replaceState(window.history.state, "", `${window.location.pathname}?${next.toString()}`);
+    writeCardParam(card.id);
   };
 
   const cancelCalculation = () => {
@@ -335,7 +343,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       cancelCalculation();
       return;
     }
-    if (!selectedCard || ownedCount < 6) return;
+    if (!selectedCard || ownedTalentCount < 5) return;
 
     const generation = calculationGeneration.current + 1;
     calculationGeneration.current = generation;
@@ -344,24 +352,29 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     const ownedEntries = cards
       .filter((card) => card.id in ownedCards)
       .map((card) => ({ cardId: card.id, bloomStage: ownedCards[card.id] ?? 0 }));
-    const oshiRequest = oshi.enabled && oshi.talentId
-      ? { talentId: oshi.talentId, role: oshi.role }
-      : undefined;
-    const makeRequest = (nextOwnedCards: typeof ownedEntries) => ({
-      schemaVersion: 5 as const,
+    const makeRequest = (nextOwnedCards: typeof ownedEntries) => buildTeamCalculatorRequest({
       rosterCommit,
       ownedCards: nextOwnedCards,
       requiredMemberCardIds: [...requiredMemberCardIds].sort(),
-      searchEffort: "standard" as const,
-      ...(oshiRequest ? { oshi: oshiRequest } : {}),
+      searchEffort: "standard",
+      ...(oshi ? { oshi: { ...oshi, enabled: true } } : {}),
     });
+    const baselineRequest = makeRequest(ownedEntries);
+    const baselineKey = JSON.stringify(baselineRequest);
 
     void (async () => {
       try {
-        const baselineTask = startTeamCalculation(makeRequest(ownedEntries));
-        activeTask.current = baselineTask;
-        const baseline = await baselineTask.result;
-        if (calculationGeneration.current !== generation || activeTask.current !== baselineTask) return;
+        let baseline: TeamCalculatorResult;
+        const cachedBaseline = baselineResultCache.current;
+        if (cachedBaseline?.key === baselineKey) {
+          baseline = cachedBaseline.result;
+        } else {
+          const baselineTask = startTeamCalculation(baselineRequest);
+          activeTask.current = baselineTask;
+          baseline = await baselineTask.result;
+          if (calculationGeneration.current !== generation || activeTask.current !== baselineTask) return;
+          baselineResultCache.current = { key: baselineKey, result: baseline };
+        }
 
         const hypotheticalTask = startTeamCalculation(makeRequest([
           ...ownedEntries,
@@ -394,17 +407,17 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     })();
   };
 
-  if (storageStatus === "loading") {
+  if (!hydrated) {
     return <div className={styles.loading}>Loading saved roster…</div>;
   }
 
-  if (ownedCount < 6) {
+  if (ownedTalentCount < 5) {
     return (
       <section className={styles.emptyState} aria-labelledby="roll-compare-empty-heading">
         <CircleAlert aria-hidden="true" />
         <h2 id="roll-compare-empty-heading">Add more cards to compare a roll</h2>
         <p>
-          This tool compares against the saved roster on this device. Add at least six owned cards in the team calculator, then return here to compare an unowned card.
+          This tool compares against the saved roster on this device. Add at least five distinct talents in the team calculator, plus the card being compared, then return here to compare an unowned card.
         </p>
         <Link href="/team-builder"><ArrowRight aria-hidden="true" /> Build your saved roster</Link>
       </section>
@@ -472,10 +485,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
             <button aria-label="Clear picked card" className={styles.clearSelection} onClick={() => {
               cancelCalculation();
               setSelectedCardId(null);
-              const next = new URLSearchParams(window.location.search);
-              next.delete("card");
-              const queryString = next.toString();
-              window.history.replaceState(window.history.state, "", queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname);
+              writeCardParam(null);
             }} type="button"><X aria-hidden="true" /></button>
             {selectedCard.modelTier && (
               <p className={styles.tierDisclosure}>

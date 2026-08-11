@@ -103,6 +103,22 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+export function readOwnedCardIds(storage: StorageReader): string[] {
+  const raw = storage.getItem(TEAM_ROSTER_STORAGE_KEY);
+  if (!raw) return [];
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return [];
+  }
+  if (!isObject(parsed) || !isObject(parsed.cards)) return [];
+  return Object.entries(parsed.cards)
+    .filter(([, bloomStage]) => isBloomStage(bloomStage))
+    .map(([cardId]) => cardId);
+}
+
 function sameRecord(left: Record<string, unknown>, right: Record<string, unknown>): boolean {
   const leftKeys = Object.keys(left).sort();
   const rightKeys = Object.keys(right).sort();
