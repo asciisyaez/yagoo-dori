@@ -14,6 +14,7 @@ export type CatalogCard = {
   attribute: "cute" | "pure" | "happy";
   groups: string[];
   illustrationPath: string;
+  isNew: boolean;
   costumeName: string;
   leaderDescription: string;
 };
@@ -132,6 +133,7 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
                 src={card.illustrationPath}
               />
               <i>{card.rarity}★{view === "outfits" ? " unlock" : ""}</i>
+              {card.isNew && <b className="new-card-chip">New</b>}
             </span>
             <span className="real-card-copy">
               <small><i aria-hidden="true" /> {card.attribute} · {card.groups.join(" + ")}</small>

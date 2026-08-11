@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": 1,
+  "id": "patch-intake-manifest-v1",
+  "methodologyVersion": "yd-patch-intake-v1",
+  "retrievedAt": {
+    "public": "2026-08-11",
+    "mechanics": "2026-08-10",
+    "songs": "2026-08-08",
+    "timelines": "2026-08-02"
+  },
+  "timelineStage": {
+    "status": "skipped-api-unavailable",
+    "reasonCode": "chart-api-unreachable"
+  },
+  "pinFiles": [
+    {
+      "path": "scripts/sync-public-data.mjs",
+      "fields": [
+        "sources.english.commit",
+        "sources.japanese.commit",
+        "sources.*.masterVersion"
+      ]
+    },
+    {
+      "path": "scripts/sync-mechanics-data.mjs",
+      "fields": [
+        "sourceSnapshot.commit",
+        "sourceSnapshot.masterVersion"
+      ]
+    },
+    {
+      "path": "packages/core/src/song-contexts.test.ts",
+      "fields": [
+        "pinned source commit literal"
+      ]
+    },
+    {
+      "path": "packages/core/src/score-kernel.test.ts",
+      "fields": [
+        "pinned source commit literal"
+      ]
+    },
+    {
+      "path": "packages/core/src/native-published-data.test.ts",
+      "fields": [
+        "pinned source commit literal"
+      ]
+    },
+    {
+      "path": "scripts/check-assets.mjs",
+      "fields": [
+        "expected icon/illustration/preview counts"
+      ]
+    },
+    {
+      "path": "scripts/sync-song-data.mjs",
+      "fields": [
+        "sourceSnapshot.commit",
+        "sourceSnapshot.masterVersion"
+      ]
+    },
+    {
+      "path": "data/native/chart-timeline-source.json",
+      "fields": [
+        "sourceId",
+        "apiRevision",
+        "parserReference.commit"
+      ]
+    },
+    {
+      "path": "data/native/ranking-benchmark-v1.json",
+      "fields": [
+        "benchmarkId",
+        "corpus.entriesSha256",
+        "corpus.reference",
+        "corpus.current"
+      ]
+    }
+  ],
+  "syncCommands": [
+    {
+      "name": "data:sync:public",
+      "output": "data/generated/holodori-public.json"
+    },
+    {
+      "name": "data:sync:mechanics",
+      "output": "data/generated/holodori-mechanics.json"
+    },
+    {
+      "name": "data:sync:songs",
+      "output": "data/generated/holodori-songs.json"
+    },
+    {
+      "name": "data:sync:timelines",
+      "output": "data/generated/holodori-chart-timelines.json"
+    }
+  ],
+  "datasets": [
+    {
+      "path": "data/generated/card-art-manifest.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "assets": 115
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "assets": 115
+        },
+        "declared": {}
+      }
+    },
+    {
+      "path": "data/generated/card-art-preview-manifest.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "previews": 115
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "previews": 115
+        },
+        "declared": {}
+      }
+    },
+    {
+      "path": "data/generated/holodori-chart-timelines.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "charts": 703,
+          "unavailableCharts": 25
+        },
+        "declared": {
+          "counts": {
+            "songs": 176,
+            "charts": 703,
+            "unavailableCharts": 25,
+            "events": 405623,
+            "specialMarkers": 3515,
+            "chartsWithDeclaredCountDisagreements": 1
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "charts": 703,
+          "unavailableCharts": 25
+        },
+        "declared": {
+          "counts": {
+            "songs": 176,
+            "charts": 703,
+            "unavailableCharts": 25,
+            "events": 405623,
+            "specialMarkers": 3515,
+            "chartsWithDeclaredCountDisagreements": 1
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/holodori-guide-rating-timelines.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "charts": 41,
+          "unavailableCharts": 3
+        },
+        "declared": {
+          "counts": {
+            "charts": 41,
+            "events": 39762,
+            "specialMarkers": 205,
+            "feverMarkers": 164,
+            "unavailableCharts": 3
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "charts": 41,
+          "unavailableCharts": 3
+        },
+        "declared": {
+          "counts": {
+            "charts": 41,
+            "events": 39762,
+            "specialMarkers": 205,
+            "feverMarkers": 164,
+            "unavailableCharts": 3
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/holodori-mechanics.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "evidenceSources": 50,
+          "runtimeRules": 25,
+          "cards": 115
+        },
+        "declared": {
+          "coverage": {
+            "cards": 115,
+            "mappedCards": 115,
+            "unresolvedReferences": []
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "evidenceSources": 50,
+          "runtimeRules": 25,
+          "cards": 115
+        },
+        "declared": {
+          "coverage": {
+            "cards": 115,
+            "mappedCards": 115,
+            "unresolvedReferences": []
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/holodori-public.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "notes": 3,
+          "cards": 115
+        },
+        "declared": {
+          "counts": {
+            "talents": 54,
+            "fourStar": 54,
+            "fiveStar": 61,
+            "total": 115,
+            "art": 115
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "notes": 3,
+          "cards": 115
+        },
+        "declared": {
+          "counts": {
+            "talents": 54,
+            "fourStar": 54,
+            "fiveStar": 61,
+            "total": 115,
+            "art": 115
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/holodori-ranking-corpus-timelines.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "charts": 30
+        },
+        "declared": {
+          "counts": {
+            "charts": 30,
+            "events": 29568,
+            "specialMarkers": 150,
+            "feverMarkers": 120
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "charts": 30
+        },
+        "declared": {
+          "counts": {
+            "charts": 30,
+            "events": 29568,
+            "specialMarkers": 150,
+            "feverMarkers": 120
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/holodori-songs.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "evidenceSources": 3,
+          "songs": 182,
+          "charts": 728,
+          "timedCharts": 0
+        },
+        "declared": {
+          "counts": {
+            "songs": 182,
+            "aggregateCharts": 728,
+            "timedCharts": 0,
+            "ratingEligibleSongs": 168
+          }
+        }
+      },
+      "countsAfter": {
+        "rows": {
+          "evidenceSources": 3,
+          "songs": 182,
+          "charts": 728,
+          "timedCharts": 0
+        },
+        "declared": {
+          "counts": {
+            "songs": 182,
+            "aggregateCharts": 728,
+            "timedCharts": 0,
+            "ratingEligibleSongs": 168
+          }
+        }
+      }
+    },
+    {
+      "path": "data/generated/native-guides.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "guides": 9
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "guides": 9
+        },
+        "declared": {}
+      }
+    },
+    {
+      "path": "data/generated/native-ranking-changelog.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "entries": 325
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "entries": 325
+        },
+        "declared": {}
+      }
+    },
+    {
+      "path": "data/generated/native-rankings.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "corpus": 30,
+          "lenses": 3,
+          "leaderOutfitLenses": 3
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "corpus": 30,
+          "lenses": 3,
+          "leaderOutfitLenses": 3
+        },
+        "declared": {}
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "card-00001-4-cmmn-0000-00",
+      "talent": "Tokino Sora",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00001-5-uniq-0000-00",
+      "talent": "Tokino Sora",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00002-4-cmmn-0000-00",
+      "talent": "Robocosan",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00002-5-uniq-0001-00",
+      "talent": "Robocosan",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00004-4-cmmn-0000-00",
+      "talent": "Aki Rosenthal",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00004-5-uniq-0005-00",
+      "talent": "Aki Rosenthal",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00005-4-cmmn-0000-00",
+      "talent": "Akai Haato",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00005-5-uniq-0006-00",
+      "talent": "Akai Haato",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00006-4-cmmn-0000-00",
+      "talent": "Shirakami Fubuki",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00006-5-uniq-0007-00",
+      "talent": "Shirakami Fubuki",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00007-4-cmmn-0000-00",
+      "talent": "Natsuiro Matsuri",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00007-5-uniq-0008-00",
+      "talent": "Natsuiro Matsuri",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00010-4-cmmn-0000-00",
+      "talent": "Nakiri Ayame",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00010-5-uniq-0010-00",
+      "talent": "Nakiri Ayame",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00011-4-cmmn-0000-00",
+      "talent": "Yuzuki Choco",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00011-5-uniq-0011-00",
+      "talent": "Yuzuki Choco",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00012-4-cmmn-0000-00",
+      "talent": "Oozora Subaru",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00012-5-uniq-0012-00",
+      "talent": "Oozora Subaru",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00012-5-uniq-0062-00",
+      "talent": "Oozora Subaru",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00013-4-cmmn-0000-00",
+      "talent": "AZKi",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00013-5-uniq-0002-00",
+      "talent": "AZKi",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00014-4-cmmn-0000-00",
+      "talent": "Ookami Mio",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00014-5-uniq-0013-00",
+      "talent": "Ookami Mio",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00015-4-cmmn-0000-00",
+      "talent": "Sakura Miko",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00015-5-uniq-0003-00",
+      "talent": "Sakura Miko",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00015-5-uniq-0067-00",
+      "talent": "Sakura Miko",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00016-4-cmmn-0000-00",
+      "talent": "Nekomata Okayu",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00016-5-uniq-0014-00",
+      "talent": "Nekomata Okayu",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00017-4-cmmn-0000-00",
+      "talent": "Inugami Korone",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00017-5-uniq-0015-00",
+      "talent": "Inugami Korone",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00018-4-cmmn-0000-00",
+      "talent": "Hoshimachi Suisei",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00018-5-uniq-0004-00",
+      "talent": "Hoshimachi Suisei",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00018-5-uniq-0068-00",
+      "talent": "Hoshimachi Suisei",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00019-4-cmmn-0000-00",
+      "talent": "Usada Pekora",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00019-5-uniq-0016-00",
+      "talent": "Usada Pekora",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00021-4-cmmn-0000-00",
+      "talent": "Shiranui Flare",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00021-5-uniq-0017-00",
+      "talent": "Shiranui Flare",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00021-5-uniq-0064-00",
+      "talent": "Shiranui Flare",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00022-4-cmmn-0000-00",
+      "talent": "Shirogane Noel",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00022-5-uniq-0018-00",
+      "talent": "Shirogane Noel",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00022-5-uniq-0063-00",
+      "talent": "Shirogane Noel",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00023-4-cmmn-0000-00",
+      "talent": "Houshou Marine",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00023-5-uniq-0019-00",
+      "talent": "Houshou Marine",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00026-4-cmmn-0000-00",
+      "talent": "Tsunomaki Watame",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00026-5-uniq-0021-00",
+      "talent": "Tsunomaki Watame",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00026-5-uniq-0065-00",
+      "talent": "Tsunomaki Watame",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00027-4-cmmn-0000-00",
+      "talent": "Tokoyami Towa",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00027-5-uniq-0022-00",
+      "talent": "Tokoyami Towa",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00028-4-cmmn-0000-00",
+      "talent": "Himemori Luna",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00028-5-uniq-0023-00",
+      "talent": "Himemori Luna",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00030-4-cmmn-0000-00",
+      "talent": "Yukihana Lamy",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00030-5-uniq-0024-00",
+      "talent": "Yukihana Lamy",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00031-4-cmmn-0000-00",
+      "talent": "Momosuzu Nene",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00031-5-uniq-0025-00",
+      "talent": "Momosuzu Nene",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00032-4-cmmn-0000-00",
+      "talent": "Shishiro Botan",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00032-5-uniq-0026-00",
+      "talent": "Shishiro Botan",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00034-4-cmmn-0000-00",
+      "talent": "Omaru Polka",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00034-5-uniq-0027-00",
+      "talent": "Omaru Polka",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00035-4-cmmn-0000-00",
+      "talent": "La+ Darknesss",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00035-5-uniq-0028-00",
+      "talent": "La+ Darknesss",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00036-4-cmmn-0000-00",
+      "talent": "Takane Lui",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00036-5-uniq-0029-00",
+      "talent": "Takane Lui",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00037-4-cmmn-0000-00",
+      "talent": "Hakui Koyori",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00037-5-uniq-0030-00",
+      "talent": "Hakui Koyori",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00039-4-cmmn-0000-00",
+      "talent": "Kazama Iroha",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00039-5-uniq-0032-00",
+      "talent": "Kazama Iroha",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03001-4-cmmn-0000-00",
+      "talent": "Ayunda Risu",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03001-5-uniq-0033-00",
+      "talent": "Ayunda Risu",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03002-4-cmmn-0000-00",
+      "talent": "Moona Hoshinova",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03002-5-uniq-0034-00",
+      "talent": "Moona Hoshinova",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03003-4-cmmn-0000-00",
+      "talent": "Airani Iofifteen",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03003-5-uniq-0035-00",
+      "talent": "Airani Iofifteen",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03004-4-cmmn-0000-00",
+      "talent": "Kureiji Ollie",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03004-5-uniq-0036-00",
+      "talent": "Kureiji Ollie",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03005-4-cmmn-0000-00",
+      "talent": "Anya Melfissa",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03005-5-uniq-0037-00",
+      "talent": "Anya Melfissa",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03006-4-cmmn-0000-00",
+      "talent": "Pavolia Reine",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03006-5-uniq-0038-00",
+      "talent": "Pavolia Reine",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03007-4-cmmn-0000-00",
+      "talent": "Vestia Zeta",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03007-5-uniq-0039-00",
+      "talent": "Vestia Zeta",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03008-4-cmmn-0000-00",
+      "talent": "Kaela Kovalskia",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03008-5-uniq-0040-00",
+      "talent": "Kaela Kovalskia",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03009-4-cmmn-0000-00",
+      "talent": "Kobo Kanaeru",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03009-5-uniq-0041-00",
+      "talent": "Kobo Kanaeru",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04001-4-cmmn-0000-00",
+      "talent": "Mori Calliope",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04001-5-uniq-0042-00",
+      "talent": "Mori Calliope",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04002-4-cmmn-0000-00",
+      "talent": "Takanashi Kiara",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04002-5-uniq-0043-00",
+      "talent": "Takanashi Kiara",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04003-4-cmmn-0000-00",
+      "talent": "Ninomae Ina'nis",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04003-5-uniq-0044-00",
+      "talent": "Ninomae Ina'nis",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04007-4-cmmn-0000-00",
+      "talent": "IRyS",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04007-5-uniq-0047-00",
+      "talent": "IRyS",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04010-4-cmmn-0000-00",
+      "talent": "Ouro Kronii",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04010-5-uniq-0049-00",
+      "talent": "Ouro Kronii",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04012-4-cmmn-0000-00",
+      "talent": "Hakos Baelz",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04012-5-uniq-0051-00",
+      "talent": "Hakos Baelz",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04013-4-cmmn-0000-00",
+      "talent": "Shiori Novella",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04013-5-uniq-0052-00",
+      "talent": "Shiori Novella",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04014-4-cmmn-0000-00",
+      "talent": "Koseki Bijou",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04014-5-uniq-0053-00",
+      "talent": "Koseki Bijou",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04015-4-cmmn-0000-00",
+      "talent": "Nerissa Ravencroft",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04015-5-uniq-0054-00",
+      "talent": "Nerissa Ravencroft",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04016-4-cmmn-0000-00",
+      "talent": "Fuwawa Abyssgard",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04016-5-uniq-0055-00",
+      "talent": "Fuwawa Abyssgard",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04017-4-cmmn-0000-00",
+      "talent": "Mococo Abyssgard",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04017-5-uniq-0056-00",
+      "talent": "Mococo Abyssgard",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06002-4-cmmn-0000-00",
+      "talent": "Otonose Kanade",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06002-5-uniq-0058-00",
+      "talent": "Otonose Kanade",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06002-5-uniq-0066-00",
+      "talent": "Otonose Kanade",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06003-4-cmmn-0000-00",
+      "talent": "Ichijou Ririka",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06003-5-uniq-0059-00",
+      "talent": "Ichijou Ririka",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06004-4-cmmn-0000-00",
+      "talent": "Juufuutei Raden",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06004-5-uniq-0060-00",
+      "talent": "Juufuutei Raden",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06005-4-cmmn-0000-00",
+      "talent": "Todoroki Hajime",
+      "rarity": 4,
+      "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06005-5-uniq-0061-00",
+      "talent": "Todoroki Hajime",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-08"
+    }
+  ],
+  "idempotence": {
+    "checked": true,
+    "unchangedPinFiles": true,
+    "stableAcrossConsecutiveSyncPasses": true
+  },
+  "regeneration": {
+    "required": [
+      "pnpm rankings:generate"
+    ]
+  },
+  "testCountPinFiles": [],
+  "deterministicDigest": "19a6230ee2205866bf96105b856b43f53d5257eb70e0a12a9074f5d31a360fad",
+  "runtimeMetadata": {
+    "generatedAt": "2026-08-11T06:44:53.914Z",
+    "elapsedMilliseconds": 16018,
+    "changedDatasetCount": 0,
+    "timelineStageError": "Error: Failed to read chart API revision: 403\r"
+  }
+}

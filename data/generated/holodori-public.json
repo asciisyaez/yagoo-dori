@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-08-08",
+  "retrievedAt": "2026-08-11",
   "sourceSnapshots": {
     "english": {
       "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
@@ -45,6 +45,7 @@
   "cards": [
     {
       "id": "card-03003-5-uniq-0035-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "airani-iofifteen-sunlit-cosmos-palette-card-03003-5-uniq-0035-00",
       "talentId": "chr-03003",
       "generationOrder": 136,
@@ -166,6 +167,7 @@
     },
     {
       "id": "card-00005-5-uniq-0006-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "akai-haato-snack-time-rebel-card-00005-5-uniq-0006-00",
       "talentId": "chr-00005",
       "generationOrder": 107,
@@ -287,6 +289,7 @@
     },
     {
       "id": "card-00004-5-uniq-0005-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "aki-rosenthal-ethereal-half-elf-card-00004-5-uniq-0005-00",
       "talentId": "chr-00004",
       "generationOrder": 106,
@@ -408,6 +411,7 @@
     },
     {
       "id": "card-03005-5-uniq-0037-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "anya-melfissa-couch-potato-gamer-card-03005-5-uniq-0037-00",
       "talentId": "chr-03005",
       "generationOrder": 138,
@@ -529,6 +533,7 @@
     },
     {
       "id": "card-03001-5-uniq-0033-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ayunda-risu-sylvan-mischief-card-03001-5-uniq-0033-00",
       "talentId": "chr-03001",
       "generationOrder": 134,
@@ -650,6 +655,7 @@
     },
     {
       "id": "card-00013-5-uniq-0002-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "azki-a-flower-in-full-bloom-card-00013-5-uniq-0002-00",
       "talentId": "chr-00013",
       "generationOrder": 103,
@@ -771,6 +777,7 @@
     },
     {
       "id": "card-04016-5-uniq-0055-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "fuwawa-abyssgard-fluffy-donut-feast-card-04016-5-uniq-0055-00",
       "talentId": "chr-04016",
       "generationOrder": 156,
@@ -892,6 +899,7 @@
     },
     {
       "id": "card-04012-5-uniq-0051-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hakos-baelz-chaotic-powerful-rat-card-04012-5-uniq-0051-00",
       "talentId": "chr-04012",
       "generationOrder": 152,
@@ -1013,6 +1021,7 @@
     },
     {
       "id": "card-00037-5-uniq-0030-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hakui-koyori-assistant-s-muse-card-00037-5-uniq-0030-00",
       "talentId": "chr-00037",
       "generationOrder": 131,
@@ -1134,6 +1143,7 @@
     },
     {
       "id": "card-00028-5-uniq-0023-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "himemori-luna-royal-loyal-noon-card-00028-5-uniq-0023-00",
       "talentId": "chr-00028",
       "generationOrder": 124,
@@ -1255,6 +1265,7 @@
     },
     {
       "id": "card-00018-5-uniq-0004-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hoshimachi-suisei-comet-heart-stealer-card-00018-5-uniq-0004-00",
       "talentId": "chr-00018",
       "generationOrder": 105,
@@ -1376,6 +1387,7 @@
     },
     {
       "id": "card-00018-5-uniq-0068-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hoshimachi-suisei-water-gun-arpeggio-card-00018-5-uniq-0068-00",
       "talentId": "chr-00018",
       "generationOrder": 105,
@@ -1497,6 +1509,7 @@
     },
     {
       "id": "card-00023-5-uniq-0019-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "houshou-marine-siren-marine-blue-card-00023-5-uniq-0019-00",
       "talentId": "chr-00023",
       "generationOrder": 120,
@@ -1618,6 +1631,7 @@
     },
     {
       "id": "card-06003-5-uniq-0059-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ichijou-ririka-the-ceo-s-struggling-meal-card-06003-5-uniq-0059-00",
       "talentId": "chr-06003",
       "generationOrder": 160,
@@ -1739,6 +1753,7 @@
     },
     {
       "id": "card-00017-5-uniq-0015-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "inugami-korone-vibrant-skater-card-00017-5-uniq-0015-00",
       "talentId": "chr-00017",
       "generationOrder": 116,
@@ -1860,6 +1875,7 @@
     },
     {
       "id": "card-04007-5-uniq-0047-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "irys-nephilim-sonority-card-04007-5-uniq-0047-00",
       "talentId": "chr-04007",
       "generationOrder": 148,
@@ -1981,6 +1997,7 @@
     },
     {
       "id": "card-06004-5-uniq-0060-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "juufuutei-raden-luminary-of-arts-card-06004-5-uniq-0060-00",
       "talentId": "chr-06004",
       "generationOrder": 161,
@@ -2102,6 +2119,7 @@
     },
     {
       "id": "card-03008-5-uniq-0040-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kaela-kovalskia-tempered-soul-forge-card-03008-5-uniq-0040-00",
       "talentId": "chr-03008",
       "generationOrder": 141,
@@ -2223,6 +2241,7 @@
     },
     {
       "id": "card-00039-5-uniq-0032-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kazama-iroha-blade-flash-card-00039-5-uniq-0032-00",
       "talentId": "chr-00039",
       "generationOrder": 133,
@@ -2344,6 +2363,7 @@
     },
     {
       "id": "card-03009-5-uniq-0041-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kobo-kanaeru-rain-dance-oracle-card-03009-5-uniq-0041-00",
       "talentId": "chr-03009",
       "generationOrder": 142,
@@ -2465,6 +2485,7 @@
     },
     {
       "id": "card-04014-5-uniq-0053-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "koseki-bijou-prism-crystal-realm-card-04014-5-uniq-0053-00",
       "talentId": "chr-04014",
       "generationOrder": 154,
@@ -2586,6 +2607,7 @@
     },
     {
       "id": "card-03004-5-uniq-0036-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kureiji-ollie-eternal-z-talker-card-03004-5-uniq-0036-00",
       "talentId": "chr-03004",
       "generationOrder": 137,
@@ -2707,6 +2729,7 @@
     },
     {
       "id": "card-00035-5-uniq-0028-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "la-darknesss-commanding-genius-card-00035-5-uniq-0028-00",
       "talentId": "chr-00035",
       "generationOrder": 129,
@@ -2828,6 +2851,7 @@
     },
     {
       "id": "card-04017-5-uniq-0056-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "mococo-abyssgard-leisurely-donut-feast-card-04017-5-uniq-0056-00",
       "talentId": "chr-04017",
       "generationOrder": 157,
@@ -2949,6 +2973,7 @@
     },
     {
       "id": "card-00031-5-uniq-0025-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "momosuzu-nene-pureheart-song-card-00031-5-uniq-0025-00",
       "talentId": "chr-00031",
       "generationOrder": 126,
@@ -3070,6 +3095,7 @@
     },
     {
       "id": "card-03002-5-uniq-0034-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "moona-hoshinova-lunar-songstress-card-03002-5-uniq-0034-00",
       "talentId": "chr-03002",
       "generationOrder": 135,
@@ -3191,6 +3217,7 @@
     },
     {
       "id": "card-04001-5-uniq-0042-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "mori-calliope-reaper-s-death-flow-card-04001-5-uniq-0042-00",
       "talentId": "chr-04001",
       "generationOrder": 143,
@@ -3312,6 +3339,7 @@
     },
     {
       "id": "card-00010-5-uniq-0010-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nakiri-ayame-spirit-realm-lantern-card-00010-5-uniq-0010-00",
       "talentId": "chr-00010",
       "generationOrder": 111,
@@ -3433,6 +3461,7 @@
     },
     {
       "id": "card-00007-5-uniq-0008-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "natsuiro-matsuri-vivid-cheer-spirit-card-00007-5-uniq-0008-00",
       "talentId": "chr-00007",
       "generationOrder": 109,
@@ -3554,6 +3583,7 @@
     },
     {
       "id": "card-00016-5-uniq-0014-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nekomata-okayu-secret-post-feast-card-00016-5-uniq-0014-00",
       "talentId": "chr-00016",
       "generationOrder": 115,
@@ -3675,6 +3705,7 @@
     },
     {
       "id": "card-04015-5-uniq-0054-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nerissa-ravencroft-echoes-of-nocturne-card-04015-5-uniq-0054-00",
       "talentId": "chr-04015",
       "generationOrder": 155,
@@ -3796,6 +3827,7 @@
     },
     {
       "id": "card-04003-5-uniq-0044-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ninomae-ina-nis-warm-up-and-recharge-card-04003-5-uniq-0044-00",
       "talentId": "chr-04003",
       "generationOrder": 145,
@@ -3917,6 +3949,7 @@
     },
     {
       "id": "card-00034-5-uniq-0027-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "omaru-polka-polka-s-phantasm-card-00034-5-uniq-0027-00",
       "talentId": "chr-00034",
       "generationOrder": 128,
@@ -4038,6 +4071,7 @@
     },
     {
       "id": "card-00014-5-uniq-0013-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ookami-mio-calming-nightscape-card-00014-5-uniq-0013-00",
       "talentId": "chr-00014",
       "generationOrder": 114,
@@ -4159,6 +4193,7 @@
     },
     {
       "id": "card-00012-5-uniq-0012-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "oozora-subaru-duckling-noon-jam-card-00012-5-uniq-0012-00",
       "talentId": "chr-00012",
       "generationOrder": 113,
@@ -4280,6 +4315,7 @@
     },
     {
       "id": "card-00012-5-uniq-0062-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "oozora-subaru-vibrant-sun-splash-card-00012-5-uniq-0062-00",
       "talentId": "chr-00012",
       "generationOrder": 113,
@@ -4401,6 +4437,7 @@
     },
     {
       "id": "card-06002-5-uniq-0058-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "otonose-kanade-parade-of-smiles-card-06002-5-uniq-0058-00",
       "talentId": "chr-06002",
       "generationOrder": 159,
@@ -4522,6 +4559,7 @@
     },
     {
       "id": "card-06002-5-uniq-0066-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "otonose-kanade-breezy-smile-chords-card-06002-5-uniq-0066-00",
       "talentId": "chr-06002",
       "generationOrder": 159,
@@ -4643,6 +4681,7 @@
     },
     {
       "id": "card-04010-5-uniq-0049-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ouro-kronii-clock-tower-warden-card-04010-5-uniq-0049-00",
       "talentId": "chr-04010",
       "generationOrder": 150,
@@ -4764,6 +4803,7 @@
     },
     {
       "id": "card-03006-5-uniq-0038-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "pavolia-reine-royal-peafowl-brew-card-03006-5-uniq-0038-00",
       "talentId": "chr-03006",
       "generationOrder": 139,
@@ -4885,6 +4925,7 @@
     },
     {
       "id": "card-00002-5-uniq-0001-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "robocosan-high-tech-victory-v-card-00002-5-uniq-0001-00",
       "talentId": "chr-00002",
       "generationOrder": 102,
@@ -5006,6 +5047,7 @@
     },
     {
       "id": "card-00015-5-uniq-0003-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "sakura-miko-sakura-bloom-card-00015-5-uniq-0003-00",
       "talentId": "chr-00015",
       "generationOrder": 104,
@@ -5127,6 +5169,7 @@
     },
     {
       "id": "card-00015-5-uniq-0067-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "sakura-miko-radiant-beach-shot-card-00015-5-uniq-0067-00",
       "talentId": "chr-00015",
       "generationOrder": 104,
@@ -5248,6 +5291,7 @@
     },
     {
       "id": "card-04013-5-uniq-0052-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shiori-novella-library-inquisitor-card-04013-5-uniq-0052-00",
       "talentId": "chr-04013",
       "generationOrder": 153,
@@ -5369,6 +5413,7 @@
     },
     {
       "id": "card-00006-5-uniq-0007-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shirakami-fubuki-kitsune-s-rite-card-00006-5-uniq-0007-00",
       "talentId": "chr-00006",
       "generationOrder": 108,
@@ -5491,6 +5536,7 @@
     },
     {
       "id": "card-00021-5-uniq-0017-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shiranui-flare-elven-gale-gondola-card-00021-5-uniq-0017-00",
       "talentId": "chr-00021",
       "generationOrder": 118,
@@ -5612,6 +5658,7 @@
     },
     {
       "id": "card-00021-5-uniq-0064-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shiranui-flare-sparks-at-sunset-card-00021-5-uniq-0064-00",
       "talentId": "chr-00021",
       "generationOrder": 118,
@@ -5733,6 +5780,7 @@
     },
     {
       "id": "card-00022-5-uniq-0018-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shirogane-noel-gentle-breeze-knight-card-00022-5-uniq-0018-00",
       "talentId": "chr-00022",
       "generationOrder": 119,
@@ -5854,6 +5902,7 @@
     },
     {
       "id": "card-00022-5-uniq-0063-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shirogane-noel-serene-wave-knight-card-00022-5-uniq-0063-00",
       "talentId": "chr-00022",
       "generationOrder": 119,
@@ -5975,6 +6024,7 @@
     },
     {
       "id": "card-00032-5-uniq-0026-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shishiro-botan-lion-s-deadeye-card-00032-5-uniq-0026-00",
       "talentId": "chr-00032",
       "generationOrder": 127,
@@ -6096,6 +6146,7 @@
     },
     {
       "id": "card-04002-5-uniq-0043-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "takanashi-kiara-lovely-phoenix-diner-card-04002-5-uniq-0043-00",
       "talentId": "chr-04002",
       "generationOrder": 144,
@@ -6217,6 +6268,7 @@
     },
     {
       "id": "card-00036-5-uniq-0029-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "takane-lui-iron-executive-card-00036-5-uniq-0029-00",
       "talentId": "chr-00036",
       "generationOrder": 130,
@@ -6338,6 +6390,7 @@
     },
     {
       "id": "card-06005-5-uniq-0061-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "todoroki-hajime-bancho-s-soft-grace-card-06005-5-uniq-0061-00",
       "talentId": "chr-06005",
       "generationOrder": 162,
@@ -6459,6 +6512,7 @@
     },
     {
       "id": "card-00001-5-uniq-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tokino-sora-rainbow-s-devotion-card-00001-5-uniq-0000-00",
       "talentId": "chr-00001",
       "generationOrder": 101,
@@ -6580,6 +6634,7 @@
     },
     {
       "id": "card-00027-5-uniq-0022-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tokoyami-towa-eternal-night-out-card-00027-5-uniq-0022-00",
       "talentId": "chr-00027",
       "generationOrder": 123,
@@ -6701,6 +6756,7 @@
     },
     {
       "id": "card-00026-5-uniq-0021-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tsunomaki-watame-woolly-smile-festival-card-00026-5-uniq-0021-00",
       "talentId": "chr-00026",
       "generationOrder": 122,
@@ -6822,6 +6878,7 @@
     },
     {
       "id": "card-00026-5-uniq-0065-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tsunomaki-watame-floatie-float-time-card-00026-5-uniq-0065-00",
       "talentId": "chr-00026",
       "generationOrder": 122,
@@ -6943,6 +7000,7 @@
     },
     {
       "id": "card-00019-5-uniq-0016-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "usada-pekora-playful-rabbit-field-card-00019-5-uniq-0016-00",
       "talentId": "chr-00019",
       "generationOrder": 117,
@@ -7064,6 +7122,7 @@
     },
     {
       "id": "card-03007-5-uniq-0039-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "vestia-zeta-sunny-cat-syndicate-card-03007-5-uniq-0039-00",
       "talentId": "chr-03007",
       "generationOrder": 140,
@@ -7185,6 +7244,7 @@
     },
     {
       "id": "card-00030-5-uniq-0024-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "yukihana-lamy-lonely-snow-heiress-card-00030-5-uniq-0024-00",
       "talentId": "chr-00030",
       "generationOrder": 125,
@@ -7306,6 +7366,7 @@
     },
     {
       "id": "card-00011-5-uniq-0011-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "yuzuki-choco-fatal-temptation-card-00011-5-uniq-0011-00",
       "talentId": "chr-00011",
       "generationOrder": 112,
@@ -7427,6 +7488,7 @@
     },
     {
       "id": "card-03003-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "airani-iofifteen-serene-stage-vista-card-03003-4-cmmn-0000-00",
       "talentId": "chr-03003",
       "generationOrder": 136,
@@ -7548,6 +7610,7 @@
     },
     {
       "id": "card-00005-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "akai-haato-wild-heartbeat-gig-card-00005-4-cmmn-0000-00",
       "talentId": "chr-00005",
       "generationOrder": 107,
@@ -7669,6 +7732,7 @@
     },
     {
       "id": "card-00004-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "aki-rosenthal-curious-elf-melody-card-00004-4-cmmn-0000-00",
       "talentId": "chr-00004",
       "generationOrder": 106,
@@ -7790,6 +7854,7 @@
     },
     {
       "id": "card-03005-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "anya-melfissa-backstage-freebird-card-03005-4-cmmn-0000-00",
       "talentId": "chr-03005",
       "generationOrder": 138,
@@ -7911,6 +7976,7 @@
     },
     {
       "id": "card-03001-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ayunda-risu-roundtail-rhythm-card-03001-4-cmmn-0000-00",
       "talentId": "chr-03001",
       "generationOrder": 134,
@@ -8032,6 +8098,7 @@
     },
     {
       "id": "card-00013-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "azki-upon-a-tender-melody-card-00013-4-cmmn-0000-00",
       "talentId": "chr-00013",
       "generationOrder": 103,
@@ -8153,6 +8220,7 @@
     },
     {
       "id": "card-04016-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "fuwawa-abyssgard-velvet-cloud-calm-card-04016-4-cmmn-0000-00",
       "talentId": "chr-04016",
       "generationOrder": 156,
@@ -8274,6 +8342,7 @@
     },
     {
       "id": "card-04012-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hakos-baelz-infinite-groove-card-04012-4-cmmn-0000-00",
       "talentId": "chr-04012",
       "generationOrder": 152,
@@ -8395,6 +8464,7 @@
     },
     {
       "id": "card-00037-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hakui-koyori-howling-echo-card-00037-4-cmmn-0000-00",
       "talentId": "chr-00037",
       "generationOrder": 131,
@@ -8516,6 +8586,7 @@
     },
     {
       "id": "card-00028-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "himemori-luna-ethereal-princess-card-00028-4-cmmn-0000-00",
       "talentId": "chr-00028",
       "generationOrder": 124,
@@ -8637,6 +8708,7 @@
     },
     {
       "id": "card-00018-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "hoshimachi-suisei-radiant-floor-star-card-00018-4-cmmn-0000-00",
       "talentId": "chr-00018",
       "generationOrder": 105,
@@ -8758,6 +8830,7 @@
     },
     {
       "id": "card-00023-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "houshou-marine-corsair-s-conquest-card-00023-4-cmmn-0000-00",
       "talentId": "chr-00023",
       "generationOrder": 120,
@@ -8879,6 +8952,7 @@
     },
     {
       "id": "card-06003-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ichijou-ririka-heart-shot-pulse-card-06003-4-cmmn-0000-00",
       "talentId": "chr-06003",
       "generationOrder": 160,
@@ -9000,6 +9074,7 @@
     },
     {
       "id": "card-00017-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "inugami-korone-outlaw-puppy-rhyme-card-00017-4-cmmn-0000-00",
       "talentId": "chr-00017",
       "generationOrder": 116,
@@ -9121,6 +9196,7 @@
     },
     {
       "id": "card-04007-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "irys-resonant-hope-card-04007-4-cmmn-0000-00",
       "talentId": "chr-04007",
       "generationOrder": 148,
@@ -9242,6 +9318,7 @@
     },
     {
       "id": "card-06004-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "juufuutei-raden-cultural-performer-card-06004-4-cmmn-0000-00",
       "talentId": "chr-06004",
       "generationOrder": 161,
@@ -9363,6 +9440,7 @@
     },
     {
       "id": "card-03008-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kaela-kovalskia-forge-fire-fever-card-03008-4-cmmn-0000-00",
       "talentId": "chr-03008",
       "generationOrder": 141,
@@ -9484,6 +9562,7 @@
     },
     {
       "id": "card-00039-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kazama-iroha-mastered-essence-card-00039-4-cmmn-0000-00",
       "talentId": "chr-00039",
       "generationOrder": 133,
@@ -9605,6 +9684,7 @@
     },
     {
       "id": "card-03009-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kobo-kanaeru-total-overdrive-card-03009-4-cmmn-0000-00",
       "talentId": "chr-03009",
       "generationOrder": 142,
@@ -9726,6 +9806,7 @@
     },
     {
       "id": "card-04014-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "koseki-bijou-radiant-innocence-card-04014-4-cmmn-0000-00",
       "talentId": "chr-04014",
       "generationOrder": 154,
@@ -9847,6 +9928,7 @@
     },
     {
       "id": "card-03004-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "kureiji-ollie-deadly-encore-card-03004-4-cmmn-0000-00",
       "talentId": "chr-03004",
       "generationOrder": 137,
@@ -9968,6 +10050,7 @@
     },
     {
       "id": "card-00035-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "la-darknesss-behold-my-night-card-00035-4-cmmn-0000-00",
       "talentId": "chr-00035",
       "generationOrder": 129,
@@ -10089,6 +10172,7 @@
     },
     {
       "id": "card-04017-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "mococo-abyssgard-fuzzy-beam-joy-card-04017-4-cmmn-0000-00",
       "talentId": "chr-04017",
       "generationOrder": 157,
@@ -10210,6 +10294,7 @@
     },
     {
       "id": "card-00031-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "momosuzu-nene-adrenaline-surge-card-00031-4-cmmn-0000-00",
       "talentId": "chr-00031",
       "generationOrder": 126,
@@ -10331,6 +10416,7 @@
     },
     {
       "id": "card-03002-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "moona-hoshinova-moonlight-vocal-fusion-card-03002-4-cmmn-0000-00",
       "talentId": "chr-03002",
       "generationOrder": 135,
@@ -10452,6 +10538,7 @@
     },
     {
       "id": "card-04001-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "mori-calliope-rep-the-underworld-card-04001-4-cmmn-0000-00",
       "talentId": "chr-04001",
       "generationOrder": 143,
@@ -10573,6 +10660,7 @@
     },
     {
       "id": "card-00010-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nakiri-ayame-demonic-encore-card-00010-4-cmmn-0000-00",
       "talentId": "chr-00010",
       "generationOrder": 111,
@@ -10694,6 +10782,7 @@
     },
     {
       "id": "card-00007-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "natsuiro-matsuri-sweet-cheeky-stage-card-00007-4-cmmn-0000-00",
       "talentId": "chr-00007",
       "generationOrder": 109,
@@ -10815,6 +10904,7 @@
     },
     {
       "id": "card-00016-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nekomata-okayu-mesmerizing-cat-jam-card-00016-4-cmmn-0000-00",
       "talentId": "chr-00016",
       "generationOrder": 115,
@@ -10936,6 +11026,7 @@
     },
     {
       "id": "card-04015-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "nerissa-ravencroft-dusk-nightingale-card-04015-4-cmmn-0000-00",
       "talentId": "chr-04015",
       "generationOrder": 155,
@@ -11057,6 +11148,7 @@
     },
     {
       "id": "card-04003-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ninomae-ina-nis-gentle-stage-beam-card-04003-4-cmmn-0000-00",
       "talentId": "chr-04003",
       "generationOrder": 145,
@@ -11178,6 +11270,7 @@
     },
     {
       "id": "card-00034-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "omaru-polka-neon-party-riot-card-00034-4-cmmn-0000-00",
       "talentId": "chr-00034",
       "generationOrder": 128,
@@ -11299,6 +11392,7 @@
     },
     {
       "id": "card-00014-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ookami-mio-sunlit-wolf-song-card-00014-4-cmmn-0000-00",
       "talentId": "chr-00014",
       "generationOrder": 114,
@@ -11420,6 +11514,7 @@
     },
     {
       "id": "card-00012-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "oozora-subaru-radiant-soul-jam-card-00012-4-cmmn-0000-00",
       "talentId": "chr-00012",
       "generationOrder": 113,
@@ -11541,6 +11636,7 @@
     },
     {
       "id": "card-06002-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "otonose-kanade-apex-harmony-card-06002-4-cmmn-0000-00",
       "talentId": "chr-06002",
       "generationOrder": 159,
@@ -11662,6 +11758,7 @@
     },
     {
       "id": "card-04010-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "ouro-kronii-eternal-starlight-card-04010-4-cmmn-0000-00",
       "talentId": "chr-04010",
       "generationOrder": 150,
@@ -11783,6 +11880,7 @@
     },
     {
       "id": "card-03006-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "pavolia-reine-blessed-luxe-night-card-03006-4-cmmn-0000-00",
       "talentId": "chr-03006",
       "generationOrder": 139,
@@ -11904,6 +12002,7 @@
     },
     {
       "id": "card-00002-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "robocosan-dreamy-wink-concert-card-00002-4-cmmn-0000-00",
       "talentId": "chr-00002",
       "generationOrder": 102,
@@ -12025,6 +12124,7 @@
     },
     {
       "id": "card-00015-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "sakura-miko-embrace-the-glow-card-00015-4-cmmn-0000-00",
       "talentId": "chr-00015",
       "generationOrder": 104,
@@ -12146,6 +12246,7 @@
     },
     {
       "id": "card-04013-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shiori-novella-unmasked-performance-card-04013-4-cmmn-0000-00",
       "talentId": "chr-04013",
       "generationOrder": 153,
@@ -12267,6 +12368,7 @@
     },
     {
       "id": "card-00006-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shirakami-fubuki-max-gear-fox-show-card-00006-4-cmmn-0000-00",
       "talentId": "chr-00006",
       "generationOrder": 108,
@@ -12389,6 +12491,7 @@
     },
     {
       "id": "card-00021-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shiranui-flare-graceful-empathy-card-00021-4-cmmn-0000-00",
       "talentId": "chr-00021",
       "generationOrder": 118,
@@ -12510,6 +12613,7 @@
     },
     {
       "id": "card-00022-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shirogane-noel-vocal-juggernaut-card-00022-4-cmmn-0000-00",
       "talentId": "chr-00022",
       "generationOrder": 119,
@@ -12631,6 +12735,7 @@
     },
     {
       "id": "card-00032-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "shishiro-botan-majestic-roar-card-00032-4-cmmn-0000-00",
       "talentId": "chr-00032",
       "generationOrder": 127,
@@ -12752,6 +12857,7 @@
     },
     {
       "id": "card-04002-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "takanashi-kiara-utopian-happiness-card-04002-4-cmmn-0000-00",
       "talentId": "chr-04002",
       "generationOrder": 144,
@@ -12873,6 +12979,7 @@
     },
     {
       "id": "card-00036-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "takane-lui-strategic-prodigy-card-00036-4-cmmn-0000-00",
       "talentId": "chr-00036",
       "generationOrder": 130,
@@ -12994,6 +13101,7 @@
     },
     {
       "id": "card-06005-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "todoroki-hajime-she-s-the-boss-card-06005-4-cmmn-0000-00",
       "talentId": "chr-06005",
       "generationOrder": 162,
@@ -13115,6 +13223,7 @@
     },
     {
       "id": "card-00001-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tokino-sora-let-my-voice-reach-the-sky-card-00001-4-cmmn-0000-00",
       "talentId": "chr-00001",
       "generationOrder": 101,
@@ -13236,6 +13345,7 @@
     },
     {
       "id": "card-00027-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tokoyami-towa-midnight-serenity-card-00027-4-cmmn-0000-00",
       "talentId": "chr-00027",
       "generationOrder": 123,
@@ -13357,6 +13467,7 @@
     },
     {
       "id": "card-00026-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "tsunomaki-watame-zenith-resonance-card-00026-4-cmmn-0000-00",
       "talentId": "chr-00026",
       "generationOrder": 122,
@@ -13478,6 +13589,7 @@
     },
     {
       "id": "card-00019-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "usada-pekora-vogue-hop-bunny-card-00019-4-cmmn-0000-00",
       "talentId": "chr-00019",
       "generationOrder": 117,
@@ -13599,6 +13711,7 @@
     },
     {
       "id": "card-03007-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "vestia-zeta-whimsical-glee-card-03007-4-cmmn-0000-00",
       "talentId": "chr-03007",
       "generationOrder": 140,
@@ -13720,6 +13833,7 @@
     },
     {
       "id": "card-00030-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "yukihana-lamy-glacial-radiance-card-00030-4-cmmn-0000-00",
       "talentId": "chr-00030",
       "generationOrder": 125,
@@ -13841,6 +13955,7 @@
     },
     {
       "id": "card-00011-4-cmmn-0000-00",
+      "firstSeenAt": "2026-08-08",
       "slug": "yuzuki-choco-dr-allure-s-live-card-00011-4-cmmn-0000-00",
       "talentId": "chr-00011",
       "generationOrder": 112,

@@ -23,6 +23,7 @@ const ParameterSetSchema = z.object({
 
 export const PublicCardSchema = z.object({
   id: z.string().min(1),
+  firstSeenAt: z.iso.date(),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   talentId: z.string().min(1),
   generationOrder: z.number().int().positive(),
@@ -134,6 +135,7 @@ export const PublicDataSchema = z.object({
 });
 
 export type PublicCard = z.infer<typeof PublicCardSchema>;
+export type PublicMemberCard = PublicCard;
 export type PublicData = z.infer<typeof PublicDataSchema>;
 
 export const publicData: PublicData = PublicDataSchema.parse(publicDataJson);

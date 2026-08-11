@@ -903,6 +903,19 @@
   padding: 0.25rem 0.34rem;
 }
 
+.real-card-art > .new-card-chip {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  border: 1px solid rgba(37, 188, 233, 0.45);
+  border-radius: 3px;
+  background: rgba(37, 188, 233, 0.92);
+  color: #061016;
+  font-size: 0.6rem;
+  font-weight: 850;
+  padding: 0.25rem 0.34rem;
+}
+
 .real-card-copy {
   display: grid;
   min-width: 0;
@@ -2084,6 +2097,7 @@
   .real-card-copy { padding: 0.58rem; }
   .real-card-copy strong { font-size: 0.72rem; }
   .real-card-copy > span { font-size: 0.6rem; }
+  .real-card-art > .new-card-chip { top: 0.35rem; left: 0.35rem; font-size: 0.52rem; padding: 0.18rem 0.25rem; }
   .leader-skill-snippet { display: none; }
   .talent-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem; }
   .talent-directory-card { min-height: 180px; }
