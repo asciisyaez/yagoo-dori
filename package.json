@@ -1,6 +1,6 @@
 {
   "name": "yagoo-dori",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "packageManager": "pnpm@10.14.0",
   "engines": {

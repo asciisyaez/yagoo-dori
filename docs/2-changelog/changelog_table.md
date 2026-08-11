@@ -2,6 +2,7 @@
 
 | Version | Week | Commit Message                  |
 | ------- | ---- | ------------------------------- |
+| `0.1.10` | 1   | feat(pivot)!: retire the Holomem Board surface; feat(roll-compare): "Should you roll?" unowned-card team comparison |
 | `0.1.9` | 1    | fix(trust): pass-2 review repairs — sitemap honesty, board keyboard/a11y, ledger v2, worker startup, migration backup safety, card tier disclosure |
 | `0.1.8` | 1    | fix(board): per-talent tree models + orientation; feat: generation-order member listings; fix(trust): external-review triage batch |
 | `0.1.7` | 1    | fix(board): Board planner page framing and board SVG geometry |
