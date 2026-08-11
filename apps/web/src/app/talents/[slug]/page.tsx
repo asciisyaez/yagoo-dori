@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Crown, Layers3 } from "lucide-react";
 
 import { talentRecordBySlug, talentRecords } from "../talent-records";
-import { BoardFigure } from "@/components/holomem-board/board-figure";
 
 export function generateStaticParams() {
   return talentRecords.map((talent) => ({ slug: talent.slug }));
@@ -97,7 +96,6 @@ export default async function TalentPage({ params }: { params: Promise<{ slug: s
           ))}
         </div>
       </section>
-      <BoardFigure talentId={talent.id} talentName={talent.name} />
     </div>
   );
 }

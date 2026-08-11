@@ -15,7 +15,6 @@ const STATIC_ROUTES = [
   "/talents/",
   "/tier-list/",
   "/team-builder/",
-  "/holomem-board/",
   "/guides/",
   "/methodology/",
 ] as const;
