@@ -87,7 +87,7 @@ export const RankingCorpusTimelineDataSchema = z
     projectionVersion: z.literal("ranking-corpus-exact-timelines-v1"),
     benchmarkId: z.literal("launch-2026-07-31-matched-context-v1"),
     benchmarkEntriesSha256: z.literal(
-      "9b7ddae06b00d7b797298aef76c185556f1b0e3908006c58451b1af562dc0b11",
+      "f8dfc4278eac06f42460c724b0d8407f49c68dca8c550eee4a5406a121ff2491",
     ),
     retrievedAt: z.iso.date(),
     source: z

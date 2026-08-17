@@ -144,7 +144,7 @@
       "reference": "Frozen rank-space maximin coverage of duration, note density, Expert level, and Live-score coefficient.",
       "current": "Nine newest released Expert charts at the frozen retrieval cutoff; ties use descending chart key."
     },
-    "entriesSha256": "9b7ddae06b00d7b797298aef76c185556f1b0e3908006c58451b1af562dc0b11",
+    "entriesSha256": "f8dfc4278eac06f42460c724b0d8407f49c68dca8c550eee4a5406a121ff2491",
     "reference": [
       {
         "chartKey": "m0004:expert",
@@ -227,8 +227,8 @@
         "expectedChartHash": "ac8b75f978ace1651b0aa5f6bfaec341"
       },
       {
-        "chartKey": "m0337:expert",
-        "expectedChartHash": "4abac55b4efe382e72e0918979b3bf0f"
+        "chartKey": "m0318:expert",
+        "expectedChartHash": "0cab83c94bc9f30c267b60733f0fbfcf"
       }
     ],
     "current": [

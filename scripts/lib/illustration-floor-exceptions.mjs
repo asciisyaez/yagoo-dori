@@ -20,4 +20,44 @@ export const illustrationFloorExceptionByCardId = Object.freeze({
     upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
     approvedAt: "2026-08-07",
   }),
+  "card-00010-5-uniq-0069-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason:
+      "2026-08-17 intake: the declared Game8 fallback has the best available original for the released card; AppMedia exposes only a small article thumbnail and outfit illustration.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    approvedAt: "2026-08-17",
+  }),
+  "card-00028-5-uniq-0070-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason:
+      "2026-08-17 intake: the declared Game8 fallback has the best available original for the released card; AppMedia exposes only a small article thumbnail and outfit illustration.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    approvedAt: "2026-08-17",
+  }),
+  "card-03004-5-uniq-0073-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason:
+      "2026-08-17 intake: the declared Game8 fallback has the best available original for the released card; AppMedia exposes only a small article thumbnail and outfit illustration.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    approvedAt: "2026-08-17",
+  }),
+  "card-04001-5-uniq-0071-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason:
+      "2026-08-17 intake: the declared Game8 fallback has the best available original for the released card; AppMedia exposes only a small article thumbnail and outfit illustration.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    approvedAt: "2026-08-17",
+  }),
+  "card-04003-5-uniq-0072-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason:
+      "2026-08-17 intake: the declared Game8 fallback has the best available original for the released card; AppMedia exposes only a small article thumbnail and outfit illustration.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    approvedAt: "2026-08-17",
+  }),
 });

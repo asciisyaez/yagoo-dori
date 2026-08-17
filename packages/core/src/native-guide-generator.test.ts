@@ -115,6 +115,14 @@ describe("native guide dataset merge", () => {
       scoreChanged: 0,
       rankChanged: 0,
     };
+    // The current generated changelog is an initial snapshot when no prior
+    // output exists. Supply a synthetic neutral predecessor so this unit test
+    // continues to exercise the rebase contract independently of intake history.
+    neutralChangelog.from = {
+      snapshotId: "synthetic-before",
+      generatedAt: "2026-08-16T00:00:00.000Z",
+      methodologyVersion: nativeRankingData.methodologyVersion,
+    };
     const stale = structuredClone(nativeGuideData);
     for (const guide of stale.guides) {
       guide.snapshotId = neutralChangelog.from!.snapshotId;

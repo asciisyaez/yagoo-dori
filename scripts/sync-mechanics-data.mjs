@@ -1,14 +1,15 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { fetchGithubRaw } from "./lib/fetch-github-raw.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outputFile = join(root, "data", "generated", "holodori-mechanics.json");
 
 const sourceSnapshot = {
   repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-  commit: "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-  masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
+  commit: "a15150a8b7413f035f28f8f85d63ab9df122c380",
+  masterVersion: "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c",
 };
 
 const retrievedAt = process.argv
@@ -66,13 +67,10 @@ function rawUrl(file) {
 }
 
 async function fetchJson(file) {
-  const response = await fetch(rawUrl(file), {
-    headers: {
-      accept: "application/json",
-      "user-agent": "Yagoo-dori mechanics compiler (+https://github.com/asciisyaez/yagoo-dori)",
-    },
+  const response = await fetchGithubRaw(rawUrl(file), {
+    accept: "application/json",
+    userAgent: "Yagoo-dori mechanics compiler (+https://github.com/asciisyaez/yagoo-dori)",
   });
-  if (!response.ok) throw new Error(`Failed ${response.status} ${response.statusText}: ${file}`);
   return response.json();
 }
 

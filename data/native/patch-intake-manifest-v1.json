@@ -3,14 +3,18 @@
   "id": "patch-intake-manifest-v1",
   "methodologyVersion": "yd-patch-intake-v1",
   "retrievedAt": {
-    "public": "2026-08-11",
-    "mechanics": "2026-08-10",
-    "songs": "2026-08-08",
+    "public": "2026-08-17",
+    "mechanics": "2026-08-17",
+    "songs": "2026-08-17",
     "timelines": "2026-08-02"
   },
   "timelineStage": {
     "status": "skipped-api-unavailable",
-    "reasonCode": "chart-api-unreachable"
+    "reasonCode": "chart-api-unreachable",
+    "unavailableReconciliation": {
+      "addedKeys": [],
+      "replacedExactKeys": []
+    }
   },
   "pinFiles": [
     {
@@ -104,13 +108,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "assets": 115
+          "assets": 120
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "assets": 115
+          "assets": 120
         },
         "declared": {}
       }
@@ -123,13 +127,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "previews": 115
+          "previews": 120
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "previews": 115
+          "previews": 120
         },
         "declared": {}
       }
@@ -142,32 +146,32 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "charts": 703,
-          "unavailableCharts": 25
+          "charts": 699,
+          "unavailableCharts": 53
         },
         "declared": {
           "counts": {
-            "songs": 176,
-            "charts": 703,
-            "unavailableCharts": 25,
-            "events": 405623,
-            "specialMarkers": 3515,
+            "songs": 175,
+            "charts": 699,
+            "unavailableCharts": 53,
+            "events": 402632,
+            "specialMarkers": 3495,
             "chartsWithDeclaredCountDisagreements": 1
           }
         }
       },
       "countsAfter": {
         "rows": {
-          "charts": 703,
-          "unavailableCharts": 25
+          "charts": 699,
+          "unavailableCharts": 53
         },
         "declared": {
           "counts": {
-            "songs": 176,
-            "charts": 703,
-            "unavailableCharts": 25,
-            "events": 405623,
-            "specialMarkers": 3515,
+            "songs": 175,
+            "charts": 699,
+            "unavailableCharts": 53,
+            "events": 402632,
+            "specialMarkers": 3495,
             "chartsWithDeclaredCountDisagreements": 1
           }
         }
@@ -181,31 +185,31 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "charts": 41,
-          "unavailableCharts": 3
+          "charts": 59,
+          "unavailableCharts": 8
         },
         "declared": {
           "counts": {
-            "charts": 41,
-            "events": 39762,
-            "specialMarkers": 205,
-            "feverMarkers": 164,
-            "unavailableCharts": 3
+            "charts": 59,
+            "events": 56787,
+            "specialMarkers": 295,
+            "feverMarkers": 236,
+            "unavailableCharts": 8
           }
         }
       },
       "countsAfter": {
         "rows": {
-          "charts": 41,
-          "unavailableCharts": 3
+          "charts": 59,
+          "unavailableCharts": 8
         },
         "declared": {
           "counts": {
-            "charts": 41,
-            "events": 39762,
-            "specialMarkers": 205,
-            "feverMarkers": 164,
-            "unavailableCharts": 3
+            "charts": 59,
+            "events": 56787,
+            "specialMarkers": 295,
+            "feverMarkers": 236,
+            "unavailableCharts": 8
           }
         }
       }
@@ -220,12 +224,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 115
+          "cards": 120
         },
         "declared": {
           "coverage": {
-            "cards": 115,
-            "mappedCards": 115,
+            "cards": 120,
+            "mappedCards": 120,
             "unresolvedReferences": []
           }
         }
@@ -234,12 +238,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 115
+          "cards": 120
         },
         "declared": {
           "coverage": {
-            "cards": 115,
-            "mappedCards": 115,
+            "cards": 120,
+            "mappedCards": 120,
             "unresolvedReferences": []
           }
         }
@@ -254,30 +258,30 @@
       "countsBefore": {
         "rows": {
           "notes": 3,
-          "cards": 115
+          "cards": 120
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 61,
-            "total": 115,
-            "art": 115
+            "fiveStar": 66,
+            "total": 120,
+            "art": 120
           }
         }
       },
       "countsAfter": {
         "rows": {
           "notes": 3,
-          "cards": 115
+          "cards": 120
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 61,
-            "total": 115,
-            "art": 115
+            "fiveStar": 66,
+            "total": 120,
+            "art": 120
           }
         }
       }
@@ -295,7 +299,7 @@
         "declared": {
           "counts": {
             "charts": 30,
-            "events": 29568,
+            "events": 29390,
             "specialMarkers": 150,
             "feverMarkers": 120
           }
@@ -308,7 +312,7 @@
         "declared": {
           "counts": {
             "charts": 30,
-            "events": 29568,
+            "events": 29390,
             "specialMarkers": 150,
             "feverMarkers": 120
           }
@@ -324,32 +328,32 @@
       "countsBefore": {
         "rows": {
           "evidenceSources": 3,
-          "songs": 182,
-          "charts": 728,
+          "songs": 188,
+          "charts": 752,
           "timedCharts": 0
         },
         "declared": {
           "counts": {
-            "songs": 182,
-            "aggregateCharts": 728,
+            "songs": 188,
+            "aggregateCharts": 752,
             "timedCharts": 0,
-            "ratingEligibleSongs": 168
+            "ratingEligibleSongs": 174
           }
         }
       },
       "countsAfter": {
         "rows": {
           "evidenceSources": 3,
-          "songs": 182,
-          "charts": 728,
+          "songs": 188,
+          "charts": 752,
           "timedCharts": 0
         },
         "declared": {
           "counts": {
-            "songs": 182,
-            "aggregateCharts": 728,
+            "songs": 188,
+            "aggregateCharts": 752,
             "timedCharts": 0,
-            "ratingEligibleSongs": 168
+            "ratingEligibleSongs": 174
           }
         }
       }
@@ -362,13 +366,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "guides": 9
+          "guides": 14
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "guides": 9
+          "guides": 14
         },
         "declared": {}
       }
@@ -381,13 +385,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "entries": 325
+          "entries": 719
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "entries": 325
+          "entries": 719
         },
         "declared": {}
       }
@@ -500,6 +504,12 @@
       "talent": "Nakiri Ayame",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00010-5-uniq-0069-00",
+      "talent": "Nakiri Ayame",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-17"
     },
     {
       "id": "card-00011-4-cmmn-0000-00",
@@ -718,6 +728,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00028-5-uniq-0070-00",
+      "talent": "Himemori Luna",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-17"
+    },
+    {
       "id": "card-00030-4-cmmn-0000-00",
       "talent": "Yukihana Lamy",
       "rarity": 4,
@@ -862,6 +878,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-03004-5-uniq-0073-00",
+      "talent": "Kureiji Ollie",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-17"
+    },
+    {
       "id": "card-03005-4-cmmn-0000-00",
       "talent": "Anya Melfissa",
       "rarity": 4,
@@ -934,6 +956,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-04001-5-uniq-0071-00",
+      "talent": "Mori Calliope",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-17"
+    },
+    {
       "id": "card-04002-4-cmmn-0000-00",
       "talent": "Takanashi Kiara",
       "rarity": 4,
@@ -956,6 +984,12 @@
       "talent": "Ninomae Ina'nis",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04003-5-uniq-0072-00",
+      "talent": "Ninomae Ina'nis",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-17"
     },
     {
       "id": "card-04007-4-cmmn-0000-00",
@@ -1119,10 +1153,10 @@
     ]
   },
   "testCountPinFiles": [],
-  "deterministicDigest": "19a6230ee2205866bf96105b856b43f53d5257eb70e0a12a9074f5d31a360fad",
+  "deterministicDigest": "2c2ed73d9a92a647262f34fa6045fdc23e5b9e41bc90fca60ef9ab7bd69e041c",
   "runtimeMetadata": {
-    "generatedAt": "2026-08-11T06:44:53.914Z",
-    "elapsedMilliseconds": 16018,
+    "generatedAt": "2026-08-17T15:16:57.549Z",
+    "elapsedMilliseconds": 29901,
     "changedDatasetCount": 0,
     "timelineStageError": "Error: Failed to read chart API revision: 403\r"
   }

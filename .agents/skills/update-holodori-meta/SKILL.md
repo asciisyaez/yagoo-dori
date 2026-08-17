@@ -11,6 +11,10 @@ Prepare one reproducible roster/mechanics/song change set, then recalculate Yago
 
 1. Run `pnpm project:status` and read `AGENTS.md`.
 2. Resolve the exact English and Japanese HolodoriDB commits. Record repository URL, commit, retrieval time, master version, and transformation in the backstage dataset manifest.
+   When raw GitHub is rate-limited, use the sync helper's Contents-API fallback or set
+   `HOLODORI_DB_MIRROR_ROOT` to a local checkout of those exact pinned commits. A
+   mirror is only a reproducibility aid for already-public repository data; it is
+   not permission to bypass a protected endpoint or scrape a private source.
 3. Inspect explicit table keys. Join cards, characters, translations, parameter curves, Active/Passive/Special skills, Leader skills, costumes, attributes, generations, songs, charts, and conditions without inferring meaning from IDs.
 4. Corroborate important mechanics and entity relationships against official material and at least one current independent reference such as Game8 or AppMedia. Put disagreements in the review queue; never silently merge them.
 5. Download publicly posted card art locally and update the backstage asset manifest with card ID, source URL, retrieval date, path, dimensions, and hash. Never hotlink production images or surface provenance messaging in card UI.
@@ -24,16 +28,37 @@ Prepare one reproducible roster/mechanics/song change set, then recalculate Yago
 
 7. Review the normalized diff before calculation. Unverified numerical changes stop the affected card from entering a new native snapshot.
 
+### Chart and timeline intake
+
+Run the patch-intake orchestrator after the three imports when a roster patch also
+changes songs or charts:
+
+```text
+pnpm data:patch-intake --retrieved-at=<YYYY-MM-DD>
+```
+
+It must reconcile the aggregate chart key set even when the timing endpoint is
+unavailable. New or rehashed charts are recorded as explicit `unavailable` rows,
+and stale exact rows are retired only when the API supplied no replacement. Never
+reuse an old hash to imply current timing, placement, or order evidence. Re-run
+`timelines:project:guides` after this reconciliation so guide projections contain
+only exact or explicitly unavailable rows.
+
+If an existing benchmark chart's upstream hash changes and the current timing
+asset is unavailable, do not re-pin the stale exact row. Replace that benchmark
+entry with a stable, exact, pre-cutoff chart, regenerate the compact benchmark
+corpus and its hash, and record the substitution in the review notes.
+
 ## Recalculate
 
 1. Run `pnpm --filter @yagoo-dori/core rankings:generate --generated-at=<fixed ISO timestamp>` with the repository's fixed seeds and frozen baseline.
-2. Run `pnpm --filter @yagoo-dori/core guides:generate --generated-at=<same fixed ISO timestamp>` so guide teams use the same roster and methodology snapshot.
+2. Regenerate all existing guides first with no anchor filter, using the same fixed timestamp. Then project guide timelines with the new anchor IDs, generate the new anchor guides, and project once more without filters. This ordering prevents a partial anchor run from dropping existing guides or from referencing a missing timeline row.
 3. Attribute native score/rank/tier changes to direct card changes, new synergy, chart/meta changes, new evidence, or methodology corrections. Attribution components must sum to the displayed delta.
 4. Keep methodology-version changes separate from game-patch changes. Do not convert an editorial opinion into a native input.
 
 ## Verify and review
 
-Run the repository verification sequence in `AGENTS.md` in its exact order. Then preview the tier list, affected card/Outfit profiles, guide index, and affected guide routes at desktop and mobile sizes.
+Run `pnpm copy:audit` as well as the repository verification sequence in `AGENTS.md` in its exact order. Then preview the tier list, affected card/Outfit profiles, guide index, and affected guide routes at desktop and mobile sizes. A generated guide can add new mechanic wording (especially `Score Support Effect`); classify each new occurrence in `scripts/copy-audit-ledger.json` before declaring the intake clean.
 
 Present:
 
