@@ -18,7 +18,7 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "b1f9535bbdc4473e384adab7b41a0e26e06363d7";
+const PINNED_GUIDE_ROSTER_COMMIT = "a15150a8b7413f035f28f8f85d63ab9df122c380";
 
 const EXPECTED_GUIDE_IDENTITIES = [
   {
@@ -118,6 +118,61 @@ const EXPECTED_GUIDE_IDENTITIES = [
       premium: "card-06002-5-uniq-0066-00",
       standard: "card-06002-5-uniq-0066-00",
       "accessible-4-star": "card-06002-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00010-5-uniq-0069-00",
+    talentId: "chr-00010",
+    talentName: "Nakiri Ayame",
+    cardTitle: "Oni Way: Breezy Resort",
+    leaders: {
+      premium: "card-00010-5-uniq-0010-00",
+      standard: "card-00010-5-uniq-0069-00",
+      "accessible-4-star": "card-00010-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00028-5-uniq-0070-00",
+    talentId: "chr-00028",
+    talentName: "Himemori Luna",
+    cardTitle: "Spoiled Beach Princess",
+    leaders: {
+      premium: "card-00028-5-uniq-0070-00",
+      standard: "card-00028-5-uniq-0070-00",
+      "accessible-4-star": "card-00028-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03004-5-uniq-0073-00",
+    talentId: "chr-03004",
+    talentName: "Kureiji Ollie",
+    cardTitle: "Crazy Summer Dive",
+    leaders: {
+      premium: "card-03004-5-uniq-0073-00",
+      standard: "card-03004-5-uniq-0073-00",
+      "accessible-4-star": "card-03004-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-04001-5-uniq-0071-00",
+    talentId: "chr-04001",
+    talentName: "Mori Calliope",
+    cardTitle: "Beach Reaper's Spike",
+    leaders: {
+      premium: "card-04001-5-uniq-0071-00",
+      standard: "card-04001-5-uniq-0042-00",
+      "accessible-4-star": "card-04001-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-04003-5-uniq-0072-00",
+    talentId: "chr-04003",
+    talentName: "Ninomae Ina'nis",
+    cardTitle: "Tracing Tide Memories",
+    leaders: {
+      premium: "card-04003-5-uniq-0044-00",
+      standard: "card-04003-5-uniq-0072-00",
+      "accessible-4-star": "card-04003-4-cmmn-0000-00",
     },
   },
 ] as const;
@@ -237,9 +292,88 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Sunflower Symphony",
     leaderSkillId: "live_leader_skill-card-06002-5-uniq-0066-00",
   },
+  "card-00010-4-cmmn-0000-00": {
+    cardTitle: "Demonic Encore",
+    costumeId: "cos-00010-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00010-4-cmmn-0000-00",
+  },
+  "card-00010-5-uniq-0010-00": {
+    cardTitle: "Spirit Realm Lantern",
+    costumeId: "cos-00010-uniq-0010-00",
+    costumeName: "Demon Spider Lily",
+    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0010-00",
+  },
+  "card-00010-5-uniq-0069-00": {
+    cardTitle: "Oni Way: Breezy Resort",
+    costumeId: "cos-00010-uniq-0069-00",
+    costumeName: "Endless Summer Lycoris",
+    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0069-00",
+  },
+  "card-00028-4-cmmn-0000-00": {
+    cardTitle: "Ethereal Princess",
+    costumeId: "cos-00028-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00028-4-cmmn-0000-00",
+  },
+  "card-00028-5-uniq-0070-00": {
+    cardTitle: "Spoiled Beach Princess",
+    costumeId: "cos-00028-uniq-0070-00",
+    costumeName: "Soleil Dappled Crown",
+    leaderSkillId: "live_leader_skill-card-00028-5-uniq-0070-00",
+  },
+  "card-03004-4-cmmn-0000-00": {
+    cardTitle: "Deadly Encore",
+    costumeId: "cos-03004-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-03004-4-cmmn-0000-00",
+  },
+  "card-03004-5-uniq-0073-00": {
+    cardTitle: "Crazy Summer Dive",
+    costumeId: "cos-03004-uniq-0073-00",
+    costumeName: "CRAZY SHOCK!",
+    leaderSkillId: "live_leader_skill-card-03004-5-uniq-0073-00",
+  },
+  "card-04001-4-cmmn-0000-00": {
+    cardTitle: "Rep the Underworld",
+    costumeId: "cos-04001-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04001-4-cmmn-0000-00",
+  },
+  "card-04001-5-uniq-0042-00": {
+    cardTitle: "Reaper’s Death Flow",
+    costumeId: "cos-04001-uniq-0042-00",
+    costumeName: "Poetic Death Waltz",
+    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0042-00",
+  },
+  "card-04001-5-uniq-0071-00": {
+    cardTitle: "Beach Reaper's Spike",
+    costumeId: "cos-04001-uniq-0071-00",
+    costumeName: "Radiant Summer Heatwave",
+    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0071-00",
+  },
+  "card-04003-4-cmmn-0000-00": {
+    cardTitle: "Gentle Stage Beam",
+    costumeId: "cos-04003-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04003-4-cmmn-0000-00",
+  },
+  "card-04003-5-uniq-0044-00": {
+    cardTitle: "Warm Up and Recharge",
+    costumeId: "cos-04003-uniq-0044-00",
+    costumeName: "Deep-Sea Kimono",
+    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0044-00",
+  },
+  "card-04003-5-uniq-0072-00": {
+    cardTitle: "Tracing Tide Memories",
+    costumeId: "cos-04003-uniq-0072-00",
+    costumeName: "Waterfront Monochrome",
+    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0072-00",
+  },
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00010-5-uniq-0069-00",
   "card-00012-5-uniq-0062-00",
   "card-00013-5-uniq-0002-00",
   "card-00015-5-uniq-0067-00",
@@ -248,6 +382,10 @@ const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
   "card-00021-5-uniq-0064-00",
   "card-00022-5-uniq-0063-00",
   "card-00026-5-uniq-0065-00",
+  "card-00028-5-uniq-0070-00",
+  "card-03004-5-uniq-0073-00",
+  "card-04001-5-uniq-0071-00",
+  "card-04003-5-uniq-0072-00",
   "card-06002-5-uniq-0066-00",
 ].sort();
 
@@ -371,7 +509,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(83);
+    expect(referencedCardIds.size).toBe(97);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

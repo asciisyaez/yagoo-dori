@@ -290,6 +290,108 @@ let timelineStage = { status: "synced", reasonCode: null };
 let timelineStageError = null;
 
 const API_UNAVAILABLE_PATTERN = /Failed to read chart API revision|HTTP 403|Cloudflare|ENOTFOUND|ECONNRESET|ETIMEDOUT/i;
+let timelineReconciliation = null;
+
+async function reconcileUnavailableTimelineArtifact() {
+  const timelinePath = join(root, "data", "generated", "holodori-chart-timelines.json");
+  const songsPath = join(root, "data", "generated", "holodori-songs.json");
+  const timeline = JSON.parse((await readFile(timelinePath)).toString("utf8"));
+  const songs = JSON.parse((await readFile(songsPath)).toString("utf8"));
+  const aggregateCharts = [...(songs.charts ?? [])].sort((left, right) => left.key.localeCompare(right.key));
+  const aggregateByKey = new Map(aggregateCharts.map((chart) => [chart.key, chart]));
+  const exactCharts = (timeline.charts ?? []).filter((chart) => aggregateByKey.has(chart.key));
+  const unavailableByKey = new Map(
+    (timeline.unavailableCharts ?? [])
+      .filter((chart) => aggregateByKey.has(chart.key))
+      .map((chart) => [chart.key, chart]),
+  );
+  const exactByKey = new Map(exactCharts.map((chart) => [chart.key, chart]));
+  const addedKeys = [];
+  const replacedExactKeys = [];
+  for (const aggregate of aggregateCharts) {
+    const exact = exactByKey.get(aggregate.key);
+    const unavailable = unavailableByKey.get(aggregate.key);
+    if (exact && unavailable) {
+      throw new Error(`Timeline artifact has conflicting availability for ${aggregate.key}.`);
+    }
+    const existing = exact ?? unavailable;
+    if (existing) {
+      if (
+        existing.upstreamChartHash !== aggregate.chartHash ||
+        existing.fullComboNoteCount !== aggregate.fullComboNoteCount
+      ) {
+        if (unavailable && unavailable.reason !== "source-api-unreachable-cloudflare-challenge-at-intake") {
+          throw new Error(
+            `${aggregate.key} timeline changed while the source API was unavailable; ` +
+              "manual timeline retrieval is required before replacing non-API evidence.",
+          );
+        }
+        exactByKey.delete(aggregate.key);
+        unavailableByKey.set(aggregate.key, {
+          availability: "unavailable",
+          key: aggregate.key,
+          songId: aggregate.songId,
+          difficulty: aggregate.difficulty,
+          upstreamChartHash: aggregate.chartHash,
+          fullComboNoteCount: aggregate.fullComboNoteCount,
+          parsedEventCount: 0,
+          specialMarkerCount: 0,
+          reason: "source-api-unreachable-cloudflare-challenge-at-intake",
+          source: {
+            api: timeline.sourceSnapshot?.apiBaseUrl ?? "https://api.holodori.best",
+            note: `${requestedRetrievedAt ?? freshDate} intake: chart hash/count changed while the chart API was unavailable; stale timing evidence was retired without placement/timing claims.`,
+          },
+        });
+        replacedExactKeys.push(aggregate.key);
+      }
+      continue;
+    }
+    unavailableByKey.set(aggregate.key, {
+      availability: "unavailable",
+      key: aggregate.key,
+      songId: aggregate.songId,
+      difficulty: aggregate.difficulty,
+      upstreamChartHash: aggregate.chartHash,
+      fullComboNoteCount: aggregate.fullComboNoteCount,
+      parsedEventCount: 0,
+      specialMarkerCount: 0,
+      reason: "source-api-unreachable-cloudflare-challenge-at-intake",
+      source: {
+        api: timeline.sourceSnapshot?.apiBaseUrl ?? "https://api.holodori.best",
+        note: `${requestedRetrievedAt ?? freshDate} intake: chart API unavailable; aggregate chart retained without placement/timing claims.`,
+      },
+    });
+    addedKeys.push(aggregate.key);
+  }
+
+  const nextUnavailableCharts = [...unavailableByKey.values()].sort((left, right) => left.key.localeCompare(right.key));
+  const nextCharts = [...exactByKey.values()].sort((left, right) => left.key.localeCompare(right.key));
+  const nextPayload = {
+    ...timeline,
+    counts: {
+      ...timeline.counts,
+      songs: new Set(nextCharts.map((chart) => chart.songId)).size,
+      charts: nextCharts.length,
+      unavailableCharts: nextUnavailableCharts.length,
+      events: nextCharts.reduce((sum, chart) => sum + chart.events.length, 0),
+      specialMarkers: nextCharts.length * 5,
+      chartsWithDeclaredCountDisagreements: nextCharts.filter(
+        (chart) => chart.declaredCountDisagreements.length > 0,
+      ).length,
+    },
+    charts: nextCharts,
+    unavailableCharts: nextUnavailableCharts,
+  };
+  const bytes = Buffer.from(`${JSON.stringify(nextPayload, null, 2)}\n`, "utf8");
+  await writeFile(timelinePath, bytes);
+  const sha256Value = sha256(bytes);
+  timelineReconciliation = {
+    addedKeys: [...new Set([...(timelineReconciliation?.addedKeys ?? []), ...addedKeys])].sort(),
+    replacedExactKeys: [...new Set([...(timelineReconciliation?.replacedExactKeys ?? []), ...replacedExactKeys])].sort(),
+    sha256: sha256Value,
+  };
+  return timelineReconciliation;
+}
 
 async function runSyncPass(publicArgs) {
   await runPnpm("data:sync:public", publicArgs);
@@ -303,6 +405,7 @@ async function runSyncPass(publicArgs) {
     if (!API_UNAVAILABLE_PATTERN.test(text)) throw error;
     timelineStage = { status: "skipped-api-unavailable", reasonCode: "chart-api-unreachable" };
     timelineStageError = text.split("\n").find((line) => API_UNAVAILABLE_PATTERN.test(line))?.slice(0, 200) ?? text.slice(0, 200);
+    await reconcileUnavailableTimelineArtifact();
   }
 }
 
@@ -312,14 +415,14 @@ await runPnpm("assets:previews", []);
 const firstPassSnapshot = await snapshotGeneratedFiles();
 await runSyncPass(publicArgsRepass);
 const finalSnapshot = await snapshotGeneratedFiles();
-// An accepted timeline skip must leave every timeline artifact byte-identical
-// to its pre-intake state - a partially written corpus must never pass.
+// An accepted timeline skip may only add explicit unavailable rows. The second
+// pass must reproduce the first-pass artifact byte-for-byte; a partial or
+// nondeterministic timeline write must never pass.
 if (timelineStage.status !== "synced") {
-  for (const [file, entry] of beforeSnapshot) {
-    if (!/timeline/i.test(file)) continue;
-    if (finalSnapshot.get(file)?.sha256 !== entry.sha256) {
-      throw new Error(`Timeline sync was skipped but ${file} changed - partial write detected.`);
-    }
+  const firstTimeline = firstPassSnapshot.get("data/generated/holodori-chart-timelines.json");
+  const finalTimeline = finalSnapshot.get("data/generated/holodori-chart-timelines.json");
+  if (!firstTimeline || !finalTimeline || firstTimeline.sha256 !== finalTimeline.sha256) {
+    throw new Error("Timeline sync was skipped but the reconciled artifact was not byte-stable.");
   }
 }
 const finalJson = parseSnapshot(finalSnapshot);
@@ -344,7 +447,18 @@ const deterministicManifest = {
     songs: songsRetrievedAt,
     timelines: getJson(finalJson, "data/generated/holodori-chart-timelines.json")?.retrievedAt ?? null,
   },
-  timelineStage: { status: timelineStage.status, reasonCode: timelineStage.reasonCode },
+  timelineStage: {
+    status: timelineStage.status,
+    reasonCode: timelineStage.reasonCode,
+    ...(timelineReconciliation
+      ? {
+          unavailableReconciliation: {
+            addedKeys: timelineReconciliation.addedKeys,
+            replacedExactKeys: timelineReconciliation.replacedExactKeys,
+          },
+        }
+      : {}),
+  },
   pinFiles,
   syncCommands: syncCommands.map(({ name, output }) => ({ name, output })),
   datasets,
@@ -384,7 +498,11 @@ for (const { path, fields } of pinFiles) console.log(`- ${path}: ${fields.join("
 console.log("Operator-owned regeneration: pnpm rankings:generate (deliberately separate from intake). Guides remain outside Batch F1.");
 console.log(`Test files with moved count pins: ${countPinFiles.length === 0 ? "none" : countPinFiles.join(", ")}`);
 if (timelineStage.status !== "synced") {
-  console.log(`WARNING: chart-timeline sync ${timelineStage.status} [${timelineStage.reasonCode}] (${timelineStageError}); the committed timeline corpus was left untouched - retry pnpm data:sync:timelines when the API is reachable.`);
+  console.log(
+    `WARNING: chart-timeline sync ${timelineStage.status} [${timelineStage.reasonCode}] ` +
+      `(${timelineStageError}); unavailable aggregate rows were recorded without placement/timing claims. ` +
+      "Retry pnpm data:sync:timelines when the API is reachable.",
+  );
 }
 
 if (!idempotenceStable || !pinsUnchanged) {

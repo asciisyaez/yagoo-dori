@@ -12,7 +12,7 @@ const previewManifest = JSON.parse(
 const publicData = JSON.parse(await readFile("data/generated/holodori-public.json", "utf8"));
 const failures = [];
 const expectedCount = publicData.counts?.total;
-const expectedPreviewCount = 115;
+const expectedPreviewCount = expectedCount;
 const requiredDimensions = {
   icon: { width: 300, height: 300 },
   illustration: { width: 2282, height: 1284 },

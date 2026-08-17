@@ -40,7 +40,7 @@ describe("compact exact ranking-corpus timelines", () => {
     expect(hash).toBe(rankingCorpusTimelineData.source.fullCorpusSha256);
     expect(rankingCorpusTimelineData.counts).toEqual({
       charts: 30,
-      events: 29_568,
+      events: 29_390,
       specialMarkers: 150,
       feverMarkers: 120,
     });

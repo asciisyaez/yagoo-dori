@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { fetchGithubRaw } from "./lib/fetch-github-raw.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,13 +14,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-    masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
+    commit: "a15150a8b7413f035f28f8f85d63ab9df122c380",
+    masterVersion: "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "4ab2389ae009a0a7961c482ba9407dc24035b557",
-    masterVersion: "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48",
+    commit: "84cb500d8ebf19e306be20faba696123018e49a8",
+    masterVersion: "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
@@ -90,7 +91,7 @@ const englishFiles = [
 
 const japaneseFiles = ["LangCard_Jpn.json", "LangCharacter_Jpn.json"];
 
-const minimumCardAssetCount = 115;
+const minimumCardAssetCount = 120;
 const minimumIllustrationDimensions = { width: 2282, height: 1284 };
 const requiredIconDimensions = { width: 300, height: 300 };
 
@@ -99,26 +100,10 @@ function rawUrl(source, file) {
 }
 
 async function fetchPublic(url, accept) {
-  let lastError;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    try {
-      const response = await fetch(url, {
-        headers: {
-          "user-agent": "Yagoo-dori public-data indexer (+https://github.com/asciisyaez/yagoo-dori)",
-          accept,
-        },
-        signal: AbortSignal.timeout(30_000),
-      });
-      if (response.ok) return response;
-      lastError = new Error(`Failed ${response.status} ${response.statusText}: ${url}`);
-    } catch (error) {
-      lastError = error;
-    }
-    if (attempt < 3) {
-      await new Promise((resolve) => setTimeout(resolve, attempt * 250));
-    }
-  }
-  throw lastError;
+  return fetchGithubRaw(url, {
+    accept,
+    userAgent: "Yagoo-dori public-data indexer (+https://github.com/asciisyaez/yagoo-dori)",
+  });
 }
 
 async function fetchText(url) {
@@ -339,6 +324,41 @@ const appMediaAssetOverrideByCardId = {
     iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/143818_hxwlf.webp",
     illustrationSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/193928_apfbq.webp",
   },
+  "card-00010-5-uniq-0069-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234857",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/08/185143_uiys0.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/800904",
+    illustrationSourceUrl: "https://img.game8.jp/12889920/2ba810a9253cd60b2acd30d711aabbed.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-00028-5-uniq-0070-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234893",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/08/191914_5usrx.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/800904",
+    illustrationSourceUrl: "https://img.game8.jp/12889919/9b0c9885dcc2f797a28b7f26912175bb.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-03004-5-uniq-0073-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234929",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/08/192325_7id4n.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/800904",
+    illustrationSourceUrl: "https://img.game8.jp/12889917/7f2a51cf6ed8c5a249687f0590d3fe81.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-04001-5-uniq-0071-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234947",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/07/110743_u7wr6.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/800904",
+    illustrationSourceUrl: "https://img.game8.jp/12889915/765bcaaf45ee28fa51aa3db3fe788bae.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-04003-5-uniq-0072-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234953",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/08/191920_b285p.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/800904",
+    illustrationSourceUrl: "https://img.game8.jp/12889918/ca975d5a23735214d3e4afa3630d1bcb.webp/original",
+    allowExternalIllustration: true,
+  },
 };
 
 const appMediaTitleAliasByCardId = {
@@ -470,13 +490,14 @@ async function downloadArt(cards, talentNameJaById) {
         overridePage.images.filter((image) => belongsToCard(image) && isIllustration(image)),
       );
       if (
-        detected.length > 1 ||
-        (detected.length === 1 && detected[0].sourceUrl !== override.illustrationSourceUrl)
+        !override.allowExternalIllustration &&
+        (detected.length > 1 ||
+          (detected.length === 1 && detected[0].sourceUrl !== override.illustrationSourceUrl))
       ) {
         throw new Error(`${card.id}: AppMedia illustration override disagrees with the talent page`);
       }
       illustration = {
-        sourcePage: override.sourcePage,
+        sourcePage: override.illustrationSourcePage ?? override.sourcePage,
         sourceUrl: override.illustrationSourceUrl,
       };
       illustrationMatchMethod = "explicit-media-override";

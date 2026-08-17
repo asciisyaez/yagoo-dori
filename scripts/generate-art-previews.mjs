@@ -4,7 +4,6 @@ import { basename, join } from "node:path";
 
 import sharp from "sharp";
 
-const EXPECTED_COUNT = 115;
 const SOURCE_MANIFEST_PATH = "data/generated/card-art-manifest.json";
 const PREVIEW_MANIFEST_PATH = "data/generated/card-art-preview-manifest.json";
 const PUBLIC_ROOT = join("apps", "web", "public");
@@ -31,13 +30,14 @@ function sha256(bytes) {
 
 const sourceManifestBytes = await readFile(SOURCE_MANIFEST_PATH);
 const sourceManifest = JSON.parse(sourceManifestBytes.toString("utf8"));
+const EXPECTED_COUNT = sourceManifest.assets?.length ?? 0;
 
 if (sharp.versions.sharp !== GENERATOR.version) {
   throw new Error(
     `Preview generator requires sharp ${GENERATOR.version}, found ${sharp.versions.sharp}.`,
   );
 }
-if (!Array.isArray(sourceManifest.assets) || sourceManifest.assets.length !== EXPECTED_COUNT) {
+if (!Array.isArray(sourceManifest.assets) || EXPECTED_COUNT <= 0) {
   throw new Error(
     `Preview generator expected ${EXPECTED_COUNT} source illustrations, found ` +
       `${sourceManifest.assets?.length ?? 0}.`,

@@ -1,0 +1,7588 @@
+{
+  "schemaVersion": 1,
+  "fromSnapshotId": "2026-08-08-yd-native-2.1",
+  "fromGeneratedAt": "2026-08-07T00:00:00.000Z",
+  "toSnapshotId": "2026-08-17-yd-native-2.1",
+  "toGeneratedAt": "2026-08-17T00:00:00.000Z",
+  "entries": [
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 9450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 15620
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12390
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20960
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6460
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8300
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -21420
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -21260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6980
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8810
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9430
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -13440
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -19230
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -190
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -120
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -38880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 11590
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -36660
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7920
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 14570
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8100
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7610
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18530
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4390
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -11160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 21830
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20180
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 35120
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8190
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6680
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5950
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 25630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5610
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20540
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 13330
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8890
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20090
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -29640
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 47280
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7360
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 46550
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -14560
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -48830
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20480
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -23770
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9190
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -19160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18720
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 16700
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18740
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 9810
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 13580
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19170
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2900
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4280
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5150
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6080
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -11850
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12200
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4300
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2050
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10760
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4580
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5330
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7750
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2080
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -15250
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2430
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12330
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2310
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7010
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1110
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6920
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2320
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2610
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4830
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10180
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2890
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4240
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2710
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2760
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12860
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1460
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1600
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1670
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1910
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3720
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8370
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7080
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -550
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3140
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4580
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 9310
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 15650
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12300
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7470
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1590
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8290
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -21460
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -21210
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7060
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8680
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20010
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9420
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -13420
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -19210
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -170
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -130
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -38840
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 11670
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -36650
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8040
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 14600
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8180
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7690
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18440
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4470
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -11150
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 21810
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20200
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 34990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8510
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -320
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6680
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 25620
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20530
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 13360
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19980
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -29630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 47220
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7380
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 46530
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -14470
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -48790
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20460
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -23820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -19040
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18800
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 16690
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 18710
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 9840
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 13520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 19150
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4300
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6090
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -11850
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12110
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4310
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2090
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10790
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2610
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4480
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5330
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2170
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -15290
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2420
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12230
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2390
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7010
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3740
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1940
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1030
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3490
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7020
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2180
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4840
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4950
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4190
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2710
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10720
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2660
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1510
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1570
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1580
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5890
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3720
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8280
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4010
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7030
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -630
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3240
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4480
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 37050
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -39650
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 44640
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8140
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8280
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10030
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7100
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7910
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2070
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9700
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7440
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -37030
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -23170
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5670
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -68970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 17320
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -49990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 45870
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5400
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5920
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8070
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1460
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 35510
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -330
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -37990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8680
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -38550
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9090
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10370
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -360
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 35260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 32500
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 9270
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 35070
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7770
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10470
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6440
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7340
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 12880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 7360
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 14080
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8390
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 33480
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -17750
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6150
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 33090
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -20360
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 34340
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -15450
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9920
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -37740
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5750
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 17950
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5610
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10210
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 10210
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5180
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5840
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9680
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6350
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6040
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -13810
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -12370
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3050
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5340
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 5490
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -14620
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4280
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2350
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -400
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8760
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -14880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2730
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4490
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2900
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -8100
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4030
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 6040
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3930
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2370
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2570
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2170
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -13780
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -7970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4050
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 2260
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1020
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 8200
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3200
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4960
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -11340
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4830
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -16520
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10690
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1880
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -910
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2960
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1430
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6820
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2410
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1990
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -9070
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4160
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 4600
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -6800
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -600
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 3970
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3640
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -5140
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 840
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 150
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 150
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 150
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 150
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 150
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -520
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -520
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -520
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -520
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -520
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 750
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 380
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 820
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -780
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -120
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -20
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 560
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -920
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1470
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 130
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 120
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1890
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -300
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -190
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -60
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 600
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 500
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 710
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -540
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -540
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -540
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -540
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -540
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 650
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 250
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 660
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -760
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -120
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -10
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -620
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 660
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2690
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 100
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -370
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -880
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1440
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 120
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2070
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -450
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 120
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1880
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -350
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 20
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 600
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 600
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 610
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-5-uniq-0021-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-5-uniq-0029-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-5-uniq-0036-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03009-5-uniq-0041-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0017-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-5-uniq-0025-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-5-uniq-0052-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-5-uniq-0061-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-5-uniq-0006-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 210
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00016-5-uniq-0014-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 210
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0004-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 210
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-5-uniq-0023-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 210
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-5-uniq-0055-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 210
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-5-uniq-0005-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -990
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-5-uniq-0002-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -990
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -990
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -990
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-5-uniq-0060-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -990
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00037-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-5-uniq-0010-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-5-uniq-0062-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-5-uniq-0040-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04003-5-uniq-0044-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-5-uniq-0049-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -4320
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00019-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -510
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00011-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03009-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 360
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -770
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-5-uniq-0066-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -770
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-5-uniq-0015-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 530
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03001-5-uniq-0033-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1100
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00011-5-uniq-0011-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1270
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04012-5-uniq-0051-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1030
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-5-uniq-0058-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -410
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -680
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-5-uniq-0035-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1030
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 160
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1400
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-5-uniq-0043-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 240
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-5-uniq-0056-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -1190
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-5-uniq-0032-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 340
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00019-5-uniq-0016-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2890
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -3450
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0067-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -640
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06004-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -2300
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00001-5-uniq-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -560
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00018-5-uniq-0068-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": -270
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 40
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00014-5-uniq-0013-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1180
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1030
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00005-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00006-5-uniq-0007-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00012-5-uniq-0012-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00027-5-uniq-0022-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00028-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00031-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00035-5-uniq-0028-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00039-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03002-5-uniq-0034-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03003-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03005-5-uniq-0037-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03007-5-uniq-0039-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03008-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04001-5-uniq-0042-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04007-5-uniq-0047-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04010-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04013-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04015-5-uniq-0054-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06002-4-cmmn-0000-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-06003-5-uniq-0059-00",
+      "parts": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 1310
+        }
+      ]
+    }
+  ]
+}

@@ -21,6 +21,7 @@ export type TierCard = {
   slug: string;
   talentName: string;
   title: string;
+  isNew: boolean;
   rarity: 4 | 5;
   attribute: "cute" | "pure" | "happy";
   generation: string;
@@ -130,7 +131,7 @@ function CardTile({
     <motion.div className={`game-card-tile attribute-${card.attribute}`} layout={!reducedMotion}>
       <Link
         href={`/cards/${card.slug}`}
-        aria-label={`${card.talentName}, ${card.title}, ${card.rarity} star ${card.attribute} ${entityLabel}, ${placement.tier} tier`}
+        aria-label={`${card.talentName}, ${card.title}, ${card.rarity} star ${card.attribute} ${entityLabel}, ${placement.tier} tier${card.isNew ? ", New" : ""}`}
       >
         <Image
           alt=""
@@ -139,6 +140,7 @@ function CardTile({
           src={card.artPath}
         />
         <span className="card-rarity">{card.rarity}★</span>
+        {card.isNew && <b className="tier-new-card-chip">New</b>}
         <i className="attribute-dot" aria-hidden="true" />
       </Link>
       <button
@@ -416,6 +418,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                 <span>{selectedCard.attribute}</span>
                 <span>{selectedCard.rankings[lens].tier} tier</span>
                 <span>#{selectedCard.rankings[lens].rank}</span>
+                {selectedCard.isNew && <span>New</span>}
                 {selectedCard.rankings[lens].provisional && <span>Provisional</span>}
               </div>
               <p className="tier-quick-view-index">

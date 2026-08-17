@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "expectedCount": 115,
+  "expectedCount": 120,
   "sourceManifest": {
     "path": "data/generated/card-art-manifest.json",
-    "sha256": "49ea3b62ca8419c1c4ace2c1f0229ed9904257eec3fdfbb28963b14f21dfbd4b",
+    "sha256": "08ea5bc8230c893e89e6e8f44dbd419cd7b2e8d5d77a011d24cb745494bb5964",
     "schemaVersion": 2,
-    "retrievedAt": "2026-08-11"
+    "retrievedAt": "2026-08-17"
   },
   "generator": {
     "library": "sharp",
@@ -159,6 +159,20 @@
         "path": "/game/previews/card-00028-5-uniq-0023-00.webp",
         "sha256": "b87d54fa33b9adf0a3b856ad008937646967aa1144196215ff2d2a45c6d9382f",
         "bytes": 65882,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-00028-5-uniq-0070-00",
+      "source": {
+        "path": "/game/illustrations/card-00028-5-uniq-0070-00.webp",
+        "sha256": "278c2ddcc6ff4c3f40d9605c1bb970ae8612271cf859ab70df4063afb95fc7bc"
+      },
+      "output": {
+        "path": "/game/previews/card-00028-5-uniq-0070-00.webp",
+        "sha256": "89cad0a6afd03c05db41dc5de880a86d4b91a0aaba80329b1ebe6920400e768a",
+        "bytes": 62082,
         "width": 1024,
         "height": 576
       }
@@ -332,6 +346,20 @@
       }
     },
     {
+      "cardId": "card-03004-5-uniq-0073-00",
+      "source": {
+        "path": "/game/illustrations/card-03004-5-uniq-0073-00.webp",
+        "sha256": "50a7dba2669277536f25f7b4f77a4fd021eef24d33b46b51e1f284de76d931b7"
+      },
+      "output": {
+        "path": "/game/previews/card-03004-5-uniq-0073-00.webp",
+        "sha256": "c3b587f2dff11e6e54287a19948f35b45496f6cd8eb321b5123e38376a421526",
+        "bytes": 81660,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
       "cardId": "card-00035-5-uniq-0028-00",
       "source": {
         "path": "/game/illustrations/card-00035-5-uniq-0028-00.webp",
@@ -402,6 +430,20 @@
       }
     },
     {
+      "cardId": "card-04001-5-uniq-0071-00",
+      "source": {
+        "path": "/game/illustrations/card-04001-5-uniq-0071-00.webp",
+        "sha256": "d69243d52b27b2ff1a0f3b466fba35b24ffcc883d1128949c91e6fc9b2093d81"
+      },
+      "output": {
+        "path": "/game/previews/card-04001-5-uniq-0071-00.webp",
+        "sha256": "9f889c31b563f48cbce578f9015fc0adc9fe29c1f9bc2bed624075e7b9d95c0e",
+        "bytes": 58910,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
       "cardId": "card-00010-5-uniq-0010-00",
       "source": {
         "path": "/game/illustrations/card-00010-5-uniq-0010-00.webp",
@@ -411,6 +453,20 @@
         "path": "/game/previews/card-00010-5-uniq-0010-00.webp",
         "sha256": "004332469c3e30b8e1f310862b35e075f99576e0a83f433cb6a172b725dd7a3f",
         "bytes": 75320,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-00010-5-uniq-0069-00",
+      "source": {
+        "path": "/game/illustrations/card-00010-5-uniq-0069-00.webp",
+        "sha256": "d3c0aa0527f3416f1f8360db60685852f7213118be712dd5d4f406a7d5b3dcf8"
+      },
+      "output": {
+        "path": "/game/previews/card-00010-5-uniq-0069-00.webp",
+        "sha256": "7a29e37cbff883103f2b4a23648bfb84e10519d2d715c98a30c70713f06a5e76",
+        "bytes": 70156,
         "width": 1024,
         "height": 576
       }
@@ -467,6 +523,20 @@
         "path": "/game/previews/card-04003-5-uniq-0044-00.webp",
         "sha256": "53b6db357bb110e430108ffed5c637c5119992c2a0f7cd6b14df80ab6d95a44f",
         "bytes": 60114,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-04003-5-uniq-0072-00",
+      "source": {
+        "path": "/game/illustrations/card-04003-5-uniq-0072-00.webp",
+        "sha256": "648514afa4cd5311e64bbed41a4b40470c554edd7d79b3275906d049e450c1a4"
+      },
+      "output": {
+        "path": "/game/previews/card-04003-5-uniq-0072-00.webp",
+        "sha256": "d3c3845c32af34209ad99a8793c047f773f6485c86114be9ca4ea88068da1b46",
+        "bytes": 60400,
         "width": 1024,
         "height": 576
       }

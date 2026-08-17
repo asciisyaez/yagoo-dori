@@ -10,7 +10,7 @@ import {
   resolveMusicScoreCoefficient,
 } from "./score-kernel";
 
-const PINNED_COMMIT = "b1f9535bbdc4473e384adab7b41a0e26e06363d7";
+const PINNED_COMMIT = "a15150a8b7413f035f28f8f85d63ab9df122c380";
 
 describe("known score kernel", () => {
   it("pins every implemented factor to the current structured snapshot", () => {

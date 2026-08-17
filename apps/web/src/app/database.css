@@ -633,6 +633,21 @@
   backdrop-filter: blur(5px);
 }
 
+.tier-new-card-chip {
+  position: absolute;
+  top: 0.28rem;
+  left: 0.28rem;
+  z-index: 2;
+  border: 1px solid rgba(37, 188, 233, 0.45);
+  border-radius: 3px;
+  background: rgba(37, 188, 233, 0.92);
+  color: #061016;
+  font-size: 0.52rem;
+  font-weight: 850;
+  line-height: 1;
+  padding: 0.2rem 0.25rem;
+}
+
 .attribute-dot {
   position: absolute;
   bottom: 0.35rem;
@@ -2035,6 +2050,7 @@
   .tier-band { grid-template-columns: 82px minmax(0, 1fr); }
   .tier-band-label strong { font-size: 1.35rem; }
   .game-card-tile { width: 84px; height: 94px; }
+  .tier-new-card-chip { top: 0.24rem; left: 0.24rem; font-size: 0.48rem; padding: 0.17rem 0.21rem; }
   .card-profile-hero { grid-template-columns: 1fr; }
   .card-illustration { min-height: min(58vw, 420px); }
   .card-illustration::after { background: linear-gradient(180deg, transparent 72%, var(--yd-panel) 100%); }

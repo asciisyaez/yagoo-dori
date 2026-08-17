@@ -99,23 +99,28 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("115 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(115);
+  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(120);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
+  for (const talentName of ["Nakiri Ayame", "Himemori Luna", "Kureiji Ollie", "Mori Calliope", "Ninomae Ina'nis"]) {
+    await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") }).first()).toBeVisible();
+  }
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
-  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(18);
-  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(23);
-  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(20);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(19);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(24);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(23);
   await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
   await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
-  await expect(page.getByText("115 Outfits shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(115);
+  await expect(page.getByText("120 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(120);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
-  await expect(page.getByText("115 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: /Low Investment/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
@@ -230,7 +235,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 
   await page.getByRole("button", { name: /^Reset/ }).click();
   await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
-  await expect(page.getByText("115 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
 });
 
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({

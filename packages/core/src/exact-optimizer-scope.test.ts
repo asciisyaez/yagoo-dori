@@ -18,9 +18,9 @@ function resignedScope(mutate: (scope: ExactOptimizerScope) => void): ExactOptim
 
 describe("exact optimizer scope manifest", () => {
   it("pins the canonical full-roster tuple without implicit defaults", () => {
-    expect(exactOptimizerScope.roster.cardCount).toBe(115);
-    expect(exactOptimizerScope.eligibility.eligibleMemberCardIds).toHaveLength(115);
-    expect(exactOptimizerScope.eligibility.eligibleLeaderOutfitCardIds).toHaveLength(115);
+    expect(exactOptimizerScope.roster.cardCount).toBe(120);
+    expect(exactOptimizerScope.eligibility.eligibleMemberCardIds).toHaveLength(120);
+    expect(exactOptimizerScope.eligibility.eligibleLeaderOutfitCardIds).toHaveLength(120);
     expect(exactOptimizerScope.investment.bloomStageByCardId).toEqual(
       expect.objectContaining({
         "card-00001-4-cmmn-0000-00": 0,

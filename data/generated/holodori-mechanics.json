@@ -1,411 +1,411 @@
 {
   "schemaVersion": 1,
   "methodologyVersion": "yd-mechanics-catalog-1.2.0",
-  "retrievedAt": "2026-08-10",
+  "retrievedAt": "2026-08-17",
   "sourceSnapshot": {
     "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    "commit": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-    "masterVersion": "97f9d1d7728c1dfc790ea441f3ed1fb6566199f721d0f5e8676397ba28ffab48"
+    "commit": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+    "masterVersion": "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c"
   },
   "evidenceSources": [
     {
       "id": "holodori-eng:Card.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Card.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/Card.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:CardLevel.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardLevel.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/CardLevel.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:CardLevelLimit.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardLevelLimit.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/CardLevelLimit.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:CardPotential.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CardPotential.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/CardPotential.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:Costume.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Costume.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/Costume.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveActiveSkillEffect.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveActiveSkillEffect.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveActiveSkillEffect.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveActiveSkillLevel.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveActiveSkillLevel.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveActiveSkillLevel.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveLeaderSkill.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveLeaderSkill.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveLeaderSkill.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LivePassiveSkillEffect.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LivePassiveSkillEffect.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LivePassiveSkillEffect.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LivePassiveSkillLevel.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LivePassiveSkillLevel.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LivePassiveSkillLevel.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveSkillEffectTarget.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSkillEffectTarget.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveSkillEffectTarget.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveSkillTrigger.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSkillTrigger.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveSkillTrigger.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LiveSpecialSkillLevel.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LiveSpecialSkillLevel.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LiveSpecialSkillLevel.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeConnectEffect.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeConnectEffect.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeConnectEffect.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeConnectEffectExtent.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeConnectEffectExtent.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeConnectEffectExtent.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeEffect.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffect.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeEffect.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeEffectPassiveTrigger.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectPassiveTrigger.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeEffectPassiveTrigger.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeEffectTarget.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectTarget.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeEffectTarget.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeEffectValueLimit.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeEffectValueLimit.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeEffectValueLimit.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeNode.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeNode.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeNode.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreeNodePosition.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreeNodePosition.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreeNodePosition.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:SkillTreePoint.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/SkillTreePoint.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/SkillTreePoint.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:Character.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Character.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/Character.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:CharacterLevel.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/CharacterLevel.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/CharacterLevel.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:Condition.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/Condition.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/Condition.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangClientCommon_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangClientCommon_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangClientCommon_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveActiveSkillEffect_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveActiveSkillEffect_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveActiveSkillEffect_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLivePassiveSkillEffect_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLivePassiveSkillEffect_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLivePassiveSkillEffect_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveSkillEffectTarget_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSkillEffectTarget_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveSkillEffectTarget_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveSkillTrigger_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSkillTrigger_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveSkillTrigger_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedSkillTreeConnectEffect_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeConnectEffect_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedSkillTreeConnectEffect_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedSkillTreeEffect_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffect_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedSkillTreeEffect_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedSkillTreeEffectPassiveTrigger_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffectPassiveTrigger_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedSkillTreeEffectPassiveTrigger_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedSkillTreeEffectTarget_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedSkillTreeEffectTarget_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedSkillTreeEffectTarget_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveActiveSkillLevel_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveActiveSkillLevel_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveActiveSkillLevel_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLivePassiveSkillLevel_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLivePassiveSkillLevel_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLivePassiveSkillLevel_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveSpecialSkillLevel_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveSpecialSkillLevel_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveSpecialSkillLevel_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangGeneratedLiveLeaderSkill_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangGeneratedLiveLeaderSkill_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangGeneratedLiveLeaderSkill_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangHelpContent_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangHelpContent_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangHelpContent_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "holodori-eng:LangSkillTreePoint_Eng.json",
       "kind": "structured",
-      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/b1f9535bbdc4473e384adab7b41a0e26e06363d7/LangSkillTreePoint_Eng.json",
-      "upstreamVersion": "b1f9535bbdc4473e384adab7b41a0e26e06363d7",
-      "retrievedAt": "2026-08-10",
+      "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/a15150a8b7413f035f28f8f85d63ab9df122c380/LangSkillTreePoint_Eng.json",
+      "upstreamVersion": "a15150a8b7413f035f28f8f85d63ab9df122c380",
+      "retrievedAt": "2026-08-17",
       "transformation": "Direct ID-preserving normalization from the pinned HolodoriDB row data."
     },
     {
       "id": "official:system",
       "kind": "official",
       "url": "https://www.hololive-dreams.com/en/system",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Human-reviewed corroboration for Leader Outfits, skill synergy, Board nodes, and Connect ranges."
     },
     {
       "id": "game8:skill-order",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801512",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Human-reviewed corroboration for the three Member skill families and left-to-right Special order."
     },
     {
       "id": "game8:sora-card",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801297",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Independent max-level parameter cross-check for the four-star Tokino Sora fixture."
     },
     {
       "id": "appmedia:score-guide",
       "kind": "corroboration",
       "url": "https://appmedia.jp/hololive-dreams/80248429",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Editorial cross-check only; no AppMedia ranking or weight enters the mechanics model."
     },
     {
       "id": "community:score-support-observation",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v8x5q3/score_up_vs_score_effect_up/",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Public score observations retained as provisional evidence, not a verified runtime equation."
     },
     {
       "id": "community:passive-target-test",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v5upec/passive_skill_question/",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Public target-selection observations retained to test candidate recipient rules."
     },
     {
       "id": "community:passive-target-counterexamples",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v6d9uh/questions_regarding_passive_buffs/",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Public counterexamples to simple formation-order and stat-priority recipient rules."
     },
     {
       "id": "community:active-overlap-observation",
       "kind": "corroboration",
       "url": "https://www.reddit.com/r/Hololive_Dreams/comments/1v8shq4/a_small_understanding_on_the_rpg_element_of_the/",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Public overlap observations retained as a provisional policy, not a verified mechanic."
     },
     {
       "id": "appmedia:board-guide",
       "kind": "corroboration",
       "url": "https://appmedia.jp/hololive-dreams/80246215",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Human-reviewed corroboration for Board adjacency prerequisites and the point-income boundary."
     },
     {
       "id": "game8:board-connect",
       "kind": "corroboration",
       "url": "https://game8.jp/hololive-dreams/801796",
-      "upstreamVersion": "retrieved-2026-08-10",
-      "retrievedAt": "2026-08-10",
+      "upstreamVersion": "retrieved-2026-08-17",
+      "retrievedAt": "2026-08-17",
       "transformation": "Human-reviewed corroboration for cross-board Connect-card placement exclusivity."
     }
   ],
@@ -1295,6 +1295,96 @@
         "unit": "permil",
         "targetId": "live_skill_effect_target-attribute-attribute_2-2",
         "description": "Grants Performance UP 43% to 2 Pure Type Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_leader_skill_effect-technique_up_permil_up-1350-live_skill_effect_target-all",
+        "family": "passive",
+        "kind": "technique-up",
+        "value": 1350,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-all",
+        "description": "Grants Technique UP 135% to all.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-120-live_skill_effect_target-character_grouping-grp-gen_2-2",
+        "family": "passive",
+        "kind": "active-skill-effect-up",
+        "value": 120,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+        "description": "Grants Score Support Effect of 12% to 2 Gen 2 Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-90-live_skill_effect_target-character_grouping-grp-gen_2-2",
+        "family": "passive",
+        "kind": "active-skill-effect-up",
+        "value": 90,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+        "description": "Grants Score Support Effect of 9% to 2 Gen 2 Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-performance_up_permil_up-320-live_skill_effect_target-character_grouping-grp-gen_4-2",
+        "family": "passive",
+        "kind": "performance-up",
+        "value": 320,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+        "description": "Grants Performance UP 32% to 2 Gen 4 Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-performance_up_permil_up-430-live_skill_effect_target-character_grouping-grp-gen_4-2",
+        "family": "passive",
+        "kind": "performance-up",
+        "value": 430,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+        "description": "Grants Performance UP 43% to 2 Gen 4 Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-character_grouping-grp-myth-2",
+        "family": "passive",
+        "kind": "sense-up",
+        "value": 320,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-myth-2",
+        "description": "Grants Sense UP 32% to 2 Myth Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_1-2",
+        "family": "passive",
+        "kind": "sense-up",
+        "value": 430,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-attribute-attribute_1-2",
+        "description": "Grants Sense UP 43% to 2 Cute Type Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_3-2",
+        "family": "passive",
+        "kind": "sense-up",
+        "value": 430,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-attribute-attribute_3-2",
+        "description": "Grants Sense UP 43% to 2 Happy Type Members.",
+        "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+      },
+      {
+        "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-character_grouping-grp-myth-2",
+        "family": "passive",
+        "kind": "sense-up",
+        "value": 430,
+        "unit": "permil",
+        "targetId": "live_skill_effect_target-character_grouping-grp-myth-2",
+        "description": "Grants Sense UP 43% to 2 Myth Members.",
         "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
       },
       {
@@ -33984,6 +34074,858 @@
       "scoringEligible": false
     },
     {
+      "cardId": "card-00010-5-uniq-0069-00",
+      "talentId": "chr-00010",
+      "rarity": 5,
+      "sourceRef": "holodori-eng:Card.json",
+      "parameterDistributionPermil": {
+        "performance": 302,
+        "technique": 430,
+        "sense": 268
+      },
+      "parameterSourceRefs": [
+        "holodori-eng:Card.json",
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:CardPotential.json"
+      ],
+      "progression": {
+        "maxLevel": 80,
+        "levelCurve": [
+          {
+            "level": 1,
+            "parameterBaseValue": 5236,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 2,
+            "parameterBaseValue": 5447,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 3,
+            "parameterBaseValue": 5658,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 4,
+            "parameterBaseValue": 5869,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 5,
+            "parameterBaseValue": 6080,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 6,
+            "parameterBaseValue": 6291,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 7,
+            "parameterBaseValue": 6502,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 8,
+            "parameterBaseValue": 6713,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 9,
+            "parameterBaseValue": 6924,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 10,
+            "parameterBaseValue": 7135,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 11,
+            "parameterBaseValue": 7346,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 12,
+            "parameterBaseValue": 7557,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 13,
+            "parameterBaseValue": 7768,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 14,
+            "parameterBaseValue": 7979,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 15,
+            "parameterBaseValue": 8190,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 16,
+            "parameterBaseValue": 8401,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 17,
+            "parameterBaseValue": 8612,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 18,
+            "parameterBaseValue": 8823,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 19,
+            "parameterBaseValue": 9034,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 20,
+            "parameterBaseValue": 9245,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 21,
+            "parameterBaseValue": 9456,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 22,
+            "parameterBaseValue": 9667,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 23,
+            "parameterBaseValue": 9879,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 24,
+            "parameterBaseValue": 10091,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 25,
+            "parameterBaseValue": 10303,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 26,
+            "parameterBaseValue": 10515,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 27,
+            "parameterBaseValue": 10727,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 28,
+            "parameterBaseValue": 10939,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 29,
+            "parameterBaseValue": 11151,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 30,
+            "parameterBaseValue": 11363,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 31,
+            "parameterBaseValue": 11575,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 32,
+            "parameterBaseValue": 11787,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 33,
+            "parameterBaseValue": 11999,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 34,
+            "parameterBaseValue": 12211,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 35,
+            "parameterBaseValue": 12423,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 36,
+            "parameterBaseValue": 12635,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 37,
+            "parameterBaseValue": 12847,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 38,
+            "parameterBaseValue": 13059,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 39,
+            "parameterBaseValue": 13271,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 40,
+            "parameterBaseValue": 13483,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 41,
+            "parameterBaseValue": 13734,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 42,
+            "parameterBaseValue": 13986,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 43,
+            "parameterBaseValue": 14238,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 44,
+            "parameterBaseValue": 14490,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 45,
+            "parameterBaseValue": 14742,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 46,
+            "parameterBaseValue": 14994,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 47,
+            "parameterBaseValue": 15246,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 48,
+            "parameterBaseValue": 15498,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 49,
+            "parameterBaseValue": 15750,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 50,
+            "parameterBaseValue": 16002,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 51,
+            "parameterBaseValue": 16254,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 52,
+            "parameterBaseValue": 16506,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 53,
+            "parameterBaseValue": 16758,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 54,
+            "parameterBaseValue": 17010,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 55,
+            "parameterBaseValue": 17262,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 56,
+            "parameterBaseValue": 17514,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 57,
+            "parameterBaseValue": 17766,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 58,
+            "parameterBaseValue": 18018,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 59,
+            "parameterBaseValue": 18270,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 60,
+            "parameterBaseValue": 18522,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 61,
+            "parameterBaseValue": 18774,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 62,
+            "parameterBaseValue": 19026,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 63,
+            "parameterBaseValue": 19278,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 64,
+            "parameterBaseValue": 19530,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 65,
+            "parameterBaseValue": 19782,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 66,
+            "parameterBaseValue": 20034,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 67,
+            "parameterBaseValue": 20286,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 68,
+            "parameterBaseValue": 20538,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 69,
+            "parameterBaseValue": 20790,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 70,
+            "parameterBaseValue": 21042,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 71,
+            "parameterBaseValue": 21294,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 72,
+            "parameterBaseValue": 21546,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 73,
+            "parameterBaseValue": 21798,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 74,
+            "parameterBaseValue": 22050,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 75,
+            "parameterBaseValue": 22302,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 76,
+            "parameterBaseValue": 22554,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 77,
+            "parameterBaseValue": 22806,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 78,
+            "parameterBaseValue": 23058,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 79,
+            "parameterBaseValue": 23310,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 80,
+            "parameterBaseValue": 23562,
+            "liveDeckPowerPermyriadUp": 8
+          }
+        ],
+        "limitBreaks": [
+          {
+            "limitBreakCount": 0,
+            "levelLimit": 40
+          },
+          {
+            "limitBreakCount": 1,
+            "levelLimit": 50
+          },
+          {
+            "limitBreakCount": 2,
+            "levelLimit": 60
+          },
+          {
+            "limitBreakCount": 3,
+            "levelLimit": 70
+          },
+          {
+            "limitBreakCount": 4,
+            "levelLimit": 80
+          }
+        ],
+        "potential": [
+          {
+            "id": "card_potential_grp-rarity_5:1",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 1,
+            "kind": "active-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:2",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 2,
+            "kind": "all-parameters-up",
+            "value": 100,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:3",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 3,
+            "kind": "special-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:4",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 4,
+            "kind": "passive-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:5",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 5,
+            "kind": "connect-effect-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          }
+        ],
+        "oneCopy": {
+          "level": 80,
+          "activeSkillLevel": 1,
+          "passiveSkillLevel": 1,
+          "specialSkillLevel": 1,
+          "connectEffectLevel": 1,
+          "allParameterPermilUp": 0
+        },
+        "maxPotential": {
+          "level": 80,
+          "activeSkillLevel": 2,
+          "passiveSkillLevel": 2,
+          "specialSkillLevel": 2,
+          "connectEffectLevel": 2,
+          "allParameterPermilUp": 100
+        },
+        "connectEffect": {
+          "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-001-rare_5",
+          "levels": [
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-001-rare_5",
+              "level": 1,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-card_area-001",
+              "valuePermil": 1100,
+              "description": "Grants Holomem Board Effect UP 110% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            },
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-001-rare_5",
+              "level": 2,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-card_area-001",
+              "valuePermil": 1600,
+              "description": "Grants Holomem Board Effect UP 160% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            }
+          ]
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "kind": "active",
+            "level": 1,
+            "description": "For 10s, Score UP 95%. Every 27s with a Medium Probability chance.",
+            "cooldownMilliseconds": 27000,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-950",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-950",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 950,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 95%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "active",
+            "level": 2,
+            "description": "For 10s, Score UP 115%. Every 27s with a Medium Probability chance.",
+            "cooldownMilliseconds": 27000,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1150",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1150",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1150,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 115%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ],
+        "passive": [
+          {
+            "kind": "passive",
+            "level": 1,
+            "description": "With 2 or more Gen 2 Members, Grants Score Support Effect of 9% to 2 Gen 2 Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-90-live_skill_effect_target-character_grouping-grp-gen_2-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-90-live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "family": "passive",
+                  "kind": "active-skill-effect-up",
+                  "value": 90,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "description": "Grants Score Support Effect of 9% to 2 Gen 2 Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 2 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "count": 2,
+                  "description": "2 Gen 2 Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "passive",
+            "level": 2,
+            "description": "With 2 or more Gen 2 Members, Grants Score Support Effect of 12% to 2 Gen 2 Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-120-live_skill_effect_target-character_grouping-grp-gen_2-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-120-live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "family": "passive",
+                  "kind": "active-skill-effect-up",
+                  "value": 120,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "description": "Grants Score Support Effect of 12% to 2 Gen 2 Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 2 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-gen_2-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "count": 2,
+                  "description": "2 Gen 2 Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          }
+        ],
+        "special": [
+          {
+            "kind": "special",
+            "level": 1,
+            "description": "For 12s, Grants Score Support Effect of 100%. With 2 or more Gen 2 Members, Skill Activation Rate UP 40%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1000",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1000",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1000,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 100%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 400,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 40%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 2 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "special",
+            "level": 2,
+            "description": "For 12s, Grants Score Support Effect of 120%. With 2 or more Gen 2 Members, Skill Activation Rate UP 45%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1200",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1200",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1200,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 120%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-450",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-450",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 450,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 45%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_2",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 2 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00010-uniq-0069-00",
+        "talentId": "chr-00010",
+        "leaderSkillId": "live_leader_skill-card-00010-5-uniq-0069-00",
+        "applications": [
+          {
+            "channel": "primary",
+            "combination": "conditional-base",
+            "effectGroupId": "live_leader_skill_effect-technique_up_permil_up-1350-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-technique_up_permil_up-1350-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "technique-up",
+              "value": 1350,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Technique UP 135% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_2-2",
+              "kind": "deck-character-group-count",
+              "threshold": 2,
+              "attribute": null,
+              "characterGroupingId": "grp-gen_2",
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Gen 2 Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          }
+        ],
+        "sourceRefs": [
+          "holodori-eng:Costume.json",
+          "holodori-eng:LiveLeaderSkill.json"
+        ]
+      },
+      "coverage": {
+        "allReferencesMapped": true,
+        "unresolvedReferenceIds": []
+      },
+      "unresolvedRuleIds": [
+        "runtime-score-equation",
+        "passive-target-selection-order",
+        "effect-stacking-and-rounding",
+        "special-timeline",
+        "active-skill-collision",
+        "timed-note-events"
+      ],
+      "scoringEligible": false
+    },
+    {
       "cardId": "card-00011-4-cmmn-0000-00",
       "talentId": "chr-00011",
       "rarity": 4,
@@ -63560,6 +64502,838 @@
       "scoringEligible": false
     },
     {
+      "cardId": "card-00028-5-uniq-0070-00",
+      "talentId": "chr-00028",
+      "rarity": 5,
+      "sourceRef": "holodori-eng:Card.json",
+      "parameterDistributionPermil": {
+        "performance": 430,
+        "technique": 268,
+        "sense": 302
+      },
+      "parameterSourceRefs": [
+        "holodori-eng:Card.json",
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:CardPotential.json"
+      ],
+      "progression": {
+        "maxLevel": 80,
+        "levelCurve": [
+          {
+            "level": 1,
+            "parameterBaseValue": 5236,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 2,
+            "parameterBaseValue": 5447,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 3,
+            "parameterBaseValue": 5658,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 4,
+            "parameterBaseValue": 5869,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 5,
+            "parameterBaseValue": 6080,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 6,
+            "parameterBaseValue": 6291,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 7,
+            "parameterBaseValue": 6502,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 8,
+            "parameterBaseValue": 6713,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 9,
+            "parameterBaseValue": 6924,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 10,
+            "parameterBaseValue": 7135,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 11,
+            "parameterBaseValue": 7346,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 12,
+            "parameterBaseValue": 7557,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 13,
+            "parameterBaseValue": 7768,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 14,
+            "parameterBaseValue": 7979,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 15,
+            "parameterBaseValue": 8190,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 16,
+            "parameterBaseValue": 8401,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 17,
+            "parameterBaseValue": 8612,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 18,
+            "parameterBaseValue": 8823,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 19,
+            "parameterBaseValue": 9034,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 20,
+            "parameterBaseValue": 9245,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 21,
+            "parameterBaseValue": 9456,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 22,
+            "parameterBaseValue": 9667,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 23,
+            "parameterBaseValue": 9879,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 24,
+            "parameterBaseValue": 10091,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 25,
+            "parameterBaseValue": 10303,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 26,
+            "parameterBaseValue": 10515,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 27,
+            "parameterBaseValue": 10727,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 28,
+            "parameterBaseValue": 10939,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 29,
+            "parameterBaseValue": 11151,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 30,
+            "parameterBaseValue": 11363,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 31,
+            "parameterBaseValue": 11575,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 32,
+            "parameterBaseValue": 11787,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 33,
+            "parameterBaseValue": 11999,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 34,
+            "parameterBaseValue": 12211,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 35,
+            "parameterBaseValue": 12423,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 36,
+            "parameterBaseValue": 12635,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 37,
+            "parameterBaseValue": 12847,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 38,
+            "parameterBaseValue": 13059,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 39,
+            "parameterBaseValue": 13271,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 40,
+            "parameterBaseValue": 13483,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 41,
+            "parameterBaseValue": 13734,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 42,
+            "parameterBaseValue": 13986,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 43,
+            "parameterBaseValue": 14238,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 44,
+            "parameterBaseValue": 14490,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 45,
+            "parameterBaseValue": 14742,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 46,
+            "parameterBaseValue": 14994,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 47,
+            "parameterBaseValue": 15246,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 48,
+            "parameterBaseValue": 15498,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 49,
+            "parameterBaseValue": 15750,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 50,
+            "parameterBaseValue": 16002,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 51,
+            "parameterBaseValue": 16254,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 52,
+            "parameterBaseValue": 16506,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 53,
+            "parameterBaseValue": 16758,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 54,
+            "parameterBaseValue": 17010,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 55,
+            "parameterBaseValue": 17262,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 56,
+            "parameterBaseValue": 17514,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 57,
+            "parameterBaseValue": 17766,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 58,
+            "parameterBaseValue": 18018,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 59,
+            "parameterBaseValue": 18270,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 60,
+            "parameterBaseValue": 18522,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 61,
+            "parameterBaseValue": 18774,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 62,
+            "parameterBaseValue": 19026,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 63,
+            "parameterBaseValue": 19278,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 64,
+            "parameterBaseValue": 19530,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 65,
+            "parameterBaseValue": 19782,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 66,
+            "parameterBaseValue": 20034,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 67,
+            "parameterBaseValue": 20286,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 68,
+            "parameterBaseValue": 20538,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 69,
+            "parameterBaseValue": 20790,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 70,
+            "parameterBaseValue": 21042,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 71,
+            "parameterBaseValue": 21294,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 72,
+            "parameterBaseValue": 21546,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 73,
+            "parameterBaseValue": 21798,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 74,
+            "parameterBaseValue": 22050,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 75,
+            "parameterBaseValue": 22302,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 76,
+            "parameterBaseValue": 22554,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 77,
+            "parameterBaseValue": 22806,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 78,
+            "parameterBaseValue": 23058,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 79,
+            "parameterBaseValue": 23310,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 80,
+            "parameterBaseValue": 23562,
+            "liveDeckPowerPermyriadUp": 8
+          }
+        ],
+        "limitBreaks": [
+          {
+            "limitBreakCount": 0,
+            "levelLimit": 40
+          },
+          {
+            "limitBreakCount": 1,
+            "levelLimit": 50
+          },
+          {
+            "limitBreakCount": 2,
+            "levelLimit": 60
+          },
+          {
+            "limitBreakCount": 3,
+            "levelLimit": 70
+          },
+          {
+            "limitBreakCount": 4,
+            "levelLimit": 80
+          }
+        ],
+        "potential": [
+          {
+            "id": "card_potential_grp-rarity_5:1",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 1,
+            "kind": "active-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:2",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 2,
+            "kind": "all-parameters-up",
+            "value": 100,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:3",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 3,
+            "kind": "special-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:4",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 4,
+            "kind": "passive-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:5",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 5,
+            "kind": "connect-effect-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          }
+        ],
+        "oneCopy": {
+          "level": 80,
+          "activeSkillLevel": 1,
+          "passiveSkillLevel": 1,
+          "specialSkillLevel": 1,
+          "connectEffectLevel": 1,
+          "allParameterPermilUp": 0
+        },
+        "maxPotential": {
+          "level": 80,
+          "activeSkillLevel": 2,
+          "passiveSkillLevel": 2,
+          "specialSkillLevel": 2,
+          "connectEffectLevel": 2,
+          "allParameterPermilUp": 100
+        },
+        "connectEffect": {
+          "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-center_area-005-rare_5",
+          "levels": [
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-center_area-005-rare_5",
+              "level": 1,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-center_area-005",
+              "valuePermil": 1500,
+              "description": "Grants Holomem Board Effect UP 150% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            },
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-center_area-005-rare_5",
+              "level": 2,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-center_area-005",
+              "valuePermil": 2000,
+              "description": "Grants Holomem Board Effect UP 200% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            }
+          ]
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "kind": "active",
+            "level": 1,
+            "description": "For 7s, Score UP 105%. Every 21s with a Medium Probability chance.",
+            "cooldownMilliseconds": 21000,
+            "durationMilliseconds": 7000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1050",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1050",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1050,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 105%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "active",
+            "level": 2,
+            "description": "For 8s, Score UP 110%. Every 21s with a Medium Probability chance.",
+            "cooldownMilliseconds": 21000,
+            "durationMilliseconds": 8000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1100",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1100",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1100,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 110%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ],
+        "passive": [
+          {
+            "kind": "passive",
+            "level": 1,
+            "description": "Grants Performance UP 32% to 2 Gen 4 Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_passive_skill_effect-performance_up_permil_up-320-live_skill_effect_target-character_grouping-grp-gen_4-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-performance_up_permil_up-320-live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "family": "passive",
+                  "kind": "performance-up",
+                  "value": 320,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "description": "Grants Performance UP 32% to 2 Gen 4 Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_4",
+                  "count": 2,
+                  "description": "2 Gen 4 Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "passive",
+            "level": 2,
+            "description": "Grants Performance UP 43% to 2 Gen 4 Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_passive_skill_effect-performance_up_permil_up-430-live_skill_effect_target-character_grouping-grp-gen_4-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-performance_up_permil_up-430-live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "family": "passive",
+                  "kind": "performance-up",
+                  "value": 430,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "description": "Grants Performance UP 43% to 2 Gen 4 Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-gen_4-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_4",
+                  "count": 2,
+                  "description": "2 Gen 4 Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          }
+        ],
+        "special": [
+          {
+            "kind": "special",
+            "level": 1,
+            "description": "For 11s, Grants Score Support Effect of 110%. With 2 or more Gen 4 Members, Skill Activation Rate UP 40%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 11000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1100",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1100",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1100,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 110%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 400,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 40%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_4",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 4 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "special",
+            "level": 2,
+            "description": "For 11s, Grants Score Support Effect of 130%. With 2 or more Gen 4 Members, Skill Activation Rate UP 50%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 11000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1300",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1300",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1300,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 130%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-500",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-500",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 500,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 50%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-gen_4",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Gen 4 Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00028-uniq-0070-00",
+        "talentId": "chr-00028",
+        "leaderSkillId": "live_leader_skill-card-00028-5-uniq-0070-00",
+        "applications": [
+          {
+            "channel": "primary",
+            "combination": "conditional-base",
+            "effectGroupId": "live_leader_skill_effect-performance_up_permil_up-1350-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-performance_up_permil_up-1350-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "performance-up",
+              "value": 1350,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Performance UP 135% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_character_grouping-grp-gen_4-2",
+              "kind": "deck-character-group-count",
+              "threshold": 2,
+              "attribute": null,
+              "characterGroupingId": "grp-gen_4",
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Gen 4 Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          }
+        ],
+        "sourceRefs": [
+          "holodori-eng:Costume.json",
+          "holodori-eng:LiveLeaderSkill.json"
+        ]
+      },
+      "coverage": {
+        "allReferencesMapped": true,
+        "unresolvedReferenceIds": []
+      },
+      "unresolvedRuleIds": [
+        "runtime-score-equation",
+        "passive-target-selection-order",
+        "effect-stacking-and-rounding",
+        "special-timeline",
+        "active-skill-collision",
+        "timed-note-events"
+      ],
+      "scoringEligible": false
+    },
+    {
       "cardId": "card-00030-4-cmmn-0000-00",
       "talentId": "chr-00030",
       "rarity": 4,
@@ -82968,6 +84742,838 @@
       "scoringEligible": false
     },
     {
+      "cardId": "card-03004-5-uniq-0073-00",
+      "talentId": "chr-03004",
+      "rarity": 5,
+      "sourceRef": "holodori-eng:Card.json",
+      "parameterDistributionPermil": {
+        "performance": 268,
+        "technique": 302,
+        "sense": 430
+      },
+      "parameterSourceRefs": [
+        "holodori-eng:Card.json",
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:CardPotential.json"
+      ],
+      "progression": {
+        "maxLevel": 80,
+        "levelCurve": [
+          {
+            "level": 1,
+            "parameterBaseValue": 5236,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 2,
+            "parameterBaseValue": 5447,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 3,
+            "parameterBaseValue": 5658,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 4,
+            "parameterBaseValue": 5869,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 5,
+            "parameterBaseValue": 6080,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 6,
+            "parameterBaseValue": 6291,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 7,
+            "parameterBaseValue": 6502,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 8,
+            "parameterBaseValue": 6713,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 9,
+            "parameterBaseValue": 6924,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 10,
+            "parameterBaseValue": 7135,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 11,
+            "parameterBaseValue": 7346,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 12,
+            "parameterBaseValue": 7557,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 13,
+            "parameterBaseValue": 7768,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 14,
+            "parameterBaseValue": 7979,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 15,
+            "parameterBaseValue": 8190,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 16,
+            "parameterBaseValue": 8401,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 17,
+            "parameterBaseValue": 8612,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 18,
+            "parameterBaseValue": 8823,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 19,
+            "parameterBaseValue": 9034,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 20,
+            "parameterBaseValue": 9245,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 21,
+            "parameterBaseValue": 9456,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 22,
+            "parameterBaseValue": 9667,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 23,
+            "parameterBaseValue": 9879,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 24,
+            "parameterBaseValue": 10091,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 25,
+            "parameterBaseValue": 10303,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 26,
+            "parameterBaseValue": 10515,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 27,
+            "parameterBaseValue": 10727,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 28,
+            "parameterBaseValue": 10939,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 29,
+            "parameterBaseValue": 11151,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 30,
+            "parameterBaseValue": 11363,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 31,
+            "parameterBaseValue": 11575,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 32,
+            "parameterBaseValue": 11787,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 33,
+            "parameterBaseValue": 11999,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 34,
+            "parameterBaseValue": 12211,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 35,
+            "parameterBaseValue": 12423,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 36,
+            "parameterBaseValue": 12635,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 37,
+            "parameterBaseValue": 12847,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 38,
+            "parameterBaseValue": 13059,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 39,
+            "parameterBaseValue": 13271,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 40,
+            "parameterBaseValue": 13483,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 41,
+            "parameterBaseValue": 13734,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 42,
+            "parameterBaseValue": 13986,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 43,
+            "parameterBaseValue": 14238,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 44,
+            "parameterBaseValue": 14490,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 45,
+            "parameterBaseValue": 14742,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 46,
+            "parameterBaseValue": 14994,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 47,
+            "parameterBaseValue": 15246,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 48,
+            "parameterBaseValue": 15498,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 49,
+            "parameterBaseValue": 15750,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 50,
+            "parameterBaseValue": 16002,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 51,
+            "parameterBaseValue": 16254,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 52,
+            "parameterBaseValue": 16506,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 53,
+            "parameterBaseValue": 16758,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 54,
+            "parameterBaseValue": 17010,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 55,
+            "parameterBaseValue": 17262,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 56,
+            "parameterBaseValue": 17514,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 57,
+            "parameterBaseValue": 17766,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 58,
+            "parameterBaseValue": 18018,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 59,
+            "parameterBaseValue": 18270,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 60,
+            "parameterBaseValue": 18522,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 61,
+            "parameterBaseValue": 18774,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 62,
+            "parameterBaseValue": 19026,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 63,
+            "parameterBaseValue": 19278,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 64,
+            "parameterBaseValue": 19530,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 65,
+            "parameterBaseValue": 19782,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 66,
+            "parameterBaseValue": 20034,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 67,
+            "parameterBaseValue": 20286,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 68,
+            "parameterBaseValue": 20538,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 69,
+            "parameterBaseValue": 20790,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 70,
+            "parameterBaseValue": 21042,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 71,
+            "parameterBaseValue": 21294,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 72,
+            "parameterBaseValue": 21546,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 73,
+            "parameterBaseValue": 21798,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 74,
+            "parameterBaseValue": 22050,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 75,
+            "parameterBaseValue": 22302,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 76,
+            "parameterBaseValue": 22554,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 77,
+            "parameterBaseValue": 22806,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 78,
+            "parameterBaseValue": 23058,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 79,
+            "parameterBaseValue": 23310,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 80,
+            "parameterBaseValue": 23562,
+            "liveDeckPowerPermyriadUp": 8
+          }
+        ],
+        "limitBreaks": [
+          {
+            "limitBreakCount": 0,
+            "levelLimit": 40
+          },
+          {
+            "limitBreakCount": 1,
+            "levelLimit": 50
+          },
+          {
+            "limitBreakCount": 2,
+            "levelLimit": 60
+          },
+          {
+            "limitBreakCount": 3,
+            "levelLimit": 70
+          },
+          {
+            "limitBreakCount": 4,
+            "levelLimit": 80
+          }
+        ],
+        "potential": [
+          {
+            "id": "card_potential_grp-rarity_5:1",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 1,
+            "kind": "active-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:2",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 2,
+            "kind": "all-parameters-up",
+            "value": 100,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:3",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 3,
+            "kind": "special-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:4",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 4,
+            "kind": "passive-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:5",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 5,
+            "kind": "connect-effect-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          }
+        ],
+        "oneCopy": {
+          "level": 80,
+          "activeSkillLevel": 1,
+          "passiveSkillLevel": 1,
+          "specialSkillLevel": 1,
+          "connectEffectLevel": 1,
+          "allParameterPermilUp": 0
+        },
+        "maxPotential": {
+          "level": 80,
+          "activeSkillLevel": 2,
+          "passiveSkillLevel": 2,
+          "specialSkillLevel": 2,
+          "connectEffectLevel": 2,
+          "allParameterPermilUp": 100
+        },
+        "connectEffect": {
+          "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-004-rare_5",
+          "levels": [
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-004-rare_5",
+              "level": 1,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-card_area-004",
+              "valuePermil": 1500,
+              "description": "Grants Holomem Board Effect UP 150% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            },
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-card_area-004-rare_5",
+              "level": 2,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-card_area-004",
+              "valuePermil": 2000,
+              "description": "Grants Holomem Board Effect UP 200% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            }
+          ]
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "kind": "active",
+            "level": 1,
+            "description": "For 7s, Score UP 90%. Every 19s with a High Probability chance.",
+            "cooldownMilliseconds": 19000,
+            "durationMilliseconds": 7000,
+            "activationProbabilityPermil": 550,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-900",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-900",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 900,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 90%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "active",
+            "level": 2,
+            "description": "For 7s, Score UP 110%. Every 19s with a High Probability chance.",
+            "cooldownMilliseconds": 19000,
+            "durationMilliseconds": 7000,
+            "activationProbabilityPermil": 550,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1100",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1100",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1100,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 110%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ],
+        "passive": [
+          {
+            "kind": "passive",
+            "level": 1,
+            "description": "With 2 or more Happy Type Members, Grants Sense UP 32% to 2 Happy Type Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-attribute-attribute_3-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-attribute-attribute_3-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 320,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-attribute-attribute_3-2",
+                  "description": "Grants Sense UP 32% to 2 Happy Type Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+                  "kind": "deck-attribute-count",
+                  "threshold": 2,
+                  "attribute": "happy",
+                  "characterGroupingId": null,
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Happy Type Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-attribute-attribute_3-2",
+                  "kind": "attribute",
+                  "attribute": "happy",
+                  "characterGroupingId": null,
+                  "count": 2,
+                  "description": "2 Happy Type Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "passive",
+            "level": 2,
+            "description": "With 2 or more Happy Type Members, Grants Sense UP 43% to 2 Happy Type Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_3-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_3-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 430,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-attribute-attribute_3-2",
+                  "description": "Grants Sense UP 43% to 2 Happy Type Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+                  "kind": "deck-attribute-count",
+                  "threshold": 2,
+                  "attribute": "happy",
+                  "characterGroupingId": null,
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Happy Type Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-attribute-attribute_3-2",
+                  "kind": "attribute",
+                  "attribute": "happy",
+                  "characterGroupingId": null,
+                  "count": 2,
+                  "description": "2 Happy Type Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          }
+        ],
+        "special": [
+          {
+            "kind": "special",
+            "level": 1,
+            "description": "For 10s, Grants Score Support Effect of 135%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1350",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1350",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1350,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 135%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "special",
+            "level": 2,
+            "description": "For 10s, Grants Score Support Effect of 160%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1600",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1600",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1600,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 160%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-03004-uniq-0073-00",
+        "talentId": "chr-03004",
+        "leaderSkillId": "live_leader_skill-card-03004-5-uniq-0073-00",
+        "applications": [
+          {
+            "channel": "primary",
+            "combination": "conditional-base",
+            "effectGroupId": "live_leader_skill_effect-sense_up_permil_up-800-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-sense_up_permil_up-800-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "sense-up",
+              "value": 800,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Sense UP 80% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+              "kind": "deck-attribute-count",
+              "threshold": 2,
+              "attribute": "happy",
+              "characterGroupingId": null,
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Happy Type Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          },
+          {
+            "channel": "additional",
+            "combination": "conditional-additive",
+            "effectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "active-skill-effect-up",
+              "value": 250,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Score Support Effect of 25% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_attribute-attribute_3-2",
+              "kind": "deck-attribute-count",
+              "threshold": 2,
+              "attribute": "happy",
+              "characterGroupingId": null,
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Happy Type Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          }
+        ],
+        "sourceRefs": [
+          "holodori-eng:Costume.json",
+          "holodori-eng:LiveLeaderSkill.json"
+        ]
+      },
+      "coverage": {
+        "allReferencesMapped": true,
+        "unresolvedReferenceIds": []
+      },
+      "unresolvedRuleIds": [
+        "runtime-score-equation",
+        "passive-target-selection-order",
+        "effect-stacking-and-rounding",
+        "special-timeline",
+        "active-skill-collision",
+        "timed-note-events"
+      ],
+      "scoringEligible": false
+    },
+    {
       "cardId": "card-03005-4-cmmn-0000-00",
       "talentId": "chr-03005",
       "rarity": 4,
@@ -92534,6 +95140,838 @@
       "scoringEligible": false
     },
     {
+      "cardId": "card-04001-5-uniq-0071-00",
+      "talentId": "chr-04001",
+      "rarity": 5,
+      "sourceRef": "holodori-eng:Card.json",
+      "parameterDistributionPermil": {
+        "performance": 268,
+        "technique": 302,
+        "sense": 430
+      },
+      "parameterSourceRefs": [
+        "holodori-eng:Card.json",
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:CardPotential.json"
+      ],
+      "progression": {
+        "maxLevel": 80,
+        "levelCurve": [
+          {
+            "level": 1,
+            "parameterBaseValue": 5236,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 2,
+            "parameterBaseValue": 5447,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 3,
+            "parameterBaseValue": 5658,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 4,
+            "parameterBaseValue": 5869,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 5,
+            "parameterBaseValue": 6080,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 6,
+            "parameterBaseValue": 6291,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 7,
+            "parameterBaseValue": 6502,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 8,
+            "parameterBaseValue": 6713,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 9,
+            "parameterBaseValue": 6924,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 10,
+            "parameterBaseValue": 7135,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 11,
+            "parameterBaseValue": 7346,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 12,
+            "parameterBaseValue": 7557,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 13,
+            "parameterBaseValue": 7768,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 14,
+            "parameterBaseValue": 7979,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 15,
+            "parameterBaseValue": 8190,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 16,
+            "parameterBaseValue": 8401,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 17,
+            "parameterBaseValue": 8612,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 18,
+            "parameterBaseValue": 8823,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 19,
+            "parameterBaseValue": 9034,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 20,
+            "parameterBaseValue": 9245,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 21,
+            "parameterBaseValue": 9456,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 22,
+            "parameterBaseValue": 9667,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 23,
+            "parameterBaseValue": 9879,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 24,
+            "parameterBaseValue": 10091,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 25,
+            "parameterBaseValue": 10303,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 26,
+            "parameterBaseValue": 10515,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 27,
+            "parameterBaseValue": 10727,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 28,
+            "parameterBaseValue": 10939,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 29,
+            "parameterBaseValue": 11151,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 30,
+            "parameterBaseValue": 11363,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 31,
+            "parameterBaseValue": 11575,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 32,
+            "parameterBaseValue": 11787,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 33,
+            "parameterBaseValue": 11999,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 34,
+            "parameterBaseValue": 12211,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 35,
+            "parameterBaseValue": 12423,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 36,
+            "parameterBaseValue": 12635,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 37,
+            "parameterBaseValue": 12847,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 38,
+            "parameterBaseValue": 13059,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 39,
+            "parameterBaseValue": 13271,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 40,
+            "parameterBaseValue": 13483,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 41,
+            "parameterBaseValue": 13734,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 42,
+            "parameterBaseValue": 13986,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 43,
+            "parameterBaseValue": 14238,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 44,
+            "parameterBaseValue": 14490,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 45,
+            "parameterBaseValue": 14742,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 46,
+            "parameterBaseValue": 14994,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 47,
+            "parameterBaseValue": 15246,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 48,
+            "parameterBaseValue": 15498,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 49,
+            "parameterBaseValue": 15750,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 50,
+            "parameterBaseValue": 16002,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 51,
+            "parameterBaseValue": 16254,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 52,
+            "parameterBaseValue": 16506,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 53,
+            "parameterBaseValue": 16758,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 54,
+            "parameterBaseValue": 17010,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 55,
+            "parameterBaseValue": 17262,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 56,
+            "parameterBaseValue": 17514,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 57,
+            "parameterBaseValue": 17766,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 58,
+            "parameterBaseValue": 18018,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 59,
+            "parameterBaseValue": 18270,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 60,
+            "parameterBaseValue": 18522,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 61,
+            "parameterBaseValue": 18774,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 62,
+            "parameterBaseValue": 19026,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 63,
+            "parameterBaseValue": 19278,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 64,
+            "parameterBaseValue": 19530,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 65,
+            "parameterBaseValue": 19782,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 66,
+            "parameterBaseValue": 20034,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 67,
+            "parameterBaseValue": 20286,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 68,
+            "parameterBaseValue": 20538,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 69,
+            "parameterBaseValue": 20790,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 70,
+            "parameterBaseValue": 21042,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 71,
+            "parameterBaseValue": 21294,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 72,
+            "parameterBaseValue": 21546,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 73,
+            "parameterBaseValue": 21798,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 74,
+            "parameterBaseValue": 22050,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 75,
+            "parameterBaseValue": 22302,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 76,
+            "parameterBaseValue": 22554,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 77,
+            "parameterBaseValue": 22806,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 78,
+            "parameterBaseValue": 23058,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 79,
+            "parameterBaseValue": 23310,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 80,
+            "parameterBaseValue": 23562,
+            "liveDeckPowerPermyriadUp": 8
+          }
+        ],
+        "limitBreaks": [
+          {
+            "limitBreakCount": 0,
+            "levelLimit": 40
+          },
+          {
+            "limitBreakCount": 1,
+            "levelLimit": 50
+          },
+          {
+            "limitBreakCount": 2,
+            "levelLimit": 60
+          },
+          {
+            "limitBreakCount": 3,
+            "levelLimit": 70
+          },
+          {
+            "limitBreakCount": 4,
+            "levelLimit": 80
+          }
+        ],
+        "potential": [
+          {
+            "id": "card_potential_grp-rarity_5:1",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 1,
+            "kind": "active-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:2",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 2,
+            "kind": "all-parameters-up",
+            "value": 100,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:3",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 3,
+            "kind": "special-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:4",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 4,
+            "kind": "passive-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:5",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 5,
+            "kind": "connect-effect-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          }
+        ],
+        "oneCopy": {
+          "level": 80,
+          "activeSkillLevel": 1,
+          "passiveSkillLevel": 1,
+          "specialSkillLevel": 1,
+          "connectEffectLevel": 1,
+          "allParameterPermilUp": 0
+        },
+        "maxPotential": {
+          "level": 80,
+          "activeSkillLevel": 2,
+          "passiveSkillLevel": 2,
+          "specialSkillLevel": 2,
+          "connectEffectLevel": 2,
+          "allParameterPermilUp": 100
+        },
+        "connectEffect": {
+          "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-001-rare_5",
+          "levels": [
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-001-rare_5",
+              "level": 1,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-content_area-001",
+              "valuePermil": 1100,
+              "description": "Grants Holomem Board Effect UP 110% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            },
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-001-rare_5",
+              "level": 2,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-content_area-001",
+              "valuePermil": 1600,
+              "description": "Grants Holomem Board Effect UP 160% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            }
+          ]
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "kind": "active",
+            "level": 1,
+            "description": "For 12s, Score UP 90%. Every 31s with a Medium Probability chance.",
+            "cooldownMilliseconds": 31000,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-900",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-900",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 900,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 90%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "active",
+            "level": 2,
+            "description": "For 12s, Score UP 110%. Every 31s with a Medium Probability chance.",
+            "cooldownMilliseconds": 31000,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1100",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1100",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1100,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 110%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ],
+        "passive": [
+          {
+            "kind": "passive",
+            "level": 1,
+            "description": "With 2 or more Cute Type Members, Grants Sense UP 32% to 2 Cute Type Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-attribute-attribute_1-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-attribute-attribute_1-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 320,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-attribute-attribute_1-2",
+                  "description": "Grants Sense UP 32% to 2 Cute Type Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+                  "kind": "deck-attribute-count",
+                  "threshold": 2,
+                  "attribute": "cute",
+                  "characterGroupingId": null,
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Cute Type Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-attribute-attribute_1-2",
+                  "kind": "attribute",
+                  "attribute": "cute",
+                  "characterGroupingId": null,
+                  "count": 2,
+                  "description": "2 Cute Type Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "passive",
+            "level": 2,
+            "description": "With 2 or more Cute Type Members, Grants Sense UP 43% to 2 Cute Type Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "conditional-base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_1-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-attribute-attribute_1-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 430,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-attribute-attribute_1-2",
+                  "description": "Grants Sense UP 43% to 2 Cute Type Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+                  "kind": "deck-attribute-count",
+                  "threshold": 2,
+                  "attribute": "cute",
+                  "characterGroupingId": null,
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Cute Type Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": {
+                  "id": "live_skill_effect_target-attribute-attribute_1-2",
+                  "kind": "attribute",
+                  "attribute": "cute",
+                  "characterGroupingId": null,
+                  "count": 2,
+                  "description": "2 Cute Type Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          }
+        ],
+        "special": [
+          {
+            "kind": "special",
+            "level": 1,
+            "description": "For 14s, Grants Score Support Effect of 95%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 14000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-950",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-950",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 950,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 95%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "special",
+            "level": 2,
+            "description": "For 14s, Grants Score Support Effect of 115%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 14000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1150",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1150",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1150,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 115%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-04001-uniq-0071-00",
+        "talentId": "chr-04001",
+        "leaderSkillId": "live_leader_skill-card-04001-5-uniq-0071-00",
+        "applications": [
+          {
+            "channel": "primary",
+            "combination": "conditional-base",
+            "effectGroupId": "live_leader_skill_effect-sense_up_permil_up-800-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-sense_up_permil_up-800-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "sense-up",
+              "value": 800,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Sense UP 80% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+              "kind": "deck-attribute-count",
+              "threshold": 2,
+              "attribute": "cute",
+              "characterGroupingId": null,
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Cute Type Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          },
+          {
+            "channel": "additional",
+            "combination": "conditional-additive",
+            "effectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "active-skill-effect-up",
+              "value": 250,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Score Support Effect of 25% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_attribute-attribute_1-2",
+              "kind": "deck-attribute-count",
+              "threshold": 2,
+              "attribute": "cute",
+              "characterGroupingId": null,
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Cute Type Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          }
+        ],
+        "sourceRefs": [
+          "holodori-eng:Costume.json",
+          "holodori-eng:LiveLeaderSkill.json"
+        ]
+      },
+      "coverage": {
+        "allReferencesMapped": true,
+        "unresolvedReferenceIds": []
+      },
+      "unresolvedRuleIds": [
+        "runtime-score-equation",
+        "passive-target-selection-order",
+        "effect-stacking-and-rounding",
+        "special-timeline",
+        "active-skill-collision",
+        "timed-note-events"
+      ],
+      "scoringEligible": false
+    },
+    {
       "cardId": "card-04002-4-cmmn-0000-00",
       "talentId": "chr-04002",
       "rarity": 4,
@@ -95771,6 +99209,838 @@
             },
             "triggerGroupId": null,
             "trigger": null,
+            "target": {
+              "id": "live_skill_effect_target-all",
+              "kind": "all",
+              "attribute": null,
+              "characterGroupingId": null,
+              "count": null,
+              "description": "all",
+              "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+            }
+          }
+        ],
+        "sourceRefs": [
+          "holodori-eng:Costume.json",
+          "holodori-eng:LiveLeaderSkill.json"
+        ]
+      },
+      "coverage": {
+        "allReferencesMapped": true,
+        "unresolvedReferenceIds": []
+      },
+      "unresolvedRuleIds": [
+        "runtime-score-equation",
+        "passive-target-selection-order",
+        "effect-stacking-and-rounding",
+        "special-timeline",
+        "active-skill-collision",
+        "timed-note-events"
+      ],
+      "scoringEligible": false
+    },
+    {
+      "cardId": "card-04003-5-uniq-0072-00",
+      "talentId": "chr-04003",
+      "rarity": 5,
+      "sourceRef": "holodori-eng:Card.json",
+      "parameterDistributionPermil": {
+        "performance": 302,
+        "technique": 268,
+        "sense": 430
+      },
+      "parameterSourceRefs": [
+        "holodori-eng:Card.json",
+        "holodori-eng:CardLevel.json",
+        "holodori-eng:CardPotential.json"
+      ],
+      "progression": {
+        "maxLevel": 80,
+        "levelCurve": [
+          {
+            "level": 1,
+            "parameterBaseValue": 5236,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 2,
+            "parameterBaseValue": 5447,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 3,
+            "parameterBaseValue": 5658,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 4,
+            "parameterBaseValue": 5869,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 5,
+            "parameterBaseValue": 6080,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 6,
+            "parameterBaseValue": 6291,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 7,
+            "parameterBaseValue": 6502,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 8,
+            "parameterBaseValue": 6713,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 9,
+            "parameterBaseValue": 6924,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 10,
+            "parameterBaseValue": 7135,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 11,
+            "parameterBaseValue": 7346,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 12,
+            "parameterBaseValue": 7557,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 13,
+            "parameterBaseValue": 7768,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 14,
+            "parameterBaseValue": 7979,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 15,
+            "parameterBaseValue": 8190,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 16,
+            "parameterBaseValue": 8401,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 17,
+            "parameterBaseValue": 8612,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 18,
+            "parameterBaseValue": 8823,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 19,
+            "parameterBaseValue": 9034,
+            "liveDeckPowerPermyriadUp": 0
+          },
+          {
+            "level": 20,
+            "parameterBaseValue": 9245,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 21,
+            "parameterBaseValue": 9456,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 22,
+            "parameterBaseValue": 9667,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 23,
+            "parameterBaseValue": 9879,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 24,
+            "parameterBaseValue": 10091,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 25,
+            "parameterBaseValue": 10303,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 26,
+            "parameterBaseValue": 10515,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 27,
+            "parameterBaseValue": 10727,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 28,
+            "parameterBaseValue": 10939,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 29,
+            "parameterBaseValue": 11151,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 30,
+            "parameterBaseValue": 11363,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 31,
+            "parameterBaseValue": 11575,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 32,
+            "parameterBaseValue": 11787,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 33,
+            "parameterBaseValue": 11999,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 34,
+            "parameterBaseValue": 12211,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 35,
+            "parameterBaseValue": 12423,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 36,
+            "parameterBaseValue": 12635,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 37,
+            "parameterBaseValue": 12847,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 38,
+            "parameterBaseValue": 13059,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 39,
+            "parameterBaseValue": 13271,
+            "liveDeckPowerPermyriadUp": 1
+          },
+          {
+            "level": 40,
+            "parameterBaseValue": 13483,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 41,
+            "parameterBaseValue": 13734,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 42,
+            "parameterBaseValue": 13986,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 43,
+            "parameterBaseValue": 14238,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 44,
+            "parameterBaseValue": 14490,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 45,
+            "parameterBaseValue": 14742,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 46,
+            "parameterBaseValue": 14994,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 47,
+            "parameterBaseValue": 15246,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 48,
+            "parameterBaseValue": 15498,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 49,
+            "parameterBaseValue": 15750,
+            "liveDeckPowerPermyriadUp": 2
+          },
+          {
+            "level": 50,
+            "parameterBaseValue": 16002,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 51,
+            "parameterBaseValue": 16254,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 52,
+            "parameterBaseValue": 16506,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 53,
+            "parameterBaseValue": 16758,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 54,
+            "parameterBaseValue": 17010,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 55,
+            "parameterBaseValue": 17262,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 56,
+            "parameterBaseValue": 17514,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 57,
+            "parameterBaseValue": 17766,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 58,
+            "parameterBaseValue": 18018,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 59,
+            "parameterBaseValue": 18270,
+            "liveDeckPowerPermyriadUp": 3
+          },
+          {
+            "level": 60,
+            "parameterBaseValue": 18522,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 61,
+            "parameterBaseValue": 18774,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 62,
+            "parameterBaseValue": 19026,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 63,
+            "parameterBaseValue": 19278,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 64,
+            "parameterBaseValue": 19530,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 65,
+            "parameterBaseValue": 19782,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 66,
+            "parameterBaseValue": 20034,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 67,
+            "parameterBaseValue": 20286,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 68,
+            "parameterBaseValue": 20538,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 69,
+            "parameterBaseValue": 20790,
+            "liveDeckPowerPermyriadUp": 4
+          },
+          {
+            "level": 70,
+            "parameterBaseValue": 21042,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 71,
+            "parameterBaseValue": 21294,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 72,
+            "parameterBaseValue": 21546,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 73,
+            "parameterBaseValue": 21798,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 74,
+            "parameterBaseValue": 22050,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 75,
+            "parameterBaseValue": 22302,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 76,
+            "parameterBaseValue": 22554,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 77,
+            "parameterBaseValue": 22806,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 78,
+            "parameterBaseValue": 23058,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 79,
+            "parameterBaseValue": 23310,
+            "liveDeckPowerPermyriadUp": 5
+          },
+          {
+            "level": 80,
+            "parameterBaseValue": 23562,
+            "liveDeckPowerPermyriadUp": 8
+          }
+        ],
+        "limitBreaks": [
+          {
+            "limitBreakCount": 0,
+            "levelLimit": 40
+          },
+          {
+            "limitBreakCount": 1,
+            "levelLimit": 50
+          },
+          {
+            "limitBreakCount": 2,
+            "levelLimit": 60
+          },
+          {
+            "limitBreakCount": 3,
+            "levelLimit": 70
+          },
+          {
+            "limitBreakCount": 4,
+            "levelLimit": 80
+          }
+        ],
+        "potential": [
+          {
+            "id": "card_potential_grp-rarity_5:1",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 1,
+            "kind": "active-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:2",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 2,
+            "kind": "all-parameters-up",
+            "value": 100,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:3",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 3,
+            "kind": "special-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:4",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 4,
+            "kind": "passive-skill-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          },
+          {
+            "id": "card_potential_grp-rarity_5:5",
+            "groupId": "card_potential_grp-rarity_5",
+            "stage": 5,
+            "kind": "connect-effect-level-up",
+            "value": 2,
+            "sourceRef": "holodori-eng:CardPotential.json"
+          }
+        ],
+        "oneCopy": {
+          "level": 80,
+          "activeSkillLevel": 1,
+          "passiveSkillLevel": 1,
+          "specialSkillLevel": 1,
+          "connectEffectLevel": 1,
+          "allParameterPermilUp": 0
+        },
+        "maxPotential": {
+          "level": 80,
+          "activeSkillLevel": 2,
+          "passiveSkillLevel": 2,
+          "specialSkillLevel": 2,
+          "connectEffectLevel": 2,
+          "allParameterPermilUp": 100
+        },
+        "connectEffect": {
+          "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-002-rare_5",
+          "levels": [
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-002-rare_5",
+              "level": 1,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-content_area-002",
+              "valuePermil": 850,
+              "description": "Grants Holomem Board Effect UP 85% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            },
+            {
+              "id": "skill_tree_connect_effect-skill_tree_effect_up-skill_tree_connect_effect_extent-content_area-002-rare_5",
+              "level": 2,
+              "kind": "skill-tree-effect-up",
+              "extentId": "skill_tree_connect_effect_extent-content_area-002",
+              "valuePermil": 1350,
+              "description": "Grants Holomem Board Effect UP 135% for all within range.",
+              "sourceRef": "holodori-eng:SkillTreeConnectEffect.json"
+            }
+          ]
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "kind": "active",
+            "level": 1,
+            "description": "For 10s, Score UP 85%. Every 24s with a Medium Probability chance.",
+            "cooldownMilliseconds": 24000,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-850",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-850",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 850,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 85%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "active",
+            "level": 2,
+            "description": "For 10s, Score UP 100%. Every 24s with a Medium Probability chance.",
+            "cooldownMilliseconds": 24000,
+            "durationMilliseconds": 10000,
+            "activationProbabilityPermil": 460,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_active_skill_effect-score_up_permil_up-1000",
+                "effect": {
+                  "id": "live_active_skill_effect-score_up_permil_up-1000",
+                  "family": "active",
+                  "kind": "score-up",
+                  "value": 1000,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Score UP 100%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              }
+            ]
+          }
+        ],
+        "passive": [
+          {
+            "kind": "passive",
+            "level": 1,
+            "description": "Grants Sense UP 32% to 2 Myth Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-character_grouping-grp-myth-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-320-live_skill_effect_target-character_grouping-grp-myth-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 320,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-myth-2",
+                  "description": "Grants Sense UP 32% to 2 Myth Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-myth-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-myth",
+                  "count": 2,
+                  "description": "2 Myth Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "passive",
+            "level": 2,
+            "description": "Grants Sense UP 43% to 2 Myth Members.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": null,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-character_grouping-grp-myth-2",
+                "effect": {
+                  "id": "live_passive_skill_effect-sense_up_permil_up-430-live_skill_effect_target-character_grouping-grp-myth-2",
+                  "family": "passive",
+                  "kind": "sense-up",
+                  "value": 430,
+                  "unit": "permil",
+                  "targetId": "live_skill_effect_target-character_grouping-grp-myth-2",
+                  "description": "Grants Sense UP 43% to 2 Myth Members.",
+                  "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": {
+                  "id": "live_skill_effect_target-character_grouping-grp-myth-2",
+                  "kind": "character-group",
+                  "attribute": null,
+                  "characterGroupingId": "grp-myth",
+                  "count": 2,
+                  "description": "2 Myth Members",
+                  "sourceRef": "holodori-eng:LiveSkillEffectTarget.json"
+                }
+              }
+            ]
+          }
+        ],
+        "special": [
+          {
+            "kind": "special",
+            "level": 1,
+            "description": "For 12s, Grants Score Support Effect of 100%. With 2 or more Myth Members, Skill Activation Rate UP 40%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1000",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1000",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1000,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 100%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 400,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 40%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-myth",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Myth Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          },
+          {
+            "kind": "special",
+            "level": 2,
+            "description": "For 12s, Grants Score Support Effect of 120%. With 2 or more Myth Members, Skill Activation Rate UP 45%.",
+            "cooldownMilliseconds": null,
+            "durationMilliseconds": 12000,
+            "activationProbabilityPermil": null,
+            "applications": [
+              {
+                "channel": "primary",
+                "combination": "base",
+                "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1200",
+                "effect": {
+                  "id": "live_special_skill_effect-score_up_effect_up_permil_up-1200",
+                  "family": "active",
+                  "kind": "score-support",
+                  "value": 1200,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Grants Score Support Effect of 120%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": null,
+                "trigger": null,
+                "target": null
+              },
+              {
+                "channel": "additional",
+                "combination": "conditional-additive",
+                "effectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-450",
+                "effect": {
+                  "id": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-450",
+                  "family": "active",
+                  "kind": "activation-rate-up",
+                  "value": 450,
+                  "unit": "permil",
+                  "targetId": null,
+                  "description": "Skill Activation Rate UP 45%.",
+                  "sourceRef": "holodori-eng:LiveActiveSkillEffect.json"
+                },
+                "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+                "trigger": {
+                  "id": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+                  "kind": "deck-character-group-count",
+                  "threshold": 2,
+                  "attribute": null,
+                  "characterGroupingId": "grp-myth",
+                  "characterIds": [],
+                  "judgementType": null,
+                  "description": "With 2 or more Myth Members,",
+                  "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+                },
+                "target": null
+              }
+            ]
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-04003-uniq-0072-00",
+        "talentId": "chr-04003",
+        "leaderSkillId": "live_leader_skill-card-04003-5-uniq-0072-00",
+        "applications": [
+          {
+            "channel": "primary",
+            "combination": "conditional-base",
+            "effectGroupId": "live_leader_skill_effect-sense_up_permil_up-1350-live_skill_effect_target-all",
+            "effect": {
+              "id": "live_leader_skill_effect-sense_up_permil_up-1350-live_skill_effect_target-all",
+              "family": "passive",
+              "kind": "sense-up",
+              "value": 1350,
+              "unit": "permil",
+              "targetId": "live_skill_effect_target-all",
+              "description": "Grants Sense UP 135% to all.",
+              "sourceRef": "holodori-eng:LivePassiveSkillEffect.json"
+            },
+            "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+            "trigger": {
+              "id": "live_skill_trigger-deck_card_character_grouping-grp-myth-2",
+              "kind": "deck-character-group-count",
+              "threshold": 2,
+              "attribute": null,
+              "characterGroupingId": "grp-myth",
+              "characterIds": [],
+              "judgementType": null,
+              "description": "With 2 or more Myth Members,",
+              "sourceRef": "holodori-eng:LiveSkillTrigger.json"
+            },
             "target": {
               "id": "live_skill_effect_target-all",
               "kind": "all",
@@ -115989,8 +120259,8 @@
     }
   ],
   "coverage": {
-    "cards": 115,
-    "mappedCards": 115,
+    "cards": 120,
+    "mappedCards": 120,
     "unresolvedReferences": []
   }
 }

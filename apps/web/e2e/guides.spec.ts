@@ -65,6 +65,41 @@ const GUIDES = [
     guideSlug: "hoshimachi-suisei-water-gun-arpeggio-card-00018-5-uniq-0068-00-team-guide",
     cardSlug: "hoshimachi-suisei-water-gun-arpeggio-card-00018-5-uniq-0068-00",
   },
+  {
+    talent: "Nakiri Ayame",
+    cardTitle: "Oni Way: Breezy Resort",
+    standardLeaderCardTitle: "Oni Way: Breezy Resort",
+    guideSlug: "nakiri-ayame-oni-way-breezy-resort-card-00010-5-uniq-0069-00-team-guide",
+    cardSlug: "nakiri-ayame-oni-way-breezy-resort-card-00010-5-uniq-0069-00",
+  },
+  {
+    talent: "Himemori Luna",
+    cardTitle: "Spoiled Beach Princess",
+    standardLeaderCardTitle: "Spoiled Beach Princess",
+    guideSlug: "himemori-luna-spoiled-beach-princess-card-00028-5-uniq-0070-00-team-guide",
+    cardSlug: "himemori-luna-spoiled-beach-princess-card-00028-5-uniq-0070-00",
+  },
+  {
+    talent: "Kureiji Ollie",
+    cardTitle: "Crazy Summer Dive",
+    standardLeaderCardTitle: "Crazy Summer Dive",
+    guideSlug: "kureiji-ollie-crazy-summer-dive-card-03004-5-uniq-0073-00-team-guide",
+    cardSlug: "kureiji-ollie-crazy-summer-dive-card-03004-5-uniq-0073-00",
+  },
+  {
+    talent: "Mori Calliope",
+    cardTitle: "Beach Reaper's Spike",
+    standardLeaderCardTitle: "Reaper’s Death Flow",
+    guideSlug: "mori-calliope-beach-reaper-s-spike-card-04001-5-uniq-0071-00-team-guide",
+    cardSlug: "mori-calliope-beach-reaper-s-spike-card-04001-5-uniq-0071-00",
+  },
+  {
+    talent: "Ninomae Ina'nis",
+    cardTitle: "Tracing Tide Memories",
+    standardLeaderCardTitle: "Tracing Tide Memories",
+    guideSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00-team-guide",
+    cardSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00",
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
@@ -218,12 +253,13 @@ for (const guide of GUIDES) {
       for (const replacement of formation.replacements) {
         const outgoing = requireCard(replacement.replacedCardId);
         const incoming = requireCard(replacement.cardId);
-        const rows = section
-          .getByText(`Replace ${outgoing.talentName} with`, { exact: true })
-          .locator("../..")
-          .filter({ hasText: `${incoming.talentName} · ${incoming.rarity}★` });
-        await expect(rows).toHaveCount(1);
-        const replacementArt = rows.locator("img");
+        const row = section
+          .locator(
+            `div:has(> span[class*="swapCards"] img[src*="${incoming.id}.webp"])`,
+          )
+          .filter({ hasText: `Replace ${outgoing.talentName} with` });
+        await expect(row).toHaveCount(1);
+        const replacementArt = row.locator("img");
         await expect(replacementArt).toHaveCount(2);
         await expect(replacementArt.nth(0)).toHaveAttribute("src", cardArtPattern(outgoing.id));
         await expect(replacementArt.nth(1)).toHaveAttribute("src", cardArtPattern(incoming.id));
