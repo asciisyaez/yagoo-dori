@@ -47,6 +47,18 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
+test("homepage surfaces the current Gamers banner and its four featured cards", async ({ page }) => {
+  await page.goto("/", GOTO_OPTIONS);
+
+  await expect(page.getByRole("heading", { name: "Summer Survival on the Island!" })).toBeVisible();
+  await expect(page.getByText("炎天下のトロピックアイランドガチャ", { exact: true })).toBeVisible();
+  await expect(page.locator(".current-banner-card")).toHaveCount(4);
+  for (const talentName of ["Shirakami Fubuki", "Ookami Mio", "Nekomata Okayu", "Inugami Korone"]) {
+    await expect(page.locator(".current-banner-card").filter({ hasText: talentName })).toBeVisible();
+  }
+  await expect(page.locator(".current-banner-songs")).toContainText("We are GAMERS !!!!");
+});
+
 test("mobile drawer closes on Escape and returns focus to its trigger", async ({ isMobile, page }) => {
   test.skip(!isMobile, "Mobile drawer assertion");
   await page.goto("/", GOTO_OPTIONS);
@@ -99,28 +111,31 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(120);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
-  for (const talentName of ["Nakiri Ayame", "Himemori Luna", "Kureiji Ollie", "Mori Calliope", "Ninomae Ina'nis"]) {
+  await expect(page.getByText("124 cards shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(124);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
+  for (const talentName of ["Shirakami Fubuki", "Ookami Mio", "Nekomata Okayu", "Inugami Korone"]) {
     await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") }).first()).toBeVisible();
   }
+  for (const talentName of ["Nakiri Ayame", "Himemori Luna", "Kureiji Ollie", "Mori Calliope", "Ninomae Ina'nis"]) {
+    await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") })).toHaveCount(0);
+  }
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
-  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(19);
-  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(24);
-  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(23);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(20);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(26);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(24);
   await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
   await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
-  await expect(page.getByText("120 Outfits shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(120);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
+  await expect(page.getByText("124 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(124);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
-  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("124 cards shown", { exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: /Low Investment/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
@@ -235,7 +250,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 
   await page.getByRole("button", { name: /^Reset/ }).click();
   await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
-  await expect(page.getByText("120 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("124 cards shown", { exact: true })).toBeVisible();
 });
 
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({

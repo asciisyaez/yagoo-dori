@@ -20,8 +20,8 @@ assertRelativeUtilityModelValidationCurrent();
 function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentIds: Set<string>) {
   const nodeGroupIds = [...new Set(catalogs.boardNodes.map((node) => node.groupId))].sort();
   const positionModels = [...new Set(catalogs.boardNodePositions.map((position) => position.treeModelId))].sort();
-  if (nodeGroupIds.length !== 152 || positionModels.length !== 4) {
-    throw new Error("Board catalog must contain 152 node groups and four tree models.");
+  if (nodeGroupIds.length !== 153 || positionModels.length !== 4) {
+    throw new Error("Board catalog must contain 153 node groups and four tree models.");
   }
 
   const positionsByModel = new Map<string, Map<string, { x: number; y: number }>>();
@@ -36,8 +36,8 @@ function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentId
 
   const edgeSets = positionModels.map((modelId) => {
     const positions = positionsByModel.get(modelId);
-    if (!positions || positions.size !== 152) {
-      throw new Error(`${modelId} must contain exactly 152 Board positions.`);
+    if (!positions || positions.size !== 153) {
+      throw new Error(`${modelId} must contain exactly 153 Board positions.`);
     }
     const cells = new Set([...positions.values()].map((cell) => `${cell.x},${cell.y}`));
     if (cells.size !== positions.size) {
@@ -64,8 +64,8 @@ function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentId
   });
 
   const canonicalEdges = edgeSets[0]!;
-  if (canonicalEdges.size !== 171 || edgeSets.some((edges) => edges.size !== canonicalEdges.size)) {
-    throw new Error("Board adjacency must contain 171 edges in every tree model.");
+  if (canonicalEdges.size !== 172 || edgeSets.some((edges) => edges.size !== canonicalEdges.size)) {
+    throw new Error("Board adjacency must contain 172 edges in every tree model.");
   }
   for (const edges of edgeSets.slice(1)) {
     if ([...canonicalEdges].some((edge) => !edges.has(edge))) {
@@ -88,8 +88,8 @@ function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentId
       }
     }
   }
-  if (reached.size !== 152) {
-    throw new Error(`Board adjacency is not connected from S-001 (${reached.size}/152).`);
+  if (reached.size !== 153) {
+    throw new Error(`Board adjacency is not connected from S-001 (${reached.size}/153).`);
   }
 
   const poolTalentIds = catalogs.boardPointPools.map((pool) => pool.talentId);
@@ -138,16 +138,16 @@ function assertBoardCatalogs(catalogs: MechanicsData["catalogs"], publicTalentId
       wholeBoardCost += node.pointCost;
       if (["leader", "card", "connection"].includes(node.kind)) inScopeCost += node.pointCost;
     }
-    if (wholeBoardCost !== 447 || inScopeCost !== 301) {
+    if (wholeBoardCost !== 450 || inScopeCost !== 301) {
       throw new Error(
-        `Board cost drift for ${talentId}: expected 447/301, got ${wholeBoardCost}/${inScopeCost}.`,
+        `Board cost drift for ${talentId}: expected 450/301, got ${wholeBoardCost}/${inScopeCost}.`,
       );
     }
   }
 
   console.log(
-    `Board validation: ${poolTalentIds.length} pools, ${positionModels.length}x152 positions, ` +
-      `${canonicalEdges.size} invariant connected edges, uniform costs 447 whole/301 leader+card+connection.`,
+    `Board validation: ${poolTalentIds.length} pools, ${positionModels.length}x153 positions, ` +
+      `${canonicalEdges.size} invariant connected edges, uniform costs 450 whole/301 leader+card+connection.`,
   );
 }
 

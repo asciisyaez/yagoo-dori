@@ -68,7 +68,7 @@ const mechanicsBytes = await readFile(MECHANICS_PATH);
 const mechanics = JSON.parse(mechanicsBytes.toString("utf8"));
 const { boardNodes, boardNodePositions, boardPointPools, holomemRankPoints } = mechanics.catalogs;
 const groupIds = [...new Set(boardNodes.map((node) => node.groupId))].sort();
-if (groupIds.length !== 152) throw new Error(`Expected 152 board groups; received ${groupIds.length}`);
+if (groupIds.length !== 153) throw new Error(`Expected 153 board groups; received ${groupIds.length}`);
 
 const models = new Map();
 for (const position of boardNodePositions) {
@@ -82,13 +82,13 @@ for (const position of boardNodePositions) {
 if (models.size !== 4) throw new Error(`Expected 4 board models; received ${models.size}`);
 const sortedModels = [...models.entries()].sort(([left], [right]) => left.localeCompare(right));
 for (const [id, cells] of sortedModels) {
-  if (cells.size !== 152 || [...cells.keys()].sort().join("|") !== groupIds.join("|")) {
-    throw new Error(`Board model ${id} does not have the canonical 152 groups`);
+  if (cells.size !== 153 || [...cells.keys()].sort().join("|") !== groupIds.join("|")) {
+    throw new Error(`Board model ${id} does not have the canonical 153 groups`);
   }
 }
 const edgeSets = sortedModels.map(([, cells]) => edgesFor(cells));
 const edges = edgeSets[0];
-if (edges.length !== 171) throw new Error(`Expected 171 board edges; received ${edges.length}`);
+if (edges.length !== 172) throw new Error(`Expected 172 board edges; received ${edges.length}`);
 if (edgeSets.some((candidate) => candidate.join("|") !== edges.join("|"))) throw new Error("Board adjacencies differ by model");
 assertConnected(edges, groupIds);
 
@@ -99,7 +99,7 @@ for (const pool of boardPointPools) {
   const wholeCost = nodes.reduce((total, node) => total + node.pointCost, 0);
   const scopeCost = nodes.filter((node) => ["leader", "card", "connection"].includes(node.kind))
     .reduce((total, node) => total + node.pointCost, 0);
-  if (wholeCost !== 447 || scopeCost !== 301) throw new Error(`Board budget drifted for ${pool.talentId}`);
+  if (wholeCost !== 450 || scopeCost !== 301) throw new Error(`Board budget drifted for ${pool.talentId}`);
 }
 
 const model = {
@@ -111,8 +111,8 @@ const model = {
     ruleId: "board-derived-adjacency",
     derivation: "orthogonal-unit-neighbors-on-position-grid",
     startGroupId: "S-001",
-    nodeGroupCount: 152,
-    edgeCount: 171,
+    nodeGroupCount: 153,
+    edgeCount: 172,
     edgeSetSha256: sha256(edges),
     treeModels: sortedModels.map(([id, cells]) => ({
       id,
@@ -123,7 +123,7 @@ const model = {
     connectedFromStart: true,
     evidenceGrade: "corroborated",
   },
-  budget: { maxRankIncome: 361, wholeBoardCostPerMember: 447, inScopeCost: 301 },
+  budget: { maxRankIncome: 361, wholeBoardCostPerMember: 450, inScopeCost: 301 },
   assumptions: [
     { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
     { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },

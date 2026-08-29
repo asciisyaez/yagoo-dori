@@ -200,7 +200,7 @@ describe("native global team search", () => {
         eligibleMemberCardIds: [...mechanicsData.cards].map((card) => card.cardId),
         maxFiveStarMembers: 5,
       }),
-    ).toBe(170_263_812);
+    ).toBe(200_421_888);
   });
 
   it("reports counters without issuing a certificate when a runtime budget expires", () => {

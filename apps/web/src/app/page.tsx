@@ -1,4 +1,4 @@
-import { publicCards, publicData } from "@yagoo-dori/core";
+import { currentBanner, publicCardById, publicCards, publicData, songContextData } from "@yagoo-dori/core";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import {
@@ -21,6 +21,18 @@ const latestCards = publicCards
   .slice(0, 5);
 
 const spotlight = latestCards[0]!;
+const bannerCards = currentBanner.featuredCardIds
+  .map((cardId) => publicCardById.get(cardId))
+  .filter((card): card is (typeof publicCards)[number] => card !== undefined);
+const bannerSongs = currentBanner.eventSongIds
+  .map((songId) => songContextData.songs.find((song) => song.id === songId))
+  .filter((song): song is (typeof songContextData.songs)[number] => song !== undefined);
+const bannerStartLabel = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  timeZone: "Asia/Tokyo",
+  year: "numeric",
+}).format(new Date(currentBanner.startsAt));
 
 const quickLinks = [
   {
@@ -86,6 +98,37 @@ export default function HomePage() {
           <span className="hero-feature-label"><small>Latest 5★ addition</small><strong>{spotlight.talentName}</strong><span>{spotlight.title}</span></span>
           <span className="hero-feature-rarity">5★</span>
         </Link>
+      </section>
+
+      <section className="home-section current-banner-section" aria-labelledby="current-banner-heading">
+        <div className="current-banner-panel">
+          <div className="current-banner-copy">
+            <p className="current-banner-kicker">Live banner · {bannerStartLabel}</p>
+            <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
+            <p>
+              {bannerCards.length} new ★5 hololive GAMERS cards are live in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+            </p>
+            <dl className="current-banner-stats">
+              <div><dt>Featured</dt><dd>{bannerCards.length} × ★5</dd></div>
+              <div><dt>Event songs</dt><dd>{bannerSongs.length}</dd></div>
+              <div><dt>End date</dt><dd>Not listed</dd></div>
+            </dl>
+            <Link className="secondary-action current-banner-action" href="/cards?rarity=5&group=GAMERS">
+              Browse featured cards <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="current-banner-cards">
+            {bannerCards.map((card) => (
+              <Link className={`current-banner-card attribute-${card.attribute}`} href={`/cards/${card.slug}`} key={card.id}>
+                <span className="current-banner-card-art">
+                  <Image alt="" fill preview sizes="(max-width: 700px) 24vw, 14vw" src={card.illustrationPath} />
+                </span>
+                <span className="current-banner-card-copy"><strong>{card.talentName}</strong><span>{card.title}</span></span>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <p className="current-banner-songs"><strong>Event songs</strong> {bannerSongs.map((song) => song.title).join(" · ")}</p>
       </section>
 
       <section className="home-section">

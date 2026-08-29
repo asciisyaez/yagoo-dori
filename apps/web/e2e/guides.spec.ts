@@ -100,6 +100,34 @@ const GUIDES = [
     guideSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00-team-guide",
     cardSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00",
   },
+  {
+    talent: "Shirakami Fubuki",
+    cardTitle: "Twinkle on the Shore",
+    standardLeaderCardTitle: "Twinkle on the Shore",
+    guideSlug: "shirakami-fubuki-twinkle-on-the-shore-card-00006-5-uniq-0074-00-team-guide",
+    cardSlug: "shirakami-fubuki-twinkle-on-the-shore-card-00006-5-uniq-0074-00",
+  },
+  {
+    talent: "Ookami Mio",
+    cardTitle: "Drowsy Wolf Heart",
+    standardLeaderCardTitle: "Drowsy Wolf Heart",
+    guideSlug: "ookami-mio-drowsy-wolf-heart-card-00014-5-uniq-0075-00-team-guide",
+    cardSlug: "ookami-mio-drowsy-wolf-heart-card-00014-5-uniq-0075-00",
+  },
+  {
+    talent: "Nekomata Okayu",
+    cardTitle: "Parasol Stray Cat",
+    standardLeaderCardTitle: "Parasol Stray Cat",
+    guideSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00-team-guide",
+    cardSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00",
+  },
+  {
+    talent: "Inugami Korone",
+    cardTitle: "Jungle Fever Dance",
+    standardLeaderCardTitle: "Jungle Fever Dance",
+    guideSlug: "inugami-korone-jungle-fever-dance-card-00017-5-uniq-0077-00-team-guide",
+    cardSlug: "inugami-korone-jungle-fever-dance-card-00017-5-uniq-0077-00",
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];

@@ -30,8 +30,8 @@ function fixtureAdjacency(): BoardAdjacency {
     treeModelIds: ["tree-model-001"],
     cellByGroupIdByTreeModel: new Map([["tree-model-001", cells]]),
     neighborsByGroupId: new Map([...cells.keys()].map((groupId) => [groupId, [] as readonly string[]])),
-    nodeGroupCount: 152,
-    edgeCount: 171,
+    nodeGroupCount: 153,
+    edgeCount: 172,
   };
 }
 

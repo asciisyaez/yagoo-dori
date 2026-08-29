@@ -3,17 +3,44 @@
   "id": "patch-intake-manifest-v1",
   "methodologyVersion": "yd-patch-intake-v1",
   "retrievedAt": {
-    "public": "2026-08-17",
-    "mechanics": "2026-08-17",
-    "songs": "2026-08-17",
+    "public": "2026-08-29",
+    "mechanics": "2026-08-29",
+    "songs": "2026-08-29",
     "timelines": "2026-08-02"
   },
   "timelineStage": {
     "status": "skipped-api-unavailable",
     "reasonCode": "chart-api-unreachable",
     "unavailableReconciliation": {
-      "addedKeys": [],
-      "replacedExactKeys": []
+      "addedKeys": [
+        "m0338:easy",
+        "m0338:expert",
+        "m0338:hard",
+        "m0338:normal",
+        "m0339:easy",
+        "m0339:expert",
+        "m0339:hard",
+        "m0339:normal",
+        "m0340:easy",
+        "m0340:expert",
+        "m0340:hard",
+        "m0340:normal",
+        "m0341:easy",
+        "m0341:expert",
+        "m0341:hard",
+        "m0341:normal",
+        "m0342:easy",
+        "m0342:expert",
+        "m0342:hard",
+        "m0342:normal",
+        "m0359:easy",
+        "m0359:expert",
+        "m0359:hard",
+        "m0359:normal"
+      ],
+      "replacedExactKeys": [
+        "m0323:expert"
+      ]
     }
   },
   "pinFiles": [
@@ -108,21 +135,26 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "assets": 120
+          "assets": 124
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "assets": 120
+          "assets": 124
         },
         "declared": {}
       }
     },
     {
       "path": "data/generated/card-art-preview-manifest.json",
-      "changed": false,
-      "addedIds": [],
+      "changed": true,
+      "addedIds": [
+        "card-00006-5-uniq-0074-00",
+        "card-00014-5-uniq-0075-00",
+        "card-00016-5-uniq-0076-00",
+        "card-00017-5-uniq-0077-00"
+      ],
       "removedIds": [],
       "changedRowCount": 0,
       "countsBefore": {
@@ -133,17 +165,42 @@
       },
       "countsAfter": {
         "rows": {
-          "previews": 120
+          "previews": 124
         },
         "declared": {}
       }
     },
     {
       "path": "data/generated/holodori-chart-timelines.json",
-      "changed": false,
-      "addedIds": [],
+      "changed": true,
+      "addedIds": [
+        "m0338:easy",
+        "m0338:expert",
+        "m0338:hard",
+        "m0338:normal",
+        "m0339:easy",
+        "m0339:expert",
+        "m0339:hard",
+        "m0339:normal",
+        "m0340:easy",
+        "m0340:expert",
+        "m0340:hard",
+        "m0340:normal",
+        "m0341:easy",
+        "m0341:expert",
+        "m0341:hard",
+        "m0341:normal",
+        "m0342:easy",
+        "m0342:expert",
+        "m0342:hard",
+        "m0342:normal",
+        "m0359:easy",
+        "m0359:expert",
+        "m0359:hard",
+        "m0359:normal"
+      ],
       "removedIds": [],
-      "changedRowCount": 0,
+      "changedRowCount": 1,
       "countsBefore": {
         "rows": {
           "charts": 699,
@@ -163,13 +220,13 @@
       "countsAfter": {
         "rows": {
           "charts": 699,
-          "unavailableCharts": 53
+          "unavailableCharts": 77
         },
         "declared": {
           "counts": {
             "songs": 175,
             "charts": 699,
-            "unavailableCharts": 53,
+            "unavailableCharts": 77,
             "events": 402632,
             "specialMarkers": 3495,
             "chartsWithDeclaredCountDisagreements": 1
@@ -224,12 +281,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 120
+          "cards": 124
         },
         "declared": {
           "coverage": {
-            "cards": 120,
-            "mappedCards": 120,
+            "cards": 124,
+            "mappedCards": 124,
             "unresolvedReferences": []
           }
         }
@@ -238,12 +295,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 120
+          "cards": 124
         },
         "declared": {
           "coverage": {
-            "cards": 120,
-            "mappedCards": 120,
+            "cards": 124,
+            "mappedCards": 124,
             "unresolvedReferences": []
           }
         }
@@ -258,30 +315,30 @@
       "countsBefore": {
         "rows": {
           "notes": 3,
-          "cards": 120
+          "cards": 124
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 66,
-            "total": 120,
-            "art": 120
+            "fiveStar": 70,
+            "total": 124,
+            "art": 124
           }
         }
       },
       "countsAfter": {
         "rows": {
           "notes": 3,
-          "cards": 120
+          "cards": 124
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 66,
-            "total": 120,
-            "art": 120
+            "fiveStar": 70,
+            "total": 124,
+            "art": 124
           }
         }
       }
@@ -328,32 +385,32 @@
       "countsBefore": {
         "rows": {
           "evidenceSources": 3,
-          "songs": 188,
-          "charts": 752,
+          "songs": 194,
+          "charts": 776,
           "timedCharts": 0
         },
         "declared": {
           "counts": {
-            "songs": 188,
-            "aggregateCharts": 752,
+            "songs": 194,
+            "aggregateCharts": 776,
             "timedCharts": 0,
-            "ratingEligibleSongs": 174
+            "ratingEligibleSongs": 180
           }
         }
       },
       "countsAfter": {
         "rows": {
           "evidenceSources": 3,
-          "songs": 188,
-          "charts": 752,
+          "songs": 194,
+          "charts": 776,
           "timedCharts": 0
         },
         "declared": {
           "counts": {
-            "songs": 188,
-            "aggregateCharts": 752,
+            "songs": 194,
+            "aggregateCharts": 776,
             "timedCharts": 0,
-            "ratingEligibleSongs": 174
+            "ratingEligibleSongs": 180
           }
         }
       }
@@ -482,6 +539,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00006-5-uniq-0074-00",
+      "talent": "Shirakami Fubuki",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-29"
+    },
+    {
       "id": "card-00007-4-cmmn-0000-00",
       "talent": "Natsuiro Matsuri",
       "rarity": 4,
@@ -566,6 +629,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00014-5-uniq-0075-00",
+      "talent": "Ookami Mio",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-29"
+    },
+    {
       "id": "card-00015-4-cmmn-0000-00",
       "talent": "Sakura Miko",
       "rarity": 4,
@@ -596,6 +665,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00016-5-uniq-0076-00",
+      "talent": "Nekomata Okayu",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-29"
+    },
+    {
       "id": "card-00017-4-cmmn-0000-00",
       "talent": "Inugami Korone",
       "rarity": 4,
@@ -606,6 +681,12 @@
       "talent": "Inugami Korone",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00017-5-uniq-0077-00",
+      "talent": "Inugami Korone",
+      "rarity": 5,
+      "firstSeenAt": "2026-08-29"
     },
     {
       "id": "card-00018-4-cmmn-0000-00",
@@ -1152,12 +1233,14 @@
       "pnpm rankings:generate"
     ]
   },
-  "testCountPinFiles": [],
-  "deterministicDigest": "2c2ed73d9a92a647262f34fa6045fdc23e5b9e41bc90fca60ef9ab7bd69e041c",
+  "testCountPinFiles": [
+    "packages/core/src/chart-timelines.test.ts"
+  ],
+  "deterministicDigest": "2637e0f37e7bace4b042998cc4ea1becfb42522d76b2b6b86174c87a3d2eb0b0",
   "runtimeMetadata": {
-    "generatedAt": "2026-08-17T15:16:57.549Z",
-    "elapsedMilliseconds": 29901,
-    "changedDatasetCount": 0,
+    "generatedAt": "2026-08-29T03:40:24.294Z",
+    "elapsedMilliseconds": 18645,
+    "changedDatasetCount": 2,
     "timelineStageError": "Error: Failed to read chart API revision: 403\r"
   }
 }

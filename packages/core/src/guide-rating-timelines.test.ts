@@ -34,8 +34,8 @@ describe("published guide rating-song exact timelines", () => {
     // Literal intake tripwire: the schema already reconciles counts against the
     // file's own contents, so without pinned sizes a projector run that drops or
     // duplicates charts would stay self-consistent and pass silently.
-    expect(guideRatingTimelineData.charts).toHaveLength(59);
-    expect(guideRatingTimelineData.unavailableCharts).toHaveLength(8);
+    expect(guideRatingTimelineData.charts).toHaveLength(73);
+    expect(guideRatingTimelineData.unavailableCharts).toHaveLength(14);
   });
 
   it("pins the exact full-corpus source used for the compact projection", () => {

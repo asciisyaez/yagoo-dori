@@ -1,4 +1,5 @@
 import {
+  currentBanner,
   nativeRankingEntryByLensAndCard,
   publicCardsInGenerationOrder,
   publicData,
@@ -11,7 +12,6 @@ import {
   RollCompare,
   type RollCompareCard,
 } from "@/components/roll-compare";
-import { isCardRecentlyAdded, trackingBaseline } from "@/lib/card-freshness";
 
 import styles from "./roll-compare.module.css";
 
@@ -23,8 +23,6 @@ export const metadata: Metadata = {
 
 const oneCopyRankingEntryByCard = nativeRankingEntryByLensAndCard.get("one-copy-maximum");
 
-const firstSeenBaseline = trackingBaseline(publicCardsInGenerationOrder.map((card) => card.firstSeenAt));
-
 const cards: RollCompareCard[] = publicCardsInGenerationOrder.map((card) => ({
   id: card.id,
   slug: card.slug,
@@ -33,7 +31,7 @@ const cards: RollCompareCard[] = publicCardsInGenerationOrder.map((card) => ({
   title: card.title,
   rarity: card.rarity,
   artPath: card.artPath,
-  isNew: isCardRecentlyAdded(card.firstSeenAt, publicData.retrievedAt, firstSeenBaseline),
+  isNew: currentBanner.featuredCardIds.includes(card.id),
   modelTier: oneCopyRankingEntryByCard?.get(card.id)?.tier ?? null,
 }));
 
