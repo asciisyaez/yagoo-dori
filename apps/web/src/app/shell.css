@@ -463,6 +463,157 @@ select {
   backdrop-filter: blur(8px);
 }
 
+.current-banner-panel {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+  overflow: hidden;
+  border: 1px solid rgba(37, 188, 233, 0.24);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(37, 188, 233, 0.13), transparent 22rem),
+    linear-gradient(135deg, #18232d, #111820);
+}
+
+.current-banner-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.3rem, 3vw, 2.4rem);
+}
+
+.current-banner-kicker {
+  margin: 0 0 0.65rem;
+  color: var(--yd-cyan-soft);
+  font-size: 0.64rem;
+  font-weight: 820;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.current-banner-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.45rem, 2.7vw, 2.25rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.current-banner-copy > p:not(.current-banner-kicker) {
+  max-width: 30rem;
+  margin: 0.85rem 0 0;
+  color: #b7c1ca;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.current-banner-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+  margin: 1.3rem 0 0;
+}
+
+.current-banner-stats div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.current-banner-stats dt {
+  color: #7e8a97;
+  font-size: 0.58rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.current-banner-stats dd {
+  margin: 0;
+  color: #edf4f7;
+  font-size: 0.76rem;
+  font-weight: 780;
+}
+
+.current-banner-action {
+  align-self: start;
+  margin-top: 1.25rem;
+  border-color: #3d5b6a;
+  font-size: 0.72rem;
+}
+
+.current-banner-action svg {
+  width: 14px;
+}
+
+.current-banner-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem;
+}
+
+.current-banner-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.045);
+  transition: border-color 170ms ease, transform 170ms ease;
+}
+
+.current-banner-card:hover {
+  border-color: rgba(37, 188, 233, 0.7);
+  transform: translateY(-3px);
+}
+
+.current-banner-card-art {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+}
+
+.current-banner-card-art img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.current-banner-card-copy {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.55rem 0.55rem 0.65rem;
+}
+
+.current-banner-card-copy strong,
+.current-banner-card-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current-banner-card-copy strong {
+  color: #f1f5f7;
+  font-size: 0.7rem;
+}
+
+.current-banner-card-copy span {
+  color: #9eabb5;
+  font-size: 0.6rem;
+}
+
+.current-banner-songs {
+  margin: 0.7rem 0 0;
+  color: var(--yd-dim);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.current-banner-songs strong {
+  margin-right: 0.45rem;
+  color: var(--yd-muted);
+  font-weight: 760;
+}
+
 .home-section {
   margin-top: clamp(2.8rem, 5vw, 5rem);
 }
@@ -894,8 +1045,20 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .current-banner-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .current-banner-copy {
+    padding-bottom: 1.4rem;
+  }
+
   .quick-link-card {
     min-height: 160px;
+  }
+
+  .current-banner-cards {
+    padding-top: 0;
   }
 }
 
@@ -941,6 +1104,23 @@ select {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 0.5rem;
+  }
+
+  .current-banner-cards {
+    gap: 0.35rem;
+    padding: 0.65rem;
+  }
+
+  .current-banner-card-copy {
+    padding-inline: 0.4rem;
+  }
+
+  .current-banner-card-copy strong {
+    font-size: 0.64rem;
+  }
+
+  .current-banner-card-copy span {
+    font-size: 0.55rem;
   }
 
   .latest-card {

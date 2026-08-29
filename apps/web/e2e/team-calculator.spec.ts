@@ -73,7 +73,7 @@ test("card filters update immediately, preserve rarity groups, and survive reloa
   await page.goto("/team-builder", { waitUntil: "domcontentloaded" });
 
   await page.getByRole("searchbox", { name: "Search cards" }).fill("Subaru");
-  await expect(page.locator("[class*='visibleCount']")).toHaveText("3 / 120");
+  await expect(page.locator("[class*='visibleCount']")).toHaveText("3 / 124");
   await expect(page.locator("[class*='rarityGroup'] h3")).toHaveText([
     "5★ Member cards",
     "4★ Member cards",
@@ -83,7 +83,7 @@ test("card filters update immediately, preserve rarity groups, and survive reloa
 
   await page.getByRole("button", { name: "5★", exact: true }).click();
   await page.getByRole("combobox", { name: "Card type" }).selectOption("pure");
-  await expect(page.locator("[class*='visibleCount']")).toHaveText("1 / 120");
+  await expect(page.locator("[class*='visibleCount']")).toHaveText("1 / 124");
   await expect(page.getByRole("button", { name: /Add Oozora Subaru, Vibrant Sun Splash!/ })).toBeVisible();
   await expect(page.getByRole("button", { name: /Add Airani Iofifteen/ })).toHaveCount(0);
   await expect(page).toHaveURL(/(?:\?|&)q=Subaru(?:&|$)/);
@@ -96,7 +96,7 @@ test("card filters update immediately, preserve rarity groups, and survive reloa
   await expect(page.getByRole("combobox", { name: "Card type" })).toHaveValue("pure");
   await expect(page.getByRole("button", { name: "5★", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", { name: "4★", exact: true })).toHaveAttribute("aria-pressed", "false");
-  await expect(page.locator("[class*='visibleCount']")).toHaveText("1 / 120");
+  await expect(page.locator("[class*='visibleCount']")).toHaveText("1 / 124");
 });
 
 test("multiple versions of one talent still count as one legal Member choice", async ({ isMobile, page }) => {
@@ -119,7 +119,7 @@ test("required-card locks expose an accessible Oshi capacity conflict", async ({
   const search = page.getByRole("searchbox", { name: "Search cards" });
   for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu", "Nekomata Okayu"]) {
     await search.fill(talent);
-    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
+    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).first().click();
   }
   const requiredButtons = page.getByRole("button", { name: /^Require / });
   for (let index = 0; index < 5; index += 1) await requiredButtons.first().click();
@@ -198,7 +198,7 @@ test("a six-card roster calculates a legal Leader and five Members off the main 
   const search = page.getByRole("searchbox", { name: "Search cards" });
   for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu", "Nekomata Okayu"]) {
     await search.fill(talent);
-    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
+    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).first().click();
   }
 
   const requiredButtons = page.getByRole("button", { name: /^Require / });

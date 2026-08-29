@@ -2,6 +2,7 @@ import {
   nativeRankingData,
   nativeRankingEntryByLensAndCard,
   nativeLeaderOutfitRankingEntryByLensAndCard,
+  currentBanner,
   publicCards,
   publicData,
 } from "@yagoo-dori/core";
@@ -10,7 +11,6 @@ import { Suspense } from "react";
 import { BarChart3 } from "lucide-react";
 
 import { TierListExplorer, type TierCard } from "@/components/tier-list-explorer";
-import { isCardRecentlyAdded, trackingBaseline } from "@/lib/card-freshness";
 
 export const metadata: Metadata = {
   title: "hololive Dreams tier list",
@@ -66,14 +66,12 @@ function mechanicsFor(card: (typeof publicCards)[number]): TierCard["mechanics"]
   };
 }
 
-const firstSeenBaseline = trackingBaseline(publicCards.map((card) => card.firstSeenAt));
-
 const memberCards: TierCard[] = publicCards.map((card) => ({
   id: card.id,
   slug: card.slug,
   talentName: card.talentName,
   title: card.title,
-  isNew: isCardRecentlyAdded(card.firstSeenAt, publicData.retrievedAt, firstSeenBaseline),
+  isNew: currentBanner.featuredCardIds.includes(card.id),
   rarity: card.rarity,
   attribute: card.attribute,
   generation: card.generation,
@@ -88,7 +86,7 @@ const leaderOutfits: TierCard[] = publicCards.map((card) => ({
   slug: card.slug,
   talentName: card.talentName,
   title: card.leaderOutfit.costumeName,
-  isNew: isCardRecentlyAdded(card.firstSeenAt, publicData.retrievedAt, firstSeenBaseline),
+  isNew: currentBanner.featuredCardIds.includes(card.id),
   rarity: card.rarity,
   attribute: card.attribute,
   generation: card.generation,

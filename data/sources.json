@@ -84,8 +84,8 @@
     "url": "https://github.com/HolodoriDB/holodori-db-eng-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit 1907a1b9f85beb22e9d255686a26e0bd5db223e9 (pinned structured input)",
-    "retrievedAt": "2026-07-30",
+    "upstreamVersion": "commit 95e08ebe8f5b0bec83af036230f10291726b7130 (pinned structured input)",
+    "retrievedAt": "2026-08-29",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
@@ -97,10 +97,49 @@
     "url": "https://github.com/HolodoriDB/holodori-db-jpn-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit d8929f3cf6845111eeb6fc96f7b12bffb23ecd78 (pinned structured input)",
-    "retrievedAt": "2026-07-30",
+    "upstreamVersion": "commit 09fd4e4abbee2a640a49e7f3f023ad23f43eaa89 (pinned structured input)",
+    "retrievedAt": "2026-08-29",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
+  },
+  {
+    "id": "source-official-gamers-event",
+    "title": "hololive Dreams official account — Summer Survival on the Island announcement",
+    "publisher": "QualiArts / COVER Corp.",
+    "url": "https://x.com/hololive_dreams/status/2092955311208583263",
+    "kind": "official",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "2026-08-27",
+    "retrievedAt": "2026-08-29",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Confirms the four hololive GAMERS members and the 2026-08-29 event launch."
+  },
+  {
+    "id": "source-official-gamers-songs",
+    "title": "hololive Dreams official account — Summer Survival on the Island event songs",
+    "publisher": "QualiArts / COVER Corp.",
+    "url": "https://x.com/hololive_dreams/status/2092956748139397618",
+    "kind": "official",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "2026-08-27",
+    "retrievedAt": "2026-08-29",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Confirms the five songs announced for the event; song IDs are joined only to the pinned structured catalog."
+  },
+  {
+    "id": "source-appmedia-gamers-gacha",
+    "title": "AppMedia — Gamers gacha guide",
+    "publisher": "AppMedia",
+    "url": "https://appmedia.jp/hololive-dreams/80352628",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "published 2026-08-28",
+    "retrievedAt": "2026-08-29",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Corroborates the banner name, 11:00 JST start, four featured cards, and no published end date; editorial recommendations do not enter native rankings."
   }
 ]

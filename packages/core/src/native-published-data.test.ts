@@ -18,9 +18,53 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "a15150a8b7413f035f28f8f85d63ab9df122c380";
+const PINNED_GUIDE_ROSTER_COMMIT = "95e08ebe8f5b0bec83af036230f10291726b7130";
 
 const EXPECTED_GUIDE_IDENTITIES = [
+  {
+    anchorCardId: "card-00006-5-uniq-0074-00",
+    talentId: "chr-00006",
+    talentName: "Shirakami Fubuki",
+    cardTitle: "Twinkle on the Shore",
+    leaders: {
+      premium: "card-00006-5-uniq-0074-00",
+      standard: "card-00006-5-uniq-0074-00",
+      "accessible-4-star": "card-00006-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00014-5-uniq-0075-00",
+    talentId: "chr-00014",
+    talentName: "Ookami Mio",
+    cardTitle: "Drowsy Wolf Heart",
+    leaders: {
+      premium: "card-00014-5-uniq-0075-00",
+      standard: "card-00014-5-uniq-0075-00",
+      "accessible-4-star": "card-00014-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00016-5-uniq-0076-00",
+    talentId: "chr-00016",
+    talentName: "Nekomata Okayu",
+    cardTitle: "Parasol Stray Cat",
+    leaders: {
+      premium: "card-00016-5-uniq-0076-00",
+      standard: "card-00016-5-uniq-0076-00",
+      "accessible-4-star": "card-00016-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00017-5-uniq-0077-00",
+    talentId: "chr-00017",
+    talentName: "Inugami Korone",
+    cardTitle: "Jungle Fever Dance",
+    leaders: {
+      premium: "card-00017-5-uniq-0077-00",
+      standard: "card-00017-5-uniq-0077-00",
+      "accessible-4-star": "card-00017-4-cmmn-0000-00",
+    },
+  },
   {
     anchorCardId: "card-00012-5-uniq-0062-00",
     talentId: "chr-00012",
@@ -178,6 +222,54 @@ const EXPECTED_GUIDE_IDENTITIES = [
 ] as const;
 
 const EXPECTED_LEADER_IDENTITIES = {
+  "card-00006-4-cmmn-0000-00": {
+    cardTitle: "Max-Gear Fox Show",
+    costumeId: "cos-00006-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00006-4-cmmn-0000-00",
+  },
+  "card-00006-5-uniq-0074-00": {
+    cardTitle: "Twinkle on the Shore",
+    costumeId: "cos-00006-uniq-0074-00",
+    costumeName: "1UP Sporty",
+    leaderSkillId: "live_leader_skill-card-00006-5-uniq-0074-00",
+  },
+  "card-00014-4-cmmn-0000-00": {
+    cardTitle: "Sunlit Wolf Song",
+    costumeId: "cos-00014-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00014-4-cmmn-0000-00",
+  },
+  "card-00014-5-uniq-0075-00": {
+    cardTitle: "Drowsy Wolf Heart",
+    costumeId: "cos-00014-uniq-0075-00",
+    costumeName: "Shore Score",
+    leaderSkillId: "live_leader_skill-card-00014-5-uniq-0075-00",
+  },
+  "card-00016-4-cmmn-0000-00": {
+    cardTitle: "Mesmerizing Cat Jam",
+    costumeId: "cos-00016-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00016-4-cmmn-0000-00",
+  },
+  "card-00016-5-uniq-0076-00": {
+    cardTitle: "Parasol Stray Cat",
+    costumeId: "cos-00016-uniq-0076-00",
+    costumeName: "Salty Breeze Runway",
+    leaderSkillId: "live_leader_skill-card-00016-5-uniq-0076-00",
+  },
+  "card-00017-4-cmmn-0000-00": {
+    cardTitle: "Outlaw Puppy Rhyme",
+    costumeId: "cos-00017-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00017-4-cmmn-0000-00",
+  },
+  "card-00017-5-uniq-0077-00": {
+    cardTitle: "Jungle Fever Dance",
+    costumeId: "cos-00017-uniq-0077-00",
+    costumeName: "Stripe Strike",
+    leaderSkillId: "live_leader_skill-card-00017-5-uniq-0077-00",
+  },
   "card-00012-4-cmmn-0000-00": {
     cardTitle: "Radiant Soul Jam",
     costumeId: "cos-00012-cmmn-0000-00",
@@ -373,10 +465,14 @@ const EXPECTED_LEADER_IDENTITIES = {
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00006-5-uniq-0074-00",
   "card-00010-5-uniq-0069-00",
   "card-00012-5-uniq-0062-00",
   "card-00013-5-uniq-0002-00",
+  "card-00014-5-uniq-0075-00",
   "card-00015-5-uniq-0067-00",
+  "card-00016-5-uniq-0076-00",
+  "card-00017-5-uniq-0077-00",
   "card-00018-5-uniq-0068-00",
   "card-00019-5-uniq-0016-00",
   "card-00021-5-uniq-0064-00",
@@ -509,7 +605,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(97);
+    expect(referencedCardIds.size).toBe(109);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

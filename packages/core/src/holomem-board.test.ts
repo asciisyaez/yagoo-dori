@@ -77,15 +77,15 @@ describe("holomem Board model", () => {
     })).toEqual(gated);
   });
 
-  it("derives the real deterministic 152-group, 171-edge topology", () => {
+  it("derives the real deterministic 153-group, 172-edge topology", () => {
     expect(boardAdjacency.ruleId).toBe("board-derived-adjacency");
     expect(boardAdjacency.startGroupId).toBe("S-001");
-    expect(boardAdjacency.nodeGroupCount).toBe(152);
-    expect(boardAdjacency.edgeCount).toBe(171);
+    expect(boardAdjacency.nodeGroupCount).toBe(153);
+    expect(boardAdjacency.edgeCount).toBe(172);
     expect(boardAdjacency.treeModelIds).toHaveLength(4);
-    expect([...boardAdjacency.neighborsByGroupId.keys()]).toHaveLength(152);
+    expect([...boardAdjacency.neighborsByGroupId.keys()]).toHaveLength(153);
     expect(boardAdjacency.treeModelIds.map((id) => [...boardAdjacency.cellByGroupIdByTreeModel.get(id)!.keys()].length))
-      .toEqual([152, 152, 152, 152]);
+      .toEqual([153, 153, 153, 153]);
     expect(buildBoardAdjacency()).toEqual(boardAdjacency);
 
     const input = clonedCatalogs();
@@ -120,7 +120,7 @@ describe("holomem Board model", () => {
     missingPosition.boardNodePositions = missingPosition.boardNodePositions.filter(
       (row) => !(row.treeModelId === "tree-model-004" && row.nodeGroupId === "S-001"),
     );
-    expect(() => buildBoardAdjacency(missingPosition)).toThrow(/tree-model-004 must have exactly 152 groups/);
+    expect(() => buildBoardAdjacency(missingPosition)).toThrow(/tree-model-004 must have exactly 153 groups/);
 
     const duplicateCell = clonedCatalogs();
     const root = duplicateCell.boardNodePositions.find((row) => row.treeModelId === "tree-model-001" && row.nodeGroupId === "S-001")!;

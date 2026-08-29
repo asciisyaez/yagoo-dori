@@ -1,17 +1,14 @@
-import { publicCards, publicCardsInGenerationOrder, publicData } from "@yagoo-dori/core";
+import { currentBanner, publicCards, publicCardsInGenerationOrder, publicData } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { LibraryBig } from "lucide-react";
 
 import { CardCatalog, type CatalogCard } from "@/components/card-catalog";
-import { isCardRecentlyAdded, trackingBaseline } from "@/lib/card-freshness";
 
 export const metadata: Metadata = {
   title: "Cards and Leader Outfits",
   description: "Browse every current hololive Dreams Member card and its linked Leader Outfit.",
 };
-
-const firstSeenBaseline = trackingBaseline(publicCardsInGenerationOrder.map((card) => card.firstSeenAt));
 
 const cards: CatalogCard[] = publicCardsInGenerationOrder.map((card) => ({
   id: card.id,
@@ -22,7 +19,7 @@ const cards: CatalogCard[] = publicCardsInGenerationOrder.map((card) => ({
   attribute: card.attribute,
   groups: card.groups,
   illustrationPath: card.illustrationPath,
-  isNew: isCardRecentlyAdded(card.firstSeenAt, publicData.retrievedAt, firstSeenBaseline),
+  isNew: currentBanner.featuredCardIds.includes(card.id),
   costumeName: card.leaderOutfit.costumeName,
   leaderDescription:
     card.leaderOutfit.description?.replace(/\[\/?[^\]]+\]/g, "") ??

@@ -78,20 +78,20 @@ async function buildWithArtifactMutation(
 
 describe("exact optimizer coverage ledger", () => {
   it("reports the recorded research evidence as honestly stale against the patched scope", async () => {
-    // The 2026-08 roster patch (115 -> 120 cards) minted a new scope hash.
+    // The 2026-08 roster patch (120 -> 124 cards) minted a new scope hash.
     // The recorded trace-parity and root-bound artifacts are pinned to the
     // previous scope; until they are regenerated, the ledger must refuse
     // authorization with the specific scope-stale reasons rather than carry
     // pre-patch coverage forward. Structural per-card axes still enumerate
-    // the current 120-card roster.
+    // the current 124-card roster.
     const ledger = await buildExactOptimizerCoverageLedger();
     expect(() => validateExactOptimizerCoverageLedger(ledger)).toThrow(
       /authorization gate is not satisfied/i,
     );
 
     expect(ledger.requiredZeroCoverage).toEqual([]);
-    expect(ledger.coverage.find((axis) => axis.id === "member-cards")!.entries).toHaveLength(120);
-    expect(ledger.coverage.find((axis) => axis.id === "leader-sources")!.entries).toHaveLength(120);
+    expect(ledger.coverage.find((axis) => axis.id === "member-cards")!.entries).toHaveLength(124);
+    expect(ledger.coverage.find((axis) => axis.id === "leader-sources")!.entries).toHaveLength(124);
     expect(ledger.coverage.find((axis) => axis.id === "application-records")!.entries.length).toBeGreaterThan(0);
     expect(ledger.gates.compression).toMatchObject({
       authorized: false,

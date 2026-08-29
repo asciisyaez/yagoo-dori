@@ -32,8 +32,10 @@ describe("frozen Member tier calibration", () => {
       );
       expect(counts).toEqual(
         lens.investment === "one-copy-maximum"
-          ? { SS: 6, S: 13, A: 24, B: 23, C: 27, D: 27 }
-          : { SS: 6, S: 13, A: 24, B: 23, C: 26, D: 28 },
+          ? { SS: 6, S: 14, A: 26, B: 24, C: 27, D: 27 }
+          : lens.investment === "duplicate-enabled-ceiling"
+            ? { SS: 6, S: 13, A: 27, B: 24, C: 26, D: 28 }
+            : { SS: 6, S: 14, A: 26, B: 24, C: 26, D: 28 },
       );
     }
   });
@@ -46,7 +48,11 @@ describe("frozen Member tier calibration", () => {
           lens.entries.filter((entry) => entry.tier === tier).length,
         ]),
       );
-      expect(counts).toEqual({ SS: 0, S: 19, A: 24, B: 23, C: 54, D: 0 });
+      expect(counts).toEqual(
+        lens.investment === "duplicate-enabled-ceiling"
+          ? { SS: 0, S: 19, A: 27, B: 24, C: 54, D: 0 }
+          : { SS: 0, S: 20, A: 26, B: 24, C: 54, D: 0 },
+      );
     }
   });
 

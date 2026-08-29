@@ -78,7 +78,7 @@ describe("Holomem Board node objective", () => {
 
     const objective = buildBoardNodeObjective(baseObjectiveInput);
     expect(objective.stackingModel).toBe(BOARD_SUGGESTER_STACKING_MODEL);
-    expect(objective.objectiveByGroupId.size).toBe(152);
+    expect(objective.objectiveByGroupId.size).toBe(153);
     expect(objective.connectEnablers).toHaveLength(4);
   });
 

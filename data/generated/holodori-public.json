@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-08-17",
+  "retrievedAt": "2026-08-29",
   "sourceSnapshots": {
     "english": {
       "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-      "commit": "a15150a8b7413f035f28f8f85d63ab9df122c380",
-      "masterVersion": "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c"
+      "commit": "95e08ebe8f5b0bec83af036230f10291726b7130",
+      "masterVersion": "fbca8c670e074558b24708bf163fff446a614f709afa9d1784395a15444121b0"
     },
     "japanese": {
       "repository": "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-      "commit": "84cb500d8ebf19e306be20faba696123018e49a8",
-      "masterVersion": "71e11fbd082eec83d10cff35da7179cbaf319097f0021aa5747fe5a5392b549c"
+      "commit": "09fd4e4abbee2a640a49e7f3f023ad23f43eaa89",
+      "masterVersion": "fbca8c670e074558b24708bf163fff446a614f709afa9d1784395a15444121b0"
     },
     "art": {
       "page": "https://appmedia.jp/hololive-dreams",
@@ -33,9 +33,9 @@
   "counts": {
     "talents": 54,
     "fourStar": 54,
-    "fiveStar": 66,
-    "total": 120,
-    "art": 120
+    "fiveStar": 70,
+    "total": 124,
+    "art": 124
   },
   "notes": [
     "HolodoriDB tables are joined by explicit IDs and pinned commits.",
@@ -1993,6 +1993,128 @@
         "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_3-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
+      }
+    },
+    {
+      "id": "card-00017-5-uniq-0077-00",
+      "firstSeenAt": "2026-08-29",
+      "slug": "inugami-korone-jungle-fever-dance-card-00017-5-uniq-0077-00",
+      "talentId": "chr-00017",
+      "generationOrder": 116,
+      "talentName": "Inugami Korone",
+      "title": "Jungle Fever Dance",
+      "titleJa": "密林を舞うワイルドサマー！",
+      "rarity": 5,
+      "attribute": "pure",
+      "generation": "GAMERS",
+      "groups": [
+        "GAMERS"
+      ],
+      "branch": "hololive Japan",
+      "color": "#FFCD28",
+      "assetId": "00017-5-uniq-0077-00",
+      "artPath": "/game/cards/card-00017-5-uniq-0077-00.webp",
+      "illustrationPath": "/game/illustrations/card-00017-5-uniq-0077-00.webp",
+      "maxLevel": 80,
+      "parameterDistribution": {
+        "performance": 0.268,
+        "technique": 0.43,
+        "sense": 0.302
+      },
+      "parameters": {
+        "oneCopyMaxLevel": {
+          "performance": 6315,
+          "technique": 10132,
+          "sense": 7116
+        },
+        "maxPotential": {
+          "performance": 6947,
+          "technique": 11145,
+          "sense": 7828
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "level": 1,
+            "description": "For 11s, Score UP 50%. Every 32s with a High Probability chance. With 2 or more [attribute=pure]Pure Type[/attribute] Members, Score UP 100%.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-500",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_active_skill_effect-score_up_permil_up-1000",
+            "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
+            "cooldownSeconds": 32,
+            "durationSeconds": 11,
+            "activationProbability": 0.55
+          },
+          {
+            "level": 2,
+            "description": "For 11s, Score UP 60%. Every 32s with a High Probability chance. With 2 or more [attribute=pure]Pure Type[/attribute] Members, Score UP 120%.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-600",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_active_skill_effect-score_up_permil_up-1200",
+            "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
+            "cooldownSeconds": 32,
+            "durationSeconds": 11,
+            "activationProbability": 0.55
+          }
+        ],
+        "passive": [
+          {
+            "level": 1,
+            "description": "Grants Score Support Effect of 8% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-80-live_skill_effect_target-attribute-attribute_2-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "Grants Score Support Effect of 11% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-110-live_skill_effect_target-attribute-attribute_2-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          }
+        ],
+        "special": [
+          {
+            "level": 1,
+            "description": "For 12s, Grants Score Support Effect of 100%. Skill Activation Rate UP 35%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1000",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-350",
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "For 12s, Grants Score Support Effect of 120%. Skill Activation Rate UP 40%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1200",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00017-uniq-0077-00",
+        "costumeName": "Stripe Strike",
+        "description": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Technique UP 80% to all. With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Score Support Effect of 25% to all.",
+        "effectGroupId": "live_leader_skill_effect-technique_up_permil_up-800-live_skill_effect_target-all",
+        "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
+        "additionalEffectGroupId": "live_leader_skill_effect-live_active_skill_effect_up_permil_up-250-live_skill_effect_target-all",
+        "additionalTriggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2"
       }
     },
     {
@@ -4192,6 +4314,128 @@
       }
     },
     {
+      "id": "card-00016-5-uniq-0076-00",
+      "firstSeenAt": "2026-08-29",
+      "slug": "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00",
+      "talentId": "chr-00016",
+      "generationOrder": 115,
+      "talentName": "Nekomata Okayu",
+      "title": "Parasol Stray Cat",
+      "titleJa": "パラソル下のリバティキャット",
+      "rarity": 5,
+      "attribute": "happy",
+      "generation": "GAMERS",
+      "groups": [
+        "GAMERS"
+      ],
+      "branch": "hololive Japan",
+      "color": "#D866ED",
+      "assetId": "00016-5-uniq-0076-00",
+      "artPath": "/game/cards/card-00016-5-uniq-0076-00.webp",
+      "illustrationPath": "/game/illustrations/card-00016-5-uniq-0076-00.webp",
+      "maxLevel": 80,
+      "parameterDistribution": {
+        "performance": 0.43,
+        "technique": 0.302,
+        "sense": 0.268
+      },
+      "parameters": {
+        "oneCopyMaxLevel": {
+          "performance": 10132,
+          "technique": 7116,
+          "sense": 6315
+        },
+        "maxPotential": {
+          "performance": 11145,
+          "technique": 7828,
+          "sense": 6947
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "level": 1,
+            "description": "For 10s, Score UP 95%. Every 28s with a High Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-950",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 28,
+            "durationSeconds": 10,
+            "activationProbability": 0.55
+          },
+          {
+            "level": 2,
+            "description": "For 10s, Score UP 110%. Every 28s with a High Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-1100",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 28,
+            "durationSeconds": 10,
+            "activationProbability": 0.55
+          }
+        ],
+        "passive": [
+          {
+            "level": 1,
+            "description": "Grants Performance UP 32% to 2 GAMERS Members.",
+            "effectGroupId": "live_passive_skill_effect-performance_up_permil_up-320-live_skill_effect_target-character_grouping-grp-gamers-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "Grants Performance UP 43% to 2 GAMERS Members.",
+            "effectGroupId": "live_passive_skill_effect-performance_up_permil_up-430-live_skill_effect_target-character_grouping-grp-gamers-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          }
+        ],
+        "special": [
+          {
+            "level": 1,
+            "description": "For 11s, Grants Score Support Effect of 110%. With 2 or more GAMERS Members, Skill Activation Rate UP 40%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1100",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-400",
+            "additionalTriggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
+            "cooldownSeconds": null,
+            "durationSeconds": 11,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "For 11s, Grants Score Support Effect of 130%. With 2 or more GAMERS Members, Skill Activation Rate UP 50%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1300",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": "live_special_skill_effect-live_active_skill_activation_probability_up_permil_up-500",
+            "additionalTriggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
+            "cooldownSeconds": null,
+            "durationSeconds": 11,
+            "activationProbability": null
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00016-uniq-0076-00",
+        "costumeName": "Salty Breeze Runway",
+        "description": "With 2 or more GAMERS Members, Grants Performance UP 135% to all.",
+        "effectGroupId": "live_leader_skill_effect-performance_up_permil_up-1350-live_skill_effect_target-all",
+        "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
+        "additionalEffectGroupId": null,
+        "additionalTriggerGroupId": null
+      }
+    },
+    {
       "id": "card-04015-5-uniq-0054-00",
       "firstSeenAt": "2026-08-08",
       "slug": "nerissa-ravencroft-echoes-of-nocturne-card-04015-5-uniq-0054-00",
@@ -4797,6 +5041,128 @@
         "description": "With 2 or more GAMERS Members, Grants All Stats UP 50% to all.",
         "effectGroupId": "live_leader_skill_effect-all_parameter_up_permil_up-500-live_skill_effect_target-all",
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gamers-2",
+        "additionalEffectGroupId": null,
+        "additionalTriggerGroupId": null
+      }
+    },
+    {
+      "id": "card-00014-5-uniq-0075-00",
+      "firstSeenAt": "2026-08-29",
+      "slug": "ookami-mio-drowsy-wolf-heart-card-00014-5-uniq-0075-00",
+      "talentId": "chr-00014",
+      "generationOrder": 114,
+      "talentName": "Ookami Mio",
+      "title": "Drowsy Wolf Heart",
+      "titleJa": "夏にまどろむWolf Heart",
+      "rarity": 5,
+      "attribute": "pure",
+      "generation": "GAMERS",
+      "groups": [
+        "GAMERS"
+      ],
+      "branch": "hololive Japan",
+      "color": "#DB3131",
+      "assetId": "00014-5-uniq-0075-00",
+      "artPath": "/game/cards/card-00014-5-uniq-0075-00.webp",
+      "illustrationPath": "/game/illustrations/card-00014-5-uniq-0075-00.webp",
+      "maxLevel": 80,
+      "parameterDistribution": {
+        "performance": 0.263,
+        "technique": 0.44,
+        "sense": 0.297
+      },
+      "parameters": {
+        "oneCopyMaxLevel": {
+          "performance": 6184,
+          "technique": 10346,
+          "sense": 6984
+        },
+        "maxPotential": {
+          "performance": 6803,
+          "technique": 11380,
+          "sense": 7682
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "level": 1,
+            "description": "For 8s, Score UP 100%. Every 23s with a Medium Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-1000",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 23,
+            "durationSeconds": 8,
+            "activationProbability": 0.46
+          },
+          {
+            "level": 2,
+            "description": "For 8s, Score UP 120%. Every 23s with a Medium Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-1200",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 23,
+            "durationSeconds": 8,
+            "activationProbability": 0.46
+          }
+        ],
+        "passive": [
+          {
+            "level": 1,
+            "description": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Technique UP 32% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-technique_up_permil_up-320-live_skill_effect_target-attribute-attribute_2-2",
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Technique UP 43% to 2 [attribute=pure]Pure Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-technique_up_permil_up-430-live_skill_effect_target-attribute-attribute_2-2",
+            "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          }
+        ],
+        "special": [
+          {
+            "level": 1,
+            "description": "For 12s, Grants Score Support Effect of 110%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1100",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "For 12s, Grants Score Support Effect of 135%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1350",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00014-uniq-0075-00",
+        "costumeName": "Shore Score",
+        "description": "With 2 or more [attribute=pure]Pure Type[/attribute] Members, Grants Technique UP 130% to all.",
+        "effectGroupId": "live_leader_skill_effect-technique_up_permil_up-1300-live_skill_effect_target-all",
+        "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_2-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
       }
@@ -6140,6 +6506,129 @@
         "description": "With 2 or more Gen 1 Members, Grants All Stats UP 50% to all.",
         "effectGroupId": "live_leader_skill_effect-all_parameter_up_permil_up-500-live_skill_effect_target-all",
         "triggerGroupId": "live_skill_trigger-deck_card_character_grouping-grp-gen_1-2",
+        "additionalEffectGroupId": null,
+        "additionalTriggerGroupId": null
+      }
+    },
+    {
+      "id": "card-00006-5-uniq-0074-00",
+      "firstSeenAt": "2026-08-29",
+      "slug": "shirakami-fubuki-twinkle-on-the-shore-card-00006-5-uniq-0074-00",
+      "talentId": "chr-00006",
+      "generationOrder": 108,
+      "talentName": "Shirakami Fubuki",
+      "title": "Twinkle on the Shore",
+      "titleJa": "渚で魅せるtwinkle",
+      "rarity": 5,
+      "attribute": "cute",
+      "generation": "GAMERS",
+      "groups": [
+        "GAMERS",
+        "Gen 1"
+      ],
+      "branch": "hololive Japan",
+      "color": "#93D5F2",
+      "assetId": "00006-5-uniq-0074-00",
+      "artPath": "/game/cards/card-00006-5-uniq-0074-00.webp",
+      "illustrationPath": "/game/illustrations/card-00006-5-uniq-0074-00.webp",
+      "maxLevel": 80,
+      "parameterDistribution": {
+        "performance": 0.263,
+        "technique": 0.297,
+        "sense": 0.44
+      },
+      "parameters": {
+        "oneCopyMaxLevel": {
+          "performance": 6184,
+          "technique": 6984,
+          "sense": 10346
+        },
+        "maxPotential": {
+          "performance": 6803,
+          "technique": 7682,
+          "sense": 11380
+        }
+      },
+      "skills": {
+        "active": [
+          {
+            "level": 1,
+            "description": "For 13s, Score UP 95%. Every 35s with a Medium Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-950",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 35,
+            "durationSeconds": 13,
+            "activationProbability": 0.46
+          },
+          {
+            "level": 2,
+            "description": "For 13s, Score UP 115%. Every 35s with a Medium Probability chance.",
+            "effectGroupId": "live_active_skill_effect-score_up_permil_up-1150",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": 35,
+            "durationSeconds": 13,
+            "activationProbability": 0.46
+          }
+        ],
+        "passive": [
+          {
+            "level": 1,
+            "description": "Grants Score Support Effect of 8% to 2 [attribute=cute]Cute Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-80-live_skill_effect_target-attribute-attribute_1-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "Grants Score Support Effect of 11% to 2 [attribute=cute]Cute Type[/attribute] Members.",
+            "effectGroupId": "live_passive_skill_effect-live_active_skill_effect_up_permil_up-110-live_skill_effect_target-attribute-attribute_1-2",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": null,
+            "activationProbability": null
+          }
+        ],
+        "special": [
+          {
+            "level": 1,
+            "description": "For 12s, Grants Score Support Effect of 110%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1100",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          },
+          {
+            "level": 2,
+            "description": "For 12s, Grants Score Support Effect of 135%.",
+            "effectGroupId": "live_special_skill_effect-score_up_effect_up_permil_up-1350",
+            "triggerGroupId": null,
+            "additionalEffectGroupId": null,
+            "additionalTriggerGroupId": null,
+            "cooldownSeconds": null,
+            "durationSeconds": 12,
+            "activationProbability": null
+          }
+        ]
+      },
+      "leaderOutfit": {
+        "costumeId": "cos-00006-uniq-0074-00",
+        "costumeName": "1UP Sporty",
+        "description": "With 2 or more [attribute=cute]Cute Type[/attribute] Members, Grants Sense UP 130% to all.",
+        "effectGroupId": "live_leader_skill_effect-sense_up_permil_up-1300-live_skill_effect_target-all",
+        "triggerGroupId": "live_skill_trigger-deck_card_attribute-attribute_1-2",
         "additionalEffectGroupId": null,
         "additionalTriggerGroupId": null
       }

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "summer-survival-on-the-island-2026-08-29",
+  "status": "live",
+  "retrievedAt": "2026-08-29",
+  "eventName": "Summer Survival on the Island!",
+  "gachaNameJa": "炎天下のトロピックアイランドガチャ",
+  "startsAt": "2026-08-29T02:00:00.000Z",
+  "featuredCardIds": [
+    "card-00006-5-uniq-0074-00",
+    "card-00014-5-uniq-0075-00",
+    "card-00016-5-uniq-0076-00",
+    "card-00017-5-uniq-0077-00"
+  ],
+  "eventSongIds": [
+    "m0342",
+    "m0338",
+    "m0339",
+    "m0340",
+    "m0341"
+  ],
+  "sourceRefs": [
+    "source-official-gamers-event",
+    "source-official-gamers-songs",
+    "source-appmedia-gamers-gacha"
+  ],
+  "transformation": "Join the four featured card IDs and five event song IDs to the pinned HolodoriDB-derived public datasets; preserve the published start time and do not infer an end date."
+}

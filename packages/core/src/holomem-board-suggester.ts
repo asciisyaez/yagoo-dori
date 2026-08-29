@@ -331,7 +331,7 @@ function compareStateRank(left: SearchState, right: SearchState): number {
 type PathResult = Readonly<{ groupIds: readonly string[]; cost: number }>;
 
 /**
- * Multi-source Dijkstra over the 152-group grid, rooted at the unlocked set.
+ * Multi-source Dijkstra over the 153-group grid, rooted at the unlocked set.
  * Deterministic without sorting in the hot loop: settlement picks the lowest
  * tentative cost with lexicographic group-id tie-break, and an equal-cost
  * relaxation keeps the lexicographically smaller parent. Paths are stored as

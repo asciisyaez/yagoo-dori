@@ -4,31 +4,31 @@
   "methodologyVersion": "yd-holomem-board-1.0.0",
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "7b969fcb1a778eb958fc79bb515cc35215c41e40fbeaee798c4a1300eb98686a"
+    "sha256": "c60ee7adb8d4388154c9538204bdc11590f224efd648a6d557858f745e33e4bd"
   },
   "adjacency": {
     "ruleId": "board-derived-adjacency",
     "derivation": "orthogonal-unit-neighbors-on-position-grid",
     "startGroupId": "S-001",
-    "nodeGroupCount": 152,
-    "edgeCount": 171,
-    "edgeSetSha256": "80a7c396b3808a8cd214a99d8578eba3e4519ffbd12a5ad8967462e69b50cfa9",
+    "nodeGroupCount": 153,
+    "edgeCount": 172,
+    "edgeSetSha256": "a0cd2a049da46f07697d676c6706ff0620ed6f91463394a79d11d419df039c52",
     "treeModels": [
       {
         "id": "tree-model-001",
-        "cellsSha256": "148e1f1c084375290c3c6000d00a2c179479991482d5405370810cce57f57b6f"
+        "cellsSha256": "eeb0cb93a9467822b37a5a9bc3c1fa733bef53df3aa76084f55752798d4506a4"
       },
       {
         "id": "tree-model-002",
-        "cellsSha256": "923c13fae0caf6cf13e9cfa187fd4d02c9ddd92cc1617133ceed7a77b70a0d21"
+        "cellsSha256": "7bc004504f9ee302ab819d2235cb9987175cd5a8030305444b542a4bac526082"
       },
       {
         "id": "tree-model-003",
-        "cellsSha256": "fb928b91d83f39c77595f7db4a9fab87d6f169fc7d2e3e35cf8fab5ecbecda17"
+        "cellsSha256": "58f454c580aa73cd91217300921fac052d1672f3782a7cb3320d1d22bca95b99"
       },
       {
         "id": "tree-model-004",
-        "cellsSha256": "860f6abb5e74d69c8b6d718ff46196603783b499d0232a29e39819c3deb8dc4b"
+        "cellsSha256": "f098977886f97b3619ffb09d676012e679cc2460d1e5c9426bd5a3581da54690"
       }
     ],
     "identicalAcrossTreeModels": true,
@@ -37,7 +37,7 @@
   },
   "budget": {
     "maxRankIncome": 361,
-    "wholeBoardCostPerMember": 447,
+    "wholeBoardCostPerMember": 450,
     "inScopeCost": 301
   },
   "assumptions": [
@@ -91,5 +91,5 @@
     "Unit-Connect independence is user-confirmed, not source-documented; only cross-board exclusivity is corroborated.",
     "Other modeling assumptions are explicitly labeled."
   ],
-  "modelHash": "c2a7a1538bd3128fcc07a39737c9054ddfacc2b9389ff86910298ede562e5933"
+  "modelHash": "8e33197b80a4787189cf57b954a245f6a10c7d5cc008f3597c89519a927b2b34"
 }

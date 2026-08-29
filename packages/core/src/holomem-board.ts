@@ -11,7 +11,7 @@ const HashSchema = z.string().regex(/^[a-f0-9]{64}$/);
 // must inspect the mechanics diff, run `pnpm optimizer:scope` and
 // `pnpm board:model`, and then update THIS constant - the throw below exists
 // so a regenerated catalog cannot reach Board consumers without that review.
-const REVIEWED_MECHANICS_SHA256 = "7b969fcb1a778eb958fc79bb515cc35215c41e40fbeaee798c4a1300eb98686a";
+const REVIEWED_MECHANICS_SHA256 = "c60ee7adb8d4388154c9538204bdc11590f224efd648a6d557858f745e33e4bd";
 const REVIEWED_ASSUMPTIONS = [
   { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
   { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },
@@ -48,8 +48,8 @@ export const HolomemBoardModelSchema = z.object({
     ruleId: z.literal("board-derived-adjacency"),
     derivation: z.literal("orthogonal-unit-neighbors-on-position-grid"),
     startGroupId: z.literal("S-001"),
-    nodeGroupCount: z.literal(152),
-    edgeCount: z.literal(171),
+    nodeGroupCount: z.literal(153),
+    edgeCount: z.literal(172),
     edgeSetSha256: HashSchema,
     treeModels: z.array(z.object({ id: z.string().min(1), cellsSha256: HashSchema }).strict()).length(4),
     identicalAcrossTreeModels: z.literal(true),
@@ -58,7 +58,7 @@ export const HolomemBoardModelSchema = z.object({
   }).strict(),
   budget: z.object({
     maxRankIncome: z.literal(361),
-    wholeBoardCostPerMember: z.literal(447),
+    wholeBoardCostPerMember: z.literal(450),
     inScopeCost: z.literal(301),
   }).strict(),
   assumptions: z.array(AssumptionSchema).min(1),
@@ -75,8 +75,8 @@ export type BoardAdjacency = Readonly<{
   treeModelIds: readonly string[];
   cellByGroupIdByTreeModel: ReadonlyMap<string, ReadonlyMap<string, BoardGridCell>>;
   neighborsByGroupId: ReadonlyMap<string, readonly string[]>;
-  nodeGroupCount: 152;
-  edgeCount: 171;
+  nodeGroupCount: 153;
+  edgeCount: 172;
 }>;
 
 export type HolomemBoardAutoUnlockInput = Readonly<{
@@ -146,8 +146,8 @@ function assertConnected(startGroupId: string, neighborsByGroupId: ReadonlyMap<s
 
 export function buildBoardAdjacency(catalogs: MechanicsCatalogs = mechanicsData.catalogs): BoardAdjacency {
   const expectedGroupIds = [...new Set(catalogs.boardNodes.map((node) => node.groupId))].sort();
-  if (expectedGroupIds.length !== 152) {
-    throw new Error(`Board model must have exactly 152 node groups; received ${expectedGroupIds.length}`);
+  if (expectedGroupIds.length !== 153) {
+    throw new Error(`Board model must have exactly 153 node groups; received ${expectedGroupIds.length}`);
   }
 
   const positionsByModel = new Map<string, Map<string, BoardGridCell>>();
@@ -165,8 +165,8 @@ export function buildBoardAdjacency(catalogs: MechanicsCatalogs = mechanicsData.
 
   const edgeSets: string[][] = [];
   for (const [treeModelId, cells] of [...positionsByModel.entries()].sort(([left], [right]) => left.localeCompare(right))) {
-    if (cells.size !== 152) {
-      throw new Error(`Board model ${treeModelId} must have exactly 152 groups; received ${cells.size}`);
+    if (cells.size !== 153) {
+      throw new Error(`Board model ${treeModelId} must have exactly 153 groups; received ${cells.size}`);
     }
     if ([...cells.keys()].sort().join("|") !== expectedGroupIds.join("|")) {
       throw new Error(`Board model ${treeModelId} does not have the canonical group set`);
@@ -181,8 +181,8 @@ export function buildBoardAdjacency(catalogs: MechanicsCatalogs = mechanicsData.
   }
 
   const canonicalEdges = edgeSets[0]!;
-  if (canonicalEdges.length !== 171) {
-    throw new Error(`Board adjacency must have exactly 171 edges; received ${canonicalEdges.length}`);
+  if (canonicalEdges.length !== 172) {
+    throw new Error(`Board adjacency must have exactly 172 edges; received ${canonicalEdges.length}`);
   }
   if (edgeSets.some((edges) => edges.join("|") !== canonicalEdges.join("|"))) {
     throw new Error("Board adjacency differs across tree models");
@@ -214,8 +214,8 @@ export function buildBoardAdjacency(catalogs: MechanicsCatalogs = mechanicsData.
         ]),
     ),
     neighborsByGroupId,
-    nodeGroupCount: 152,
-    edgeCount: 171,
+    nodeGroupCount: 153,
+    edgeCount: 172,
   };
 }
 

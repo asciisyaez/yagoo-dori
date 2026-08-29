@@ -60,4 +60,36 @@ export const illustrationFloorExceptionByCardId = Object.freeze({
     upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
     approvedAt: "2026-08-17",
   }),
+  "card-00006-5-uniq-0074-00": Object.freeze({
+    exactWidth: 1120,
+    exactHeight: 620,
+    reason:
+      "2026-08-29 intake: the current AppMedia and declared Game8 fallback expose a 1120x620 card original for the released banner; pin it until a sanctioned source posts a higher-resolution original.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-08-29",
+  }),
+  "card-00014-5-uniq-0075-00": Object.freeze({
+    exactWidth: 1120,
+    exactHeight: 620,
+    reason:
+      "2026-08-29 intake: the current AppMedia and declared Game8 fallback expose a 1120x620 card original for the released banner; pin it until a sanctioned source posts a higher-resolution original.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-08-29",
+  }),
+  "card-00016-5-uniq-0076-00": Object.freeze({
+    exactWidth: 1120,
+    exactHeight: 620,
+    reason:
+      "2026-08-29 intake: the current AppMedia and declared Game8 fallback expose a 1120x620 card original for the released banner; pin it until a sanctioned source posts a higher-resolution original.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-08-29",
+  }),
+  "card-00017-5-uniq-0077-00": Object.freeze({
+    exactWidth: 1120,
+    exactHeight: 620,
+    reason:
+      "2026-08-29 intake: the current AppMedia and declared Game8 fallback expose a 1120x620 card original for the released banner; pin it until a sanctioned source posts a higher-resolution original.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-08-29",
+  }),
 });
