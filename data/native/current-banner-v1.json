@@ -1,28 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "summer-survival-on-the-island-2026-08-29",
+  "id": "secret-vacation-getaway-2026-09-08",
   "status": "live",
-  "retrievedAt": "2026-08-29",
-  "eventName": "Summer Survival on the Island!",
-  "gachaNameJa": "炎天下のトロピックアイランドガチャ",
-  "startsAt": "2026-08-29T02:00:00.000Z",
+  "retrievedAt": "2026-09-08",
+  "eventName": "Secret Vacation Getaway",
+  "gachaNameJa": "秘密のバケーションガチャ",
+  "startsAt": "2026-09-08T02:00:00.000Z",
+  "endsAt": "2026-09-19T01:59:00.000Z",
   "featuredCardIds": [
-    "card-00006-5-uniq-0074-00",
-    "card-00014-5-uniq-0075-00",
-    "card-00016-5-uniq-0076-00",
-    "card-00017-5-uniq-0077-00"
+    "card-00036-5-uniq-0078-00",
+    "card-04016-5-uniq-0079-00",
+    "card-04017-5-uniq-0080-00"
   ],
   "eventSongIds": [
-    "m0342",
-    "m0338",
-    "m0339",
-    "m0340",
-    "m0341"
+    "m0348",
+    "m0344",
+    "m0527"
   ],
   "sourceRefs": [
-    "source-official-gamers-event",
-    "source-official-gamers-songs",
-    "source-appmedia-gamers-gacha"
+    "source-appmedia-secret-vacation",
+    "source-secret-vacation-localization"
   ],
-  "transformation": "Join the four featured card IDs and five event song IDs to the pinned HolodoriDB-derived public datasets; preserve the published start time and do not infer an end date."
+  "transformation": "Join the three featured cards and three event songs to the pinned HolodoriDB catalog. English display name comes from LangGachaPoint_Eng.json, removing the Gacha Pt suffix. Banner dates are corroborated by AppMedia; event and gacha schedules are distinct."
 }

@@ -588,10 +588,10 @@ describe("native legal-team search", () => {
     });
 
     expect(result.counts).toMatchObject({
-      eligibleMemberCards: 124,
-      eligibleLeaderOutfits: 124,
+      eligibleMemberCards: 127,
+      eligibleLeaderOutfits: 127,
       finalistTeamSets: 2,
-      leaderTeamEvaluations: 248,
+      leaderTeamEvaluations: 254,
     });
     expect(result.counts.formationOrdersAudited).toBeGreaterThanOrEqual(120);
     expect(result.counts.localFormationOrdersAudited).toBeGreaterThan(0);

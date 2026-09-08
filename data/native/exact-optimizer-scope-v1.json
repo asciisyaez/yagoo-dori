@@ -3,20 +3,20 @@
   "scopeId": "yd-exact-full-roster-v1",
   "roster": {
     "sourceRepository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    "sourceCommit": "95e08ebe8f5b0bec83af036230f10291726b7130",
+    "sourceCommit": "16d5b81b35cb90cf254a50bdde2a0bcbc328e521",
     "publicDataPath": "data/generated/holodori-public.json",
-    "publicDataSha256": "0d7f40bfa29eafa9eb8ef99408a3eec12fc9a77792ce19f83c4498b1b33b3135",
+    "publicDataSha256": "079a9c2b2324cb72d7624c566cee6b0b7b89c46c9288e4aab7e7f98dddd1fd14",
     "orderedCardIdsSha256": "464bc16340a7bee8c1ce0cb8e637fcffc9cadba82c2c3d2aee5f0ef506e80d9f",
-    "cardCount": 124
+    "cardCount": 127
   },
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "c60ee7adb8d4388154c9538204bdc11590f224efd648a6d557858f745e33e4bd",
+    "sha256": "c7ff50db1819c2241e881f5f71d408d2910511a198ea2d2977bda46f62b474b5",
     "evaluatorMethodologyVersion": "yd-native-utility-1.0.0"
   },
   "songCorpus": {
     "path": "data/generated/holodori-songs.json",
-    "sha256": "f1bb80550a9231c24796055af7575ffd0073b37529870a9234e2bcd17ca6f55e",
+    "sha256": "caa8e4c441b14a87b627bff4735b40d9d4bc17fd37bd1d441aea7377dafbba82",
     "songCorpusVersion": "pinned-public-songs-v1"
   },
   "chartCorpus": {
@@ -24,7 +24,7 @@
     "benchmarkId": "launch-2026-07-31-matched-context-v1",
     "benchmarkSha256": "db58fdbeeab031257f61547e6aac0415d79adf696b8e6f896a7a1265478a6810",
     "timelineProjectionPath": "data/generated/holodori-ranking-corpus-timelines.json",
-    "timelineProjectionSha256": "6a5bc861be542c3b6e3b4b603d91671d67639ee4e5c4c0eff980d005cfb9b7c1",
+    "timelineProjectionSha256": "c7d1fccb95efe512714685b925d2f82127ee8a9e6608d104a46c66210a0f6dcd",
     "difficulty": "expert",
     "weighting": "equal-per-chart",
     "chartCount": 30,
@@ -221,7 +221,7 @@
     "sourceManifestPath": "data/native/chart-timeline-source.json",
     "sourceManifestSha256": "b5bfc61f546a6f06ea26e82896d614c4feee849e27b6c5ecbca91f8cfa0e77f9",
     "fullTimelinePath": "data/generated/holodori-chart-timelines.json",
-    "fullTimelineSha256": "a1b32373d0d7695d73697576821c83d2cb9c81041a3e7f0547c511f91e944bbb",
+    "fullTimelineSha256": "b7c3ccc070d796cbc8a699045e2fb3bf7bc31147b7efad91ecaceb60795827ce",
     "revision": "holodori-best-chart-corpus-r51"
   },
   "eligibility": {
@@ -294,6 +294,7 @@
       "card-00035-5-uniq-0028-00",
       "card-00036-4-cmmn-0000-00",
       "card-00036-5-uniq-0029-00",
+      "card-00036-5-uniq-0078-00",
       "card-00037-4-cmmn-0000-00",
       "card-00037-5-uniq-0030-00",
       "card-00039-4-cmmn-0000-00",
@@ -339,8 +340,10 @@
       "card-04015-5-uniq-0054-00",
       "card-04016-4-cmmn-0000-00",
       "card-04016-5-uniq-0055-00",
+      "card-04016-5-uniq-0079-00",
       "card-04017-4-cmmn-0000-00",
       "card-04017-5-uniq-0056-00",
+      "card-04017-5-uniq-0080-00",
       "card-06002-4-cmmn-0000-00",
       "card-06002-5-uniq-0058-00",
       "card-06002-5-uniq-0066-00",
@@ -420,6 +423,7 @@
       "card-00035-5-uniq-0028-00",
       "card-00036-4-cmmn-0000-00",
       "card-00036-5-uniq-0029-00",
+      "card-00036-5-uniq-0078-00",
       "card-00037-4-cmmn-0000-00",
       "card-00037-5-uniq-0030-00",
       "card-00039-4-cmmn-0000-00",
@@ -465,8 +469,10 @@
       "card-04015-5-uniq-0054-00",
       "card-04016-4-cmmn-0000-00",
       "card-04016-5-uniq-0055-00",
+      "card-04016-5-uniq-0079-00",
       "card-04017-4-cmmn-0000-00",
       "card-04017-5-uniq-0056-00",
+      "card-04017-5-uniq-0080-00",
       "card-06002-4-cmmn-0000-00",
       "card-06002-5-uniq-0058-00",
       "card-06002-5-uniq-0066-00",
@@ -553,6 +559,7 @@
       "card-00035-5-uniq-0028-00": 0,
       "card-00036-4-cmmn-0000-00": 0,
       "card-00036-5-uniq-0029-00": 0,
+      "card-00036-5-uniq-0078-00": 0,
       "card-00037-4-cmmn-0000-00": 0,
       "card-00037-5-uniq-0030-00": 0,
       "card-00039-4-cmmn-0000-00": 0,
@@ -598,8 +605,10 @@
       "card-04015-5-uniq-0054-00": 0,
       "card-04016-4-cmmn-0000-00": 0,
       "card-04016-5-uniq-0055-00": 0,
+      "card-04016-5-uniq-0079-00": 0,
       "card-04017-4-cmmn-0000-00": 0,
       "card-04017-5-uniq-0056-00": 0,
+      "card-04017-5-uniq-0080-00": 0,
       "card-06002-4-cmmn-0000-00": 0,
       "card-06002-5-uniq-0058-00": 0,
       "card-06002-5-uniq-0066-00": 0,
@@ -645,5 +654,5 @@
     "methodologyVersion": "yd-formation-order-timed-corpus-1.0.0",
     "globallyCertified": false
   },
-  "scopeHash": "b0348268533969407b85f1333ded41a483725621c2e9be56ced6497304335029"
+  "scopeHash": "a8c138a9fd681dd4cda5fa43710d3a5486ec7c40aecb547919a848aba8804818"
 }

@@ -18,9 +18,42 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "95e08ebe8f5b0bec83af036230f10291726b7130";
+const PINNED_GUIDE_ROSTER_COMMIT = "16d5b81b35cb90cf254a50bdde2a0bcbc328e521";
 
 const EXPECTED_GUIDE_IDENTITIES = [
+  {
+    anchorCardId: "card-00036-5-uniq-0078-00",
+    talentId: "chr-00036",
+    talentName: "Takane Lui",
+    cardTitle: "Relaxing Executive",
+    leaders: {
+      premium: "card-00036-5-uniq-0078-00",
+      standard: "card-00036-5-uniq-0078-00",
+      "accessible-4-star": "card-00036-4-cmmn-0000-00"
+    }
+  },
+  {
+    anchorCardId: "card-04016-5-uniq-0079-00",
+    talentId: "chr-04016",
+    talentName: "Fuwawa Abyssgard",
+    cardTitle: "Fluffy Flowing Summer",
+    leaders: {
+      premium: "card-04016-5-uniq-0079-00",
+      standard: "card-04016-5-uniq-0079-00",
+      "accessible-4-star": "card-04016-4-cmmn-0000-00"
+    }
+  },
+  {
+    anchorCardId: "card-04017-5-uniq-0080-00",
+    talentId: "chr-04017",
+    talentName: "Mococo Abyssgard",
+    cardTitle: "Fuzzy Breezy Summer",
+    leaders: {
+      premium: "card-04017-5-uniq-0080-00",
+      standard: "card-04017-5-uniq-0080-00",
+      "accessible-4-star": "card-04017-4-cmmn-0000-00"
+    }
+  },
   {
     anchorCardId: "card-00006-5-uniq-0074-00",
     talentId: "chr-00006",
@@ -94,7 +127,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "Radiant Beach Shot",
     leaders: {
       premium: "card-00015-5-uniq-0067-00",
-      standard: "card-00015-5-uniq-0003-00",
+      standard: "card-00015-5-uniq-0067-00",
       "accessible-4-star": "card-00015-4-cmmn-0000-00",
     },
   },
@@ -203,7 +236,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Mori Calliope",
     cardTitle: "Beach Reaper's Spike",
     leaders: {
-      premium: "card-04001-5-uniq-0071-00",
+      premium: "card-04001-5-uniq-0042-00",
       standard: "card-04001-5-uniq-0042-00",
       "accessible-4-star": "card-04001-4-cmmn-0000-00",
     },
@@ -214,7 +247,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Ninomae Ina'nis",
     cardTitle: "Tracing Tide Memories",
     leaders: {
-      premium: "card-04003-5-uniq-0044-00",
+      premium: "card-04003-5-uniq-0072-00",
       standard: "card-04003-5-uniq-0072-00",
       "accessible-4-star": "card-04003-4-cmmn-0000-00",
     },
@@ -226,245 +259,266 @@ const EXPECTED_LEADER_IDENTITIES = {
     cardTitle: "Max-Gear Fox Show",
     costumeId: "cos-00006-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00006-4-cmmn-0000-00",
+    leaderSkillId: "live_leader_skill-card-00006-4-cmmn-0000-00"
   },
   "card-00006-5-uniq-0074-00": {
     cardTitle: "Twinkle on the Shore",
     costumeId: "cos-00006-uniq-0074-00",
     costumeName: "1UP Sporty",
-    leaderSkillId: "live_leader_skill-card-00006-5-uniq-0074-00",
-  },
-  "card-00014-4-cmmn-0000-00": {
-    cardTitle: "Sunlit Wolf Song",
-    costumeId: "cos-00014-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00014-4-cmmn-0000-00",
-  },
-  "card-00014-5-uniq-0075-00": {
-    cardTitle: "Drowsy Wolf Heart",
-    costumeId: "cos-00014-uniq-0075-00",
-    costumeName: "Shore Score",
-    leaderSkillId: "live_leader_skill-card-00014-5-uniq-0075-00",
-  },
-  "card-00016-4-cmmn-0000-00": {
-    cardTitle: "Mesmerizing Cat Jam",
-    costumeId: "cos-00016-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00016-4-cmmn-0000-00",
-  },
-  "card-00016-5-uniq-0076-00": {
-    cardTitle: "Parasol Stray Cat",
-    costumeId: "cos-00016-uniq-0076-00",
-    costumeName: "Salty Breeze Runway",
-    leaderSkillId: "live_leader_skill-card-00016-5-uniq-0076-00",
-  },
-  "card-00017-4-cmmn-0000-00": {
-    cardTitle: "Outlaw Puppy Rhyme",
-    costumeId: "cos-00017-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00017-4-cmmn-0000-00",
-  },
-  "card-00017-5-uniq-0077-00": {
-    cardTitle: "Jungle Fever Dance",
-    costumeId: "cos-00017-uniq-0077-00",
-    costumeName: "Stripe Strike",
-    leaderSkillId: "live_leader_skill-card-00017-5-uniq-0077-00",
-  },
-  "card-00012-4-cmmn-0000-00": {
-    cardTitle: "Radiant Soul Jam",
-    costumeId: "cos-00012-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00012-4-cmmn-0000-00",
-  },
-  "card-00012-5-uniq-0012-00": {
-    cardTitle: "Duckling Noon Jam",
-    costumeId: "cos-00012-uniq-0012-00",
-    costumeName: "Duckie Bounce!",
-    leaderSkillId: "live_leader_skill-card-00012-5-uniq-0012-00",
-  },
-  "card-00013-4-cmmn-0000-00": {
-    cardTitle: "Upon a Tender Melody",
-    costumeId: "cos-00013-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00013-4-cmmn-0000-00",
-  },
-  "card-00013-5-uniq-0002-00": {
-    cardTitle: "A Flower in Full Bloom",
-    costumeId: "cos-00013-uniq-0002-00",
-    costumeName: "Graceful Scent",
-    leaderSkillId: "live_leader_skill-card-00013-5-uniq-0002-00",
-  },
-  "card-00015-4-cmmn-0000-00": {
-    cardTitle: "Embrace the Glow",
-    costumeId: "cos-00015-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00015-4-cmmn-0000-00",
-  },
-  "card-00015-5-uniq-0003-00": {
-    cardTitle: "Sakura Bloom",
-    costumeId: "cos-00015-uniq-0003-00",
-    costumeName: "Splendor of Cherry Blossoms",
-    leaderSkillId: "live_leader_skill-card-00015-5-uniq-0003-00",
-  },
-  "card-00015-5-uniq-0067-00": {
-    cardTitle: "Radiant Beach Shot",
-    costumeId: "cos-00015-uniq-0067-00",
-    costumeName: "Radiance Smile",
-    leaderSkillId: "live_leader_skill-card-00015-5-uniq-0067-00",
-  },
-  "card-00018-4-cmmn-0000-00": {
-    cardTitle: "Radiant Floor Star",
-    costumeId: "cos-00018-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00018-4-cmmn-0000-00",
-  },
-  "card-00018-5-uniq-0068-00": {
-    cardTitle: "Water Gun Arpeggio",
-    costumeId: "cos-00018-uniq-0068-00",
-    costumeName: "Melody of the Tides",
-    leaderSkillId: "live_leader_skill-card-00018-5-uniq-0068-00",
-  },
-  "card-00019-4-cmmn-0000-00": {
-    cardTitle: "Vogue Hop Bunny",
-    costumeId: "cos-00019-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00019-4-cmmn-0000-00",
-  },
-  "card-00019-5-uniq-0016-00": {
-    cardTitle: "Playful Rabbit Field",
-    costumeId: "cos-00019-uniq-0016-00",
-    costumeName: "Anarchy Rabbit",
-    leaderSkillId: "live_leader_skill-card-00019-5-uniq-0016-00",
-  },
-  "card-00021-4-cmmn-0000-00": {
-    cardTitle: "Graceful Empathy",
-    costumeId: "cos-00021-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00021-4-cmmn-0000-00",
-  },
-  "card-00021-5-uniq-0064-00": {
-    cardTitle: "Sparks at Sunset",
-    costumeId: "cos-00021-uniq-0064-00",
-    costumeName: "You're My Sunflower",
-    leaderSkillId: "live_leader_skill-card-00021-5-uniq-0064-00",
-  },
-  "card-00022-4-cmmn-0000-00": {
-    cardTitle: "Vocal Juggernaut",
-    costumeId: "cos-00022-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00022-4-cmmn-0000-00",
-  },
-  "card-00022-5-uniq-0063-00": {
-    cardTitle: "Serene Wave Knight",
-    costumeId: "cos-00022-uniq-0063-00",
-    costumeName: "Soleil Kiss",
-    leaderSkillId: "live_leader_skill-card-00022-5-uniq-0063-00",
-  },
-  "card-00026-4-cmmn-0000-00": {
-    cardTitle: "Zenith Resonance",
-    costumeId: "cos-00026-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00026-4-cmmn-0000-00",
-  },
-  "card-00026-5-uniq-0065-00": {
-    cardTitle: "Floatie Float Time",
-    costumeId: "cos-00026-uniq-0065-00",
-    costumeName: "Beaming Sol",
-    leaderSkillId: "live_leader_skill-card-00026-5-uniq-0065-00",
-  },
-  "card-06002-4-cmmn-0000-00": {
-    cardTitle: "Apex Harmony",
-    costumeId: "cos-06002-cmmn-0000-00",
-    costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-06002-4-cmmn-0000-00",
-  },
-  "card-06002-5-uniq-0066-00": {
-    cardTitle: "Breezy Smile Chords",
-    costumeId: "cos-06002-uniq-0066-00",
-    costumeName: "Sunflower Symphony",
-    leaderSkillId: "live_leader_skill-card-06002-5-uniq-0066-00",
+    leaderSkillId: "live_leader_skill-card-00006-5-uniq-0074-00"
   },
   "card-00010-4-cmmn-0000-00": {
     cardTitle: "Demonic Encore",
     costumeId: "cos-00010-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00010-4-cmmn-0000-00",
+    leaderSkillId: "live_leader_skill-card-00010-4-cmmn-0000-00"
   },
   "card-00010-5-uniq-0010-00": {
     cardTitle: "Spirit Realm Lantern",
     costumeId: "cos-00010-uniq-0010-00",
     costumeName: "Demon Spider Lily",
-    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0010-00",
+    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0010-00"
   },
   "card-00010-5-uniq-0069-00": {
     cardTitle: "Oni Way: Breezy Resort",
     costumeId: "cos-00010-uniq-0069-00",
     costumeName: "Endless Summer Lycoris",
-    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0069-00",
+    leaderSkillId: "live_leader_skill-card-00010-5-uniq-0069-00"
+  },
+  "card-00012-4-cmmn-0000-00": {
+    cardTitle: "Radiant Soul Jam",
+    costumeId: "cos-00012-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00012-4-cmmn-0000-00"
+  },
+  "card-00012-5-uniq-0012-00": {
+    cardTitle: "Duckling Noon Jam",
+    costumeId: "cos-00012-uniq-0012-00",
+    costumeName: "Duckie Bounce!",
+    leaderSkillId: "live_leader_skill-card-00012-5-uniq-0012-00"
+  },
+  "card-00013-4-cmmn-0000-00": {
+    cardTitle: "Upon a Tender Melody",
+    costumeId: "cos-00013-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00013-4-cmmn-0000-00"
+  },
+  "card-00013-5-uniq-0002-00": {
+    cardTitle: "A Flower in Full Bloom",
+    costumeId: "cos-00013-uniq-0002-00",
+    costumeName: "Graceful Scent",
+    leaderSkillId: "live_leader_skill-card-00013-5-uniq-0002-00"
+  },
+  "card-00014-4-cmmn-0000-00": {
+    cardTitle: "Sunlit Wolf Song",
+    costumeId: "cos-00014-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00014-4-cmmn-0000-00"
+  },
+  "card-00014-5-uniq-0075-00": {
+    cardTitle: "Drowsy Wolf Heart",
+    costumeId: "cos-00014-uniq-0075-00",
+    costumeName: "Shore Score",
+    leaderSkillId: "live_leader_skill-card-00014-5-uniq-0075-00"
+  },
+  "card-00015-4-cmmn-0000-00": {
+    cardTitle: "Embrace the Glow",
+    costumeId: "cos-00015-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00015-4-cmmn-0000-00"
+  },
+  "card-00015-5-uniq-0067-00": {
+    cardTitle: "Radiant Beach Shot",
+    costumeId: "cos-00015-uniq-0067-00",
+    costumeName: "Radiance Smile",
+    leaderSkillId: "live_leader_skill-card-00015-5-uniq-0067-00"
+  },
+  "card-00016-4-cmmn-0000-00": {
+    cardTitle: "Mesmerizing Cat Jam",
+    costumeId: "cos-00016-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00016-4-cmmn-0000-00"
+  },
+  "card-00016-5-uniq-0076-00": {
+    cardTitle: "Parasol Stray Cat",
+    costumeId: "cos-00016-uniq-0076-00",
+    costumeName: "Salty Breeze Runway",
+    leaderSkillId: "live_leader_skill-card-00016-5-uniq-0076-00"
+  },
+  "card-00017-4-cmmn-0000-00": {
+    cardTitle: "Outlaw Puppy Rhyme",
+    costumeId: "cos-00017-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00017-4-cmmn-0000-00"
+  },
+  "card-00017-5-uniq-0077-00": {
+    cardTitle: "Jungle Fever Dance",
+    costumeId: "cos-00017-uniq-0077-00",
+    costumeName: "Stripe Strike",
+    leaderSkillId: "live_leader_skill-card-00017-5-uniq-0077-00"
+  },
+  "card-00018-4-cmmn-0000-00": {
+    cardTitle: "Radiant Floor Star",
+    costumeId: "cos-00018-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00018-4-cmmn-0000-00"
+  },
+  "card-00018-5-uniq-0068-00": {
+    cardTitle: "Water Gun Arpeggio",
+    costumeId: "cos-00018-uniq-0068-00",
+    costumeName: "Melody of the Tides",
+    leaderSkillId: "live_leader_skill-card-00018-5-uniq-0068-00"
+  },
+  "card-00019-4-cmmn-0000-00": {
+    cardTitle: "Vogue Hop Bunny",
+    costumeId: "cos-00019-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00019-4-cmmn-0000-00"
+  },
+  "card-00019-5-uniq-0016-00": {
+    cardTitle: "Playful Rabbit Field",
+    costumeId: "cos-00019-uniq-0016-00",
+    costumeName: "Anarchy Rabbit",
+    leaderSkillId: "live_leader_skill-card-00019-5-uniq-0016-00"
+  },
+  "card-00021-4-cmmn-0000-00": {
+    cardTitle: "Graceful Empathy",
+    costumeId: "cos-00021-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00021-4-cmmn-0000-00"
+  },
+  "card-00021-5-uniq-0064-00": {
+    cardTitle: "Sparks at Sunset",
+    costumeId: "cos-00021-uniq-0064-00",
+    costumeName: "You're My Sunflower",
+    leaderSkillId: "live_leader_skill-card-00021-5-uniq-0064-00"
+  },
+  "card-00022-4-cmmn-0000-00": {
+    cardTitle: "Vocal Juggernaut",
+    costumeId: "cos-00022-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00022-4-cmmn-0000-00"
+  },
+  "card-00022-5-uniq-0063-00": {
+    cardTitle: "Serene Wave Knight",
+    costumeId: "cos-00022-uniq-0063-00",
+    costumeName: "Soleil Kiss",
+    leaderSkillId: "live_leader_skill-card-00022-5-uniq-0063-00"
+  },
+  "card-00026-4-cmmn-0000-00": {
+    cardTitle: "Zenith Resonance",
+    costumeId: "cos-00026-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00026-4-cmmn-0000-00"
+  },
+  "card-00026-5-uniq-0065-00": {
+    cardTitle: "Floatie Float Time",
+    costumeId: "cos-00026-uniq-0065-00",
+    costumeName: "Beaming Sol",
+    leaderSkillId: "live_leader_skill-card-00026-5-uniq-0065-00"
   },
   "card-00028-4-cmmn-0000-00": {
     cardTitle: "Ethereal Princess",
     costumeId: "cos-00028-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-00028-4-cmmn-0000-00",
+    leaderSkillId: "live_leader_skill-card-00028-4-cmmn-0000-00"
   },
   "card-00028-5-uniq-0070-00": {
     cardTitle: "Spoiled Beach Princess",
     costumeId: "cos-00028-uniq-0070-00",
     costumeName: "Soleil Dappled Crown",
-    leaderSkillId: "live_leader_skill-card-00028-5-uniq-0070-00",
+    leaderSkillId: "live_leader_skill-card-00028-5-uniq-0070-00"
+  },
+  "card-00036-4-cmmn-0000-00": {
+    cardTitle: "Strategic Prodigy",
+    costumeId: "cos-00036-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00036-4-cmmn-0000-00"
+  },
+  "card-00036-5-uniq-0078-00": {
+    cardTitle: "Relaxing Executive",
+    costumeId: "cos-00036-uniq-0078-00",
+    costumeName: "Ocean Elegance",
+    leaderSkillId: "live_leader_skill-card-00036-5-uniq-0078-00"
   },
   "card-03004-4-cmmn-0000-00": {
     cardTitle: "Deadly Encore",
     costumeId: "cos-03004-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-03004-4-cmmn-0000-00",
+    leaderSkillId: "live_leader_skill-card-03004-4-cmmn-0000-00"
   },
   "card-03004-5-uniq-0073-00": {
     cardTitle: "Crazy Summer Dive",
     costumeId: "cos-03004-uniq-0073-00",
     costumeName: "CRAZY SHOCK!",
-    leaderSkillId: "live_leader_skill-card-03004-5-uniq-0073-00",
+    leaderSkillId: "live_leader_skill-card-03004-5-uniq-0073-00"
   },
   "card-04001-4-cmmn-0000-00": {
     cardTitle: "Rep the Underworld",
     costumeId: "cos-04001-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-04001-4-cmmn-0000-00",
+    leaderSkillId: "live_leader_skill-card-04001-4-cmmn-0000-00"
   },
   "card-04001-5-uniq-0042-00": {
     cardTitle: "Reaper’s Death Flow",
     costumeId: "cos-04001-uniq-0042-00",
     costumeName: "Poetic Death Waltz",
-    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0042-00",
-  },
-  "card-04001-5-uniq-0071-00": {
-    cardTitle: "Beach Reaper's Spike",
-    costumeId: "cos-04001-uniq-0071-00",
-    costumeName: "Radiant Summer Heatwave",
-    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0071-00",
+    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0042-00"
   },
   "card-04003-4-cmmn-0000-00": {
     cardTitle: "Gentle Stage Beam",
     costumeId: "cos-04003-cmmn-0000-00",
     costumeName: "Dreamy Drop",
-    leaderSkillId: "live_leader_skill-card-04003-4-cmmn-0000-00",
-  },
-  "card-04003-5-uniq-0044-00": {
-    cardTitle: "Warm Up and Recharge",
-    costumeId: "cos-04003-uniq-0044-00",
-    costumeName: "Deep-Sea Kimono",
-    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0044-00",
+    leaderSkillId: "live_leader_skill-card-04003-4-cmmn-0000-00"
   },
   "card-04003-5-uniq-0072-00": {
     cardTitle: "Tracing Tide Memories",
     costumeId: "cos-04003-uniq-0072-00",
     costumeName: "Waterfront Monochrome",
-    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0072-00",
+    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0072-00"
   },
+  "card-04016-4-cmmn-0000-00": {
+    cardTitle: "Velvet Cloud Calm",
+    costumeId: "cos-04016-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04016-4-cmmn-0000-00"
+  },
+  "card-04016-5-uniq-0079-00": {
+    cardTitle: "Fluffy Flowing Summer",
+    costumeId: "cos-04016-uniq-0079-00",
+    costumeName: "Honey Glaze",
+    leaderSkillId: "live_leader_skill-card-04016-5-uniq-0079-00"
+  },
+  "card-04017-4-cmmn-0000-00": {
+    cardTitle: "Fuzzy Beam Joy",
+    costumeId: "cos-04017-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04017-4-cmmn-0000-00"
+  },
+  "card-04017-5-uniq-0080-00": {
+    cardTitle: "Fuzzy Breezy Summer",
+    costumeId: "cos-04017-uniq-0080-00",
+    costumeName: "Sugar Glaze",
+    leaderSkillId: "live_leader_skill-card-04017-5-uniq-0080-00"
+  },
+  "card-06002-4-cmmn-0000-00": {
+    cardTitle: "Apex Harmony",
+    costumeId: "cos-06002-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-06002-4-cmmn-0000-00"
+  },
+  "card-06002-5-uniq-0066-00": {
+    cardTitle: "Breezy Smile Chords",
+    costumeId: "cos-06002-uniq-0066-00",
+    costumeName: "Sunflower Symphony",
+    leaderSkillId: "live_leader_skill-card-06002-5-uniq-0066-00"
+  }
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00036-5-uniq-0078-00",
+  "card-04016-5-uniq-0079-00",
+  "card-04017-5-uniq-0080-00",
   "card-00006-5-uniq-0074-00",
   "card-00010-5-uniq-0069-00",
   "card-00012-5-uniq-0062-00",
@@ -605,7 +659,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(109);
+    expect(referencedCardIds.size).toBe(112);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

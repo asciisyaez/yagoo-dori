@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "2026-08-17-yd-native-2.1@2026-08-17T00:00:00.000Z->2026-08-29-yd-native-2.1@2026-08-29T00:00:00.000Z",
+  "id": "2026-08-29-yd-native-2.1@2026-08-29T00:00:00.000Z->2026-09-08-yd-native-2.1@2026-09-08T08:00:00.000Z",
   "from": {
-    "snapshotId": "2026-08-17-yd-native-2.1",
-    "generatedAt": "2026-08-17T00:00:00.000Z",
+    "snapshotId": "2026-08-29-yd-native-2.1",
+    "generatedAt": "2026-08-29T00:00:00.000Z",
     "methodologyVersion": "yd-native-ranking-2.1.0"
   },
   "to": {
-    "snapshotId": "2026-08-29-yd-native-2.1",
-    "generatedAt": "2026-08-29T00:00:00.000Z",
+    "snapshotId": "2026-09-08-yd-native-2.1",
+    "generatedAt": "2026-09-08T08:00:00.000Z",
     "methodologyVersion": "yd-native-ranking-2.1.0"
   },
   "attributionPolicy": "exact-micro-index-sum-required",
@@ -21,7 +21,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -46,7 +46,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -71,7 +71,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -93,17 +93,17 @@
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -121,7 +121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -146,7 +146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -171,7 +171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -196,7 +196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -221,7 +221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -242,18 +242,18 @@
     {
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -267,7 +267,57 @@
     {
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00015-5-uniq-0067-00",
+      "cardId": "card-00016-5-uniq-0076-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00017-5-uniq-0077-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
@@ -292,86 +342,11 @@
     {
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "C",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00017-4-cmmn-0000-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -4,
-      "tierDelta": {
-        "from": "C",
-        "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "B",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00018-5-uniq-0068-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -396,7 +371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -421,7 +396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -471,7 +446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -496,7 +471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -521,7 +496,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -546,7 +521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -571,7 +546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -596,7 +571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -621,7 +596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -646,7 +621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -671,7 +646,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -696,31 +671,6 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "duplicate-enabled-ceiling",
-      "cardId": "card-00037-5-uniq-0030-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
       "rankDelta": -1,
       "tierDelta": {
         "from": "B",
@@ -742,11 +692,36 @@
     {
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "C",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00039-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -771,7 +746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -796,7 +771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -821,7 +796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -846,7 +821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -871,7 +846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -896,7 +871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -921,7 +896,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -946,7 +921,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -971,7 +946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -996,7 +971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1046,7 +1021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1071,7 +1046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1096,7 +1071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1121,7 +1096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1146,7 +1121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1171,7 +1146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1196,7 +1171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -1204,6 +1179,31 @@
       },
       "stableTierDelta": {
         "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -1242,11 +1242,36 @@
     {
       "entityKind": "leader-outfit",
       "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-06002-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1271,7 +1296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -1296,7 +1321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1321,7 +1346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1346,7 +1371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1371,7 +1396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1396,7 +1421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1404,31 +1429,6 @@
       },
       "stableTierDelta": {
         "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "B",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -1446,35 +1446,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00010-5-uniq-0010-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -1496,7 +1471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1521,35 +1496,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00012-5-uniq-0062-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -1571,7 +1521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1596,7 +1546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1617,18 +1567,18 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -1642,7 +1592,57 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-00015-5-uniq-0067-00",
+      "cardId": "card-00016-5-uniq-0076-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-00017-5-uniq-0077-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
@@ -1667,86 +1667,11 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "C",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00017-4-cmmn-0000-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -4,
-      "tierDelta": {
-        "from": "C",
-        "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "B",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
       "cardId": "card-00018-5-uniq-0068-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1771,7 +1696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -1796,7 +1721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1821,7 +1746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -1846,35 +1771,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00022-5-uniq-0018-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -1896,7 +1796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1921,35 +1821,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00026-5-uniq-0065-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -1971,7 +1846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -1996,7 +1871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2021,7 +1896,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2046,7 +1921,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2071,7 +1946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2096,7 +1971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2121,31 +1996,6 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-00037-5-uniq-0030-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
       "rankDelta": -2,
       "tierDelta": {
         "from": "B",
@@ -2167,18 +2017,18 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-00039-4-cmmn-0000-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -4,
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
       "tierDelta": {
-        "from": "C",
+        "from": null,
         "to": "C",
-        "steps": 0
+        "steps": null
       },
       "stableTierDelta": {
-        "from": "Provisional",
+        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -2192,14 +2042,14 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-00039-5-uniq-0032-00",
+      "cardId": "card-00039-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -3,
       "tierDelta": {
-        "from": "B",
-        "to": "B",
+        "from": "C",
+        "to": "C",
         "steps": 0
       },
       "stableTierDelta": {
@@ -2221,7 +2071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2246,7 +2096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2271,7 +2121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2296,7 +2146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2321,35 +2171,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-03006-5-uniq-0038-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -2371,7 +2196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2396,35 +2221,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-03008-5-uniq-0040-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -2446,7 +2246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2471,7 +2271,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2496,60 +2296,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-04002-5-uniq-0043-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -1,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-04003-5-uniq-0044-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -2571,7 +2321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2596,7 +2346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2621,35 +2371,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "low-investment",
-      "cardId": "card-04010-5-uniq-0049-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -2671,7 +2396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2696,7 +2421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2721,7 +2446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2746,7 +2471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2767,18 +2492,43 @@
     {
       "entityKind": "leader-outfit",
       "investment": "low-investment",
-      "cardId": "card-04017-5-uniq-0056-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -1,
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
       "tierDelta": {
-        "from": "B",
+        "from": null,
         "to": "B",
-        "steps": 0
+        "steps": null
       },
       "stableTierDelta": {
-        "from": "Provisional",
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "low-investment",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -2796,7 +2546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2821,7 +2571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2846,7 +2596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2871,7 +2621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -2896,7 +2646,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2921,7 +2671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2946,7 +2696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -2954,31 +2704,6 @@
       },
       "stableTierDelta": {
         "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "B",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -2996,35 +2721,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00010-5-uniq-0010-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3046,7 +2746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3071,35 +2771,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00012-5-uniq-0062-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3121,7 +2796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3146,7 +2821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3167,18 +2842,18 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "cardId": "card-00015-5-uniq-0067-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -3192,7 +2867,57 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-00015-5-uniq-0067-00",
+      "cardId": "card-00016-5-uniq-0076-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-4-cmmn-0000-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "C",
+        "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00017-5-uniq-0077-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
@@ -3217,86 +2942,11 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "C",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00017-4-cmmn-0000-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -4,
-      "tierDelta": {
-        "from": "C",
-        "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
-      "tierDelta": {
-        "from": null,
-        "to": "B",
-        "steps": null
-      },
-      "stableTierDelta": {
-        "from": null,
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
       "cardId": "card-00018-5-uniq-0068-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3321,7 +2971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -3346,7 +2996,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3371,7 +3021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -3396,35 +3046,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00022-5-uniq-0018-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3446,7 +3071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3471,35 +3096,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00026-5-uniq-0065-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3521,7 +3121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3546,7 +3146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3571,7 +3171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3596,7 +3196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3621,7 +3221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3646,7 +3246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3671,31 +3271,6 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-00037-5-uniq-0030-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
       "rankDelta": -2,
       "tierDelta": {
         "from": "B",
@@ -3717,18 +3292,18 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-00039-4-cmmn-0000-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -4,
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
       "tierDelta": {
-        "from": "C",
+        "from": null,
         "to": "C",
-        "steps": 0
+        "steps": null
       },
       "stableTierDelta": {
-        "from": "Provisional",
+        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -3742,14 +3317,14 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-00039-5-uniq-0032-00",
+      "cardId": "card-00039-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -3,
       "tierDelta": {
-        "from": "B",
-        "to": "B",
+        "from": "C",
+        "to": "C",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3771,7 +3346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3796,7 +3371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3821,7 +3396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -3846,7 +3421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3871,35 +3446,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-03006-5-uniq-0038-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3921,7 +3471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -3946,35 +3496,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-03008-5-uniq-0040-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -3996,7 +3521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4021,7 +3546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4046,60 +3571,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-04002-5-uniq-0043-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -1,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-04003-5-uniq-0044-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -4121,7 +3596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4146,7 +3621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4171,35 +3646,10 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
-        "steps": 0
-      },
-      "stableTierDelta": {
-        "from": "Provisional",
-        "to": "Provisional"
-      },
-      "attribution": [
-        {
-          "reason": "new-evidence",
-          "deltaMicro": 0,
-          "delta": 0
-        }
-      ]
-    },
-    {
-      "entityKind": "leader-outfit",
-      "investment": "one-copy-maximum",
-      "cardId": "card-04010-5-uniq-0049-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -2,
-      "tierDelta": {
-        "from": "B",
-        "to": "B",
         "steps": 0
       },
       "stableTierDelta": {
@@ -4221,7 +3671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4246,7 +3696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4271,7 +3721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4296,7 +3746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4317,18 +3767,43 @@
     {
       "entityKind": "leader-outfit",
       "investment": "one-copy-maximum",
-      "cardId": "card-04017-5-uniq-0056-00",
-      "status": "updated",
-      "scoreDeltaMicro": 0,
-      "scoreDelta": 0,
-      "rankDelta": -1,
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
       "tierDelta": {
-        "from": "B",
+        "from": null,
         "to": "B",
-        "steps": 0
+        "steps": null
       },
       "stableTierDelta": {
-        "from": "Provisional",
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "leader-outfit",
+      "investment": "one-copy-maximum",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
         "to": "Provisional"
       },
       "attribution": [
@@ -4346,7 +3821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4371,7 +3846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4396,7 +3871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4421,7 +3896,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4446,7 +3921,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4471,7 +3946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4496,10 +3971,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -4521,7 +4021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4546,7 +4046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4596,7 +4096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4643,17 +4143,17 @@
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -3,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -4671,10 +4171,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -4696,7 +4221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4746,7 +4271,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4771,7 +4296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4796,7 +4321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4821,7 +4346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4871,7 +4396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -4896,7 +4421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4921,7 +4446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -4946,7 +4471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -4968,17 +4493,17 @@
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -4996,10 +4521,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00015-5-uniq-0003-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5021,7 +4571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -5046,7 +4596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5093,17 +4643,17 @@
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -5121,7 +4671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5168,17 +4718,17 @@
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -5196,7 +4746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5221,7 +4771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -5246,7 +4796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5271,7 +4821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5296,10 +4846,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00021-5-uniq-0064-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5321,10 +4896,60 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "A",
+        "to": "A",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5346,10 +4971,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5371,7 +5021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5396,10 +5046,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5421,7 +5096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5446,7 +5121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5471,7 +5146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5496,7 +5171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5546,10 +5221,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00030-5-uniq-0024-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "A",
+        "to": "A",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5571,7 +5271,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5621,10 +5321,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5646,10 +5371,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00034-5-uniq-0027-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "A",
+        "to": "A",
         "steps": 0
       },
       "stableTierDelta": {
@@ -5671,7 +5421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5721,7 +5471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5746,7 +5496,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5767,11 +5517,36 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "B",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-00037-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5796,7 +5571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5821,7 +5596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5846,7 +5621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5871,7 +5646,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5896,7 +5671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5921,7 +5696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -5946,7 +5721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -5971,7 +5746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -5996,7 +5771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6021,10 +5796,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03004-5-uniq-0073-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -6046,7 +5846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6071,7 +5871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6096,10 +5896,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-03006-5-uniq-0038-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
+      "tierDelta": {
+        "from": "A",
+        "to": "A",
         "steps": 0
       },
       "stableTierDelta": {
@@ -6121,7 +5946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6146,7 +5971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6171,7 +5996,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6196,7 +6021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -6221,7 +6046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6246,7 +6071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -6271,7 +6096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6296,7 +6121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6346,7 +6171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6371,7 +6196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6396,7 +6221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6421,7 +6246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6471,7 +6296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6496,7 +6321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -6521,7 +6346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6546,7 +6371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -6571,7 +6396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6596,7 +6421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6621,7 +6446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6646,10 +6471,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04014-5-uniq-0053-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -6671,7 +6521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6696,7 +6546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6721,7 +6571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6742,11 +6592,36 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "S",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6792,11 +6667,36 @@
     {
       "entityKind": "member",
       "investment": "duplicate-enabled-ceiling",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "A",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "duplicate-enabled-ceiling",
       "cardId": "card-06002-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6821,7 +6721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -6871,7 +6771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6921,7 +6821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6946,7 +6846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6971,7 +6871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -6996,7 +6896,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -7021,10 +6921,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -7046,7 +6971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7071,7 +6996,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7121,7 +7046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7168,17 +7093,17 @@
       "entityKind": "member",
       "investment": "low-investment",
       "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -3,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -7196,10 +7121,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -7221,7 +7171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7271,7 +7221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -7296,7 +7246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7346,7 +7296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7421,7 +7371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7446,7 +7396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7493,17 +7443,17 @@
       "entityKind": "member",
       "investment": "low-investment",
       "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -7521,7 +7471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7596,7 +7546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7643,17 +7593,17 @@
       "entityKind": "member",
       "investment": "low-investment",
       "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "S",
         "to": "S",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -7671,7 +7621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7718,17 +7668,17 @@
       "entityKind": "member",
       "investment": "low-investment",
       "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -7746,7 +7696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7771,7 +7721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -7796,7 +7746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7821,7 +7771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -7846,7 +7796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7896,10 +7846,60 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -7921,10 +7921,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -7946,7 +7971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -7971,10 +7996,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -7996,7 +8046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8046,7 +8096,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8092,11 +8142,36 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
+      "cardId": "card-00028-5-uniq-0070-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
       "cardId": "card-00030-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8146,7 +8221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8171,7 +8246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -8196,10 +8271,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -8221,7 +8321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8271,7 +8371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8321,7 +8421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8367,14 +8467,64 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "A",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
       "cardId": "card-00037-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -8396,7 +8546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8446,7 +8596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8496,7 +8646,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8546,7 +8696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8596,7 +8746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8621,10 +8771,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
+      "cardId": "card-03004-5-uniq-0073-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -8646,7 +8821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8671,7 +8846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -8696,7 +8871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8746,7 +8921,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8771,7 +8946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -8796,7 +8971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8821,7 +8996,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -8846,7 +9021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8871,7 +9046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -8896,7 +9071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8971,7 +9146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -8996,7 +9171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9021,7 +9196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9046,7 +9221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -9096,7 +9271,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9146,7 +9321,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9171,7 +9346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -9196,7 +9371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9221,7 +9396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9246,7 +9421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9271,7 +9446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9321,7 +9496,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9346,7 +9521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9371,7 +9546,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9392,11 +9567,36 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "S",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
       "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9442,11 +9642,36 @@
     {
       "entityKind": "member",
       "investment": "low-investment",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "A",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "low-investment",
       "cardId": "card-06002-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9471,7 +9696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9521,7 +9746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9571,7 +9796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9596,7 +9821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9621,7 +9846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9646,7 +9871,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9671,10 +9896,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00002-5-uniq-0001-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -9696,7 +9946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9721,7 +9971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9771,7 +10021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9818,17 +10068,17 @@
       "entityKind": "member",
       "investment": "one-copy-maximum",
       "cardId": "card-00006-5-uniq-0074-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -3,
       "tierDelta": {
-        "from": null,
+        "from": "B",
         "to": "B",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -9846,10 +10096,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00007-5-uniq-0008-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -9871,7 +10146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9921,7 +10196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -9946,7 +10221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -9996,7 +10271,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10071,7 +10346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10096,7 +10371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10143,17 +10418,17 @@
       "entityKind": "member",
       "investment": "one-copy-maximum",
       "cardId": "card-00014-5-uniq-0075-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -2,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -10171,7 +10446,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10246,7 +10521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10293,17 +10568,17 @@
       "entityKind": "member",
       "investment": "one-copy-maximum",
       "cardId": "card-00016-5-uniq-0076-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "S",
         "to": "S",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -10321,7 +10596,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10368,17 +10643,17 @@
       "entityKind": "member",
       "investment": "one-copy-maximum",
       "cardId": "card-00017-5-uniq-0077-00",
-      "status": "added",
-      "scoreDeltaMicro": null,
-      "scoreDelta": null,
-      "rankDelta": null,
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
       "tierDelta": {
-        "from": null,
+        "from": "A",
         "to": "A",
-        "steps": null
+        "steps": 0
       },
       "stableTierDelta": {
-        "from": null,
+        "from": "Provisional",
         "to": "Provisional"
       },
       "attribution": [
@@ -10396,7 +10671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10421,7 +10696,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -10446,7 +10721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10471,7 +10746,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -10496,7 +10771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10546,10 +10821,60 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0018-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00022-5-uniq-0063-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -10571,10 +10896,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00023-5-uniq-0019-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -10596,7 +10946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10621,10 +10971,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -3,
+      "rankDelta": -2,
       "tierDelta": {
         "from": "A",
         "to": "A",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00026-5-uniq-0065-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -10646,7 +11021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10696,7 +11071,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10742,11 +11117,36 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
+      "cardId": "card-00028-5-uniq-0070-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
       "cardId": "card-00030-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10796,7 +11196,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10821,7 +11221,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -10846,10 +11246,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00032-5-uniq-0026-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -10871,7 +11296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10921,7 +11346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -10971,7 +11396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11017,14 +11442,64 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
+      "cardId": "card-00036-5-uniq-0078-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "A",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
       "cardId": "card-00037-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-00037-5-uniq-0030-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -11046,7 +11521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11096,7 +11571,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11146,7 +11621,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11196,7 +11671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11246,7 +11721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11271,10 +11746,35 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
+        "steps": 0
+      },
+      "stableTierDelta": {
+        "from": "Provisional",
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
+      "cardId": "card-03004-5-uniq-0073-00",
+      "status": "updated",
+      "scoreDeltaMicro": 0,
+      "scoreDelta": 0,
+      "rankDelta": -1,
+      "tierDelta": {
+        "from": "S",
+        "to": "S",
         "steps": 0
       },
       "stableTierDelta": {
@@ -11296,7 +11796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11321,7 +11821,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -11346,7 +11846,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11396,7 +11896,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11421,7 +11921,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -11446,7 +11946,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11471,7 +11971,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -11496,7 +11996,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11521,7 +12021,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -2,
+      "rankDelta": -1,
       "tierDelta": {
         "from": "A",
         "to": "A",
@@ -11546,7 +12046,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11621,7 +12121,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11646,7 +12146,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -11671,7 +12171,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11746,7 +12246,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11796,7 +12296,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11846,7 +12346,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11871,7 +12371,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -11896,7 +12396,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11921,7 +12421,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11971,7 +12471,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -11996,7 +12496,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -12021,7 +12521,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12042,11 +12542,36 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
+      "cardId": "card-04016-5-uniq-0079-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "S",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
       "cardId": "card-04017-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12092,11 +12617,36 @@
     {
       "entityKind": "member",
       "investment": "one-copy-maximum",
+      "cardId": "card-04017-5-uniq-0080-00",
+      "status": "added",
+      "scoreDeltaMicro": null,
+      "scoreDelta": null,
+      "rankDelta": null,
+      "tierDelta": {
+        "from": null,
+        "to": "A",
+        "steps": null
+      },
+      "stableTierDelta": {
+        "from": null,
+        "to": "Provisional"
+      },
+      "attribution": [
+        {
+          "reason": "new-evidence",
+          "deltaMicro": 0,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "entityKind": "member",
+      "investment": "one-copy-maximum",
       "cardId": "card-06002-4-cmmn-0000-00",
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12121,7 +12671,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "B",
         "to": "B",
@@ -12171,7 +12721,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12221,7 +12771,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12246,7 +12796,7 @@
       "status": "updated",
       "scoreDeltaMicro": 0,
       "scoreDelta": 0,
-      "rankDelta": -4,
+      "rankDelta": -3,
       "tierDelta": {
         "from": "C",
         "to": "C",
@@ -12266,11 +12816,11 @@
     }
   ],
   "summary": {
-    "added": 24,
+    "added": 18,
     "removed": 0,
     "scoreChanged": 0,
-    "rankChanged": 466,
-    "tierChanged": 24,
-    "stableTierChanged": 24
+    "rankChanged": 494,
+    "tierChanged": 18,
+    "stableTierChanged": 18
   }
 }

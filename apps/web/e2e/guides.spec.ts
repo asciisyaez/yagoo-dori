@@ -54,7 +54,7 @@ const GUIDES = [
   {
     talent: "Sakura Miko",
     cardTitle: "Radiant Beach Shot",
-    standardLeaderCardTitle: "Sakura Bloom",
+    standardLeaderCardTitle: "Radiant Beach Shot",
     guideSlug: "sakura-miko-radiant-beach-shot-card-00015-5-uniq-0067-00-team-guide",
     cardSlug: "sakura-miko-radiant-beach-shot-card-00015-5-uniq-0067-00",
   },
@@ -127,6 +127,28 @@ const GUIDES = [
     standardLeaderCardTitle: "Jungle Fever Dance",
     guideSlug: "inugami-korone-jungle-fever-dance-card-00017-5-uniq-0077-00-team-guide",
     cardSlug: "inugami-korone-jungle-fever-dance-card-00017-5-uniq-0077-00",
+  },
+
+  {
+    talent: "Takane Lui",
+    cardTitle: "Relaxing Executive",
+    standardLeaderCardTitle: "Relaxing Executive",
+    guideSlug: "takane-lui-relaxing-executive-card-00036-5-uniq-0078-00-team-guide",
+    cardSlug: "takane-lui-relaxing-executive-card-00036-5-uniq-0078-00"
+  },
+  {
+    talent: "Fuwawa Abyssgard",
+    cardTitle: "Fluffy Flowing Summer",
+    standardLeaderCardTitle: "Fluffy Flowing Summer",
+    guideSlug: "fuwawa-abyssgard-fluffy-flowing-summer-card-04016-5-uniq-0079-00-team-guide",
+    cardSlug: "fuwawa-abyssgard-fluffy-flowing-summer-card-04016-5-uniq-0079-00"
+  },
+  {
+    talent: "Mococo Abyssgard",
+    cardTitle: "Fuzzy Breezy Summer",
+    standardLeaderCardTitle: "Fuzzy Breezy Summer",
+    guideSlug: "mococo-abyssgard-fuzzy-breezy-summer-card-04017-5-uniq-0080-00-team-guide",
+    cardSlug: "mococo-abyssgard-fuzzy-breezy-summer-card-04017-5-uniq-0080-00"
   },
 ] as const;
 
@@ -318,7 +340,7 @@ test("Pekora keeps Leader and Passive recipients separate at each skill level", 
   const standardPassive = standard.locator("li").filter({ hasText: "Usada Pekora · Passive" });
   await expect(standardLeader).toContainText("Grants All Stats UP 30% to all");
   await expect(standardLeader).toContainText(
-    "Affected: Usada Pekora, Tsunomaki Watame, Yukihana Lamy, Shishiro Botan, Fuwawa Abyssgard",
+    "Affected: Usada Pekora, Shiranui Flare, Takane Lui, Hakui Koyori, Fuwawa Abyssgard",
   );
   await expect(standardPassive).toContainText("Grants All Stats UP 24% to self");
   await expect(standardPassive).toContainText("Affected: Usada Pekora");
@@ -447,14 +469,14 @@ test("generated guide renders three legal formations and decision details", asyn
 });
 
 test("meaningful exact song-order changes are shown without publishing timing ties", async ({ page }) => {
-  await page.goto(`/guides/${PEKORA_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
+  await page.goto(`/guides/${SUBARU_GUIDE.guideSlug}`, { waitUntil: "domcontentloaded" });
 
-  await expect(page.locator("#rating-song-comparisons article")).toHaveCount(3);
-  await expect(page.getByText("Order change", { exact: true })).toHaveCount(2);
+  await expect(page.locator("#rating-song-comparisons article")).toHaveCount(7);
+  await expect(page.getByText("Order change", { exact: true })).toHaveCount(6);
   const breakpointPanel = page.getByLabel("Observed chart timing breakpoints");
   await expect(breakpointPanel).toContainText("Observed chart-timing breakpoints");
   await expect(breakpointPanel).toContainText(
-    "2:06 Bridal Dream → 2:21 ZenjinruiUsagikakeikaku!",
+    "1:36 Pleiades! → 1:43 Do my best!",
   );
   await expect(breakpointPanel).toContainText("not universal time thresholds");
 });

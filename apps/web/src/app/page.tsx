@@ -33,6 +33,13 @@ const bannerStartLabel = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Tokyo",
   year: "numeric",
 }).format(new Date(currentBanner.startsAt));
+const bannerEndLabel = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Asia/Tokyo",
+}).format(new Date(currentBanner.endsAt));
 
 const quickLinks = [
   {
@@ -106,15 +113,15 @@ export default function HomePage() {
             <p className="current-banner-kicker">Live banner · {bannerStartLabel}</p>
             <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
             <p>
-              {bannerCards.length} new ★5 hololive GAMERS cards are live in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+              {bannerCards.length} new ★5 cards featuring Takane Lui and FUWAMOCO are live in <span lang="ja">{currentBanner.gachaNameJa}</span>.
             </p>
             <dl className="current-banner-stats">
               <div><dt>Featured</dt><dd>{bannerCards.length} × ★5</dd></div>
               <div><dt>Event songs</dt><dd>{bannerSongs.length}</dd></div>
-              <div><dt>End date</dt><dd>Not listed</dd></div>
+              <div><dt>Ends (JST)</dt><dd>{bannerEndLabel}</dd></div>
             </dl>
-            <Link className="secondary-action current-banner-action" href="/cards?rarity=5&group=GAMERS">
-              Browse featured cards <ArrowRight aria-hidden="true" />
+            <Link className="secondary-action current-banner-action" href="/cards?rarity=5">
+              Browse ★5 cards <ArrowRight aria-hidden="true" />
             </Link>
           </div>
           <div className="current-banner-cards">

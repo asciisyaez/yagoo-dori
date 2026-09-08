@@ -1,5 +1,13 @@
 {
   "entries": {
+    "data/generated/native-guides.json|With 2 or more holoX Members, Grants Score Support Effect of 12% to 2 holoX Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Pinned level-2 Lui passive skill wording; Score Support names an in-game effect with explicit holoX condition and two-recipient limit, not a calculated Live Score claim."
+    },
+    "data/generated/native-guides.json|With 2 or more holoX Members, Grants Score Support Effect of 9% to 2 holoX Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Pinned level-1 Lui passive skill wording; Score Support names an in-game effect with explicit holoX condition and two-recipient limit, not a calculated Live Score claim."
+    },
     "data/generated/native-guides.json|Do my best!|best": {
       "disposition": "non-technical",
       "justification": "Best appears inside the official song title 'Do my best!', pinned upstream data, not a recommendation claim."

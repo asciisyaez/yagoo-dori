@@ -84,8 +84,8 @@
     "url": "https://github.com/HolodoriDB/holodori-db-eng-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit 95e08ebe8f5b0bec83af036230f10291726b7130 (pinned structured input)",
-    "retrievedAt": "2026-08-29",
+    "upstreamVersion": "commit 16d5b81b35cb90cf254a50bdde2a0bcbc328e521 (pinned structured input)",
+    "retrievedAt": "2026-09-08",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
@@ -97,8 +97,8 @@
     "url": "https://github.com/HolodoriDB/holodori-db-jpn-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit 09fd4e4abbee2a640a49e7f3f023ad23f43eaa89 (pinned structured input)",
-    "retrievedAt": "2026-08-29",
+    "upstreamVersion": "commit fbbb04b06ede3276a6272d35d87fd7d1ce4b6ed7 (pinned structured input)",
+    "retrievedAt": "2026-09-08",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
@@ -141,5 +141,31 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "Corroborates the banner name, 11:00 JST start, four featured cards, and no published end date; editorial recommendations do not enter native rankings."
+  },
+  {
+    "id": "source-appmedia-secret-vacation",
+    "title": "AppMedia — Secret Vacation banner and card profiles",
+    "publisher": "AppMedia",
+    "url": "https://appmedia.jp/hololive-dreams/80374798",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "2026-09-08",
+    "retrievedAt": "2026-09-08",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Confirms three featured cards and 8 September 11:00 through 19 September 10:59 JST. Profile pages 80374726, 80374735 and 80374744 corroborate skill descriptions. No editorial rankings imported."
+  },
+  {
+    "id": "source-secret-vacation-localization",
+    "title": "HolodoriDB — Secret Vacation English localization",
+    "publisher": "HolodoriDB community maintainers",
+    "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/16d5b81b35cb90cf254a50bdde2a0bcbc328e521/LangGachaPoint_Eng.json",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "16d5b81b35cb90cf254a50bdde2a0bcbc328e521",
+    "retrievedAt": "2026-09-08",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "English banner display name from la-gacha_point-pickup-260908; remove only the Gacha Pt suffix."
   }
 ]

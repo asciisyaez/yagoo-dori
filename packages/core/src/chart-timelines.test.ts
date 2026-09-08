@@ -21,13 +21,33 @@ describe("pinned exact chart timeline corpus", () => {
     expect(chartTimelineData.counts).toEqual({
       songs: 175,
       charts: 699,
-      unavailableCharts: 77,
+      unavailableCharts: 97,
       events: 402_632,
       specialMarkers: 3_495,
       chartsWithDeclaredCountDisagreements: 1,
     });
     expect(chartTimelineData.charts).toHaveLength(699);
     expect(chartTimelineData.unavailableCharts.map((chart) => chart.key).sort()).toEqual([
+      "m0344:easy",
+      "m0344:expert",
+      "m0344:hard",
+      "m0344:normal",
+      "m0348:easy",
+      "m0348:expert",
+      "m0348:hard",
+      "m0348:normal",
+      "m0363:easy",
+      "m0363:expert",
+      "m0363:hard",
+      "m0363:normal",
+      "m0459:easy",
+      "m0459:expert",
+      "m0459:hard",
+      "m0459:normal",
+      "m0527:easy",
+      "m0527:expert",
+      "m0527:hard",
+      "m0527:normal",
       "m0318:easy",
       "m0323:easy",
       "m0323:expert",
@@ -105,7 +125,7 @@ describe("pinned exact chart timeline corpus", () => {
       "m9999:expert",
       "m9999:hard",
       "m9999:normal",
-    ]);
+    ].sort());
 
     expect(
       chartTimelineData.unavailableCharts.every((chart) =>

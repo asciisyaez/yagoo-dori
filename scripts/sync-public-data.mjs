@@ -14,13 +14,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "95e08ebe8f5b0bec83af036230f10291726b7130",
-    masterVersion: "fbca8c670e074558b24708bf163fff446a614f709afa9d1784395a15444121b0",
+    commit: "16d5b81b35cb90cf254a50bdde2a0bcbc328e521",
+    masterVersion: "e50116c3c75a4da07b27936baa10bdc1eabd71955406848104f2a0e0241ac508",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "09fd4e4abbee2a640a49e7f3f023ad23f43eaa89",
-    masterVersion: "fbca8c670e074558b24708bf163fff446a614f709afa9d1784395a15444121b0",
+    commit: "fbbb04b06ede3276a6272d35d87fd7d1ce4b6ed7",
+    masterVersion: "e50116c3c75a4da07b27936baa10bdc1eabd71955406848104f2a0e0241ac508",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
