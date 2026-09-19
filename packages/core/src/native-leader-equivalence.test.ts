@@ -54,9 +54,9 @@ describe("native Leader-effect equivalence", () => {
 
     expect(first).toEqual(second);
     expect(first.fallback).toEqual({ singletonOnly: false, reasons: [] });
-    expect(first.counts.eligibleLeaderOutfits).toBe(127);
+    expect(first.counts.eligibleLeaderOutfits).toBe(131);
     expect(first.counts.equivalenceClasses).toBeGreaterThan(0);
-    expect(first.counts.equivalenceClasses).toBeLessThanOrEqual(127);
+    expect(first.counts.equivalenceClasses).toBeLessThanOrEqual(131);
     expect(first.classes.flatMap((group) => group.eligibleCardIds).sort()).toEqual([...ids].sort());
     expect(
       first.classes.every(

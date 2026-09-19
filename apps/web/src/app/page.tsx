@@ -30,6 +30,8 @@ const bannerSongs = currentBanner.eventSongIds
 const bannerStartLabel = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
   timeZone: "Asia/Tokyo",
   year: "numeric",
 }).format(new Date(currentBanner.startsAt));
@@ -40,6 +42,9 @@ const bannerEndLabel = new Intl.DateTimeFormat("en-GB", {
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
 }).format(new Date(currentBanner.endsAt));
+const announcementDate = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo",
+});
 
 const quickLinks = [
   {
@@ -110,10 +115,10 @@ export default function HomePage() {
       <section className="home-section current-banner-section" aria-labelledby="current-banner-heading">
         <div className="current-banner-panel">
           <div className="current-banner-copy">
-            <p className="current-banner-kicker">Live banner · {bannerStartLabel}</p>
+            <p className="current-banner-kicker">Live banner · {bannerStartLabel} JST</p>
             <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
             <p>
-              {bannerCards.length} new ★5 cards featuring Takane Lui and FUWAMOCO are live in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+              {bannerCards.length} new ★5 summer cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
             </p>
             <dl className="current-banner-stats">
               <div><dt>Featured</dt><dd>{bannerCards.length} × ★5</dd></div>
@@ -128,14 +133,26 @@ export default function HomePage() {
             {bannerCards.map((card) => (
               <Link className={`current-banner-card attribute-${card.attribute}`} href={`/cards/${card.slug}`} key={card.id}>
                 <span className="current-banner-card-art">
-                  <Image alt="" fill preview sizes="(max-width: 700px) 24vw, 14vw" src={card.illustrationPath} />
+                  <Image alt="" fill preview sizes="(max-width: 640px) 45vw, (max-width: 900px) 24vw, 14vw" src={card.illustrationPath} />
                 </span>
                 <span className="current-banner-card-copy"><strong>{card.talentName}</strong><span>{card.title}</span></span>
               </Link>
             ))}
           </div>
         </div>
-        <p className="current-banner-songs"><strong>Event songs</strong> {bannerSongs.map((song) => song.title).join(" · ")}</p>
+        <div className="announced-banner-schedule">
+          <h3>Solo event chapters</h3>
+          <p>Each chapter spotlights a different talent. All times are JST.</p>
+          <ul>
+            {currentBanner.eventChapters.map((chapter) => (
+              <li key={chapter.talent}>
+                <time dateTime={chapter.startsAt}>{announcementDate.format(new Date(chapter.startsAt))}</time>
+                <strong>{chapter.talent}</strong>
+                <span>{songContextData.songs.find((song) => song.id === chapter.songId)?.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="home-section">

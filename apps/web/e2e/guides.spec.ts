@@ -150,6 +150,35 @@ const GUIDES = [
     guideSlug: "mococo-abyssgard-fuzzy-breezy-summer-card-04017-5-uniq-0080-00-team-guide",
     cardSlug: "mococo-abyssgard-fuzzy-breezy-summer-card-04017-5-uniq-0080-00"
   },
+
+  {
+    talent: "Aki Rosenthal",
+    cardTitle: "Mystic Sun Swing",
+    standardLeaderCardTitle: "Mystic Sun Swing",
+    guideSlug: "aki-rosenthal-mystic-sun-swing-card-00004-5-uniq-0081-00-team-guide",
+    cardSlug: "aki-rosenthal-mystic-sun-swing-card-00004-5-uniq-0081-00"
+  },
+  {
+    talent: "La+ Darknesss",
+    cardTitle: "Leader’s Secret Pool",
+    standardLeaderCardTitle: "Leader’s Secret Pool",
+    guideSlug: "la-darknesss-leader-s-secret-pool-card-00035-5-uniq-0082-00-team-guide",
+    cardSlug: "la-darknesss-leader-s-secret-pool-card-00035-5-uniq-0082-00"
+  },
+  {
+    talent: "Anya Melfissa",
+    cardTitle: "Chill Sunny Holiday",
+    standardLeaderCardTitle: "Chill Sunny Holiday",
+    guideSlug: "anya-melfissa-chill-sunny-holiday-card-03005-5-uniq-0084-00-team-guide",
+    cardSlug: "anya-melfissa-chill-sunny-holiday-card-03005-5-uniq-0084-00"
+  },
+  {
+    talent: "Shiori Novella",
+    cardTitle: "Archived Night Pool",
+    standardLeaderCardTitle: "Archived Night Pool",
+    guideSlug: "shiori-novella-archived-night-pool-card-04013-5-uniq-0083-00-team-guide",
+    cardSlug: "shiori-novella-archived-night-pool-card-04013-5-uniq-0083-00"
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
@@ -327,7 +356,7 @@ for (const guide of GUIDES) {
 
     await page.goto(`/cards/${guide.cardSlug}`, { waitUntil: "domcontentloaded" });
     await expect(
-      page.getByRole("link", { name: new RegExp(`${guide.talent}.*team guide`, "i") }),
+      page.getByRole("link", { name: publishedGuide.title }),
     ).toHaveAttribute("href", `/guides/${guide.guideSlug}`);
   });
 }
@@ -340,7 +369,7 @@ test("Pekora keeps Leader and Passive recipients separate at each skill level", 
   const standardPassive = standard.locator("li").filter({ hasText: "Usada Pekora · Passive" });
   await expect(standardLeader).toContainText("Grants All Stats UP 30% to all");
   await expect(standardLeader).toContainText(
-    "Affected: Usada Pekora, Shiranui Flare, Takane Lui, Hakui Koyori, Fuwawa Abyssgard",
+    "Affected: AZKi, Usada Pekora, Hakui Koyori, Fuwawa Abyssgard, Todoroki Hajime",
   );
   await expect(standardPassive).toContainText("Grants All Stats UP 24% to self");
   await expect(standardPassive).toContainText("Affected: Usada Pekora");

@@ -10,7 +10,7 @@ const PUBLIC_ROOT = join("apps", "web", "public");
 const PREVIEW_DIRECTORY = join(PUBLIC_ROOT, "game", "previews");
 const GENERATOR = {
   library: "sharp",
-  version: "0.35.3",
+  version: "0.35.4",
   format: "webp",
   resize: {
     width: 1024,

@@ -133,9 +133,15 @@ test("team filters retain the prefix after reload and the real browser Worker re
   await expect(page).toHaveURL(new RegExp(`${basePath}/team-builder/\\?q=AZKi$`));
   await expect(search).toHaveValue("AZKi");
 
-  for (const talent of ["AZKi", "Akai Haato", "Aki Rosenthal", "Anya Melfissa", "Ayunda Risu"]) {
+  for (const [talent, title] of [
+    ["AZKi", "A Flower in Full Bloom"],
+    ["Akai Haato", "Snack-Time Rebel"],
+    ["Aki Rosenthal", "Ethereal Half-Elf"],
+    ["Anya Melfissa", "Couch Potato Gamer"],
+    ["Ayunda Risu", "Sylvan Mischief"],
+  ] as const) {
     await search.fill(talent);
-    await page.getByRole("button", { name: new RegExp(`^Add ${talent}, .* 5 star card$`) }).click();
+    await page.getByRole("button", { name: `Add ${talent}, ${title}, 5 star card`, exact: true }).click();
   }
   await expect(page.getByText("Roster ready", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Calculate team", exact: true }).click();

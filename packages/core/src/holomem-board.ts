@@ -11,7 +11,7 @@ const HashSchema = z.string().regex(/^[a-f0-9]{64}$/);
 // must inspect the mechanics diff, run `pnpm optimizer:scope` and
 // `pnpm board:model`, and then update THIS constant - the throw below exists
 // so a regenerated catalog cannot reach Board consumers without that review.
-const REVIEWED_MECHANICS_SHA256 = "c7ff50db1819c2241e881f5f71d408d2910511a198ea2d2977bda46f62b474b5";
+const REVIEWED_MECHANICS_SHA256 = "9c210c603c6f19e47cacf4222985e80c7dc324a5815f1fe6bf4e2f5c4d228056";
 const REVIEWED_ASSUMPTIONS = [
   { id: "unit-connect-independence", default: "independent-user-confirmed", evidence: "user-confirmed", statement: "User confirmed 2026-08-08; simultaneous active-unit and Connect use is not source-documented." },
   { id: "extra-point-income", default: "user-declared", evidence: "unresolved", statement: "Income beyond rank points is unresolved and must be declared by the user." },

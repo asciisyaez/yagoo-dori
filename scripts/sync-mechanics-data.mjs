@@ -8,8 +8,8 @@ const outputFile = join(root, "data", "generated", "holodori-mechanics.json");
 
 const sourceSnapshot = {
   repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-  commit: "16d5b81b35cb90cf254a50bdde2a0bcbc328e521",
-  masterVersion: "e50116c3c75a4da07b27936baa10bdc1eabd71955406848104f2a0e0241ac508",
+  commit: "f7428d4092d57b34311f030e00ff46e7dbbc29e8",
+  masterVersion: "927a8489062cfb8aaee197689930a4c4e9c622e9ebbf8b80577bdbe5f065dcf9",
 };
 
 const retrievedAt = process.argv

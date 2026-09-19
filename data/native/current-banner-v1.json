@@ -1,25 +1,50 @@
 {
   "schemaVersion": 1,
-  "id": "secret-vacation-getaway-2026-09-08",
+  "id": "seeking-the-summer-cool-2026-09-19",
   "status": "live",
-  "retrievedAt": "2026-09-08",
-  "eventName": "Secret Vacation Getaway",
-  "gachaNameJa": "秘密のバケーションガチャ",
-  "startsAt": "2026-09-08T02:00:00.000Z",
-  "endsAt": "2026-09-19T01:59:00.000Z",
+  "retrievedAt": "2026-09-19",
+  "eventName": "Seeking the Summer Cool",
+  "gachaNameJa": "涼を求めるトリップガチャ",
+  "startsAt": "2026-09-19T02:00:00.000Z",
+  "endsAt": "2026-09-28T20:59:00.000Z",
   "featuredCardIds": [
-    "card-00036-5-uniq-0078-00",
-    "card-04016-5-uniq-0079-00",
-    "card-04017-5-uniq-0080-00"
+    "card-00004-5-uniq-0081-00",
+    "card-04013-5-uniq-0083-00",
+    "card-00035-5-uniq-0082-00",
+    "card-03005-5-uniq-0084-00"
   ],
   "eventSongIds": [
-    "m0348",
-    "m0344",
-    "m0527"
+    "m0349",
+    "m0351",
+    "m0350",
+    "m0352"
+  ],
+  "eventChapters": [
+    {
+      "talent": "Aki Rosenthal",
+      "songId": "m0349",
+      "startsAt": "2026-09-19T11:00:00.000Z"
+    },
+    {
+      "talent": "Shiori Novella",
+      "songId": "m0351",
+      "startsAt": "2026-09-21T11:00:00.000Z"
+    },
+    {
+      "talent": "La+ Darknesss",
+      "songId": "m0350",
+      "startsAt": "2026-09-23T11:00:00.000Z"
+    },
+    {
+      "talent": "Anya Melfissa",
+      "songId": "m0352",
+      "startsAt": "2026-09-25T11:00:00.000Z"
+    }
   ],
   "sourceRefs": [
-    "source-appmedia-secret-vacation",
-    "source-secret-vacation-localization"
+    "source-game8-seeking-summer-cool",
+    "source-dengeki-summer-escape",
+    "source-seeking-summer-localization"
   ],
-  "transformation": "Join the three featured cards and three event songs to the pinned HolodoriDB catalog. English display name comes from LangGachaPoint_Eng.json, removing the Gacha Pt suffix. Banner dates are corroborated by AppMedia; event and gacha schedules are distinct."
+  "transformation": "Join four featured card IDs and four event song IDs to the pinned catalog. English name is LangGachaPoint_Eng la-gacha_point-pickup-260919 without Gacha Pts. Convert Game8 gacha dates and officially announced chapter dates from JST to UTC; do not conflate 11:00 gacha launch with 20:00 event chapter starts."
 }

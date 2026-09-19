@@ -184,7 +184,7 @@ for (const [kind, directory] of Object.entries({
 
 const expectedPreviewGenerator = {
   library: "sharp",
-  version: "0.35.3",
+  version: "0.35.4",
   format: "webp",
   resize: { width: 1024, height: 576, fit: "cover", position: "centre" },
   webp: { quality: 80, effort: 6 },

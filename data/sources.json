@@ -84,8 +84,8 @@
     "url": "https://github.com/HolodoriDB/holodori-db-eng-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit 16d5b81b35cb90cf254a50bdde2a0bcbc328e521 (pinned structured input)",
-    "retrievedAt": "2026-09-08",
+    "upstreamVersion": "commit f7428d4092d57b34311f030e00ff46e7dbbc29e8 (pinned structured input)",
+    "retrievedAt": "2026-09-19",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
@@ -97,8 +97,8 @@
     "url": "https://github.com/HolodoriDB/holodori-db-jpn-diff",
     "kind": "change-signal",
     "reusePolicy": "no-redistribution-without-license",
-    "upstreamVersion": "commit fbbb04b06ede3276a6272d35d87fd7d1ce4b6ed7 (pinned structured input)",
-    "retrievedAt": "2026-09-08",
+    "upstreamVersion": "commit a22c8e29a981a8987bf2074c245e2fc40ad4dbea (pinned structured input)",
+    "retrievedAt": "2026-09-19",
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Monitored only as a change signal. No raw database content is copied."
@@ -167,5 +167,44 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "English banner display name from la-gacha_point-pickup-260908; remove only the Gacha Pt suffix."
+  },
+  {
+    "id": "source-game8-seeking-summer-cool",
+    "title": "Game8 — Seeking the Summer Cool banner",
+    "publisher": "Game8",
+    "url": "https://game8.jp/hololive-dreams/816917",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-09-19",
+    "retrievedAt": "2026-09-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Confirms September 19 11:00 to September 29 05:59 JST banner window. Card pages 816911-816914 independently corroborate four cards, max stats, skills, and Connect effects; editorial tiers are not calculation inputs."
+  },
+  {
+    "id": "source-dengeki-summer-escape",
+    "title": "Dengeki — official Summer Escape event announcement",
+    "publisher": "Dengeki Online",
+    "url": "https://dengekionline.com/article/202609/88492",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-09-19",
+    "retrievedAt": "2026-09-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Reproduces official event announcement: chapters start at 20:00 JST on September 19, 21, 23 and 25. Separate these from the gacha launch time."
+  },
+  {
+    "id": "source-seeking-summer-localization",
+    "title": "HolodoriDB — Seeking the Summer Cool localization",
+    "publisher": "HolodoriDB community maintainers",
+    "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/blob/f7428d4092d57b34311f030e00ff46e7dbbc29e8/LangGachaPoint_Eng.json",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-09-19",
+    "retrievedAt": "2026-09-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "English banner name is la-gacha_point-pickup-260919 without the Gacha Pts suffix."
   }
 ]

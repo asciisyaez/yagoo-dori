@@ -474,6 +474,30 @@ select {
     linear-gradient(135deg, #18232d, #111820);
 }
 
+.announced-banner-schedule {
+  padding: 1.2rem;
+  border: 1px solid rgba(37, 188, 233, 0.24);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+.announced-banner-schedule h3 { margin: 0; }
+.announced-banner-schedule p { color: var(--yd-muted); font-size: 0.8rem; }
+.announced-banner-schedule ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.announced-banner-schedule li { display: grid; gap: 0.4rem; font-size: 0.8rem; }
+.announced-banner-schedule time { color: var(--yd-cyan-soft); }
+.announced-banner-schedule span { overflow-wrap: anywhere; color: var(--yd-muted); }
+
+@media (max-width: 900px) {
+  .announced-banner-schedule ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .current-banner-copy {
   display: flex;
   flex-direction: column;
@@ -546,7 +570,7 @@ select {
 
 .current-banner-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.5rem;
   align-items: end;
   padding: 0.75rem;
@@ -1107,6 +1131,7 @@ select {
   }
 
   .current-banner-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.35rem;
     padding: 0.65rem;
   }

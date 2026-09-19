@@ -14,21 +14,21 @@ import {
   songContextData,
 } from "./song-contexts";
 
-const PINNED_COMMIT = "16d5b81b35cb90cf254a50bdde2a0bcbc328e521";
+const PINNED_COMMIT = "f7428d4092d57b34311f030e00ff46e7dbbc29e8";
 
 describe("evidence-backed song and chart contexts", () => {
   it("loads the complete pinned song and aggregate-chart snapshot", () => {
     expect(songContextData.sourceSnapshot.commit).toBe(PINNED_COMMIT);
     expect(songContextData.counts).toEqual({
-      songs: 199,
-      aggregateCharts: 796,
+      songs: 203,
+      aggregateCharts: 812,
       timedCharts: 0,
-      ratingEligibleSongs: 185,
+      ratingEligibleSongs: 189,
     });
-    expect(songContextData.songs).toHaveLength(199);
-    expect(songContextData.charts).toHaveLength(796);
-    expect(new Set(songContextData.songs.map((song) => song.id)).size).toBe(199);
-    expect(new Set(songContextData.charts.map((chart) => chart.key)).size).toBe(796);
+    expect(songContextData.songs).toHaveLength(203);
+    expect(songContextData.charts).toHaveLength(812);
+    expect(new Set(songContextData.songs.map((song) => song.id)).size).toBe(203);
+    expect(new Set(songContextData.charts.map((chart) => chart.key)).size).toBe(812);
     expect(songContextData.charts.every((chart) => chart.fidelity === "aggregate")).toBe(true);
     expect(SongContextDataSchema.safeParse(songContextData).success).toBe(true);
   });
@@ -282,7 +282,7 @@ describe("evidence-backed song and chart contexts", () => {
     const full = selectFullChartCorpus();
     const compact = selectCompactChartCorpus();
 
-    expect(full).toHaveLength(796);
+    expect(full).toHaveLength(812);
     expect(compact).toHaveLength(6);
     expect(compact.every((entry) => entry.chart.fidelity === "aggregate")).toBe(true);
     expect(compact.every((entry) => entry.chart.difficulty === "expert")).toBe(true);

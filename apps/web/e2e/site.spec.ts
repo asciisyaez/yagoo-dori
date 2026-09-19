@@ -47,16 +47,20 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
-test("homepage surfaces the current Secret Vacation banner and its three featured cards", async ({ page }) => {
+test("homepage surfaces the live Summer Cool banner and separate event chapter times", async ({ page }) => {
   await page.goto("/", GOTO_OPTIONS);
-
-  await expect(page.getByRole("heading", { name: "Secret Vacation Getaway" })).toBeVisible();
-  await expect(page.getByText("秘密のバケーションガチャ", { exact: true })).toBeVisible();
-  await expect(page.locator(".current-banner-card")).toHaveCount(3);
-  for (const talentName of ["Takane Lui", "Fuwawa Abyssgard", "Mococo Abyssgard"]) {
+  const banner = page.getByRole("region", { name: "Seeking the Summer Cool" });
+  await expect(banner).toContainText("Live banner");
+  await expect(banner).toContainText("11:00 JST");
+  await expect(banner.locator("li")).toHaveCount(4);
+  await expect(banner.locator("li").first()).toContainText("19 Sept, 20:00");
+  await expect(banner).toContainText("29 Sept, 05:59");
+  await expect(page.getByText("涼を求めるトリップガチャ", { exact: true })).toBeVisible();
+  await expect(page.locator(".current-banner-card")).toHaveCount(4);
+  for (const talentName of ["Aki Rosenthal", "Shiori Novella", "La+ Darknesss", "Anya Melfissa"]) {
     await expect(page.locator(".current-banner-card").filter({ hasText: talentName })).toBeVisible();
   }
-  await expect(page.locator(".current-banner-songs")).toContainText("Tri-Unity♡LoveSystem");
+  await expect(banner).toContainText("Grave of Halo");
 });
 
 test("mobile drawer closes on Escape and returns focus to its trigger", async ({ isMobile, page }) => {
@@ -111,31 +115,31 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("127 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(127);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(3);
-  for (const talentName of ["Takane Lui", "Fuwawa Abyssgard", "Mococo Abyssgard"]) {
+  await expect(page.getByText("131 cards shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(131);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
+  for (const talentName of ["Aki Rosenthal", "Shiori Novella", "La\\+ Darknesss", "Anya Melfissa"]) {
     await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") }).first()).toBeVisible();
   }
-  for (const talentName of ["Shirakami Fubuki", "Ookami Mio", "Nekomata Okayu", "Inugami Korone"]) {
+  for (const talentName of ["Takane Lui", "Fuwawa Abyssgard", "Mococo Abyssgard"]) {
     await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") })).toHaveCount(0);
   }
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
-  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(21);
-  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(28);
-  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(24);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(22);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(30);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(25);
   await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
   await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
-  await expect(page.getByText("127 Outfits shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(127);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(3);
+  await expect(page.getByText("131 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(131);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
-  await expect(page.getByText("127 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("131 cards shown", { exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: /Low Investment/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
@@ -250,7 +254,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 
   await page.getByRole("button", { name: /^Reset/ }).click();
   await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
-  await expect(page.getByText("127 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("131 cards shown", { exact: true })).toBeVisible();
 });
 
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({

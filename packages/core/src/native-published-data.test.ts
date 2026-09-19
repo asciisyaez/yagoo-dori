@@ -18,9 +18,53 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "16d5b81b35cb90cf254a50bdde2a0bcbc328e521";
+const PINNED_GUIDE_ROSTER_COMMIT = "f7428d4092d57b34311f030e00ff46e7dbbc29e8";
 
 const EXPECTED_GUIDE_IDENTITIES = [
+  {
+    anchorCardId: "card-00004-5-uniq-0081-00",
+    talentId: "chr-00004",
+    talentName: "Aki Rosenthal",
+    cardTitle: "Mystic Sun Swing",
+    leaders: {
+      premium: "card-00004-5-uniq-0081-00",
+      standard: "card-00004-5-uniq-0081-00",
+      "accessible-4-star": "card-00004-4-cmmn-0000-00"
+    }
+  },
+  {
+    anchorCardId: "card-00035-5-uniq-0082-00",
+    talentId: "chr-00035",
+    talentName: "La+ Darknesss",
+    cardTitle: "Leader’s Secret Pool",
+    leaders: {
+      premium: "card-00035-5-uniq-0082-00",
+      standard: "card-00035-5-uniq-0082-00",
+      "accessible-4-star": "card-00035-4-cmmn-0000-00"
+    }
+  },
+  {
+    anchorCardId: "card-03005-5-uniq-0084-00",
+    talentId: "chr-03005",
+    talentName: "Anya Melfissa",
+    cardTitle: "Chill Sunny Holiday",
+    leaders: {
+      premium: "card-03005-5-uniq-0084-00",
+      standard: "card-03005-5-uniq-0084-00",
+      "accessible-4-star": "card-03005-4-cmmn-0000-00"
+    }
+  },
+  {
+    anchorCardId: "card-04013-5-uniq-0083-00",
+    talentId: "chr-04013",
+    talentName: "Shiori Novella",
+    cardTitle: "Archived Night Pool",
+    leaders: {
+      premium: "card-04013-5-uniq-0083-00",
+      standard: "card-04013-5-uniq-0083-00",
+      "accessible-4-star": "card-04013-4-cmmn-0000-00"
+    }
+  },
   {
     anchorCardId: "card-00036-5-uniq-0078-00",
     talentId: "chr-00036",
@@ -255,6 +299,18 @@ const EXPECTED_GUIDE_IDENTITIES = [
 ] as const;
 
 const EXPECTED_LEADER_IDENTITIES = {
+  "card-00004-4-cmmn-0000-00": {
+    cardTitle: "Curious Elf Melody",
+    costumeId: "cos-00004-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00004-4-cmmn-0000-00"
+  },
+  "card-00004-5-uniq-0081-00": {
+    cardTitle: "Mystic Sun Swing",
+    costumeId: "cos-00004-uniq-0081-00",
+    costumeName: "Prism Allure",
+    leaderSkillId: "live_leader_skill-card-00004-5-uniq-0081-00"
+  },
   "card-00006-4-cmmn-0000-00": {
     cardTitle: "Max-Gear Fox Show",
     costumeId: "cos-00006-cmmn-0000-00",
@@ -429,6 +485,18 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Soleil Dappled Crown",
     leaderSkillId: "live_leader_skill-card-00028-5-uniq-0070-00"
   },
+  "card-00035-4-cmmn-0000-00": {
+    cardTitle: "Behold My Night",
+    costumeId: "cos-00035-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00035-4-cmmn-0000-00"
+  },
+  "card-00035-5-uniq-0082-00": {
+    cardTitle: "Leader’s Secret Pool",
+    costumeId: "cos-00035-uniq-0082-00",
+    costumeName: "Sweet & Spicy",
+    leaderSkillId: "live_leader_skill-card-00035-5-uniq-0082-00"
+  },
   "card-00036-4-cmmn-0000-00": {
     cardTitle: "Strategic Prodigy",
     costumeId: "cos-00036-cmmn-0000-00",
@@ -453,6 +521,18 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "CRAZY SHOCK!",
     leaderSkillId: "live_leader_skill-card-03004-5-uniq-0073-00"
   },
+  "card-03005-4-cmmn-0000-00": {
+    cardTitle: "Backstage Freebird",
+    costumeId: "cos-03005-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-03005-4-cmmn-0000-00"
+  },
+  "card-03005-5-uniq-0084-00": {
+    cardTitle: "Chill Sunny Holiday",
+    costumeId: "cos-03005-uniq-0084-00",
+    costumeName: "Tribal Oasis",
+    leaderSkillId: "live_leader_skill-card-03005-5-uniq-0084-00"
+  },
   "card-04001-4-cmmn-0000-00": {
     cardTitle: "Rep the Underworld",
     costumeId: "cos-04001-cmmn-0000-00",
@@ -476,6 +556,18 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeId: "cos-04003-uniq-0072-00",
     costumeName: "Waterfront Monochrome",
     leaderSkillId: "live_leader_skill-card-04003-5-uniq-0072-00"
+  },
+  "card-04013-4-cmmn-0000-00": {
+    cardTitle: "Unmasked Performance",
+    costumeId: "cos-04013-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04013-4-cmmn-0000-00"
+  },
+  "card-04013-5-uniq-0083-00": {
+    cardTitle: "Archived Night Pool",
+    costumeId: "cos-04013-uniq-0083-00",
+    costumeName: "Velvet Noir",
+    leaderSkillId: "live_leader_skill-card-04013-5-uniq-0083-00"
   },
   "card-04016-4-cmmn-0000-00": {
     cardTitle: "Velvet Cloud Calm",
@@ -516,6 +608,10 @@ const EXPECTED_LEADER_IDENTITIES = {
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00004-5-uniq-0081-00",
+  "card-00035-5-uniq-0082-00",
+  "card-03005-5-uniq-0084-00",
+  "card-04013-5-uniq-0083-00",
   "card-00036-5-uniq-0078-00",
   "card-04016-5-uniq-0079-00",
   "card-04017-5-uniq-0080-00",
@@ -659,7 +755,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(112);
+    expect(referencedCardIds.size).toBe(117);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);
