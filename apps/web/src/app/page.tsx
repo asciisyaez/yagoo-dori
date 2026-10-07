@@ -1,4 +1,4 @@
-import { currentBanner, publicCardById, publicCards, publicData, songContextData } from "@yagoo-dori/core";
+import { currentBanner, publicCardById, publicCards, publicData } from "@yagoo-dori/core";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import {
@@ -24,9 +24,6 @@ const spotlight = latestCards[0]!;
 const bannerCards = currentBanner.featuredCardIds
   .map((cardId) => publicCardById.get(cardId))
   .filter((card): card is (typeof publicCards)[number] => card !== undefined);
-const bannerSongs = currentBanner.eventSongIds
-  .map((songId) => songContextData.songs.find((song) => song.id === songId))
-  .filter((song): song is (typeof songContextData.songs)[number] => song !== undefined);
 const bannerStartLabel = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "short",
@@ -42,10 +39,20 @@ const bannerEndLabel = new Intl.DateTimeFormat("en-GB", {
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
 }).format(new Date(currentBanner.endsAt));
-const announcementDate = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo",
-});
-
+const eventStartLabel = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Asia/Tokyo",
+}).format(new Date(currentBanner.eventStartsAt));
+const eventEndLabel = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Asia/Tokyo",
+}).format(new Date(currentBanner.eventEndsAt));
 const quickLinks = [
   {
     href: "/tier-list",
@@ -118,11 +125,11 @@ export default function HomePage() {
             <p className="current-banner-kicker">Live banner · {bannerStartLabel} JST</p>
             <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
             <p>
-              {bannerCards.length} new ★5 summer cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+              {bannerCards.length} new ★5 cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
             </p>
             <dl className="current-banner-stats">
               <div><dt>Featured</dt><dd>{bannerCards.length} × ★5</dd></div>
-              <div><dt>Event songs</dt><dd>{bannerSongs.length}</dd></div>
+              <div><dt>New event tracks</dt><dd>{currentBanner.eventTracks.length}</dd></div>
               <div><dt>Ends (JST)</dt><dd>{bannerEndLabel}</dd></div>
             </dl>
             <Link className="secondary-action current-banner-action" href="/cards?rarity=5">
@@ -141,14 +148,13 @@ export default function HomePage() {
           </div>
         </div>
         <div className="announced-banner-schedule">
-          <h3>Solo event chapters</h3>
-          <p>Each chapter spotlights a different talent. All times are JST.</p>
+          <h3>New event tracks</h3>
+          <p>Score-challenge event · {eventStartLabel}–{eventEndLabel} JST.</p>
           <ul>
-            {currentBanner.eventChapters.map((chapter) => (
-              <li key={chapter.talent}>
-                <time dateTime={chapter.startsAt}>{announcementDate.format(new Date(chapter.startsAt))}</time>
-                <strong>{chapter.talent}</strong>
-                <span>{songContextData.songs.find((song) => song.id === chapter.songId)?.title}</span>
+            {currentBanner.eventTracks.map((track) => (
+              <li key={track.songId}>
+                <strong>{track.talent}</strong>
+                <span>{track.title}</span>
               </li>
             ))}
           </ul>

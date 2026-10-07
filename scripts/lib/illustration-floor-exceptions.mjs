@@ -4,6 +4,27 @@
 // entry (and re-sync) as soon as a sanctioned source posts a compliant
 // >= 2282x1284 original.
 export const illustrationFloorExceptionByCardId = Object.freeze({
+  "card-00030-5-uniq-0089-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-07 intake: AppMedia exposes only a 152x86 card thumbnail; the declared Game8 public card page provides this 2101x1165 original, stored without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-07",
+  }),
+  "card-00034-5-uniq-0090-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-07 intake: AppMedia exposes only a 152x86 card thumbnail; the declared Game8 public card page provides this 2101x1165 original, stored without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-07",
+  }),
+  "card-06003-5-uniq-0091-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-07 intake: AppMedia exposes only a 152x86 card thumbnail; the declared Game8 public card page provides this 2101x1165 original, stored without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-07",
+  }),
   "card-00004-5-uniq-0081-00": Object.freeze({
     exactWidth: 2101,
     exactHeight: 1165,

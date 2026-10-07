@@ -1,50 +1,41 @@
 {
   "schemaVersion": 1,
-  "id": "seeking-the-summer-cool-2026-09-19",
+  "id": "unyielding-ocean-chase-2026-10-07",
   "status": "live",
-  "retrievedAt": "2026-09-19",
-  "eventName": "Seeking the Summer Cool",
-  "gachaNameJa": "涼を求めるトリップガチャ",
-  "startsAt": "2026-09-19T02:00:00.000Z",
-  "endsAt": "2026-09-28T20:59:00.000Z",
+  "retrievedAt": "2026-10-07",
+  "eventName": "Unyielding Ocean Chase",
+  "gachaNameJa": "橋を架けるオーシャンクリエイトガチャ",
+  "startsAt": "2026-10-07T02:00:00.000Z",
+  "endsAt": "2026-10-19T01:59:00.000Z",
+  "eventStartsAt": "2026-10-07T03:00:00.000Z",
+  "eventEndsAt": "2026-10-13T10:59:00.000Z",
   "featuredCardIds": [
-    "card-00004-5-uniq-0081-00",
-    "card-04013-5-uniq-0083-00",
-    "card-00035-5-uniq-0082-00",
-    "card-03005-5-uniq-0084-00"
+    "card-00030-5-uniq-0089-00",
+    "card-00034-5-uniq-0090-00",
+    "card-06003-5-uniq-0091-00"
   ],
-  "eventSongIds": [
-    "m0349",
-    "m0351",
-    "m0350",
-    "m0352"
-  ],
-  "eventChapters": [
+  "eventTracks": [
     {
-      "talent": "Aki Rosenthal",
-      "songId": "m0349",
-      "startsAt": "2026-09-19T11:00:00.000Z"
+      "talent": "Omaru Polka",
+      "songId": "m0360",
+      "title": "HOLOGRAM CIRCUS"
     },
     {
-      "talent": "Shiori Novella",
-      "songId": "m0351",
-      "startsAt": "2026-09-21T11:00:00.000Z"
+      "talent": "Yukihana Lamy",
+      "songId": "m0361",
+      "title": "Lamy's Baribari Workout"
     },
     {
-      "talent": "La+ Darknesss",
-      "songId": "m0350",
-      "startsAt": "2026-09-23T11:00:00.000Z"
-    },
-    {
-      "talent": "Anya Melfissa",
-      "songId": "m0352",
-      "startsAt": "2026-09-25T11:00:00.000Z"
+      "talent": "Ichijou Ririka",
+      "songId": "m0362",
+      "title": "Tokyo Shandy Rendez-vous"
     }
   ],
   "sourceRefs": [
-    "source-game8-seeking-summer-cool",
-    "source-dengeki-summer-escape",
-    "source-seeking-summer-localization"
+    "source-gamebiz-unyielding-ocean-chase",
+    "source-dengeki-unyielding-ocean-chase",
+    "source-appmedia-ocean-create-gacha",
+    "source-holodori-ocean-chase-tracks"
   ],
-  "transformation": "Join four featured card IDs and four event song IDs to the pinned catalog. English name is LangGachaPoint_Eng la-gacha_point-pickup-260919 without Gacha Pts. Convert Game8 gacha dates and officially announced chapter dates from JST to UTC; do not conflate 11:00 gacha launch with 20:00 event chapter starts."
+  "transformation": "Join the three featured card IDs to the pinned public card snapshot. Convert the gacha window (11:00 JST on October 7 through 10:59 JST on October 19) and score-challenge event window (12:00 JST on October 7 through 19:59 JST on October 13) to UTC. List only the three newly added event tracks, using exact English catalog titles from the pinned HolodoriDB rows; the remaining challenge track is not named here. The English event title is a site translation of the Japanese announcement, not an official English localization."
 }

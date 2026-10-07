@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "expectedCount": 131,
+  "expectedCount": 138,
   "sourceManifest": {
     "path": "data/generated/card-art-manifest.json",
-    "sha256": "d777ebf34074e5eb30d366028910e64c4f449a97eb186b91c566151dea6f861d",
+    "sha256": "10cd398b86f9ea72eac7e9bdcdce2882bbca9dc2e0f6f9d4659e5082950ec085",
     "schemaVersion": 2,
-    "retrievedAt": "2026-09-19"
+    "retrievedAt": "2026-10-07"
   },
   "generator": {
     "library": "sharp",
@@ -178,6 +178,20 @@
       }
     },
     {
+      "cardId": "card-04012-5-uniq-0087-00",
+      "source": {
+        "path": "/game/illustrations/card-04012-5-uniq-0087-00.webp",
+        "sha256": "0018cf80a87be28d023c9d520599b2cb0e62d2249905d88476cbe5dfdd1920ce"
+      },
+      "output": {
+        "path": "/game/previews/card-04012-5-uniq-0087-00.webp",
+        "sha256": "e55847c78d438d84918448fc970864ecb32281fd852a9508b6d1016057f4b646",
+        "bytes": 94366,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
       "cardId": "card-00037-5-uniq-0030-00",
       "source": {
         "path": "/game/illustrations/card-00037-5-uniq-0030-00.webp",
@@ -187,6 +201,20 @@
         "path": "/game/previews/card-00037-5-uniq-0030-00.webp",
         "sha256": "49b71f85018b220605bfa1bd4b88b09549156272729896e00e77d4aba8fe516a",
         "bytes": 81996,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-00037-5-uniq-0086-00",
+      "source": {
+        "path": "/game/illustrations/card-00037-5-uniq-0086-00.webp",
+        "sha256": "a235fa33b4f50f41fdc4adec27427823e66fdc5d970996e0d9e994e5fe52c7c0"
+      },
+      "output": {
+        "path": "/game/previews/card-00037-5-uniq-0086-00.webp",
+        "sha256": "0bb5a8ed64197b7cc48edee2d4a71827099ae2c595793dc007e21a42a7874a75",
+        "bytes": 60774,
         "width": 1024,
         "height": 576
       }
@@ -262,6 +290,20 @@
       }
     },
     {
+      "cardId": "card-00023-5-uniq-0085-00",
+      "source": {
+        "path": "/game/illustrations/card-00023-5-uniq-0085-00.webp",
+        "sha256": "10b8ad26a7bef29e2df7d017dd76012ddc1a366da4e3e0960015008b8723e148"
+      },
+      "output": {
+        "path": "/game/previews/card-00023-5-uniq-0085-00.webp",
+        "sha256": "df5b6ba368c91cb34da3d29b9869ec6941efb7d660368923c0bee73239e6a001",
+        "bytes": 86924,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
       "cardId": "card-06003-5-uniq-0059-00",
       "source": {
         "path": "/game/illustrations/card-06003-5-uniq-0059-00.webp",
@@ -271,6 +313,20 @@
         "path": "/game/previews/card-06003-5-uniq-0059-00.webp",
         "sha256": "3f15da7dda4c3baa62e649d037efe0372dd44ab4113babe776afa7b33bac72a4",
         "bytes": 69554,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-06003-5-uniq-0091-00",
+      "source": {
+        "path": "/game/illustrations/card-06003-5-uniq-0091-00.webp",
+        "sha256": "f378e38b7648be30ba79cdaa7115bcc64297df69fc5aa18169c8f938e225b1d8"
+      },
+      "output": {
+        "path": "/game/previews/card-06003-5-uniq-0091-00.webp",
+        "sha256": "e8f5e51739bac0ed5a9e77150de948500a9df52304358ff19ad420697d4cc4ff",
+        "bytes": 70156,
         "width": 1024,
         "height": 576
       }
@@ -369,6 +425,20 @@
         "path": "/game/previews/card-03009-5-uniq-0041-00.webp",
         "sha256": "dd2ece014e073b6067a63d0c7d1765bfe356b4ce56dfcc6de9ceec64181e3841",
         "bytes": 87366,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-03009-5-uniq-0088-00",
+      "source": {
+        "path": "/game/illustrations/card-03009-5-uniq-0088-00.webp",
+        "sha256": "b3d827b18a7af17bcdc4b6f913ce750b1282497d95154ca304957e661046874f"
+      },
+      "output": {
+        "path": "/game/previews/card-03009-5-uniq-0088-00.webp",
+        "sha256": "dbbbdb20e03f47059b0196327c36962b0197a3139b5e9f52fa20c01fdb8c981c",
+        "bytes": 90332,
         "width": 1024,
         "height": 576
       }
@@ -649,6 +719,20 @@
         "path": "/game/previews/card-00034-5-uniq-0027-00.webp",
         "sha256": "4cc1cf66995c694de7d0ee728baccd37e0a85d9f32cdc269f8d639156a9150ab",
         "bytes": 87094,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-00034-5-uniq-0090-00",
+      "source": {
+        "path": "/game/illustrations/card-00034-5-uniq-0090-00.webp",
+        "sha256": "99204f91d133d4742f9f6ebcf630669e2cfd75fa5a7a3ee2d01d893789f51323"
+      },
+      "output": {
+        "path": "/game/previews/card-00034-5-uniq-0090-00.webp",
+        "sha256": "9e7177b07144b46ca58b532e7dc430b2ae884a24305f1db0d2eeb20451602f56",
+        "bytes": 58594,
         "width": 1024,
         "height": 576
       }
@@ -1083,6 +1167,20 @@
         "path": "/game/previews/card-00030-5-uniq-0024-00.webp",
         "sha256": "02c62a9e5a7cca277fae498e908258e8a666bcdd24e1f1dafa9c5076401d003d",
         "bytes": 67264,
+        "width": 1024,
+        "height": 576
+      }
+    },
+    {
+      "cardId": "card-00030-5-uniq-0089-00",
+      "source": {
+        "path": "/game/illustrations/card-00030-5-uniq-0089-00.webp",
+        "sha256": "ccbb7ec92a6c3fe7a84279251724373dbb2f96dc3074ce548078ad371b254d9f"
+      },
+      "output": {
+        "path": "/game/previews/card-00030-5-uniq-0089-00.webp",
+        "sha256": "634cbb6acf536717b9c5979bb38b0901441d208c7c4cf67821b702513fd52848",
+        "bytes": 75952,
         "width": 1024,
         "height": 576
       }

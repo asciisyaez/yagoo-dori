@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "validationId": "yd-relative-utility-model-v1",
-  "auditedAt": "2026-09-19",
+  "auditedAt": "2026-10-07",
   "scope": {
     "objective": "quantitative-reproducible-relative-ranking-and-team-selection",
     "outputUnit": "parameter-equivalent-relative-unit",
@@ -10,7 +10,8 @@
   "evidenceSnapshot": {
     "officialSystemUrl": "https://www.hololive-dreams.com/en/system",
     "structuredRepository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    "structuredCommit": "f7428d4092d57b34311f030e00ff46e7dbbc29e8",
+    "mechanicsCommit": "c98eddf11f81ecc65bfd1ca50427b59224627730",
+    "scoreKernelCommit": "f7428d4092d57b34311f030e00ff46e7dbbc29e8",
     "timelineSourceId": "holodori-best-chart-corpus-r51",
     "timelineApiRevision": 51,
     "timelineParserRepository": "https://github.com/HolodoriDB/holodori-scores",
@@ -53,12 +54,12 @@
     "status": "implementation-validated-fixed-model",
     "methodologyVersion": "yd-native-utility-1.0.0",
     "rankingMethodologyVersion": "yd-native-ranking-2.1.0",
-    "rankingSnapshotId": "2026-09-19-yd-native-2.1",
+    "rankingSnapshotId": "2026-10-07-yd-native-2.1",
     "benchmarkId": "launch-2026-07-31-matched-context-v1",
     "benchmarkChartCount": 30,
     "benchmarkReferenceChartCount": 21,
     "benchmarkCurrentChartCount": 9,
-    "evaluatedCardCount": 131,
+    "evaluatedCardCount": 138,
     "memberLensCount": 3,
     "leaderOutfitLensCount": 3,
     "minimumMatchedContextsPerCardLens": 250,

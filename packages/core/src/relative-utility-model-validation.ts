@@ -32,7 +32,8 @@ export const RelativeUtilityModelValidationSchema = z
       .object({
         officialSystemUrl: z.literal("https://www.hololive-dreams.com/en/system"),
         structuredRepository: z.url(),
-        structuredCommit: z.string().regex(/^[a-f0-9]{40}$/),
+        mechanicsCommit: z.string().regex(/^[a-f0-9]{40}$/),
+        scoreKernelCommit: z.string().regex(/^[a-f0-9]{40}$/),
         timelineSourceId: z.literal("holodori-best-chart-corpus-r51"),
         timelineApiRevision: z.literal(51),
         timelineParserRepository: z.url(),
@@ -148,8 +149,8 @@ export function assertRelativeUtilityModelValidationCurrent(): void {
   ).map((rule) => rule.id);
 
   if (
-    audit.evidenceSnapshot.structuredCommit !== mechanicsData.sourceSnapshot.commit ||
-    audit.evidenceSnapshot.structuredCommit !== SCORE_KERNEL_SOURCE_SNAPSHOT.commit
+    audit.evidenceSnapshot.mechanicsCommit !== mechanicsData.sourceSnapshot.commit ||
+    audit.evidenceSnapshot.scoreKernelCommit !== SCORE_KERNEL_SOURCE_SNAPSHOT.commit
   ) {
     throw new Error("Relative-model audit drifted from the pinned structured snapshot");
   }

@@ -96,7 +96,7 @@ const GUIDES = [
   {
     talent: "Ninomae Ina'nis",
     cardTitle: "Tracing Tide Memories",
-    standardLeaderCardTitle: "Tracing Tide Memories",
+    standardLeaderCardTitle: "Gentle Stage Beam",
     guideSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00-team-guide",
     cardSlug: "ninomae-ina-nis-tracing-tide-memories-card-04003-5-uniq-0072-00",
   },
@@ -179,6 +179,55 @@ const GUIDES = [
     guideSlug: "shiori-novella-archived-night-pool-card-04013-5-uniq-0083-00-team-guide",
     cardSlug: "shiori-novella-archived-night-pool-card-04013-5-uniq-0083-00"
   },
+  {
+    talent: "Houshou Marine",
+    cardTitle: "Hoard the Loot!♡",
+    standardLeaderCardTitle: "Siren Marine Blue",
+    guideSlug: "houshou-marine-hoard-the-loot-card-00023-5-uniq-0085-00-team-guide",
+    cardSlug: "houshou-marine-hoard-the-loot-card-00023-5-uniq-0085-00",
+  },
+  {
+    talent: "Hakui Koyori",
+    cardTitle: "A Glance of Adventure",
+    standardLeaderCardTitle: "Assistant’s Muse",
+    guideSlug: "hakui-koyori-a-glance-of-adventure-card-00037-5-uniq-0086-00-team-guide",
+    cardSlug: "hakui-koyori-a-glance-of-adventure-card-00037-5-uniq-0086-00",
+  },
+  {
+    talent: "Hakos Baelz",
+    cardTitle: "My Absolute Fav!",
+    standardLeaderCardTitle: "My Absolute Fav!",
+    guideSlug: "hakos-baelz-my-absolute-fav-card-04012-5-uniq-0087-00-team-guide",
+    cardSlug: "hakos-baelz-my-absolute-fav-card-04012-5-uniq-0087-00",
+  },
+  {
+    talent: "Kobo Kanaeru",
+    cardTitle: "Tidal Body & Soul",
+    standardLeaderCardTitle: "Tidal Body & Soul",
+    guideSlug: "kobo-kanaeru-tidal-body-soul-card-03009-5-uniq-0088-00-team-guide",
+    cardSlug: "kobo-kanaeru-tidal-body-soul-card-03009-5-uniq-0088-00",
+  },
+  {
+    talent: "Yukihana Lamy",
+    cardTitle: "A Cool, Healing Sip",
+    standardLeaderCardTitle: "A Cool, Healing Sip",
+    guideSlug: "yukihana-lamy-a-cool-healing-sip-card-00030-5-uniq-0089-00-team-guide",
+    cardSlug: "yukihana-lamy-a-cool-healing-sip-card-00030-5-uniq-0089-00",
+  },
+  {
+    talent: "Omaru Polka",
+    cardTitle: "Shared BBQ Bliss",
+    standardLeaderCardTitle: "Polka’s Phantasm",
+    guideSlug: "omaru-polka-shared-bbq-bliss-card-00034-5-uniq-0090-00-team-guide",
+    cardSlug: "omaru-polka-shared-bbq-bliss-card-00034-5-uniq-0090-00",
+  },
+  {
+    talent: "Ichijou Ririka",
+    cardTitle: "Night Summer Smile",
+    standardLeaderCardTitle: "The CEO's Struggling Meal",
+    guideSlug: "ichijou-ririka-night-summer-smile-card-06003-5-uniq-0091-00-team-guide",
+    cardSlug: "ichijou-ririka-night-summer-smile-card-06003-5-uniq-0091-00",
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
@@ -193,6 +242,17 @@ function requireCard(cardId: string): PublicCard {
   const card = publicCardById.get(cardId);
   if (!card) throw new Error(`E2E guide fixture references missing card ${cardId}`);
   return card;
+}
+
+function requireStandardLeader(guide: (typeof GUIDES)[number]): PublicCard {
+  const published = nativeGuideBySlug.get(guide.guideSlug);
+  const formation = published?.formations.find((candidate) => candidate.kind === "standard");
+  if (!formation) throw new Error(`E2E guide fixture has no Standard formation ${guide.guideSlug}`);
+  const leader = requireCard(formation.leaderOutfitCardId);
+  if (leader.title !== guide.standardLeaderCardTitle) {
+    throw new Error(`E2E Standard Leader title drifted for ${guide.guideSlug}`);
+  }
+  return leader;
 }
 
 function cardArtPattern(cardId: string) {
@@ -216,8 +276,9 @@ test("guide library lists every generated exact-card build", async ({ isMobile, 
     await expect(card).toHaveCount(1);
     await expect(card.getByText(guide.cardTitle, { exact: true })).toBeVisible();
     await expect(card.getByText("Recommended Leader", { exact: true })).toBeVisible();
+    const standardLeader = requireStandardLeader(guide);
     await expect(
-      card.getByText(`5★ card · ${guide.standardLeaderCardTitle}`, { exact: true }),
+      card.getByText(`${standardLeader.rarity}★ card · ${standardLeader.title}`, { exact: true }),
     ).toBeVisible();
 
     const lineup = card.getByRole("list", {
@@ -259,6 +320,7 @@ for (const guide of GUIDES) {
     const publishedGuide = nativeGuideBySlug.get(guide.guideSlug);
     if (!publishedGuide) throw new Error(`Missing published guide ${guide.guideSlug}`);
     const anchor = requireCard(publishedGuide.anchorCardId);
+    const standardLeader = requireStandardLeader(guide);
 
     await page.goto(`/guides/${guide.guideSlug}`, { waitUntil: "domcontentloaded" });
 
@@ -280,7 +342,7 @@ for (const guide of GUIDES) {
     await expect(
       page
         .locator("#formation-standard")
-        .getByText(`5★ Leader card · ${guide.standardLeaderCardTitle}`, { exact: true }),
+        .getByText(`${standardLeader.rarity}★ Leader card · ${standardLeader.title}`, { exact: true }),
     ).toBeVisible();
     await expect(
       page

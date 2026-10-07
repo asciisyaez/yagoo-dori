@@ -14,13 +14,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "f7428d4092d57b34311f030e00ff46e7dbbc29e8",
-    masterVersion: "927a8489062cfb8aaee197689930a4c4e9c622e9ebbf8b80577bdbe5f065dcf9",
+    commit: "c98eddf11f81ecc65bfd1ca50427b59224627730",
+    masterVersion: "65badf8533aacbc04382f97f0f5f56740e761e6f5be6172d8440ae9061deebe7",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "a22c8e29a981a8987bf2074c245e2fc40ad4dbea",
-    masterVersion: "927a8489062cfb8aaee197689930a4c4e9c622e9ebbf8b80577bdbe5f065dcf9",
+    commit: "6680c7c37a8a3b3d56d919df823dca318db0d802",
+    masterVersion: "65badf8533aacbc04382f97f0f5f56740e761e6f5be6172d8440ae9061deebe7",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
@@ -304,6 +304,27 @@ function parseImageTags(html) {
 }
 
 const appMediaAssetOverrideByCardId = {
+  "card-00030-5-uniq-0089-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234896",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/183901_g3maq.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/822427",
+    illustrationSourceUrl: "https://img.game8.jp/13073120/24d82f0a74b0f122b8b072e814631947.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-00034-5-uniq-0090-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234905",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/09/183055_cofl5.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/822428",
+    illustrationSourceUrl: "https://img.game8.jp/13073121/ce977b135d77ddccf5fc15e470683260.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-06003-5-uniq-0091-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80234983",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/190353_hivg3.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/822426",
+    illustrationSourceUrl: "https://img.game8.jp/13073119/23e5f9e3083d7911de6bf5e38c2f5c88.webp/original",
+    allowExternalIllustration: true,
+  },
   "card-00004-5-uniq-0081-00": {
     sourcePage: "https://appmedia.jp/hololive-dreams/80234845",
     iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/09/181617_zny7g.webp",

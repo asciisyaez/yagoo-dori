@@ -206,5 +206,57 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "English banner name is la-gacha_point-pickup-260919 without the Gacha Pts suffix."
+  },
+  {
+    "id": "source-gamebiz-unyielding-ocean-chase",
+    "title": "GameBiz — Unyielding Ocean Chase event and gacha schedule",
+    "publisher": "GameBiz / QualiArts press release",
+    "url": "https://gamebiz.jp/news/433720",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-07",
+    "retrievedAt": "2026-10-07",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Reproduces the publisher's October 7 gacha start and October 19 10:59 JST end, October 7 12:00 to October 13 19:59 JST event window, featured Members, and three newly added event tracks."
+  },
+  {
+    "id": "source-dengeki-unyielding-ocean-chase",
+    "title": "Dengeki Online — official Unyielding Ocean Chase event announcement",
+    "publisher": "Dengeki Online",
+    "url": "https://dengekionline.com/article/202610/90204",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-07",
+    "retrievedAt": "2026-10-07",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Reproduces the official event announcement: the three talents and their event songs, event launch at 12:00 JST on October 7, and the three same-day song additions."
+  },
+  {
+    "id": "source-appmedia-ocean-create-gacha",
+    "title": "AppMedia — Bridge an Ocean Create gacha",
+    "publisher": "AppMedia",
+    "url": "https://appmedia.jp/hololive-dreams/80463139",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-07",
+    "retrievedAt": "2026-10-07",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Corroborates the Japanese gacha name, October 7 11:00 JST start, and the three featured Members. Its page did not provide a gacha end date; the release schedule is corroborated by the publisher's press release."
+  },
+  {
+    "id": "source-holodori-ocean-chase-tracks",
+    "title": "HolodoriDB — October event song titles and talent relationships",
+    "publisher": "HolodoriDB community maintainers",
+    "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/tree/c98eddf11f81ecc65bfd1ca50427b59224627730",
+    "kind": "structured",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "c98eddf11f81ecc65bfd1ca50427b59224627730",
+    "retrievedAt": "2026-10-07",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "English titles and singer relationships are joined by song IDs m0360-m0362 in Music.json and LangMusic_Eng.json. These three event tracks are cataloged in the banner metadata; full chart hashes and timings remain unavailable from this revision."
   }
 ]

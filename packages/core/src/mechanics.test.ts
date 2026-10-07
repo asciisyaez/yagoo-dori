@@ -26,11 +26,11 @@ describe("evidence-linked mechanics catalog", () => {
     expect(mechanicsData.sourceSnapshot.masterVersion).toBe(
       publicData.sourceSnapshots.english.masterVersion,
     );
-    expect(mechanicsData.cards).toHaveLength(131);
-    expect(new Set(mechanicsData.cards.map((card) => card.cardId)).size).toBe(131);
+    expect(mechanicsData.cards).toHaveLength(138);
+    expect(new Set(mechanicsData.cards.map((card) => card.cardId)).size).toBe(138);
     expect(mechanicsData.coverage).toMatchObject({
-      cards: 131,
-      mappedCards: 131,
+      cards: 138,
+      mappedCards: 138,
       unresolvedReferences: [],
     });
   });
@@ -52,19 +52,19 @@ describe("evidence-linked mechanics catalog", () => {
   });
 
   it("normalizes every current effect, target, trigger, progression, Connect, and Board catalog", () => {
-    expect(mechanicsData.catalogs.activeEffects).toHaveLength(53);
-    expect(mechanicsData.catalogs.passiveEffects).toHaveLength(186);
+    expect(mechanicsData.catalogs.activeEffects).toHaveLength(55);
+    expect(mechanicsData.catalogs.passiveEffects).toHaveLength(189);
     expect(mechanicsData.catalogs.targets).toHaveLength(83);
     expect(mechanicsData.catalogs.triggers).toHaveLength(215);
     expect(mechanicsData.catalogs.potentialEffects).toHaveLength(15);
     expect(mechanicsData.catalogs.connectEffects).toHaveLength(40);
     expect(mechanicsData.catalogs.connectExtents).toHaveLength(17);
-    expect(mechanicsData.catalogs.boardEffects).toHaveLength(121);
+    expect(mechanicsData.catalogs.boardEffects).toHaveLength(122);
     expect(mechanicsData.catalogs.boardPassiveTriggers).toHaveLength(81);
     expect(mechanicsData.catalogs.boardTargets).toHaveLength(79);
     expect(mechanicsData.catalogs.boardValueLimits).toHaveLength(2);
-    expect(mechanicsData.catalogs.boardNodes).toHaveLength(324);
-    expect(mechanicsData.catalogs.boardNodePositions).toHaveLength(612);
+    expect(mechanicsData.catalogs.boardNodes).toHaveLength(325);
+    expect(mechanicsData.catalogs.boardNodePositions).toHaveLength(616);
     expect(mechanicsData.catalogs.boardPointPools).toHaveLength(54);
     expect(mechanicsData.catalogs.talentBoardProfiles).toHaveLength(54);
     expect(mechanicsData.catalogs.holomemRankPoints).toHaveLength(50);
@@ -111,7 +111,7 @@ describe("evidence-linked mechanics catalog", () => {
         histogram[node.pointCost] = (histogram[node.pointCost] ?? 0) + 1;
         return histogram;
       }, {}),
-    ).toEqual({ 0: 1, 1: 25, 2: 98, 3: 104, 4: 12, 5: 80, 6: 4 });
+    ).toEqual({ 0: 1, 1: 25, 2: 98, 3: 105, 4: 12, 5: 80, 6: 4 });
     expect(mechanicsData.catalogs.holomemRankPoints.reduce((sum, row) => sum + row.points, 0)).toBe(361);
     expect(mechanicsData.methodologyVersion).toBe("yd-mechanics-catalog-1.2.0");
   });
@@ -264,7 +264,7 @@ describe("evidence-linked mechanics catalog", () => {
         ),
       })),
     );
-    expect(leaderCoeffects).toHaveLength(16);
+    expect(leaderCoeffects).toHaveLength(18);
     expect(
       leaderCoeffects.every(
         ({ additional, primary }) =>

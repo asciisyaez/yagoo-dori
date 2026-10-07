@@ -11,12 +11,13 @@ const CurrentBannerSchema = z.object({
   gachaNameJa: z.string().min(1),
   startsAt: z.iso.datetime({ offset: true }),
   endsAt: z.iso.datetime({ offset: true }),
+  eventStartsAt: z.iso.datetime({ offset: true }),
+  eventEndsAt: z.iso.datetime({ offset: true }),
   featuredCardIds: z.array(z.string().min(1)).min(1),
-  eventSongIds: z.array(z.string().min(1)).min(1),
-  eventChapters: z.array(z.object({
+  eventTracks: z.array(z.object({
     talent: z.string().min(1),
     songId: z.string().min(1),
-    startsAt: z.iso.datetime({ offset: true }),
+    title: z.string().min(1),
   }).strict()).min(1),
   sourceRefs: z.array(z.string().min(1)).min(1),
   transformation: z.string().min(1),

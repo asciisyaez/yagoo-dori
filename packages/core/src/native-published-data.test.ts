@@ -18,7 +18,7 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "f7428d4092d57b34311f030e00ff46e7dbbc29e8";
+const PINNED_GUIDE_ROSTER_COMMIT = "c98eddf11f81ecc65bfd1ca50427b59224627730";
 
 const EXPECTED_GUIDE_IDENTITIES = [
   {
@@ -280,7 +280,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Mori Calliope",
     cardTitle: "Beach Reaper's Spike",
     leaders: {
-      premium: "card-04001-5-uniq-0042-00",
+      premium: "card-04001-5-uniq-0071-00",
       standard: "card-04001-5-uniq-0042-00",
       "accessible-4-star": "card-04001-4-cmmn-0000-00",
     },
@@ -291,9 +291,86 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Ninomae Ina'nis",
     cardTitle: "Tracing Tide Memories",
     leaders: {
-      premium: "card-04003-5-uniq-0072-00",
-      standard: "card-04003-5-uniq-0072-00",
+      premium: "card-04003-5-uniq-0044-00",
+      standard: "card-04003-4-cmmn-0000-00",
       "accessible-4-star": "card-04003-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00023-5-uniq-0085-00",
+    talentId: "chr-00023",
+    talentName: "Houshou Marine",
+    cardTitle: "Hoard the Loot!♡",
+    leaders: {
+      premium: "card-00023-5-uniq-0085-00",
+      standard: "card-00023-5-uniq-0019-00",
+      "accessible-4-star": "card-00023-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00030-5-uniq-0089-00",
+    talentId: "chr-00030",
+    talentName: "Yukihana Lamy",
+    cardTitle: "A Cool, Healing Sip",
+    leaders: {
+      premium: "card-00030-5-uniq-0089-00",
+      standard: "card-00030-5-uniq-0089-00",
+      "accessible-4-star": "card-00030-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00034-5-uniq-0090-00",
+    talentId: "chr-00034",
+    talentName: "Omaru Polka",
+    cardTitle: "Shared BBQ Bliss",
+    leaders: {
+      premium: "card-00034-5-uniq-0090-00",
+      standard: "card-00034-5-uniq-0027-00",
+      "accessible-4-star": "card-00034-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00037-5-uniq-0086-00",
+    talentId: "chr-00037",
+    talentName: "Hakui Koyori",
+    cardTitle: "A Glance of Adventure",
+    leaders: {
+      premium: "card-00037-5-uniq-0030-00",
+      standard: "card-00037-5-uniq-0030-00",
+      "accessible-4-star": "card-00037-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03009-5-uniq-0088-00",
+    talentId: "chr-03009",
+    talentName: "Kobo Kanaeru",
+    cardTitle: "Tidal Body & Soul",
+    leaders: {
+      premium: "card-03009-5-uniq-0088-00",
+      standard: "card-03009-5-uniq-0088-00",
+      "accessible-4-star": "card-03009-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-04012-5-uniq-0087-00",
+    talentId: "chr-04012",
+    talentName: "Hakos Baelz",
+    cardTitle: "My Absolute Fav!",
+    leaders: {
+      premium: "card-04012-5-uniq-0087-00",
+      standard: "card-04012-5-uniq-0087-00",
+      "accessible-4-star": "card-04012-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-06003-5-uniq-0091-00",
+    talentId: "chr-06003",
+    talentName: "Ichijou Ririka",
+    cardTitle: "Night Summer Smile",
+    leaders: {
+      premium: "card-06003-5-uniq-0059-00",
+      standard: "card-06003-5-uniq-0059-00",
+      "accessible-4-star": "card-06003-4-cmmn-0000-00",
     },
   },
 ] as const;
@@ -545,17 +622,23 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Poetic Death Waltz",
     leaderSkillId: "live_leader_skill-card-04001-5-uniq-0042-00"
   },
+  "card-04001-5-uniq-0071-00": {
+    cardTitle: "Beach Reaper's Spike",
+    costumeId: "cos-04001-uniq-0071-00",
+    costumeName: "Radiant Summer Heatwave",
+    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0071-00"
+  },
   "card-04003-4-cmmn-0000-00": {
     cardTitle: "Gentle Stage Beam",
     costumeId: "cos-04003-cmmn-0000-00",
     costumeName: "Dreamy Drop",
     leaderSkillId: "live_leader_skill-card-04003-4-cmmn-0000-00"
   },
-  "card-04003-5-uniq-0072-00": {
-    cardTitle: "Tracing Tide Memories",
-    costumeId: "cos-04003-uniq-0072-00",
-    costumeName: "Waterfront Monochrome",
-    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0072-00"
+  "card-04003-5-uniq-0044-00": {
+    cardTitle: "Warm Up and Recharge",
+    costumeId: "cos-04003-uniq-0044-00",
+    costumeName: "Deep-Sea Kimono",
+    leaderSkillId: "live_leader_skill-card-04003-5-uniq-0044-00"
   },
   "card-04013-4-cmmn-0000-00": {
     cardTitle: "Unmasked Performance",
@@ -604,6 +687,102 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeId: "cos-06002-uniq-0066-00",
     costumeName: "Sunflower Symphony",
     leaderSkillId: "live_leader_skill-card-06002-5-uniq-0066-00"
+  },
+  "card-00023-4-cmmn-0000-00": {
+    cardTitle: "Corsair’s Conquest",
+    costumeId: "cos-00023-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00023-4-cmmn-0000-00"
+  },
+  "card-00023-5-uniq-0019-00": {
+    cardTitle: "Siren Marine Blue",
+    costumeId: "cos-00023-uniq-0019-00",
+    costumeName: "Crimson Captain",
+    leaderSkillId: "live_leader_skill-card-00023-5-uniq-0019-00"
+  },
+  "card-00023-5-uniq-0085-00": {
+    cardTitle: "Hoard the Loot!♡",
+    costumeId: "cos-00023-uniq-0085-00",
+    costumeName: "Sea Voyager",
+    leaderSkillId: "live_leader_skill-card-00023-5-uniq-0085-00"
+  },
+  "card-00030-4-cmmn-0000-00": {
+    cardTitle: "Glacial Radiance",
+    costumeId: "cos-00030-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00030-4-cmmn-0000-00"
+  },
+  "card-00030-5-uniq-0089-00": {
+    cardTitle: "A Cool, Healing Sip",
+    costumeId: "cos-00030-uniq-0089-00",
+    costumeName: "Cyan Cocktail",
+    leaderSkillId: "live_leader_skill-card-00030-5-uniq-0089-00"
+  },
+  "card-00034-4-cmmn-0000-00": {
+    cardTitle: "Neon Party Riot",
+    costumeId: "cos-00034-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00034-4-cmmn-0000-00"
+  },
+  "card-00034-5-uniq-0027-00": {
+    cardTitle: "Polka’s Phantasm",
+    costumeId: "cos-00034-uniq-0027-00",
+    costumeName: "Carnival Overlord",
+    leaderSkillId: "live_leader_skill-card-00034-5-uniq-0027-00"
+  },
+  "card-00034-5-uniq-0090-00": {
+    cardTitle: "Shared BBQ Bliss",
+    costumeId: "cos-00034-uniq-0090-00",
+    costumeName: "Primal Neon",
+    leaderSkillId: "live_leader_skill-card-00034-5-uniq-0090-00"
+  },
+  "card-00037-4-cmmn-0000-00": {
+    cardTitle: "Howling Echo",
+    costumeId: "cos-00037-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-00037-4-cmmn-0000-00"
+  },
+  "card-00037-5-uniq-0030-00": {
+    cardTitle: "Assistant’s Muse",
+    costumeId: "cos-00037-uniq-0030-00",
+    costumeName: "Mystic Science Lab",
+    leaderSkillId: "live_leader_skill-card-00037-5-uniq-0030-00"
+  },
+  "card-03009-4-cmmn-0000-00": {
+    cardTitle: "Total Overdrive",
+    costumeId: "cos-03009-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-03009-4-cmmn-0000-00"
+  },
+  "card-03009-5-uniq-0088-00": {
+    cardTitle: "Tidal Body & Soul",
+    costumeId: "cos-03009-uniq-0088-00",
+    costumeName: "Tidal Diva",
+    leaderSkillId: "live_leader_skill-card-03009-5-uniq-0088-00"
+  },
+  "card-04012-4-cmmn-0000-00": {
+    cardTitle: "Infinite Groove",
+    costumeId: "cos-04012-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-04012-4-cmmn-0000-00"
+  },
+  "card-04012-5-uniq-0087-00": {
+    cardTitle: "My Absolute Fav!",
+    costumeId: "cos-04012-uniq-0087-00",
+    costumeName: "Bubble Blitz",
+    leaderSkillId: "live_leader_skill-card-04012-5-uniq-0087-00"
+  },
+  "card-06003-4-cmmn-0000-00": {
+    cardTitle: "Heart-Shot Pulse",
+    costumeId: "cos-06003-cmmn-0000-00",
+    costumeName: "Dreamy Drop",
+    leaderSkillId: "live_leader_skill-card-06003-4-cmmn-0000-00"
+  },
+  "card-06003-5-uniq-0059-00": {
+    cardTitle: "The CEO's Struggling Meal",
+    costumeId: "cos-06003-uniq-0059-00",
+    costumeName: "Executive Glam",
+    leaderSkillId: "live_leader_skill-card-06003-5-uniq-0059-00"
   }
 } as const;
 
@@ -633,6 +812,13 @@ const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
   "card-04001-5-uniq-0071-00",
   "card-04003-5-uniq-0072-00",
   "card-06002-5-uniq-0066-00",
+  "card-00023-5-uniq-0085-00",
+  "card-00037-5-uniq-0086-00",
+  "card-04012-5-uniq-0087-00",
+  "card-03009-5-uniq-0088-00",
+  "card-00030-5-uniq-0089-00",
+  "card-00034-5-uniq-0090-00",
+  "card-06003-5-uniq-0091-00",
 ].sort();
 
 const EXPECTED_FORMATION_KINDS = ["accessible-4-star", "premium", "standard"].sort();
@@ -755,7 +941,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(117);
+    expect(referencedCardIds.size).toBe(127);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

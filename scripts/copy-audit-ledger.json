@@ -48,6 +48,10 @@
       "disposition": "non-technical",
       "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
     },
+    "apps/web/src/app/page.tsx|Score-challenge event ·|score": {
+      "disposition": "non-technical",
+      "justification": "Score-challenge names the officially announced event format, not a Yagoo-dori score or ranking claim."
+    },
     "apps/web/src/app/page.tsx|Exact five-card formations|exact": {
       "disposition": "allowed-scoped",
       "justification": "Exact describes the fixed five-card formation record shown by the database."

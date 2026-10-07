@@ -14,11 +14,11 @@ describe("observed exact-song timing breakpoints", () => {
 
     expect(transitions).toHaveLength(12);
     expect(transitions[0]).toMatchObject({
-      anchorCardId: "card-00012-5-uniq-0062-00",
+      anchorCardId: "card-00010-5-uniq-0069-00",
       kind: "placement",
-      durationGapMilliseconds: 7_000,
-      from: { chartKey: "m0032:expert", durationMilliseconds: 96_000 },
-      to: { chartKey: "m0085:expert", durationMilliseconds: 103_000 },
+      durationGapMilliseconds: 17_000,
+      from: { chartKey: "m0083:expert", durationMilliseconds: 100_000 },
+      to: { chartKey: "m0142:expert", durationMilliseconds: 117_000 },
     });
     expect(transitions.every(({ from, to }) =>
       from.orderStatus === "timed-corpus" &&
