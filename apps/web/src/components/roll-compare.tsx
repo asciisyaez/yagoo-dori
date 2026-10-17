@@ -1,6 +1,6 @@
 "use client";
 
-import type { TeamCalculatorResult } from "@yagoo-dori/core/team-calculator-contract";
+import type { TeamCalculatorRequest, TeamCalculatorResult } from "@yagoo-dori/core/team-calculator-contract";
 import { ArrowRight, Check, CircleAlert, Search, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -57,6 +57,9 @@ type ComparisonResult = {
   deltaPercent: number | null;
   displaced: TeamCalculatorResult["members"];
   stayed: TeamCalculatorResult["members"];
+  forcedMember?: boolean;
+  memberTrial?: ComparisonResult;
+  memberTrialReason?: string;
 };
 
 type CalculationState =
@@ -73,8 +76,9 @@ function buildComparison(
   baseline: TeamCalculatorResult,
   hypothetical: TeamCalculatorResult,
   pickedCardId: string,
+  forcedMember = false,
 ): ComparisonResult {
-  hypothetical = selectAcquisitionTeam(baseline, hypothetical, pickedCardId);
+  hypothetical = forcedMember ? hypothetical : selectAcquisitionTeam(baseline, hypothetical, pickedCardId);
   const hypotheticalMemberIds = new Set(hypothetical.members.map((member) => member.cardId));
   const delta = hypothetical.score.relativeUtility.central - baseline.score.relativeUtility.central;
   const baselineCentral = baseline.score.relativeUtility.central;
@@ -93,10 +97,14 @@ function buildComparison(
     deltaPercent: baselineCentral === 0 ? null : (delta / baselineCentral) * 100,
     displaced: baseline.members.filter((member) => !hypotheticalMemberIds.has(member.cardId)),
     stayed: baseline.members.filter((member) => hypotheticalMemberIds.has(member.cardId)),
+    forcedMember,
   };
 }
 
 function verdictDetail(comparison: ComparisonResult): string {
+  if (comparison.forcedMember) {
+    return "This run requires the picked card as a Member. Acquiring it is optional: you can keep your owned team instead.";
+  }
   const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
   if (pickedCardJoined && comparison.delta <= 0) {
     return "The swap is neutral or worse under the model.";
@@ -206,6 +214,7 @@ function DiffSection({
 }
 
 function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResult; pickedCard: RollCompareCard }) {
+  comparison = comparison.memberTrial ?? comparison;
   const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
   const improves = pickedCardJoined && comparison.delta > 0;
   const verdict = improves
@@ -217,6 +226,7 @@ function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResu
       <div className={styles.verdict} data-improves={improves}>
         <div>
           <span id="roll-compare-result-heading">Verdict</span>
+          {comparison.forcedMember && <small>Required Member comparison · signed swap difference</small>}
           <strong>{verdict}</strong>
           <small>{verdictDetail(comparison)}</small>
         </div>
@@ -250,6 +260,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   const [ownedCards, setOwnedCards] = useState<Record<string, BloomStage>>({});
   const [oshi, setOshi] = useState<{ talentId: string; role: StoredOshiRole }>();
   const [requiredMemberCardIds, setRequiredMemberCardIds] = useState<string[]>([]);
+  const [respectRestrictions, setRespectRestrictions] = useState(true);
   const [hydrated, setHydrated] = useState(false);
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
@@ -357,6 +368,50 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     setBatchRunning(false);
   };
 
+  const calculateCardComparison = async (
+    baseline: TeamCalculatorResult,
+    baselineRequest: TeamCalculatorRequest,
+    card: RollCompareCard,
+    generation: number,
+  ): Promise<ComparisonResult> => {
+    const run = async (request: TeamCalculatorRequest) => {
+      const task = startTeamCalculation(request);
+      activeTask.current = task;
+      const result = await task.result;
+      if (calculationGeneration.current !== generation) {
+        throw new TeamCalculatorWorkerError("cancelled", "The team calculation was cancelled.");
+      }
+      return result;
+    };
+    const request = { ...baselineRequest, ownedCards: [...baselineRequest.ownedCards, { cardId: card.id, bloomStage: 0 as const }] };
+    const hypothetical = await run({ ...request, seedCandidates: [{ leaderOutfitCardId: baseline.leader.cardId, memberCardIds: baseline.members.map((member) => member.cardId) }] });
+    const comparison = buildComparison(baseline, hypothetical, card.id);
+    if (comparison.delta > 0) return comparison;
+
+    const requiredIds = baselineRequest.requiredMemberCardIds;
+    const requiredTalents = requiredIds.map((id) => cardById.get(id)?.talentId);
+    const oshiMember = baselineRequest.oshi && baselineRequest.oshi.role !== "leader" ? baselineRequest.oshi.talentId : null;
+    if (requiredIds.length === 5 || requiredTalents.includes(card.talentId) ||
+      (requiredIds.length === 4 && oshiMember && ![...requiredTalents, card.talentId].includes(oshiMember))) {
+      return { ...comparison, memberTrialReason: "Saved restrictions prevent this Member swap. Uncheck saved restrictions to compare it." };
+    }
+    // Evaluate the card even when acquiring it would leave the best team unchanged.
+    // Legal incumbent swaps seed the required-card search; all are evaluated under
+    // the same full-corpus objective. Illegal seeds are rejected by the optimizer.
+    const forced = await run({
+      ...request,
+      requiredMemberCardIds: [...requiredIds, card.id],
+      seedCandidates: baseline.members.map((replaced) => ({
+        leaderOutfitCardId: baseline.leader.cardId,
+        memberCardIds: baseline.members.map((member) => member.cardId === replaced.cardId ? card.id : member.cardId),
+      })),
+    });
+    if (forced.score.relativeUtility.central > baseline.score.relativeUtility.central) {
+      return buildComparison(baseline, forced, card.id);
+    }
+    return { ...comparison, memberTrial: buildComparison(baseline, forced, card.id, true) };
+  };
+
   const runComparison = () => {
     if (calculationState.status === "calculating") {
       cancelCalculation();
@@ -375,9 +430,9 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     const makeRequest = (nextOwnedCards: typeof ownedEntries) => buildTeamCalculatorRequest({
       rosterCommit,
       ownedCards: nextOwnedCards,
-      requiredMemberCardIds: [...requiredMemberCardIds].sort(),
+      requiredMemberCardIds: respectRestrictions ? [...requiredMemberCardIds].sort() : [],
       searchEffort: "standard",
-      ...(oshi ? { oshi: { ...oshi, enabled: true } } : {}),
+      ...(respectRestrictions && oshi ? { oshi: { ...oshi, enabled: true } } : {}),
     });
     const baselineRequest = makeRequest(ownedEntries);
     const baselineKey = JSON.stringify(baselineRequest);
@@ -396,16 +451,9 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           baselineResultCache.current = { key: baselineKey, result: baseline };
         }
 
-        const hypotheticalTask = startTeamCalculation({
-          ...makeRequest([...ownedEntries, { cardId: selectedCard.id, bloomStage: 0 }]),
-          seedCandidates: [{ leaderOutfitCardId: baseline.leader.cardId, memberCardIds: baseline.members.map((member) => member.cardId) }],
-        });
-        activeTask.current = hypotheticalTask;
-        const hypothetical = await hypotheticalTask.result;
-        if (calculationGeneration.current !== generation || activeTask.current !== hypotheticalTask) return;
-
+        const comparison = await calculateCardComparison(baseline, baselineRequest, selectedCard, generation);
+        if (calculationGeneration.current !== generation) return;
         activeTask.current = null;
-        const comparison = buildComparison(baseline, hypothetical, selectedCard.id);
         setCalculationState({ status: "done", comparison });
         window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({
           behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
@@ -436,8 +484,8 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     const ownedEntries = cards.filter((card) => card.id in ownedCards)
       .map((card) => ({ cardId: card.id, bloomStage: ownedCards[card.id] ?? 0 }));
     const baselineRequest = buildTeamCalculatorRequest({
-      rosterCommit, ownedCards: ownedEntries, requiredMemberCardIds: [...requiredMemberCardIds].sort(),
-      searchEffort: "standard", ...(oshi ? { oshi: { ...oshi, enabled: true } } : {}),
+      rosterCommit, ownedCards: ownedEntries, requiredMemberCardIds: respectRestrictions ? [...requiredMemberCardIds].sort() : [],
+      searchEffort: "standard", ...(respectRestrictions && oshi ? { oshi: { ...oshi, enabled: true } } : {}),
     });
     const key = JSON.stringify(baselineRequest);
     try {
@@ -454,16 +502,11 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       const completed = new Set(rankings.map((row) => row.pickedCardId));
       for (const card of [...availableCards].sort((a, b) => Number(b.isNew) - Number(a.isNew))) {
         if (completed.has(card.id)) continue;
-        const task = startTeamCalculation({
-          ...baselineRequest,
-          ownedCards: [...ownedEntries, { cardId: card.id, bloomStage: 0 }],
-          seedCandidates: [{ leaderOutfitCardId: baseline.leader.cardId, memberCardIds: baseline.members.map((member) => member.cardId) }],
-        });
-        activeTask.current = task;
-        const hypothetical = await task.result;
+        const comparison = await calculateCardComparison(baseline, baselineRequest, card, generation);
         if (calculationGeneration.current !== generation) return;
-        const comparison = buildComparison(baseline, hypothetical, card.id);
-        setRankings((rows) => [...rows, comparison].sort((a, b) => b.delta - a.delta || a.pickedCardId.localeCompare(b.pickedCardId)));
+        setRankings((rows) => [...rows, comparison].sort((a, b) => b.delta - a.delta ||
+          (b.memberTrial?.delta ?? 0) - (a.memberTrial?.delta ?? 0) || a.pickedCardId.localeCompare(b.pickedCardId)));
+
       }
     } catch (error: unknown) {
       if (calculationGeneration.current !== generation) return;
@@ -519,13 +562,29 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           <div>
             <p className={styles.panelEyebrow}>Your upgrade targets</p>
             <h2 id="upgrade-targets-heading">Find your next team upgrade</h2>
-            <p>Compare every unowned card against your strongest found owned team. Each card is tested separately at Bloom 0, with your saved Oshi and required Members.</p>
+            <p>Compare every unowned card against your strongest found owned team. Each card is tested separately at Bloom 0, using the restriction settings below.</p>
           </div>
           <button className={styles.compareButton} onClick={() => void runAllComparisons()} disabled={availableCards.length === 0 || (!batchRunning && rankings.length === availableCards.length)} type="button">
             {batchRunning ? "Pause comparisons" : rankings.length > 0 && rankings.length < availableCards.length ? "Resume comparisons" : rankings.length === availableCards.length && availableCards.length > 0 ? "All cards compared" : "Compare all unowned cards"}
           </button>
         </header>
-        <p className={styles.disclosure}>Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. Acquiring an unused card leaves your team unchanged.</p>
+        <div className={styles.restrictions}>
+          <label>
+            <input type="checkbox" checked={respectRestrictions} onChange={(event) => {
+              cancelCalculation();
+              setRankings([]);
+              setBatchBaseline(null);
+              setBatchError(null);
+              baselineResultCache.current = null;
+              setRespectRestrictions(event.target.checked);
+            }} /> Respect saved Oshi and Member locks
+          </label>
+          <p>{respectRestrictions ? `${requiredMemberCardIds.length} of 5 Member slots locked` : "All Member slots open; saved Oshi restriction ignored"}{respectRestrictions && oshi ? ` · Oshi: ${cards.find((card) => card.talentId === oshi.talentId)?.talentName ?? oshi.talentId} (${oshi.role === "member" ? "Member" : oshi.role === "leader" ? "Leader Outfit" : "Member and Leader Outfit"})` : ""}.</p>
+          {respectRestrictions && requiredMemberCardIds.length > 0 && <p>Locked: {requiredMemberCardIds.map((id) => cardById.get(id)?.talentName).join(", ")}.</p>}
+          {respectRestrictions && requiredMemberCardIds.length === 5 && <p role="note">All five Members are locked. New cards can only improve the Leader Outfit. Uncheck this option to search for Member replacements; your saved team settings will be kept.</p>}
+          <p>Owned cards keep their saved Bloom levels. Every unowned card is tested at Bloom 0; a fresh copy may lose to your invested cards.</p>
+        </div>
+        <p className={styles.disclosure}>Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.</p>
         <div className={styles.pickerControls}>
           <label className={styles.search}>
             <Search aria-hidden="true" />
@@ -554,6 +613,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
             return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
           }).map((row) => {
             const card = cardById.get(row.pickedCardId)!;
+            const shown = row.memberTrial ?? row;
             return <button className={styles.targetRow} key={card.id} type="button" onClick={() => {
               cancelCalculation();
               setSelectedCardId(card.id);
@@ -562,8 +622,10 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
               window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({ behavior: "auto", block: "start" }));
             }}>
               <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
-              <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small><small>{row.delta > 0 ? `Replaces: ${row.displaced.map((member) => member.talentName).join(", ") || "Leader Outfit only"}` : "Keep your owned team"}</small></span>
-              <span data-improves={row.delta > 0}><strong>{formatSignedPercent(row.deltaPercent)}</strong><small>{formatSignedUtility(row.delta)} utility</small><small>{row.delta > 0 ? "Upgrade found" : "No upgrade found"}</small></span>
+              <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small><small>{row.delta > 0 ? `Replaces: ${shown.displaced.map((member) => member.talentName).join(", ") || "Leader Outfit only"}` : row.memberTrial ? `If used: replaces ${shown.displaced.map((member) => member.talentName).join(", ")}` : "Keep your owned team"}</small></span>
+              <span data-improves={row.delta > 0}><strong>{formatSignedPercent(shown.deltaPercent)}</strong><small>{formatSignedUtility(shown.delta)} utility</small><small>{row.delta > 0 ? "Upgrade found" : "No upgrade found"}</small>
+                {row.memberTrial && <small>{shown.delta < 0 ? "Weaker if used as Member" : "Ties if used as Member"}</small>}
+                {row.memberTrialReason && <small>{row.memberTrialReason}</small>}</span>
             </button>;
           })}
         </div>}

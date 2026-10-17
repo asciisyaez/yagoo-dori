@@ -105,6 +105,75 @@ test.describe("roll compare", () => {
     await expect(page.getByText("Saved roster", { exact: true })).toBeVisible();
   });
 
+  test("saved Member locks are visible and can be ignored without editing the roster", async ({ page }) => {
+    test.setTimeout(180_000);
+    await page.addInitScript(seedScript(WEAK_ROSTER));
+    await page.addInitScript((key) => {
+      const raw = localStorage.getItem(key);
+      if (!raw) return;
+      const roster = JSON.parse(raw);
+      roster.requiredMemberCardIds = Object.keys(roster.cards).slice(0, 5);
+      localStorage.setItem(key, JSON.stringify(roster));
+    }, MAIN_KEY);
+    await page.goto(`/roll-compare?card=${STRONG_PICK}`, GOTO_OPTIONS);
+    await expect(page.getByText("All five Members are locked.", { exact: false })).toBeVisible();
+    const before = await page.evaluate((key) => localStorage.getItem(key), MAIN_KEY);
+    await page.getByRole("checkbox", { name: "Respect saved Oshi and Member locks" }).uncheck();
+    await expect(page.getByText("All Member slots open; saved Oshi restriction ignored.")).toBeVisible();
+    await page.getByRole("button", { name: "Compare teams", exact: true }).click();
+    await expect(page.getByText("AZKi joins your strongest found team")).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('a[data-picked="true"]')).toHaveCount(1);
+    expect(await page.evaluate((key) => localStorage.getItem(key), MAIN_KEY)).toBe(before);
+  });
+
+  test("Pekora Leader restriction explains a fresh-card loss and can be relaxed for an upgrade", async ({ page }) => {
+    test.setTimeout(180_000);
+    const cards = {
+      "card-06004-5-uniq-0060-00": 0,
+      "card-04001-5-uniq-0042-00": 1,
+      "card-03002-5-uniq-0034-00": 0,
+      "card-00012-5-uniq-0012-00": 1,
+      "card-00032-5-uniq-0026-00": 0,
+      "card-00030-5-uniq-0024-00": 1,
+      "card-00027-5-uniq-0022-00": 0,
+      "card-00019-5-uniq-0016-00": 1,
+      "card-06003-5-uniq-0059-00": 1,
+      "card-00006-5-uniq-0007-00": 0,
+      "card-00018-4-cmmn-0000-00": 0,
+      "card-00015-4-cmmn-0000-00": 0,
+      "card-00010-4-cmmn-0000-00": 0,
+      "card-00006-4-cmmn-0000-00": 0,
+      "card-00011-4-cmmn-0000-00": 1,
+      "card-00026-4-cmmn-0000-00": 0,
+      "card-00035-4-cmmn-0000-00": 0,
+      "card-00036-4-cmmn-0000-00": 0,
+      "card-00039-4-cmmn-0000-00": 0,
+      "card-03004-4-cmmn-0000-00": 2,
+      "card-03008-4-cmmn-0000-00": 1,
+      "card-04015-4-cmmn-0000-00": 1,
+      "card-04017-4-cmmn-0000-00": 0,
+      "card-06005-4-cmmn-0000-00": 0,
+      "card-03009-5-uniq-0041-00": 1,
+      "card-06005-5-uniq-0061-00": 0,
+      "card-04012-5-uniq-0051-00": 0
+};
+    await page.addInitScript(({ key, cards }) => {
+      localStorage.setItem(key, JSON.stringify({
+        version: 4, rosterCommit: "0".repeat(40), cards,
+        oshi: { enabled: true, talentId: "chr-00019", role: "leader" },
+        requiredMemberCardIds: [], playerLevel: null, boards: {},
+      }));
+    }, { key: MAIN_KEY, cards });
+    await page.goto(`/roll-compare?card=${STRONG_PICK}`, GOTO_OPTIONS);
+    await expect(page.getByText("Oshi: Usada Pekora (Leader Outfit)", { exact: false })).toBeVisible();
+    await page.getByRole("button", { name: "Compare teams", exact: true }).click();
+    await expect(page.getByText("Required Member comparison · signed swap difference")).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[class*="verdict"] > b')).toContainText("−");
+    await page.getByRole("checkbox", { name: "Respect saved Oshi and Member locks" }).uncheck();
+    await page.getByRole("button", { name: "Compare teams", exact: true }).click();
+    await expect(page.getByText("AZKi joins your strongest found team")).toBeVisible({ timeout: 120_000 });
+  });
+
   test("card profiles offer the comparison only for unowned cards with a saved roster", async ({ page }) => {
     // Without a roster: no CTA on any card page.
     await page.goto("/cards/azki-a-flower-in-full-bloom-card-00013-5-uniq-0002-00", GOTO_OPTIONS);
@@ -131,6 +200,8 @@ test.describe("roll compare", () => {
 
     await page.getByRole("button", { name: "Compare teams" }).click();
     await expect(page.getByText(/does not strengthen your team/)).toBeVisible({ timeout: 120_000 });
+    await expect(page.getByText("Required Member comparison · signed swap difference")).toBeVisible();
+    await expect(page.locator('[class*="verdict"] > b')).toContainText("−");
   });
 });
 

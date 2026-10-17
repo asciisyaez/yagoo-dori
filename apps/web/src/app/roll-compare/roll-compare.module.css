@@ -999,3 +999,7 @@
 .targetArt { position: relative; height: 72px; overflow: hidden; border-radius: 5px; }
 .targetArt img { object-fit: cover; }
 @media (max-width: 560px) { .targetRow { grid-template-columns: 48px minmax(0, 1fr); } .targetRow > span:last-child { grid-column: 2; text-align: left; } }
+.restrictions { margin: 1rem 0; padding: .8rem; border: 1px solid var(--yd-line); border-radius: 6px; }
+.restrictions label { display: flex; align-items: center; gap: .5rem; font-weight: 700; cursor: pointer; }
+.restrictions input { accent-color: var(--yd-cyan); }
+.restrictions p { color: var(--yd-muted); font-size: .78rem; margin: .5rem 0 0; }
