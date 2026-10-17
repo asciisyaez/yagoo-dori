@@ -11,6 +11,7 @@ Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader 
 - Searchable card, talent, Outfit, skill, synergy, guide, and changelog routes.
 - Three ranking lenses backed by pinned mechanics, a frozen 30-chart benchmark, matched substitutions, and deterministic uncertainty estimates.
 - A Bloom-aware team calculator with Oshi constraints and all-120-order placement analysis.
+- Roll comparison ranks unowned cards by independent Bloom 0 team gain against one saved-roster baseline, with streamed results, pause/resume, and lineup details. The owned team remains available in every comparison; zero means no upgrade was found.
 
 Yagoo-dori tiers are comparative results under the published neutral account assumptions. The calculator uses deterministic bounded search and does not claim an absolute Live Score or a certified full-roster global optimum.
 

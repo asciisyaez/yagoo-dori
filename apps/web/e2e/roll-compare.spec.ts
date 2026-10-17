@@ -85,6 +85,26 @@ test.describe("roll compare", () => {
     await expect(page.getByText("With AZKi", { exact: true })).toBeVisible();
   });
 
+  test("batch comparisons stream ranked targets and can pause and resume", async ({ page }) => {
+    test.setTimeout(180_000);
+    await page.addInitScript(seedScript(WEAK_ROSTER));
+    await page.goto("/roll-compare", GOTO_OPTIONS);
+    await page.getByRole("button", { name: "Compare all unowned cards" }).click();
+    await expect(page.getByRole("button", { name: "Pause comparisons" })).toBeVisible();
+    const targets = page.locator('button').filter({ hasText: /(?:Upgrade found|No upgrade found)/ });
+    await expect(targets.first()).toBeVisible({ timeout: 120_000 });
+    await page.getByRole("button", { name: "Pause comparisons" }).click();
+    const count = await targets.count();
+    await expect(page.getByRole("button", { name: "Resume comparisons" })).toBeVisible();
+    await expect(targets).toHaveCount(count);
+    await page.getByRole("button", { name: "Resume comparisons" }).click();
+    await expect(page.getByRole("button", { name: "Pause comparisons" })).toBeVisible();
+    await page.getByRole("button", { name: "Pause comparisons" }).click();
+    await targets.first().click();
+    await expect(page.getByText("Verdict", { exact: true })).toBeVisible();
+    await expect(page.getByText("Saved roster", { exact: true })).toBeVisible();
+  });
+
   test("card profiles offer the comparison only for unowned cards with a saved roster", async ({ page }) => {
     // Without a roster: no CTA on any card page.
     await page.goto("/cards/azki-a-flower-in-full-bloom-card-00013-5-uniq-0002-00", GOTO_OPTIONS);
@@ -112,4 +132,17 @@ test.describe("roll compare", () => {
     await page.getByRole("button", { name: "Compare teams" }).click();
     await expect(page.getByText(/does not strengthen your team/)).toBeVisible({ timeout: 120_000 });
   });
+});
+
+test("upgrade targets fit mobile and keep the saved roster intact", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "Mobile layout coverage");
+  await page.addInitScript(seedScript(WEAK_ROSTER));
+  await page.goto("/roll-compare?q=AZKi", GOTO_OPTIONS);
+  await expect(page.getByRole("heading", { name: "Find your next team upgrade" })).toBeVisible();
+  await expect(page.getByRole("searchbox", { name: "Search unowned cards" })).toHaveValue("AZKi");
+  const before = await page.evaluate((key) => localStorage.getItem(key), MAIN_KEY);
+  await page.getByRole("button", { name: "Compare all unowned cards" }).click();
+  await page.getByRole("button", { name: "Pause comparisons" }).click();
+  expect(await page.evaluate((key) => localStorage.getItem(key), MAIN_KEY)).toBe(before);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

@@ -26,6 +26,8 @@ import {
   savedOshiStillOwned,
 } from "@/lib/team-result-format";
 
+import { selectAcquisitionTeam } from "@/lib/roll-comparison";
+
 import styles from "@/app/roll-compare/roll-compare.module.css";
 
 export type RollCompareCard = {
@@ -72,6 +74,7 @@ function buildComparison(
   hypothetical: TeamCalculatorResult,
   pickedCardId: string,
 ): ComparisonResult {
+  hypothetical = selectAcquisitionTeam(baseline, hypothetical, pickedCardId);
   const hypotheticalMemberIds = new Set(hypothetical.members.map((member) => member.cardId));
   const delta = hypothetical.score.relativeUtility.central - baseline.score.relativeUtility.central;
   const baselineCentral = baseline.score.relativeUtility.central;
@@ -248,12 +251,16 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   const [oshi, setOshi] = useState<{ talentId: string; role: StoredOshiRole }>();
   const [requiredMemberCardIds, setRequiredMemberCardIds] = useState<string[]>([]);
   const [hydrated, setHydrated] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [calculationState, setCalculationState] = useState<CalculationState>({ status: "idle" });
   const activeTask = useRef<TeamCalculatorTask | null>(null);
   const calculationGeneration = useRef(0);
   const baselineResultCache = useRef<{ key: string; result: TeamCalculatorResult } | null>(null);
+  const [rankings, setRankings] = useState<ComparisonResult[]>([]);
+  const [batchRunning, setBatchRunning] = useState(false);
+  const [batchError, setBatchError] = useState<string | null>(null);
+  const [batchBaseline, setBatchBaseline] = useState<TeamCalculatorResult | null>(null);
   const resultAnchor = useRef<HTMLDivElement | null>(null);
 
   const cardById = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
@@ -327,6 +334,14 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     );
   };
 
+  const updateQuery = (value: string) => {
+    setQuery(value);
+    const next = new URLSearchParams(window.location.search);
+    if (value) next.set("q", value);
+    else next.delete("q");
+    window.history.replaceState(window.history.state, "", `${window.location.pathname}${next.size ? `?${next}` : ""}`);
+  };
+
   const selectCard = (card: RollCompareCard) => {
     if (card.id in ownedCards) return;
     cancelCalculation();
@@ -339,6 +354,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     activeTask.current?.cancel();
     activeTask.current = null;
     setCalculationState({ status: "idle" });
+    setBatchRunning(false);
   };
 
   const runComparison = () => {
@@ -347,6 +363,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       return;
     }
     if (!selectedCard || ownedTalentCount < 5) return;
+    cancelCalculation();
 
     const generation = calculationGeneration.current + 1;
     calculationGeneration.current = generation;
@@ -379,10 +396,10 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           baselineResultCache.current = { key: baselineKey, result: baseline };
         }
 
-        const hypotheticalTask = startTeamCalculation(makeRequest([
-          ...ownedEntries,
-          { cardId: selectedCard.id, bloomStage: 0 },
-        ]));
+        const hypotheticalTask = startTeamCalculation({
+          ...makeRequest([...ownedEntries, { cardId: selectedCard.id, bloomStage: 0 }]),
+          seedCandidates: [{ leaderOutfitCardId: baseline.leader.cardId, memberCardIds: baseline.members.map((member) => member.cardId) }],
+        });
         activeTask.current = hypotheticalTask;
         const hypothetical = await hypotheticalTask.result;
         if (calculationGeneration.current !== generation || activeTask.current !== hypotheticalTask) return;
@@ -410,6 +427,55 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     })();
   };
 
+  const runAllComparisons = async () => {
+    if (batchRunning) { cancelCalculation(); return; }
+    cancelCalculation();
+    const generation = calculationGeneration.current;
+    setBatchRunning(true);
+    setBatchError(null);
+    const ownedEntries = cards.filter((card) => card.id in ownedCards)
+      .map((card) => ({ cardId: card.id, bloomStage: ownedCards[card.id] ?? 0 }));
+    const baselineRequest = buildTeamCalculatorRequest({
+      rosterCommit, ownedCards: ownedEntries, requiredMemberCardIds: [...requiredMemberCardIds].sort(),
+      searchEffort: "standard", ...(oshi ? { oshi: { ...oshi, enabled: true } } : {}),
+    });
+    const key = JSON.stringify(baselineRequest);
+    try {
+      let baseline = baselineResultCache.current?.key === key ? baselineResultCache.current.result : null;
+      if (!baseline) {
+        const task = startTeamCalculation(baselineRequest);
+        activeTask.current = task;
+        baseline = await task.result;
+        if (calculationGeneration.current !== generation) return;
+        baselineResultCache.current = { key, result: baseline };
+      }
+      setBatchBaseline(baseline);
+      // Each acquisition is independent: never carry another unowned card into a run.
+      const completed = new Set(rankings.map((row) => row.pickedCardId));
+      for (const card of [...availableCards].sort((a, b) => Number(b.isNew) - Number(a.isNew))) {
+        if (completed.has(card.id)) continue;
+        const task = startTeamCalculation({
+          ...baselineRequest,
+          ownedCards: [...ownedEntries, { cardId: card.id, bloomStage: 0 }],
+          seedCandidates: [{ leaderOutfitCardId: baseline.leader.cardId, memberCardIds: baseline.members.map((member) => member.cardId) }],
+        });
+        activeTask.current = task;
+        const hypothetical = await task.result;
+        if (calculationGeneration.current !== generation) return;
+        const comparison = buildComparison(baseline, hypothetical, card.id);
+        setRankings((rows) => [...rows, comparison].sort((a, b) => b.delta - a.delta || a.pickedCardId.localeCompare(b.pickedCardId)));
+      }
+    } catch (error: unknown) {
+      if (calculationGeneration.current !== generation) return;
+      setBatchError(error instanceof Error ? error.message : "Comparison could not finish. Resume to retry.");
+    } finally {
+      if (calculationGeneration.current === generation) {
+        activeTask.current = null;
+        setBatchRunning(false);
+      }
+    }
+  };
+
   if (!hydrated) {
     return <div className={styles.loading}>Loading saved roster…</div>;
   }
@@ -420,7 +486,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
         <CircleAlert aria-hidden="true" />
         <h2 id="roll-compare-empty-heading">Add more cards to compare a roll</h2>
         <p>
-          This tool compares against the saved roster on this device. Add at least five distinct talents in the team calculator, plus the card being compared, then return here to compare an unowned card.
+          This tool compares against the saved roster on this device. Add at least five distinct talents in the team calculator, then return here to compare unowned cards.
         </p>
         <Link href="/team-builder"><ArrowRight aria-hidden="true" /> Build your saved roster</Link>
       </section>
@@ -448,6 +514,61 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
 
   return (
     <>
+      <section className={styles.targets} aria-labelledby="upgrade-targets-heading">
+        <header className={styles.pickerHeader}>
+          <div>
+            <p className={styles.panelEyebrow}>Your upgrade targets</p>
+            <h2 id="upgrade-targets-heading">Find your next team upgrade</h2>
+            <p>Compare every unowned card against your strongest found owned team. Each card is tested separately at Bloom 0, with your saved Oshi and required Members.</p>
+          </div>
+          <button className={styles.compareButton} onClick={() => void runAllComparisons()} disabled={availableCards.length === 0 || (!batchRunning && rankings.length === availableCards.length)} type="button">
+            {batchRunning ? "Pause comparisons" : rankings.length > 0 && rankings.length < availableCards.length ? "Resume comparisons" : rankings.length === availableCards.length && availableCards.length > 0 ? "All cards compared" : "Compare all unowned cards"}
+          </button>
+        </header>
+        <p className={styles.disclosure}>Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. Acquiring an unused card leaves your team unchanged.</p>
+        <div className={styles.pickerControls}>
+          <label className={styles.search}>
+            <Search aria-hidden="true" />
+            <span className="sr-only">Search unowned cards</span>
+            <input
+              onChange={(event) => updateQuery(event.target.value)}
+              placeholder="Search talent or card title…"
+              type="search"
+              value={query}
+            />
+            {query && <button aria-label="Clear card search" onClick={() => updateQuery("")} type="button"><X aria-hidden="true" /></button>}
+          </label>
+        </div>
+        <p role="status">{rankings.length} / {availableCards.length} compared{batchRunning ? " · Working in the background; you can pause at any time." : ""}</p>
+        {batchRunning && <progress aria-label="Unowned cards compared" max={availableCards.length} value={rankings.length} />}
+        {batchError && <p role="alert">{batchError} Completed comparisons are kept; resume to retry.</p>}
+        {batchBaseline && <details><summary>Your owned team · {formatUtility(batchBaseline.score.relativeUtility.central)} utility</summary><ResultTeam label="Owned baseline" result={batchBaseline} pickedCardId="" /></details>}
+        {rankings.length > 0 && <div className={styles.targetList}>
+          <p>{batchRunning || rankings.length < availableCards.length ? "Partial ranking · " : ""}{rankings.filter((row) => row.delta > 0).length} upgrades found. Largest team gains first. Select a result to pause and see the lineup and replacements.</p>
+          {!rankings.some((row) => {
+            const card = cardById.get(row.pickedCardId);
+            return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
+          }) && <p>No compared cards match your search yet.</p>}
+          {rankings.filter((row) => {
+            const card = cardById.get(row.pickedCardId);
+            return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
+          }).map((row) => {
+            const card = cardById.get(row.pickedCardId)!;
+            return <button className={styles.targetRow} key={card.id} type="button" onClick={() => {
+              cancelCalculation();
+              setSelectedCardId(card.id);
+              writeCardParam(card.id);
+              setCalculationState({ status: "done", comparison: row });
+              window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({ behavior: "auto", block: "start" }));
+            }}>
+              <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
+              <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small><small>{row.delta > 0 ? `Replaces: ${row.displaced.map((member) => member.talentName).join(", ") || "Leader Outfit only"}` : "Keep your owned team"}</small></span>
+              <span data-improves={row.delta > 0}><strong>{formatSignedPercent(row.deltaPercent)}</strong><small>{formatSignedUtility(row.delta)} utility</small><small>{row.delta > 0 ? "Upgrade found" : "No upgrade found"}</small></span>
+            </button>;
+          })}
+        </div>}
+        {availableCards.length === 0 && <p>You own every available card.</p>}
+      </section>
       <section className={styles.picker} aria-labelledby="roll-compare-picker-heading">
         <header className={styles.pickerHeader}>
           <div>
@@ -458,19 +579,6 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           <div className={styles.pickerCount}><strong>{availableCards.length}</strong> available</div>
         </header>
 
-        <div className={styles.pickerControls}>
-          <label className={styles.search}>
-            <Search aria-hidden="true" />
-            <span className="sr-only">Search unowned cards</span>
-            <input
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search talent or card title…"
-              type="search"
-              value={query}
-            />
-            {query && <button aria-label="Clear card search" onClick={() => setQuery("")} type="button"><X aria-hidden="true" /></button>}
-          </label>
-        </div>
 
         <div className={styles.cardList}>
           {filteredCards.length > 0 ? (

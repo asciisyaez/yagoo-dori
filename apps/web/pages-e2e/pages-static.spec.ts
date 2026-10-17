@@ -192,3 +192,34 @@ test("the prefixed mobile drawer is usable and pages do not overflow", async ({ 
   network.stop();
   expect(network.failures).toEqual([]);
 });
+
+test("roll upgrade rankings use a prefixed Worker and retain search URLs", async ({ page }) => {
+  const network = sameOriginFailures(page);
+  const workerUrls: string[] = [];
+  page.on("worker", (worker) => workerUrls.push(worker.url()));
+  await page.addInitScript(() => {
+    localStorage.setItem("yagoo-dori:team-calculator-roster", JSON.stringify({
+      version: 4, rosterCommit: "0".repeat(40),
+      cards: Object.fromEntries([
+        "card-00004-4-cmmn-0000-00", "card-00023-4-cmmn-0000-00", "card-00035-4-cmmn-0000-00",
+        "card-03001-4-cmmn-0000-00", "card-03002-4-cmmn-0000-00", "card-04001-4-cmmn-0000-00",
+      ].map((cardId) => [cardId, 0])),
+      oshi: { enabled: false, talentId: null, role: "member" }, requiredMemberCardIds: [],
+      playerLevel: null, boards: {},
+    }));
+  });
+  await page.goto(prefixed("/roll-compare/"), { waitUntil: "domcontentloaded" });
+  await page.getByRole("searchbox", { name: "Search unowned cards" }).fill("AZKi");
+  await expect(page).toHaveURL(new RegExp(`${basePath}/roll-compare/\\?q=AZKi$`));
+  await page.getByRole("button", { name: "Clear card search" }).click();
+  await page.getByRole("button", { name: "Compare all unowned cards" }).click();
+  const target = page.locator("button").filter({ hasText: /(?:Upgrade found|No upgrade found)/ }).first();
+  await expect(target).toBeVisible({ timeout: 90_000 });
+  await page.getByRole("button", { name: "Pause comparisons" }).click();
+  await target.click();
+  await expect(page.getByText("Verdict", { exact: true })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(prefixed("/roll-compare/"));
+  expect(workerUrls.some((url) => url.includes(`${basePath}/_next/static/chunks/turbopack-worker-`))).toBe(true);
+  network.stop();
+  expect(network.failures).toEqual([]);
+});
