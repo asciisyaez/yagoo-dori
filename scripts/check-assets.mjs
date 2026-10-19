@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { basename, join } from "node:path";
-import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { illustrationFloorExceptionByCardId, iconDimensionExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 
 const sourceManifestPath = "data/generated/card-art-manifest.json";
 const sourceManifestBytes = await readFile(sourceManifestPath);
@@ -149,9 +149,9 @@ for (const asset of manifest.assets ?? []) {
       }
       const required = requiredDimensions[kind];
       const floorException =
-        kind === "illustration" ? illustrationFloorExceptionByCardId[asset.cardId] : undefined;
+        kind === "illustration" ? illustrationFloorExceptionByCardId[asset.cardId] : iconDimensionExceptionByCardId[asset.cardId];
       const dimensionsValid = kind === "icon"
-        ? dimensions.width === required.width && dimensions.height === required.height
+        ? dimensions.width === (floorException?.exactWidth ?? required.width) && dimensions.height === (floorException?.exactHeight ?? required.height)
         : floorException
           ? dimensions.width === floorException.exactWidth &&
             dimensions.height === floorException.exactHeight
@@ -184,7 +184,7 @@ for (const [kind, directory] of Object.entries({
 
 const expectedPreviewGenerator = {
   library: "sharp",
-  version: "0.35.4",
+  version: "0.35.5",
   format: "webp",
   resize: { width: 1024, height: 576, fit: "cover", position: "centre" },
   webp: { quality: 80, effort: 6 },
@@ -316,7 +316,7 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `Asset provenance check passed (${manifest.assets.length} icons at 300x300 and ` +
+  `Asset provenance check passed (${manifest.assets.length} icons at 300x300 (or documented exceptions) and ` +
   `${manifest.assets.length} illustrations at 2282x1284 or larger (or documented floor exceptions); ` +
   `${previewManifest.previews.length} previews at 1024x576).`,
 );

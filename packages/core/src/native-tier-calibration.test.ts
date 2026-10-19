@@ -20,7 +20,7 @@ describe("frozen Member tier calibration", () => {
     }
   });
 
-  it("creates a useful launch-roster spread in every investment lens", () => {
+  it("creates a useful current-roster spread in every investment lens", () => {
     for (const lens of nativeRankingData.lenses) {
       const counts = Object.fromEntries(
         ["SS", "S", "A", "B", "C", "D"].map((tier) => [
@@ -32,10 +32,10 @@ describe("frozen Member tier calibration", () => {
       );
       expect(counts).toEqual(
         lens.investment === "one-copy-maximum"
-          ? { SS: 6, S: 17, A: 35, B: 26, C: 27, D: 27 }
+          ? { SS: 6, S: 18, A: 37, B: 27, C: 27, D: 27 }
           : lens.investment === "duplicate-enabled-ceiling"
-            ? { SS: 6, S: 16, A: 35, B: 27, C: 26, D: 28 }
-            : { SS: 6, S: 17, A: 35, B: 26, C: 26, D: 28 },
+            ? { SS: 6, S: 17, A: 37, B: 28, C: 26, D: 28 }
+            : { SS: 6, S: 18, A: 37, B: 27, C: 26, D: 28 },
       );
     }
   });
@@ -50,8 +50,8 @@ describe("frozen Member tier calibration", () => {
       );
       expect(counts).toEqual(
         lens.investment === "duplicate-enabled-ceiling"
-          ? { SS: 0, S: 22, A: 35, B: 27, C: 54, D: 0 }
-          : { SS: 0, S: 23, A: 35, B: 26, C: 54, D: 0 },
+          ? { SS: 0, S: 23, A: 37, B: 28, C: 54, D: 0 }
+          : { SS: 0, S: 24, A: 37, B: 27, C: 54, D: 0 },
       );
     }
   });

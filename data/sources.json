@@ -284,5 +284,18 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "Independently corroborates the October 19 11:00 JST start and four featured talents. Public promotional Member images are stored unchanged in the announcement artwork manifest. Editorial recommendations do not enter native calculations."
+  },
+  {
+    "id": "source-holodori-seaside-days",
+    "title": "HolodoriDB — Seaside Days cards, skills, outfits, and song identities",
+    "publisher": "HolodoriDB community maintainers",
+    "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/tree/29963557c9ea6f2b1270837096a8ce8cf034c888",
+    "kind": "structured",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "29963557c9ea6f2b1270837096a8ce8cf034c888",
+    "retrievedAt": "2026-10-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Explicit Card/Costume/skill joins for the four Seaside Days cards, corroborated identities and skills against AppMedia 80492269/80492290/80492317/80492338 and Game8 833392/833391/833390/833389. Music/title rows join the four songs m0365-m0368; this does not advance the scoring chart corpus. Two independent stat-category disagreements are retained in the review queue."
   }
 ]

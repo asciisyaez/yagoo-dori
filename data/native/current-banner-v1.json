@@ -9,32 +9,37 @@
   "endsAt": "2026-10-29T01:59:00.000Z",
   "eventStartsAt": "2026-10-19T11:00:00.000Z",
   "eventEndsAt": "2026-10-27T10:59:00.000Z",
-  "featuredCardIds": [],
+  "featuredCardIds": [
+    "card-00027-5-uniq-0092-00",
+    "card-03008-5-uniq-0095-00",
+    "card-00032-5-uniq-0093-00",
+    "card-04014-5-uniq-0094-00"
+  ],
   "eventTracks": [
     {
       "talent": "Tokoyami Towa",
-      "songId": null,
+      "songId": "m0365",
       "title": "Shallow Shadow",
       "startsAt": "2026-10-19T11:00:00.000Z",
       "endsAt": "2026-10-21T10:59:00.000Z"
     },
     {
       "talent": "Kaela Kovalskia",
-      "songId": null,
+      "songId": "m0368",
       "title": "Forge My Soul",
       "startsAt": "2026-10-21T11:00:00.000Z",
       "endsAt": "2026-10-23T10:59:00.000Z"
     },
     {
       "talent": "Shishiro Botan",
-      "songId": null,
-      "title": "アマリリス",
+      "songId": "m0366",
+      "title": "Amaryllis",
       "startsAt": "2026-10-23T11:00:00.000Z",
       "endsAt": "2026-10-25T10:59:00.000Z"
     },
     {
       "talent": "Koseki Bijou",
-      "songId": null,
+      "songId": "m0367",
       "title": "CORE//UNBREAKABLE",
       "startsAt": "2026-10-25T11:00:00.000Z",
       "endsAt": "2026-10-27T10:59:00.000Z"
@@ -42,34 +47,10 @@
   ],
   "sourceRefs": [
     "source-gamebiz-seaside-days",
-    "source-appmedia-seaside-days"
+    "source-appmedia-seaside-days",
+    "source-holodori-seaside-days"
   ],
-  "transformation": "Translate the event name for the English site and retain the exact Japanese gacha and card titles. Join announced talent names to existing public talent IDs; do not infer or manufacture new card or song IDs. Convert the gacha and four separate chapter windows from JST to UTC. The latest pinned ENG/JPN master snapshots do not contain these four cards or songs, so announcement artwork and schedules do not enter the numerical database, native rankings, team calculator, or guide generator.",
+  "transformation": "Join the four officially announced Members to explicit Card.json and Japanese title keys in ENG 29963557c9ea6f2b1270837096a8ce8cf034c888 / JPN d7d2712b764c26120b2c91058708d6bae738f3ad. Retain independently verified gacha/chapter windows. Numerical cards use pinned structured parameters and skills; song calculation inputs remain at their prior verified revision because current chart metadata is incomplete.",
   "eventType": "spotlight",
-  "announcedMembers": [
-    {
-      "talentId": "chr-00027",
-      "talentName": "Tokoyami Towa",
-      "titleJa": "ゆらゆら過ごす木陰のバカンス",
-      "artPath": "/game/announcements/seaside-days/towa.webp"
-    },
-    {
-      "talentId": "chr-03008",
-      "talentName": "Kaela Kovalskia",
-      "titleJa": "木陰で紡ぐShiny Memory",
-      "artPath": "/game/announcements/seaside-days/kaela.webp"
-    },
-    {
-      "talentId": "chr-00032",
-      "talentName": "Shishiro Botan",
-      "titleJa": "一心不乱のちゅるタイム",
-      "artPath": "/game/announcements/seaside-days/botan.webp"
-    },
-    {
-      "talentId": "chr-04014",
-      "talentName": "Koseki Bijou",
-      "titleJa": "笑顔輝くSand castle",
-      "artPath": "/game/announcements/seaside-days/bijou.webp"
-    }
-  ]
+  "announcedMembers": []
 }

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { illustrationFloorExceptionByCardId, iconDimensionExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 import { fetchGithubRaw } from "./lib/fetch-github-raw.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -14,13 +14,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "c98eddf11f81ecc65bfd1ca50427b59224627730",
-    masterVersion: "65badf8533aacbc04382f97f0f5f56740e761e6f5be6172d8440ae9061deebe7",
+    commit: "29963557c9ea6f2b1270837096a8ce8cf034c888",
+    masterVersion: "e1eea8627c36e512ed0f8f662d0d80e14b9000cb8facd546d38e492e91a3c528",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "6680c7c37a8a3b3d56d919df823dca318db0d802",
-    masterVersion: "65badf8533aacbc04382f97f0f5f56740e761e6f5be6172d8440ae9061deebe7",
+    commit: "d7d2712b764c26120b2c91058708d6bae738f3ad",
+    masterVersion: "e1eea8627c36e512ed0f8f662d0d80e14b9000cb8facd546d38e492e91a3c528",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
@@ -641,8 +641,8 @@ async function downloadArt(cards, talentNameJaById) {
       `${mapping.card.id} illustration`,
     );
     if (
-      iconDimensions.width !== requiredIconDimensions.width ||
-      iconDimensions.height !== requiredIconDimensions.height
+      iconDimensions.width !== (iconDimensionExceptionByCardId[mapping.card.id]?.exactWidth ?? requiredIconDimensions.width) ||
+      iconDimensions.height !== (iconDimensionExceptionByCardId[mapping.card.id]?.exactHeight ?? requiredIconDimensions.height)
     ) {
       throw new Error(
         `${mapping.card.id}: icon is ${iconDimensions.width}x${iconDimensions.height}; ` +

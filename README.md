@@ -55,3 +55,5 @@ pnpm rankings:generate
 pnpm guides:generate
 pnpm data:validate
 ```
+
+Guide regeneration accepts `--workers=1` through `--workers=4` (default 1). Workers produce isolated anchor results and publish one schema-checked merge after every requested guide succeeds. Use a fixed `--generated-at` timestamp for reproducibility. After a separately completed artwork intake, `pnpm data:patch-intake --reuse-verified-art` checks all local asset hashes and dimensions before reusing them.

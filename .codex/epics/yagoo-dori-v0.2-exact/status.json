@@ -1,7 +1,25 @@
 {
   "objective": "Build a separately scoped, certifiable exact optimizer while preserving the live v0.1 product.",
-  "ticketOrder": ["X01", "X02", "X03", "X04", "X05", "X06", "X07", "X08"],
-  "weights": {"X01": 15, "X02": 25, "X03": 15, "X04": 25, "X05": 10, "X06": 5, "X07": 3, "X08": 2},
+  "ticketOrder": [
+    "X01",
+    "X02",
+    "X03",
+    "X04",
+    "X05",
+    "X06",
+    "X07",
+    "X08"
+  ],
+  "weights": {
+    "X01": 15,
+    "X02": 25,
+    "X03": 15,
+    "X04": 25,
+    "X05": 10,
+    "X06": 5,
+    "X07": 3,
+    "X08": 2
+  },
   "completedSinceLastReport": [
     "Reconciled the live v0.1 release and separated its weighted product status from v0.2 certification",
     "Pinned the complete full-roster input tuple and SHA-256 scope manifest",
@@ -24,10 +42,13 @@
     "Audited the inherited X06 working tree (fixed a canonicalize digest defect and hardened rehash validation, corrected X05 review provenance, escalated and guard-fixed the central-only clamp-identity gap with full parity re-execution passing at the identical stable evidence digest), then designed, implemented, and exhaustively suffix-validated a continuation-complete fixed-Leader partial state on the pinned 56-set/4-Leader reduced scope: 161280 byte-identical state resumptions, 633660 mutation divergences, and 2321280 bit-identical accumulator boundary comparisons with zero mismatches and a reproducible stable digest; zero distinct-history merge pairs were observed, so resumption soundness is proven while merge-rule soundness remains unclaimed, and the dominance pilot stays attempted:false with zero pruning, timing, or projection credit",
     "Split the former X07 validation ticket into the X04-independent X07 scope-safe validation and public copy audit (weight 3, depends on X06, active) and the new X08 production certificate validation (weight 2, depends on X04, pending), preserving every original criterion clause and the 100% weight total",
     "Completed X07: added negative-path regressions for the scope guards, coverage stale detectors, and joint-claim contract rejections with re-signed mutations through the production validation exports; hardened both shard verifiers with pre-allocation bounded deserialization and a 14-case mutation-rejection runner with byte-identical valid paths; built the public copy-audit harness (78 occurrences, zero violations, zero unresolved, reproducible digest) with the two approved claim-narrowing corrections (scope-qualified calculator badge naming roster and 30-chart benchmark; rendered guide search caveat); and passed the complete verification order plus read-only live smoke of the deployed site",
-    "Prepared the October 7 live-banner update from pinned HolodoriDB ENG/JPN revisions: seven new ★5 cards with local art and mechanics, updated 138-card three-lens rankings, 32 exact-card guides, current banner/event schedule, and a 154-node/173-edge Board model. The full song catalog remains pinned to the previous hash-bearing snapshot because the newer upstream rows omit chart hashes and the public chart API returned 403; no new chart timing was inferred."
+    "Prepared the October 7 live-banner update from pinned HolodoriDB ENG/JPN revisions: seven new ★5 cards with local art and mechanics, updated 138-card three-lens rankings, 32 exact-card guides, current banner/event schedule, and a 154-node/173-edge Board model. The full song catalog remains pinned to the previous hash-bearing snapshot because the newer upstream rows omit chart hashes and the public chart API returned 403; no new chart timing was inferred.",
+    "Rechecked the October 19 upstream update and verified four new Seaside Days cards with local artwork, 142-card rankings, 36 regenerated exact-card guides, explicit source disagreements, unchanged Board rules with refreshed source binding, and passing unit/browser/Pages checks. Song/chart calculation input remains at its explicit historical hash-bearing revision because the latest 220-song/880-chart source omits hashes and normal-note counts and the public timing revision endpoint returns 404."
   ],
-  "blockers": ["X04 full-shard execution remains blocked: the retained cost measurement is 36624 core-hours versus the 800 gate and predates the current roster refresh; the current 138-card scope has hash dedc371d674df87b69ea6bb8f8be72db8e994a4ec4b5a30a6932029e0c03968e and 342253326 legal Member teams, while the retained parity/root-bound/shard evidence remains stale against that scope - the coverage ledger refuses authorization with specific scope-stale reasons until the evidence is regenerated; production full-scope replay and an independently verified certificate remain open."],
-  "nextAction": "Remeasure X04 cost and regenerate scope-addressed parity/root-bound evidence for the 138-card scope; do not launch full shards until the refreshed estimate satisfies the 800 core-hour gate. X08 stays pending behind X04, and the 864-shard plan remains unexecuted.",
+  "blockers": [
+    "X04 full-shard execution remains blocked: the retained cost measurement is 36624 core-hours versus the 800 gate and predates the current roster refresh; the current 142-card scope has hash 9ee8104d2cdead8d1d11c630a88b26ad8ddef3fd39cb78a803cdae4009aa0efa and 395116176 legal Member teams, while the retained parity/root-bound/shard evidence remains stale against that scope - the coverage ledger refuses authorization with specific scope-stale reasons until the evidence is regenerated; production full-scope replay and an independently verified certificate remain open."
+  ],
+  "nextAction": "Remeasure X04 cost and regenerate scope-addressed parity/root-bound evidence for the 142-card scope; do not launch full shards until the refreshed estimate satisfies the 800 core-hour gate. X08 stays pending behind X04, and the 864-shard plan remains unexecuted.",
   "certificateState": "not-eligible",
-  "declaredFullRosterLegalTeamSets": 342253326
+  "declaredFullRosterLegalTeamSets": 395116176
 }

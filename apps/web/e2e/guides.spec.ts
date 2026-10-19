@@ -228,6 +228,34 @@ const GUIDES = [
     guideSlug: "ichijou-ririka-night-summer-smile-card-06003-5-uniq-0091-00-team-guide",
     cardSlug: "ichijou-ririka-night-summer-smile-card-06003-5-uniq-0091-00",
   },
+  {
+    "talent": "Tokoyami Towa",
+    "cardTitle": "Shady Hammock Days",
+    "standardLeaderCardTitle": "Shady Hammock Days",
+    "guideSlug": "tokoyami-towa-shady-hammock-days-card-00027-5-uniq-0092-00-team-guide",
+    "cardSlug": "tokoyami-towa-shady-hammock-days-card-00027-5-uniq-0092-00"
+  },
+  {
+    "talent": "Shishiro Botan",
+    "cardTitle": "Slurping Frenzy",
+    "standardLeaderCardTitle": "Slurping Frenzy",
+    "guideSlug": "shishiro-botan-slurping-frenzy-card-00032-5-uniq-0093-00-team-guide",
+    "cardSlug": "shishiro-botan-slurping-frenzy-card-00032-5-uniq-0093-00"
+  },
+  {
+    "talent": "Kaela Kovalskia",
+    "cardTitle": "Shady Shiny Memory",
+    "standardLeaderCardTitle": "Shady Shiny Memory",
+    "guideSlug": "kaela-kovalskia-shady-shiny-memory-card-03008-5-uniq-0095-00-team-guide",
+    "cardSlug": "kaela-kovalskia-shady-shiny-memory-card-03008-5-uniq-0095-00"
+  },
+  {
+    "talent": "Koseki Bijou",
+    "cardTitle": "Beaming Sandcastle",
+    "standardLeaderCardTitle": "Beaming Sandcastle",
+    "guideSlug": "koseki-bijou-beaming-sandcastle-card-04014-5-uniq-0094-00-team-guide",
+    "cardSlug": "koseki-bijou-beaming-sandcastle-card-04014-5-uniq-0094-00"
+  },
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
@@ -430,9 +458,12 @@ test("Pekora keeps Leader and Passive recipients separate at each skill level", 
   const standardLeader = standard.locator("li").filter({ hasText: "Usada Pekora · Leader" });
   const standardPassive = standard.locator("li").filter({ hasText: "Usada Pekora · Passive" });
   await expect(standardLeader).toContainText("Grants All Stats UP 30% to all");
-  await expect(standardLeader).toContainText(
-    "Affected: AZKi, Usada Pekora, Hakui Koyori, Fuwawa Abyssgard, Todoroki Hajime",
-  );
+  const publishedStandard = nativeGuideBySlug.get(PEKORA_GUIDE.guideSlug)!.formations
+    .find((formation) => formation.kind === "standard")!;
+  const allMemberNames = publishedStandard.members.map((member) => requireCard(member.cardId))
+    .sort((left, right) => left.id.localeCompare(right.id))
+    .map((card) => card.talentName);
+  await expect(standardLeader).toContainText(`Affected: ${allMemberNames.join(", ")}`);
   await expect(standardPassive).toContainText("Grants All Stats UP 24% to self");
   await expect(standardPassive).toContainText("Affected: Usada Pekora");
 

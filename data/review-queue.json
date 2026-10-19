@@ -1,20 +1,27 @@
 [
   {
     "id": "seaside-days-2026-10-19-structured-cards",
-    "status": "blocked-upstream-inputs",
+    "status": "resolved",
     "scope": "Tokoyami Towa, Kaela Kovalskia, Shishiro Botan, and Koseki Bijou five-star Seaside Days cards",
     "sourceRefs": [
       "source-gamebiz-seaside-days",
       "source-appmedia-seaside-days"
     ],
-    "reason": "The official announcement and independent Member pages exist, but latest pinned ENG c98eddf11f81ecc65bfd1ca50427b59224627730 and JPN 6680c7c37a8a3b3d56d919df823dca318db0d802 contain no corresponding card rows. Card IDs, skill progression, relationships, and native ranks must not be invented.",
-    "nextAction": "Await and pin structured rows; corroborate parameters and skill levels; import art as database card assets and regenerate rankings plus all guides before publishing numerical records. Check any singer-conditional trigger against the frozen corpus before intake; request a corpus-refreeze decision if the required singer has no benchmark chart."
+    "reason": "The four cards are now present in pinned ENG 29963557c9ea6f2b1270837096a8ce8cf034c888 and JPN d7d2712b764c26120b2c91058708d6bae738f3ad, master e1eea8627c36e512ed0f8f662d0d80e14b9000cb8facd546d38e492e91a3c528. All 142 cards compile with no unresolved references; no new singer-conditional trigger is used.",
+    "nextAction": "Publish the verified card intake with refreshed rankings and all guides."
   },
   {
     "id": "song-intake-2026-10-19-chart-metadata",
     "status": "blocked-upstream-inputs",
-    "scope": "216-song / 864-chart October ENG source versus retained verified 203-song / 812-chart scoring input",
-    "reason": "All 864 latest MusicDifficultyChart rows omit chartHash and normalNoteCount. An isolated import confirmed absent hashes and null normalized counts. The documented public chart API revision endpoint returns HTTP 404. Existing frozen evidence cannot be repinned as newly verified chart metadata.",
+    "scope": "220-song / 880-chart October ENG source versus retained verified 203-song / 812-chart scoring input",
+    "reason": "All 880 latest MusicDifficultyChart rows still omit chartHash and normalNoteCount; the public timing revision endpoint returns HTTP 404. Retain the explicitly historical song/chart pin; do not reuse historical hashes as new evidence.",
     "nextAction": "Recover publicly verifiable chart metadata and hashes before advancing the calculation dataset; reconcile every chart key and regenerate affected projections."
+  },
+  {
+    "id": "seaside-days-parameter-category-disagreement",
+    "status": "recorded-source-disagreement",
+    "scope": "Kaela card-03008-5-uniq-0095-00 and Botan card-00032-5-uniq-0093-00",
+    "reason": "Both pinned ENG and JPN Card.json rows agree: Kaela P/T/S distribution is 268/302/430; Botan is 302/268/430. AppMedia and Game8 list max-Bloom stat categories with P/T swapped for these two Members. Skill values, identities, total parameters, and other Members agree. The import preserves the explicit structured distributions rather than applying an unverified editorial correction.",
+    "nextAction": "Recheck these precise category assignments against future public structured revisions or an official in-game stat disclosure. No editorial tiers or recommendations enter calculations."
   }
 ]

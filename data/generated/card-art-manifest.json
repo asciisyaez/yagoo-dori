@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "retrievedAt": "2026-10-07",
+  "retrievedAt": "2026-10-19",
   "source": {
     "page": "https://appmedia.jp/hololive-dreams",
     "label": "AppMedia public Member-card pages",
@@ -19,9 +19,9 @@
     }
   },
   "expectedCounts": {
-    "cards": 138,
-    "icons": 138,
-    "illustrations": 138
+    "cards": 142,
+    "icons": 142,
+    "illustrations": 142
   },
   "assets": [
     {
@@ -4852,6 +4852,146 @@
         "height": 1284,
         "bytes": 200414,
         "sha256": "ba81b8ff17d00612450ec8210887a72d723ff5934754edc0dff62a3197948ab6"
+      }
+    },
+    {
+      "cardId": "card-00027-5-uniq-0092-00",
+      "talentId": "chr-00027",
+      "talentNameJa": "常闇トワ",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-19",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00027-5-uniq-0092-00",
+        "talentId": "chr-00027",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80492269",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/181748_ox08d.webp",
+        "localPath": "/game/cards/card-00027-5-uniq-0092-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 300,
+        "height": 300,
+        "bytes": 100650,
+        "sha256": "a77744dd19a0b57e5aadc3825bb903dba6cc21500b83d6036cb00c330df8a293"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00027-5-uniq-0092-00",
+        "talentId": "chr-00027",
+        "sourcePage": "https://game8.jp/hololive-dreams/833392",
+        "sourceUrl": "https://img.game8.jp/13109678/02579debac3f16dfa4466518adb954ce.webp/original",
+        "localPath": "/game/illustrations/card-00027-5-uniq-0092-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 161902,
+        "sha256": "c0c53a391a112c687993457b389b23f3517e174a0716ef7e98df71ada688cef2"
+      }
+    },
+    {
+      "cardId": "card-00032-5-uniq-0093-00",
+      "talentId": "chr-00032",
+      "talentNameJa": "獅白ぼたん",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-19",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00032-5-uniq-0093-00",
+        "talentId": "chr-00032",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80492317",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/183910_82qi6.webp",
+        "localPath": "/game/cards/card-00032-5-uniq-0093-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 300,
+        "height": 300,
+        "bytes": 95542,
+        "sha256": "240cd3496e37b81acbb6b9730a2da6058e46901225cfb2087b1dfd1cde64840f"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00032-5-uniq-0093-00",
+        "talentId": "chr-00032",
+        "sourcePage": "https://game8.jp/hololive-dreams/833390",
+        "sourceUrl": "https://img.game8.jp/13109679/799e06b0452e15f152311177f5791da5.webp/original",
+        "localPath": "/game/illustrations/card-00032-5-uniq-0093-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 170696,
+        "sha256": "04b382868a2d631d899d70f7a53cff1404ac6ccc66c3a54d1af65606b1465210"
+      }
+    },
+    {
+      "cardId": "card-03008-5-uniq-0095-00",
+      "talentId": "chr-03008",
+      "talentNameJa": "カエラ・コヴァルスキア",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-19",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03008-5-uniq-0095-00",
+        "talentId": "chr-03008",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80492290",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/182608_1lojk.webp",
+        "localPath": "/game/cards/card-03008-5-uniq-0095-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 300,
+        "height": 300,
+        "bytes": 107098,
+        "sha256": "9872289e788e77787b175cd82ec056eee609b21878a3153000a1b64bdc4bca10"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03008-5-uniq-0095-00",
+        "talentId": "chr-03008",
+        "sourcePage": "https://game8.jp/hololive-dreams/833391",
+        "sourceUrl": "https://img.game8.jp/13109680/1160aed128814c77c01930de6db886fb.webp/original",
+        "localPath": "/game/illustrations/card-03008-5-uniq-0095-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 171588,
+        "sha256": "eb5158a92cc0ba09282a560e0aeabebb76e858f7e90838dd371ecf30e4a371ba"
+      }
+    },
+    {
+      "cardId": "card-04014-5-uniq-0094-00",
+      "talentId": "chr-04014",
+      "talentNameJa": "古石ビジュー",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-19",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-04014-5-uniq-0094-00",
+        "talentId": "chr-04014",
+        "sourcePage": "https://game8.jp/hololive-dreams/833389",
+        "sourceUrl": "https://img.game8.jp/13109581/1350b3901f6bf7e3d42845e1fca3a7c9.webp/original",
+        "localPath": "/game/cards/card-04014-5-uniq-0094-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page-correct-happy-badge",
+        "width": 185,
+        "height": 185,
+        "bytes": 6400,
+        "sha256": "d80aff2e72c952dbc373136c26cc26a7878d6e7a4c0687832f27b15f33388416"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-04014-5-uniq-0094-00",
+        "talentId": "chr-04014",
+        "sourcePage": "https://game8.jp/hololive-dreams/833389",
+        "sourceUrl": "https://img.game8.jp/13109681/33128a53f59a18acb5b6372cf57687a3.webp/original",
+        "localPath": "/game/illustrations/card-04014-5-uniq-0094-00.webp",
+        "retrievedAt": "2026-10-19",
+        "matchMethod": "explicit-reviewed-card-page",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 149378,
+        "sha256": "53a29bea1744d33f214caf40c6e3820a51efe605d7670444ddc632f479b56923"
       }
     }
   ]

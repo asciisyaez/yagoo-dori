@@ -18,9 +18,53 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "c98eddf11f81ecc65bfd1ca50427b59224627730";
+const PINNED_GUIDE_ROSTER_COMMIT = "29963557c9ea6f2b1270837096a8ce8cf034c888";
 
 const EXPECTED_GUIDE_IDENTITIES = [
+  {
+    "anchorCardId": "card-00027-5-uniq-0092-00",
+    "talentId": "chr-00027",
+    "talentName": "Tokoyami Towa",
+    "cardTitle": "Shady Hammock Days",
+    "leaders": {
+      "premium": "card-00027-5-uniq-0092-00",
+      "standard": "card-00027-5-uniq-0092-00",
+      "accessible-4-star": "card-00027-4-cmmn-0000-00"
+    }
+  },
+  {
+    "anchorCardId": "card-00032-5-uniq-0093-00",
+    "talentId": "chr-00032",
+    "talentName": "Shishiro Botan",
+    "cardTitle": "Slurping Frenzy",
+    "leaders": {
+      "premium": "card-00032-5-uniq-0093-00",
+      "standard": "card-00032-5-uniq-0093-00",
+      "accessible-4-star": "card-00032-4-cmmn-0000-00"
+    }
+  },
+  {
+    "anchorCardId": "card-03008-5-uniq-0095-00",
+    "talentId": "chr-03008",
+    "talentName": "Kaela Kovalskia",
+    "cardTitle": "Shady Shiny Memory",
+    "leaders": {
+      "premium": "card-03008-5-uniq-0095-00",
+      "standard": "card-03008-5-uniq-0095-00",
+      "accessible-4-star": "card-03008-4-cmmn-0000-00"
+    }
+  },
+  {
+    "anchorCardId": "card-04014-5-uniq-0094-00",
+    "talentId": "chr-04014",
+    "talentName": "Koseki Bijou",
+    "cardTitle": "Beaming Sandcastle",
+    "leaders": {
+      "premium": "card-04014-5-uniq-0094-00",
+      "standard": "card-04014-5-uniq-0094-00",
+      "accessible-4-star": "card-04014-4-cmmn-0000-00"
+    }
+  },
   {
     anchorCardId: "card-00004-5-uniq-0081-00",
     talentId: "chr-00004",
@@ -376,6 +420,54 @@ const EXPECTED_GUIDE_IDENTITIES = [
 ] as const;
 
 const EXPECTED_LEADER_IDENTITIES = {
+  "card-00027-5-uniq-0092-00": {
+    "cardTitle": "Shady Hammock Days",
+    "costumeId": "cos-00027-uniq-0092-00",
+    "costumeName": "Dusk Horizon",
+    "leaderSkillId": "live_leader_skill-card-00027-5-uniq-0092-00"
+  },
+  "card-00027-4-cmmn-0000-00": {
+    "cardTitle": "Midnight Serenity",
+    "costumeId": "cos-00027-cmmn-0000-00",
+    "costumeName": "Dreamy Drop",
+    "leaderSkillId": "live_leader_skill-card-00027-4-cmmn-0000-00"
+  },
+  "card-00032-5-uniq-0093-00": {
+    "cardTitle": "Slurping Frenzy",
+    "costumeId": "cos-00032-uniq-0093-00",
+    "costumeName": "Solar Savage",
+    "leaderSkillId": "live_leader_skill-card-00032-5-uniq-0093-00"
+  },
+  "card-00032-4-cmmn-0000-00": {
+    "cardTitle": "Majestic Roar",
+    "costumeId": "cos-00032-cmmn-0000-00",
+    "costumeName": "Dreamy Drop",
+    "leaderSkillId": "live_leader_skill-card-00032-4-cmmn-0000-00"
+  },
+  "card-03008-5-uniq-0095-00": {
+    "cardTitle": "Shady Shiny Memory",
+    "costumeId": "cos-03008-uniq-0095-00",
+    "costumeName": "Fiery Alloy",
+    "leaderSkillId": "live_leader_skill-card-03008-5-uniq-0095-00"
+  },
+  "card-03008-4-cmmn-0000-00": {
+    "cardTitle": "Forge-Fire Fever",
+    "costumeId": "cos-03008-cmmn-0000-00",
+    "costumeName": "Dreamy Drop",
+    "leaderSkillId": "live_leader_skill-card-03008-4-cmmn-0000-00"
+  },
+  "card-04014-5-uniq-0094-00": {
+    "cardTitle": "Beaming Sandcastle",
+    "costumeId": "cos-04014-uniq-0094-00",
+    "costumeName": "Glittering Gem",
+    "leaderSkillId": "live_leader_skill-card-04014-5-uniq-0094-00"
+  },
+  "card-04014-4-cmmn-0000-00": {
+    "cardTitle": "Radiant Innocence",
+    "costumeId": "cos-04014-cmmn-0000-00",
+    "costumeName": "Dreamy Drop",
+    "leaderSkillId": "live_leader_skill-card-04014-4-cmmn-0000-00"
+  },
   "card-00004-4-cmmn-0000-00": {
     cardTitle: "Curious Elf Melody",
     costumeId: "cos-00004-cmmn-0000-00",
@@ -787,6 +879,10 @@ const EXPECTED_LEADER_IDENTITIES = {
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00027-5-uniq-0092-00",
+  "card-00032-5-uniq-0093-00",
+  "card-03008-5-uniq-0095-00",
+  "card-04014-5-uniq-0094-00",
   "card-00004-5-uniq-0081-00",
   "card-00035-5-uniq-0082-00",
   "card-03005-5-uniq-0084-00",
@@ -941,7 +1037,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(127);
+    expect(referencedCardIds.size).toBe(132);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

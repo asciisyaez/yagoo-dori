@@ -3,9 +3,9 @@
   "id": "patch-intake-manifest-v1",
   "methodologyVersion": "yd-patch-intake-v1",
   "retrievedAt": {
-    "public": "2026-10-07",
-    "mechanics": "2026-10-07",
-    "songs": "2026-10-07",
+    "public": "2026-10-19",
+    "mechanics": "2026-10-19",
+    "songs": "2026-10-19",
     "timelines": "2026-08-02"
   },
   "timelineStage": {
@@ -101,6 +101,25 @@
   ],
   "datasets": [
     {
+      "path": "data/generated/announcement-art-manifest.json",
+      "changed": false,
+      "addedIds": [],
+      "removedIds": [],
+      "changedRowCount": 0,
+      "countsBefore": {
+        "rows": {
+          "assets": 4
+        },
+        "declared": {}
+      },
+      "countsAfter": {
+        "rows": {
+          "assets": 4
+        },
+        "declared": {}
+      }
+    },
+    {
       "path": "data/generated/card-art-manifest.json",
       "changed": false,
       "addedIds": [],
@@ -108,40 +127,32 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "assets": 138
+          "assets": 142
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "assets": 138
+          "assets": 142
         },
         "declared": {}
       }
     },
     {
       "path": "data/generated/card-art-preview-manifest.json",
-      "changed": true,
-      "addedIds": [
-        "card-00023-5-uniq-0085-00",
-        "card-00030-5-uniq-0089-00",
-        "card-00034-5-uniq-0090-00",
-        "card-00037-5-uniq-0086-00",
-        "card-03009-5-uniq-0088-00",
-        "card-04012-5-uniq-0087-00",
-        "card-06003-5-uniq-0091-00"
-      ],
+      "changed": false,
+      "addedIds": [],
       "removedIds": [],
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "previews": 131
+          "previews": 142
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "previews": 138
+          "previews": 142
         },
         "declared": {}
       }
@@ -193,30 +204,30 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "charts": 91,
+          "charts": 112,
           "unavailableCharts": 21
         },
         "declared": {
           "counts": {
-            "charts": 91,
-            "events": 89875,
-            "specialMarkers": 455,
-            "feverMarkers": 364,
+            "charts": 112,
+            "events": 111048,
+            "specialMarkers": 560,
+            "feverMarkers": 448,
             "unavailableCharts": 21
           }
         }
       },
       "countsAfter": {
         "rows": {
-          "charts": 91,
+          "charts": 112,
           "unavailableCharts": 21
         },
         "declared": {
           "counts": {
-            "charts": 91,
-            "events": 89875,
-            "specialMarkers": 455,
-            "feverMarkers": 364,
+            "charts": 112,
+            "events": 111048,
+            "specialMarkers": 560,
+            "feverMarkers": 448,
             "unavailableCharts": 21
           }
         }
@@ -232,12 +243,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 138
+          "cards": 142
         },
         "declared": {
           "coverage": {
-            "cards": 138,
-            "mappedCards": 138,
+            "cards": 142,
+            "mappedCards": 142,
             "unresolvedReferences": []
           }
         }
@@ -246,12 +257,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 138
+          "cards": 142
         },
         "declared": {
           "coverage": {
-            "cards": 138,
-            "mappedCards": 138,
+            "cards": 142,
+            "mappedCards": 142,
             "unresolvedReferences": []
           }
         }
@@ -266,30 +277,30 @@
       "countsBefore": {
         "rows": {
           "notes": 3,
-          "cards": 138
+          "cards": 142
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 84,
-            "total": 138,
-            "art": 138
+            "fiveStar": 88,
+            "total": 142,
+            "art": 142
           }
         }
       },
       "countsAfter": {
         "rows": {
           "notes": 3,
-          "cards": 138
+          "cards": 142
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 84,
-            "total": 138,
-            "art": 138
+            "fiveStar": 88,
+            "total": 142,
+            "art": 142
           }
         }
       }
@@ -329,10 +340,10 @@
     },
     {
       "path": "data/generated/holodori-songs.json",
-      "changed": true,
+      "changed": false,
       "addedIds": [],
       "removedIds": [],
-      "changedRowCount": 1015,
+      "changedRowCount": 0,
       "countsBefore": {
         "rows": {
           "evidenceSources": 3,
@@ -374,13 +385,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "guides": 25
+          "guides": 32
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "guides": 25
+          "guides": 32
         },
         "declared": {}
       }
@@ -393,13 +404,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "entries": 538
+          "entries": 533
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "entries": 538
+          "entries": 533
         },
         "declared": {}
       }
@@ -760,6 +771,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00027-5-uniq-0092-00",
+      "talent": "Tokoyami Towa",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-19"
+    },
+    {
       "id": "card-00028-4-cmmn-0000-00",
       "talent": "Himemori Luna",
       "rarity": 4,
@@ -818,6 +835,12 @@
       "talent": "Shishiro Botan",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00032-5-uniq-0093-00",
+      "talent": "Shishiro Botan",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-19"
     },
     {
       "id": "card-00034-4-cmmn-0000-00",
@@ -1012,6 +1035,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-03008-5-uniq-0095-00",
+      "talent": "Kaela Kovalskia",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-19"
+    },
+    {
       "id": "card-03009-4-cmmn-0000-00",
       "talent": "Kobo Kanaeru",
       "rarity": 4,
@@ -1150,6 +1179,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-04014-5-uniq-0094-00",
+      "talent": "Koseki Bijou",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-19"
+    },
+    {
       "id": "card-04015-4-cmmn-0000-00",
       "talent": "Nerissa Ravencroft",
       "rarity": 4,
@@ -1269,11 +1304,11 @@
     ]
   },
   "testCountPinFiles": [],
-  "deterministicDigest": "3b662277ff7441a2e00201cf00733f97a11ab2ccd1c3c90c02a4d545cd6d4844",
+  "deterministicDigest": "a3dd86b1e0a8fffc98c7557c784d5e504dedb3952f7379042feb709570c7eedf",
   "runtimeMetadata": {
-    "generatedAt": "2026-10-07T05:41:39.439Z",
-    "elapsedMilliseconds": 20546,
-    "changedDatasetCount": 2,
-    "timelineStageError": "Error: Failed to read chart API revision: 403\r"
+    "generatedAt": "2026-10-19T07:07:05.175Z",
+    "elapsedMilliseconds": 55284,
+    "changedDatasetCount": 0,
+    "timelineStageError": "Error: Failed to read chart API revision: 404"
   }
 }

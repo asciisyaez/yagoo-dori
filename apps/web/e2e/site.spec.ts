@@ -47,7 +47,7 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
-test("homepage shows the Seaside Days announcement and four distinct chapter windows", async ({ page }) => {
+test("homepage links the four Seaside Days cards and four distinct chapter windows", async ({ page }) => {
   await page.goto("/", GOTO_OPTIONS);
   const banner = page.getByRole("region", { name: "Overflowing Light and a Seaside Dress Code" });
   await expect(banner).toContainText("Featured banner");
@@ -56,11 +56,11 @@ test("homepage shows the Seaside Days announcement and four distinct chapter win
   await expect(banner).toContainText("Spotlight event · 19 Oct, 20:00–27 Oct, 19:59 JST.");
   await expect(banner).toContainText("29 Oct, 10:59");
   await expect(page.getByText("至福のシーサイドデイズガチャ", { exact: true })).toBeVisible();
-  await expect(banner.locator(".announcement-card")).toHaveCount(4);
+  await expect(banner.locator(".current-banner-card")).toHaveCount(4);
   for (const name of ["Tokoyami Towa", "Kaela Kovalskia", "Shishiro Botan", "Koseki Bijou"]) {
-    await expect(banner.locator(".announcement-card").filter({ hasText: name })).toBeVisible();
+    await expect(banner.locator(".current-banner-card").filter({ hasText: name })).toBeVisible();
   }
-  for (const title of ["Shallow Shadow", "Forge My Soul", "アマリリス", "CORE//UNBREAKABLE"]) {
+  for (const title of ["Shallow Shadow", "Forge My Soul", "Amaryllis", "CORE//UNBREAKABLE"]) {
     await expect(banner).toContainText(title);
   }
   await expect(banner.locator("li").first()).toContainText("19 Oct, 20:00–21 Oct, 19:59 JST");
@@ -119,27 +119,25 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("138 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(138);
-  // The new banner Members are announcement-only until their structured records exist.
-  // The previous banner must no longer advertise its cards as the current additions.
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(0);
+  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(142);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
-  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(23);
-  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(35);
-  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(26);
+  await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(24);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(37);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(27);
   await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
   await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
-  await expect(page.getByText("138 Outfits shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(138);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(0);
+  await expect(page.getByText("142 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(142);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
-  await expect(page.getByText("138 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: /Low Investment/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
@@ -254,7 +252,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 
   await page.getByRole("button", { name: /^Reset/ }).click();
   await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
-  await expect(page.getByText("138 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
 });
 
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({

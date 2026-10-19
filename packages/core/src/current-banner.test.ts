@@ -1,25 +1,22 @@
 import { describe, expect, it } from "vitest";
 
 import { currentBanner } from "./current-banner";
-import { publicCards, publicTalents } from "./public-data";
+import { publicCards } from "./public-data";
 
 describe("current banner metadata", () => {
-  it("keeps announced Members separate from verified numerical card records", () => {
+  it("joins every banner Member to a verified numerical card record", () => {
     expect(currentBanner.status).toBe("live");
-    expect(currentBanner.featuredCardIds).toEqual([]);
-    expect(currentBanner.announcedMembers).toHaveLength(4);
-    for (const member of currentBanner.announcedMembers) {
-      expect(publicTalents.some((talent) => talent.id === member.talentId && talent.name === member.talentName)).toBe(true);
-      expect(publicCards.some((card) => card.talentId === member.talentId && card.titleJa === member.titleJa)).toBe(false);
-    }
+    expect(currentBanner.featuredCardIds).toHaveLength(4);
+    expect(currentBanner.featuredCardIds.every((id) => publicCards.some((card) => card.id === id))).toBe(true);
+    expect(currentBanner.announcedMembers).toHaveLength(0);
   });
 
-  it("preserves chapter windows and song names without inventing song IDs", () => {
+  it("preserves chapter windows and explicitly joined song IDs", () => {
     expect(currentBanner.eventType).toBe("spotlight");
     expect(currentBanner.eventTracks.map((track) => track.title)).toEqual([
-      "Shallow Shadow", "Forge My Soul", "アマリリス", "CORE//UNBREAKABLE",
+      "Shallow Shadow", "Forge My Soul", "Amaryllis", "CORE//UNBREAKABLE",
     ]);
-    expect(currentBanner.eventTracks.every((track) => track.songId === null)).toBe(true);
+    expect(currentBanner.eventTracks.map((track) => track.songId)).toEqual(["m0365", "m0368", "m0366", "m0367"]);
     expect(currentBanner.startsAt).toBe("2026-10-19T02:00:00.000Z");
     expect(currentBanner.endsAt).toBe("2026-10-29T01:59:00.000Z");
     expect(currentBanner.eventTracks[0]?.startsAt).toBe(currentBanner.eventStartsAt);

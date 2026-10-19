@@ -12,7 +12,7 @@ describe("observed exact-song timing breakpoints", () => {
       })),
     );
 
-    expect(transitions).toHaveLength(12);
+    expect(transitions).toHaveLength(15);
     expect(transitions[0]).toMatchObject({
       anchorCardId: "card-00010-5-uniq-0069-00",
       kind: "placement",

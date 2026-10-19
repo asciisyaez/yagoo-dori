@@ -1,9 +1,37 @@
-// Documented below-floor illustration exceptions (user-approved 2026-08-07).
+// Documented original-size illustration exceptions.
 // Each entry pins the EXACT dimensions of the best available original at
 // intake time, so any silent source change still fails loudly. Remove an
 // entry (and re-sync) as soon as a sanctioned source posts a compliant
 // >= 2282x1284 original.
 export const illustrationFloorExceptionByCardId = Object.freeze({
+  "card-00027-5-uniq-0092-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-19 intake: the public Game8 Member page provides this original; AppMedia has no full card illustration. Stored unchanged without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-19",
+  }),
+  "card-00032-5-uniq-0093-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-19 intake: the public Game8 Member page provides this original; AppMedia has no full card illustration. Stored unchanged without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-19",
+  }),
+  "card-03008-5-uniq-0095-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-19 intake: the public Game8 Member page provides this original; AppMedia has no full card illustration. Stored unchanged without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-19",
+  }),
+  "card-04014-5-uniq-0094-00": Object.freeze({
+    exactWidth: 2101,
+    exactHeight: 1165,
+    reason: "2026-10-19 intake: the public Game8 Member page provides this original; AppMedia has no full card illustration. Stored unchanged without upscaling.",
+    upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
+    recordedAt: "2026-10-19",
+  }),
   "card-00030-5-uniq-0089-00": Object.freeze({
     exactWidth: 2101,
     exactHeight: 1165,
@@ -140,5 +168,17 @@ export const illustrationFloorExceptionByCardId = Object.freeze({
       "2026-08-29 intake: the current AppMedia and declared Game8 fallback expose a 1120x620 card original for the released banner; pin it until a sanctioned source posts a higher-resolution original.",
     upgradeWhen: "a sanctioned source posts a >=2282x1284 original",
     recordedAt: "2026-08-29",
+  }),
+});
+
+// Prefer the unchanged, correctly identified icon over an editorial image whose
+// embedded type badge contradicts the pinned card and the source's own text.
+export const iconDimensionExceptionByCardId = Object.freeze({
+  "card-04014-5-uniq-0094-00": Object.freeze({
+    exactWidth: 185,
+    exactHeight: 185,
+    reason: "2026-10-19: AppMedia's 300px Bijou icon embeds a Cute badge although the card is Happy. Game8's unchanged 185px original correctly shows Happy and Advent. No upscaling.",
+    upgradeWhen: "a public source posts a correctly identified 300x300 icon",
+    recordedAt: "2026-10-19",
   }),
 });

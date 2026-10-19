@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import {
   existsSync,
   mkdirSync,
@@ -81,13 +83,54 @@ const requestedAnchorCardIds = anchorCardIds.length > 0
     : [DEFAULT_GUIDE_ANCHOR_CARD_ID];
 
 console.log(`Generating native guide data at ${generatedAt}...`);
-const generatedData = requestedAnchorCardIds.map((anchorCardId, index) => {
-  console.log(`[${index + 1}/${requestedAnchorCardIds.length}] Anchor ${anchorCardId}`);
-  return generateNativeGuideData(generatedAt, {
-    anchorCardId,
-    ...(fixedLeaderOutfitCardId ? { fixedLeaderOutfitCardId } : {}),
-  }, (message) => console.log(message));
-});
+const workerCount = Number(argument("--workers") ?? "1");
+if (!Number.isInteger(workerCount) || workerCount < 1 || workerCount > 4) {
+  throw new Error("--workers must be an integer from 1 to 4");
+}
+const generatedData = new Array<ReturnType<typeof generateNativeGuideData>>(requestedAnchorCardIds.length);
+if (workerCount === 1) {
+  requestedAnchorCardIds.forEach((anchorCardId, index) => {
+    console.log(`[${index + 1}/${requestedAnchorCardIds.length}] Anchor ${anchorCardId}`);
+    generatedData[index] = generateNativeGuideData(generatedAt, {
+      anchorCardId,
+      ...(fixedLeaderOutfitCardId ? { fixedLeaderOutfitCardId } : {}),
+    }, (message) => console.log(message));
+  });
+} else {
+  // Each child writes an isolated single-anchor result. Only the parent publishes
+  // the complete, schema-checked merge, in the original deterministic order.
+  const run = promisify(execFile);
+  const workerDirectory = `${outputPath}.${process.pid}.workers`;
+  mkdirSync(workerDirectory, { recursive: true });
+  let nextIndex = 0;
+  let workerError: unknown;
+  try {
+    await Promise.all(Array.from({ length: Math.min(workerCount, requestedAnchorCardIds.length) }, async () => {
+      while (!workerError) {
+        const index = nextIndex++;
+        const anchorCardId = requestedAnchorCardIds[index];
+        if (!anchorCardId) break;
+        const childOutputPath = resolve(workerDirectory, `${index}.json`);
+        console.log(`[${index + 1}/${requestedAnchorCardIds.length}] Start ${anchorCardId}`);
+        try {
+          await run(process.execPath, [
+            "--import", "tsx/esm", import.meta.filename,
+            `--generated-at=${generatedAt}`, `--anchor-card-id=${anchorCardId}`,
+            `--output=${childOutputPath}`,
+            ...(fixedLeaderOutfitCardId ? [`--leader-outfit-card-id=${fixedLeaderOutfitCardId}`] : []),
+          ], { cwd: repositoryRoot, maxBuffer: 4 * 1024 * 1024 });
+          generatedData[index] = NativeGuideDataSchema.parse(JSON.parse(readFileSync(childOutputPath, "utf8")));
+          console.log(`[${index + 1}/${requestedAnchorCardIds.length}] Complete ${anchorCardId}`);
+        } catch (error) {
+          workerError = error;
+        }
+      }
+    }));
+    if (workerError) throw workerError;
+  } finally {
+    rmSync(workerDirectory, { recursive: true, force: true });
+  }
+}
 const data = mergeNativeGuideData(
   generatedAt,
   generatedData,

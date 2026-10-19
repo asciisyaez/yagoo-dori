@@ -215,6 +215,14 @@
     "apps/web/src/components/roll-compare.tsx|Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.|global": {
       "disposition": "allowed-scoped",
       "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
+    },
+    "data/generated/native-guides.json|With 2 or more Advent Members, Grants Score Support Effect of 9% to 2 Advent Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Pinned level-1 Seaside Bijou passive wording, independently corroborated: Score Support names the in-game effect with an explicit two-Advent condition and two-Advent recipient limit; it does not claim a calculated Live Score."
+    },
+    "data/generated/native-guides.json|With 2 or more Advent Members, Grants Score Support Effect of 12% to 2 Advent Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Pinned level-2 Seaside Bijou passive wording, independently corroborated: Score Support names the in-game effect with an explicit two-Advent condition and two-Advent recipient limit; it does not claim a calculated Live Score."
     }
   }
 }

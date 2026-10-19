@@ -54,6 +54,24 @@ test.describe("roll compare", () => {
     await expect(page.getByRole("link", { name: /Build your saved roster/ })).toBeVisible();
   });
 
+  test("new Seaside Days cards are selectable from an existing saved roster", async ({ page }) => {
+    test.setTimeout(180_000);
+    await page.addInitScript(seedScript(WEAK_ROSTER));
+    for (const [cardId, talent, title] of [
+      ["card-00027-5-uniq-0092-00", "Tokoyami Towa", "Shady Hammock Days"],
+      ["card-03008-5-uniq-0095-00", "Kaela Kovalskia", "Shady Shiny Memory"],
+      ["card-00032-5-uniq-0093-00", "Shishiro Botan", "Slurping Frenzy"],
+      ["card-04014-5-uniq-0094-00", "Koseki Bijou", "Beaming Sandcastle"],
+    ]) {
+      await page.goto(`/roll-compare?card=${cardId}`, GOTO_OPTIONS);
+      await expect(page.getByRole("heading", { level: 3, name: talent })).toBeVisible();
+      await expect(page.getByText(title, { exact: true }).first()).toBeVisible();
+      await expect(page.getByRole("button", { name: "Compare teams" })).toBeEnabled();
+    }
+    await page.getByRole("button", { name: "Compare teams" }).click();
+    await expect(page.getByText("Koseki Bijou joins your strongest found team")).toBeVisible({ timeout: 120_000 });
+  });
+
   test("a strong unowned card improves a weak roster: deep link, cancel, rerun, verdict", async ({ page }) => {
     test.setTimeout(180_000);
     await page.addInitScript(seedScript(WEAK_ROSTER));

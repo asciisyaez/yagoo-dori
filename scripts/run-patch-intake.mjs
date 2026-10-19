@@ -276,10 +276,14 @@ const songsRetrievedAt = await datasetRetrievedAt(
   "data/generated/holodori-songs.json",
   (artifact) => artifact.sourceSnapshot?.commit,
 );
-// The first pass must run with art enabled so a genuinely new card's icon,
-// illustration, and preview are fetched and the manifest covers the new
-// roster; --skip-art is only safe on the idempotence re-pass.
-const publicArgsFirstPass = [`--retrieved-at=${publicRetrievedAt}`];
+// Download artwork by default. A separately completed local artwork intake
+// may be reused only after the full asset check below verifies its hashes,
+// dimensions, identity mappings, and complete coverage.
+const reuseArt = process.argv.includes("--reuse-verified-art");
+const publicArgsFirstPass = [
+  ...(reuseArt ? ["--skip-art"] : []),
+  `--retrieved-at=${publicRetrievedAt}`,
+];
 const publicArgsRepass = ["--skip-art", `--retrieved-at=${publicRetrievedAt}`];
 
 // The GitHub-pinned syncs must succeed; the chart-timeline API is served
@@ -409,6 +413,9 @@ async function runSyncPass(publicArgs) {
   }
 }
 
+// Operators may reuse a complete, hash-checked local artwork intake when old
+// public source pages have changed. This cannot admit missing or changed assets.
+if (reuseArt) await runPnpm("assets:check", []);
 const pinBytesBefore = await pinFileBytes();
 await runSyncPass(publicArgsFirstPass);
 await runPnpm("assets:previews", []);
