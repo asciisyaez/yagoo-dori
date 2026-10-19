@@ -18,6 +18,8 @@ Incremental artwork intake verifies cached binary hashes and identity mappings, 
 
 ## Retained limits
 
+Corrected the README's stale 115-card count to 142 and documented Node 24 / Corepack-managed pnpm 10.14.0 in both setup and the update skill. This prevents a different global pnpm major from ignoring the project's overrides during future updates.
+
 This correction does not change numerical card mechanics, ranking methodology, ranking scores, or team guides. The existing Kaela/Botan stat-source disagreement remains recorded. Current upstream song/chart rows still lack the hashes and normal-note counts required by the scoring schema; the historical scoring pin remains explicit. X04 exact certification is still blocked by stale evidence and the retained cost estimate exceeding its gate. These are separate from card visibility and the corrected icon.
 
 ## Verification

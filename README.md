@@ -6,8 +6,8 @@ Yagoo-dori is an English-first hololive Dreams database, combined Member/Leader 
 
 ## What is included
 
-- 54 talents, 61 five-star Member cards, and 54 four-star Member cards.
-- 115 linked Leader Outfits with locally served card icons and illustrations.
+- 54 talents, 88 five-star Member cards, and 54 four-star Member cards.
+- 142 linked Leader Outfits with locally served card icons and illustrations.
 - Searchable card, talent, Outfit, skill, synergy, guide, and changelog routes.
 - Three ranking lenses backed by pinned mechanics, a frozen 30-chart benchmark, matched substitutions, and deterministic uncertainty estimates.
 - A Bloom-aware team calculator with Oshi constraints and all-120-order placement analysis.
@@ -17,7 +17,14 @@ Yagoo-dori tiers are comparative results under the published neutral account ass
 
 ## Development
 
+Use Node.js 24 and the pinned pnpm 10.14.0 from `packageManager`.
+Enable Corepack's shims and confirm `pnpm --version` before installing.
+If the environment supplies another global pnpm version, put the Corepack shims
+first in `PATH` so nested project scripts use the same pinned version.
+
 ```powershell
+corepack enable
+pnpm --version
 pnpm install --frozen-lockfile
 pnpm dev
 ```

@@ -10,6 +10,10 @@ Prepare one reproducible roster/mechanics/song change set, then recalculate Yago
 ## Pin and normalize
 
 1. Run `pnpm project:status` and read `AGENTS.md`.
+   Use Node.js 24 and verify pnpm 10.14.0 before any imports or installation.
+   An environment may provide a different global pnpm; enable Corepack shims
+   and put them first in PATH so nested scripts also honor `packageManager`.
+   Do not work around a mismatched package manager by replacing the lockfile.
 2. Resolve the exact English and Japanese HolodoriDB commits. Record repository URL, commit, retrieval time, master version, and transformation in the backstage dataset manifest.
    When raw GitHub is rate-limited, use the sync helper's Contents-API fallback or set
    `HOLODORI_DB_MIRROR_ROOT` to a local checkout of those exact pinned commits. A
