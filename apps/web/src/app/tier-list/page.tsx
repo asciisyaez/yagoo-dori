@@ -14,7 +14,7 @@ import { TierListExplorer, type TierCard } from "@/components/tier-list-explorer
 
 export const metadata: Metadata = {
   title: "hololive Dreams tier list",
-  description: "Compare every current hololive Dreams Member card and Leader Outfit across three model-evaluated investment lenses.",
+  description: "Compare hololive Dreams Member cards and Leader Outfits across three model-evaluated investment lenses.",
 };
 
 function rankingsFor(
@@ -107,8 +107,8 @@ export default function TierListPage() {
           <p className="db-eyebrow">Tier list</p>
           <h1>hololive Dreams tier list</h1>
           <p>
-            Compare every current 4★ and 5★ card as a Member or as its Leader Outfit. Switch
-            context and investment lens, then filter the full roster.
+            Compare 4★ and 5★ cards as Members or Leader Outfits. Switch
+            context and investment lens, then filter the database.
           </p>
           <p className="db-heading-note">
             Model tiers, published as provisional theorycraft against a frozen launch benchmark —

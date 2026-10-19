@@ -26,7 +26,7 @@ The English event heading is a site translation of あふれる光と、渚の�
 
 Four unchanged public promotional Member images from AppMedia are stored under `apps/web/public/game/announcements/seaside-days/`. The separate announcement artwork manifest records source page/image, retrieval date, talent, dimensions (1000x563), hash, and transformation. They are promotional announcement images, not database illustrations subject to the database's resolution floor. The asset checker validates their hashes and dimensions.
 
-The homepage shows the banner, Member announcements, and each chapter window. It does not link an announcement to a fabricated card profile. The previous banner's three cards no longer carry current-banner New badges. The existing database remains 138 verified cards and 32 retained guides.
+The homepage shows the banner, Member announcements, and each chapter window. It does not link an announcement to a fabricated card profile. The previous banner's three cards no longer carry current-banner New badges. The existing database remains 138 verified cards and 32 retained guides. Database and tier-page coverage copy no longer claims to contain every current game card while the four new Members remain announcement-only.
 
 ## Blocked numerical intake
 

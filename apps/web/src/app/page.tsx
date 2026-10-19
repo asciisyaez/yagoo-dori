@@ -70,7 +70,7 @@ const quickLinks = [
     icon: LibraryBig,
     eyebrow: "Database",
     title: "Find a Member card",
-    text: "Search every 4★ and 5★ by talent, type, generation, stats, and skill set.",
+    text: "Search 4★ and 5★ cards by talent, type, generation, stats, and skill set.",
     stat: `${publicData.counts.total} cards`,
   },
   {

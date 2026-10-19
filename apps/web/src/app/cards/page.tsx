@@ -7,7 +7,7 @@ import { CardCatalog, type CatalogCard } from "@/components/card-catalog";
 
 export const metadata: Metadata = {
   title: "Cards and Leader Outfits",
-  description: "Browse every current hololive Dreams Member card and its linked Leader Outfit.",
+  description: "Browse hololive Dreams Member cards and their linked Leader Outfits.",
 };
 
 const cards: CatalogCard[] = publicCardsInGenerationOrder.map((card) => ({
@@ -36,7 +36,7 @@ export default function CardsPage() {
         <div>
           <p className="db-eyebrow">Database / Cards & Outfits</p>
           <h1>Cards and Leader Outfits</h1>
-          <p>Compare every 4★ and 5★ Member, then switch to the Outfit view for its Leader effect.</p>
+          <p>Compare 4★ and 5★ Members, then switch to the Outfit view for Leader effects.</p>
         </div>
         <dl className="database-summary">
           <div><dt>Total</dt><dd>{publicData.counts.total}</dd></div>
