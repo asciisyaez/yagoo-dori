@@ -203,6 +203,18 @@
     "apps/web/src/components/holomem-board/suggestion-results.tsx|). Parameter-point equivalents under the envelope model, not a projected Live Score.|score": {
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the explicit denial that Board plan values are a projected Live Score."
+    },
+    "apps/web/src/app/page.tsx|Score-challenge event|score": {
+      "disposition": "non-technical",
+      "justification": "Labels an in-game event format, not a projected score or optimizer result."
+    },
+    "apps/web/src/components/roll-compare.tsx|Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.|best": {
+      "disposition": "allowed-scoped",
+      "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
+    },
+    "apps/web/src/components/roll-compare.tsx|Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.|global": {
+      "disposition": "allowed-scoped",
+      "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
     }
   }
 }

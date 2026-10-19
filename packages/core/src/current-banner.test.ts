@@ -1,24 +1,34 @@
 import { describe, expect, it } from "vitest";
 
 import { currentBanner } from "./current-banner";
-import { publicCardById } from "./public-data";
+import { publicCards, publicTalents } from "./public-data";
 
 describe("current banner metadata", () => {
-  it("links the live banner to four current five-star cards", () => {
+  it("keeps announced Members separate from verified numerical card records", () => {
     expect(currentBanner.status).toBe("live");
-    expect(currentBanner.featuredCardIds.every((cardId) => {
-      const card = publicCardById.get(cardId);
-      return card?.rarity === 5 && card.firstSeenAt === currentBanner.retrievedAt;
-    })).toBe(true);
-    expect(new Set(currentBanner.featuredCardIds).size).toBe(3);
+    expect(currentBanner.featuredCardIds).toEqual([]);
+    expect(currentBanner.announcedMembers).toHaveLength(4);
+    for (const member of currentBanner.announcedMembers) {
+      expect(publicTalents.some((talent) => talent.id === member.talentId && talent.name === member.talentName)).toBe(true);
+      expect(publicCards.some((card) => card.talentId === member.talentId && card.titleJa === member.titleJa)).toBe(false);
+    }
   });
 
-  it("lists the three newly released event tracks without implying complete chart coverage", () => {
+  it("preserves chapter windows and song names without inventing song IDs", () => {
+    expect(currentBanner.eventType).toBe("spotlight");
     expect(currentBanner.eventTracks.map((track) => track.title)).toEqual([
-      "HOLOGRAM CIRCUS",
-      "Lamy's Baribari Workout",
-      "Tokyo Shandy Rendez-vous",
+      "Shallow Shadow", "Forge My Soul", "アマリリス", "CORE//UNBREAKABLE",
     ]);
-    expect(new Set(currentBanner.eventTracks.map((track) => track.songId)).size).toBe(3);
+    expect(currentBanner.eventTracks.every((track) => track.songId === null)).toBe(true);
+    expect(currentBanner.startsAt).toBe("2026-10-19T02:00:00.000Z");
+    expect(currentBanner.endsAt).toBe("2026-10-29T01:59:00.000Z");
+    expect(currentBanner.eventTracks[0]?.startsAt).toBe(currentBanner.eventStartsAt);
+    expect(currentBanner.eventTracks.at(-1)?.endsAt).toBe(currentBanner.eventEndsAt);
+    for (let index = 0; index < currentBanner.eventTracks.length; index += 1) {
+      const chapter = currentBanner.eventTracks[index]!;
+      expect(Date.parse(chapter.endsAt) - Date.parse(chapter.startsAt)).toBe(48 * 60 * 60 * 1000 - 60 * 1000);
+      const next = currentBanner.eventTracks[index + 1];
+      if (next) expect(Date.parse(next.startsAt) - Date.parse(chapter.endsAt)).toBe(60 * 1000);
+    }
   });
 });

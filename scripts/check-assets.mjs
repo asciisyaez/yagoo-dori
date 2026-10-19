@@ -299,6 +299,16 @@ if (
   failures.push("preview manifest: mappings do not cover every source illustration exactly once");
 }
 
+const announcementManifest = JSON.parse(await readFile("data/generated/announcement-art-manifest.json", "utf8"));
+for (const asset of announcementManifest.assets) {
+  const bytes = await readFile(join("apps/web/public", asset.localPath));
+  const dimensions = webpDimensions(bytes, asset.localPath);
+  if (createHash("sha256").update(bytes).digest("hex") !== asset.sha256 ||
+      dimensions.width !== asset.width || dimensions.height !== asset.height) {
+    failures.push(`${asset.localPath}: announcement artwork differs from its source manifest`);
+  }
+}
+
 if (failures.length > 0) {
   console.error("Asset provenance check failed:");
   failures.forEach((failure) => console.error(`- ${failure}`));

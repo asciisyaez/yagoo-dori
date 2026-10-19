@@ -47,22 +47,24 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
-test("homepage surfaces the live Ocean Chase banner and new event tracks", async ({ page }) => {
+test("homepage shows the Seaside Days announcement and four distinct chapter windows", async ({ page }) => {
   await page.goto("/", GOTO_OPTIONS);
-  const banner = page.getByRole("region", { name: "Unyielding Ocean Chase" });
-  await expect(banner).toContainText("Live banner");
-  await expect(banner).toContainText("7 Oct 2026, 11:00 JST");
-  await expect(banner.locator("li")).toHaveCount(3);
-  await expect(banner).toContainText("Score-challenge event · 7 Oct, 12:00–13 Oct, 19:59 JST.");
-  await expect(banner).toContainText("19 Oct, 10:59");
-  await expect(page.getByText("橋を架けるオーシャンクリエイトガチャ", { exact: true })).toBeVisible();
-  await expect(page.locator(".current-banner-card")).toHaveCount(3);
-  for (const talentName of ["Omaru Polka", "Yukihana Lamy", "Ichijou Ririka"]) {
-    await expect(page.locator(".current-banner-card").filter({ hasText: talentName })).toBeVisible();
+  const banner = page.getByRole("region", { name: "Overflowing Light and a Seaside Dress Code" });
+  await expect(banner).toContainText("Featured banner");
+  await expect(banner).toContainText("19 Oct 2026, 11:00 JST");
+  await expect(banner.locator("li")).toHaveCount(4);
+  await expect(banner).toContainText("Spotlight event · 19 Oct, 20:00–27 Oct, 19:59 JST.");
+  await expect(banner).toContainText("29 Oct, 10:59");
+  await expect(page.getByText("至福のシーサイドデイズガチャ", { exact: true })).toBeVisible();
+  await expect(banner.locator(".announcement-card")).toHaveCount(4);
+  for (const name of ["Tokoyami Towa", "Kaela Kovalskia", "Shishiro Botan", "Koseki Bijou"]) {
+    await expect(banner.locator(".announcement-card").filter({ hasText: name })).toBeVisible();
   }
-  await expect(banner).toContainText("HOLOGRAM CIRCUS");
-  await expect(banner).toContainText("Lamy's Baribari Workout");
-  await expect(banner).toContainText("Tokyo Shandy Rendez-vous");
+  for (const title of ["Shallow Shadow", "Forge My Soul", "アマリリス", "CORE//UNBREAKABLE"]) {
+    await expect(banner).toContainText(title);
+  }
+  await expect(banner.locator("li").first()).toContainText("19 Oct, 20:00–21 Oct, 19:59 JST");
+  await expect(banner.locator("li").last()).toContainText("25 Oct, 20:00–27 Oct, 19:59 JST");
 });
 
 test("mobile drawer closes on Escape and returns focus to its trigger", async ({ isMobile, page }) => {
@@ -119,13 +121,9 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
   );
   await expect(page.getByText("138 cards shown", { exact: true })).toBeVisible();
   await expect(page.locator(".game-card-tile")).toHaveCount(138);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(3);
-  for (const talentName of ["Yukihana Lamy", "Omaru Polka", "Ichijou Ririka"]) {
-    await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") }).first()).toBeVisible();
-  }
-  for (const talentName of ["Aki Rosenthal", "Shiori Novella", "La\\+ Darknesss", "Anya Melfissa", "Takane Lui", "Fuwawa Abyssgard", "Mococo Abyssgard"]) {
-    await expect(page.getByRole("link", { name: new RegExp(`${talentName}.*New`, "i") })).toHaveCount(0);
-  }
+  // The new banner Members are announcement-only until their structured records exist.
+  // The previous banner must no longer advertise its cards as the current additions.
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(0);
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
   await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(23);
   await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(35);
@@ -138,7 +136,7 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
   await expect(page.getByText("138 Outfits shown", { exact: true })).toBeVisible();
   await expect(page.locator(".game-card-tile")).toHaveCount(138);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(3);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(0);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
   await expect(page.getByText("138 cards shown", { exact: true })).toBeVisible();

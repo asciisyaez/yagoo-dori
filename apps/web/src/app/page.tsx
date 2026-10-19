@@ -53,6 +53,9 @@ const eventEndLabel = new Intl.DateTimeFormat("en-GB", {
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
 }).format(new Date(currentBanner.eventEndsAt));
+const chapterDateFormatter = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo",
+});
 const quickLinks = [
   {
     href: "/tier-list",
@@ -114,7 +117,7 @@ export default function HomePage() {
             src={spotlight.illustrationPath}
           />
           <span className="hero-feature-scrim" />
-          <span className="hero-feature-label"><small>Latest 5★ addition</small><strong>{spotlight.talentName}</strong><span>{spotlight.title}</span></span>
+          <span className="hero-feature-label"><small>Member spotlight</small><strong>{spotlight.talentName}</strong><span>{spotlight.title}</span></span>
           <span className="hero-feature-rarity">5★</span>
         </Link>
       </section>
@@ -122,13 +125,13 @@ export default function HomePage() {
       <section className="home-section current-banner-section" aria-labelledby="current-banner-heading">
         <div className="current-banner-panel">
           <div className="current-banner-copy">
-            <p className="current-banner-kicker">Live banner · {bannerStartLabel} JST</p>
+            <p className="current-banner-kicker">Featured banner · {bannerStartLabel} JST</p>
             <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
             <p>
-              {bannerCards.length} new ★5 cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+              {bannerCards.length + currentBanner.announcedMembers.length} new ★5 cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
             </p>
             <dl className="current-banner-stats">
-              <div><dt>Featured</dt><dd>{bannerCards.length} × ★5</dd></div>
+              <div><dt>Featured</dt><dd>{bannerCards.length + currentBanner.announcedMembers.length} × ★5</dd></div>
               <div><dt>New event tracks</dt><dd>{currentBanner.eventTracks.length}</dd></div>
               <div><dt>Ends (JST)</dt><dd>{bannerEndLabel}</dd></div>
             </dl>
@@ -136,7 +139,15 @@ export default function HomePage() {
               Browse ★5 cards <ArrowRight aria-hidden="true" />
             </Link>
           </div>
-          <div className="current-banner-cards">
+          <div className={`current-banner-cards${currentBanner.announcedMembers.length ? " announcement-cards" : ""}`}>
+            {currentBanner.announcedMembers.map((member) => (
+              <article className="current-banner-card announcement-card" key={member.talentId}>
+                <span className="current-banner-card-art">
+                  <Image alt={`${member.talentName} — ${member.titleJa}`} fill sizes="(max-width: 640px) 45vw, 25vw" src={member.artPath} />
+                </span>
+                <span className="current-banner-card-copy"><strong>{member.talentName}</strong><span lang="ja">{member.titleJa}</span></span>
+              </article>
+            ))}
             {bannerCards.map((card) => (
               <Link className={`current-banner-card attribute-${card.attribute}`} href={`/cards/${card.slug}`} key={card.id}>
                 <span className="current-banner-card-art">
@@ -149,12 +160,13 @@ export default function HomePage() {
         </div>
         <div className="announced-banner-schedule">
           <h3>New event tracks</h3>
-          <p>Score-challenge event · {eventStartLabel}–{eventEndLabel} JST.</p>
+          <p>{currentBanner.eventType === "spotlight" ? "Spotlight event" : "Score-challenge event"} · {eventStartLabel}–{eventEndLabel} JST.</p>
           <ul>
             {currentBanner.eventTracks.map((track) => (
-              <li key={track.songId}>
+              <li key={track.talent}>
                 <strong>{track.talent}</strong>
                 <span>{track.title}</span>
+                <time dateTime={track.startsAt}>{chapterDateFormatter.format(new Date(track.startsAt))}–{chapterDateFormatter.format(new Date(track.endsAt))} JST</time>
               </li>
             ))}
           </ul>

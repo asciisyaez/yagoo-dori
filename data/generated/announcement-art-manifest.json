@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "announcementId": "blissful-seaside-days-2026-10-19",
+      "talentId": "chr-00027",
+      "localPath": "/game/announcements/seaside-days/towa.webp",
+      "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/192702_pxfhr.webp",
+      "sourcePage": "https://appmedia.jp/hololive-dreams/80492365",
+      "retrievedAt": "2026-10-19",
+      "width": 1000,
+      "height": 563,
+      "sha256": "dc935277339881a38221cea3da8e2d6dc09f0ae02ea58ec51e1879d9313aaf57",
+      "transformation": "Stored the publicly posted Member announcement image unchanged; this is promotional artwork, not a normalized database card asset."
+    },
+    {
+      "announcementId": "blissful-seaside-days-2026-10-19",
+      "talentId": "chr-03008",
+      "localPath": "/game/announcements/seaside-days/kaela.webp",
+      "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/192622_ydpmh.webp",
+      "sourcePage": "https://appmedia.jp/hololive-dreams/80492365",
+      "retrievedAt": "2026-10-19",
+      "width": 1000,
+      "height": 563,
+      "sha256": "d9abad19e91cdff35029ef4d03701575b9cb1e9e216d76b1c8f1278e275bf399",
+      "transformation": "Stored the publicly posted Member announcement image unchanged; this is promotional artwork, not a normalized database card asset."
+    },
+    {
+      "announcementId": "blissful-seaside-days-2026-10-19",
+      "talentId": "chr-00032",
+      "localPath": "/game/announcements/seaside-days/botan.webp",
+      "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/192654_46fgr.webp",
+      "sourcePage": "https://appmedia.jp/hololive-dreams/80492365",
+      "retrievedAt": "2026-10-19",
+      "width": 1000,
+      "height": 563,
+      "sha256": "7c9e2065d9a37e95ad3077a5a3e9dd18e81b431149f8f71a3f1dd44c4ff040c7",
+      "transformation": "Stored the publicly posted Member announcement image unchanged; this is promotional artwork, not a normalized database card asset."
+    },
+    {
+      "announcementId": "blissful-seaside-days-2026-10-19",
+      "talentId": "chr-04014",
+      "localPath": "/game/announcements/seaside-days/bijou.webp",
+      "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/192645_4heau.webp",
+      "sourcePage": "https://appmedia.jp/hololive-dreams/80492365",
+      "retrievedAt": "2026-10-19",
+      "width": 1000,
+      "height": 563,
+      "sha256": "89dd2a101a04217bcba7bda2f57eee67a29dcd0203db2f5188626e482fa4a547",
+      "transformation": "Stored the publicly posted Member announcement image unchanged; this is promotional artwork, not a normalized database card asset."
+    }
+  ]
+}

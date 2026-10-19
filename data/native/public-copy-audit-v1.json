@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "termCounts": {
-    "best": 2,
+    "best": 4,
     "optimal": 0,
     "exact": 30,
     "exhaustive": 0,
-    "global": 0,
+    "global": 1,
     "certified": 0,
     "certificate": 0,
     "proof": 0,
@@ -13,12 +13,12 @@
     "score": 236
   },
   "dispositionCounts": {
-    "allowed-scoped": 259,
+    "allowed-scoped": 262,
     "non-technical": 9,
     "violation": 0,
     "unresolved": 0
   },
-  "occurrenceCount": 268,
+  "occurrenceCount": 271,
   "occurrences": [
     {
       "file": "apps/web/src/app/cards/[slug]/page.tsx",
@@ -195,7 +195,7 @@
       "file": "apps/web/src/app/page.tsx",
       "context": "Compare each Leader effect with the exact Member card that unlocks the Outfit.",
       "term": "exact",
-      "location": "apps/web/src/app/page.tsx:78",
+      "location": "apps/web/src/app/page.tsx:81",
       "sourceKind": "source-string",
       "disposition": "non-technical",
       "justification": "Exact distinguishes the associated card record for an Outfit, not a certification claim."
@@ -204,19 +204,19 @@
       "file": "apps/web/src/app/page.tsx",
       "context": "Exact five-card formations",
       "term": "exact",
-      "location": "apps/web/src/app/page.tsx:205",
+      "location": "apps/web/src/app/page.tsx:217",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Exact describes the fixed five-card formation record shown by the database."
     },
     {
       "file": "apps/web/src/app/page.tsx",
-      "context": "Score-challenge event ·",
+      "context": "Score-challenge event",
       "term": "score",
-      "location": "apps/web/src/app/page.tsx:152",
-      "sourceKind": "jsx-text",
+      "location": "apps/web/src/app/page.tsx:163",
+      "sourceKind": "source-string",
       "disposition": "non-technical",
-      "justification": "Score-challenge names the officially announced event format, not a Yagoo-dori score or ranking claim."
+      "justification": "Labels an in-game event format, not a projected score or optimizer result."
     },
     {
       "file": "apps/web/src/app/synergies/[slug]/page.tsx",
@@ -249,7 +249,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
       "term": "score",
-      "location": "apps/web/src/components/roll-compare.tsx:509",
+      "location": "apps/web/src/components/roll-compare.tsx:679",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "The roll-compare picker repeats the tier page's exact denial beside the picked card's provisional tier badge."
@@ -258,10 +258,37 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Relative team value, not a projected Live Score.",
       "term": "score",
-      "location": "apps/web/src/components/roll-compare.tsx:228",
+      "location": "apps/web/src/components/roll-compare.tsx:241",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Score appears only inside the calculator's exact denial that comparison utilities are a projected Live Score."
+    },
+    {
+      "file": "apps/web/src/components/roll-compare.tsx",
+      "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
+      "term": "best",
+      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
+    },
+    {
+      "file": "apps/web/src/components/roll-compare.tsx",
+      "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
+      "term": "best",
+      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
+    },
+    {
+      "file": "apps/web/src/components/roll-compare.tsx",
+      "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
+      "term": "global",
+      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "sourceKind": "jsx-text",
+      "disposition": "allowed-scoped",
+      "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
     },
     {
       "file": "apps/web/src/components/team-calculator.tsx",
@@ -2673,7 +2700,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-10-07T06:20:40.362Z"
+    "generatedAt": "2026-10-19T02:27:02.183Z"
   },
-  "stableDigest": "f0003e0228770fca6088087bd5b40d2983ceaf0dc1ff8db84dc82d47d3e92f99"
+  "stableDigest": "42ea9ade2cb890cc45d68a655a8d85e8ea0efd13064ff64e5854d37aad3d26bd"
 }

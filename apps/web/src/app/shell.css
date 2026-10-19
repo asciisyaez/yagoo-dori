@@ -1185,3 +1185,7 @@ select {
     animation-iteration-count: 1 !important;
   }
 }
+
+.announcement-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.announcement-card .current-banner-card-art { aspect-ratio: 1000 / 563; }
+.announcement-card:hover { transform: none; }

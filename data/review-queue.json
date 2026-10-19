@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "seaside-days-2026-10-19-structured-cards",
+    "status": "blocked-upstream-inputs",
+    "scope": "Tokoyami Towa, Kaela Kovalskia, Shishiro Botan, and Koseki Bijou five-star Seaside Days cards",
+    "sourceRefs": [
+      "source-gamebiz-seaside-days",
+      "source-appmedia-seaside-days"
+    ],
+    "reason": "The official announcement and independent Member pages exist, but latest pinned ENG c98eddf11f81ecc65bfd1ca50427b59224627730 and JPN 6680c7c37a8a3b3d56d919df823dca318db0d802 contain no corresponding card rows. Card IDs, skill progression, relationships, and native ranks must not be invented.",
+    "nextAction": "Await and pin structured rows; corroborate parameters and skill levels; import art as database card assets and regenerate rankings plus all guides before publishing numerical records. Check any singer-conditional trigger against the frozen corpus before intake; request a corpus-refreeze decision if the required singer has no benchmark chart."
+  },
+  {
+    "id": "song-intake-2026-10-19-chart-metadata",
+    "status": "blocked-upstream-inputs",
+    "scope": "216-song / 864-chart October ENG source versus retained verified 203-song / 812-chart scoring input",
+    "reason": "All 864 latest MusicDifficultyChart rows omit chartHash and normalNoteCount. An isolated import confirmed absent hashes and null normalized counts. The documented public chart API revision endpoint returns HTTP 404. Existing frozen evidence cannot be repinned as newly verified chart metadata.",
+    "nextAction": "Recover publicly verifiable chart metadata and hashes before advancing the calculation dataset; reconcile every chart key and regenerate affected projections."
+  }
+]

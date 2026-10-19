@@ -1,41 +1,75 @@
 {
   "schemaVersion": 1,
-  "id": "unyielding-ocean-chase-2026-10-07",
+  "id": "blissful-seaside-days-2026-10-19",
   "status": "live",
-  "retrievedAt": "2026-10-07",
-  "eventName": "Unyielding Ocean Chase",
-  "gachaNameJa": "橋を架けるオーシャンクリエイトガチャ",
-  "startsAt": "2026-10-07T02:00:00.000Z",
-  "endsAt": "2026-10-19T01:59:00.000Z",
-  "eventStartsAt": "2026-10-07T03:00:00.000Z",
-  "eventEndsAt": "2026-10-13T10:59:00.000Z",
-  "featuredCardIds": [
-    "card-00030-5-uniq-0089-00",
-    "card-00034-5-uniq-0090-00",
-    "card-06003-5-uniq-0091-00"
-  ],
+  "retrievedAt": "2026-10-19",
+  "eventName": "Overflowing Light and a Seaside Dress Code",
+  "gachaNameJa": "至福のシーサイドデイズガチャ",
+  "startsAt": "2026-10-19T02:00:00.000Z",
+  "endsAt": "2026-10-29T01:59:00.000Z",
+  "eventStartsAt": "2026-10-19T11:00:00.000Z",
+  "eventEndsAt": "2026-10-27T10:59:00.000Z",
+  "featuredCardIds": [],
   "eventTracks": [
     {
-      "talent": "Omaru Polka",
-      "songId": "m0360",
-      "title": "HOLOGRAM CIRCUS"
+      "talent": "Tokoyami Towa",
+      "songId": null,
+      "title": "Shallow Shadow",
+      "startsAt": "2026-10-19T11:00:00.000Z",
+      "endsAt": "2026-10-21T10:59:00.000Z"
     },
     {
-      "talent": "Yukihana Lamy",
-      "songId": "m0361",
-      "title": "Lamy's Baribari Workout"
+      "talent": "Kaela Kovalskia",
+      "songId": null,
+      "title": "Forge My Soul",
+      "startsAt": "2026-10-21T11:00:00.000Z",
+      "endsAt": "2026-10-23T10:59:00.000Z"
     },
     {
-      "talent": "Ichijou Ririka",
-      "songId": "m0362",
-      "title": "Tokyo Shandy Rendez-vous"
+      "talent": "Shishiro Botan",
+      "songId": null,
+      "title": "アマリリス",
+      "startsAt": "2026-10-23T11:00:00.000Z",
+      "endsAt": "2026-10-25T10:59:00.000Z"
+    },
+    {
+      "talent": "Koseki Bijou",
+      "songId": null,
+      "title": "CORE//UNBREAKABLE",
+      "startsAt": "2026-10-25T11:00:00.000Z",
+      "endsAt": "2026-10-27T10:59:00.000Z"
     }
   ],
   "sourceRefs": [
-    "source-gamebiz-unyielding-ocean-chase",
-    "source-dengeki-unyielding-ocean-chase",
-    "source-appmedia-ocean-create-gacha",
-    "source-holodori-ocean-chase-tracks"
+    "source-gamebiz-seaside-days",
+    "source-appmedia-seaside-days"
   ],
-  "transformation": "Join the three featured card IDs to the pinned public card snapshot. Convert the gacha window (11:00 JST on October 7 through 10:59 JST on October 19) and score-challenge event window (12:00 JST on October 7 through 19:59 JST on October 13) to UTC. List only the three newly added event tracks, using exact English catalog titles from the pinned HolodoriDB rows; the remaining challenge track is not named here. The English event title is a site translation of the Japanese announcement, not an official English localization."
+  "transformation": "Translate the event name for the English site and retain the exact Japanese gacha and card titles. Join announced talent names to existing public talent IDs; do not infer or manufacture new card or song IDs. Convert the gacha and four separate chapter windows from JST to UTC. The latest pinned ENG/JPN master snapshots do not contain these four cards or songs, so announcement artwork and schedules do not enter the numerical database, native rankings, team calculator, or guide generator.",
+  "eventType": "spotlight",
+  "announcedMembers": [
+    {
+      "talentId": "chr-00027",
+      "talentName": "Tokoyami Towa",
+      "titleJa": "ゆらゆら過ごす木陰のバカンス",
+      "artPath": "/game/announcements/seaside-days/towa.webp"
+    },
+    {
+      "talentId": "chr-03008",
+      "talentName": "Kaela Kovalskia",
+      "titleJa": "木陰で紡ぐShiny Memory",
+      "artPath": "/game/announcements/seaside-days/kaela.webp"
+    },
+    {
+      "talentId": "chr-00032",
+      "talentName": "Shishiro Botan",
+      "titleJa": "一心不乱のちゅるタイム",
+      "artPath": "/game/announcements/seaside-days/botan.webp"
+    },
+    {
+      "talentId": "chr-04014",
+      "talentName": "Koseki Bijou",
+      "titleJa": "笑顔輝くSand castle",
+      "artPath": "/game/announcements/seaside-days/bijou.webp"
+    }
+  ]
 }

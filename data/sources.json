@@ -258,5 +258,31 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "English titles and singer relationships are joined by song IDs m0360-m0362 in Music.json and LangMusic_Eng.json. These three event tracks are cataloged in the banner metadata; full chart hashes and timings remain unavailable from this revision."
+  },
+  {
+    "id": "source-gamebiz-seaside-days",
+    "title": "QualiArts press release — Seaside Days banner and spotlight chapters",
+    "publisher": "GameBiz / QualiArts",
+    "url": "https://gamebiz.jp/news/434264",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-19",
+    "retrievedAt": "2026-10-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Official announcement reproduced by GameBiz: four named new five-star Members and exact Japanese card titles; October 19 11:00 through October 29 10:59 JST gacha; October 19/21/23/25 20:00 JST chapters, each ending two days later at 19:59; four solo songs. Announcement facts do not supply missing structured card mechanics or chart data."
+  },
+  {
+    "id": "source-appmedia-seaside-days",
+    "title": "AppMedia — Blissful Seaside Days banner and Member announcement images",
+    "publisher": "AppMedia",
+    "url": "https://appmedia.jp/hololive-dreams/80492365",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-19",
+    "retrievedAt": "2026-10-19",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Independently corroborates the October 19 11:00 JST start and four featured talents. Public promotional Member images are stored unchanged in the announcement artwork manifest. Editorial recommendations do not enter native calculations."
   }
 ]
