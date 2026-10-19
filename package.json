@@ -22,7 +22,7 @@
     "start": "node scripts/start-standalone.mjs",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "test": "node --test scripts/lib/*.test.mjs && pnpm -r test",
     "test:unit": "pnpm --filter @yagoo-dori/core test",
     "test:e2e": "playwright test",
     "test:e2e:pages": "playwright test --config playwright.pages.config.ts",
@@ -39,6 +39,7 @@
     "data:sync:timelines": "pnpm --filter @yagoo-dori/core timelines:sync && pnpm --filter @yagoo-dori/core timelines:project && pnpm --filter @yagoo-dori/core timelines:project:guides",
     "data:patch-intake": "node scripts/run-patch-intake.mjs",
     "assets:previews": "node scripts/generate-art-previews.mjs",
+    "assets:icons": "node scripts/generate-reviewed-icons.mjs",
     "assets:check": "node scripts/check-assets.mjs",
     "copy:audit": "node scripts/run-copy-audit.mjs",
     "project:status": "node scripts/project-status.mjs",
@@ -77,7 +78,7 @@
   "devDependencies": {
     "@playwright/test": "1.62.0",
     "@types/node": "26.1.2",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "tsx": "4.23.1",
     "typescript": "6.0.3"
   }

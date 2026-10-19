@@ -1,0 +1,25 @@
+# Roll comparison and update reliability review — 2026-10-19
+
+## Commit comparison and scope
+
+Compared the roll-comparison releases `b2378b2` and `8cc729b` with the Seaside Days intake `346f05a`. The latter adds exactly four cards to the previous 138-card catalog, removes none, and leaves every older normalized card unchanged. All 142 supported 4★/5★ cards reach the roll picker; saved ownership excludes exact card IDs, not all cards of the same talent. The upstream raw table additionally contains 54 3★ cards, which remain outside the current supported calculator/catalog scope.
+
+Rechecked the public repository heads: ENG `29963557c9ea6f2b1270837096a8ce8cf034c888`, JPN `d7d2712b764c26120b2c91058708d6bae738f3ad`, master `e1eea8627c36e512ed0f8f662d0d80e14b9000cb8facd546d38e492e91a3c528`. No later card revision was available. The user has been asked for examples of missing cards; the full supported-ID coverage regression does not depend on that reply.
+
+## Corrections
+
+Bijou's new Beaming Sandcastle icon was correctly identified but used a 185px Game8 rounded frame unlike the catalog's square cards. The other public square icon embeds a Cute badge, conflicting with the Happy attribute in both pinned structured sources and the reference text. Use a reviewed 300px square portrait crop from the exact public full illustration instead. The original remains unchanged; the recipe, crop rectangle, source hash, renderer version, and output hash are retained. Asset validation reproduces the crop and fails if its source changes. The older Prism Crystal Realm and Radiant Innocence icons retain their matching portraits and badges.
+
+The upgrade ranking previously rendered only completed results, so pending cards could appear absent while a long batch was running. Add a searchable pending list with a direct Compare now action, explicit catalog/owned/unowned counts, completed/pending counts, and search-prioritized batch order. Manual comparisons now enter the same ranking and leave the pending list. Search continues to filter display only; all unowned cards remain in the batch.
+
+The public-data mirror previously ignored the requested commit and read its working tree. It now reads the exact immutable Git object, irrespective of HEAD or dirty files, and fails with recovery instructions if that object is missing. Fetched the retained historical song commit into the local mirror and verified that the old revision yields 185 raw card rows while the new one yields 196; neither is mislabeled as the other.
+
+Incremental artwork intake verifies cached binary hashes and identity mappings, downloads new/changed identities, applies reviewed icon recipes, and regenerates previews. It no longer requires revisiting a stale editorial mapping for every unchanged old card. Added explicit public mappings for all four Seaside Days cards. Replayed the real 138-to-142 intake successfully with four public downloads and the corrected Bijou crop, then restored the review's canonical manifest. Unified the root sharp declaration with the installed/locked 0.35.5 renderer. Project status now includes recent update work from the exact-certification ledger. The update skill and README document the source, asset, Board-binding, roll coverage, and deployment checks.
+
+## Retained limits
+
+This correction does not change numerical card mechanics, ranking methodology, ranking scores, or team guides. The existing Kaela/Botan stat-source disagreement remains recorded. Current upstream song/chart rows still lack the hashes and normal-note counts required by the scoring schema; the historical scoring pin remains explicit. X04 exact certification is still blocked by stale evidence and the retained cost estimate exceeding its gate. These are separate from card visibility and the corrected icon.
+
+## Verification
+
+Passed frozen install, production audit (no known vulnerabilities), lint, typecheck, 379 core + 25 web + 2 update-tool tests, asset checks, data validation, and production build. The browser run passed 132 cases; the corrected visible-panel assertion and transient mobile quick-view case passed on focused rerun (134 distinct cases verified, 16 intentional skips). Ten additional mobile quick-view repetitions passed. The complete Pages suite passed all seven checks, including full unowned-card ID coverage and real prefixed Workers. Desktop and mobile previews of roll results/pending lists, tiers, Bijou profile/Outfit, guide index, and the exact new Bijou guide showed no horizontal overflow. Copy audit: 306 occurrences, zero violations/unresolved, digest `3a7687902bae4c4885ee0530c9f3ab943c9522918cfc8ee896466e8d5fd596ec`. The updated patch-intake orchestrator passed two consecutive byte-stable sync passes with unchanged numerical datasets and explicit chart-API unavailability. Publication requires successful Verify and Pages workflows at the exact pushed commit. The live site's origin remains absent from this environment's enforced network allowlist; local static-export browser checks and GitHub deployment status are available.

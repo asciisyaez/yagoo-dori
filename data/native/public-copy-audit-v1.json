@@ -249,7 +249,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating.",
       "term": "score",
-      "location": "apps/web/src/components/roll-compare.tsx:679",
+      "location": "apps/web/src/components/roll-compare.tsx:701",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "The roll-compare picker repeats the tier page's exact denial beside the picked card's provisional tier badge."
@@ -267,7 +267,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
       "term": "best",
-      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "location": "apps/web/src/components/roll-compare.tsx:594",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
@@ -276,7 +276,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
       "term": "best",
-      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "location": "apps/web/src/components/roll-compare.tsx:594",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
@@ -285,7 +285,7 @@
       "file": "apps/web/src/components/roll-compare.tsx",
       "context": "Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.",
       "term": "global",
-      "location": "apps/web/src/components/roll-compare.tsx:587",
+      "location": "apps/web/src/components/roll-compare.tsx:594",
       "sourceKind": "jsx-text",
       "disposition": "allowed-scoped",
       "justification": "Explicitly rejects global-optimum proof and confines the comparison to bounded searches across the declared 30-chart objective; best found describes only the searched candidates."
@@ -3050,7 +3050,7 @@
   "violations": [],
   "unresolved": [],
   "runtimeMetadata": {
-    "generatedAt": "2026-10-19T07:21:25.720Z"
+    "generatedAt": "2026-10-19T11:32:00.507Z"
   },
-  "stableDigest": "1527664c4ca1ca13793f662a9446886802742fca8ae5ddd65d4a8aefaf590fa8"
+  "stableDigest": "3a7687902bae4c4885ee0530c9f3ab943c9522918cfc8ee896466e8d5fd596ec"
 }

@@ -990,6 +990,8 @@
 .targets progress { width: 100%; accent-color: var(--yd-cyan); }
 .targets summary { cursor: pointer; padding: .8rem 0; }
 .targetList { display: grid; gap: .5rem; }
+.pendingList { margin-top: 1rem; }
+.pendingList summary { cursor: pointer; padding: .75rem 0; }
 .targetRow { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: .8rem; padding: .7rem; border: 1px solid var(--yd-line); border-radius: 8px; background: var(--yd-panel); color: inherit; text-align: left; cursor: pointer; }
 .targetRow:hover { border-color: var(--yd-cyan); }
 .targetRow:focus-visible { outline: 2px solid var(--yd-cyan); outline-offset: 2px; }

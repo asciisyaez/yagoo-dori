@@ -1,4 +1,5 @@
 import { expect, type Page, type Request, type Response, test } from "@playwright/test";
+import publicData from "../../../data/generated/holodori-public.json";
 
 const basePath = process.env.YAGOO_DORI_BASE_PATH ?? "/yagoo-dori";
 const previewPort = process.env.PORT ?? "3100";
@@ -209,10 +210,21 @@ test("roll upgrade rankings use a prefixed Worker and retain search URLs", async
     }));
   });
   await page.goto(prefixed("/roll-compare/"), { waitUntil: "domcontentloaded" });
+  await expect(page.locator("[data-picker-card-id]")).toHaveCount(publicData.cards.length - 6);
+  const ownedIds = await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem("yagoo-dori:team-calculator-roster")!).cards));
+  const expectedIds = publicData.cards.filter((card) => !ownedIds.includes(card.id)).map((card) => card.id).sort();
+  expect((await page.locator("[data-picker-card-id]").evaluateAll((elements) => elements.map((el) => el.getAttribute("data-picker-card-id")))).sort()).toEqual(expectedIds);
+  expect((await page.locator("[data-pending-card-id]").evaluateAll((elements) => elements.map((el) => el.getAttribute("data-pending-card-id")))).sort()).toEqual(expectedIds);
   await page.getByRole("searchbox", { name: "Search unowned cards" }).fill("AZKi");
   await expect(page).toHaveURL(new RegExp(`${basePath}/roll-compare/\\?q=AZKi$`));
+  const azkiId = "card-00013-5-uniq-0002-00";
+  const pendingAzki = page.locator(`[data-pending-card-id="${azkiId}"]`);
+  await pendingAzki.click();
+  await expect(pendingAzki).toBeDisabled();
+  await expect(page.locator(`[data-comparison-card-id="${azkiId}"]`)).toBeVisible({ timeout: 90_000 });
+  await expect(pendingAzki).toHaveCount(0);
   await page.getByRole("button", { name: "Clear card search" }).click();
-  await page.getByRole("button", { name: "Compare all unowned cards" }).click();
+  await page.getByRole("button", { name: "Resume comparisons" }).click();
   const target = page.locator("button").filter({ hasText: /(?:Upgrade found|No upgrade found)/ }).first();
   await expect(target).toBeVisible({ timeout: 90_000 });
   await page.getByRole("button", { name: "Pause comparisons" }).click();

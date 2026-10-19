@@ -204,31 +204,31 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "charts": 112,
-          "unavailableCharts": 21
+          "charts": 120,
+          "unavailableCharts": 24
         },
         "declared": {
           "counts": {
-            "charts": 112,
-            "events": 111048,
-            "specialMarkers": 560,
-            "feverMarkers": 448,
-            "unavailableCharts": 21
+            "charts": 120,
+            "events": 118617,
+            "specialMarkers": 600,
+            "feverMarkers": 480,
+            "unavailableCharts": 24
           }
         }
       },
       "countsAfter": {
         "rows": {
-          "charts": 112,
-          "unavailableCharts": 21
+          "charts": 120,
+          "unavailableCharts": 24
         },
         "declared": {
           "counts": {
-            "charts": 112,
-            "events": 111048,
-            "specialMarkers": 560,
-            "feverMarkers": 448,
-            "unavailableCharts": 21
+            "charts": 120,
+            "events": 118617,
+            "specialMarkers": 600,
+            "feverMarkers": 480,
+            "unavailableCharts": 24
           }
         }
       }
@@ -385,13 +385,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "guides": 32
+          "guides": 36
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "guides": 32
+          "guides": 36
         },
         "declared": {}
       }
@@ -1304,10 +1304,10 @@
     ]
   },
   "testCountPinFiles": [],
-  "deterministicDigest": "a3dd86b1e0a8fffc98c7557c784d5e504dedb3952f7379042feb709570c7eedf",
+  "deterministicDigest": "6ea3dcc19fb252e8bd114b1e650449a4175a4959fd7a2678dc444d89d2827756",
   "runtimeMetadata": {
-    "generatedAt": "2026-10-19T07:07:05.175Z",
-    "elapsedMilliseconds": 55284,
+    "generatedAt": "2026-10-19T11:30:10.201Z",
+    "elapsedMilliseconds": 56051,
     "changedDatasetCount": 0,
     "timelineStageError": "Error: Failed to read chart API revision: 404"
   }

@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { basename, join } from "node:path";
-import { illustrationFloorExceptionByCardId, iconDimensionExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { cardIconRecipes, renderReviewedCardIcon } from "./lib/card-icon-recipes.mjs";
 
 const sourceManifestPath = "data/generated/card-art-manifest.json";
 const sourceManifestBytes = await readFile(sourceManifestPath);
@@ -125,7 +126,7 @@ for (const asset of manifest.assets ?? []) {
     if (seenLocalPaths.has(record.localPath)) {
       failures.push(`${asset.cardId}: duplicate local path ${record.localPath}`);
     }
-    if (seenSourceUrls.has(record.sourceUrl)) {
+    if (seenSourceUrls.has(record.sourceUrl) && !(kind === "illustration" && cardIconRecipes[asset.cardId] && asset.icon.sourceUrl === record.sourceUrl)) {
       failures.push(`${asset.cardId}: duplicate source URL ${record.sourceUrl}`);
     }
     if (seenHashes[kind].has(record.sha256)) {
@@ -144,12 +145,19 @@ for (const asset of manifest.assets ?? []) {
       if (bytes.length !== record.bytes) failures.push(`${asset.cardId}: ${kind} byte-count mismatch`);
 
       const dimensions = webpDimensions(bytes, `${asset.cardId} ${kind}`);
+      if (kind === "icon" && cardIconRecipes[asset.cardId]) {
+        const recipe = cardIconRecipes[asset.cardId];
+        const expected = await renderReviewedCardIcon(asset.cardId, await readFile(`apps/web/public${asset.illustration.localPath}`));
+        if (!bytes.equals(expected) || record.transformation?.sourceSha256 !== recipe.sourceSha256 || record.sourceUrl !== asset.illustration.sourceUrl) {
+          failures.push(`${asset.cardId}: reviewed portrait crop or source binding mismatch`);
+        }
+      }
       if (dimensions.width !== record.width || dimensions.height !== record.height) {
         failures.push(`${asset.cardId}: ${kind} manifest dimensions do not match the local file`);
       }
       const required = requiredDimensions[kind];
       const floorException =
-        kind === "illustration" ? illustrationFloorExceptionByCardId[asset.cardId] : iconDimensionExceptionByCardId[asset.cardId];
+        kind === "illustration" ? illustrationFloorExceptionByCardId[asset.cardId] : undefined;
       const dimensionsValid = kind === "icon"
         ? dimensions.width === (floorException?.exactWidth ?? required.width) && dimensions.height === (floorException?.exactHeight ?? required.height)
         : floorException

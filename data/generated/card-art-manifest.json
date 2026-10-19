@@ -4970,14 +4970,30 @@
         "cardId": "card-04014-5-uniq-0094-00",
         "talentId": "chr-04014",
         "sourcePage": "https://game8.jp/hololive-dreams/833389",
-        "sourceUrl": "https://img.game8.jp/13109581/1350b3901f6bf7e3d42845e1fca3a7c9.webp/original",
+        "sourceUrl": "https://img.game8.jp/13109681/33128a53f59a18acb5b6372cf57687a3.webp/original",
         "localPath": "/game/cards/card-04014-5-uniq-0094-00.webp",
         "retrievedAt": "2026-10-19",
-        "matchMethod": "explicit-reviewed-card-page-correct-happy-badge",
-        "width": 185,
-        "height": 185,
-        "bytes": 6400,
-        "sha256": "d80aff2e72c952dbc373136c26cc26a7878d6e7a4c0687832f27b15f33388416"
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 28436,
+        "sha256": "278ccbf4bfd7e1c6aab9db0c1f230d796504d154b28cff66527d76cce96f46cd",
+        "transformation": {
+          "recipe": "card-04014-5-uniq-0094-00",
+          "sourceSha256": "53a29bea1744d33f214caf40c6e3820a51efe605d7670444ddc632f479b56923",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 300,
+            "top": 0,
+            "width": 1165,
+            "height": 1165
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
       },
       "illustration": {
         "assetClass": "card-illustration",

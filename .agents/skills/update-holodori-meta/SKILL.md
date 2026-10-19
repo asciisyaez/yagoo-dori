@@ -15,13 +15,26 @@ Prepare one reproducible roster/mechanics/song change set, then recalculate Yago
    `HOLODORI_DB_MIRROR_ROOT` to a local checkout of those exact pinned commits. A
    mirror is only a reproducibility aid for already-public repository data; it is
    not permission to bypass a protected endpoint or scrape a private source.
+   The helper reads Git objects at the requested immutable commit, independently
+   of checkout HEAD and dirty files. Fetch every requested commit into each mirror,
+   including a retained historical song pin; a missing object fails with recovery
+   instructions rather than mislabeling current files as historical data.
 3. Inspect explicit table keys. Join cards, characters, translations, parameter curves, Active/Passive/Special skills, Leader skills, costumes, attributes, generations, songs, charts, and conditions without inferring meaning from IDs.
 4. Corroborate important mechanics and entity relationships against official material and at least one current independent reference such as Game8 or AppMedia. Put disagreements in the review queue; never silently merge them.
 5. Download publicly posted card art locally and update the backstage asset manifest with card ID, source URL, retrieval date, path, dimensions, and hash. Never hotlink production images or surface provenance messaging in card UI.
+   Compare new icons side by side with existing cards and their full illustrations:
+   verify portrait, costume, attribute badge, rarity, frame, and crop. If no correct
+   public square icon exists, use an explicit reviewed crop in
+   `scripts/lib/card-icon-recipes.mjs`; retain the original, source hash, recipe,
+   and pinned renderer. Never replace a conflicting badge with invented artwork.
+   `pnpm data:sync:public --reuse-verified-art` verifies unchanged local assets and
+   downloads only new or identity-changed cards, avoiding stale editorial mappings
+   for old cards. It also applies reviewed icons and regenerates previews.
+   `--skip-art` requires complete existing coverage and cannot intake a new card.
 6. Run the pinned imports in dependency order:
 
    ```text
-   pnpm data:sync:public
+   pnpm data:sync:public --reuse-verified-art
    pnpm data:sync:mechanics
    pnpm data:sync:songs
    ```
@@ -34,7 +47,7 @@ Run the patch-intake orchestrator after the three imports when a roster patch al
 changes songs or charts:
 
 ```text
-pnpm data:patch-intake --retrieved-at=<YYYY-MM-DD>
+pnpm data:patch-intake --reuse-verified-art --retrieved-at=<YYYY-MM-DD>
 ```
 
 It must reconcile the aggregate chart key set even when the timing endpoint is
@@ -59,6 +72,20 @@ corpus and its hash, and record the substitution in the review notes.
 ## Verify and review
 
 Run `pnpm copy:audit` as well as the repository verification sequence in `AGENTS.md` in its exact order. Then preview the tier list, affected card/Outfit profiles, guide index, and affected guide routes at desktop and mobile sizes. A generated guide can add new mechanic wording (especially `Score Support Effect`); classify each new occurrence in `scripts/copy-audit-ledger.json` before declaring the intake clean.
+
+Also preview roll comparison with an existing saved roster. Its full-catalog
+browser regression must prove that the picker and pending list contain every
+unowned 4★/5★ card ID, including alternate cards for owned talents. Search each
+new talent and verify every card title. Test a new card through the real Worker,
+and distinguish pending comparisons from completed no-upgrade results. Report
+the catalog scope explicitly; 3★ cards are not currently supported.
+
+After a mechanics import, run `pnpm board:model` and review the Board model diff
+before changing its reviewed mechanics hash. Refresh scope bindings and relative
+model audit pins without treating stale exact-certification evidence as current.
+Do not regenerate rankings/guides for artwork-only corrections. For publication,
+confirm both Verify and Pages workflows against the exact pushed SHA and the
+successful deployment status; report any live-origin network restriction separately.
 
 Present:
 

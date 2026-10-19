@@ -289,6 +289,8 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   );
   const recentlyAddedCards = filteredCards.filter((card) => card.isNew);
   const generationCards = filteredCards.filter((card) => !card.isNew);
+  const comparedCardIds = new Set(rankings.map((row) => row.pickedCardId));
+  const pendingCards = filteredCards.filter((card) => !comparedCardIds.has(card.id));
   const ownedTalentCount = new Set(
     Object.keys(ownedCards)
       .map((cardId) => cardById.get(cardId)?.talentId)
@@ -412,12 +414,12 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     return { ...comparison, memberTrial: buildComparison(baseline, forced, card.id, true) };
   };
 
-  const runComparison = () => {
-    if (calculationState.status === "calculating") {
+  const runComparison = (pickedCard = selectedCard) => {
+    if (calculationState.status === "calculating" && pickedCard?.id === selectedCard?.id) {
       cancelCalculation();
       return;
     }
-    if (!selectedCard || ownedTalentCount < 5) return;
+    if (!pickedCard || ownedTalentCount < 5) return;
     cancelCalculation();
 
     const generation = calculationGeneration.current + 1;
@@ -451,9 +453,12 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           baselineResultCache.current = { key: baselineKey, result: baseline };
         }
 
-        const comparison = await calculateCardComparison(baseline, baselineRequest, selectedCard, generation);
+        const comparison = await calculateCardComparison(baseline, baselineRequest, pickedCard, generation);
         if (calculationGeneration.current !== generation) return;
         activeTask.current = null;
+        setBatchBaseline(baseline);
+        setRankings((rows) => [...rows.filter((row) => row.pickedCardId !== comparison.pickedCardId), comparison].sort((a, b) => b.delta - a.delta ||
+          (b.memberTrial?.delta ?? 0) - (a.memberTrial?.delta ?? 0) || a.pickedCardId.localeCompare(b.pickedCardId)));
         setCalculationState({ status: "done", comparison });
         window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({
           behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
@@ -500,7 +505,8 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       setBatchBaseline(baseline);
       // Each acquisition is independent: never carry another unowned card into a run.
       const completed = new Set(rankings.map((row) => row.pickedCardId));
-      for (const card of [...availableCards].sort((a, b) => Number(b.isNew) - Number(a.isNew))) {
+      const matchesSearch = (card: RollCompareCard) => Number(`${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery));
+      for (const card of [...availableCards].sort((a, b) => matchesSearch(b) - matchesSearch(a) || Number(b.isNew) - Number(a.isNew))) {
         if (completed.has(card.id)) continue;
         const comparison = await calculateCardComparison(baseline, baselineRequest, card, generation);
         if (calculationGeneration.current !== generation) return;
@@ -542,6 +548,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       aria-pressed={selectedCardId === card.id}
       className={styles.pickerCard}
       data-selected={selectedCardId === card.id}
+      data-picker-card-id={card.id}
       key={card.id}
       onClick={() => selectCard(card)}
       type="button"
@@ -598,7 +605,9 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
             {query && <button aria-label="Clear card search" onClick={() => updateQuery("")} type="button"><X aria-hidden="true" /></button>}
           </label>
         </div>
-        <p role="status">{rankings.length} / {availableCards.length} compared{batchRunning ? " · Working in the background; you can pause at any time." : ""}</p>
+        <p>{cards.length} cards in the catalog · {cards.length - availableCards.length} owned · {availableCards.length} unowned. Owned cards are kept in your baseline team.</p>
+        <p role="status">{rankings.length} / {availableCards.length} compared · {availableCards.length - rankings.length} awaiting comparison{batchRunning ? " · Working in the background; you can pause at any time." : ""}</p>
+        {query && <p>{filteredCards.length} unowned cards match “{query}”. Search matches go first when you start or resume comparisons; the full unowned roster is still compared.</p>}
         {batchRunning && <progress aria-label="Unowned cards compared" max={availableCards.length} value={rankings.length} />}
         {batchError && <p role="alert">{batchError} Completed comparisons are kept; resume to retry.</p>}
         {batchBaseline && <details><summary>Your owned team · {formatUtility(batchBaseline.score.relativeUtility.central)} utility</summary><ResultTeam label="Owned baseline" result={batchBaseline} pickedCardId="" /></details>}
@@ -614,7 +623,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           }).map((row) => {
             const card = cardById.get(row.pickedCardId)!;
             const shown = row.memberTrial ?? row;
-            return <button className={styles.targetRow} key={card.id} type="button" onClick={() => {
+            return <button className={styles.targetRow} data-comparison-card-id={card.id} key={card.id} type="button" onClick={() => {
               cancelCalculation();
               setSelectedCardId(card.id);
               writeCardParam(card.id);
@@ -629,6 +638,19 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
             </button>;
           })}
         </div>}
+        {pendingCards.length > 0 && <details className={styles.pendingList} open={query.length > 0}>
+          <summary>{pendingCards.length} {query ? "matching cards" : "cards"} awaiting comparison</summary>
+          <p>These cards have not been evaluated yet. Compare one now, or start the full comparison above.</p>
+          <div className={styles.targetList}>{pendingCards.map((card) => <button className={styles.targetRow} data-pending-card-id={card.id} disabled={calculationState.status === "calculating" && selectedCardId === card.id} key={card.id} type="button" onClick={() => {
+            setSelectedCardId(card.id);
+            writeCardParam(card.id);
+            runComparison(card);
+          }}>
+            <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
+            <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small></span>
+            <span><strong>{calculationState.status === "calculating" && selectedCardId === card.id ? "Comparing…" : "Compare now"}</strong><small>Not compared yet</small></span>
+          </button>)}</div>
+        </details>}
         {availableCards.length === 0 && <p>You own every available card.</p>}
       </section>
       <section className={styles.picker} aria-labelledby="roll-compare-picker-heading">
@@ -688,7 +710,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
         <button
           className={styles.compareButton}
           disabled={!selectedCard && calculationState.status !== "calculating"}
-          onClick={runComparison}
+          onClick={() => runComparison()}
           type="button"
         >
           {calculationState.status === "calculating" ? <X aria-hidden="true" /> : <Check aria-hidden="true" />} {compareLabel}
@@ -706,7 +728,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
           <section className={styles.calculationError} role="alert">
             <strong>Calculation stopped</strong>
             <p>{calculationState.message}</p>
-            <button className={styles.retryButton} onClick={runComparison} type="button">Try again</button>
+            <button className={styles.retryButton} onClick={() => runComparison()} type="button">Try again</button>
           </section>
         )}
         {calculationState.status === "done" && selectedCard && (

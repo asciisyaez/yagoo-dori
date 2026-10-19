@@ -50,6 +50,6 @@ for (const row of exactRows) {
 }
 
 console.log("");
-console.log(`Completed since last report: ${status.completedSinceLastReport.join("; ") || "None recorded"}`);
+console.log(`Completed since last report: ${[...status.completedSinceLastReport, ...exactStatus.completedSinceLastReport].slice(-3).join("; ") || "None recorded"}`);
 console.log(`Blockers: v0.1 ${status.blockers.join("; ") || "None"}; v0.2 ${exactStatus.blockers.join("; ") || "None"}`);
 console.log(`Next unblocked action: ${exactStatus.nextAction}`);

@@ -56,4 +56,8 @@ pnpm guides:generate
 pnpm data:validate
 ```
 
-Guide regeneration accepts `--workers=1` through `--workers=4` (default 1). Workers produce isolated anchor results and publish one schema-checked merge after every requested guide succeeds. Use a fixed `--generated-at` timestamp for reproducibility. After a separately completed artwork intake, `pnpm data:patch-intake --reuse-verified-art` checks all local asset hashes and dimensions before reusing them.
+Guide regeneration accepts `--workers=1` through `--workers=4` (default 1). Workers produce isolated anchor results and publish one schema-checked merge after every requested guide succeeds. Use a fixed `--generated-at` timestamp for reproducibility.
+
+For routine updates, `pnpm data:patch-intake --reuse-verified-art` checks the existing local art before importing, retains verified art for unchanged identities, downloads new cards from reviewed public mappings, applies reviewed portrait crops, and regenerates previews. The standalone import supports the same flag: `pnpm data:sync:public --reuse-verified-art`. `--skip-art` requires complete existing coverage and cannot add artwork for a new card. To re-download an existing asset deliberately, use the default full import and re-review any changed editorial mappings.
+
+Local public-data mirrors must contain every requested pinned commit, including any historical song revision. The fetch helper reads that commit's Git object, so a newer checkout or dirty working file cannot impersonate older source data. Missing commits fail with recovery instructions. `pnpm test` includes these mirror regressions; browser tests check every unowned catalog ID in both the roll picker and pending comparison list. Follow [the update skill](.agents/skills/update-holodori-meta/SKILL.md) for the complete intake and release sequence.

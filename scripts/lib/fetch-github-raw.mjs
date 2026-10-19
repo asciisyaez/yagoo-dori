@@ -1,5 +1,8 @@
-import { readFile } from "node:fs/promises";
 import { resolve, sep } from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 function githubContentsUrl(rawUrl) {
   const match = /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+)$/.exec(rawUrl);
@@ -14,7 +17,9 @@ function localMirrorPath(rawUrl) {
   if (!root) return null;
   const match = /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+)$/.exec(rawUrl);
   if (!match) return null;
-  const [, , repository, , rawPath] = match;
+  const [, owner, repository, commit, rawPath] = match;
+  if (owner !== "HolodoriDB" || !/^holodori-db-(eng|jpn)-diff$/.test(repository)) return null;
+  if (!/^[0-9a-f]{40}$/.test(commit)) throw new Error(`Mirror requests require an immutable commit: ${rawUrl}`);
   const mirrorDirectory = repository.endsWith("-eng-diff")
     ? "eng"
     : repository.endsWith("-jpn-diff")
@@ -26,23 +31,25 @@ function localMirrorPath(rawUrl) {
   if (candidate !== mirrorDirectoryRoot && !candidate.startsWith(`${mirrorDirectoryRoot}${sep}`)) {
     throw new Error(`Refusing mirror path outside root: ${rawUrl}`);
   }
-  return candidate;
+  return { directory: mirrorDirectoryRoot, commit, rawPath };
 }
 
 export async function fetchGithubRaw(
   url,
   { accept = "application/json", userAgent, timeoutMs = 30_000 } = {},
 ) {
-  const mirrorPath = localMirrorPath(url);
-  if (mirrorPath) {
+  const mirror = localMirrorPath(url);
+  if (mirror) {
     try {
-      const bytes = await readFile(mirrorPath);
+      // Read the pinned Git object, never a different HEAD or dirty working tree.
+      const { stdout: bytes } = await execFileAsync("git", ["-C", mirror.directory,
+        "show", `${mirror.commit}:${mirror.rawPath}`], { encoding: "buffer", maxBuffer: 128 * 1024 * 1024 });
       return new Response(bytes, {
         status: 200,
         headers: { "content-type": "application/json" },
       });
     } catch (error) {
-      if (error?.code !== "ENOENT") throw error;
+      throw new Error(`Public mirror cannot supply ${mirror.commit}:${mirror.rawPath}. Fetch the pinned commit into ${mirror.directory} or unset HOLODORI_DB_MIRROR_ROOT.`, { cause: error });
     }
   }
 

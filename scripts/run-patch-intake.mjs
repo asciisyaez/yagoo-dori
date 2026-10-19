@@ -276,12 +276,11 @@ const songsRetrievedAt = await datasetRetrievedAt(
   "data/generated/holodori-songs.json",
   (artifact) => artifact.sourceSnapshot?.commit,
 );
-// Download artwork by default. A separately completed local artwork intake
-// may be reused only after the full asset check below verifies its hashes,
-// dimensions, identity mappings, and complete coverage.
+// Download artwork by default. Incremental reuse first verifies the old complete
+// asset set, then downloads new identities and regenerates icons/previews.
 const reuseArt = process.argv.includes("--reuse-verified-art");
 const publicArgsFirstPass = [
-  ...(reuseArt ? ["--skip-art"] : []),
+  ...(reuseArt ? ["--reuse-verified-art"] : []),
   `--retrieved-at=${publicRetrievedAt}`,
 ];
 const publicArgsRepass = ["--skip-art", `--retrieved-at=${publicRetrievedAt}`];
@@ -413,8 +412,8 @@ async function runSyncPass(publicArgs) {
   }
 }
 
-// Operators may reuse a complete, hash-checked local artwork intake when old
-// public source pages have changed. This cannot admit missing or changed assets.
+// Verify the old catalog before incremental intake. The importer independently
+// verifies reused binaries and resolves new identities through reviewed mappings.
 if (reuseArt) await runPnpm("assets:check", []);
 const pinBytesBefore = await pinFileBytes();
 await runSyncPass(publicArgsFirstPass);

@@ -28,6 +28,12 @@ describe("evidence-linked mechanics catalog", () => {
     );
     expect(mechanicsData.cards).toHaveLength(142);
     expect(new Set(mechanicsData.cards.map((card) => card.cardId)).size).toBe(142);
+    expect(new Set(mechanicsData.cards.map((card) => card.cardId))).toEqual(
+      new Set(publicData.cards.map((card) => card.id)),
+    );
+    for (const card of publicData.cards) {
+      expect(mechanicsCardById.get(card.id)?.talentId).toBe(card.talentId);
+    }
     expect(mechanicsData.coverage).toMatchObject({
       cards: 142,
       mappedCards: 142,

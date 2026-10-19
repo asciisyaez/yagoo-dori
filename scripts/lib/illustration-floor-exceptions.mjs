@@ -170,15 +170,3 @@ export const illustrationFloorExceptionByCardId = Object.freeze({
     recordedAt: "2026-08-29",
   }),
 });
-
-// Prefer the unchanged, correctly identified icon over an editorial image whose
-// embedded type badge contradicts the pinned card and the source's own text.
-export const iconDimensionExceptionByCardId = Object.freeze({
-  "card-04014-5-uniq-0094-00": Object.freeze({
-    exactWidth: 185,
-    exactHeight: 185,
-    reason: "2026-10-19: AppMedia's 300px Bijou icon embeds a Cute badge although the card is Happy. Game8's unchanged 185px original correctly shows Happy and Advent. No upscaling.",
-    upgradeWhen: "a public source posts a correctly identified 300x300 icon",
-    recordedAt: "2026-10-19",
-  }),
-});

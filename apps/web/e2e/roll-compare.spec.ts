@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import publicData from "../../../data/generated/holodori-public.json";
 
 const GOTO_OPTIONS = { waitUntil: "domcontentloaded" as const };
 const MAIN_KEY = "yagoo-dori:team-calculator-roster";
@@ -72,6 +73,29 @@ test.describe("roll compare", () => {
     await expect(page.getByText("Koseki Bijou joins your strongest found team")).toBeVisible({ timeout: 120_000 });
   });
 
+  test("every unowned catalog card appears in the picker and pending comparisons", async ({ page }) => {
+    test.setTimeout(180_000);
+    const owned = [...WEAK_ROSTER, "card-00027-5-uniq-0022-00", "card-04014-5-uniq-0053-00"];
+    await page.addInitScript(seedScript(owned));
+    await page.goto("/roll-compare", GOTO_OPTIONS);
+    const expectedIds = publicData.cards.filter((card) => !owned.includes(card.id)).map((card) => card.id).sort();
+    await expect(page.locator("[data-picker-card-id]")).toHaveCount(expectedIds.length);
+    expect((await page.locator("[data-picker-card-id]").evaluateAll((elements) => elements.map((el) => el.getAttribute("data-picker-card-id")))).sort()).toEqual(expectedIds);
+    expect((await page.locator("[data-pending-card-id]").evaluateAll((elements) => elements.map((el) => el.getAttribute("data-pending-card-id")))).sort()).toEqual(expectedIds);
+    const search = page.getByRole("searchbox", { name: "Search unowned cards" });
+    await search.fill("Koseki Bijou");
+    await expect(page.locator("[data-pending-card-id]")).toHaveCount(2);
+    await expect(page.getByText("2 unowned cards match", { exact: false })).toBeVisible();
+    await search.fill("Tokoyami Towa");
+    await expect(page.locator('[data-pending-card-id="card-00027-5-uniq-0092-00"]')).toBeVisible();
+    await page.locator('[data-pending-card-id="card-00027-5-uniq-0092-00"]').click();
+    await expect(page.locator('[data-pending-card-id="card-00027-5-uniq-0092-00"]')).toBeDisabled();
+    await expect(page.locator('[data-comparison-card-id="card-00027-5-uniq-0092-00"]')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-pending-card-id="card-00027-5-uniq-0092-00"]')).toHaveCount(0);
+    await page.getByRole("button", { name: "Clear card search" }).click();
+    await expect(page.locator("[data-picker-card-id]")).toHaveCount(expectedIds.length);
+  });
+
   test("a strong unowned card improves a weak roster: deep link, cancel, rerun, verdict", async ({ page }) => {
     test.setTimeout(180_000);
     await page.addInitScript(seedScript(WEAK_ROSTER));
@@ -94,7 +118,7 @@ test.describe("roll compare", () => {
     // Full run: the 5★ joins and strengthens the weak roster.
     await page.getByRole("button", { name: "Compare teams" }).click();
     await expect(page.getByText("AZKi joins your strongest found team")).toBeVisible({ timeout: 120_000 });
-    await expect(page.getByText("Model utility").first()).toBeVisible();
+    await expect(page.getByRole("region", { name: "Verdict", exact: true }).getByText("Model utility").first()).toBeVisible();
     await expect(page.getByText("Relative team value, not a projected Live Score.")).toBeVisible();
     await expect(page.getByText("Average performance across 30 Expert charts", { exact: false })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Displaced from the five Members" })).toBeVisible();

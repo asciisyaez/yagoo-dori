@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
-import { illustrationFloorExceptionByCardId, iconDimensionExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
+import { execFileSync } from "node:child_process";
+import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 import { fetchGithubRaw } from "./lib/fetch-github-raw.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -45,6 +46,8 @@ const retrievedAt = process.argv
   .find((argument) => argument.startsWith("--retrieved-at="))
   ?.split("=")[1] ?? new Date().toISOString().slice(0, 10);
 const skipArt = process.argv.includes("--skip-art");
+const reuseVerifiedArt = process.argv.includes("--reuse-verified-art");
+if (skipArt && reuseVerifiedArt) throw new Error("Choose either --skip-art or --reuse-verified-art");
 
 async function readExistingPublicData() {
   try {
@@ -304,6 +307,34 @@ function parseImageTags(html) {
 }
 
 const appMediaAssetOverrideByCardId = {
+  "card-00027-5-uniq-0092-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80492269",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/181748_ox08d.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/833392",
+    illustrationSourceUrl: "https://img.game8.jp/13109678/02579debac3f16dfa4466518adb954ce.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-00032-5-uniq-0093-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80492317",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/183910_82qi6.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/833390",
+    illustrationSourceUrl: "https://img.game8.jp/13109679/799e06b0452e15f152311177f5791da5.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-03008-5-uniq-0095-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80492290",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/182608_1lojk.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/833391",
+    illustrationSourceUrl: "https://img.game8.jp/13109680/1160aed128814c77c01930de6db886fb.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-04014-5-uniq-0094-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80492338",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/184917_5k4b2.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/833389",
+    illustrationSourceUrl: "https://img.game8.jp/13109681/33128a53f59a18acb5b6372cf57687a3.webp/original",
+    allowExternalIllustration: true,
+  },
   "card-00030-5-uniq-0089-00": {
     sourcePage: "https://appmedia.jp/hololive-dreams/80234896",
     iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/183901_g3maq.webp",
@@ -508,8 +539,8 @@ function requireSingleMatch(card, kind, matches) {
   return unique[0];
 }
 
-function validateManifestCoverage(cards, manifest) {
-  if (cards.length < minimumCardAssetCount) {
+function validateManifestCoverage(cards, manifest, partial = false) {
+  if (!partial && cards.length < minimumCardAssetCount) {
     throw new Error(`Expected at least ${minimumCardAssetCount} cards, found ${cards.length}`);
   }
   if (!Array.isArray(manifest) || manifest.length !== cards.length) {
@@ -529,9 +560,14 @@ function validateManifestCoverage(cards, manifest) {
   }
 }
 
-async function downloadArt(cards, talentNameJaById) {
+async function downloadArt(cards, talentNameJaById, partial = false) {
+  if (cards.length === 0) return [];
   const indexHtml = await fetchText(sources.art.page);
   const pageUrls = appMediaTalentPageUrls(indexHtml);
+  for (const card of cards) {
+    const page = appMediaAssetOverrideByCardId[card.id]?.sourcePage;
+    if (page && !pageUrls.includes(page)) pageUrls.push(page);
+  }
   const pages = await mapWithConcurrency(pageUrls, 6, async (sourcePage) => ({
     sourcePage,
     images: appMediaImages(await fetchText(sourcePage), sourcePage),
@@ -559,7 +595,7 @@ async function downloadArt(cards, talentNameJaById) {
     let illustrationMatchMethod;
     if (override) {
       const overridePage = pageByUrl.get(override.sourcePage);
-      if (!overridePage) throw new Error(`${card.id}: override page is outside the pinned talent-page set`);
+      if (!overridePage) throw new Error(`${card.id}: declared override page was not fetched`);
       if (!overridePage.images.some((image) => image.sourceUrl === override.iconSourceUrl)) {
         throw new Error(`${card.id}: AppMedia icon override is no longer present on the talent page`);
       }
@@ -641,8 +677,8 @@ async function downloadArt(cards, talentNameJaById) {
       `${mapping.card.id} illustration`,
     );
     if (
-      iconDimensions.width !== (iconDimensionExceptionByCardId[mapping.card.id]?.exactWidth ?? requiredIconDimensions.width) ||
-      iconDimensions.height !== (iconDimensionExceptionByCardId[mapping.card.id]?.exactHeight ?? requiredIconDimensions.height)
+      iconDimensions.width !== requiredIconDimensions.width ||
+      iconDimensions.height !== requiredIconDimensions.height
     ) {
       throw new Error(
         `${mapping.card.id}: icon is ${iconDimensions.width}x${iconDimensions.height}; ` +
@@ -720,7 +756,7 @@ async function downloadArt(cards, talentNameJaById) {
   ) {
     throw new Error("AppMedia returned duplicate card-art binaries");
   }
-  validateManifestCoverage(cards, manifest);
+  validateManifestCoverage(cards, manifest, partial);
   await mkdir(artDirectory, { recursive: true });
   await mkdir(illustrationDirectory, { recursive: true });
   await mapWithConcurrency(prepared, 8, async (asset) => {
@@ -862,6 +898,28 @@ if (skipArt) {
     card.artPath = asset?.icon?.localPath ?? null;
     card.illustrationPath = asset?.illustration?.localPath ?? null;
   }
+} else if (reuseVerifiedArt) {
+  const storedManifest = JSON.parse(await readFile(assetManifestFile, "utf8"));
+  const reusable = new Map();
+  for (const card of cards) {
+    const oldCard = existingCardById.get(card.id);
+    const asset = storedManifest.assets.find((entry) => entry.cardId === card.id);
+    if (!oldCard || !asset || asset.talentId !== card.talentId || asset.status !== "downloaded" ||
+        oldCard.assetId !== card.assetId || oldCard.titleJa !== card.titleJa) continue;
+    for (const record of [asset.icon, asset.illustration]) {
+      if (!record?.localPath || !record.sha256) throw new Error(`${card.id}: incomplete cached art`);
+      const bytes = await readFile(join(root, "apps/web/public", record.localPath));
+      if (createHash("sha256").update(bytes).digest("hex") !== record.sha256 || bytes.length !== record.bytes) {
+        throw new Error(`${card.id}: cached art failed verification; restore it or re-download it`);
+      }
+    }
+    reusable.set(card.id, asset);
+    card.artPath = asset.icon.localPath;
+    card.illustrationPath = asset.illustration.localPath;
+  }
+  const downloaded = await downloadArt(cards.filter((card) => !reusable.has(card.id)), talentNameJaById, true);
+  manifest = [...storedManifest.assets.filter((asset) => reusable.has(asset.cardId)), ...downloaded];
+  validateManifestCoverage(cards, manifest);
 } else {
   manifest = await downloadArt(cards, talentNameJaById);
 }
@@ -902,11 +960,13 @@ if (!skipArt) {
       assets: manifest,
     }, null, 2)}\n`,
   );
+  execFileSync(process.execPath, [join(root, "scripts/generate-reviewed-icons.mjs")], { cwd: root, stdio: "inherit" });
+  execFileSync(process.execPath, [join(root, "scripts/generate-art-previews.mjs")], { cwd: root, stdio: "inherit" });
 }
 
 const missingArt = manifest.filter((entry) => entry.status !== "downloaded");
 console.log(`Normalized ${cards.length} cards (${payload.counts.fiveStar} five-star, ${payload.counts.fourStar} four-star).`);
-console.log(`${skipArt ? "Reused" : "Downloaded"} ${payload.counts.art} card-art pairs; ${missingArt.length} unresolved.`);
+console.log(`${skipArt ? "Reused" : "Prepared"} ${payload.counts.art} verified card-art pairs; ${missingArt.length} unresolved.`);
 if (missingArt.length > 0) {
   console.log(`Missing: ${missingArt.map((entry) => entry.cardId).join(", ")}`);
   process.exitCode = 1;
