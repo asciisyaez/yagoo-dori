@@ -254,6 +254,12 @@
   background: #0f1218;
   color: #9ca3af;
   padding: 0 0.3rem 0 0.55rem;
+  transition: border-color 0.2s ease;
+}
+
+.simple-select:hover,
+.generation-filter:hover {
+  border-color: #4f596b;
 }
 
 .simple-select select,

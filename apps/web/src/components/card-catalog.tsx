@@ -17,9 +17,18 @@ export type CatalogCard = {
   isNew: boolean;
   costumeName: string;
   leaderDescription: string;
+  firstSeenAt: string;
+  generationOrder: number;
 };
 
-export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: string[] }) {
+export type CardSortOption = "generation" | "newest" | "oldest";
+
+export interface CardCatalogProps {
+  cards: CatalogCard[];
+  groups: string[];
+}
+
+export function CardCatalog({ cards, groups }: CardCatalogProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -27,6 +36,7 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
   const rarity = searchParams.get("rarity") ?? "all";
   const attribute = searchParams.get("attribute") ?? "all";
   const group = searchParams.get("group") ?? "all";
+  const sort = (searchParams.get("sort") as CardSortOption | null) ?? "generation";
   const view = searchParams.get("view") === "outfits" ? "outfits" : "members";
 
   const setFilter = (key: string, value: string, defaultValue = "all") => {
@@ -57,6 +67,17 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
             view === "outfits" ? `${card.costumeName} ${card.leaderDescription}` : ""
           }`.toLowerCase().includes(normalizedQuery),
     );
+
+  const sorted = [...visible].sort((left, right) => {
+    if (sort === "newest") {
+      const dateDiff = right.firstSeenAt.localeCompare(left.firstSeenAt);
+      if (dateDiff !== 0) return dateDiff;
+    } else if (sort === "oldest") {
+      const dateDiff = left.firstSeenAt.localeCompare(right.firstSeenAt);
+      if (dateDiff !== 0) return dateDiff;
+    }
+    return left.generationOrder - right.generationOrder || left.id.localeCompare(right.id);
+  });
 
   return (
     <>
@@ -89,6 +110,7 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
           {["all", "5", "4"].map((value) => (
             <button
               aria-pressed={rarity === value}
+              className="cursor-pointer"
               key={value}
               onClick={() => setFilter("rarity", value)}
               type="button"
@@ -97,27 +119,50 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
             </button>
           ))}
         </div>
-        <label className="simple-select">
+        <label className="simple-select cursor-pointer hover:border-slate-500 transition-colors duration-200">
           <span className="sr-only">Attribute</span>
-          <select value={attribute} onChange={(event) => setFilter("attribute", event.target.value)}>
+          <select
+            aria-label="Attribute"
+            className="cursor-pointer"
+            onChange={(event) => setFilter("attribute", event.target.value)}
+            value={attribute}
+          >
             <option value="all">All types</option>
             <option value="cute">Cute</option>
             <option value="pure">Pure</option>
             <option value="happy">Happy</option>
           </select>
         </label>
-        <label className="simple-select">
+        <label className="simple-select cursor-pointer hover:border-slate-500 transition-colors duration-200">
           <span className="sr-only">Generation</span>
-          <select value={group} onChange={(event) => setFilter("group", event.target.value)}>
+          <select
+            aria-label="Generation"
+            className="cursor-pointer"
+            onChange={(event) => setFilter("group", event.target.value)}
+            value={group}
+          >
             <option value="all">All generations</option>
             {groups.map((item) => <option key={item} value={item}>{item}</option>)}
+          </select>
+        </label>
+        <label className="simple-select cursor-pointer hover:border-slate-500 transition-colors duration-200">
+          <span className="sr-only">Sort cards</span>
+          <select
+            aria-label="Sort order"
+            className="cursor-pointer"
+            onChange={(event) => setFilter("sort", event.target.value, "generation")}
+            value={sort}
+          >
+            <option value="generation">Generation order</option>
+            <option value="newest">Release: Newest first</option>
+            <option value="oldest">Release: Oldest first</option>
           </select>
         </label>
         <span className="catalog-result-count">{visible.length} / {cards.length}</span>
       </div>
 
       <div className={`real-card-catalog${view === "outfits" ? " leader-directory-grid" : ""}`}>
-        {visible.map((card, index) => (
+        {sorted.map((card, index) => (
           <Link
             className={`real-catalog-card${view === "outfits" ? " leader-directory-card" : ""} attribute-${card.attribute}`}
             href={`/cards/${card.slug}${view === "outfits" ? "#leader-outfit" : ""}`}
