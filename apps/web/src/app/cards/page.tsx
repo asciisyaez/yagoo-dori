@@ -24,6 +24,8 @@ const cards: CatalogCard[] = publicCardsInGenerationOrder.map((card) => ({
   leaderDescription:
     card.leaderOutfit.description?.replace(/\[\/?[^\]]+\]/g, "") ??
     "Leader effect description unavailable.",
+  firstSeenAt: card.firstSeenAt,
+  generationOrder: card.generationOrder,
 }));
 
 export default function CardsPage() {
