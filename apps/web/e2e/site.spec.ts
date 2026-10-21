@@ -350,3 +350,46 @@ test("mobile drawer is keyboard reachable and the database does not overflow", a
   await expect(page).toHaveURL(/\/tier-list$/);
   await expect(mobileNavigation).not.toBeVisible();
 });
+
+test("language switcher toggles between English and Vietnamese and persists across reloads", async ({
+  isMobile,
+  page,
+}) => {
+  await page.goto("/cards", GOTO_OPTIONS);
+
+  if (isMobile) {
+    const drawerTrigger = page.getByRole("button", { name: /open menu|menu/i });
+    await drawerTrigger.click();
+  }
+
+  // Switch to Vietnamese via language dropdown select
+  const langSelect = page.getByRole("combobox", { name: /language|ngôn ngữ/i });
+  await expect(langSelect).toBeVisible();
+  await langSelect.selectOption("vi");
+
+  // Verify html lang updated
+  await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+
+  // Verify Vietnamese translation in Card Catalog and navigation
+  await expect(page.getByRole("searchbox", { name: "Tìm Member cards" })).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Thuộc tính" })).toBeVisible();
+
+  // Reload page and verify persistence
+  await page.reload(GOTO_OPTIONS);
+  await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+  await expect(page.getByRole("searchbox", { name: "Tìm Member cards" })).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Thuộc tính" })).toBeVisible();
+
+  // Switch back to English
+  if (isMobile) {
+    const drawerTrigger = page.getByRole("button", { name: /open menu|menu/i });
+    await drawerTrigger.click();
+  }
+  const enSelect = page.getByRole("combobox", { name: /language|ngôn ngữ/i });
+  await expect(enSelect).toBeVisible();
+  await enSelect.selectOption("en");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("searchbox", { name: "Search Member cards" })).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Attribute" })).toBeVisible();
+});
+

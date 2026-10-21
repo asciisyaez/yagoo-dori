@@ -4,6 +4,7 @@ import { ArrowRightLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { SiteLink as Link } from "@/components/site-link";
+import { useTranslation } from "@/lib/i18n";
 import { readOwnedCardIds } from "@/lib/team-roster-storage";
 
 // One-line entry point from a card profile into the roll comparison. Renders
@@ -12,6 +13,7 @@ import { readOwnedCardIds } from "@/lib/team-roster-storage";
 // target page owns the real legality gate. This is a raw, read-only storage
 // peek so card pages ship no calculator code.
 export function RollCompareCta({ cardId }: { cardId: string }) {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -30,8 +32,8 @@ export function RollCompareCta({ cardId }: { cardId: string }) {
   return (
     <p className="db-heading-note">
       <ArrowRightLeft aria-hidden="true" size={13} />{" "}
-      <Link href={`/roll-compare?card=${cardId}`}>
-        See whether this card strengthens your saved team
+      <Link className="cursor-pointer" href={`/roll-compare?card=${cardId}`}>
+        {t("rollCompare.seeIfStrengthens")}
       </Link>
     </p>
   );

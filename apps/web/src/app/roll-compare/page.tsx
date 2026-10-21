@@ -6,12 +6,12 @@ import {
 } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { ArrowRightLeft } from "lucide-react";
 
 import {
   RollCompare,
   type RollCompareCard,
 } from "@/components/roll-compare";
+import { RollCompareHeader } from "./roll-compare-header";
 
 import styles from "./roll-compare.module.css";
 
@@ -38,16 +38,7 @@ const cards: RollCompareCard[] = publicCardsInGenerationOrder.map((card) => ({
 export default function RollComparePage() {
   return (
     <div className={styles.page}>
-      <header className={styles.heading}>
-        <div className={styles.headingIcon}><ArrowRightLeft aria-hidden="true" /></div>
-        <div>
-          <p>Tools / Roll compare</p>
-          <h1>Should you roll?</h1>
-          <span>
-            Find which unowned cards improve your saved team, ranked by team gain, or compare a single card in detail.
-          </span>
-        </div>
-      </header>
+      <RollCompareHeader />
 
       <Suspense fallback={<div className={styles.loading}>Loading your saved roster…</div>}>
         <RollCompare

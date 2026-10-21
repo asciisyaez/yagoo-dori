@@ -16,3 +16,5 @@ export const talentRecords = publicTalents.map((talent) => ({
 }));
 
 export const talentRecordBySlug = new Map(talentRecords.map((talent) => [talent.slug, talent]));
+
+export type TalentRecord = (typeof talentRecords)[number];

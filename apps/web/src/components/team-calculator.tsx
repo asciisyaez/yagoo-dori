@@ -3,6 +3,7 @@
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
 import { useSearchParams } from "next/navigation";
+import { useTranslation } from "@/lib/i18n";
 import type { TeamCalculatorResult } from "@yagoo-dori/core/team-calculator-contract";
 import { comparePublicMemberCards } from "@yagoo-dori/core/member-card-order";
 import {
@@ -138,6 +139,7 @@ function oshiResultLabel(role: NonNullable<TeamCalculatorResult["oshi"]>["role"]
 }
 
 function TeamResult({ result }: { result: TeamCalculatorResult }) {
+  const { t } = useTranslation();
   const [evidenceExpanded, setEvidenceExpanded] = useState(false);
   const requiredMemberIds = new Set(result.requiredMembers?.cardIds ?? []);
   const teamCardById = new Map([
@@ -152,11 +154,11 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
   const alternatives = result.alternatives.filter((group) => group.cards.length > 0);
   const boundedSearch = result.search.resultClaim === "bounded-search";
   const resultClaimLabel = boundedSearch
-    ? "Best result in searched scope"
-    : "All legal teams from your owned roster checked across the 30-chart benchmark";
+    ? t("calculator.claimBounded")
+    : t("calculator.claimFull");
   const resultHeading = boundedSearch
-    ? "Strongest team found in the searched scope"
-    : "Strongest team across the declared roster and 30-chart benchmark";
+    ? t("calculator.strongestBounded")
+    : t("calculator.strongestFull");
 
   const cardName = (cardId: string) =>
     teamCardById.get(cardId) ?? alternativeCardById.get(cardId) ?? "Matching Member";
@@ -166,15 +168,15 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
       <header className={styles.resultHeading}>
         <div className={styles.resultHeadingIcon}><Trophy aria-hidden="true" /></div>
         <div>
-          <p>Recommended formation</p>
+          <p>{t("calculator.recommendedFormation")}</p>
           <h2 id="team-result-heading">{resultHeading}</h2>
-          <span>Average performance across {result.corpus.chartCount} Expert charts · Board and Connect effects are not part of this objective</span>
+          <span>{t("calculator.benchmarkSubtitle", { count: result.corpus.chartCount })}</span>
         </div>
         <div className={styles.resultScore}>
-          <span>Model utility</span>
+          <span>{t("calculator.modelUtility")}</span>
           <strong>{formatUtility(result.score.relativeUtility.central)}</strong>
-          <small>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)} range</small>
-          <small>Relative team value, not a projected Live Score.</small>
+          <small>{t("calculator.utilityRangeNote", { lower: formatUtility(result.score.relativeUtility.lower), upper: formatUtility(result.score.relativeUtility.upper) })}</small>
+          <small>{t("calculator.relativeValueNote")}</small>
         </div>
       </header>
 
@@ -182,7 +184,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
         <div className={styles.oshiResult} role="status">
           <Heart aria-hidden="true" />
           <div>
-            <span>Oshi lock fulfilled</span>
+            <span>{t("calculator.oshiFulfilled")}</span>
             <strong>{result.oshi.talentName}</strong>
           </div>
           <p>{oshiResultLabel(result.oshi.role)}</p>
@@ -192,8 +194,8 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
       {result.requiredMembers && (
         <div className={styles.requiredResult} role="status">
           <BadgeCheck aria-hidden="true" />
-          <span>Lineup locks fulfilled</span>
-          <strong>{result.requiredMembers.cardIds.length} required Member{result.requiredMembers.cardIds.length === 1 ? "" : "s"} retained</strong>
+          <span>{t("calculator.lineupFulfilled")}</span>
+          <strong>{t("calculator.requiredRetained", { count: result.requiredMembers.cardIds.length, plural: result.requiredMembers.cardIds.length === 1 ? "" : "s" })}</strong>
         </div>
       )}
 
@@ -211,7 +213,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
             )}
           </Link>
           <div>
-            <small>{result.leader.rarity}★ source card · Bloom {result.leader.sourceCardBloomStage}</small>
+            <small>{t("calculator.sourceCardBloom", { rarity: result.leader.rarity, bloom: result.leader.sourceCardBloomStage })}</small>
             <h3>{result.leader.outfitName}</h3>
             <p>{result.leader.talentName}</p>
             <span>{result.leader.title}</span>
@@ -220,8 +222,8 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
 
         <div className={styles.memberResultGroup}>
           <header>
-            <div><span>Special activation order</span><strong>Left to right</strong></div>
-            <small>{result.formationOrder.status === "indeterminate" ? "Timing tie" : result.formationOrder.kind === "timed-corpus" ? "Chart timed" : "Timing modeled"}</small>
+            <div><span>{t("calculator.specialActivationOrder")}</span><strong>{t("calculator.leftToRight")}</strong></div>
+            <small>{result.formationOrder.status === "indeterminate" ? t("calculator.timingTie") : result.formationOrder.kind === "timed-corpus" ? t("calculator.chartTimed") : t("calculator.timingModeled")}</small>
           </header>
           <div className={styles.memberResults}>
             {result.members.map((member, index) => {
@@ -265,11 +267,11 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
       <section className={styles.memberEvidencePanel} aria-labelledby="member-evidence-heading">
         <header>
           <div>
-            <span>Member field report</span>
-            <h3 id="member-evidence-heading">Why each Member is here</h3>
+            <span>{t("calculator.memberFieldReport")}</span>
+            <h3 id="member-evidence-heading">{t("calculator.whyMembersHere")}</h3>
           </div>
           <div className={styles.memberEvidenceHeaderActions}>
-            <p>One-for-one comparisons keep the Leader and the other four Members fixed.</p>
+            <p>{t("calculator.oneForOneNote")}</p>
             <button
               aria-controls="member-evidence-grid"
               aria-expanded={evidenceExpanded}
@@ -277,7 +279,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
               onClick={() => setEvidenceExpanded((expanded) => !expanded)}
               type="button"
             >
-              {evidenceExpanded ? "Hide evidence" : "Show evidence for all 5"}
+              {evidenceExpanded ? t("calculator.hideEvidence") : t("calculator.showEvidence")}
             </button>
           </div>
         </header>
@@ -374,7 +376,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
 
       <div className={styles.resultDetailGrid}>
         <section className={styles.synergyPanel}>
-          <header><div><span>Team links</span><h3>Active stat synergies</h3></div><strong>{result.synergies.length}</strong></header>
+          <header><div><span>{t("calculator.teamLinksTitle")}</span><h3>{t("calculator.activeStatSynergies")}</h3></div><strong>{result.synergies.length}</strong></header>
           <div>
             {result.synergies.map((synergy, index) => {
               const sourceName = cardName(synergy.sourceCardId);
@@ -399,29 +401,29 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                 </article>
               );
             })}
-            {result.synergies.length === 0 && <p className={styles.noSynergy}>No Leader or Passive stat links activate in this formation.</p>}
+            {result.synergies.length === 0 && <p className={styles.noSynergy}>{t("calculator.noSynergies")}</p>}
           </div>
         </section>
 
         <section className={styles.searchSummary}>
           <span>{resultClaimLabel}</span>
-          <p className={styles.searchClaimDetail}><strong>Result claim:</strong> {boundedSearch ? "bounded search; searched scope only" : "declared roster scope"}.</p>
+          <p className={styles.searchClaimDetail}><strong>Result claim:</strong> {boundedSearch ? t("calculator.claimBounded") : t("calculator.claimFull")}.</p>
           <strong>{result.search.searchLeaderTeamFormationsReranked.toLocaleString("en-US")}</strong>
-          <small>Leader and five-Member formations compared</small>
+          <small>{t("calculator.formationsCompared")}</small>
           {boundedSearch && result.search.teamSetsEvaluated < result.search.teamSetsInScope && (
             <p>{result.search.teamSetsEvaluated.toLocaleString("en-US")} of {result.search.teamSetsInScope.toLocaleString("en-US")} legal Member sets reached the full benchmark.</p>
           )}
           {boundedSearch && <p className={styles.searchClaimDetail}>Constrained runs can occasionally exceed this bounded result; re-running keeps the better answer.</p>}
           <div><span>Utility range</span><b>{formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)}</b></div>
           <p className={styles.searchRefinement}><strong>Local refinement:</strong> {localRefinementLabel(result)}</p>
-          <em>Relative team value, not a projected Live Score.</em>
+          <em>{t("calculator.relativeValueNote")}</em>
           <p className={styles.searchClaimDetail}>The range spans the unresolved targeting and overlap readings; the central value is the ranked answer rather than the middle of the range. Team value is order-invariant in this model — formation order changes Special timing, shown separately below. The <Link href="/methodology">methodology page</Link> documents the shared evaluation model and its limits.</p>
         </section>
       </div>
 
       {alternatives.length > 0 && (
         <section className={styles.alternativesPanel}>
-          <header><div><span>Swap impact report</span><h3>One-for-one replacements</h3></div><small>With the recommended Leader</small></header>
+          <header><div><span>{t("calculator.swapImpactReport")}</span><h3>{t("calculator.oneForOneReplacements")}</h3></div><small>{t("calculator.withRecommendedLeader")}</small></header>
           <p className={styles.alternativesDisclosure}>Both totals use the same central modeled value from the guaranteed-recipient targeting lane. The headline range reflects shared targeting ambiguity; it usually moves both teams together — the range note on each report flags the cases where the bounds disagree — so it is not attached to a swap delta. Formation order does not move the before/after value because the team-value model is order-invariant: it treats Special coverage as duration coverage rather than crediting one starting order. The separate order recommendation can still be chart-timed — order changes when Specials fire, not these totals.</p>
           <div className={styles.alternativeGroups}>
             {alternatives.map((group) => {
@@ -431,7 +433,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                 <article key={group.replacesCardId}>
                   <header>
                     <Image alt="" height={38} src={replaced.artPath} width={38} />
-                    <span><small>Instead of</small><strong>{replaced.talentName}</strong></span>
+                    <span><small>{t("calculator.insteadOf")}</small><strong>{replaced.talentName}</strong></span>
                   </header>
                   <div className={styles.alternativeReports}>
                     {group.cards.map((alternative) => {
@@ -445,7 +447,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                             <span><strong>{alternative.talentName}</strong><small>{alternative.title} · B{alternative.bloomStage}</small></span>
                           </Link>
                           <div className={styles.alternativeValueLine}>
-                            <span>Team value</span>
+                            <span>{t("calculator.teamValue")}</span>
                             <strong>{formatUtility(result.score.relativeUtility.central)} → {formatUtility(alternative.relativeUtility.central)}</strong>
                             <b data-improvement={impact.centralDelta >= 0.5}>{formatSignedUtility(impact.centralDelta)}</b>
                             <small>{formatSignedPercent(chartChange)}</small>
@@ -453,7 +455,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
                           <p className={styles.alternativeRobustness}>Improved {impact.chartsImproved}/30 charts · worsened {impact.chartsWorsened}/30 · tied {impact.chartsTied}/30.</p>
                           <p className={styles.alternativeRobustness}>Per-chart change {formatSignedPercent(impact.perChartDeltaPercent.minimum)} to {formatSignedPercent(impact.perChartDeltaPercent.maximum)}; median {formatSignedPercent(impact.perChartDeltaPercent.median)} · {boundAgreementLabel(impact.boundAgreement)}.</p>
                           <details className={styles.impactDetails}>
-                            <summary>Inspect passive, cadence, and targeting changes</summary>
+                            <summary>{t("calculator.inspectDetails")}</summary>
                             <div className={styles.impactBody}>
                               <div className={styles.passiveComparison}>
                                 <div><span>Passive before · Lv.{impact.outgoingPassiveSkillLevel}</span><p>{cleanDescription(impact.outgoingPassiveDescription)}</p></div>
@@ -501,6 +503,7 @@ function TeamResult({ result }: { result: TeamCalculatorResult }) {
 }
 
 export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
+  const { t } = useTranslation();
   const searchParams = useSearchParams();
   const initialSearch = new URLSearchParams(searchParams.toString());
   initialSearch.delete("chart");
@@ -827,14 +830,17 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
   };
 
   const calculateLabel = talentsNeeded > 0
-    ? `Add ${talentsNeeded} more ${talentsNeeded === 1 ? "talent" : "talents"}`
+    ? t("calculator.btnAddMoreTalents", {
+        count: talentsNeeded,
+        talents: talentsNeeded === 1 ? "talent" : "talents",
+      })
     : !oshiReady
-      ? "Choose your Oshi"
+      ? t("calculator.btnChooseOshi")
       : oshiCapacityConflict
-        ? "Unlock a required Member"
+        ? t("calculator.btnUnlockMember")
     : calculationState.status === "calculating"
-      ? "Cancel calculation"
-      : "Calculate team";
+      ? t("calculator.btnCancel")
+      : t("calculator.btnCalculate");
 
   return (
     <div className={styles.workspace}>
@@ -844,36 +850,36 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
             <div className={styles.stepHeading}>
               <span>01</span>
               <div>
-                <h2 id="owned-cards-heading">Add the cards you own</h2>
-                <p>Cards use max-level stats. Bloom 1–4 applies Live skill and stat upgrades; Bloom 5 Connect bonuses depend on your Board and are not included. New selections start at Bloom 0.</p>
+                <h2 id="owned-cards-heading">{t("calculator.stepOneTitle")}</h2>
+                <p>{t("calculator.stepOneDesc")}</p>
               </div>
             </div>
-            <div className={styles.rosterCount}><strong>{selectedCards.length}</strong><span>selected</span></div>
+            <div className={styles.rosterCount}><strong>{selectedCards.length}</strong><span>{t("calculator.selectedCount")}</span></div>
           </header>
 
           <div className={styles.filterBar}>
             <label className={styles.cardSearch}>
               <Search aria-hidden="true" />
-              <span className="sr-only">Search cards</span>
+              <span className="sr-only">{t("calculator.searchAria")}</span>
               <input
                 onChange={(event) => setFilter("q", event.target.value, "")}
-                placeholder="Search talent, card, or Outfit…"
+                placeholder={t("calculator.searchPlaceholder")}
                 type="search"
                 value={query}
               />
-              {query && <button aria-label="Clear card search" onClick={() => setFilter("q", "", "")} type="button"><X aria-hidden="true" /></button>}
+              {query && <button aria-label={t("calculator.clearSearch")} onClick={() => setFilter("q", "", "")} type="button"><X aria-hidden="true" /></button>}
             </label>
-            <div className={styles.segmentedFilter} aria-label="Rarity filter" role="group">
+            <div className={styles.segmentedFilter} aria-label={t("calculator.rarityFilterAria")} role="group">
               {["all", "5", "4"].map((value) => (
                 <button aria-pressed={rarity === value} key={value} onClick={() => setFilter("rarity", value)} type="button">
-                  {value === "all" ? "All" : `${value}★`}
+                  {value === "all" ? t("common.all") : `${value}★`}
                 </button>
               ))}
             </div>
             <label className={styles.typeFilter}>
-              <span>Type</span>
-              <select aria-label="Card type" onChange={(event) => setFilter("attribute", event.target.value)} value={attribute}>
-                <option value="all">All</option>
+              <span>{t("calculator.typeLabel")}</span>
+              <select aria-label={t("calculator.cardTypeAria")} onChange={(event) => setFilter("attribute", event.target.value)} value={attribute}>
+                <option value="all">{t("calculator.allTypes")}</option>
                 <option value="cute">Cute</option>
                 <option value="pure">Pure</option>
                 <option value="happy">Happy</option>
@@ -884,8 +890,8 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
 
           <div className={styles.rarityGroups}>
             {[
-              { rarity: 5 as const, label: "5★ Member cards", cards: visibleFiveStarCards },
-              { rarity: 4 as const, label: "4★ Member cards", cards: visibleFourStarCards },
+              { rarity: 5 as const, label: t("calculator.fiveStarCards"), cards: visibleFiveStarCards },
+              { rarity: 4 as const, label: t("calculator.fourStarCards"), cards: visibleFourStarCards },
             ].filter((group) => group.cards.length > 0).map((group) => (
               <section className={styles.rarityGroup} data-rarity={group.rarity} key={group.rarity}>
                 <header>
@@ -904,7 +910,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                         style={{ "--card-accent": card.color } as CSSProperties}
                       >
                         <button
-                          aria-label={`${selected ? "Remove" : "Add"} ${card.talentName}, ${card.title}, ${card.rarity} star card`}
+                          aria-label={`${selected ? t("calculator.btnUnrequire") : t("calculator.btnRequire")} ${card.talentName}, ${card.title}, ${card.rarity}★`}
                           aria-pressed={selected}
                           className={styles.cardSelect}
                           disabled={!storageReady}
@@ -930,14 +936,14 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                           <label className={styles.bloomControl}>
                             <span>Bloom</span>
                             <select
-                              aria-label={`${card.talentName}, ${card.title} Bloom level`}
+                              aria-label={t("calculator.bloomLevelAria", { talent: card.talentName, title: card.title })}
                               onChange={(event) => setBloom(card.id, Number(event.target.value) as BloomStage)}
                               value={bloomStage}
                             >
                               {BLOOM_STAGES.map((stage) => <option key={stage} value={stage}>{stage}</option>)}
                             </select>
                           </label>
-                        ) : <span className={styles.addHint}>Select card</span>}
+                        ) : <span className={styles.addHint}>{t("calculator.selectCardHint")}</span>}
                       </article>
                     );
                   })}
@@ -949,7 +955,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
           {visibleCards.length === 0 && (
             <div className={styles.emptyCards}>
               <Search aria-hidden="true" />
-              <h3>No matching cards</h3>
+              <h3>{t("calculator.noMatchingCards")}</h3>
               <button onClick={() => {
                 const next = new URLSearchParams(pendingSearch.current);
                 next.delete("q");
@@ -963,7 +969,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                   "",
                   nextQuery ? `${window.location.pathname}?${nextQuery}` : window.location.pathname,
                 );
-              }} type="button">Reset card filters</button>
+              }} type="button">{t("calculator.resetFilters")}</button>
             </div>
           )}
         </section>
@@ -972,20 +978,20 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
           <header>
             <div className={styles.oshiHeadingIcon}><Heart aria-hidden="true" /></div>
             <div>
-              <span>Optional constraint</span>
-              <h2>Oshi mode</h2>
-              <p>Keep one favorite in the recommendation.</p>
+              <span>{t("calculator.optionalConstraint")}</span>
+              <h2>{t("calculator.oshiModeTitle")}</h2>
+              <p>{t("calculator.oshiModeDesc")}</p>
             </div>
             <button
               aria-checked={oshiPreference.enabled}
-              aria-label="Oshi mode"
+              aria-label={t("calculator.oshiAria")}
               className={styles.oshiToggle}
               onClick={() => updateOshi({ enabled: !oshiPreference.enabled })}
               role="switch"
               type="button"
             >
               <span />
-              {oshiPreference.enabled ? "On" : "Off"}
+              {oshiPreference.enabled ? t("calculator.on") : t("calculator.off")}
             </button>
           </header>
 
@@ -998,13 +1004,13 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                   ) : <Heart aria-hidden="true" />}
                 </span>
                 <label>
-                  <span>Favorite talent</span>
+                  <span>{t("calculator.favoriteTalent")}</span>
                   <select
-                    aria-label="Oshi talent"
+                    aria-label={t("calculator.favoriteTalent")}
                     onChange={(event) => updateOshi({ talentId: event.target.value || null })}
                     value={oshiPreference.talentId ?? ""}
                   >
-                    <option value="">{selectedTalents.length > 0 ? "Choose from your roster" : "Add an owned card first"}</option>
+                    <option value="">{selectedTalents.length > 0 ? t("calculator.chooseFromRoster") : t("calculator.addCardFirst")}</option>
                     {selectedTalents.map(({ card }) => (
                       <option key={card.talentId} value={card.talentId}>{card.talentName}</option>
                     ))}
@@ -1013,12 +1019,12 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
               </div>
 
               <fieldset>
-                <legend>Required role</legend>
+                <legend>{t("calculator.requiredRole")}</legend>
                 <div className={styles.oshiRoles}>
                   {([
-                    ["member", "Member", "One of the five"],
-                    ["leader", "Leader", "Use their Outfit"],
-                    ["member-and-leader", "Both", "Member and Leader"],
+                    ["member", t("calculator.roleMember"), t("calculator.roleMemberHint")],
+                    ["leader", t("calculator.roleLeader"), t("calculator.roleLeaderHint")],
+                    ["member-and-leader", t("calculator.roleBoth"), t("calculator.roleBothHint")],
                   ] as const satisfies ReadonlyArray<readonly [StoredOshiRole, string, string]>).map(([role, label, hint]) => (
                     <button
                       aria-pressed={oshiPreference.role === role}
@@ -1034,7 +1040,7 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
               </fieldset>
 
               <p className={styles.oshiHelp}>
-                The calculator evaluates your owned versions for the required role and builds the remaining slots around the selected one.
+                {t("calculator.oshiHelp")}
               </p>
             </div>
           )}
@@ -1043,28 +1049,28 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
         <section className={styles.requiredPanel} aria-labelledby="required-members-heading">
           <header>
             <div>
-              <span>Lineup locks</span>
-              <h2 id="required-members-heading">Required Members</h2>
-              <p>Keep specific owned cards in the five-Member formation.</p>
+              <span>{t("calculator.lineupLocks")}</span>
+              <h2 id="required-members-heading">{t("calculator.requiredMembersTitle")}</h2>
+              <p>{t("calculator.requiredMembersDesc")}</p>
             </div>
             <strong>{requiredMemberCardIds.length}/5</strong>
           </header>
           <div className={styles.requiredMemberGrid}>
             {selectedCards.length === 0 ? (
-              <p>Select owned cards first, then mark the cards to keep.</p>
+              <p>{t("calculator.selectCardsFirst")}</p>
             ) : selectedCards.map(({ card }) => {
               const required = requiredMemberIdSet.has(card.id);
               const duplicateTalentLock = !required && requiredMemberTalentIds.has(card.talentId);
               const lockCapacityReached = !required && requiredMemberCardIds.length >= 5;
               const disabledReason = duplicateTalentLock
-                ? "Only one card version per talent can be required."
+                ? t("calculator.btnSameTalent")
                 : lockCapacityReached
-                  ? "All five Member slots are already locked."
+                  ? t("calculator.btnFull")
                   : undefined;
               return (
                 <button
                   aria-describedby="required-members-help"
-                  aria-label={`${required ? "Unrequire" : "Require"} ${card.talentName}, ${card.title}`}
+                  aria-label={`${required ? t("calculator.btnUnrequire") : t("calculator.btnRequire")} ${card.talentName}, ${card.title}`}
                   aria-pressed={required}
                   className={styles.requiredMemberToggle}
                   disabled={!storageReady || duplicateTalentLock || lockCapacityReached}
@@ -1075,17 +1081,17 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
                 >
                   <Image alt="" height={42} src={card.artPath} width={42} />
                   <span><strong>{card.talentName}</strong><small>{card.title}</small></span>
-                  <b>{required ? "Required" : duplicateTalentLock ? "Same talent" : lockCapacityReached ? "Full" : "Require"}</b>
+                  <b>{required ? t("calculator.btnRequired") : duplicateTalentLock ? t("calculator.btnSameTalent") : lockCapacityReached ? t("calculator.btnFull") : t("calculator.btnRequire")}</b>
                 </button>
               );
             })}
           </div>
           <p className={styles.requiredHelp} id="required-members-help">
             {oshiCapacityConflict
-              ? "Your Oshi needs one remaining Member slot. Unlock one required card or require the Oshi card."
+              ? t("calculator.helpOshiConflict")
               : requiredMemberCardIds.length >= 5
-                ? "All five Member slots are locked. Unlock one to require a different card."
-              : "Only one version of each talent can be required; locked cards stay selected in every calculation."}
+                ? t("calculator.helpFullSlots")
+              : t("calculator.helpGeneral")}
           </p>
         </section>
 
@@ -1093,12 +1099,12 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
           {calculationState.status === "calculating" && (
             <section className={styles.calculatingPanel} aria-live="polite">
               <span className={styles.calculatingPulse} />
-              <div><strong>Evaluating your roster</strong><small>Comparing legal Leaders, Members, Bloom levels, Oshi constraints, and team links…</small></div>
+              <div><strong>{t("calculator.evaluatingTitle")}</strong><small>{t("calculator.evaluatingDesc")}</small></div>
             </section>
           )}
           {calculationState.status === "error" && (
             <section className={styles.calculationError} role="alert">
-              <strong>Calculation stopped</strong><p>{calculationState.message}</p><button onClick={runCalculation} type="button">Try again</button>
+              <strong>{t("calculator.calcStopped")}</strong><p>{calculationState.message}</p><button onClick={runCalculation} type="button">{t("calculator.tryAgain")}</button>
             </section>
           )}
           {calculationState.status === "done" && (
@@ -1109,23 +1115,23 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
 
       <aside className={styles.selectionRail} aria-label="Selected roster">
         <header>
-          <div><span>Your roster</span><strong>{selectedCards.length} {selectedCards.length === 1 ? "card" : "cards"}</strong></div>
-              {selectedCards.length > 0 && <button aria-label="Clear selected roster" onClick={() => {
+          <div><span>{t("calculator.yourRoster")}</span><strong>{selectedCards.length} {selectedCards.length === 1 ? t("common.card_one", { count: 1 }) : t("common.card_other", { count: selectedCards.length })}</strong></div>
+              {selectedCards.length > 0 && <button aria-label={t("calculator.clearAria")} onClick={() => {
                 invalidateCalculation();
                 setOwnedCards({});
                 setRequiredMemberCardIds([]);
                 setOshiPreference(emptyTeamRoster(rosterCommit).oshi);
-              }} type="button"><Trash2 aria-hidden="true" /> Clear</button>}
+              }} type="button"><Trash2 aria-hidden="true" /> {t("calculator.clearRoster")}</button>}
         </header>
 
         <div className={styles.talentGate} data-ready={talentsNeeded === 0}>
           {talentsNeeded === 0 ? <BadgeCheck aria-hidden="true" /> : <span>{uniqueTalentCount}</span>}
-          <div><strong>{talentsNeeded === 0 ? "Roster ready" : `${uniqueTalentCount} / 5 talents`}</strong><small>{talentsNeeded === 0 ? "Five unique Members available" : "A team cannot repeat a talent"}</small></div>
+          <div><strong>{talentsNeeded === 0 ? t("calculator.rosterReadyTitle") : t("calculator.talentsNeededTitle", { count: uniqueTalentCount })}</strong><small>{talentsNeeded === 0 ? t("calculator.rosterReadyDesc") : t("calculator.talentsNeededDesc")}</small></div>
         </div>
 
         <div className={styles.selectedList}>
           {selectedCards.length === 0 ? (
-            <p>Select a card to add it here.</p>
+            <p>{t("calculator.emptyRosterHint")}</p>
           ) : selectedCards.map(({ card, bloomStage }) => (
             <div className={styles.selectedCard} key={card.id}>
               <Image alt="" height={42} src={card.artPath} width={42} />
@@ -1139,16 +1145,16 @@ export function TeamCalculator({ cards, rosterCommit }: TeamCalculatorProps) {
         <button className={styles.calculateButton} disabled={!storageReady || (!canCalculate && calculationState.status !== "calculating")} onClick={runCalculation} type="button">
           <Calculator aria-hidden="true" /> {calculateLabel}
         </button>
-        <p className={styles.savedState}><Check aria-hidden="true" /> {storageStatus === "persistent" ? "Roster saved on this device" : storageStatus === "session" ? "Roster changes stay on this page" : "Loading saved roster…"}</p>
+        <p className={styles.savedState}><Check aria-hidden="true" /> {storageStatus === "persistent" ? t("calculator.storagePersistent") : storageStatus === "session" ? t("calculator.storageSession") : t("calculator.storageLoading")}</p>
       </aside>
 
       <div className={styles.mobileAction}>
         <div>
-          <strong>{selectedCards.length} {selectedCards.length === 1 ? "card" : "cards"} · {uniqueTalentCount}/5 talents</strong>
-          <span>{canCalculate ? "Ready to calculate" : talentsNeeded > 0 ? "Select five unique talents" : oshiCapacityConflict ? "Unlock a required Member" : "Choose your Oshi"}</span>
+          <strong>{selectedCards.length} {selectedCards.length === 1 ? t("common.card_one", { count: 1 }) : t("common.card_other", { count: selectedCards.length })} · {uniqueTalentCount}/5 talents</strong>
+          <span>{canCalculate ? t("calculator.mobileReady") : talentsNeeded > 0 ? t("calculator.mobileSelectTalents") : oshiCapacityConflict ? t("calculator.btnUnlockMember") : t("calculator.btnChooseOshi")}</span>
         </div>
         <button aria-label={calculateLabel} disabled={!storageReady || (!canCalculate && calculationState.status !== "calculating")} onClick={runCalculation} type="button">
-          <Calculator aria-hidden="true" /> {calculationState.status === "calculating" ? "Cancel" : oshiCapacityConflict ? "Unlock Member" : !oshiReady && talentsNeeded === 0 ? "Set Oshi" : "Calculate"}
+          <Calculator aria-hidden="true" /> {calculationState.status === "calculating" ? t("calculator.mobileBtnCancel") : oshiCapacityConflict ? t("calculator.mobileBtnUnlock") : !oshiReady && talentsNeeded === 0 ? t("calculator.mobileBtnSetOshi") : t("calculator.mobileBtnCalculate")}
         </button>
       </div>
 

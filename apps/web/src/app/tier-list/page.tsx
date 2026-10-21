@@ -8,9 +8,9 @@ import {
 } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { BarChart3 } from "lucide-react";
 
 import { TierListExplorer, type TierCard } from "@/components/tier-list-explorer";
+import { TierListHeader } from "./tier-list-header";
 
 export const metadata: Metadata = {
   title: "hololive Dreams tier list",
@@ -101,26 +101,11 @@ export default function TierListPage() {
 
   return (
     <div className="database-page tier-list-page">
-      <header className="database-heading">
-        <div className="database-heading-icon"><BarChart3 aria-hidden="true" /></div>
-        <div>
-          <p className="db-eyebrow">Tier list</p>
-          <h1>hololive Dreams tier list</h1>
-          <p>
-            Compare 4★ and 5★ cards as Members or Leader Outfits. Switch
-            context and investment lens, then filter the database.
-          </p>
-          <p className="db-heading-note">
-            Model tiers, published as provisional theorycraft against a frozen launch benchmark —
-            a relative comparison index, not an in-game Live Score rating.
-          </p>
-        </div>
-        <dl className="database-summary">
-          <div><dt>Roster</dt><dd>{publicData.counts.total}</dd></div>
-          <div><dt>Contexts</dt><dd>2</dd></div>
-          <div><dt>Lenses</dt><dd>{nativeRankingData.lenses.length}</dd></div>
-        </dl>
-      </header>
+      <TierListHeader
+        rosterCount={publicData.counts.total}
+        contextsCount={2}
+        lensesCount={nativeRankingData.lenses.length}
+      />
 
       <Suspense fallback={<div className="db-loading">Loading tier matrix…</div>}>
         <TierListExplorer

@@ -4,6 +4,7 @@ import type { NativeLens, NativeModelBand } from "@yagoo-dori/core";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
+import { useTranslation, type TranslationKey } from "@/lib/i18n";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowUpRight, CircleHelp, Eye, Grid3X3, RotateCcw, Search, SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
@@ -39,33 +40,37 @@ export type TierCard = {
   rankings: Record<NativeLens, TierPlacement>;
 };
 
-type TierListExplorerProps = {
-  memberCards: TierCard[];
-  leaderOutfits: TierCard[];
-  generations: string[];
-};
+interface TierListExplorerProps {
+  readonly memberCards: TierCard[];
+  readonly leaderOutfits: TierCard[];
+  readonly generations: string[];
+}
 
 const DEFAULT_LENS: NativeLens = "one-copy-maximum";
 type TierContext = "members" | "outfits";
 const DEFAULT_CONTEXT: TierContext = "members";
 
-const contexts: ReadonlyArray<{
-  id: TierContext;
-  label: string;
-  caption: string;
-}> = [
-  { id: "members", label: "Member cards", caption: "Active, Passive & Special kits" },
-  { id: "outfits", label: "Leader / Outfits", caption: "Leader effects and conditions" },
+interface ContextOption {
+  readonly id: TierContext;
+  readonly labelKey: TranslationKey;
+  readonly captionKey: TranslationKey;
+}
+
+const contexts: ReadonlyArray<ContextOption> = [
+  { id: "members", labelKey: "tierList.memberCards", captionKey: "tierList.memberCardsCaption" },
+  { id: "outfits", labelKey: "tierList.leaderOutfits", captionKey: "tierList.leaderOutfitsCaption" },
 ];
 
-const lenses: ReadonlyArray<{
-  id: NativeLens;
-  label: string;
-  caption: string;
-}> = [
-  { id: "one-copy-maximum", label: "Standard Manual", caption: "One copy · max non-dupe growth" },
-  { id: "low-investment", label: "Low Investment", caption: "Entry level" },
-  { id: "duplicate-enabled-ceiling", label: "Max Ceiling", caption: "Duplicate boosts enabled" },
+interface LensOption {
+  readonly id: NativeLens;
+  readonly labelKey: TranslationKey;
+  readonly captionKey: TranslationKey;
+}
+
+const lenses: ReadonlyArray<LensOption> = [
+  { id: "one-copy-maximum", labelKey: "tierList.lensStandardManual", captionKey: "tierList.lensStandardManualCaption" },
+  { id: "low-investment", labelKey: "tierList.lensLowInvestment", captionKey: "tierList.lensLowInvestmentCaption" },
+  { id: "duplicate-enabled-ceiling", labelKey: "tierList.lensMaxCeiling", captionKey: "tierList.lensMaxCeilingCaption" },
 ];
 
 const attributes = [
@@ -75,16 +80,18 @@ const attributes = [
   { value: "happy", label: "Happy" },
 ] as const;
 
-const bands: ReadonlyArray<{
-  id: NativeModelBand;
-  caption: string;
-}> = [
-  { id: "SS", caption: "Exceptional" },
-  { id: "S", caption: "Leading" },
-  { id: "A", caption: "Strong" },
-  { id: "B", caption: "Solid" },
-  { id: "C", caption: "Situational" },
-  { id: "D", caption: "Limited" },
+interface BandOption {
+  readonly id: NativeModelBand;
+  readonly captionKey: TranslationKey;
+}
+
+const bands: ReadonlyArray<BandOption> = [
+  { id: "SS", captionKey: "tierList.bandSS" },
+  { id: "S", captionKey: "tierList.bandS" },
+  { id: "A", captionKey: "tierList.bandA" },
+  { id: "B", captionKey: "tierList.bandB" },
+  { id: "C", captionKey: "tierList.bandC" },
+  { id: "D", captionKey: "tierList.bandD" },
 ];
 
 function isNativeLens(value: string | null): value is NativeLens {
@@ -112,26 +119,30 @@ function moveWithinTablist(event: ReactKeyboardEvent<HTMLElement>) {
   tabs[nextIndex]?.click();
 }
 
+interface CardTileProps {
+  readonly card: TierCard;
+  readonly context: TierContext;
+  readonly lens: NativeLens;
+  readonly reducedMotion: boolean;
+  readonly onQuickView: (card: TierCard) => void;
+}
+
 function CardTile({
   card,
   context,
   lens,
   reducedMotion,
   onQuickView,
-}: {
-  card: TierCard;
-  context: TierContext;
-  lens: NativeLens;
-  reducedMotion: boolean;
-  onQuickView: (card: TierCard) => void;
-}) {
+}: CardTileProps) {
+  const { t } = useTranslation();
   const placement = card.rankings[lens];
-  const entityLabel = context === "outfits" ? "Leader Outfit" : "Member card";
+  const entityLabel = context === "outfits" ? t("tierList.leaderOutfit") : t("tierList.memberCard");
   return (
     <motion.div className={`game-card-tile attribute-${card.attribute}`} layout={!reducedMotion}>
       <Link
+        className="cursor-pointer"
         href={`/cards/${card.slug}`}
-        aria-label={`${card.talentName}, ${card.title}, ${card.rarity} star ${card.attribute} ${entityLabel}, ${placement.tier} tier${card.isNew ? ", New" : ""}`}
+        aria-label={`${card.talentName}, ${card.title}, ${card.rarity} star ${card.attribute} ${entityLabel}, ${placement.tier} tier${card.isNew ? `, ${t("common.new")}` : ""}`}
       >
         <Image
           alt=""
@@ -140,12 +151,12 @@ function CardTile({
           src={card.artPath}
         />
         <span className="card-rarity">{card.rarity}★</span>
-        {card.isNew && <b className="tier-new-card-chip">New</b>}
+        {card.isNew && <b className="tier-new-card-chip">{t("common.new")}</b>}
         <i className="attribute-dot" aria-hidden="true" />
       </Link>
       <button
-        aria-label={`Quick view ${card.talentName}, ${card.title}`}
-        className="card-quick-view-button"
+        aria-label={t("tierList.quickView", { talent: card.talentName, title: card.title })}
+        className="card-quick-view-button cursor-pointer"
         onClick={() => onQuickView(card)}
         type="button"
       >
@@ -160,6 +171,7 @@ function CardTile({
 }
 
 export function TierListExplorer({ memberCards, leaderOutfits, generations }: TierListExplorerProps) {
+  const { t } = useTranslation();
   const reducedMotion = useReducedMotion() ?? false;
   const router = useRouter();
   const pathname = usePathname();
@@ -208,6 +220,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
 
   const groups = bands.map((band) => ({
     ...band,
+    caption: t(band.captionKey),
     cards: visible.filter((card) => card.rankings[lens].tier === band.id),
   }));
 
@@ -238,14 +251,15 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
         {contexts.map((item) => (
           <Link
             aria-selected={context === item.id}
+            className="cursor-pointer"
             href={filterHref("context", item.id, DEFAULT_CONTEXT)}
             key={item.id}
             onKeyDown={moveWithinTablist}
             role="tab"
             tabIndex={context === item.id ? 0 : -1}
           >
-            {item.label}
-            <span>{item.caption}</span>
+            {t(item.labelKey)}
+            <span>{t(item.captionKey)}</span>
           </Link>
         ))}
       </div>
@@ -254,14 +268,15 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
         {lenses.map((item) => (
           <Link
             aria-selected={lens === item.id}
+            className="cursor-pointer"
             href={filterHref("lens", item.id, DEFAULT_LENS)}
             key={item.id}
             onKeyDown={moveWithinTablist}
             role="tab"
             tabIndex={lens === item.id ? 0 : -1}
           >
-            {item.label}
-            <span>{item.caption}</span>
+            {t(item.labelKey)}
+            <span>{t(item.captionKey)}</span>
           </Link>
         ))}
       </div>
@@ -269,77 +284,94 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
       <div className="tier-filter-bar">
         <label className="card-search">
           <Search aria-hidden="true" />
-          <span className="sr-only">Search cards</span>
+          <span className="sr-only">{t("tierList.searchCards")}</span>
           <input
             onChange={(event) => setFilter("q", event.target.value, "")}
-            placeholder="Search cards or talents…"
+            placeholder={t("tierList.searchPlaceholder")}
             type="search"
             value={query}
           />
           {query && (
-            <button onClick={() => setFilter("q", "", "")} type="button" aria-label="Clear search">
+            <button
+              aria-label={t("common.clearSearch")}
+              className="cursor-pointer"
+              onClick={() => setFilter("q", "", "")}
+              type="button"
+            >
               <X aria-hidden="true" />
             </button>
           )}
         </label>
 
-        <div className="compact-filter" aria-label="Rarity filter">
+        <div className="compact-filter" aria-label={t("tierList.rarityFilter")}>
           {["all", "5", "4"].map((value) => (
             <button
               aria-pressed={rarity === value}
+              className="cursor-pointer"
               key={value}
               onClick={() => setFilter("rarity", value)}
               type="button"
             >
-              {value === "all" ? "All" : `${value}★`}
+              {value === "all" ? t("common.all") : `${value}★`}
             </button>
           ))}
         </div>
 
-        <div className="attribute-filter" aria-label="Attribute filter">
+        <div className="attribute-filter" aria-label={t("tierList.attributeFilter")}>
           {attributes.map((item) => (
             <button
               aria-pressed={attribute === item.value}
-              className={`attribute-${item.value}`}
+              className={`attribute-${item.value} cursor-pointer`}
               key={item.value}
               onClick={() => setFilter("attribute", item.value)}
               type="button"
             >
               {item.value !== "all" && <i aria-hidden="true" />}
-              {item.label}
+              {item.value === "all" ? t("catalog.allTypes") : item.label}
             </button>
           ))}
         </div>
 
         <label className="generation-filter">
           <SlidersHorizontal aria-hidden="true" />
-          <span className="sr-only">Generation</span>
+          <span className="sr-only">{t("tierList.generationFilter")}</span>
           <select
+            className="cursor-pointer"
             onChange={(event) => setFilter("generation", event.target.value)}
             value={generation}
           >
-            <option value="all">All generations</option>
+            <option value="all">{t("tierList.allGenerations")}</option>
             {generations.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
         </label>
 
         <button
-          className="clear-compact-filters"
+          className="clear-compact-filters cursor-pointer"
           disabled={activeFilterCount === 0}
           onClick={resetFilters}
           type="button"
         >
           <RotateCcw aria-hidden="true" />
-          Reset
+          {t("common.reset")}
           {activeFilterCount > 0 && <span>{activeFilterCount}</span>}
         </button>
       </div>
 
       <div className="tier-results-line" aria-live="polite">
-        <span><Grid3X3 aria-hidden="true" /> {visible.length} {context === "outfits" ? "Outfits" : visible.length === 1 ? "card" : "cards"} shown</span>
-        <p>{activeLens.label} · Manual · All Perfect · provisional model tiers</p>
+        <span>
+          <Grid3X3 aria-hidden="true" />{" "}
+          {context === "outfits"
+            ? t("tierList.outfitsShown", { count: visible.length })
+            : t("tierList.cardsShown", {
+                count: visible.length,
+                entity: visible.length === 1 ? "card" : "cards",
+              })}
+        </span>
+        <p>{t("tierList.modelTierSubtitle", { lens: t(activeLens.labelKey) })}</p>
         <div className="tier-results-actions">
-          <Link href="/methodology"><CircleHelp aria-hidden="true" /> How tiers work</Link>
+          <Link className="cursor-pointer" href="/methodology">
+            <CircleHelp aria-hidden="true" /> {t("tierList.howTiersWork")}
+          </Link>
         </div>
       </div>
 
@@ -371,9 +403,9 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                 ))}
                 {group.cards.length === 0 && (
                   <p className="empty-tier-band">
-                    {group.id === "SS" && "No current card clears the SS evidence gate — its absolute index requirement sits above every card's most optimistic reading, so S is the current effective top. See the methodology page."}
-                    {group.id === "D" && "The D evidence gate requires mostly definitely-negative contexts, which no current card shows — cards near the bottom publish as C instead. See the methodology page."}
-                    {group.id !== "SS" && group.id !== "D" && "No cards in this tier."}
+                    {group.id === "SS" && t("tierList.emptySS")}
+                    {group.id === "D" && t("tierList.emptyD")}
+                    {group.id !== "SS" && group.id !== "D" && t("tierList.emptyOther")}
                   </p>
                 )}
               </div>
@@ -394,8 +426,8 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
         {selectedCard && (
           <div className={`tier-quick-view-shell attribute-${selectedCard.attribute}`}>
             <button
-              aria-label="Close quick view"
-              className="tier-quick-view-close"
+              aria-label={t("tierList.closeQuickView")}
+              className="tier-quick-view-close cursor-pointer"
               onClick={() => quickViewRef.current?.close()}
               type="button"
             >
@@ -410,7 +442,7 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
               />
             </div>
             <div className="tier-quick-view-copy">
-              <p className="db-eyebrow">{context === "outfits" ? "Leader Outfit" : "Member card"}</p>
+              <p className="db-eyebrow">{context === "outfits" ? t("tierList.leaderOutfit") : t("tierList.memberCard")}</p>
               <h2 id="tier-quick-view-title">{selectedCard.talentName}</h2>
               <p className="tier-quick-view-title">{selectedCard.title}</p>
               <div className="tier-quick-view-tags">
@@ -418,13 +450,13 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                 <span>{selectedCard.attribute}</span>
                 <span>{selectedCard.rankings[lens].tier} tier</span>
                 <span>#{selectedCard.rankings[lens].rank}</span>
-                {selectedCard.isNew && <span>New</span>}
-                {selectedCard.rankings[lens].provisional && <span>Provisional</span>}
+                {selectedCard.isNew && <span>{t("common.new")}</span>}
+                {selectedCard.rankings[lens].provisional && <span>{t("tierList.provisional")}</span>}
               </div>
               <p className="tier-quick-view-index">
-                Model index {selectedCard.rankings[lens].index.central.toFixed(1)}
-                {" "}({selectedCard.rankings[lens].index.lower.toFixed(1)}–{selectedCard.rankings[lens].index.upper.toFixed(1)} range)
-                {" "}· {selectedCard.rankings[lens].matchedContexts.toLocaleString()} matched contexts vs the frozen launch cohort
+                {t("tierList.modelIndex")} {selectedCard.rankings[lens].index.central.toFixed(1)}
+                {" "}({selectedCard.rankings[lens].index.lower.toFixed(1)}–{selectedCard.rankings[lens].index.upper.toFixed(1)} {t("tierList.indexRange")})
+                {" "}· {selectedCard.rankings[lens].matchedContexts.toLocaleString()} {t("tierList.matchedContexts")}
               </p>
 
               {context === "members" ? (
@@ -442,12 +474,12 @@ export function TierListExplorer({ memberCards, leaderOutfits, generations }: Ti
                 </>
               ) : (
                 <div className="tier-quick-view-skills">
-                  <section><h3>Leader effect</h3><p>{selectedCard.mechanics.leader}</p></section>
+                  <section><h3>{t("tierList.leaderEffect")}</h3><p>{selectedCard.mechanics.leader}</p></section>
                 </div>
               )}
 
-              <Link className="tier-quick-view-link" href={`/cards/${selectedCard.slug}`}>
-                Open full card <ArrowUpRight aria-hidden="true" />
+              <Link className="tier-quick-view-link cursor-pointer" href={`/cards/${selectedCard.slug}`}>
+                {t("tierList.openFullCard")} <ArrowUpRight aria-hidden="true" />
               </Link>
             </div>
           </div>
