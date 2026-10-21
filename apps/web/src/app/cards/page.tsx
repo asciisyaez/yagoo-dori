@@ -1,9 +1,9 @@
 import { currentBanner, publicCards, publicCardsInGenerationOrder, publicData } from "@yagoo-dori/core";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { LibraryBig } from "lucide-react";
 
 import { CardCatalog, type CatalogCard } from "@/components/card-catalog";
+import { CardsHeader } from "./cards-header";
 
 export const metadata: Metadata = {
   title: "Cards and Leader Outfits",
@@ -31,19 +31,11 @@ export default function CardsPage() {
 
   return (
     <div className="database-page">
-      <header className="database-heading">
-        <div className="database-heading-icon"><LibraryBig aria-hidden="true" /></div>
-        <div>
-          <p className="db-eyebrow">Database / Cards & Outfits</p>
-          <h1>Cards and Leader Outfits</h1>
-          <p>Compare 4★ and 5★ Members, then switch to the Outfit view for Leader effects.</p>
-        </div>
-        <dl className="database-summary">
-          <div><dt>Total</dt><dd>{publicData.counts.total}</dd></div>
-          <div><dt>5★</dt><dd>{publicData.counts.fiveStar}</dd></div>
-          <div><dt>4★</dt><dd>{publicData.counts.fourStar}</dd></div>
-        </dl>
-      </header>
+      <CardsHeader
+        total={publicData.counts.total}
+        fiveStar={publicData.counts.fiveStar}
+        fourStar={publicData.counts.fourStar}
+      />
       <Suspense fallback={<div className="db-loading">Loading cards and Outfits…</div>}>
         <CardCatalog cards={cards} groups={groups} />
       </Suspense>

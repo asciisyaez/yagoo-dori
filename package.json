@@ -73,7 +73,8 @@
     "optimizer:shards:verify": "node scripts/verify-exact-shards.mjs data/native/exact-optimizer-shard-fixture-v1.json",
     "optimizer:verify:rejections": "node scripts/test-exact-verifier-rejections.mjs",
     "optimizer:shards:determinism": "node scripts/test-exact-shard-determinism.mjs",
-    "smoke:live": "node scripts/run-live-smoke.mjs"
+    "smoke:live": "node scripts/run-live-smoke.mjs",
+    "i18n:check": "node scripts/check-i18n.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0",

@@ -5,6 +5,7 @@ import "./database.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { I18nProviderWrapper } from "@/components/i18n-provider-wrapper";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { sitePath } from "@/lib/site-path";
@@ -45,14 +46,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={instrumentSans.variable} data-scroll-behavior="smooth">
       <body>
-        <a className="skip-link" href="#main-content">Skip to content</a>
-        <div className="app-frame">
-          <SiteHeader />
-          <div className="app-stage">
-            <main id="main-content" tabIndex={-1}>{children}</main>
-            <SiteFooter />
+        <I18nProviderWrapper>
+          <a className="skip-link" href="#main-content">Skip to content</a>
+          <div className="app-frame">
+            <SiteHeader />
+            <div className="app-stage">
+              <main id="main-content" tabIndex={-1}>{children}</main>
+              <SiteFooter />
+            </div>
           </div>
-        </div>
+        </I18nProviderWrapper>
       </body>
     </html>
   );

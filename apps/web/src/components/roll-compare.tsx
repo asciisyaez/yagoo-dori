@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
+import { useTranslation } from "@/lib/i18n";
 import {
   type BloomStage,
   loadTeamRoster,
@@ -101,24 +102,27 @@ function buildComparison(
   };
 }
 
-function verdictDetail(comparison: ComparisonResult): string {
+function verdictDetail(
+  comparison: ComparisonResult,
+  t: (key: import("@/lib/i18n").TranslationKey, vars?: Record<string, string | number>) => string,
+): string {
   if (comparison.forcedMember) {
-    return "This run requires the picked card as a Member. Acquiring it is optional: you can keep your owned team instead.";
+    return t("rollCompare.verdictForcedDetail");
   }
   const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
   if (pickedCardJoined && comparison.delta <= 0) {
-    return "The swap is neutral or worse under the model.";
+    return t("rollCompare.verdictNeutralOrWorse");
   }
   if (!pickedCardJoined) {
-    return "The second run did not use the picked card as a Member or Leader Outfit.";
+    return t("rollCompare.verdictNotUsed");
   }
   if (comparison.joinedAsMember && comparison.joinedAsLeader) {
-    return "The second run fielded the picked card as a Member and led with its Leader Outfit.";
+    return t("rollCompare.verdictBoth");
   }
   if (comparison.joinedAsMember) {
-    return "The second run included the picked card in its five-Member lineup.";
+    return t("rollCompare.verdictMember");
   }
-  return "The second run led with the picked card's Leader Outfit.";
+  return t("rollCompare.verdictLeader");
 }
 
 function ResultTeam({
@@ -130,6 +134,7 @@ function ResultTeam({
   result: TeamCalculatorResult;
   pickedCardId: string;
 }) {
+  const { t } = useTranslation();
   return (
     <article className={styles.teamColumn}>
       <header className={styles.teamColumnHeader}>
@@ -138,10 +143,13 @@ function ResultTeam({
           <h2>{result.leader.talentName} Leader Outfit</h2>
         </div>
         <div className={styles.utility}>
-          <span>Model utility</span>
+          <span>{t("rollCompare.modelUtility")}</span>
           <strong>{formatUtility(result.score.relativeUtility.central)}</strong>
           <small>
-            {formatUtility(result.score.relativeUtility.lower)}–{formatUtility(result.score.relativeUtility.upper)} range
+            {t("rollCompare.utilityRange", {
+              lower: formatUtility(result.score.relativeUtility.lower),
+              upper: formatUtility(result.score.relativeUtility.upper),
+            })}
           </small>
         </div>
       </header>
@@ -155,7 +163,12 @@ function ResultTeam({
           <Image alt="" fill sizes="132px" src={result.leader.illustrationPath} />
         </Link>
         <div className={styles.leaderCopy}>
-          <small>{result.leader.rarity}★ source card · Bloom {result.leader.sourceCardBloomStage}</small>
+          <small>
+            {t("rollCompare.sourceCard", {
+              rarity: result.leader.rarity,
+              bloom: result.leader.sourceCardBloomStage,
+            })}
+          </small>
           <strong>{result.leader.outfitName}</strong>
           <span>{result.leader.talentName}</span>
         </div>
@@ -163,8 +176,8 @@ function ResultTeam({
 
       <div className={styles.members}>
         <div className={styles.membersHeading}>
-          <span>Five Members</span>
-          <strong>Legal formation</strong>
+          <span>{t("rollCompare.fiveMembers")}</span>
+          <strong>{t("rollCompare.legalFormation")}</strong>
         </div>
         <div className={styles.memberGrid}>
           {result.members.map((member) => (
@@ -214,47 +227,59 @@ function DiffSection({
 }
 
 function ComparisonView({ comparison, pickedCard }: { comparison: ComparisonResult; pickedCard: RollCompareCard }) {
+  const { t } = useTranslation();
   comparison = comparison.memberTrial ?? comparison;
   const pickedCardJoined = comparison.joinedAsMember || comparison.joinedAsLeader;
   const improves = pickedCardJoined && comparison.delta > 0;
   const verdict = improves
-    ? `${pickedCard.talentName} joins your strongest found team`
-    : `${pickedCard.talentName} does not strengthen your team`;
+    ? t("rollCompare.verdictImproves", { talent: pickedCard.talentName })
+    : t("rollCompare.verdictDoesNotImprove", { talent: pickedCard.talentName });
 
   return (
     <section className={styles.resultPanel} aria-live="polite" aria-labelledby="roll-compare-result-heading">
       <div className={styles.verdict} data-improves={improves}>
         <div>
-          <span id="roll-compare-result-heading">Verdict</span>
-          {comparison.forcedMember && <small>Required Member comparison · signed swap difference</small>}
+          <span id="roll-compare-result-heading">{t("rollCompare.verdictHeading")}</span>
+          {comparison.forcedMember && <small>{t("rollCompare.verdictForcedMember")}</small>}
           <strong>{verdict}</strong>
-          <small>{verdictDetail(comparison)}</small>
+          <small>{verdictDetail(comparison, t)}</small>
         </div>
         <b>{formatSignedUtility(comparison.delta)} · {formatSignedPercent(comparison.deltaPercent)}</b>
       </div>
 
       <div className={styles.comparisonDisclosure}>
-        <p className={styles.disclosure}>Average performance across {comparison.baseline.corpus.chartCount} Expert charts · Board and Connect effects are not part of this objective</p>
+        <p className={styles.disclosure}>
+          {t("rollCompare.disclosureCharts", { count: comparison.baseline.corpus.chartCount })}
+        </p>
         {(comparison.baseline.search.resultClaim === "bounded-search" || comparison.hypothetical.search.resultClaim === "bounded-search") && (
-          <p className={styles.disclosure}>Both teams come from bounded standard-effort searches; treat very small differences as a tie.</p>
+          <p className={styles.disclosure}>{t("rollCompare.disclosureBounded")}</p>
         )}
-        <p className={styles.disclosure}>Relative team value, not a projected Live Score.</p>
+        <p className={styles.disclosure}>{t("rollCompare.disclosureRelative")}</p>
       </div>
 
       <div className={styles.columns}>
-        <ResultTeam label="Saved roster" pickedCardId={comparison.pickedCardId} result={comparison.baseline} />
-        <ResultTeam label={`With ${pickedCard.talentName}`} pickedCardId={comparison.pickedCardId} result={comparison.hypothetical} />
+        <ResultTeam label={t("rollCompare.savedRoster")} pickedCardId={comparison.pickedCardId} result={comparison.baseline} />
+        <ResultTeam label={t("rollCompare.withCard", { talent: pickedCard.talentName })} pickedCardId={comparison.pickedCardId} result={comparison.hypothetical} />
       </div>
 
       <div className={styles.diff}>
-        <DiffSection heading="Displaced from the five Members" members={comparison.displaced} emptyLabel="No Member displaced" />
-        <DiffSection heading="Stayed in the five Members" members={comparison.stayed} emptyLabel="No baseline Member stayed" />
+        <DiffSection
+          heading={t("rollCompare.displacedHeading")}
+          members={comparison.displaced}
+          emptyLabel={t("rollCompare.noDisplaced")}
+        />
+        <DiffSection
+          heading={t("rollCompare.stayedHeading")}
+          members={comparison.stayed}
+          emptyLabel={t("rollCompare.noStayed")}
+        />
       </div>
     </section>
   );
 }
 
 export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
+  const { t } = useTranslation();
   const searchParams = useSearchParams();
   const requestedCardParam = searchParams.get("card");
   const [ownedCards, setOwnedCards] = useState<Record<string, BloomStage>>({});
@@ -395,7 +420,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
     const oshiMember = baselineRequest.oshi && baselineRequest.oshi.role !== "leader" ? baselineRequest.oshi.talentId : null;
     if (requiredIds.length === 5 || requiredTalents.includes(card.talentId) ||
       (requiredIds.length === 4 && oshiMember && ![...requiredTalents, card.talentId].includes(oshiMember))) {
-      return { ...comparison, memberTrialReason: "Saved restrictions prevent this Member swap. Uncheck saved restrictions to compare it." };
+      return { ...comparison, memberTrialReason: t("rollCompare.memberTrialReason") };
     }
     // Evaluate the card even when acquiring it would leave the best team unchanged.
     // Legal incumbent swaps seed the required-card search; all are evaluated under
@@ -526,27 +551,27 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
   };
 
   if (!hydrated) {
-    return <div className={styles.loading}>Loading saved roster…</div>;
+    return <div className={styles.loading}>{t("rollCompare.loading")}</div>;
   }
 
   if (ownedTalentCount < 5) {
     return (
       <section className={styles.emptyState} aria-labelledby="roll-compare-empty-heading">
         <CircleAlert aria-hidden="true" />
-        <h2 id="roll-compare-empty-heading">Add more cards to compare a roll</h2>
+        <h2 id="roll-compare-empty-heading">{t("rollCompare.emptyHeading")}</h2>
         <p>
-          This tool compares against the saved roster on this device. Add at least five distinct talents in the team calculator, then return here to compare unowned cards.
+          {t("rollCompare.emptyDesc")}
         </p>
-        <Link href="/team-builder"><ArrowRight aria-hidden="true" /> Build your saved roster</Link>
+        <Link className="cursor-pointer" href="/team-builder"><ArrowRight aria-hidden="true" /> {t("rollCompare.buildRosterLink")}</Link>
       </section>
     );
   }
 
-  const compareLabel = calculationState.status === "calculating" ? "Cancel comparison" : "Compare teams";
+  const compareLabel = calculationState.status === "calculating" ? t("rollCompare.btnCancel") : t("rollCompare.btnCompare");
   const renderPickerCard = (card: RollCompareCard) => (
     <button
       aria-pressed={selectedCardId === card.id}
-      className={styles.pickerCard}
+      className={`${styles.pickerCard} cursor-pointer`}
       data-selected={selectedCardId === card.id}
       data-picker-card-id={card.id}
       key={card.id}
@@ -556,7 +581,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       <span className={styles.pickerArt}>
         <Image alt="" fill sizes="(max-width: 560px) 42vw, 150px" src={card.artPath} />
         <b className={styles.rarity}>{card.rarity}★</b>
-        {card.isNew && <b className={styles.newChip}>New</b>}
+        {card.isNew && <b className={styles.newChip}>{t("common.new")}</b>}
       </span>
       <span className={styles.pickerCopy}><strong>{card.talentName}</strong><span>{card.title}</span></span>
     </button>
@@ -567,16 +592,16 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       <section className={styles.targets} aria-labelledby="upgrade-targets-heading">
         <header className={styles.pickerHeader}>
           <div>
-            <p className={styles.panelEyebrow}>Your upgrade targets</p>
-            <h2 id="upgrade-targets-heading">Find your next team upgrade</h2>
-            <p>Compare every unowned card against your strongest found owned team. Each card is tested separately at Bloom 0, using the restriction settings below.</p>
+            <p className={styles.panelEyebrow}>{t("rollCompare.targetsEyebrow")}</p>
+            <h2 id="upgrade-targets-heading">{t("rollCompare.targetsHeading")}</h2>
+            <p>{t("rollCompare.targetsDesc")}</p>
           </div>
-          <button className={styles.compareButton} onClick={() => void runAllComparisons()} disabled={availableCards.length === 0 || (!batchRunning && rankings.length === availableCards.length)} type="button">
-            {batchRunning ? "Pause comparisons" : rankings.length > 0 && rankings.length < availableCards.length ? "Resume comparisons" : rankings.length === availableCards.length && availableCards.length > 0 ? "All cards compared" : "Compare all unowned cards"}
+          <button className={`${styles.compareButton} cursor-pointer`} onClick={() => void runAllComparisons()} disabled={availableCards.length === 0 || (!batchRunning && rankings.length === availableCards.length)} type="button">
+            {batchRunning ? t("rollCompare.btnPause") : rankings.length > 0 && rankings.length < availableCards.length ? t("rollCompare.btnResume") : rankings.length === availableCards.length && availableCards.length > 0 ? t("rollCompare.btnAllDone") : t("rollCompare.btnCompareAll")}
           </button>
         </header>
         <div className={styles.restrictions}>
-          <label>
+          <label className="cursor-pointer">
             <input type="checkbox" checked={respectRestrictions} onChange={(event) => {
               cancelCalculation();
               setRankings([]);
@@ -584,92 +609,203 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
               setBatchError(null);
               baselineResultCache.current = null;
               setRespectRestrictions(event.target.checked);
-            }} /> Respect saved Oshi and Member locks
+            }} /> {t("rollCompare.respectLocks")}
           </label>
-          <p>{respectRestrictions ? `${requiredMemberCardIds.length} of 5 Member slots locked` : "All Member slots open; saved Oshi restriction ignored"}{respectRestrictions && oshi ? ` · Oshi: ${cards.find((card) => card.talentId === oshi.talentId)?.talentName ?? oshi.talentId} (${oshi.role === "member" ? "Member" : oshi.role === "leader" ? "Leader Outfit" : "Member and Leader Outfit"})` : ""}.</p>
-          {respectRestrictions && requiredMemberCardIds.length > 0 && <p>Locked: {requiredMemberCardIds.map((id) => cardById.get(id)?.talentName).join(", ")}.</p>}
-          {respectRestrictions && requiredMemberCardIds.length === 5 && <p role="note">All five Members are locked. New cards can only improve the Leader Outfit. Uncheck this option to search for Member replacements; your saved team settings will be kept.</p>}
-          <p>Owned cards keep their saved Bloom levels. Every unowned card is tested at Bloom 0; a fresh copy may lose to your invested cards.</p>
+          <p>
+            {respectRestrictions
+              ? t("rollCompare.slotsLocked", { count: requiredMemberCardIds.length })
+              : t("rollCompare.allSlotsOpen")}
+            {respectRestrictions && oshi
+              ? ` · Oshi: ${cards.find((card) => card.talentId === oshi.talentId)?.talentName ?? oshi.talentId} (${
+                  oshi.role === "member"
+                    ? "Member"
+                    : oshi.role === "leader"
+                      ? "Leader Outfit"
+                      : "Member and Leader Outfit"
+                })`
+              : ""}.
+          </p>
+          {respectRestrictions && requiredMemberCardIds.length > 0 && (
+            <p>
+              {t("rollCompare.lockedList", {
+                names: requiredMemberCardIds.map((id) => cardById.get(id)?.talentName).join(", "),
+              })}
+            </p>
+          )}
+          {respectRestrictions && requiredMemberCardIds.length === 5 && (
+            <p role="note">{t("rollCompare.allSlotsLockedWarning")}</p>
+          )}
+          <p>{t("rollCompare.bloomNote")}</p>
         </div>
-        <p className={styles.disclosure}>Team utility across 30 Expert charts; Board and Connect effects excluded. Bounded searches find upgrades, but do not prove the global best. Small differences may be a tie. For non-upgrades, signed differences show the best found team requiring that card as a Member. You can keep your owned team instead.</p>
+        <p className={styles.disclosure}>{t("rollCompare.targetsDisclosure")}</p>
         <div className={styles.pickerControls}>
           <label className={styles.search}>
             <Search aria-hidden="true" />
-            <span className="sr-only">Search unowned cards</span>
+            <span className="sr-only">{t("rollCompare.searchAria")}</span>
             <input
               onChange={(event) => updateQuery(event.target.value)}
-              placeholder="Search talent or card title…"
+              placeholder={t("rollCompare.searchPlaceholder")}
               type="search"
               value={query}
             />
-            {query && <button aria-label="Clear card search" onClick={() => updateQuery("")} type="button"><X aria-hidden="true" /></button>}
+            {query && (
+              <button aria-label={t("common.clearSearch")} className="cursor-pointer" onClick={() => updateQuery("")} type="button">
+                <X aria-hidden="true" />
+              </button>
+            )}
           </label>
         </div>
-        <p>{cards.length} cards in the catalog · {cards.length - availableCards.length} owned · {availableCards.length} unowned. Owned cards are kept in your baseline team.</p>
-        <p role="status">{rankings.length} / {availableCards.length} compared · {availableCards.length - rankings.length} awaiting comparison{batchRunning ? " · Working in the background; you can pause at any time." : ""}</p>
-        {query && <p>{filteredCards.length} unowned cards match “{query}”. Search matches go first when you start or resume comparisons; the full unowned roster is still compared.</p>}
+        <p>
+          {t("rollCompare.catalogStats", {
+            total: cards.length,
+            owned: cards.length - availableCards.length,
+            unowned: availableCards.length,
+          })}
+        </p>
+        <p role="status">
+          {t("rollCompare.comparisonProgress", {
+            compared: rankings.length,
+            total: availableCards.length,
+            awaiting: availableCards.length - rankings.length,
+            suffix: batchRunning ? t("rollCompare.backgroundProgressSuffix") : "",
+          })}
+        </p>
+        {query && (
+          <p>
+            {t("rollCompare.searchMatchesNotice", {
+              count: filteredCards.length,
+              query,
+            })}
+          </p>
+        )}
         {batchRunning && <progress aria-label="Unowned cards compared" max={availableCards.length} value={rankings.length} />}
         {batchError && <p role="alert">{batchError} Completed comparisons are kept; resume to retry.</p>}
-        {batchBaseline && <details><summary>Your owned team · {formatUtility(batchBaseline.score.relativeUtility.central)} utility</summary><ResultTeam label="Owned baseline" result={batchBaseline} pickedCardId="" /></details>}
-        {rankings.length > 0 && <div className={styles.targetList}>
-          <p>{batchRunning || rankings.length < availableCards.length ? "Partial ranking · " : ""}{rankings.filter((row) => row.delta > 0).length} upgrades found. Largest team gains first. Select a result to pause and see the lineup and replacements.</p>
-          {!rankings.some((row) => {
-            const card = cardById.get(row.pickedCardId);
-            return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
-          }) && <p>No compared cards match your search yet.</p>}
-          {rankings.filter((row) => {
-            const card = cardById.get(row.pickedCardId);
-            return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
-          }).map((row) => {
-            const card = cardById.get(row.pickedCardId)!;
-            const shown = row.memberTrial ?? row;
-            return <button className={styles.targetRow} data-comparison-card-id={card.id} key={card.id} type="button" onClick={() => {
-              cancelCalculation();
-              setSelectedCardId(card.id);
-              writeCardParam(card.id);
-              setCalculationState({ status: "done", comparison: row });
-              window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({ behavior: "auto", block: "start" }));
-            }}>
-              <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
-              <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small><small>{row.delta > 0 ? `Replaces: ${shown.displaced.map((member) => member.talentName).join(", ") || "Leader Outfit only"}` : row.memberTrial ? `If used: replaces ${shown.displaced.map((member) => member.talentName).join(", ")}` : "Keep your owned team"}</small></span>
-              <span data-improves={row.delta > 0}><strong>{formatSignedPercent(shown.deltaPercent)}</strong><small>{formatSignedUtility(shown.delta)} utility</small><small>{row.delta > 0 ? "Upgrade found" : "No upgrade found"}</small>
-                {row.memberTrial && <small>{shown.delta < 0 ? "Weaker if used as Member" : "Ties if used as Member"}</small>}
-                {row.memberTrialReason && <small>{row.memberTrialReason}</small>}</span>
-            </button>;
-          })}
-        </div>}
-        {pendingCards.length > 0 && <details className={styles.pendingList} open={query.length > 0}>
-          <summary>{pendingCards.length} {query ? "matching cards" : "cards"} awaiting comparison</summary>
-          <p>These cards have not been evaluated yet. Compare one now, or start the full comparison above.</p>
-          <div className={styles.targetList}>{pendingCards.map((card) => <button className={styles.targetRow} data-pending-card-id={card.id} disabled={calculationState.status === "calculating" && selectedCardId === card.id} key={card.id} type="button" onClick={() => {
-            setSelectedCardId(card.id);
-            writeCardParam(card.id);
-            runComparison(card);
-          }}>
-            <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
-            <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small></span>
-            <span><strong>{calculationState.status === "calculating" && selectedCardId === card.id ? "Comparing…" : "Compare now"}</strong><small>Not compared yet</small></span>
-          </button>)}</div>
-        </details>}
-        {availableCards.length === 0 && <p>You own every available card.</p>}
+        {batchBaseline && (
+          <details>
+            <summary>
+              {t("rollCompare.ownedTeamSummary", {
+                utility: formatUtility(batchBaseline.score.relativeUtility.central),
+              })}
+            </summary>
+            <ResultTeam label={t("rollCompare.ownedBaseline")} result={batchBaseline} pickedCardId="" />
+          </details>
+        )}
+        {rankings.length > 0 && (
+          <div className={styles.targetList}>
+            <p>
+              {t("rollCompare.upgradesFound", {
+                prefix: batchRunning || rankings.length < availableCards.length ? t("rollCompare.partialRanking") : "",
+                count: rankings.filter((row) => row.delta > 0).length,
+              })}
+            </p>
+            {!rankings.some((row) => {
+              const card = cardById.get(row.pickedCardId);
+              return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
+            }) && <p>{t("rollCompare.noSearchMatchesYet")}</p>}
+            {rankings
+              .filter((row) => {
+                const card = cardById.get(row.pickedCardId);
+                return card && `${card.talentName} ${card.title}`.toLowerCase().includes(normalizedQuery);
+              })
+              .map((row) => {
+                const card = cardById.get(row.pickedCardId)!;
+                const shown = row.memberTrial ?? row;
+                return (
+                  <button
+                    className={`${styles.targetRow} cursor-pointer`}
+                    data-comparison-card-id={card.id}
+                    key={card.id}
+                    type="button"
+                    onClick={() => {
+                      cancelCalculation();
+                      setSelectedCardId(card.id);
+                      writeCardParam(card.id);
+                      setCalculationState({ status: "done", comparison: row });
+                      window.requestAnimationFrame(() => resultAnchor.current?.scrollIntoView({ behavior: "auto", block: "start" }));
+                    }}
+                  >
+                    <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
+                    <span>
+                      <strong>{card.talentName}</strong>
+                      <small>{card.rarity}★ · {card.title}</small>
+                      <small>
+                        {row.delta > 0
+                          ? t("rollCompare.replaces", {
+                              names: shown.displaced.map((member) => member.talentName).join(", ") || t("rollCompare.leaderOutfitOnly"),
+                            })
+                          : row.memberTrial
+                            ? t("rollCompare.ifUsedReplaces", {
+                                names: shown.displaced.map((member) => member.talentName).join(", "),
+                              })
+                            : t("rollCompare.keepOwnedTeam")}
+                      </small>
+                    </span>
+                    <span data-improves={row.delta > 0}>
+                      <strong>{formatSignedPercent(shown.deltaPercent)}</strong>
+                      <small>{formatSignedUtility(shown.delta)} utility</small>
+                      <small>{row.delta > 0 ? t("rollCompare.upgradeFound") : t("rollCompare.noUpgradeFound")}</small>
+                      {row.memberTrial && (
+                        <small>{shown.delta < 0 ? t("rollCompare.weakerIfUsed") : t("rollCompare.tiesIfUsed")}</small>
+                      )}
+                      {row.memberTrialReason && <small>{row.memberTrialReason}</small>}
+                    </span>
+                  </button>
+                );
+              })}
+          </div>
+        )}
+        {pendingCards.length > 0 && (
+          <details className={styles.pendingList} open={query.length > 0}>
+            <summary>
+              {t("rollCompare.awaitingCount", {
+                count: pendingCards.length,
+                entity: query ? t("rollCompare.matchingCardsEntity") : t("rollCompare.cardsEntity"),
+              })}
+            </summary>
+            <p>{t("rollCompare.awaitingDesc")}</p>
+            <div className={styles.targetList}>
+              {pendingCards.map((card) => (
+                <button
+                  className={`${styles.targetRow} cursor-pointer`}
+                  data-pending-card-id={card.id}
+                  disabled={calculationState.status === "calculating" && selectedCardId === card.id}
+                  key={card.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedCardId(card.id);
+                    writeCardParam(card.id);
+                    runComparison(card);
+                  }}
+                >
+                  <span className={styles.targetArt}><Image alt="" fill sizes="64px" src={card.artPath} /></span>
+                  <span><strong>{card.talentName}</strong><small>{card.rarity}★ · {card.title}</small></span>
+                  <span>
+                    <strong>{calculationState.status === "calculating" && selectedCardId === card.id ? t("rollCompare.comparing") : t("rollCompare.compareNow")}</strong>
+                    <small>{t("rollCompare.notComparedYet")}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </details>
+        )}
+        {availableCards.length === 0 && <p>{t("rollCompare.ownEveryCard")}</p>}
       </section>
       <section className={styles.picker} aria-labelledby="roll-compare-picker-heading">
         <header className={styles.pickerHeader}>
           <div>
-            <p className={styles.panelEyebrow}>Step 1 · Pick a card</p>
-            <h2 id="roll-compare-picker-heading">Choose an unowned Member card</h2>
-            <p>Recently added cards appear first, then cards in generation order. Search by talent or card title.</p>
+            <p className={styles.panelEyebrow}>{t("rollCompare.step1Eyebrow")}</p>
+            <h2 id="roll-compare-picker-heading">{t("rollCompare.step1Heading")}</h2>
+            <p>{t("rollCompare.step1Desc")}</p>
           </div>
-          <div className={styles.pickerCount}><strong>{availableCards.length}</strong> available</div>
+          <div className={styles.pickerCount}><strong>{availableCards.length}</strong> {t("rollCompare.availableCount", { count: availableCards.length })}</div>
         </header>
-
 
         <div className={styles.cardList}>
           {filteredCards.length > 0 ? (
             <>
               {recentlyAddedCards.length > 0 && (
                 <section aria-labelledby="recently-added-heading" className={styles.cardGroup}>
-                  <h3 className={styles.cardGroupHeading} id="recently-added-heading">Recently added</h3>
+                  <h3 className={styles.cardGroupHeading} id="recently-added-heading">{t("rollCompare.recentlyAdded")}</h3>
                   <div className={styles.cardGroupGrid}>{recentlyAddedCards.map(renderPickerCard)}</div>
                 </section>
               )}
@@ -677,7 +813,7 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
                 <div className={styles.cardGroupGrid}>{generationCards.map(renderPickerCard)}</div>
               )}
             </>
-          ) : <p className={styles.noMatches}>No unowned cards match that search.</p>}
+          ) : <p className={styles.noMatches}>{t("rollCompare.noUnownedMatches")}</p>}
         </div>
 
         {selectedCard && (
@@ -687,18 +823,26 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
               <h3>{selectedCard.talentName}</h3>
               <p>{selectedCard.title}</p>
               <div className={styles.selectionMeta}>
-                <span>{selectedCard.rarity}★ Member card</span>
-                {selectedCard.modelTier && <b className={styles.tierBadge}>Provisional model tier {selectedCard.modelTier}</b>}
+                <span>{t("rollCompare.memberCardBadge", { rarity: selectedCard.rarity })}</span>
+                {selectedCard.modelTier && <b className={styles.tierBadge}>{t("rollCompare.tierBadge", { tier: selectedCard.modelTier })}</b>}
               </div>
             </div>
-            <button aria-label="Clear picked card" className={styles.clearSelection} onClick={() => {
-              cancelCalculation();
-              setSelectedCardId(null);
-              writeCardParam(null);
-            }} type="button"><X aria-hidden="true" /></button>
+            <button
+              aria-label={t("rollCompare.clearCard")}
+              className={`${styles.clearSelection} cursor-pointer`}
+              onClick={() => {
+                cancelCalculation();
+                setSelectedCardId(null);
+                writeCardParam(null);
+              }}
+              type="button"
+            >
+              <X aria-hidden="true" />
+            </button>
             {selectedCard.modelTier && (
               <p className={styles.tierDisclosure}>
-                Model tiers, published as provisional theorycraft against a frozen launch benchmark — a relative comparison index, not an in-game Live Score rating. <Link href="/methodology">Methodology</Link>
+                {t("rollCompare.tierDisclaimer")}{" "}
+                <Link className="cursor-pointer" href="/methodology">{t("tierList.howTiersWork")}</Link>
               </p>
             )}
           </div>
@@ -706,9 +850,9 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
       </section>
 
       <div className={styles.compareBar}>
-        <p className={styles.compareNote}>Assumption: the picked card is one fresh copy at Bloom 0; it is added only for the second run.</p>
+        <p className={styles.compareNote}>{t("rollCompare.compareAssumption")}</p>
         <button
-          className={styles.compareButton}
+          className={`${styles.compareButton} cursor-pointer`}
           disabled={!selectedCard && calculationState.status !== "calculating"}
           onClick={() => runComparison()}
           type="button"
@@ -721,14 +865,14 @@ export function RollCompare({ cards, rosterCommit }: RollCompareProps) {
         {calculationState.status === "calculating" && (
           <section className={styles.calculatingPanel} aria-live="polite">
             <span className={styles.calculatingPulse} />
-            <div><strong>Comparing your teams</strong><small>Running the saved roster first, then the picked card at Bloom 0…</small></div>
+            <div><strong>{t("rollCompare.comparingTitle")}</strong><small>{t("rollCompare.comparingDesc")}</small></div>
           </section>
         )}
         {calculationState.status === "error" && (
           <section className={styles.calculationError} role="alert">
-            <strong>Calculation stopped</strong>
+            <strong>{t("rollCompare.calcStopped")}</strong>
             <p>{calculationState.message}</p>
-            <button className={styles.retryButton} onClick={() => runComparison()} type="button">Try again</button>
+            <button className={`${styles.retryButton} cursor-pointer`} onClick={() => runComparison()} type="button">{t("rollCompare.tryAgain")}</button>
           </section>
         )}
         {calculationState.status === "done" && selectedCard && (

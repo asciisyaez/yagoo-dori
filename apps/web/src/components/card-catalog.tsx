@@ -2,6 +2,7 @@
 
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteLink as Link } from "@/components/site-link";
+import { useTranslation } from "@/lib/i18n";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 
@@ -19,10 +20,16 @@ export type CatalogCard = {
   leaderDescription: string;
 };
 
-export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: string[] }) {
+interface CardCatalogProps {
+  readonly cards: CatalogCard[];
+  readonly groups: string[];
+}
+
+export function CardCatalog({ cards, groups }: CardCatalogProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { t } = useTranslation();
   const query = searchParams.get("q") ?? "";
   const rarity = searchParams.get("rarity") ?? "all";
   const attribute = searchParams.get("attribute") ?? "all";
@@ -61,65 +68,95 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
   return (
     <>
       <nav className="catalog-context-tabs" aria-label="Card database view">
-        <Link aria-current={view === "members" ? "page" : undefined} href={viewHref("members")}>
-          <span>Member cards</span><strong>{cards.length}</strong>
+        <Link
+          aria-current={view === "members" ? "page" : undefined}
+          className="cursor-pointer"
+          href={viewHref("members")}
+        >
+          <span>{t("catalog.memberCards")}</span><strong>{cards.length}</strong>
         </Link>
-        <Link aria-current={view === "outfits" ? "page" : undefined} href={viewHref("outfits")}>
-          <span>Leader Outfits</span><strong>{cards.length}</strong>
+        <Link
+          aria-current={view === "outfits" ? "page" : undefined}
+          className="cursor-pointer"
+          href={viewHref("outfits")}
+        >
+          <span>{t("catalog.leaderOutfits")}</span><strong>{cards.length}</strong>
         </Link>
       </nav>
 
       <div className="catalog-filter-bar">
         <label className="card-search">
           <Search aria-hidden="true" />
-          <span className="sr-only">Search {view === "outfits" ? "Leader Outfits" : "Member cards"}</span>
+          <span className="sr-only">
+            {view === "outfits" ? t("catalog.searchOutfits") : t("catalog.searchMemberCards")}
+          </span>
           <input
             onChange={(event) => setFilter("q", event.target.value, "")}
-            placeholder={view === "outfits" ? "Search Outfits or effects…" : "Search cards or talents…"}
+            placeholder={
+              view === "outfits"
+                ? t("catalog.searchOutfitsPlaceholder")
+                : t("catalog.searchCardsPlaceholder")
+            }
             type="search"
             value={query}
           />
           {query && (
-            <button aria-label="Clear search" onClick={() => setFilter("q", "", "")} type="button">
+            <button
+              aria-label={t("common.clearSearch")}
+              className="cursor-pointer"
+              onClick={() => setFilter("q", "", "")}
+              type="button"
+            >
               <X aria-hidden="true" />
             </button>
           )}
         </label>
-        <div className="compact-filter" aria-label="Rarity filter">
+        <div className="compact-filter" aria-label={t("catalog.rarityFilter")}>
           {["all", "5", "4"].map((value) => (
             <button
               aria-pressed={rarity === value}
+              className="cursor-pointer"
               key={value}
               onClick={() => setFilter("rarity", value)}
               type="button"
             >
-              {value === "all" ? "All" : `${value}★`}
+              {value === "all" ? t("common.all") : `${value}★`}
             </button>
           ))}
         </div>
         <label className="simple-select">
-          <span className="sr-only">Attribute</span>
-          <select value={attribute} onChange={(event) => setFilter("attribute", event.target.value)}>
-            <option value="all">All types</option>
+          <span className="sr-only">{t("catalog.attributeFilter")}</span>
+          <select
+            className="cursor-pointer"
+            onChange={(event) => setFilter("attribute", event.target.value)}
+            value={attribute}
+          >
+            <option value="all">{t("catalog.allTypes")}</option>
             <option value="cute">Cute</option>
             <option value="pure">Pure</option>
             <option value="happy">Happy</option>
           </select>
         </label>
         <label className="simple-select">
-          <span className="sr-only">Generation</span>
-          <select value={group} onChange={(event) => setFilter("group", event.target.value)}>
-            <option value="all">All generations</option>
+          <span className="sr-only">{t("catalog.generationFilter")}</span>
+          <select
+            className="cursor-pointer"
+            onChange={(event) => setFilter("group", event.target.value)}
+            value={group}
+          >
+            <option value="all">{t("catalog.allGenerations")}</option>
             {groups.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
         </label>
-        <span className="catalog-result-count">{visible.length} / {cards.length}</span>
+        <span className="catalog-result-count">
+          {t("catalog.resultCount", { visible: visible.length, total: cards.length })}
+        </span>
       </div>
 
       <div className={`real-card-catalog${view === "outfits" ? " leader-directory-grid" : ""}`}>
         {visible.map((card, index) => (
           <Link
-            className={`real-catalog-card${view === "outfits" ? " leader-directory-card" : ""} attribute-${card.attribute}`}
+            className={`real-catalog-card cursor-pointer${view === "outfits" ? " leader-directory-card" : ""} attribute-${card.attribute}`}
             href={`/cards/${card.slug}${view === "outfits" ? "#leader-outfit" : ""}`}
             key={card.id}
           >
@@ -132,13 +169,17 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
                 sizes="(max-width: 700px) 50vw, (max-width: 1200px) 33vw, 25vw"
                 src={card.illustrationPath}
               />
-              <i>{card.rarity}★{view === "outfits" ? " unlock" : ""}</i>
-              {card.isNew && <b className="new-card-chip">New</b>}
+              <i>{card.rarity}★{view === "outfits" ? ` ${t("catalog.unlockSuffix")}` : ""}</i>
+              {card.isNew && <b className="new-card-chip">{t("common.new")}</b>}
             </span>
             <span className="real-card-copy">
               <small><i aria-hidden="true" /> {card.attribute} · {card.groups.join(" + ")}</small>
               <strong>{view === "outfits" ? card.costumeName : card.talentName}</strong>
-              <span>{view === "outfits" ? `${card.talentName} · From ${card.title}` : card.title}</span>
+              <span>
+                {view === "outfits"
+                  ? `${card.talentName} · ${t("catalog.fromCard", { title: card.title })}`
+                  : card.title}
+              </span>
               {view === "outfits" && <em className="leader-skill-snippet">{card.leaderDescription}</em>}
             </span>
           </Link>
@@ -148,8 +189,10 @@ export function CardCatalog({ cards, groups }: { cards: CatalogCard[]; groups: s
       {visible.length === 0 && (
         <div className="empty-catalog">
           <Search aria-hidden="true" />
-          <h2>No matching {view === "outfits" ? "Outfits" : "cards"}</h2>
-          <p>Try a broader talent, effect, rarity, type, or generation.</p>
+          <h2>
+            {view === "outfits" ? t("catalog.noMatchingOutfits") : t("catalog.noMatchingCards")}
+          </h2>
+          <p>{t("catalog.noMatchingHint")}</p>
         </div>
       )}
     </>
