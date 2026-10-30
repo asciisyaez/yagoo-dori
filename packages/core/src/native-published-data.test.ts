@@ -18,9 +18,15 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "29963557c9ea6f2b1270837096a8ce8cf034c888";
+const PINNED_GUIDE_ROSTER_COMMIT = "70cbc0a485dc7b332f80404dd060254689e52450";
 
 const EXPECTED_GUIDE_IDENTITIES = [
+  {"anchorCardId": "card-00007-5-uniq-0096-00", "talentId": "chr-00007", "talentName": "Natsuiro Matsuri", "cardTitle": "Wolf's Sugary Trick", "leaders": {"premium": "card-00007-5-uniq-0096-00", "standard": "card-00007-5-uniq-0096-00", "accessible-4-star": "card-00007-4-cmmn-0000-00"}},
+  {"anchorCardId": "card-03007-5-uniq-0100-00", "talentId": "chr-03007", "talentName": "Vestia Zeta", "cardTitle": "Heartbeat Clinic", "leaders": {"premium": "card-03007-5-uniq-0100-00", "standard": "card-03007-5-uniq-0100-00", "accessible-4-star": "card-03007-4-cmmn-0000-00"}},
+  {"anchorCardId": "card-04015-5-uniq-0099-00", "talentId": "chr-04015", "talentName": "Nerissa Ravencroft", "cardTitle": "Bewitching Elixir", "leaders": {"premium": "card-04015-5-uniq-0099-00", "standard": "card-04015-5-uniq-0054-00", "accessible-4-star": "card-04015-4-cmmn-0000-00"}},
+  {"anchorCardId": "card-06004-5-uniq-0098-00", "talentId": "chr-06004", "talentName": "Juufuutei Raden", "cardTitle": "Noble Elegance", "leaders": {"premium": "card-06004-5-uniq-0098-00", "standard": "card-06004-5-uniq-0098-00", "accessible-4-star": "card-06004-4-cmmn-0000-00"}},
+  {"anchorCardId": "card-06005-5-uniq-0097-00", "talentId": "chr-06005", "talentName": "Todoroki Hajime", "cardTitle": "Jiangshi Midnight Waltz", "leaders": {"premium": "card-06005-5-uniq-0097-00", "standard": "card-06005-5-uniq-0097-00", "accessible-4-star": "card-06005-4-cmmn-0000-00"}},
+
   {
     "anchorCardId": "card-00027-5-uniq-0092-00",
     "talentId": "chr-00027",
@@ -170,8 +176,8 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Nekomata Okayu",
     cardTitle: "Parasol Stray Cat",
     leaders: {
-      premium: "card-00016-5-uniq-0076-00",
-      standard: "card-00016-5-uniq-0076-00",
+      premium: "card-00016-5-uniq-0014-00",
+      standard: "card-00016-5-uniq-0014-00",
       "accessible-4-star": "card-00016-4-cmmn-0000-00",
     },
   },
@@ -564,11 +570,11 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Dreamy Drop",
     leaderSkillId: "live_leader_skill-card-00016-4-cmmn-0000-00"
   },
-  "card-00016-5-uniq-0076-00": {
-    cardTitle: "Parasol Stray Cat",
-    costumeId: "cos-00016-uniq-0076-00",
-    costumeName: "Salty Breeze Runway",
-    leaderSkillId: "live_leader_skill-card-00016-5-uniq-0076-00"
+  "card-00016-5-uniq-0014-00": {
+    cardTitle: "Secret Post-Feast",
+    costumeId: "cos-00016-uniq-0014-00",
+    costumeName: "Wild Maid Neko",
+    leaderSkillId: "live_leader_skill-card-00016-5-uniq-0014-00"
   },
   "card-00017-4-cmmn-0000-00": {
     cardTitle: "Outlaw Puppy Rhyme",
@@ -875,10 +881,27 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeId: "cos-06003-uniq-0059-00",
     costumeName: "Executive Glam",
     leaderSkillId: "live_leader_skill-card-06003-5-uniq-0059-00"
-  }
+  },
+  "card-00007-4-cmmn-0000-00": {"cardTitle": "Sweet Cheeky Stage", "costumeId": "cos-00007-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-00007-4-cmmn-0000-00"},
+  "card-00007-5-uniq-0096-00": {"cardTitle": "Wolf's Sugary Trick", "costumeId": "cos-00007-uniq-0096-00", "costumeName": "Snuggly Soft Wolf", "leaderSkillId": "live_leader_skill-card-00007-5-uniq-0096-00"},
+  "card-03007-4-cmmn-0000-00": {"cardTitle": "Whimsical Glee", "costumeId": "cos-03007-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-03007-4-cmmn-0000-00"},
+  "card-03007-5-uniq-0100-00": {"cardTitle": "Heartbeat Clinic", "costumeId": "cos-03007-uniq-0100-00", "costumeName": "Sassy Nurse", "leaderSkillId": "live_leader_skill-card-03007-5-uniq-0100-00"},
+  "card-04015-4-cmmn-0000-00": {"cardTitle": "Dusk Nightingale", "costumeId": "cos-04015-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-04015-4-cmmn-0000-00"},
+  "card-04015-5-uniq-0054-00": {"cardTitle": "Echoes of Nocturne", "costumeId": "cos-04015-uniq-0054-00", "costumeName": "Graceful Onyx Raven", "leaderSkillId": "live_leader_skill-card-04015-5-uniq-0054-00"},
+  "card-04015-5-uniq-0099-00": {"cardTitle": "Bewitching Elixir", "costumeId": "cos-04015-uniq-0099-00", "costumeName": "Alluring Witch", "leaderSkillId": "live_leader_skill-card-04015-5-uniq-0099-00"},
+  "card-06004-4-cmmn-0000-00": {"cardTitle": "Cultural Performer", "costumeId": "cos-06004-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-06004-4-cmmn-0000-00"},
+  "card-06004-5-uniq-0098-00": {"cardTitle": "Noble Elegance", "costumeId": "cos-06004-uniq-0098-00", "costumeName": "Gothic Vampire", "leaderSkillId": "live_leader_skill-card-06004-5-uniq-0098-00"},
+  "card-06005-4-cmmn-0000-00": {"cardTitle": "She's the Boss", "costumeId": "cos-06005-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-06005-4-cmmn-0000-00"},
+  "card-06005-5-uniq-0097-00": {"cardTitle": "Jiangshi Midnight Waltz", "costumeId": "cos-06005-uniq-0097-00", "costumeName": "Supreme Jiangshi", "leaderSkillId": "live_leader_skill-card-06005-5-uniq-0097-00"},
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
+  "card-00007-5-uniq-0096-00",
+  "card-03007-5-uniq-0100-00",
+  "card-04015-5-uniq-0099-00",
+  "card-06004-5-uniq-0098-00",
+  "card-06005-5-uniq-0097-00",
+
   "card-00027-5-uniq-0092-00",
   "card-00032-5-uniq-0093-00",
   "card-03008-5-uniq-0095-00",
@@ -1037,7 +1060,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(132);
+    expect(referencedCardIds.size).toBe(138);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

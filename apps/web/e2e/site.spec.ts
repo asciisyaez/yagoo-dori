@@ -47,24 +47,23 @@ test("renders the exact unofficial-site disclaimer once per public page", async 
   }
 });
 
-test("homepage links the four Seaside Days cards and four distinct chapter windows", async ({ page }) => {
+test("homepage shows the five Halloween cards and event songs", async ({ page }) => {
   await page.goto("/", GOTO_OPTIONS);
-  const banner = page.getByRole("region", { name: "Overflowing Light and a Seaside Dress Code" });
+  const banner = page.getByRole("region", { name: "Our Halloween Fever!" });
   await expect(banner).toContainText("Featured banner");
-  await expect(banner).toContainText("19 Oct 2026, 11:00 JST");
-  await expect(banner.locator("li")).toHaveCount(4);
-  await expect(banner).toContainText("Spotlight event · 19 Oct, 20:00–27 Oct, 19:59 JST.");
-  await expect(banner).toContainText("29 Oct, 10:59");
-  await expect(page.getByText("至福のシーサイドデイズガチャ", { exact: true })).toBeVisible();
-  await expect(banner.locator(".current-banner-card")).toHaveCount(4);
-  for (const name of ["Tokoyami Towa", "Kaela Kovalskia", "Shishiro Botan", "Koseki Bijou"]) {
+  await expect(banner).toContainText("29 Oct 2026, 11:00 JST");
+  await expect(banner.locator("li")).toHaveCount(6);
+  await expect(banner).toContainText("Point rally event · 29 Oct, 12:00–4 Nov, 19:59 JST.");
+  await expect(banner).toContainText("6 Nov, 10:59");
+  await expect(page.getByText("変幻自在☆Cosplay Nightガチャ", { exact: true })).toBeVisible();
+  await expect(banner).toContainText("First 10-pull free on the standard banner; selectable pickup banner excluded.");
+  await expect(banner.locator(".current-banner-card")).toHaveCount(5);
+  for (const name of ["Natsuiro Matsuri", "Vestia Zeta", "Nerissa Ravencroft", "Juufuutei Raden", "Todoroki Hajime"]) {
     await expect(banner.locator(".current-banner-card").filter({ hasText: name })).toBeVisible();
   }
-  for (const title of ["Shallow Shadow", "Forge My Soul", "Amaryllis", "CORE//UNBREAKABLE"]) {
+  for (const title of ["KaienSpectacle", "ENDLESS FES", "Break It Down", "Sweetest Scarlet", "Miracle Palette", "BANZAI"]) {
     await expect(banner).toContainText(title);
   }
-  await expect(banner.locator("li").first()).toContainText("19 Oct, 20:00–21 Oct, 19:59 JST");
-  await expect(banner.locator("li").last()).toContainText("25 Oct, 20:00–27 Oct, 19:59 JST");
 });
 
 test("mobile drawer closes on Escape and returns focus to its trigger", async ({ isMobile, page }) => {
@@ -119,25 +118,25 @@ test("native tier contexts and lenses expose the full real 4-star and 5-star ros
     "aria-selected",
     "true",
   );
-  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(142);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
+  await expect(page.getByText("147 cards shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(147);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
   await expect(page.locator(".tier-ss .game-card-tile")).toHaveCount(0);
   await expect(page.locator(".tier-s .game-card-tile")).toHaveCount(24);
-  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(37);
-  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(27);
+  await expect(page.locator(".tier-a .game-card-tile")).toHaveCount(38);
+  await expect(page.locator(".tier-b .game-card-tile")).toHaveCount(31);
   await expect(page.locator(".tier-c .game-card-tile")).toHaveCount(54);
   await expect(page.locator(".tier-d .game-card-tile")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText("Theorycraft Beta");
 
   await page.getByRole("tab", { name: /Leader \/ Outfits/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)context=outfits(?:&|$)/);
-  await expect(page.getByText("142 Outfits shown", { exact: true })).toBeVisible();
-  await expect(page.locator(".game-card-tile")).toHaveCount(142);
-  await expect(page.locator(".tier-new-card-chip")).toHaveCount(4);
+  await expect(page.getByText("147 Outfits shown", { exact: true })).toBeVisible();
+  await expect(page.locator(".game-card-tile")).toHaveCount(147);
+  await expect(page.locator(".tier-new-card-chip")).toHaveCount(5);
 
   await page.getByRole("tab", { name: /Member cards/i }).click();
-  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("147 cards shown", { exact: true })).toBeVisible();
 
   await page.getByRole("tab", { name: /Low Investment/i }).click();
   await expect(page).toHaveURL(/(?:\?|&)lens=low-investment(?:&|$)/);
@@ -252,7 +251,7 @@ test("tier filters hydrate from a shareable deep link and survive reload", async
 
   await page.getByRole("button", { name: /^Reset/ }).click();
   await expect(page).toHaveURL(/\/tier-list\?lens=low-investment$/);
-  await expect(page.getByText("142 cards shown", { exact: true })).toBeVisible();
+  await expect(page.getByText("147 cards shown", { exact: true })).toBeVisible();
 });
 
 test("AZKi profile renders the pinned real illustration, stats, skills, and Outfit", async ({

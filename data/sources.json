@@ -297,5 +297,44 @@
     "verificationState": "verified",
     "confidence": 1,
     "notes": "Explicit Card/Costume/skill joins for the four Seaside Days cards, corroborated identities and skills against AppMedia 80492269/80492290/80492317/80492338 and Game8 833392/833391/833390/833389. Music/title rows join the four songs m0365-m0368; this does not advance the scoring chart corpus. Two independent stat-category disagreements are retained in the review queue."
+  },
+  {
+    "id": "source-gamebiz-halloween",
+    "title": "QualiArts Halloween Fever announcement",
+    "publisher": "GameBiz / QualiArts",
+    "url": "https://gamebiz.jp/news/434762",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-30",
+    "retrievedAt": "2026-10-30",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Official release: dates, five featured cards and six songs."
+  },
+  {
+    "id": "source-appmedia-halloween",
+    "title": "Cosplay Night gacha and event",
+    "publisher": "AppMedia",
+    "url": "https://appmedia.jp/hololive-dreams/80524675",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "retrieved 2026-10-30",
+    "retrievedAt": "2026-10-30",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Independent five-card and mechanics corroboration."
+  },
+  {
+    "id": "source-holodori-halloween",
+    "title": "HolodoriDB Halloween structured tables",
+    "publisher": "HolodoriDB",
+    "url": "https://github.com/HolodoriDB/holodori-db-eng-diff/tree/70cbc0a485dc7b332f80404dd060254689e52450",
+    "kind": "structured",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "70cbc0a485dc7b332f80404dd060254689e52450",
+    "retrievedAt": "2026-10-30",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Pinned Halloween cards, skills, costumes and English song titles."
   }
 ]

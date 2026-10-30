@@ -1,56 +1,72 @@
 {
   "schemaVersion": 1,
-  "id": "blissful-seaside-days-2026-10-19",
+  "id": "cosplay-night-2026-10-29",
   "status": "live",
-  "retrievedAt": "2026-10-19",
-  "eventName": "Overflowing Light and a Seaside Dress Code",
-  "gachaNameJa": "至福のシーサイドデイズガチャ",
-  "startsAt": "2026-10-19T02:00:00.000Z",
-  "endsAt": "2026-10-29T01:59:00.000Z",
-  "eventStartsAt": "2026-10-19T11:00:00.000Z",
-  "eventEndsAt": "2026-10-27T10:59:00.000Z",
+  "retrievedAt": "2026-10-30",
+  "eventName": "Our Halloween Fever!",
+  "gachaNameJa": "変幻自在☆Cosplay Nightガチャ",
+  "startsAt": "2026-10-29T02:00:00.000Z",
+  "endsAt": "2026-11-06T01:59:00.000Z",
+  "eventStartsAt": "2026-10-29T03:00:00.000Z",
+  "eventEndsAt": "2026-11-04T10:59:00.000Z",
   "featuredCardIds": [
-    "card-00027-5-uniq-0092-00",
-    "card-03008-5-uniq-0095-00",
-    "card-00032-5-uniq-0093-00",
-    "card-04014-5-uniq-0094-00"
+    "card-00007-5-uniq-0096-00",
+    "card-03007-5-uniq-0100-00",
+    "card-04015-5-uniq-0099-00",
+    "card-06004-5-uniq-0098-00",
+    "card-06005-5-uniq-0097-00"
   ],
   "eventTracks": [
     {
-      "talent": "Tokoyami Towa",
-      "songId": "m0365",
-      "title": "Shallow Shadow",
-      "startsAt": "2026-10-19T11:00:00.000Z",
-      "endsAt": "2026-10-21T10:59:00.000Z"
+      "talent": "All five",
+      "songId": "m0369",
+      "title": "KaienSpectacle",
+      "startsAt": null,
+      "endsAt": null
     },
     {
-      "talent": "Kaela Kovalskia",
-      "songId": "m0368",
-      "title": "Forge My Soul",
-      "startsAt": "2026-10-21T11:00:00.000Z",
-      "endsAt": "2026-10-23T10:59:00.000Z"
+      "talent": "Natsuiro Matsuri",
+      "songId": "m0551",
+      "title": "ENDLESS FES",
+      "startsAt": null,
+      "endsAt": null
     },
     {
-      "talent": "Shishiro Botan",
-      "songId": "m0366",
-      "title": "Amaryllis",
-      "startsAt": "2026-10-23T11:00:00.000Z",
-      "endsAt": "2026-10-25T10:59:00.000Z"
+      "talent": "Vestia Zeta",
+      "songId": "m0388",
+      "title": "Break It Down",
+      "startsAt": null,
+      "endsAt": null
     },
     {
-      "talent": "Koseki Bijou",
-      "songId": "m0367",
-      "title": "CORE//UNBREAKABLE",
-      "startsAt": "2026-10-25T11:00:00.000Z",
-      "endsAt": "2026-10-27T10:59:00.000Z"
+      "talent": "Nerissa Ravencroft",
+      "songId": "m0373",
+      "title": "Sweetest Scarlet",
+      "startsAt": null,
+      "endsAt": null
+    },
+    {
+      "talent": "Juufuutei Raden",
+      "songId": "m0372",
+      "title": "Miracle Palette",
+      "startsAt": null,
+      "endsAt": null
+    },
+    {
+      "talent": "Todoroki Hajime",
+      "songId": "m0371",
+      "title": "BANZAI",
+      "startsAt": null,
+      "endsAt": null
     }
   ],
   "sourceRefs": [
-    "source-gamebiz-seaside-days",
-    "source-appmedia-seaside-days",
-    "source-holodori-seaside-days"
+    "source-gamebiz-halloween",
+    "source-appmedia-halloween",
+    "source-holodori-halloween"
   ],
-  "transformation": "Join the four officially announced Members to explicit Card.json and Japanese title keys in ENG 29963557c9ea6f2b1270837096a8ce8cf034c888 / JPN d7d2712b764c26120b2c91058708d6bae738f3ad. Retain independently verified gacha/chapter windows. Numerical cards use pinned structured parameters and skills; song calculation inputs remain at their prior verified revision because current chart metadata is incomplete.",
-  "eventType": "spotlight",
-  "announcedMembers": []
+  "transformation": "Five announced Halloween cards and six event tracks joined to pinned ENG 70cbc0a485dc7b332f80404dd060254689e52450 and JPN e004fb6b8fc9aafefbde526d8e698a29c66818b5. Individual track windows are not supplied by the public announcement and remain null. Event title is an English translation of the official Japanese 私たちのHalloween Fever！.",
+  "eventType": "point-rally",
+  "announcedMembers": [],
+  "offerNote": "First 10-pull free on the standard banner; selectable pickup banner excluded."
 }

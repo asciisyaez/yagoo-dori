@@ -117,7 +117,7 @@ const GUIDES = [
   {
     talent: "Nekomata Okayu",
     cardTitle: "Parasol Stray Cat",
-    standardLeaderCardTitle: "Parasol Stray Cat",
+    standardLeaderCardTitle: "Secret Post-Feast",
     guideSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00-team-guide",
     cardSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00",
   },
@@ -256,6 +256,11 @@ const GUIDES = [
     "guideSlug": "koseki-bijou-beaming-sandcastle-card-04014-5-uniq-0094-00-team-guide",
     "cardSlug": "koseki-bijou-beaming-sandcastle-card-04014-5-uniq-0094-00"
   },
+  {"talent": "Natsuiro Matsuri", "cardTitle": "Wolf's Sugary Trick", "standardLeaderCardTitle": "Wolf's Sugary Trick", "guideSlug": "natsuiro-matsuri-wolf-s-sugary-trick-card-00007-5-uniq-0096-00-team-guide", "cardSlug": "natsuiro-matsuri-wolf-s-sugary-trick-card-00007-5-uniq-0096-00"},
+  {"talent": "Vestia Zeta", "cardTitle": "Heartbeat Clinic", "standardLeaderCardTitle": "Heartbeat Clinic", "guideSlug": "vestia-zeta-heartbeat-clinic-card-03007-5-uniq-0100-00-team-guide", "cardSlug": "vestia-zeta-heartbeat-clinic-card-03007-5-uniq-0100-00"},
+  {"talent": "Nerissa Ravencroft", "cardTitle": "Bewitching Elixir", "standardLeaderCardTitle": "Echoes of Nocturne", "guideSlug": "nerissa-ravencroft-bewitching-elixir-card-04015-5-uniq-0099-00-team-guide", "cardSlug": "nerissa-ravencroft-bewitching-elixir-card-04015-5-uniq-0099-00"},
+  {"talent": "Juufuutei Raden", "cardTitle": "Noble Elegance", "standardLeaderCardTitle": "Noble Elegance", "guideSlug": "juufuutei-raden-noble-elegance-card-06004-5-uniq-0098-00-team-guide", "cardSlug": "juufuutei-raden-noble-elegance-card-06004-5-uniq-0098-00"},
+  {"talent": "Todoroki Hajime", "cardTitle": "Jiangshi Midnight Waltz", "standardLeaderCardTitle": "Jiangshi Midnight Waltz", "guideSlug": "todoroki-hajime-jiangshi-midnight-waltz-card-06005-5-uniq-0097-00-team-guide", "cardSlug": "todoroki-hajime-jiangshi-midnight-waltz-card-06005-5-uniq-0097-00"},
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];

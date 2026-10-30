@@ -3,8 +3,8 @@
   "id": "patch-intake-manifest-v1",
   "methodologyVersion": "yd-patch-intake-v1",
   "retrievedAt": {
-    "public": "2026-10-19",
-    "mechanics": "2026-10-19",
+    "public": "2026-10-30",
+    "mechanics": "2026-10-30",
     "songs": "2026-10-19",
     "timelines": "2026-08-02"
   },
@@ -127,13 +127,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "assets": 142
+          "assets": 147
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "assets": 142
+          "assets": 147
         },
         "declared": {}
       }
@@ -146,13 +146,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "previews": 142
+          "previews": 147
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "previews": 142
+          "previews": 147
         },
         "declared": {}
       }
@@ -204,31 +204,31 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "charts": 120,
-          "unavailableCharts": 24
+          "charts": 131,
+          "unavailableCharts": 25
         },
         "declared": {
           "counts": {
-            "charts": 120,
-            "events": 118617,
-            "specialMarkers": 600,
-            "feverMarkers": 480,
-            "unavailableCharts": 24
+            "charts": 131,
+            "events": 128922,
+            "specialMarkers": 655,
+            "feverMarkers": 524,
+            "unavailableCharts": 25
           }
         }
       },
       "countsAfter": {
         "rows": {
-          "charts": 120,
-          "unavailableCharts": 24
+          "charts": 131,
+          "unavailableCharts": 25
         },
         "declared": {
           "counts": {
-            "charts": 120,
-            "events": 118617,
-            "specialMarkers": 600,
-            "feverMarkers": 480,
-            "unavailableCharts": 24
+            "charts": 131,
+            "events": 128922,
+            "specialMarkers": 655,
+            "feverMarkers": 524,
+            "unavailableCharts": 25
           }
         }
       }
@@ -243,12 +243,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 142
+          "cards": 147
         },
         "declared": {
           "coverage": {
-            "cards": 142,
-            "mappedCards": 142,
+            "cards": 147,
+            "mappedCards": 147,
             "unresolvedReferences": []
           }
         }
@@ -257,12 +257,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 142
+          "cards": 147
         },
         "declared": {
           "coverage": {
-            "cards": 142,
-            "mappedCards": 142,
+            "cards": 147,
+            "mappedCards": 147,
             "unresolvedReferences": []
           }
         }
@@ -277,30 +277,30 @@
       "countsBefore": {
         "rows": {
           "notes": 3,
-          "cards": 142
+          "cards": 147
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 88,
-            "total": 142,
-            "art": 142
+            "fiveStar": 93,
+            "total": 147,
+            "art": 147
           }
         }
       },
       "countsAfter": {
         "rows": {
           "notes": 3,
-          "cards": 142
+          "cards": 147
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 88,
-            "total": 142,
-            "art": 142
+            "fiveStar": 93,
+            "total": 147,
+            "art": 147
           }
         }
       }
@@ -385,13 +385,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "guides": 36
+          "guides": 41
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "guides": 36
+          "guides": 41
         },
         "declared": {}
       }
@@ -404,13 +404,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "entries": 533
+          "entries": 540
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "entries": 533
+          "entries": 540
         },
         "declared": {}
       }
@@ -523,6 +523,12 @@
       "talent": "Natsuiro Matsuri",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00007-5-uniq-0096-00",
+      "talent": "Natsuiro Matsuri",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-30"
     },
     {
       "id": "card-00010-4-cmmn-0000-00",
@@ -1023,6 +1029,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-03007-5-uniq-0100-00",
+      "talent": "Vestia Zeta",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-30"
+    },
+    {
       "id": "card-03008-4-cmmn-0000-00",
       "talent": "Kaela Kovalskia",
       "rarity": 4,
@@ -1197,6 +1209,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-04015-5-uniq-0099-00",
+      "talent": "Nerissa Ravencroft",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-30"
+    },
+    {
       "id": "card-04016-4-cmmn-0000-00",
       "talent": "Fuwawa Abyssgard",
       "rarity": 4,
@@ -1281,6 +1299,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-06004-5-uniq-0098-00",
+      "talent": "Juufuutei Raden",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-30"
+    },
+    {
       "id": "card-06005-4-cmmn-0000-00",
       "talent": "Todoroki Hajime",
       "rarity": 4,
@@ -1291,6 +1315,12 @@
       "talent": "Todoroki Hajime",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-06005-5-uniq-0097-00",
+      "talent": "Todoroki Hajime",
+      "rarity": 5,
+      "firstSeenAt": "2026-10-30"
     }
   ],
   "idempotence": {
@@ -1304,10 +1334,10 @@
     ]
   },
   "testCountPinFiles": [],
-  "deterministicDigest": "6ea3dcc19fb252e8bd114b1e650449a4175a4959fd7a2678dc444d89d2827756",
+  "deterministicDigest": "94eac80d7d954ea46fcc084011d321002cedb7a7e7d1a9d3e1c292d74e8213c5",
   "runtimeMetadata": {
-    "generatedAt": "2026-10-19T11:30:10.201Z",
-    "elapsedMilliseconds": 56051,
+    "generatedAt": "2026-10-30T16:20:41.070Z",
+    "elapsedMilliseconds": 63492,
     "changedDatasetCount": 0,
     "timelineStageError": "Error: Failed to read chart API revision: 404"
   }

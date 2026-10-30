@@ -4,7 +4,7 @@
   "methodologyVersion": "yd-holomem-board-1.0.0",
   "mechanics": {
     "path": "data/generated/holodori-mechanics.json",
-    "sha256": "c09f5d3c9a4ee340a02060d5f3e26efaad1df80dc3f2342703e16a231968d971"
+    "sha256": "1d9c8d8e3fffb4eabdbcd0ed4fae472971bf55b01e25546fbefec4ae284dd33a"
   },
   "adjacency": {
     "ruleId": "board-derived-adjacency",
@@ -91,5 +91,5 @@
     "Unit-Connect independence is user-confirmed, not source-documented; only cross-board exclusivity is corroborated.",
     "Other modeling assumptions are explicitly labeled."
   ],
-  "modelHash": "199cbcdc9e8f4e30ecfdd72dda124aad94eca69e371a28f77b412c59bbb80a3a"
+  "modelHash": "bece6adb8b091191586839753a113d1da6da0c3eab96a615a13a903950992602"
 }

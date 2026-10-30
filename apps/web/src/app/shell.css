@@ -485,7 +485,7 @@ select {
 .announced-banner-schedule p { color: var(--yd-muted); font-size: 0.8rem; }
 .announced-banner-schedule ul {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding: 0;
   list-style: none;
@@ -570,7 +570,7 @@ select {
 
 .current-banner-cards {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.5rem;
   align-items: end;
   padding: 0.75rem;

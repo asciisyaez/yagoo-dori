@@ -223,6 +223,14 @@
     "data/generated/native-guides.json|With 2 or more Advent Members, Grants Score Support Effect of 12% to 2 Advent Members.|score": {
       "disposition": "allowed-scoped",
       "justification": "Pinned level-2 Seaside Bijou passive wording, independently corroborated: Score Support names the in-game effect with an explicit two-Advent condition and two-Advent recipient limit; it does not claim a calculated Live Score."
+    },
+    "data/generated/native-guides.json|With 2 or more ReGLOSS Members, Grants Score Support Effect of 9% to 2 ReGLOSS Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Raden passive skill level text (9%), corroborated by Game8 839029; Score Support is an in-game effect conditioned on two ReGLOSS Members and capped at two recipients, not a Live Score claim."
+    },
+    "data/generated/native-guides.json|With 2 or more ReGLOSS Members, Grants Score Support Effect of 12% to 2 ReGLOSS Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Raden passive skill level text (12%), corroborated by Game8 839029; Score Support is an in-game effect conditioned on two ReGLOSS Members and capped at two recipients, not a Live Score claim."
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "retrievedAt": "2026-10-19",
+  "retrievedAt": "2026-10-30",
   "source": {
     "page": "https://appmedia.jp/hololive-dreams",
     "label": "AppMedia public Member-card pages",
@@ -19,9 +19,9 @@
     }
   },
   "expectedCounts": {
-    "cards": 142,
-    "icons": 142,
-    "illustrations": 142
+    "cards": 147,
+    "icons": 147,
+    "illustrations": 147
   },
   "assets": [
     {
@@ -5008,6 +5008,181 @@
         "height": 1165,
         "bytes": 149378,
         "sha256": "53a29bea1744d33f214caf40c6e3820a51efe605d7670444ddc632f479b56923"
+      }
+    },
+    {
+      "cardId": "card-06004-5-uniq-0098-00",
+      "talentId": "chr-06004",
+      "talentNameJa": "儒烏風亭らでん",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-30",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-06004-5-uniq-0098-00",
+        "talentId": "chr-06004",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80524516",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/191518_73xw6.webp",
+        "localPath": "/game/cards/card-06004-5-uniq-0098-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 13838,
+        "sha256": "24f4c59187a1791ec50c942680ea998c58af85c588bbcc16631f08b3957de380"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-06004-5-uniq-0098-00",
+        "talentId": "chr-06004",
+        "sourcePage": "https://game8.jp/hololive-dreams/839029",
+        "sourceUrl": "https://img.game8.jp/13144296/6f1aa26e56d428b05f1a5c7763bf6a0d.webp/original",
+        "localPath": "/game/illustrations/card-06004-5-uniq-0098-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 2100,
+        "height": 1165,
+        "bytes": 108154,
+        "sha256": "38dface06c00a6d7a83c6513868e7844f5317c4e8c13db01ad7057fa274583c1"
+      }
+    },
+    {
+      "cardId": "card-00007-5-uniq-0096-00",
+      "talentId": "chr-00007",
+      "talentNameJa": "夏色まつり",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-30",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00007-5-uniq-0096-00",
+        "talentId": "chr-00007",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80518837",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/211757_4mqxz.webp",
+        "localPath": "/game/cards/card-00007-5-uniq-0096-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 81700,
+        "sha256": "6c6fa5b24d1d62e68f0643bf31fe170e0baf9c67504eb5990776503350ae1bb3"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00007-5-uniq-0096-00",
+        "talentId": "chr-00007",
+        "sourcePage": "https://game8.jp/hololive-dreams/839033",
+        "sourceUrl": "https://img.game8.jp/13144294/ac25630be862766504c8439cea8c3b37.webp/original",
+        "localPath": "/game/illustrations/card-00007-5-uniq-0096-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 2100,
+        "height": 1165,
+        "bytes": 119734,
+        "sha256": "46b93f4f657dfa775847858541aa9a5ed5d66a927c52ec152927c6d013cce875"
+      }
+    },
+    {
+      "cardId": "card-04015-5-uniq-0099-00",
+      "talentId": "chr-04015",
+      "talentNameJa": "ネリッサ・レイヴンクロフト",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-30",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-04015-5-uniq-0099-00",
+        "talentId": "chr-04015",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80518846",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/211755_vheda.webp",
+        "localPath": "/game/cards/card-04015-5-uniq-0099-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 96980,
+        "sha256": "102b474fc6cbbdbe05d4177e0e50da92ece44c8b2b0844c749470252f398b963"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-04015-5-uniq-0099-00",
+        "talentId": "chr-04015",
+        "sourcePage": "https://game8.jp/hololive-dreams/839031",
+        "sourceUrl": "https://img.game8.jp/13144297/e1606607da78cf68c6710ebf2823da68.webp/original",
+        "localPath": "/game/illustrations/card-04015-5-uniq-0099-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 2100,
+        "height": 1165,
+        "bytes": 143084,
+        "sha256": "8dba3b014e8a54c3e1e31664e53d25d6e40100e44965c406249fdefd4fb2a289"
+      }
+    },
+    {
+      "cardId": "card-06005-5-uniq-0097-00",
+      "talentId": "chr-06005",
+      "talentNameJa": "轟はじめ",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-30",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-06005-5-uniq-0097-00",
+        "talentId": "chr-06005",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80524519",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/191519_j9nt1.webp",
+        "localPath": "/game/cards/card-06005-5-uniq-0097-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 17928,
+        "sha256": "36ecb2aeb5c2ca686ac75c2b637de39a9235893eb297e7fbc1a503236d8021ce"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-06005-5-uniq-0097-00",
+        "talentId": "chr-06005",
+        "sourcePage": "https://game8.jp/hololive-dreams/839030",
+        "sourceUrl": "https://img.game8.jp/13144298/779cdd2cca421594375aed90aefe7d86.webp/original",
+        "localPath": "/game/illustrations/card-06005-5-uniq-0097-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 2100,
+        "height": 1165,
+        "bytes": 257538,
+        "sha256": "6ae71865c2c9a7bd898bb399996608518d1901081c2aa6e9a71e1cde3c897958"
+      }
+    },
+    {
+      "cardId": "card-03007-5-uniq-0100-00",
+      "talentId": "chr-03007",
+      "talentNameJa": "ベスティア・ゼータ",
+      "status": "downloaded",
+      "retrievedAt": "2026-10-30",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03007-5-uniq-0100-00",
+        "talentId": "chr-03007",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80518819",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/10/211756_7zh9i.webp",
+        "localPath": "/game/cards/card-03007-5-uniq-0100-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 93360,
+        "sha256": "d166efd03014a4c2b585d946648825a9c3fb851230ed7f009e946ecafa1575e5"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03007-5-uniq-0100-00",
+        "talentId": "chr-03007",
+        "sourcePage": "https://game8.jp/hololive-dreams/839032",
+        "sourceUrl": "https://img.game8.jp/13144295/16c0a175e16ad785433ccc281fcaed44.webp/original",
+        "localPath": "/game/illustrations/card-03007-5-uniq-0100-00.webp",
+        "retrievedAt": "2026-10-30",
+        "matchMethod": "explicit-media-override",
+        "width": 2100,
+        "height": 1165,
+        "bytes": 129742,
+        "sha256": "f6a96da00654140b29fc908ce17ab1db4bc63be74b805cc41af6d1575b8942bc"
       }
     }
   ]

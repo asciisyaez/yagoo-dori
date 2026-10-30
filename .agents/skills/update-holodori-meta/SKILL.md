@@ -61,6 +61,8 @@ reuse an old hash to imply current timing, placement, or order evidence. Re-run
 `timelines:project:guides` after this reconciliation so guide projections contain
 only exact or explicitly unavailable rows.
 
+When the current chart table omits hashes, run `NODE_USE_ENV_PROXY=1 node scripts/audit-current-chart-availability.mjs --retrieved-at=<YYYY-MM-DD>` to record every current key as timing-unavailable, separately from the historical scoring corpus. `pnpm data:validate` verifies the current pin and key accounting. If the upstream fields return, the audit fails for manual review rather than silently retaining unavailable claims.
+
 If an existing benchmark chart's upstream hash changes and the current timing
 asset is unavailable, do not re-pin the stale exact row. Replace that benchmark
 entry with a stable, exact, pre-cutoff chart, regenerate the compact benchmark

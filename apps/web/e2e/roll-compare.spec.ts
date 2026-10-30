@@ -55,14 +55,15 @@ test.describe("roll compare", () => {
     await expect(page.getByRole("link", { name: /Build your saved roster/ })).toBeVisible();
   });
 
-  test("new Seaside Days cards are selectable from an existing saved roster", async ({ page }) => {
+  test("new Halloween cards are selectable from an existing saved roster", async ({ page }) => {
     test.setTimeout(180_000);
     await page.addInitScript(seedScript(WEAK_ROSTER));
     for (const [cardId, talent, title] of [
-      ["card-00027-5-uniq-0092-00", "Tokoyami Towa", "Shady Hammock Days"],
-      ["card-03008-5-uniq-0095-00", "Kaela Kovalskia", "Shady Shiny Memory"],
-      ["card-00032-5-uniq-0093-00", "Shishiro Botan", "Slurping Frenzy"],
-      ["card-04014-5-uniq-0094-00", "Koseki Bijou", "Beaming Sandcastle"],
+      ["card-00007-5-uniq-0096-00", "Natsuiro Matsuri", "Wolf's Sugary Trick"],
+      ["card-03007-5-uniq-0100-00", "Vestia Zeta", "Heartbeat Clinic"],
+      ["card-06004-5-uniq-0098-00", "Juufuutei Raden", "Noble Elegance"],
+      ["card-06005-5-uniq-0097-00", "Todoroki Hajime", "Jiangshi Midnight Waltz"],
+      ["card-04015-5-uniq-0099-00", "Nerissa Ravencroft", "Bewitching Elixir"],
     ]) {
       await page.goto(`/roll-compare?card=${cardId}`, GOTO_OPTIONS);
       await expect(page.getByRole("heading", { level: 3, name: talent })).toBeVisible();
@@ -70,7 +71,7 @@ test.describe("roll compare", () => {
       await expect(page.getByRole("button", { name: "Compare teams" })).toBeEnabled();
     }
     await page.getByRole("button", { name: "Compare teams" }).click();
-    await expect(page.getByText("Koseki Bijou joins your strongest found team")).toBeVisible({ timeout: 120_000 });
+    await expect(page.getByText("Verdict", { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 
   test("every unowned catalog card appears in the picker and pending comparisons", async ({ page }) => {

@@ -130,6 +130,7 @@ export default function HomePage() {
             <p>
               {bannerCards.length + currentBanner.announcedMembers.length} new ★5 cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
             </p>
+            {currentBanner.offerNote && <p>{currentBanner.offerNote}</p>}
             <dl className="current-banner-stats">
               <div><dt>Featured</dt><dd>{bannerCards.length + currentBanner.announcedMembers.length} × ★5</dd></div>
               <div><dt>New event tracks</dt><dd>{currentBanner.eventTracks.length}</dd></div>
@@ -160,13 +161,13 @@ export default function HomePage() {
         </div>
         <div className="announced-banner-schedule">
           <h3>New event tracks</h3>
-          <p>{currentBanner.eventType === "spotlight" ? "Spotlight event" : "Score-challenge event"} · {eventStartLabel}–{eventEndLabel} JST.</p>
+          <p>{currentBanner.eventType === "spotlight" ? "Spotlight event" : currentBanner.eventType === "point-rally" ? "Point rally event" : "Score-challenge event"} · {eventStartLabel}–{eventEndLabel} JST.</p>
           <ul>
             {currentBanner.eventTracks.map((track) => (
               <li key={track.talent}>
                 <strong>{track.talent}</strong>
                 <span>{track.title}</span>
-                <time dateTime={track.startsAt}>{chapterDateFormatter.format(new Date(track.startsAt))}–{chapterDateFormatter.format(new Date(track.endsAt))} JST</time>
+                {currentBanner.eventType === "spotlight" && track.startsAt && track.endsAt && <time dateTime={track.startsAt}>{chapterDateFormatter.format(new Date(track.startsAt))}–{chapterDateFormatter.format(new Date(track.endsAt))} JST</time>}
               </li>
             ))}
           </ul>

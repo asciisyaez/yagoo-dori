@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "snapshotId": "2026-10-19-yd-native-2.1",
-  "generatedAt": "2026-10-19T07:00:00.000Z",
-  "dataRetrievedAt": "2026-10-19",
-  "rosterCommit": "29963557c9ea6f2b1270837096a8ce8cf034c888",
+  "snapshotId": "2026-10-30-yd-native-2.1",
+  "generatedAt": "2026-10-30T06:00:00.000Z",
+  "dataRetrievedAt": "2026-10-30",
+  "rosterCommit": "70cbc0a485dc7b332f80404dd060254689e52450",
   "mechanicsVersion": "yd-mechanics-catalog-1.2.0",
   "methodologyVersion": "yd-native-ranking-2.1.0",
   "evaluatorVersion": "yd-native-utility-1.0.0",
@@ -3236,8 +3236,74 @@
           ]
         },
         {
-          "cardId": "card-04014-5-uniq-0094-00",
+          "cardId": "card-04015-5-uniq-0099-00",
           "rank": 45,
+          "modelBand": "A",
+          "tier": "A",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 51.93748,
+            "central": 103.60213,
+            "upper": 166.48836
+          },
+          "metrics": {
+            "G": {
+              "lower": -34.263,
+              "central": 3.2937,
+              "upper": 42.8041
+            },
+            "P": {
+              "lower": -20.5369,
+              "central": 9.2222,
+              "upper": 63.3852
+            },
+            "B": {
+              "lower": 0,
+              "central": 45,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.1091,
+              "central": 3.2231,
+              "upper": 45.6447
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.499,
+          "contextDispersion": 2.895,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 280,
+            "referenceContexts": 196,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              58,
+              54,
+              57,
+              56,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-04014-5-uniq-0094-00",
+          "rank": 46,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3303,7 +3369,7 @@
         },
         {
           "cardId": "card-06002-5-uniq-0066-00",
-          "rank": 46,
+          "rank": 47,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3369,7 +3435,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0012-00",
-          "rank": 47,
+          "rank": 48,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3436,7 +3502,7 @@
         },
         {
           "cardId": "card-03009-5-uniq-0088-00",
-          "rank": 48,
+          "rank": 49,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3503,7 +3569,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0095-00",
-          "rank": 49,
+          "rank": 50,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3569,7 +3635,7 @@
         },
         {
           "cardId": "card-00016-5-uniq-0014-00",
-          "rank": 50,
+          "rank": 51,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3636,7 +3702,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0010-00",
-          "rank": 51,
+          "rank": 52,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3702,7 +3768,7 @@
         },
         {
           "cardId": "card-00017-5-uniq-0015-00",
-          "rank": 52,
+          "rank": 53,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3769,7 +3835,7 @@
         },
         {
           "cardId": "card-04007-5-uniq-0047-00",
-          "rank": 53,
+          "rank": 54,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3835,7 +3901,7 @@
         },
         {
           "cardId": "card-03001-5-uniq-0033-00",
-          "rank": 54,
+          "rank": 55,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3901,7 +3967,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0075-00",
-          "rank": 55,
+          "rank": 56,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -3967,7 +4033,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 56,
+          "rank": 57,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4033,7 +4099,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0091-00",
-          "rank": 57,
+          "rank": 58,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4100,7 +4166,7 @@
         },
         {
           "cardId": "card-00026-5-uniq-0021-00",
-          "rank": 58,
+          "rank": 59,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4167,7 +4233,7 @@
         },
         {
           "cardId": "card-04010-5-uniq-0049-00",
-          "rank": 59,
+          "rank": 60,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4234,7 +4300,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0044-00",
-          "rank": 60,
+          "rank": 61,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4300,7 +4366,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 61,
+          "rank": 62,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -4367,7 +4433,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 62,
+          "rank": 63,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4434,7 +4500,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 63,
+          "rank": 64,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4500,7 +4566,7 @@
         },
         {
           "cardId": "card-00039-5-uniq-0032-00",
-          "rank": 64,
+          "rank": 65,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4567,7 +4633,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 65,
+          "rank": 66,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4634,7 +4700,7 @@
         },
         {
           "cardId": "card-00011-5-uniq-0011-00",
-          "rank": 66,
+          "rank": 67,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4700,7 +4766,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0082-00",
-          "rank": 67,
+          "rank": 68,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4766,7 +4832,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 68,
+          "rank": 69,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4832,7 +4898,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 69,
+          "rank": 70,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4898,7 +4964,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 70,
+          "rank": 71,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -4965,7 +5031,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 71,
+          "rank": 72,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5030,8 +5096,74 @@
           ]
         },
         {
+          "cardId": "card-00007-5-uniq-0096-00",
+          "rank": 73,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 50.52418,
+            "central": 101.96504,
+            "upper": 164.34347
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.177,
+              "central": 2.6047,
+              "upper": 41.3455
+            },
+            "P": {
+              "lower": -21.9015,
+              "central": 7.6148,
+              "upper": 61.9317
+            },
+            "B": {
+              "lower": 0,
+              "central": 35.61,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.9372,
+              "central": 2.6409,
+              "upper": 44.2166
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.351,
+          "contextDispersion": 2.587,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              55,
+              55,
+              57,
+              54
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 72,
+          "rank": 74,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5098,7 +5230,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 73,
+          "rank": 75,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5165,7 +5297,7 @@
         },
         {
           "cardId": "card-00005-5-uniq-0006-00",
-          "rank": 74,
+          "rank": 76,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5231,7 +5363,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 75,
+          "rank": 77,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5297,7 +5429,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 76,
+          "rank": 78,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5363,7 +5495,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 77,
+          "rank": 79,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5430,7 +5562,7 @@
         },
         {
           "cardId": "card-06002-5-uniq-0058-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5496,7 +5628,7 @@
         },
         {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 79,
+          "rank": 81,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5562,7 +5694,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 80,
+          "rank": 82,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5628,8 +5760,74 @@
           ]
         },
         {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 83,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 49.05783,
+            "central": 100.6156,
+            "upper": 163.73521
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.2192,
+              "central": 1.841,
+              "upper": 40.0552
+            },
+            "P": {
+              "lower": -23.0154,
+              "central": 7.4327,
+              "upper": 63.7918
+            },
+            "B": {
+              "lower": 0,
+              "central": 23.02,
+              "upper": 99.65
+            },
+            "E": {
+              "lower": -39.0379,
+              "central": 1.8046,
+              "upper": 42.7301
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.39,
+          "contextDispersion": 2.793,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 196,
+            "currentContexts": 82,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              53,
+              58,
+              54,
+              56
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 81,
+          "rank": 84,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5695,7 +5893,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 82,
+          "rank": 85,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5762,7 +5960,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 83,
+          "rank": 86,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5828,7 +6026,7 @@
         },
         {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 84,
+          "rank": 87,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5894,7 +6092,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 85,
+          "rank": 88,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -5960,8 +6158,74 @@
           ]
         },
         {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 89,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 47.79567,
+            "central": 99.62992,
+            "upper": 163.17795
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.7521,
+              "central": 1.4176,
+              "upper": 40.4271
+            },
+            "P": {
+              "lower": -24.7234,
+              "central": 6.2123,
+              "upper": 61.3632
+            },
+            "B": {
+              "lower": 0,
+              "central": 20.07,
+              "upper": 100
+            },
+            "E": {
+              "lower": -39.5878,
+              "central": 1.4247,
+              "upper": 43.3284
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.364,
+          "contextDispersion": 2.506,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 279,
+            "referenceContexts": 195,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              56,
+              57,
+              53,
+              58,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-03004-5-uniq-0036-00",
-          "rank": 86,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -6027,7 +6291,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0051-00",
-          "rank": 87,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -6092,8 +6356,74 @@
           ]
         },
         {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 92,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 49.13999,
+            "central": 98.40155,
+            "upper": 155.36791
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.04,
+              "central": -0.0995,
+              "upper": 34.86
+            },
+            "P": {
+              "lower": -23.1913,
+              "central": 7.3258,
+              "upper": 56.0247
+            },
+            "B": {
+              "lower": 0,
+              "central": 19.06,
+              "upper": 98.57
+            },
+            "E": {
+              "lower": -38.8363,
+              "central": -0.2125,
+              "upper": 37.2243
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.386,
+          "contextDispersion": 4.002,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              53,
+              58,
+              54,
+              56,
+              57
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 88,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -6159,7 +6489,7 @@
         },
         {
           "cardId": "card-00026-4-cmmn-0000-00",
-          "rank": 89,
+          "rank": 94,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6226,7 +6556,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 90,
+          "rank": 95,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6293,7 +6623,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 91,
+          "rank": 96,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6359,7 +6689,7 @@
         },
         {
           "cardId": "card-00030-4-cmmn-0000-00",
-          "rank": 92,
+          "rank": 97,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6425,7 +6755,7 @@
         },
         {
           "cardId": "card-04012-4-cmmn-0000-00",
-          "rank": 93,
+          "rank": 98,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6491,7 +6821,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 94,
+          "rank": 99,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6558,7 +6888,7 @@
         },
         {
           "cardId": "card-00023-4-cmmn-0000-00",
-          "rank": 95,
+          "rank": 100,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6625,7 +6955,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 101,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6692,7 +7022,7 @@
         },
         {
           "cardId": "card-00018-4-cmmn-0000-00",
-          "rank": 97,
+          "rank": 102,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6759,7 +7089,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 98,
+          "rank": 103,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6825,7 +7155,7 @@
         },
         {
           "cardId": "card-00012-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 104,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6891,7 +7221,7 @@
         },
         {
           "cardId": "card-00014-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 105,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -6957,7 +7287,7 @@
         },
         {
           "cardId": "card-03002-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 106,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7023,7 +7353,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 102,
+          "rank": 107,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7090,7 +7420,7 @@
         },
         {
           "cardId": "card-04001-4-cmmn-0000-00",
-          "rank": 103,
+          "rank": 108,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7156,7 +7486,7 @@
         },
         {
           "cardId": "card-00011-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 109,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7222,7 +7552,7 @@
         },
         {
           "cardId": "card-00001-4-cmmn-0000-00",
-          "rank": 105,
+          "rank": 110,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7288,7 +7618,7 @@
         },
         {
           "cardId": "card-00027-4-cmmn-0000-00",
-          "rank": 106,
+          "rank": 111,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7355,7 +7685,7 @@
         },
         {
           "cardId": "card-00004-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 112,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7422,7 +7752,7 @@
         },
         {
           "cardId": "card-00034-4-cmmn-0000-00",
-          "rank": 108,
+          "rank": 113,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7489,7 +7819,7 @@
         },
         {
           "cardId": "card-00019-4-cmmn-0000-00",
-          "rank": 109,
+          "rank": 114,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7556,7 +7886,7 @@
         },
         {
           "cardId": "card-00037-4-cmmn-0000-00",
-          "rank": 110,
+          "rank": 115,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7622,7 +7952,7 @@
         },
         {
           "cardId": "card-04017-4-cmmn-0000-00",
-          "rank": 111,
+          "rank": 116,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7688,7 +8018,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 112,
+          "rank": 117,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7754,7 +8084,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 113,
+          "rank": 118,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7821,7 +8151,7 @@
         },
         {
           "cardId": "card-03009-4-cmmn-0000-00",
-          "rank": 114,
+          "rank": 119,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7887,7 +8217,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 115,
+          "rank": 120,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -7954,7 +8284,7 @@
         },
         {
           "cardId": "card-00035-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8020,7 +8350,7 @@
         },
         {
           "cardId": "card-03005-4-cmmn-0000-00",
-          "rank": 117,
+          "rank": 122,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8087,7 +8417,7 @@
         },
         {
           "cardId": "card-03004-4-cmmn-0000-00",
-          "rank": 118,
+          "rank": 123,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8154,7 +8484,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 119,
+          "rank": 124,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8220,7 +8550,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 120,
+          "rank": 125,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8286,7 +8616,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 121,
+          "rank": 126,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8352,7 +8682,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 122,
+          "rank": 127,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8418,7 +8748,7 @@
         },
         {
           "cardId": "card-03007-4-cmmn-0000-00",
-          "rank": 123,
+          "rank": 128,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8484,7 +8814,7 @@
         },
         {
           "cardId": "card-00002-4-cmmn-0000-00",
-          "rank": 124,
+          "rank": 129,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8551,7 +8881,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 125,
+          "rank": 130,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8618,7 +8948,7 @@
         },
         {
           "cardId": "card-00006-4-cmmn-0000-00",
-          "rank": 126,
+          "rank": 131,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8685,7 +9015,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 127,
+          "rank": 132,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8751,7 +9081,7 @@
         },
         {
           "cardId": "card-04007-4-cmmn-0000-00",
-          "rank": 128,
+          "rank": 133,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8817,7 +9147,7 @@
         },
         {
           "cardId": "card-04015-4-cmmn-0000-00",
-          "rank": 129,
+          "rank": 134,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8884,7 +9214,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 130,
+          "rank": 135,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -8950,7 +9280,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 131,
+          "rank": 136,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9016,7 +9346,7 @@
         },
         {
           "cardId": "card-00032-4-cmmn-0000-00",
-          "rank": 132,
+          "rank": 137,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9083,7 +9413,7 @@
         },
         {
           "cardId": "card-00015-4-cmmn-0000-00",
-          "rank": 133,
+          "rank": 138,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9149,7 +9479,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 134,
+          "rank": 139,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9215,7 +9545,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 135,
+          "rank": 140,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9281,7 +9611,7 @@
         },
         {
           "cardId": "card-06005-4-cmmn-0000-00",
-          "rank": 136,
+          "rank": 141,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9347,7 +9677,7 @@
         },
         {
           "cardId": "card-00007-4-cmmn-0000-00",
-          "rank": 137,
+          "rank": 142,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9413,7 +9743,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 138,
+          "rank": 143,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9479,7 +9809,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 139,
+          "rank": 144,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9545,7 +9875,7 @@
         },
         {
           "cardId": "card-00016-4-cmmn-0000-00",
-          "rank": 140,
+          "rank": 145,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9612,7 +9942,7 @@
         },
         {
           "cardId": "card-04003-4-cmmn-0000-00",
-          "rank": 141,
+          "rank": 146,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -9678,7 +10008,7 @@
         },
         {
           "cardId": "card-03001-4-cmmn-0000-00",
-          "rank": 142,
+          "rank": 147,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -12686,8 +13016,74 @@
           ]
         },
         {
-          "cardId": "card-04014-5-uniq-0094-00",
+          "cardId": "card-04015-5-uniq-0099-00",
           "rank": 45,
+          "modelBand": "A",
+          "tier": "A",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 51.97503,
+            "central": 103.59456,
+            "upper": 166.43229
+          },
+          "metrics": {
+            "G": {
+              "lower": -34.265,
+              "central": 3.2915,
+              "upper": 42.8007
+            },
+            "P": {
+              "lower": -20.5388,
+              "central": 9.2201,
+              "upper": 63.3812
+            },
+            "B": {
+              "lower": 0,
+              "central": 45,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.1091,
+              "central": 3.2231,
+              "upper": 45.6447
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.499,
+          "contextDispersion": 2.895,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 280,
+            "referenceContexts": 196,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              58,
+              54,
+              57,
+              56,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-04014-5-uniq-0094-00",
+          "rank": 46,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -12753,7 +13149,7 @@
         },
         {
           "cardId": "card-06002-5-uniq-0066-00",
-          "rank": 46,
+          "rank": 47,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -12819,7 +13215,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0012-00",
-          "rank": 47,
+          "rank": 48,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -12886,7 +13282,7 @@
         },
         {
           "cardId": "card-03009-5-uniq-0088-00",
-          "rank": 48,
+          "rank": 49,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -12953,7 +13349,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0095-00",
-          "rank": 49,
+          "rank": 50,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13019,7 +13415,7 @@
         },
         {
           "cardId": "card-00016-5-uniq-0014-00",
-          "rank": 50,
+          "rank": 51,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13086,7 +13482,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0010-00",
-          "rank": 51,
+          "rank": 52,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13152,7 +13548,7 @@
         },
         {
           "cardId": "card-00017-5-uniq-0015-00",
-          "rank": 52,
+          "rank": 53,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13219,7 +13615,7 @@
         },
         {
           "cardId": "card-04007-5-uniq-0047-00",
-          "rank": 53,
+          "rank": 54,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13285,7 +13681,7 @@
         },
         {
           "cardId": "card-03001-5-uniq-0033-00",
-          "rank": 54,
+          "rank": 55,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13351,7 +13747,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0075-00",
-          "rank": 55,
+          "rank": 56,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13417,7 +13813,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 56,
+          "rank": 57,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13483,7 +13879,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0091-00",
-          "rank": 57,
+          "rank": 58,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13550,7 +13946,7 @@
         },
         {
           "cardId": "card-00026-5-uniq-0021-00",
-          "rank": 58,
+          "rank": 59,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13617,7 +14013,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 59,
+          "rank": 60,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13684,7 +14080,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0044-00",
-          "rank": 60,
+          "rank": 61,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13750,7 +14146,7 @@
         },
         {
           "cardId": "card-04010-5-uniq-0049-00",
-          "rank": 61,
+          "rank": 62,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -13817,7 +14213,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 62,
+          "rank": 63,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -13884,7 +14280,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 63,
+          "rank": 64,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -13950,7 +14346,7 @@
         },
         {
           "cardId": "card-00039-5-uniq-0032-00",
-          "rank": 64,
+          "rank": 65,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14017,7 +14413,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 65,
+          "rank": 66,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14084,7 +14480,7 @@
         },
         {
           "cardId": "card-00011-5-uniq-0011-00",
-          "rank": 66,
+          "rank": 67,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14150,7 +14546,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0082-00",
-          "rank": 67,
+          "rank": 68,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14216,7 +14612,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 68,
+          "rank": 69,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14282,7 +14678,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 69,
+          "rank": 70,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14348,7 +14744,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 70,
+          "rank": 71,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14415,7 +14811,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 71,
+          "rank": 72,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14480,8 +14876,74 @@
           ]
         },
         {
+          "cardId": "card-00007-5-uniq-0096-00",
+          "rank": 73,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 50.56893,
+            "central": 101.96383,
+            "upper": 164.29638
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.1746,
+              "central": 2.6067,
+              "upper": 41.3483
+            },
+            "P": {
+              "lower": -21.8985,
+              "central": 7.6171,
+              "upper": 61.9349
+            },
+            "B": {
+              "lower": 0,
+              "central": 35.61,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.9372,
+              "central": 2.6409,
+              "upper": 44.2166
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.35,
+          "contextDispersion": 2.587,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              55,
+              55,
+              57,
+              54
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 72,
+          "rank": 74,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14548,7 +15010,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 73,
+          "rank": 75,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14615,7 +15077,7 @@
         },
         {
           "cardId": "card-00005-5-uniq-0006-00",
-          "rank": 74,
+          "rank": 76,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14681,7 +15143,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 75,
+          "rank": 77,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14747,7 +15209,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 76,
+          "rank": 78,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14813,7 +15275,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 77,
+          "rank": 79,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14880,7 +15342,7 @@
         },
         {
           "cardId": "card-06002-5-uniq-0058-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -14946,7 +15408,7 @@
         },
         {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 79,
+          "rank": 81,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15012,7 +15474,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 80,
+          "rank": 82,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15078,8 +15540,74 @@
           ]
         },
         {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 83,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 49.09835,
+            "central": 100.61026,
+            "upper": 163.68244
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.2211,
+              "central": 1.8387,
+              "upper": 40.0518
+            },
+            "P": {
+              "lower": -23.0172,
+              "central": 7.4303,
+              "upper": 63.7882
+            },
+            "B": {
+              "lower": 0,
+              "central": 23.02,
+              "upper": 99.65
+            },
+            "E": {
+              "lower": -39.0379,
+              "central": 1.8046,
+              "upper": 42.7301
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.39,
+          "contextDispersion": 2.793,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 196,
+            "currentContexts": 82,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              53,
+              58,
+              54,
+              56
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 81,
+          "rank": 84,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15145,7 +15673,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 82,
+          "rank": 85,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15212,7 +15740,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 83,
+          "rank": 86,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15278,7 +15806,7 @@
         },
         {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 84,
+          "rank": 87,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15344,7 +15872,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 85,
+          "rank": 88,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15410,8 +15938,74 @@
           ]
         },
         {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 89,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 47.8418,
+            "central": 99.63024,
+            "upper": 163.13203
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.75,
+              "central": 1.4194,
+              "upper": 40.4293
+            },
+            "P": {
+              "lower": -24.7215,
+              "central": 6.214,
+              "upper": 61.3659
+            },
+            "B": {
+              "lower": 0,
+              "central": 20.07,
+              "upper": 100
+            },
+            "E": {
+              "lower": -39.5878,
+              "central": 1.4247,
+              "upper": 43.3284
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.364,
+          "contextDispersion": 2.507,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 279,
+            "referenceContexts": 195,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              56,
+              57,
+              53,
+              58,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-03004-5-uniq-0036-00",
-          "rank": 86,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15477,7 +16071,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0051-00",
-          "rank": 87,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15542,8 +16136,74 @@
           ]
         },
         {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 92,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 49.18487,
+            "central": 98.40303,
+            "upper": 155.32688
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.0387,
+              "central": -0.0984,
+              "upper": 34.8612
+            },
+            "P": {
+              "lower": -23.1896,
+              "central": 7.3271,
+              "upper": 56.0259
+            },
+            "B": {
+              "lower": 0,
+              "central": 19.06,
+              "upper": 98.57
+            },
+            "E": {
+              "lower": -38.8363,
+              "central": -0.2125,
+              "upper": 37.2243
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.386,
+          "contextDispersion": 4.002,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              53,
+              58,
+              54,
+              56,
+              57
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 88,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -15609,7 +16269,7 @@
         },
         {
           "cardId": "card-00026-4-cmmn-0000-00",
-          "rank": 89,
+          "rank": 94,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -15676,7 +16336,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 90,
+          "rank": 95,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -15743,7 +16403,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 91,
+          "rank": 96,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -15809,7 +16469,7 @@
         },
         {
           "cardId": "card-00030-4-cmmn-0000-00",
-          "rank": 92,
+          "rank": 97,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -15875,7 +16535,7 @@
         },
         {
           "cardId": "card-04012-4-cmmn-0000-00",
-          "rank": 93,
+          "rank": 98,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -15941,7 +16601,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 94,
+          "rank": 99,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16008,7 +16668,7 @@
         },
         {
           "cardId": "card-00023-4-cmmn-0000-00",
-          "rank": 95,
+          "rank": 100,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16075,7 +16735,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 101,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16142,7 +16802,7 @@
         },
         {
           "cardId": "card-00018-4-cmmn-0000-00",
-          "rank": 97,
+          "rank": 102,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16209,7 +16869,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 98,
+          "rank": 103,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16275,7 +16935,7 @@
         },
         {
           "cardId": "card-00012-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 104,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16341,7 +17001,7 @@
         },
         {
           "cardId": "card-00014-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 105,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16407,7 +17067,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 106,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16474,7 +17134,7 @@
         },
         {
           "cardId": "card-03002-4-cmmn-0000-00",
-          "rank": 102,
+          "rank": 107,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16540,7 +17200,7 @@
         },
         {
           "cardId": "card-04001-4-cmmn-0000-00",
-          "rank": 103,
+          "rank": 108,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16606,7 +17266,7 @@
         },
         {
           "cardId": "card-00011-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 109,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16672,7 +17332,7 @@
         },
         {
           "cardId": "card-00001-4-cmmn-0000-00",
-          "rank": 105,
+          "rank": 110,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16738,7 +17398,7 @@
         },
         {
           "cardId": "card-00027-4-cmmn-0000-00",
-          "rank": 106,
+          "rank": 111,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16805,7 +17465,7 @@
         },
         {
           "cardId": "card-00004-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 112,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16872,7 +17532,7 @@
         },
         {
           "cardId": "card-00034-4-cmmn-0000-00",
-          "rank": 108,
+          "rank": 113,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -16939,7 +17599,7 @@
         },
         {
           "cardId": "card-00019-4-cmmn-0000-00",
-          "rank": 109,
+          "rank": 114,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17006,7 +17666,7 @@
         },
         {
           "cardId": "card-00037-4-cmmn-0000-00",
-          "rank": 110,
+          "rank": 115,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17072,7 +17732,7 @@
         },
         {
           "cardId": "card-04017-4-cmmn-0000-00",
-          "rank": 111,
+          "rank": 116,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17138,7 +17798,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 112,
+          "rank": 117,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17204,7 +17864,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 113,
+          "rank": 118,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17271,7 +17931,7 @@
         },
         {
           "cardId": "card-03009-4-cmmn-0000-00",
-          "rank": 114,
+          "rank": 119,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17337,7 +17997,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 115,
+          "rank": 120,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17404,7 +18064,7 @@
         },
         {
           "cardId": "card-00035-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17470,7 +18130,7 @@
         },
         {
           "cardId": "card-03005-4-cmmn-0000-00",
-          "rank": 117,
+          "rank": 122,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17537,7 +18197,7 @@
         },
         {
           "cardId": "card-03004-4-cmmn-0000-00",
-          "rank": 118,
+          "rank": 123,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17604,7 +18264,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 119,
+          "rank": 124,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17670,7 +18330,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 120,
+          "rank": 125,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17736,7 +18396,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 121,
+          "rank": 126,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17802,7 +18462,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 122,
+          "rank": 127,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17868,7 +18528,7 @@
         },
         {
           "cardId": "card-03007-4-cmmn-0000-00",
-          "rank": 123,
+          "rank": 128,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -17934,7 +18594,7 @@
         },
         {
           "cardId": "card-00002-4-cmmn-0000-00",
-          "rank": 124,
+          "rank": 129,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18001,7 +18661,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 125,
+          "rank": 130,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18068,7 +18728,7 @@
         },
         {
           "cardId": "card-00006-4-cmmn-0000-00",
-          "rank": 126,
+          "rank": 131,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18135,7 +18795,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 127,
+          "rank": 132,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18201,7 +18861,7 @@
         },
         {
           "cardId": "card-04007-4-cmmn-0000-00",
-          "rank": 128,
+          "rank": 133,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18267,7 +18927,7 @@
         },
         {
           "cardId": "card-04015-4-cmmn-0000-00",
-          "rank": 129,
+          "rank": 134,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18334,7 +18994,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 130,
+          "rank": 135,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18400,7 +19060,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 131,
+          "rank": 136,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18466,7 +19126,7 @@
         },
         {
           "cardId": "card-00032-4-cmmn-0000-00",
-          "rank": 132,
+          "rank": 137,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18533,7 +19193,7 @@
         },
         {
           "cardId": "card-00015-4-cmmn-0000-00",
-          "rank": 133,
+          "rank": 138,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18599,7 +19259,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 134,
+          "rank": 139,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18665,7 +19325,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 135,
+          "rank": 140,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18731,7 +19391,7 @@
         },
         {
           "cardId": "card-06005-4-cmmn-0000-00",
-          "rank": 136,
+          "rank": 141,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18797,7 +19457,7 @@
         },
         {
           "cardId": "card-00007-4-cmmn-0000-00",
-          "rank": 137,
+          "rank": 142,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18863,7 +19523,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 138,
+          "rank": 143,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18929,7 +19589,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 139,
+          "rank": 144,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -18995,7 +19655,7 @@
         },
         {
           "cardId": "card-00016-4-cmmn-0000-00",
-          "rank": 140,
+          "rank": 145,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -19062,7 +19722,7 @@
         },
         {
           "cardId": "card-04003-4-cmmn-0000-00",
-          "rank": 141,
+          "rank": 146,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -19128,7 +19788,7 @@
         },
         {
           "cardId": "card-03001-4-cmmn-0000-00",
-          "rank": 142,
+          "rank": 147,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -23140,8 +23800,75 @@
           ]
         },
         {
-          "cardId": "card-00026-5-uniq-0021-00",
+          "cardId": "card-04015-5-uniq-0099-00",
           "rank": 60,
+          "modelBand": "A",
+          "tier": "A",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 41.6397,
+            "central": 103.96239,
+            "upper": 184.12721
+          },
+          "metrics": {
+            "G": {
+              "lower": -45.6338,
+              "central": 3.0158,
+              "upper": 54.1626
+            },
+            "P": {
+              "lower": -28.2433,
+              "central": 9.2741,
+              "upper": 79.8512
+            },
+            "B": {
+              "lower": 0,
+              "central": 25,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.1091,
+              "central": 3.2231,
+              "upper": 45.6447
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.507,
+          "contextDispersion": 2.991,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 280,
+            "referenceContexts": 196,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              58,
+              54,
+              57,
+              56,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-00026-5-uniq-0021-00",
+          "rank": 61,
           "modelBand": "A",
           "tier": "A",
           "stableTier": "Provisional",
@@ -23208,7 +23935,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0044-00",
-          "rank": 61,
+          "rank": 62,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23274,7 +24001,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 62,
+          "rank": 63,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23340,7 +24067,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 63,
+          "rank": 64,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23407,7 +24134,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 64,
+          "rank": 65,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23473,7 +24200,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 65,
+          "rank": 66,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23540,7 +24267,7 @@
         },
         {
           "cardId": "card-00011-5-uniq-0011-00",
-          "rank": 66,
+          "rank": 67,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23606,7 +24333,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 67,
+          "rank": 68,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23672,7 +24399,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 68,
+          "rank": 69,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23738,8 +24465,74 @@
           ]
         },
         {
+          "cardId": "card-00007-5-uniq-0096-00",
+          "rank": 70,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 40.37635,
+            "central": 103.30531,
+            "upper": 182.42264
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.2043,
+              "central": 2.7455,
+              "upper": 52.8946
+            },
+            "P": {
+              "lower": -29.5274,
+              "central": 8.2827,
+              "upper": 78.9286
+            },
+            "B": {
+              "lower": 0,
+              "central": 25.18,
+              "upper": 100
+            },
+            "E": {
+              "lower": -37.9372,
+              "central": 2.6409,
+              "upper": 44.2166
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.408,
+          "contextDispersion": 2.834,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              55,
+              55,
+              57,
+              54
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 69,
+          "rank": 71,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23806,7 +24599,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 70,
+          "rank": 72,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23872,7 +24665,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -23939,7 +24732,7 @@
         },
         {
           "cardId": "card-00005-5-uniq-0006-00",
-          "rank": 72,
+          "rank": 74,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24005,7 +24798,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 73,
+          "rank": 75,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24071,7 +24864,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 74,
+          "rank": 76,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24138,7 +24931,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 75,
+          "rank": 77,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24204,7 +24997,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 76,
+          "rank": 78,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24271,7 +25064,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 77,
+          "rank": 79,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24337,8 +25130,74 @@
           ]
         },
         {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 80,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 38.63791,
+            "central": 101.57996,
+            "upper": 181.14568
+          },
+          "metrics": {
+            "G": {
+              "lower": -47.4849,
+              "central": 1.6998,
+              "upper": 50.8937
+            },
+            "P": {
+              "lower": -31.2731,
+              "central": 7.9285,
+              "upper": 80.1319
+            },
+            "B": {
+              "lower": 0,
+              "central": 17.27,
+              "upper": 100
+            },
+            "E": {
+              "lower": -39.0379,
+              "central": 1.8046,
+              "upper": 42.7301
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.417,
+          "contextDispersion": 3.068,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 196,
+            "currentContexts": 82,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              57,
+              53,
+              58,
+              54,
+              56
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 78,
+          "rank": 81,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24404,7 +25263,7 @@
         },
         {
           "cardId": "card-06002-5-uniq-0058-00",
-          "rank": 79,
+          "rank": 82,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24470,7 +25329,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 80,
+          "rank": 83,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24537,7 +25396,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 81,
+          "rank": 84,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24604,7 +25463,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 82,
+          "rank": 85,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24669,8 +25528,74 @@
           ]
         },
         {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 86,
+          "modelBand": "A",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 37.43212,
+            "central": 100.45546,
+            "upper": 181.43916
+          },
+          "metrics": {
+            "G": {
+              "lower": -48.0909,
+              "central": 1.4422,
+              "upper": 52.0499
+            },
+            "P": {
+              "lower": -32.7495,
+              "central": 6.9688,
+              "upper": 78.7015
+            },
+            "B": {
+              "lower": 0,
+              "central": 10.39,
+              "upper": 100
+            },
+            "E": {
+              "lower": -39.5878,
+              "central": 1.4247,
+              "upper": 43.3284
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.372,
+          "contextDispersion": 2.783,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 279,
+            "referenceContexts": 195,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              56,
+              57,
+              53,
+              58,
+              55
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 83,
+          "rank": 87,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24736,7 +25661,7 @@
         },
         {
           "cardId": "card-03004-5-uniq-0036-00",
-          "rank": 84,
+          "rank": 88,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24802,7 +25727,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 85,
+          "rank": 89,
           "modelBand": "A",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24869,7 +25794,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 86,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -24936,7 +25861,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0051-00",
-          "rank": 87,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -25001,8 +25926,74 @@
           ]
         },
         {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 92,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 38.93375,
+            "central": 99.0932,
+            "upper": 170.89792
+          },
+          "metrics": {
+            "G": {
+              "lower": -47.2395,
+              "central": -0.5538,
+              "upper": 44.3195
+            },
+            "P": {
+              "lower": -31.1155,
+              "central": 7.486,
+              "upper": 69.9496
+            },
+            "B": {
+              "lower": 0,
+              "central": 15.83,
+              "upper": 100
+            },
+            "E": {
+              "lower": -38.8363,
+              "central": -0.2125,
+              "upper": 37.2243
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.45,
+          "contextDispersion": 4.37,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 278,
+            "referenceContexts": 194,
+            "currentContexts": 84,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 103,
+            "maximumAlternativesPerContext": 105,
+            "formationSlotCounts": [
+              53,
+              58,
+              54,
+              56,
+              57
+            ]
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 88,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -25068,7 +26059,7 @@
         },
         {
           "cardId": "card-00026-4-cmmn-0000-00",
-          "rank": 89,
+          "rank": 94,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25135,7 +26126,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 90,
+          "rank": 95,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25202,7 +26193,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 91,
+          "rank": 96,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25268,7 +26259,7 @@
         },
         {
           "cardId": "card-00030-4-cmmn-0000-00",
-          "rank": 92,
+          "rank": 97,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25334,7 +26325,7 @@
         },
         {
           "cardId": "card-04012-4-cmmn-0000-00",
-          "rank": 93,
+          "rank": 98,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25400,7 +26391,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 94,
+          "rank": 99,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25466,7 +26457,7 @@
         },
         {
           "cardId": "card-00012-4-cmmn-0000-00",
-          "rank": 95,
+          "rank": 100,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25532,7 +26523,7 @@
         },
         {
           "cardId": "card-00023-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 101,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25599,7 +26590,7 @@
         },
         {
           "cardId": "card-00014-4-cmmn-0000-00",
-          "rank": 97,
+          "rank": 102,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25665,7 +26656,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 98,
+          "rank": 103,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25732,7 +26723,7 @@
         },
         {
           "cardId": "card-03002-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 104,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25798,7 +26789,7 @@
         },
         {
           "cardId": "card-00018-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 105,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25865,7 +26856,7 @@
         },
         {
           "cardId": "card-04001-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 106,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25931,7 +26922,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 102,
+          "rank": 107,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -25998,7 +26989,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 103,
+          "rank": 108,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26065,7 +27056,7 @@
         },
         {
           "cardId": "card-00011-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 109,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26131,7 +27122,7 @@
         },
         {
           "cardId": "card-00004-4-cmmn-0000-00",
-          "rank": 105,
+          "rank": 110,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26197,7 +27188,7 @@
         },
         {
           "cardId": "card-00035-4-cmmn-0000-00",
-          "rank": 106,
+          "rank": 111,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26263,7 +27254,7 @@
         },
         {
           "cardId": "card-04017-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 112,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26329,7 +27320,7 @@
         },
         {
           "cardId": "card-00001-4-cmmn-0000-00",
-          "rank": 108,
+          "rank": 113,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26395,7 +27386,7 @@
         },
         {
           "cardId": "card-00037-4-cmmn-0000-00",
-          "rank": 109,
+          "rank": 114,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26461,7 +27452,7 @@
         },
         {
           "cardId": "card-03009-4-cmmn-0000-00",
-          "rank": 110,
+          "rank": 115,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26527,7 +27518,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 111,
+          "rank": 116,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26593,7 +27584,7 @@
         },
         {
           "cardId": "card-03007-4-cmmn-0000-00",
-          "rank": 112,
+          "rank": 117,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26659,7 +27650,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 113,
+          "rank": 118,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26725,7 +27716,7 @@
         },
         {
           "cardId": "card-00034-4-cmmn-0000-00",
-          "rank": 114,
+          "rank": 119,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26792,7 +27783,7 @@
         },
         {
           "cardId": "card-03004-4-cmmn-0000-00",
-          "rank": 115,
+          "rank": 120,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26858,7 +27849,7 @@
         },
         {
           "cardId": "card-00027-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26925,7 +27916,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 117,
+          "rank": 122,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -26992,7 +27983,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 118,
+          "rank": 123,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27058,7 +28049,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 119,
+          "rank": 124,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27124,7 +28115,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 120,
+          "rank": 125,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27191,7 +28182,7 @@
         },
         {
           "cardId": "card-00019-4-cmmn-0000-00",
-          "rank": 121,
+          "rank": 126,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27258,7 +28249,7 @@
         },
         {
           "cardId": "card-04007-4-cmmn-0000-00",
-          "rank": 122,
+          "rank": 127,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27324,7 +28315,7 @@
         },
         {
           "cardId": "card-00002-4-cmmn-0000-00",
-          "rank": 123,
+          "rank": 128,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27390,7 +28381,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 124,
+          "rank": 129,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27456,7 +28447,7 @@
         },
         {
           "cardId": "card-03005-4-cmmn-0000-00",
-          "rank": 125,
+          "rank": 130,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27523,7 +28514,7 @@
         },
         {
           "cardId": "card-04015-4-cmmn-0000-00",
-          "rank": 126,
+          "rank": 131,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27589,7 +28580,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 127,
+          "rank": 132,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27655,7 +28646,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 128,
+          "rank": 133,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27721,7 +28712,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 129,
+          "rank": 134,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27787,7 +28778,7 @@
         },
         {
           "cardId": "card-00006-4-cmmn-0000-00",
-          "rank": 130,
+          "rank": 135,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27854,7 +28845,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 131,
+          "rank": 136,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27920,7 +28911,7 @@
         },
         {
           "cardId": "card-00015-4-cmmn-0000-00",
-          "rank": 132,
+          "rank": 137,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -27986,7 +28977,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 133,
+          "rank": 138,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28052,7 +29043,7 @@
         },
         {
           "cardId": "card-00032-4-cmmn-0000-00",
-          "rank": 134,
+          "rank": 139,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28119,7 +29110,7 @@
         },
         {
           "cardId": "card-06005-4-cmmn-0000-00",
-          "rank": 135,
+          "rank": 140,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28185,7 +29176,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 136,
+          "rank": 141,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28251,7 +29242,7 @@
         },
         {
           "cardId": "card-00007-4-cmmn-0000-00",
-          "rank": 137,
+          "rank": 142,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28317,7 +29308,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 138,
+          "rank": 143,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28383,7 +29374,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 139,
+          "rank": 144,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28449,7 +29440,7 @@
         },
         {
           "cardId": "card-00016-4-cmmn-0000-00",
-          "rank": 140,
+          "rank": 145,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28516,7 +29507,7 @@
         },
         {
           "cardId": "card-04003-4-cmmn-0000-00",
-          "rank": 141,
+          "rank": 146,
           "modelBand": "B",
           "tier": "C",
           "stableTier": "Provisional",
@@ -28582,7 +29573,7 @@
         },
         {
           "cardId": "card-03001-4-cmmn-0000-00",
-          "rank": 142,
+          "rank": 147,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -32386,8 +33377,69 @@
           ]
         },
         {
-          "cardId": "card-03003-5-uniq-0035-00",
+          "cardId": "card-00007-5-uniq-0096-00",
           "rank": 63,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 42.74732,
+            "central": 98.20343,
+            "upper": 160.66941
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.4309,
+              "central": -0.5508,
+              "upper": 34.1346
+            },
+            "P": {
+              "lower": -15.9537,
+              "central": 11.7663,
+              "upper": 56.5007
+            },
+            "B": {
+              "lower": 0,
+              "central": 44,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.2671,
+              "central": -0.6045,
+              "upper": 36.8389
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.821,
+          "contextDispersion": 9.788,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-03003-5-uniq-0035-00",
+          "rank": 64,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32448,7 +33500,68 @@
         },
         {
           "cardId": "card-00014-5-uniq-0075-00",
-          "rank": 64,
+          "rank": 65,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 43.06027,
+            "central": 98.05646,
+            "upper": 159.95672
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.6249,
+              "central": -0.7291,
+              "upper": 33.8486
+            },
+            "P": {
+              "lower": -14.8343,
+              "central": 11.8552,
+              "upper": 55.6492
+            },
+            "B": {
+              "lower": 0,
+              "central": 45,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.4884,
+              "central": -0.7779,
+              "upper": 36.6011
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.83,
+          "contextDispersion": 9.644,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 65,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32509,7 +33622,7 @@
         },
         {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 65,
+          "rank": 67,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32570,7 +33683,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 66,
+          "rank": 68,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32631,7 +33744,7 @@
         },
         {
           "cardId": "card-00039-5-uniq-0032-00",
-          "rank": 67,
+          "rank": 69,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32692,7 +33805,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 68,
+          "rank": 70,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32753,7 +33866,7 @@
         },
         {
           "cardId": "card-03009-5-uniq-0088-00",
-          "rank": 68,
+          "rank": 70,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32814,7 +33927,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0091-00",
-          "rank": 70,
+          "rank": 72,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32875,7 +33988,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0010-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32935,7 +34048,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0062-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -32995,7 +34108,7 @@
         },
         {
           "cardId": "card-00022-5-uniq-0018-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33055,7 +34168,7 @@
         },
         {
           "cardId": "card-03006-5-uniq-0038-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33115,7 +34228,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0040-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33175,7 +34288,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0044-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33235,7 +34348,7 @@
         },
         {
           "cardId": "card-04010-5-uniq-0049-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33295,7 +34408,7 @@
         },
         {
           "cardId": "card-00030-5-uniq-0089-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33355,7 +34468,7 @@
         },
         {
           "cardId": "card-00037-5-uniq-0086-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33415,7 +34528,7 @@
         },
         {
           "cardId": "card-00037-5-uniq-0030-00",
-          "rank": 80,
+          "rank": 82,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33476,7 +34589,7 @@
         },
         {
           "cardId": "card-00026-5-uniq-0065-00",
-          "rank": 81,
+          "rank": 83,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33537,7 +34650,7 @@
         },
         {
           "cardId": "card-04016-5-uniq-0079-00",
-          "rank": 82,
+          "rank": 84,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33598,7 +34711,7 @@
         },
         {
           "cardId": "card-03004-5-uniq-0073-00",
-          "rank": 83,
+          "rank": 85,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33658,8 +34771,69 @@
           ]
         },
         {
+          "cardId": "card-04015-5-uniq-0099-00",
+          "rank": 86,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 40.7134,
+            "central": 96.57981,
+            "upper": 162.81614
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.229,
+              "central": -0.5214,
+              "upper": 35.5847
+            },
+            "P": {
+              "lower": -18.4949,
+              "central": 7.8777,
+              "upper": 57.3583
+            },
+            "B": {
+              "lower": 0,
+              "central": 41.33,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.9703,
+              "central": -0.4212,
+              "upper": 38.5797
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.678,
+          "contextDispersion": 8.186,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
           "cardId": "card-00021-5-uniq-0064-00",
-          "rank": 84,
+          "rank": 87,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33720,7 +34894,7 @@
         },
         {
           "cardId": "card-00019-5-uniq-0016-00",
-          "rank": 85,
+          "rank": 88,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33781,7 +34955,7 @@
         },
         {
           "cardId": "card-04013-5-uniq-0083-00",
-          "rank": 86,
+          "rank": 89,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33842,7 +35016,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 87,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33903,7 +35077,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 88,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -33964,7 +35138,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0080-00",
-          "rank": 88,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34025,7 +35199,7 @@
         },
         {
           "cardId": "card-00017-5-uniq-0077-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34086,7 +35260,7 @@
         },
         {
           "cardId": "card-00034-5-uniq-0090-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34147,7 +35321,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0092-00",
-          "rank": 92,
+          "rank": 95,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34208,7 +35382,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0082-00",
-          "rank": 93,
+          "rank": 96,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34269,7 +35443,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 94,
+          "rank": 97,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34330,7 +35504,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 94,
+          "rank": 97,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34391,7 +35565,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34451,7 +35625,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34511,7 +35685,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34571,7 +35745,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 102,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34631,7 +35805,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 103,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -34692,7 +35866,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 104,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -34753,7 +35927,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 102,
+          "rank": 105,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -34814,7 +35988,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 103,
+          "rank": 106,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -34875,7 +36049,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 107,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -34936,7 +36110,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 105,
+          "rank": 108,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -34997,7 +36171,7 @@
         },
         {
           "cardId": "card-00016-5-uniq-0076-00",
-          "rank": 106,
+          "rank": 109,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35058,7 +36232,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 110,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35119,7 +36293,7 @@
         },
         {
           "cardId": "card-00004-5-uniq-0081-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35179,7 +36353,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35239,7 +36413,7 @@
         },
         {
           "cardId": "card-00028-5-uniq-0070-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35299,7 +36473,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35359,7 +36533,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0095-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35419,7 +36593,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35479,7 +36653,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35539,7 +36713,127 @@
         },
         {
           "cardId": "card-04014-5-uniq-0094-00",
-          "rank": 108,
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 20.98228,
+            "central": 75.99994,
+            "upper": 136.91008
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.5686,
+              "central": -10.4976,
+              "upper": 21.7505
+            },
+            "P": {
+              "lower": -35.6408,
+              "central": -9.4887,
+              "upper": 35.1233
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 99
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.049,
+          "contextDispersion": 0.597,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 20.98228,
+            "central": 75.99994,
+            "upper": 136.91008
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.5686,
+              "central": -10.4976,
+              "upper": 21.7505
+            },
+            "P": {
+              "lower": -35.6408,
+              "central": -9.4887,
+              "upper": 35.1233
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 99
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.049,
+          "contextDispersion": 0.597,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35599,7 +36893,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35659,7 +36953,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35719,7 +37013,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35779,7 +37073,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0012-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35839,7 +37133,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35899,7 +37193,7 @@
         },
         {
           "cardId": "card-00022-5-uniq-0063-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -35959,7 +37253,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0019-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36019,7 +37313,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0022-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36079,7 +37373,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36139,7 +37433,7 @@
         },
         {
           "cardId": "card-00030-5-uniq-0024-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36199,7 +37493,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36259,7 +37553,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36319,7 +37613,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36379,7 +37673,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36439,7 +37733,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36499,7 +37793,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36559,7 +37853,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36619,7 +37913,7 @@
         },
         {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36679,7 +37973,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36739,7 +38033,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36799,7 +38093,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36859,7 +38153,7 @@
         },
         {
           "cardId": "card-04007-5-uniq-0047-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36919,7 +38213,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -36979,7 +38273,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -37039,7 +38333,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -37099,7 +38393,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -37159,7 +38453,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -40955,8 +42249,69 @@
           ]
         },
         {
-          "cardId": "card-03003-5-uniq-0035-00",
+          "cardId": "card-00007-5-uniq-0096-00",
           "rank": 63,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 42.74831,
+            "central": 98.20372,
+            "upper": 160.66891
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.4307,
+              "central": -0.5505,
+              "upper": 34.1348
+            },
+            "P": {
+              "lower": -15.953,
+              "central": 11.7667,
+              "upper": 56.5008
+            },
+            "B": {
+              "lower": 0,
+              "central": 44,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.2671,
+              "central": -0.6045,
+              "upper": 36.8389
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.821,
+          "contextDispersion": 9.789,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-03003-5-uniq-0035-00",
+          "rank": 64,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41017,7 +42372,68 @@
         },
         {
           "cardId": "card-00014-5-uniq-0075-00",
-          "rank": 64,
+          "rank": 65,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 43.06003,
+            "central": 98.05609,
+            "upper": 159.95623
+          },
+          "metrics": {
+            "G": {
+              "lower": -35.6249,
+              "central": -0.7292,
+              "upper": 33.8484
+            },
+            "P": {
+              "lower": -14.8346,
+              "central": 11.855,
+              "upper": 55.6491
+            },
+            "B": {
+              "lower": 0,
+              "central": 45,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.4884,
+              "central": -0.7779,
+              "upper": 36.6011
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.83,
+          "contextDispersion": 9.644,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 65,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41078,7 +42494,7 @@
         },
         {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 65,
+          "rank": 67,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41139,7 +42555,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 66,
+          "rank": 68,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41200,7 +42616,7 @@
         },
         {
           "cardId": "card-00039-5-uniq-0032-00",
-          "rank": 67,
+          "rank": 69,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41261,7 +42677,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 68,
+          "rank": 70,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41322,7 +42738,7 @@
         },
         {
           "cardId": "card-03009-5-uniq-0088-00",
-          "rank": 68,
+          "rank": 70,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41383,7 +42799,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0091-00",
-          "rank": 70,
+          "rank": 72,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41444,7 +42860,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0010-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41504,7 +42920,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0062-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41564,7 +42980,7 @@
         },
         {
           "cardId": "card-00022-5-uniq-0018-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41624,7 +43040,7 @@
         },
         {
           "cardId": "card-03006-5-uniq-0038-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41684,7 +43100,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0040-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41744,7 +43160,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0044-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41804,7 +43220,7 @@
         },
         {
           "cardId": "card-04010-5-uniq-0049-00",
-          "rank": 71,
+          "rank": 73,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41864,7 +43280,7 @@
         },
         {
           "cardId": "card-00030-5-uniq-0089-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41924,7 +43340,7 @@
         },
         {
           "cardId": "card-00037-5-uniq-0086-00",
-          "rank": 78,
+          "rank": 80,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -41984,7 +43400,7 @@
         },
         {
           "cardId": "card-00037-5-uniq-0030-00",
-          "rank": 80,
+          "rank": 82,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42045,7 +43461,7 @@
         },
         {
           "cardId": "card-00026-5-uniq-0065-00",
-          "rank": 81,
+          "rank": 83,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42106,7 +43522,7 @@
         },
         {
           "cardId": "card-04016-5-uniq-0079-00",
-          "rank": 82,
+          "rank": 84,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42167,7 +43583,7 @@
         },
         {
           "cardId": "card-03004-5-uniq-0073-00",
-          "rank": 83,
+          "rank": 85,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42227,8 +43643,69 @@
           ]
         },
         {
+          "cardId": "card-04015-5-uniq-0099-00",
+          "rank": 86,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 40.71397,
+            "central": 96.57966,
+            "upper": 162.81495
+          },
+          "metrics": {
+            "G": {
+              "lower": -36.229,
+              "central": -0.5214,
+              "upper": 35.5845
+            },
+            "P": {
+              "lower": -18.4945,
+              "central": 7.8776,
+              "upper": 57.3577
+            },
+            "B": {
+              "lower": 0,
+              "central": 41.33,
+              "upper": 99.67
+            },
+            "E": {
+              "lower": -38.9703,
+              "central": -0.4212,
+              "upper": 38.5797
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.678,
+          "contextDispersion": 8.186,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
           "cardId": "card-00021-5-uniq-0064-00",
-          "rank": 84,
+          "rank": 87,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42289,7 +43766,7 @@
         },
         {
           "cardId": "card-00019-5-uniq-0016-00",
-          "rank": 85,
+          "rank": 88,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42350,7 +43827,7 @@
         },
         {
           "cardId": "card-04013-5-uniq-0083-00",
-          "rank": 86,
+          "rank": 89,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42411,7 +43888,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 87,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42472,7 +43949,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 88,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42533,7 +44010,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0080-00",
-          "rank": 88,
+          "rank": 91,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42594,7 +44071,7 @@
         },
         {
           "cardId": "card-00017-5-uniq-0077-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42655,7 +44132,7 @@
         },
         {
           "cardId": "card-00034-5-uniq-0090-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42716,7 +44193,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0092-00",
-          "rank": 92,
+          "rank": 95,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42777,7 +44254,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0082-00",
-          "rank": 93,
+          "rank": 96,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42838,7 +44315,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 94,
+          "rank": 97,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42899,7 +44376,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 94,
+          "rank": 97,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -42960,7 +44437,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -43020,7 +44497,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -43080,7 +44557,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -43140,7 +44617,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 102,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -43200,7 +44677,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 103,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -43261,7 +44738,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 104,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43322,7 +44799,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 102,
+          "rank": 105,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43383,7 +44860,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 103,
+          "rank": 106,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43444,7 +44921,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 107,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43505,7 +44982,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 105,
+          "rank": 108,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43566,7 +45043,7 @@
         },
         {
           "cardId": "card-00016-5-uniq-0076-00",
-          "rank": 106,
+          "rank": 109,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43627,7 +45104,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 110,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43688,7 +45165,7 @@
         },
         {
           "cardId": "card-00004-5-uniq-0081-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43748,7 +45225,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43808,7 +45285,7 @@
         },
         {
           "cardId": "card-00028-5-uniq-0070-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43868,7 +45345,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43928,7 +45405,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0095-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -43988,7 +45465,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44048,7 +45525,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44108,7 +45585,127 @@
         },
         {
           "cardId": "card-04014-5-uniq-0094-00",
-          "rank": 108,
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 20.98261,
+            "central": 76.0001,
+            "upper": 136.90949
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.5684,
+              "central": -10.4976,
+              "upper": 21.7505
+            },
+            "P": {
+              "lower": -35.6411,
+              "central": -9.4886,
+              "upper": 35.1232
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 99
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.049,
+          "contextDispersion": 0.597,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": 20.98261,
+            "central": 76.0001,
+            "upper": 136.90949
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.5684,
+              "central": -10.4976,
+              "upper": 21.7505
+            },
+            "P": {
+              "lower": -35.6411,
+              "central": -9.4886,
+              "upper": 35.1232
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 99
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.049,
+          "contextDispersion": 0.597,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44168,7 +45765,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44228,7 +45825,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44288,7 +45885,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44348,7 +45945,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0012-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44408,7 +46005,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44468,7 +46065,7 @@
         },
         {
           "cardId": "card-00022-5-uniq-0063-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44528,7 +46125,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0019-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44588,7 +46185,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0022-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44648,7 +46245,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44708,7 +46305,7 @@
         },
         {
           "cardId": "card-00030-5-uniq-0024-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44768,7 +46365,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44828,7 +46425,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44888,7 +46485,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -44948,7 +46545,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45008,7 +46605,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45068,7 +46665,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45128,7 +46725,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45188,7 +46785,7 @@
         },
         {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45248,7 +46845,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45308,7 +46905,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45368,7 +46965,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45428,7 +47025,7 @@
         },
         {
           "cardId": "card-04007-5-uniq-0047-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45488,7 +47085,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45548,7 +47145,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45608,7 +47205,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45668,7 +47265,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -45728,7 +47325,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -50064,8 +51661,130 @@
           ]
         },
         {
-          "cardId": "card-00026-5-uniq-0065-00",
+          "cardId": "card-00007-5-uniq-0096-00",
           "rank": 72,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": -7.84887,
+            "central": 95.0734,
+            "upper": 213.22908
+          },
+          "metrics": {
+            "G": {
+              "lower": -46.8346,
+              "central": -0.7663,
+              "upper": 45.0386
+            },
+            "P": {
+              "lower": -25.5873,
+              "central": 10.3339,
+              "upper": 71.2803
+            },
+            "B": {
+              "lower": 0,
+              "central": 46.67,
+              "upper": 100
+            },
+            "E": {
+              "lower": -38.2671,
+              "central": -0.6045,
+              "upper": 36.8389
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 1.077,
+          "contextDispersion": 8.811,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-04015-5-uniq-0099-00",
+          "rank": 73,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": -9.07165,
+            "central": 94.95776,
+            "upper": 219.7175
+          },
+          "metrics": {
+            "G": {
+              "lower": -47.1773,
+              "central": -0.1205,
+              "upper": 47.5719
+            },
+            "P": {
+              "lower": -26.6374,
+              "central": 7.9082,
+              "upper": 74.6807
+            },
+            "B": {
+              "lower": 0,
+              "central": 56.33,
+              "upper": 100
+            },
+            "E": {
+              "lower": -38.9703,
+              "central": -0.4212,
+              "upper": 38.5797
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.955,
+          "contextDispersion": 7.898,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-00026-5-uniq-0065-00",
+          "rank": 74,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50126,7 +51845,7 @@
         },
         {
           "cardId": "card-03003-5-uniq-0035-00",
-          "rank": 73,
+          "rank": 75,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50187,7 +51906,7 @@
         },
         {
           "cardId": "card-03004-5-uniq-0073-00",
-          "rank": 74,
+          "rank": 76,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50248,7 +51967,68 @@
         },
         {
           "cardId": "card-00014-5-uniq-0075-00",
-          "rank": 75,
+          "rank": 77,
+          "modelBand": "B",
+          "tier": "B",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": -7.50637,
+            "central": 94.85951,
+            "upper": 212.10209
+          },
+          "metrics": {
+            "G": {
+              "lower": -47.0696,
+              "central": -0.9239,
+              "upper": 44.8587
+            },
+            "P": {
+              "lower": -24.7815,
+              "central": 10.4792,
+              "upper": 70.1777
+            },
+            "B": {
+              "lower": 0,
+              "central": 46,
+              "upper": 100
+            },
+            "E": {
+              "lower": -38.4884,
+              "central": -0.7779,
+              "upper": 36.6011
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 1.093,
+          "contextDispersion": 8.688,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points.",
+            "Bootstrap sampling error exceeds 0.5 index points."
+          ]
+        },
+        {
+          "cardId": "card-03007-5-uniq-0100-00",
+          "rank": 77,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50309,7 +52089,7 @@
         },
         {
           "cardId": "card-00037-5-uniq-0030-00",
-          "rank": 76,
+          "rank": 79,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50370,7 +52150,7 @@
         },
         {
           "cardId": "card-04016-5-uniq-0079-00",
-          "rank": 77,
+          "rank": 80,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50431,7 +52211,7 @@
         },
         {
           "cardId": "card-00021-5-uniq-0064-00",
-          "rank": 78,
+          "rank": 81,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50492,7 +52272,7 @@
         },
         {
           "cardId": "card-04002-5-uniq-0043-00",
-          "rank": 79,
+          "rank": 82,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50553,7 +52333,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0056-00",
-          "rank": 80,
+          "rank": 83,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50614,7 +52394,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0074-00",
-          "rank": 81,
+          "rank": 84,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50675,7 +52455,7 @@
         },
         {
           "cardId": "card-03009-5-uniq-0088-00",
-          "rank": 81,
+          "rank": 84,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50736,7 +52516,7 @@
         },
         {
           "cardId": "card-00039-5-uniq-0032-00",
-          "rank": 83,
+          "rank": 86,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50797,7 +52577,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0091-00",
-          "rank": 84,
+          "rank": 87,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50858,7 +52638,7 @@
         },
         {
           "cardId": "card-00019-5-uniq-0016-00",
-          "rank": 85,
+          "rank": 88,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50919,7 +52699,7 @@
         },
         {
           "cardId": "card-04013-5-uniq-0083-00",
-          "rank": 86,
+          "rank": 89,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -50980,7 +52760,7 @@
         },
         {
           "cardId": "card-00036-4-cmmn-0000-00",
-          "rank": 87,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51040,7 +52820,7 @@
         },
         {
           "cardId": "card-04016-4-cmmn-0000-00",
-          "rank": 87,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51100,7 +52880,7 @@
         },
         {
           "cardId": "card-06003-4-cmmn-0000-00",
-          "rank": 87,
+          "rank": 90,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51160,7 +52940,7 @@
         },
         {
           "cardId": "card-00015-5-uniq-0067-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51221,7 +53001,7 @@
         },
         {
           "cardId": "card-04017-5-uniq-0080-00",
-          "rank": 90,
+          "rank": 93,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51282,7 +53062,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0085-00",
-          "rank": 92,
+          "rank": 95,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51343,7 +53123,7 @@
         },
         {
           "cardId": "card-00017-5-uniq-0077-00",
-          "rank": 93,
+          "rank": 96,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51404,7 +53184,7 @@
         },
         {
           "cardId": "card-00034-5-uniq-0090-00",
-          "rank": 93,
+          "rank": 96,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51465,7 +53245,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0082-00",
-          "rank": 95,
+          "rank": 98,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51526,7 +53306,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0092-00",
-          "rank": 96,
+          "rank": 99,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51587,7 +53367,7 @@
         },
         {
           "cardId": "card-00032-5-uniq-0093-00",
-          "rank": 97,
+          "rank": 100,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51648,7 +53428,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0071-00",
-          "rank": 97,
+          "rank": 100,
           "modelBand": "B",
           "tier": "B",
           "stableTier": "Provisional",
@@ -51709,7 +53489,7 @@
         },
         {
           "cardId": "card-04014-4-cmmn-0000-00",
-          "rank": 99,
+          "rank": 102,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -51770,7 +53550,7 @@
         },
         {
           "cardId": "card-06004-4-cmmn-0000-00",
-          "rank": 100,
+          "rank": 103,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -51831,7 +53611,7 @@
         },
         {
           "cardId": "card-00021-4-cmmn-0000-00",
-          "rank": 101,
+          "rank": 104,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -51892,7 +53672,7 @@
         },
         {
           "cardId": "card-00001-5-uniq-0000-00",
-          "rank": 102,
+          "rank": 105,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -51953,7 +53733,7 @@
         },
         {
           "cardId": "card-00018-5-uniq-0068-00",
-          "rank": 103,
+          "rank": 106,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52014,7 +53794,7 @@
         },
         {
           "cardId": "card-00013-4-cmmn-0000-00",
-          "rank": 104,
+          "rank": 107,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52075,7 +53855,7 @@
         },
         {
           "cardId": "card-00014-5-uniq-0013-00",
-          "rank": 105,
+          "rank": 108,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52136,7 +53916,7 @@
         },
         {
           "cardId": "card-00016-5-uniq-0076-00",
-          "rank": 106,
+          "rank": 109,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52197,7 +53977,7 @@
         },
         {
           "cardId": "card-00017-4-cmmn-0000-00",
-          "rank": 107,
+          "rank": 110,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52258,7 +54038,7 @@
         },
         {
           "cardId": "card-00004-5-uniq-0081-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52318,7 +54098,7 @@
         },
         {
           "cardId": "card-00010-5-uniq-0069-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52378,7 +54158,7 @@
         },
         {
           "cardId": "card-00028-5-uniq-0070-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52438,7 +54218,7 @@
         },
         {
           "cardId": "card-00036-5-uniq-0078-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52498,7 +54278,7 @@
         },
         {
           "cardId": "card-03008-5-uniq-0095-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52558,7 +54338,7 @@
         },
         {
           "cardId": "card-04003-5-uniq-0072-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52618,7 +54398,7 @@
         },
         {
           "cardId": "card-04012-5-uniq-0087-00",
-          "rank": 108,
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52678,7 +54458,127 @@
         },
         {
           "cardId": "card-04014-5-uniq-0094-00",
-          "rank": 108,
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": -37.83792,
+            "central": 65.51016,
+            "upper": 180.50784
+          },
+          "metrics": {
+            "G": {
+              "lower": -57.6359,
+              "central": -9.7133,
+              "upper": 33.406
+            },
+            "P": {
+              "lower": -43.2805,
+              "central": -8.7354,
+              "upper": 51.6586
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 100
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.071,
+          "contextDispersion": 0.576,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06004-5-uniq-0098-00",
+          "rank": 111,
+          "modelBand": "C",
+          "tier": "C",
+          "stableTier": "Provisional",
+          "publicationState": "theorycraft-beta",
+          "index": {
+            "lower": -37.83792,
+            "central": 65.51016,
+            "upper": 180.50784
+          },
+          "metrics": {
+            "G": {
+              "lower": -57.6359,
+              "central": -9.7133,
+              "upper": 33.406
+            },
+            "P": {
+              "lower": -43.2805,
+              "central": -8.7354,
+              "upper": 51.6586
+            },
+            "B": {
+              "lower": 0,
+              "central": 0,
+              "upper": 100
+            },
+            "E": {
+              "lower": -49.3404,
+              "central": -10.3015,
+              "upper": 24.6474
+            }
+          },
+          "boundaryConfidencePermil": 0,
+          "samplingError": 0.071,
+          "contextDispersion": 0.576,
+          "bootstrap": {
+            "replicates": 400,
+            "confidenceLevelPermil": 900,
+            "probabilityAbove120Permil": 0,
+            "probabilityTopDecilePermil": 0,
+            "probabilityBelow80Permil": 0,
+            "definitelyNegativeMarginalPermil": 0
+          },
+          "evaluation": {
+            "method": "frozen-matched-substitution",
+            "status": "complete",
+            "matchedContexts": 300,
+            "referenceContexts": 210,
+            "currentContexts": 90,
+            "frozenComparisonCohortSize": 113,
+            "minimumAlternativesPerContext": 113,
+            "maximumAlternativesPerContext": 113,
+            "formationSlotCounts": null
+          },
+          "provisionalReasons": [
+            "The 90% matched-context index interval is wider than ten points."
+          ]
+        },
+        {
+          "cardId": "card-06005-5-uniq-0097-00",
+          "rank": 111,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52738,7 +54638,7 @@
         },
         {
           "cardId": "card-00005-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52798,7 +54698,7 @@
         },
         {
           "cardId": "card-00006-5-uniq-0007-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52858,7 +54758,7 @@
         },
         {
           "cardId": "card-00010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52918,7 +54818,7 @@
         },
         {
           "cardId": "card-00012-5-uniq-0012-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -52978,7 +54878,7 @@
         },
         {
           "cardId": "card-00022-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53038,7 +54938,7 @@
         },
         {
           "cardId": "card-00022-5-uniq-0063-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53098,7 +54998,7 @@
         },
         {
           "cardId": "card-00023-5-uniq-0019-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53158,7 +55058,7 @@
         },
         {
           "cardId": "card-00027-5-uniq-0022-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53218,7 +55118,7 @@
         },
         {
           "cardId": "card-00028-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53278,7 +55178,7 @@
         },
         {
           "cardId": "card-00030-5-uniq-0024-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53338,7 +55238,7 @@
         },
         {
           "cardId": "card-00031-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53398,7 +55298,7 @@
         },
         {
           "cardId": "card-00035-5-uniq-0028-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53458,7 +55358,7 @@
         },
         {
           "cardId": "card-00039-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53518,7 +55418,7 @@
         },
         {
           "cardId": "card-03002-5-uniq-0034-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53578,7 +55478,7 @@
         },
         {
           "cardId": "card-03003-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53638,7 +55538,7 @@
         },
         {
           "cardId": "card-03005-5-uniq-0037-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53698,7 +55598,7 @@
         },
         {
           "cardId": "card-03006-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53758,7 +55658,7 @@
         },
         {
           "cardId": "card-03007-5-uniq-0039-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53818,7 +55718,7 @@
         },
         {
           "cardId": "card-03008-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53878,7 +55778,7 @@
         },
         {
           "cardId": "card-04001-5-uniq-0042-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53938,7 +55838,7 @@
         },
         {
           "cardId": "card-04002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -53998,7 +55898,7 @@
         },
         {
           "cardId": "card-04007-5-uniq-0047-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -54058,7 +55958,7 @@
         },
         {
           "cardId": "card-04010-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -54118,7 +56018,7 @@
         },
         {
           "cardId": "card-04013-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -54178,7 +56078,7 @@
         },
         {
           "cardId": "card-04015-5-uniq-0054-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -54238,7 +56138,7 @@
         },
         {
           "cardId": "card-06002-4-cmmn-0000-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",
@@ -54298,7 +56198,7 @@
         },
         {
           "cardId": "card-06003-5-uniq-0059-00",
-          "rank": 116,
+          "rank": 121,
           "modelBand": "C",
           "tier": "C",
           "stableTier": "Provisional",

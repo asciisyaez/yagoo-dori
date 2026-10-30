@@ -60,7 +60,7 @@
     "timelines:project:guides": "tsx src/cli/project-guide-rating-timelines.ts"
   },
   "dependencies": {
-    "zod": "4.4.3"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/node": "26.1.2",
