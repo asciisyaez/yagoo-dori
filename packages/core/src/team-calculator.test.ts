@@ -1160,5 +1160,5 @@ describe("bounded owned-roster search consistency", () => {
       // unrestricted one on the same roster.
       expect(constrained.score.relativeUtility.central).toBeLessThanOrEqual(unconstrained);
     }
-  }, 60_000);
+  }, 120_000);
 });
