@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
+import { cardIconRecipes, renderReviewedCardIcon } from "./lib/card-icon-recipes.mjs";
 import { illustrationFloorExceptionByCardId } from "./lib/illustration-floor-exceptions.mjs";
 import { fetchGithubRaw } from "./lib/fetch-github-raw.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -15,13 +16,13 @@ const illustrationDirectory = join(root, "apps", "web", "public", "game", "illus
 const sources = {
   english: {
     repository: "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    commit: "70cbc0a485dc7b332f80404dd060254689e52450",
-    masterVersion: "1aba922e9cd282db2396b19d220524b46e7ac10459c5ffb3c1b6f6d4eb9f550d",
+    commit: "bd0d2f234590ed4bc325978057eef60224014465",
+    masterVersion: "9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875",
   },
   japanese: {
     repository: "https://github.com/HolodoriDB/holodori-db-jpn-diff",
-    commit: "e004fb6b8fc9aafefbde526d8e698a29c66818b5",
-    masterVersion: "1aba922e9cd282db2396b19d220524b46e7ac10459c5ffb3c1b6f6d4eb9f550d",
+    commit: "f7e4961e2d9d5b1d1608b550345d78f9d1f6ce73",
+    masterVersion: "9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875",
   },
   art: {
     page: "https://appmedia.jp/hololive-dreams",
@@ -503,6 +504,62 @@ const appMediaAssetOverrideByCardId = {
     illustrationSourceUrl: "https://img.game8.jp/12920853/633330c67888fbb132124935c34c8b86.webp/original",
     allowExternalIllustration: true,
   },
+  "card-03003-5-uniq-0115-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80543578",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/11/191438_zx0b6.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/840692",
+    illustrationSourceUrl: "https://img.game8.jp/13180945/86f862af2051df63cf37d9daf44cc5db.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-03001-5-uniq-0114-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80543239",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/11/184618_c324n.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/840690",
+    illustrationSourceUrl: "https://img.game8.jp/13180946/12735faec653e83eb6fe13a72ff8f719.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-03002-5-uniq-0113-00": {
+    sourcePage: "https://appmedia.jp/hololive-dreams/80543449",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/11/184119_1fvic.webp",
+    illustrationSourcePage: "https://game8.jp/hololive-dreams/840691",
+    illustrationSourceUrl: "https://img.game8.jp/13180947/f5510cc4bb016275933a931346b00adf.webp/original",
+    allowExternalIllustration: true,
+  },
+  "card-04007-5-uniq-0106-00": {
+    sourcePage: "https://dreams.wf-calc.net/cards?lang=en",
+    iconSourceUrl: "https://dreams.wf-calc.net/assets/image-cache/2e02746185430ddabd580c004ee951514af03f7d3e54933a9547d0674e7a9a04.webp",
+    illustrationSourcePage: "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+    illustrationSourceUrl: "https://dreams.wf-calc.net/assets/holodori/04007-5-uniq-0106-00-illustration.webp",
+    allowExternalIllustration: true,
+  },
+  "card-00031-5-uniq-0105-00": {
+    sourcePage: "https://dreams.wf-calc.net/cards?lang=en",
+    iconSourceUrl: "https://dreams.wf-calc.net/assets/image-cache/dd48ad22daf9bbdac130f2ffb6e39c84dae35d22ffaf990d52534fdb7147cf68.webp",
+    illustrationSourcePage: "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+    illustrationSourceUrl: "https://dreams.wf-calc.net/assets/holodori/00031-5-uniq-0105-00-illustration.webp",
+    allowExternalIllustration: true,
+  },
+  "card-00019-5-uniq-0108-00": {
+    sourcePage: "https://dreams.wf-calc.net/cards?lang=en",
+    iconSourceUrl: "https://dreams.wf-calc.net/assets/image-cache/77d0bdce0f65e99e58d2e32784b4a37df5e6e98fd3775493fd727b1db26cdce2.webp",
+    illustrationSourcePage: "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+    illustrationSourceUrl: "https://dreams.wf-calc.net/assets/holodori/00019-5-uniq-0108-00-illustration.webp",
+    allowExternalIllustration: true,
+  },
+  "card-03006-5-uniq-0107-00": {
+    sourcePage: "https://dreams.wf-calc.net/cards?lang=en",
+    iconSourceUrl: "https://dreams.wf-calc.net/assets/image-cache/08760de3ca92f8fe44e8034750b2616d23727b1d22f3021214893e84ce6ea87b.webp",
+    illustrationSourcePage: "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+    illustrationSourceUrl: "https://dreams.wf-calc.net/assets/holodori/03006-5-uniq-0107-00-illustration.webp",
+    allowExternalIllustration: true,
+  },
+  "card-00002-5-uniq-0104-00": {
+    sourcePage: "https://dreams.wf-calc.net/cards?lang=en",
+    iconSourceUrl: "https://dreams.wf-calc.net/assets/image-cache/60c173ff6297f60677b84232c239beeaa5e77e6369302a4527f7acc87d8f0d05.webp",
+    illustrationSourcePage: "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+    illustrationSourceUrl: "https://dreams.wf-calc.net/assets/holodori/00002-5-uniq-0104-00-illustration.webp",
+    allowExternalIllustration: true,
+  },
 };
 
 const appMediaTitleAliasByCardId = {
@@ -541,11 +598,15 @@ function appMediaImages(html, sourcePage) {
     if (!image.alt || !rawSourceUrl) return [];
 
     const sourceUrl = new URL(rawSourceUrl, sourcePage);
-    if (
-      sourceUrl.origin !== "https://appmedia.jp" ||
-      !sourceUrl.pathname.startsWith("/wp-content/uploads/") ||
-      !sourceUrl.pathname.endsWith(".webp")
-    ) {
+    const appMediaAsset =
+      sourceUrl.origin === "https://appmedia.jp" &&
+      sourceUrl.pathname.startsWith("/wp-content/uploads/") &&
+      sourceUrl.pathname.endsWith(".webp");
+    const publicHolodoriLabAsset =
+      sourceUrl.origin === "https://dreams.wf-calc.net" &&
+      sourceUrl.pathname.startsWith("/assets/") &&
+      sourceUrl.pathname.endsWith(".webp");
+    if (!appMediaAsset && !publicHolodoriLabAsset) {
       return [];
     }
 
@@ -703,10 +764,17 @@ async function downloadArt(cards, talentNameJaById, partial = false) {
   }
 
   const prepared = await mapWithConcurrency(mappings, 4, async (mapping) => {
-    const [iconBytes, illustrationBytes] = await Promise.all([
-      fetchBytes(mapping.icon.sourceUrl),
+    const cardIconRecipe = cardIconRecipes[mapping.card.id];
+    const [sourceIconBytes, illustrationBytes] = await Promise.all([
+      cardIconRecipe ? Promise.resolve(null) : fetchBytes(mapping.icon.sourceUrl),
       fetchBytes(mapping.illustration.sourceUrl),
     ]);
+    const iconBytes = cardIconRecipe
+      ? await renderReviewedCardIcon(mapping.card.id, illustrationBytes)
+      : sourceIconBytes;
+    const iconAsset = cardIconRecipe
+      ? { ...mapping.illustration, matchMethod: "reviewed-illustration-portrait-crop" }
+      : mapping.icon;
     const iconDimensions = webpDimensions(iconBytes, `${mapping.card.id} icon`);
     const illustrationDimensions = webpDimensions(
       illustrationBytes,
@@ -763,6 +831,20 @@ async function downloadArt(cards, talentNameJaById, partial = false) {
       bytes: bytes.length,
       sha256: createHash("sha256").update(bytes).digest("hex"),
     });
+    const iconManifest = provenance("card-icon", iconAsset, iconPath, iconBytes, iconDimensions);
+    if (cardIconRecipe) {
+      iconManifest.transformation = {
+        recipe: mapping.card.id,
+        sourceSha256: cardIconRecipe.sourceSha256,
+        library: "sharp",
+        version: "0.35.5",
+        crop: cardIconRecipe.crop,
+        width: cardIconRecipe.width,
+        height: cardIconRecipe.height,
+        quality: cardIconRecipe.quality,
+        effort: cardIconRecipe.effort,
+      };
+    }
 
     return {
       iconBytes,
@@ -773,7 +855,7 @@ async function downloadArt(cards, talentNameJaById, partial = false) {
         talentNameJa: mapping.talentNameJa,
         status: "downloaded",
         retrievedAt,
-        icon: provenance("card-icon", mapping.icon, iconPath, iconBytes, iconDimensions),
+        icon: iconManifest,
         illustration: provenance(
           "card-illustration",
           mapping.illustration,

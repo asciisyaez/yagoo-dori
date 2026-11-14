@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "retrievedAt": "2026-10-30",
+  "retrievedAt": "2026-11-14",
   "source": {
     "page": "https://appmedia.jp/hololive-dreams",
     "label": "AppMedia public Member-card pages",
@@ -19,9 +19,9 @@
     }
   },
   "expectedCounts": {
-    "cards": 147,
-    "icons": 147,
-    "illustrations": 147
+    "cards": 155,
+    "icons": 155,
+    "illustrations": 155
   },
   "assets": [
     {
@@ -5183,6 +5183,366 @@
         "height": 1165,
         "bytes": 129742,
         "sha256": "f6a96da00654140b29fc908ce17ab1db4bc63be74b805cc41af6d1575b8942bc"
+      }
+    },
+    {
+      "cardId": "card-03003-5-uniq-0115-00",
+      "talentId": "chr-03003",
+      "talentNameJa": "アイラニ・イオフィフティーン",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03003-5-uniq-0115-00",
+        "talentId": "chr-03003",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80543578",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/191438_zx0b6.webp",
+        "localPath": "/game/cards/card-03003-5-uniq-0115-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 14452,
+        "sha256": "ef4029d2e91139ff733acdec77401cc62ad7124920bad62c6e401d92a46beaf4"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03003-5-uniq-0115-00",
+        "talentId": "chr-03003",
+        "sourcePage": "https://game8.jp/hololive-dreams/840692",
+        "sourceUrl": "https://img.game8.jp/13180945/86f862af2051df63cf37d9daf44cc5db.webp/original",
+        "localPath": "/game/illustrations/card-03003-5-uniq-0115-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 89930,
+        "sha256": "58c46d99160aec25ca6e31c20fa5722840db34a35f674dfa562a67f46caff4ff"
+      }
+    },
+    {
+      "cardId": "card-03001-5-uniq-0114-00",
+      "talentId": "chr-03001",
+      "talentNameJa": "アユンダ・リス",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03001-5-uniq-0114-00",
+        "talentId": "chr-03001",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80543239",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/184618_c324n.webp",
+        "localPath": "/game/cards/card-03001-5-uniq-0114-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 15818,
+        "sha256": "b1f8b99cbab1c83199cef0e21b3af99d0ef6e13b10c887b224f0f794d09040a7"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03001-5-uniq-0114-00",
+        "talentId": "chr-03001",
+        "sourcePage": "https://game8.jp/hololive-dreams/840690",
+        "sourceUrl": "https://img.game8.jp/13180946/12735faec653e83eb6fe13a72ff8f719.webp/original",
+        "localPath": "/game/illustrations/card-03001-5-uniq-0114-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 105414,
+        "sha256": "2f2c8cc778c63b3dd4e810d1d1d3e7d0ffb425bbca8026bff8f38a0f90f515d4"
+      }
+    },
+    {
+      "cardId": "card-04007-5-uniq-0106-00",
+      "talentId": "chr-04007",
+      "talentNameJa": "IRyS",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-04007-5-uniq-0106-00",
+        "talentId": "chr-04007",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/04007-5-uniq-0106-00-illustration.webp",
+        "localPath": "/game/cards/card-04007-5-uniq-0106-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 32978,
+        "sha256": "3cbf3037e37e5b8665779e95a60e6164a22c940a5809e06da6c0b3c32e58555c",
+        "transformation": {
+          "recipe": "card-04007-5-uniq-0106-00",
+          "sourceSha256": "ec95321150c88cfb69cbf2f0d3be4c0de5b5474e7729447c5df1116fccc25b9c",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 60,
+            "top": 0,
+            "width": 400,
+            "height": 400
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-04007-5-uniq-0106-00",
+        "talentId": "chr-04007",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/04007-5-uniq-0106-00-illustration.webp",
+        "localPath": "/game/illustrations/card-04007-5-uniq-0106-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 711,
+        "height": 400,
+        "bytes": 108108,
+        "sha256": "ec95321150c88cfb69cbf2f0d3be4c0de5b5474e7729447c5df1116fccc25b9c"
+      }
+    },
+    {
+      "cardId": "card-00031-5-uniq-0105-00",
+      "talentId": "chr-00031",
+      "talentNameJa": "桃鈴ねね",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00031-5-uniq-0105-00",
+        "talentId": "chr-00031",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00031-5-uniq-0105-00-illustration.webp",
+        "localPath": "/game/cards/card-00031-5-uniq-0105-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 34010,
+        "sha256": "6845f097454187b2ffbc2c7153cf90ce6add3e908af5e0adfe18007b0d92cdcb",
+        "transformation": {
+          "recipe": "card-00031-5-uniq-0105-00",
+          "sourceSha256": "f773925b9c9cb25e2820a7fd4c65c3421b3c871f95349cf3e92ab7ee787f70cc",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 100,
+            "top": 0,
+            "width": 400,
+            "height": 400
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00031-5-uniq-0105-00",
+        "talentId": "chr-00031",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00031-5-uniq-0105-00-illustration.webp",
+        "localPath": "/game/illustrations/card-00031-5-uniq-0105-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 711,
+        "height": 400,
+        "bytes": 99466,
+        "sha256": "f773925b9c9cb25e2820a7fd4c65c3421b3c871f95349cf3e92ab7ee787f70cc"
+      }
+    },
+    {
+      "cardId": "card-03002-5-uniq-0113-00",
+      "talentId": "chr-03002",
+      "talentNameJa": "ムーナ・ホシノヴァ",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03002-5-uniq-0113-00",
+        "talentId": "chr-03002",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80543449",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/184119_1fvic.webp",
+        "localPath": "/game/cards/card-03002-5-uniq-0113-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 300,
+        "height": 300,
+        "bytes": 15478,
+        "sha256": "19139983a12708672295577be64f0279716aa7a31e315b79735e9f3bf89b03fe"
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03002-5-uniq-0113-00",
+        "talentId": "chr-03002",
+        "sourcePage": "https://game8.jp/hololive-dreams/840691",
+        "sourceUrl": "https://img.game8.jp/13180947/f5510cc4bb016275933a931346b00adf.webp/original",
+        "localPath": "/game/illustrations/card-03002-5-uniq-0113-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 2101,
+        "height": 1165,
+        "bytes": 126006,
+        "sha256": "e5cccc7d194d9612ee28c58e4d31454e4d440e4d71316588bf23ce6dcbc62feb"
+      }
+    },
+    {
+      "cardId": "card-03006-5-uniq-0107-00",
+      "talentId": "chr-03006",
+      "talentNameJa": "パヴォリア・レイネ",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-03006-5-uniq-0107-00",
+        "talentId": "chr-03006",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/03006-5-uniq-0107-00-illustration.webp",
+        "localPath": "/game/cards/card-03006-5-uniq-0107-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 30776,
+        "sha256": "2f5d2b37d0ff26807e0085165b8907c9750f84274fc60886471ba72c8be18a6f",
+        "transformation": {
+          "recipe": "card-03006-5-uniq-0107-00",
+          "sourceSha256": "71bbeeb2274fe4495fee7c5487cb59052b3043a1962fd9fcaa92506b2bb54d1d",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 220,
+            "top": 0,
+            "width": 400,
+            "height": 400
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-03006-5-uniq-0107-00",
+        "talentId": "chr-03006",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/03006-5-uniq-0107-00-illustration.webp",
+        "localPath": "/game/illustrations/card-03006-5-uniq-0107-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 711,
+        "height": 400,
+        "bytes": 90556,
+        "sha256": "71bbeeb2274fe4495fee7c5487cb59052b3043a1962fd9fcaa92506b2bb54d1d"
+      }
+    },
+    {
+      "cardId": "card-00002-5-uniq-0104-00",
+      "talentId": "chr-00002",
+      "talentNameJa": "ロボ子さん",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00002-5-uniq-0104-00",
+        "talentId": "chr-00002",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00002-5-uniq-0104-00-illustration.webp",
+        "localPath": "/game/cards/card-00002-5-uniq-0104-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 29852,
+        "sha256": "ea7846c3c77c375a60038a4d5bf881f4d0674f6ba4c9b4a42e96a8d8fbc364c7",
+        "transformation": {
+          "recipe": "card-00002-5-uniq-0104-00",
+          "sourceSha256": "3eb24c8e66cc5371469325590ded91334b551a5c85f3b68a3d891823fc9a26ce",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 30,
+            "top": 0,
+            "width": 400,
+            "height": 400
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00002-5-uniq-0104-00",
+        "talentId": "chr-00002",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00002-5-uniq-0104-00-illustration.webp",
+        "localPath": "/game/illustrations/card-00002-5-uniq-0104-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 711,
+        "height": 400,
+        "bytes": 96148,
+        "sha256": "3eb24c8e66cc5371469325590ded91334b551a5c85f3b68a3d891823fc9a26ce"
+      }
+    },
+    {
+      "cardId": "card-00019-5-uniq-0108-00",
+      "talentId": "chr-00019",
+      "talentNameJa": "兎田ぺこら",
+      "status": "downloaded",
+      "retrievedAt": "2026-11-14",
+      "icon": {
+        "assetClass": "card-icon",
+        "cardId": "card-00019-5-uniq-0108-00",
+        "talentId": "chr-00019",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00019-5-uniq-0108-00-illustration.webp",
+        "localPath": "/game/cards/card-00019-5-uniq-0108-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "reviewed-illustration-portrait-crop",
+        "width": 300,
+        "height": 300,
+        "bytes": 30280,
+        "sha256": "9327e113abb738103bddd56b41f7e4c271c51ac4683b78ec7f3af4ec7faf8364",
+        "transformation": {
+          "recipe": "card-00019-5-uniq-0108-00",
+          "sourceSha256": "ada47b11b91a4087dfbce3d633b105da978e885d26c4cb4e13165fce5ce3d731",
+          "library": "sharp",
+          "version": "0.35.5",
+          "crop": {
+            "left": 110,
+            "top": 0,
+            "width": 400,
+            "height": 400
+          },
+          "width": 300,
+          "height": 300,
+          "quality": 90,
+          "effort": 6
+        }
+      },
+      "illustration": {
+        "assetClass": "card-illustration",
+        "cardId": "card-00019-5-uniq-0108-00",
+        "talentId": "chr-00019",
+        "sourcePage": "https://dreams.wf-calc.net/wiki/autumn-outing-20261114-evaluation?lang=ja",
+        "sourceUrl": "https://dreams.wf-calc.net/assets/holodori/00019-5-uniq-0108-00-illustration.webp",
+        "localPath": "/game/illustrations/card-00019-5-uniq-0108-00.webp",
+        "retrievedAt": "2026-11-14",
+        "matchMethod": "explicit-media-override",
+        "width": 711,
+        "height": 400,
+        "bytes": 95544,
+        "sha256": "ada47b11b91a4087dfbce3d633b105da978e885d26c4cb4e13165fce5ce3d731"
       }
     }
   ]

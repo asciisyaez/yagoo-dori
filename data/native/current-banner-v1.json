@@ -1,72 +1,69 @@
 {
   "schemaVersion": 1,
-  "id": "cosplay-night-2026-10-29",
+  "id": "bright-autumn-trip-2026-11-14",
   "status": "live",
-  "retrievedAt": "2026-10-30",
-  "eventName": "Our Halloween Fever!",
-  "gachaNameJa": "変幻自在☆Cosplay Nightガチャ",
-  "startsAt": "2026-10-29T02:00:00.000Z",
-  "endsAt": "2026-11-06T01:59:00.000Z",
-  "eventStartsAt": "2026-10-29T03:00:00.000Z",
-  "eventEndsAt": "2026-11-04T10:59:00.000Z",
+  "retrievedAt": "2026-11-14",
+  "eventName": "Whistling Wind Walk",
+  "gachaNameEn": "Bright Autumn Trip Gacha",
+  "gachaNameJa": "うららかな秋にお出かけを♪",
+  "startsAt": "2026-11-14T02:00:00.000Z",
+  "endsAt": null,
+  "eventStartsAt": "2026-11-14T11:00:00.000Z",
+  "eventEndsAt": null,
   "featuredCardIds": [
-    "card-00007-5-uniq-0096-00",
-    "card-03007-5-uniq-0100-00",
-    "card-04015-5-uniq-0099-00",
-    "card-06004-5-uniq-0098-00",
-    "card-06005-5-uniq-0097-00"
+    "card-00002-5-uniq-0104-00",
+    "card-00019-5-uniq-0108-00",
+    "card-04007-5-uniq-0106-00",
+    "card-00031-5-uniq-0105-00",
+    "card-03006-5-uniq-0107-00"
   ],
   "eventTracks": [
     {
-      "talent": "All five",
-      "songId": "m0369",
-      "title": "KaienSpectacle",
-      "startsAt": null,
+      "talent": "Robocosan",
+      "songId": "m0383",
+      "title": "slight fever",
+      "startsAt": "2026-11-14T11:00:00.000Z",
       "endsAt": null
     },
     {
-      "talent": "Natsuiro Matsuri",
-      "songId": "m0551",
-      "title": "ENDLESS FES",
-      "startsAt": null,
+      "talent": "Usada Pekora",
+      "songId": "m0387",
+      "title": "PEKORISER",
+      "startsAt": "2026-11-16T11:00:00.000Z",
       "endsAt": null
     },
     {
-      "talent": "Vestia Zeta",
-      "songId": "m0388",
-      "title": "Break It Down",
-      "startsAt": null,
+      "talent": "IRyS",
+      "songId": "m0385",
+      "title": "Burning hope",
+      "startsAt": "2026-11-18T11:00:00.000Z",
       "endsAt": null
     },
     {
-      "talent": "Nerissa Ravencroft",
-      "songId": "m0373",
-      "title": "Sweetest Scarlet",
-      "startsAt": null,
+      "talent": "Momosuzu Nene",
+      "songId": "m0384",
+      "title": "Dear You, A Love Song Just for You!",
+      "startsAt": "2026-11-20T11:00:00.000Z",
       "endsAt": null
     },
     {
-      "talent": "Juufuutei Raden",
-      "songId": "m0372",
-      "title": "Miracle Palette",
-      "startsAt": null,
-      "endsAt": null
-    },
-    {
-      "talent": "Todoroki Hajime",
-      "songId": "m0371",
-      "title": "BANZAI",
-      "startsAt": null,
+      "talent": "Pavolia Reine",
+      "songId": "m0386",
+      "title": "Halulu",
+      "startsAt": "2026-11-22T11:00:00.000Z",
       "endsAt": null
     }
   ],
   "sourceRefs": [
-    "source-gamebiz-halloween",
-    "source-appmedia-halloween",
-    "source-holodori-halloween"
+    "source-official-bright-autumn-trip-gacha",
+    "source-official-whistling-wind-walk",
+    "source-official-whistling-wind-song-schedule",
+    "source-holodori-nov14-eng",
+    "source-holodori-nov14-jpn",
+    "source-holodori-lab-autumn-outing"
   ],
-  "transformation": "Five announced Halloween cards and six event tracks joined to pinned ENG 70cbc0a485dc7b332f80404dd060254689e52450 and JPN e004fb6b8fc9aafefbde526d8e698a29c66818b5. Individual track windows are not supplied by the public announcement and remain null. Event title is an English translation of the official Japanese 私たちのHalloween Fever！.",
-  "eventType": "point-rally",
+  "transformation": "Join five ★5 Member IDs to pinned ENG bd0d2f234590ed4bc325978057eef60224014465 and JPN f7e4961e2d9d5b1d1608b550345d78f9d1f6ce73 (master 9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875, retrieved 2026-11-14). Convert the gacha start and five official spotlight-song start times from JST to UTC. Official notices do not state gacha or event end times, so both remain null. Song IDs and English titles are joined to the pinned ENG Music.json/LangMusic_Eng.json rows; the current 240-song/960-chart aggregate omits chart hashes, and no chart timing or score claims are made.",
+  "eventType": "spotlight",
   "announcedMembers": [],
-  "offerNote": "First 10-pull free on the standard banner; selectable pickup banner excluded."
+  "offerNote": "A Select Gacha is also available. These five new Members will appear in future scheduled gachas, but not in the holodori Gacha."
 }

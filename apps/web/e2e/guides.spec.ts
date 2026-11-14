@@ -82,7 +82,7 @@ const GUIDES = [
   {
     talent: "Kureiji Ollie",
     cardTitle: "Crazy Summer Dive",
-    standardLeaderCardTitle: "Crazy Summer Dive",
+    standardLeaderCardTitle: "Eternal Z-Talker",
     guideSlug: "kureiji-ollie-crazy-summer-dive-card-03004-5-uniq-0073-00-team-guide",
     cardSlug: "kureiji-ollie-crazy-summer-dive-card-03004-5-uniq-0073-00",
   },
@@ -117,7 +117,7 @@ const GUIDES = [
   {
     talent: "Nekomata Okayu",
     cardTitle: "Parasol Stray Cat",
-    standardLeaderCardTitle: "Secret Post-Feast",
+    standardLeaderCardTitle: "Parasol Stray Cat",
     guideSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00-team-guide",
     cardSlug: "nekomata-okayu-parasol-stray-cat-card-00016-5-uniq-0076-00",
   },
@@ -182,7 +182,7 @@ const GUIDES = [
   {
     talent: "Houshou Marine",
     cardTitle: "Hoard the Loot!♡",
-    standardLeaderCardTitle: "Siren Marine Blue",
+    standardLeaderCardTitle: "Hoard the Loot!♡",
     guideSlug: "houshou-marine-hoard-the-loot-card-00023-5-uniq-0085-00-team-guide",
     cardSlug: "houshou-marine-hoard-the-loot-card-00023-5-uniq-0085-00",
   },
@@ -210,14 +210,14 @@ const GUIDES = [
   {
     talent: "Yukihana Lamy",
     cardTitle: "A Cool, Healing Sip",
-    standardLeaderCardTitle: "A Cool, Healing Sip",
+    standardLeaderCardTitle: "Lonely Snow Heiress",
     guideSlug: "yukihana-lamy-a-cool-healing-sip-card-00030-5-uniq-0089-00-team-guide",
     cardSlug: "yukihana-lamy-a-cool-healing-sip-card-00030-5-uniq-0089-00",
   },
   {
     talent: "Omaru Polka",
     cardTitle: "Shared BBQ Bliss",
-    standardLeaderCardTitle: "Polka’s Phantasm",
+    standardLeaderCardTitle: "Shared BBQ Bliss",
     guideSlug: "omaru-polka-shared-bbq-bliss-card-00034-5-uniq-0090-00-team-guide",
     cardSlug: "omaru-polka-shared-bbq-bliss-card-00034-5-uniq-0090-00",
   },
@@ -261,6 +261,14 @@ const GUIDES = [
   {"talent": "Nerissa Ravencroft", "cardTitle": "Bewitching Elixir", "standardLeaderCardTitle": "Echoes of Nocturne", "guideSlug": "nerissa-ravencroft-bewitching-elixir-card-04015-5-uniq-0099-00-team-guide", "cardSlug": "nerissa-ravencroft-bewitching-elixir-card-04015-5-uniq-0099-00"},
   {"talent": "Juufuutei Raden", "cardTitle": "Noble Elegance", "standardLeaderCardTitle": "Noble Elegance", "guideSlug": "juufuutei-raden-noble-elegance-card-06004-5-uniq-0098-00-team-guide", "cardSlug": "juufuutei-raden-noble-elegance-card-06004-5-uniq-0098-00"},
   {"talent": "Todoroki Hajime", "cardTitle": "Jiangshi Midnight Waltz", "standardLeaderCardTitle": "Jiangshi Midnight Waltz", "guideSlug": "todoroki-hajime-jiangshi-midnight-waltz-card-06005-5-uniq-0097-00-team-guide", "cardSlug": "todoroki-hajime-jiangshi-midnight-waltz-card-06005-5-uniq-0097-00"},
+  {"talent": "Robocosan", "cardTitle": "Autumn Date with High-Spec Me", "standardLeaderCardTitle": "Autumn Date with High-Spec Me", "guideSlug": "robocosan-autumn-date-with-high-spec-me-card-00002-5-uniq-0104-00-team-guide", "cardSlug": "robocosan-autumn-date-with-high-spec-me-card-00002-5-uniq-0104-00"},
+  {"talent": "Usada Pekora", "cardTitle": "Whimsical Steps, Dressed to Shine", "standardLeaderCardTitle": "Whimsical Steps, Dressed to Shine", "guideSlug": "usada-pekora-whimsical-steps-dressed-to-shine-card-00019-5-uniq-0108-00-team-guide", "cardSlug": "usada-pekora-whimsical-steps-dressed-to-shine-card-00019-5-uniq-0108-00"},
+  {"talent": "Momosuzu Nene", "cardTitle": "Vibrant Shower of Fallen Gold", "standardLeaderCardTitle": "Vibrant Shower of Fallen Gold", "guideSlug": "momosuzu-nene-vibrant-shower-of-fallen-gold-card-00031-5-uniq-0105-00-team-guide", "cardSlug": "momosuzu-nene-vibrant-shower-of-fallen-gold-card-00031-5-uniq-0105-00"},
+  {"talent": "Pavolia Reine", "cardTitle": "The Breeze of Ginkgo Trees", "standardLeaderCardTitle": "The Breeze of Ginkgo Trees", "guideSlug": "pavolia-reine-the-breeze-of-ginkgo-trees-card-03006-5-uniq-0107-00-team-guide", "cardSlug": "pavolia-reine-the-breeze-of-ginkgo-trees-card-03006-5-uniq-0107-00"},
+  {"talent": "IRyS", "cardTitle": "Sowing Hope", "standardLeaderCardTitle": "Nephilim Sonority", "guideSlug": "irys-sowing-hope-card-04007-5-uniq-0106-00-team-guide", "cardSlug": "irys-sowing-hope-card-04007-5-uniq-0106-00"},
+  {"talent": "Ayunda Risu", "cardTitle": "Drowsy Morning Routine", "standardLeaderCardTitle": "Drowsy Morning Routine", "guideSlug": "ayunda-risu-drowsy-morning-routine-card-03001-5-uniq-0114-00-team-guide", "cardSlug": "ayunda-risu-drowsy-morning-routine-card-03001-5-uniq-0114-00"},
+  {"talent": "Moona Hoshinova", "cardTitle": "Starlight Soak", "standardLeaderCardTitle": "Starlight Soak", "guideSlug": "moona-hoshinova-starlight-soak-card-03002-5-uniq-0113-00-team-guide", "cardSlug": "moona-hoshinova-starlight-soak-card-03002-5-uniq-0113-00"},
+  {"talent": "Airani Iofifteen", "cardTitle": "Radiant Solstice Smile", "standardLeaderCardTitle": "Radiant Solstice Smile", "guideSlug": "airani-iofifteen-radiant-solstice-smile-card-03003-5-uniq-0115-00-team-guide", "cardSlug": "airani-iofifteen-radiant-solstice-smile-card-03003-5-uniq-0115-00"},
 ] as const;
 
 const AZKI_GUIDE = GUIDES[0];
@@ -304,7 +312,10 @@ test("guide library lists every generated exact-card build", async ({ isMobile, 
 
   for (const guide of GUIDES) {
     const card = page.getByRole("article").filter({
-      has: page.getByRole("heading", { level: 2, name: guide.talent, exact: true }),
+      has: page.getByRole("link", {
+        name: `Open ${guide.talent} ${guide.cardTitle} team guide`,
+        exact: true,
+      }),
     });
     await expect(card).toHaveCount(1);
     await expect(card.getByText(guide.cardTitle, { exact: true })).toBeVisible();
@@ -346,7 +357,7 @@ test("guide library lists every generated exact-card build", async ({ isMobile, 
 });
 
 for (const guide of GUIDES) {
-  test(`${guide.talent} guide route, profile link, and mobile layout are ready`, async ({
+  test(`${guide.talent} · ${guide.cardTitle} guide route, profile link, and mobile layout are ready`, async ({
     isMobile,
     page,
   }) => {

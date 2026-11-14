@@ -26,8 +26,8 @@ describe("evidence-linked mechanics catalog", () => {
     expect(mechanicsData.sourceSnapshot.masterVersion).toBe(
       publicData.sourceSnapshots.english.masterVersion,
     );
-    expect(mechanicsData.cards).toHaveLength(147);
-    expect(new Set(mechanicsData.cards.map((card) => card.cardId)).size).toBe(147);
+    expect(mechanicsData.cards).toHaveLength(155);
+    expect(new Set(mechanicsData.cards.map((card) => card.cardId)).size).toBe(155);
     expect(new Set(mechanicsData.cards.map((card) => card.cardId))).toEqual(
       new Set(publicData.cards.map((card) => card.id)),
     );
@@ -35,8 +35,8 @@ describe("evidence-linked mechanics catalog", () => {
       expect(mechanicsCardById.get(card.id)?.talentId).toBe(card.talentId);
     }
     expect(mechanicsData.coverage).toMatchObject({
-      cards: 147,
-      mappedCards: 147,
+      cards: 155,
+      mappedCards: 155,
       unresolvedReferences: [],
     });
   });
@@ -59,7 +59,7 @@ describe("evidence-linked mechanics catalog", () => {
 
   it("normalizes every current effect, target, trigger, progression, Connect, and Board catalog", () => {
     expect(mechanicsData.catalogs.activeEffects).toHaveLength(55);
-    expect(mechanicsData.catalogs.passiveEffects).toHaveLength(194);
+    expect(mechanicsData.catalogs.passiveEffects).toHaveLength(202);
     expect(mechanicsData.catalogs.targets).toHaveLength(83);
     expect(mechanicsData.catalogs.triggers).toHaveLength(215);
     expect(mechanicsData.catalogs.potentialEffects).toHaveLength(15);
@@ -270,7 +270,7 @@ describe("evidence-linked mechanics catalog", () => {
         ),
       })),
     );
-    expect(leaderCoeffects).toHaveLength(21);
+    expect(leaderCoeffects).toHaveLength(23);
     expect(
       leaderCoeffects.every(
         ({ additional, primary }) =>

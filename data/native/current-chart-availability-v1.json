@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "source": {
     "repository": "https://github.com/HolodoriDB/holodori-db-eng-diff",
-    "commit": "70cbc0a485dc7b332f80404dd060254689e52450",
-    "masterVersion": "1aba922e9cd282db2396b19d220524b46e7ac10459c5ffb3c1b6f6d4eb9f550d",
+    "commit": "bd0d2f234590ed4bc325978057eef60224014465",
+    "masterVersion": "9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875",
     "table": "MusicDifficultyChart.json",
-    "sourceSha256": "489e8da5a8f9c96a43d18c9877d2cf6ce90b82b52370e78b8758315a0dccc811",
-    "retrievedAt": "2026-10-30"
+    "sourceSha256": "c92c64c02fd5985922b0742b5b1cb8d48ad8d866c9f4b67b55ad595699590c79",
+    "retrievedAt": "2026-11-14"
   },
   "historicalScoringCommit": "f7428d4092d57b34311f030e00ff46e7dbbc29e8",
   "counts": {
-    "currentCharts": 908,
-    "currentSongs": 227,
-    "currentTimingUnavailable": 908,
+    "currentCharts": 960,
+    "currentSongs": 240,
+    "currentTimingUnavailable": 960,
     "alsoInHistoricalScoringSnapshot": 812,
-    "newlyObservedChartKeys": 96,
+    "newlyObservedChartKeys": 148,
     "historicalKeysAbsentFromCurrent": 0
   },
   "charts": [
@@ -8699,6 +8699,206 @@
       "presentInHistoricalScoringSnapshot": false
     },
     {
+      "key": "m0383:easy",
+      "songId": "m0383",
+      "difficulty": "easy",
+      "fullComboNoteCount": 186,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0383:expert",
+      "songId": "m0383",
+      "difficulty": "expert",
+      "fullComboNoteCount": 844,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0383:hard",
+      "songId": "m0383",
+      "difficulty": "hard",
+      "fullComboNoteCount": 448,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0383:normal",
+      "songId": "m0383",
+      "difficulty": "normal",
+      "fullComboNoteCount": 256,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0384:easy",
+      "songId": "m0384",
+      "difficulty": "easy",
+      "fullComboNoteCount": 310,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0384:expert",
+      "songId": "m0384",
+      "difficulty": "expert",
+      "fullComboNoteCount": 990,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0384:hard",
+      "songId": "m0384",
+      "difficulty": "hard",
+      "fullComboNoteCount": 673,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0384:normal",
+      "songId": "m0384",
+      "difficulty": "normal",
+      "fullComboNoteCount": 476,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0385:easy",
+      "songId": "m0385",
+      "difficulty": "easy",
+      "fullComboNoteCount": 254,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0385:expert",
+      "songId": "m0385",
+      "difficulty": "expert",
+      "fullComboNoteCount": 1410,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0385:hard",
+      "songId": "m0385",
+      "difficulty": "hard",
+      "fullComboNoteCount": 871,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0385:normal",
+      "songId": "m0385",
+      "difficulty": "normal",
+      "fullComboNoteCount": 497,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0386:easy",
+      "songId": "m0386",
+      "difficulty": "easy",
+      "fullComboNoteCount": 144,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0386:expert",
+      "songId": "m0386",
+      "difficulty": "expert",
+      "fullComboNoteCount": 787,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0386:hard",
+      "songId": "m0386",
+      "difficulty": "hard",
+      "fullComboNoteCount": 587,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0386:normal",
+      "songId": "m0386",
+      "difficulty": "normal",
+      "fullComboNoteCount": 310,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0387:easy",
+      "songId": "m0387",
+      "difficulty": "easy",
+      "fullComboNoteCount": 259,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0387:expert",
+      "songId": "m0387",
+      "difficulty": "expert",
+      "fullComboNoteCount": 1220,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0387:hard",
+      "songId": "m0387",
+      "difficulty": "hard",
+      "fullComboNoteCount": 719,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0387:normal",
+      "songId": "m0387",
+      "difficulty": "normal",
+      "fullComboNoteCount": 494,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
       "key": "m0388:easy",
       "songId": "m0388",
       "difficulty": "easy",
@@ -8733,6 +8933,206 @@
       "songId": "m0388",
       "difficulty": "normal",
       "fullComboNoteCount": 532,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0394:easy",
+      "songId": "m0394",
+      "difficulty": "easy",
+      "fullComboNoteCount": 182,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0394:expert",
+      "songId": "m0394",
+      "difficulty": "expert",
+      "fullComboNoteCount": 815,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0394:hard",
+      "songId": "m0394",
+      "difficulty": "hard",
+      "fullComboNoteCount": 651,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0394:normal",
+      "songId": "m0394",
+      "difficulty": "normal",
+      "fullComboNoteCount": 390,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0396:easy",
+      "songId": "m0396",
+      "difficulty": "easy",
+      "fullComboNoteCount": 200,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0396:expert",
+      "songId": "m0396",
+      "difficulty": "expert",
+      "fullComboNoteCount": 848,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0396:hard",
+      "songId": "m0396",
+      "difficulty": "hard",
+      "fullComboNoteCount": 630,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0396:normal",
+      "songId": "m0396",
+      "difficulty": "normal",
+      "fullComboNoteCount": 343,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0398:easy",
+      "songId": "m0398",
+      "difficulty": "easy",
+      "fullComboNoteCount": 389,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0398:expert",
+      "songId": "m0398",
+      "difficulty": "expert",
+      "fullComboNoteCount": 1124,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0398:hard",
+      "songId": "m0398",
+      "difficulty": "hard",
+      "fullComboNoteCount": 901,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0398:normal",
+      "songId": "m0398",
+      "difficulty": "normal",
+      "fullComboNoteCount": 569,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0403:easy",
+      "songId": "m0403",
+      "difficulty": "easy",
+      "fullComboNoteCount": 330,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0403:expert",
+      "songId": "m0403",
+      "difficulty": "expert",
+      "fullComboNoteCount": 1250,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0403:hard",
+      "songId": "m0403",
+      "difficulty": "hard",
+      "fullComboNoteCount": 997,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0403:normal",
+      "songId": "m0403",
+      "difficulty": "normal",
+      "fullComboNoteCount": 567,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0404:easy",
+      "songId": "m0404",
+      "difficulty": "easy",
+      "fullComboNoteCount": 268,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0404:expert",
+      "songId": "m0404",
+      "difficulty": "expert",
+      "fullComboNoteCount": 1129,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0404:hard",
+      "songId": "m0404",
+      "difficulty": "hard",
+      "fullComboNoteCount": 853,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0404:normal",
+      "songId": "m0404",
+      "difficulty": "normal",
+      "fullComboNoteCount": 445,
       "currentChartHash": null,
       "currentTiming": "unavailable",
       "reason": "source-omits-current-hash-and-timing",
@@ -8939,6 +9339,46 @@
       "presentInHistoricalScoringSnapshot": true
     },
     {
+      "key": "m0528:easy",
+      "songId": "m0528",
+      "difficulty": "easy",
+      "fullComboNoteCount": 215,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0528:expert",
+      "songId": "m0528",
+      "difficulty": "expert",
+      "fullComboNoteCount": 878,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0528:hard",
+      "songId": "m0528",
+      "difficulty": "hard",
+      "fullComboNoteCount": 626,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0528:normal",
+      "songId": "m0528",
+      "difficulty": "normal",
+      "fullComboNoteCount": 464,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
       "key": "m0548:easy",
       "songId": "m0548",
       "difficulty": "easy",
@@ -9019,6 +9459,46 @@
       "presentInHistoricalScoringSnapshot": false
     },
     {
+      "key": "m0550:easy",
+      "songId": "m0550",
+      "difficulty": "easy",
+      "fullComboNoteCount": 214,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0550:expert",
+      "songId": "m0550",
+      "difficulty": "expert",
+      "fullComboNoteCount": 718,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0550:hard",
+      "songId": "m0550",
+      "difficulty": "hard",
+      "fullComboNoteCount": 531,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0550:normal",
+      "songId": "m0550",
+      "difficulty": "normal",
+      "fullComboNoteCount": 336,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
       "key": "m0551:easy",
       "songId": "m0551",
       "difficulty": "easy",
@@ -9053,6 +9533,46 @@
       "songId": "m0551",
       "difficulty": "normal",
       "fullComboNoteCount": 382,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0552:easy",
+      "songId": "m0552",
+      "difficulty": "easy",
+      "fullComboNoteCount": 331,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0552:expert",
+      "songId": "m0552",
+      "difficulty": "expert",
+      "fullComboNoteCount": 995,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0552:hard",
+      "songId": "m0552",
+      "difficulty": "hard",
+      "fullComboNoteCount": 632,
+      "currentChartHash": null,
+      "currentTiming": "unavailable",
+      "reason": "source-omits-current-hash-and-timing",
+      "presentInHistoricalScoringSnapshot": false
+    },
+    {
+      "key": "m0552:normal",
+      "songId": "m0552",
+      "difficulty": "normal",
+      "fullComboNoteCount": 487,
       "currentChartHash": null,
       "currentTiming": "unavailable",
       "reason": "source-omits-current-hash-and-timing",

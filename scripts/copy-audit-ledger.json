@@ -231,6 +231,10 @@
     "data/generated/native-guides.json|With 2 or more ReGLOSS Members, Grants Score Support Effect of 12% to 2 ReGLOSS Members.|score": {
       "disposition": "allowed-scoped",
       "justification": "Raden passive skill level text (12%), corroborated by Game8 839029; Score Support is an in-game effect conditioned on two ReGLOSS Members and capped at two recipients, not a Live Score claim."
+    },
+    "data/generated/native-guides.json|With 2 or more ID Gen 1 Members, Grants Score Support Effect of 6% to 2 ID Gen 1 Members.|score": {
+      "disposition": "allowed-scoped",
+      "justification": "Pinned passive-skill wording for the exact replacement cards in the Risu guide. Score Support Effect is an in-game effect with an explicit ID Gen 1 condition and two-recipient limit, not a calculated Live Score claim."
     }
   }
 }

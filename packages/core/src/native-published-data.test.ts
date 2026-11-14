@@ -18,7 +18,7 @@ import { evaluateNativeRelativeUtility } from "./native-utility";
 import { publicCardById, publicCards, publicData } from "./public-data";
 import { songContextData } from "./song-contexts";
 
-const PINNED_GUIDE_ROSTER_COMMIT = "70cbc0a485dc7b332f80404dd060254689e52450";
+const PINNED_GUIDE_ROSTER_COMMIT = "bd0d2f234590ed4bc325978057eef60224014465";
 
 const EXPECTED_GUIDE_IDENTITIES = [
   {"anchorCardId": "card-00007-5-uniq-0096-00", "talentId": "chr-00007", "talentName": "Natsuiro Matsuri", "cardTitle": "Wolf's Sugary Trick", "leaders": {"premium": "card-00007-5-uniq-0096-00", "standard": "card-00007-5-uniq-0096-00", "accessible-4-star": "card-00007-4-cmmn-0000-00"}},
@@ -99,7 +99,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Anya Melfissa",
     cardTitle: "Chill Sunny Holiday",
     leaders: {
-      premium: "card-03005-5-uniq-0084-00",
+      premium: "card-03005-5-uniq-0037-00",
       standard: "card-03005-5-uniq-0084-00",
       "accessible-4-star": "card-03005-4-cmmn-0000-00"
     }
@@ -177,7 +177,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "Parasol Stray Cat",
     leaders: {
       premium: "card-00016-5-uniq-0014-00",
-      standard: "card-00016-5-uniq-0014-00",
+      standard: "card-00016-5-uniq-0076-00",
       "accessible-4-star": "card-00016-4-cmmn-0000-00",
     },
   },
@@ -320,7 +320,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "Crazy Summer Dive",
     leaders: {
       premium: "card-03004-5-uniq-0073-00",
-      standard: "card-03004-5-uniq-0073-00",
+      standard: "card-03004-5-uniq-0036-00",
       "accessible-4-star": "card-03004-4-cmmn-0000-00",
     },
   },
@@ -330,7 +330,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     talentName: "Mori Calliope",
     cardTitle: "Beach Reaper's Spike",
     leaders: {
-      premium: "card-04001-5-uniq-0071-00",
+      premium: "card-04001-5-uniq-0042-00",
       standard: "card-04001-5-uniq-0042-00",
       "accessible-4-star": "card-04001-4-cmmn-0000-00",
     },
@@ -353,7 +353,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "Hoard the Loot!♡",
     leaders: {
       premium: "card-00023-5-uniq-0085-00",
-      standard: "card-00023-5-uniq-0019-00",
+      standard: "card-00023-5-uniq-0085-00",
       "accessible-4-star": "card-00023-4-cmmn-0000-00",
     },
   },
@@ -364,7 +364,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "A Cool, Healing Sip",
     leaders: {
       premium: "card-00030-5-uniq-0089-00",
-      standard: "card-00030-5-uniq-0089-00",
+      standard: "card-00030-5-uniq-0024-00",
       "accessible-4-star": "card-00030-4-cmmn-0000-00",
     },
   },
@@ -375,7 +375,7 @@ const EXPECTED_GUIDE_IDENTITIES = [
     cardTitle: "Shared BBQ Bliss",
     leaders: {
       premium: "card-00034-5-uniq-0090-00",
-      standard: "card-00034-5-uniq-0027-00",
+      standard: "card-00034-5-uniq-0090-00",
       "accessible-4-star": "card-00034-4-cmmn-0000-00",
     },
   },
@@ -421,6 +421,94 @@ const EXPECTED_GUIDE_IDENTITIES = [
       premium: "card-06003-5-uniq-0059-00",
       standard: "card-06003-5-uniq-0059-00",
       "accessible-4-star": "card-06003-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00002-5-uniq-0104-00",
+    talentId: "chr-00002",
+    talentName: "Robocosan",
+    cardTitle: "Autumn Date with High-Spec Me",
+    leaders: {
+      premium: "card-00002-5-uniq-0104-00",
+      standard: "card-00002-5-uniq-0104-00",
+      "accessible-4-star": "card-00002-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00019-5-uniq-0108-00",
+    talentId: "chr-00019",
+    talentName: "Usada Pekora",
+    cardTitle: "Whimsical Steps, Dressed to Shine",
+    leaders: {
+      premium: "card-00019-5-uniq-0108-00",
+      standard: "card-00019-5-uniq-0108-00",
+      "accessible-4-star": "card-00019-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-04007-5-uniq-0106-00",
+    talentId: "chr-04007",
+    talentName: "IRyS",
+    cardTitle: "Sowing Hope",
+    leaders: {
+      premium: "card-04007-5-uniq-0106-00",
+      standard: "card-04007-5-uniq-0047-00",
+      "accessible-4-star": "card-04007-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-00031-5-uniq-0105-00",
+    talentId: "chr-00031",
+    talentName: "Momosuzu Nene",
+    cardTitle: "Vibrant Shower of Fallen Gold",
+    leaders: {
+      premium: "card-00031-5-uniq-0105-00",
+      standard: "card-00031-5-uniq-0105-00",
+      "accessible-4-star": "card-00031-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03006-5-uniq-0107-00",
+    talentId: "chr-03006",
+    talentName: "Pavolia Reine",
+    cardTitle: "The Breeze of Ginkgo Trees",
+    leaders: {
+      premium: "card-03006-5-uniq-0107-00",
+      standard: "card-03006-5-uniq-0107-00",
+      "accessible-4-star": "card-03006-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03001-5-uniq-0114-00",
+    talentId: "chr-03001",
+    talentName: "Ayunda Risu",
+    cardTitle: "Drowsy Morning Routine",
+    leaders: {
+      premium: "card-03001-5-uniq-0114-00",
+      standard: "card-03001-5-uniq-0114-00",
+      "accessible-4-star": "card-03001-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03002-5-uniq-0113-00",
+    talentId: "chr-03002",
+    talentName: "Moona Hoshinova",
+    cardTitle: "Starlight Soak",
+    leaders: {
+      premium: "card-03002-5-uniq-0113-00",
+      standard: "card-03002-5-uniq-0113-00",
+      "accessible-4-star": "card-03002-4-cmmn-0000-00",
+    },
+  },
+  {
+    anchorCardId: "card-03003-5-uniq-0115-00",
+    talentId: "chr-03003",
+    talentName: "Airani Iofifteen",
+    cardTitle: "Radiant Solstice Smile",
+    leaders: {
+      premium: "card-03003-5-uniq-0115-00",
+      standard: "card-03003-5-uniq-0115-00",
+      "accessible-4-star": "card-03003-4-cmmn-0000-00",
     },
   },
 ] as const;
@@ -720,12 +808,6 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Poetic Death Waltz",
     leaderSkillId: "live_leader_skill-card-04001-5-uniq-0042-00"
   },
-  "card-04001-5-uniq-0071-00": {
-    cardTitle: "Beach Reaper's Spike",
-    costumeId: "cos-04001-uniq-0071-00",
-    costumeName: "Radiant Summer Heatwave",
-    leaderSkillId: "live_leader_skill-card-04001-5-uniq-0071-00"
-  },
   "card-04003-4-cmmn-0000-00": {
     cardTitle: "Gentle Stage Beam",
     costumeId: "cos-04003-cmmn-0000-00",
@@ -792,12 +874,6 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeName: "Dreamy Drop",
     leaderSkillId: "live_leader_skill-card-00023-4-cmmn-0000-00"
   },
-  "card-00023-5-uniq-0019-00": {
-    cardTitle: "Siren Marine Blue",
-    costumeId: "cos-00023-uniq-0019-00",
-    costumeName: "Crimson Captain",
-    leaderSkillId: "live_leader_skill-card-00023-5-uniq-0019-00"
-  },
   "card-00023-5-uniq-0085-00": {
     cardTitle: "Hoard the Loot!♡",
     costumeId: "cos-00023-uniq-0085-00",
@@ -821,12 +897,6 @@ const EXPECTED_LEADER_IDENTITIES = {
     costumeId: "cos-00034-cmmn-0000-00",
     costumeName: "Dreamy Drop",
     leaderSkillId: "live_leader_skill-card-00034-4-cmmn-0000-00"
-  },
-  "card-00034-5-uniq-0027-00": {
-    cardTitle: "Polka’s Phantasm",
-    costumeId: "cos-00034-uniq-0027-00",
-    costumeName: "Carnival Overlord",
-    leaderSkillId: "live_leader_skill-card-00034-5-uniq-0027-00"
   },
   "card-00034-5-uniq-0090-00": {
     cardTitle: "Shared BBQ Bliss",
@@ -893,6 +963,26 @@ const EXPECTED_LEADER_IDENTITIES = {
   "card-06004-5-uniq-0098-00": {"cardTitle": "Noble Elegance", "costumeId": "cos-06004-uniq-0098-00", "costumeName": "Gothic Vampire", "leaderSkillId": "live_leader_skill-card-06004-5-uniq-0098-00"},
   "card-06005-4-cmmn-0000-00": {"cardTitle": "She's the Boss", "costumeId": "cos-06005-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-06005-4-cmmn-0000-00"},
   "card-06005-5-uniq-0097-00": {"cardTitle": "Jiangshi Midnight Waltz", "costumeId": "cos-06005-uniq-0097-00", "costumeName": "Supreme Jiangshi", "leaderSkillId": "live_leader_skill-card-06005-5-uniq-0097-00"},
+  "card-00002-4-cmmn-0000-00": {"cardTitle": "Dreamy Wink Concert", "costumeId": "cos-00002-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-00002-4-cmmn-0000-00"},
+  "card-00002-5-uniq-0104-00": {"cardTitle": "Autumn Date with High-Spec Me", "costumeId": "cos-00002-uniq-0104-00", "costumeName": "Cloud-Padded Tartan", "leaderSkillId": "live_leader_skill-card-00002-5-uniq-0104-00"},
+  "card-00016-5-uniq-0076-00": {"cardTitle": "Parasol Stray Cat", "costumeId": "cos-00016-uniq-0076-00", "costumeName": "Salty Breeze Runway", "leaderSkillId": "live_leader_skill-card-00016-5-uniq-0076-00"},
+  "card-00019-5-uniq-0108-00": {"cardTitle": "Whimsical Steps, Dressed to Shine", "costumeId": "cos-00019-uniq-0108-00", "costumeName": "Obsidian Lace", "leaderSkillId": "live_leader_skill-card-00019-5-uniq-0108-00"},
+  "card-00030-5-uniq-0024-00": {"cardTitle": "Lonely Snow Heiress", "costumeId": "cos-00030-uniq-0024-00", "costumeName": "Crystal Winter Flowers", "leaderSkillId": "live_leader_skill-card-00030-5-uniq-0024-00"},
+  "card-00031-4-cmmn-0000-00": {"cardTitle": "Adrenaline Surge", "costumeId": "cos-00031-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-00031-4-cmmn-0000-00"},
+  "card-00031-5-uniq-0105-00": {"cardTitle": "Vibrant Shower of Fallen Gold", "costumeId": "cos-00031-uniq-0105-00", "costumeName": "Outdoor Vibe", "leaderSkillId": "live_leader_skill-card-00031-5-uniq-0105-00"},
+  "card-03001-4-cmmn-0000-00": {"cardTitle": "Roundtail Rhythm", "costumeId": "cos-03001-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-03001-4-cmmn-0000-00"},
+  "card-03001-5-uniq-0114-00": {"cardTitle": "Drowsy Morning Routine", "costumeId": "cos-03001-uniq-0114-00", "costumeName": "Slumber Acorn", "leaderSkillId": "live_leader_skill-card-03001-5-uniq-0114-00"},
+  "card-03002-4-cmmn-0000-00": {"cardTitle": "Moonlight Vocal Fusion", "costumeId": "cos-03002-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-03002-4-cmmn-0000-00"},
+  "card-03002-5-uniq-0113-00": {"cardTitle": "Starlight Soak", "costumeId": "cos-03002-uniq-0113-00", "costumeName": "Cosmic Chill", "leaderSkillId": "live_leader_skill-card-03002-5-uniq-0113-00"},
+  "card-03003-4-cmmn-0000-00": {"cardTitle": "Serene Stage Vista", "costumeId": "cos-03003-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-03003-4-cmmn-0000-00"},
+  "card-03003-5-uniq-0115-00": {"cardTitle": "Radiant Solstice Smile", "costumeId": "cos-03003-uniq-0115-00", "costumeName": "Sunlit Daydream", "leaderSkillId": "live_leader_skill-card-03003-5-uniq-0115-00"},
+  "card-03004-5-uniq-0036-00": {"cardTitle": "Eternal Z-Talker", "costumeId": "cos-03004-uniq-0036-00", "costumeName": "Stitched Revenant", "leaderSkillId": "live_leader_skill-card-03004-5-uniq-0036-00"},
+  "card-03005-5-uniq-0037-00": {"cardTitle": "Couch Potato Gamer", "costumeId": "cos-03005-uniq-0037-00", "costumeName": "Dreamy Breeze Ease", "leaderSkillId": "live_leader_skill-card-03005-5-uniq-0037-00"},
+  "card-03006-4-cmmn-0000-00": {"cardTitle": "Blessed Luxe Night", "costumeId": "cos-03006-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-03006-4-cmmn-0000-00"},
+  "card-03006-5-uniq-0107-00": {"cardTitle": "The Breeze of Ginkgo Trees", "costumeId": "cos-03006-uniq-0107-00", "costumeName": "Vibrant Peafowl", "leaderSkillId": "live_leader_skill-card-03006-5-uniq-0107-00"},
+  "card-04007-4-cmmn-0000-00": {"cardTitle": "Resonant Hope", "costumeId": "cos-04007-cmmn-0000-00", "costumeName": "Dreamy Drop", "leaderSkillId": "live_leader_skill-card-04007-4-cmmn-0000-00"},
+  "card-04007-5-uniq-0047-00": {"cardTitle": "Nephilim Sonority", "costumeId": "cos-04007-uniq-0047-00", "costumeName": "Echo of Nephilim", "leaderSkillId": "live_leader_skill-card-04007-5-uniq-0047-00"},
+  "card-04007-5-uniq-0106-00": {"cardTitle": "Sowing Hope", "costumeId": "cos-04007-uniq-0106-00", "costumeName": "Girly Vintage", "leaderSkillId": "live_leader_skill-card-04007-5-uniq-0106-00"},
 } as const;
 
 const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
@@ -938,6 +1028,14 @@ const EXPECTED_GUIDE_ANCHOR_CARD_IDS = [
   "card-00030-5-uniq-0089-00",
   "card-00034-5-uniq-0090-00",
   "card-06003-5-uniq-0091-00",
+  "card-00002-5-uniq-0104-00",
+  "card-00019-5-uniq-0108-00",
+  "card-04007-5-uniq-0106-00",
+  "card-00031-5-uniq-0105-00",
+  "card-03006-5-uniq-0107-00",
+  "card-03001-5-uniq-0114-00",
+  "card-03002-5-uniq-0113-00",
+  "card-03003-5-uniq-0115-00",
 ].sort();
 
 const EXPECTED_FORMATION_KINDS = ["accessible-4-star", "premium", "standard"].sort();
@@ -1060,7 +1158,7 @@ describe("generated native publication data", () => {
 
   it("resolves every guide card reference to one matching public, mechanics, and local-art record", () => {
     const referencedCardIds = collectGuideCardReferences();
-    expect(referencedCardIds.size).toBe(138);
+    expect(referencedCardIds.size).toBe(152);
 
     for (const cardId of referencedCardIds) {
       const card = publicCardById.get(cardId);

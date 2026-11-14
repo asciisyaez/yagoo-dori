@@ -3,9 +3,9 @@
   "id": "patch-intake-manifest-v1",
   "methodologyVersion": "yd-patch-intake-v1",
   "retrievedAt": {
-    "public": "2026-10-30",
-    "mechanics": "2026-10-30",
-    "songs": "2026-10-19",
+    "public": "2026-11-14",
+    "mechanics": "2026-11-14",
+    "songs": "2026-11-14",
     "timelines": "2026-08-02"
   },
   "timelineStage": {
@@ -127,13 +127,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "assets": 147
+          "assets": 155
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "assets": 147
+          "assets": 155
         },
         "declared": {}
       }
@@ -146,13 +146,13 @@
       "changedRowCount": 0,
       "countsBefore": {
         "rows": {
-          "previews": 147
+          "previews": 155
         },
         "declared": {}
       },
       "countsAfter": {
         "rows": {
-          "previews": 147
+          "previews": 155
         },
         "declared": {}
       }
@@ -243,12 +243,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 147
+          "cards": 155
         },
         "declared": {
           "coverage": {
-            "cards": 147,
-            "mappedCards": 147,
+            "cards": 155,
+            "mappedCards": 155,
             "unresolvedReferences": []
           }
         }
@@ -257,12 +257,12 @@
         "rows": {
           "evidenceSources": 50,
           "runtimeRules": 25,
-          "cards": 147
+          "cards": 155
         },
         "declared": {
           "coverage": {
-            "cards": 147,
-            "mappedCards": 147,
+            "cards": 155,
+            "mappedCards": 155,
             "unresolvedReferences": []
           }
         }
@@ -277,30 +277,30 @@
       "countsBefore": {
         "rows": {
           "notes": 3,
-          "cards": 147
+          "cards": 155
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 93,
-            "total": 147,
-            "art": 147
+            "fiveStar": 101,
+            "total": 155,
+            "art": 155
           }
         }
       },
       "countsAfter": {
         "rows": {
           "notes": 3,
-          "cards": 147
+          "cards": 155
         },
         "declared": {
           "counts": {
             "talents": 54,
             "fourStar": 54,
-            "fiveStar": 93,
-            "total": 147,
-            "art": 147
+            "fiveStar": 101,
+            "total": 155,
+            "art": 155
           }
         }
       }
@@ -463,6 +463,12 @@
       "talent": "Robocosan",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-00002-5-uniq-0104-00",
+      "talent": "Robocosan",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
     },
     {
       "id": "card-00004-4-cmmn-0000-00",
@@ -693,6 +699,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00019-5-uniq-0108-00",
+      "talent": "Usada Pekora",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
+    },
+    {
       "id": "card-00021-4-cmmn-0000-00",
       "talent": "Shiranui Flare",
       "rarity": 4,
@@ -831,6 +843,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-00031-5-uniq-0105-00",
+      "talent": "Momosuzu Nene",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
+    },
+    {
       "id": "card-00032-4-cmmn-0000-00",
       "talent": "Shishiro Botan",
       "rarity": 4,
@@ -945,6 +963,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-03001-5-uniq-0114-00",
+      "talent": "Ayunda Risu",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
+    },
+    {
       "id": "card-03002-4-cmmn-0000-00",
       "talent": "Moona Hoshinova",
       "rarity": 4,
@@ -957,6 +981,12 @@
       "firstSeenAt": "2026-08-08"
     },
     {
+      "id": "card-03002-5-uniq-0113-00",
+      "talent": "Moona Hoshinova",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
+    },
+    {
       "id": "card-03003-4-cmmn-0000-00",
       "talent": "Airani Iofifteen",
       "rarity": 4,
@@ -967,6 +997,12 @@
       "talent": "Airani Iofifteen",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03003-5-uniq-0115-00",
+      "talent": "Airani Iofifteen",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
     },
     {
       "id": "card-03004-4-cmmn-0000-00",
@@ -1015,6 +1051,12 @@
       "talent": "Pavolia Reine",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-03006-5-uniq-0107-00",
+      "talent": "Pavolia Reine",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
     },
     {
       "id": "card-03007-4-cmmn-0000-00",
@@ -1129,6 +1171,12 @@
       "talent": "IRyS",
       "rarity": 5,
       "firstSeenAt": "2026-08-08"
+    },
+    {
+      "id": "card-04007-5-uniq-0106-00",
+      "talent": "IRyS",
+      "rarity": 5,
+      "firstSeenAt": "2026-11-14"
     },
     {
       "id": "card-04010-4-cmmn-0000-00",
@@ -1334,11 +1382,11 @@
     ]
   },
   "testCountPinFiles": [],
-  "deterministicDigest": "94eac80d7d954ea46fcc084011d321002cedb7a7e7d1a9d3e1c292d74e8213c5",
+  "deterministicDigest": "82902894fd5c4b070d3afa7361c9b50521f6bc87840f42dd6b780cc65194cfb9",
   "runtimeMetadata": {
-    "generatedAt": "2026-10-30T16:20:41.070Z",
-    "elapsedMilliseconds": 63492,
+    "generatedAt": "2026-11-14T08:03:13.042Z",
+    "elapsedMilliseconds": 35510,
     "changedDatasetCount": 0,
-    "timelineStageError": "Error: Failed to read chart API revision: 404"
+    "timelineStageError": "Error: Failed to read chart API revision: 403\r"
   }
 }

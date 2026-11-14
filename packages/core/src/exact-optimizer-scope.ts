@@ -20,7 +20,7 @@ export const ExactOptimizerScopeSchema = z
         publicDataPath: z.string().min(1),
         publicDataSha256: HashSchema,
         orderedCardIdsSha256: HashSchema,
-        cardCount: z.literal(147),
+        cardCount: z.number().int().positive(),
       })
       .strict(),
     mechanics: z
@@ -74,8 +74,8 @@ export const ExactOptimizerScopeSchema = z
       .strict(),
     eligibility: z
       .object({
-        eligibleMemberCardIds: z.array(CardIdSchema).length(147),
-        eligibleLeaderOutfitCardIds: z.array(CardIdSchema).length(147),
+        eligibleMemberCardIds: z.array(CardIdSchema).min(1),
+        eligibleLeaderOutfitCardIds: z.array(CardIdSchema).min(1),
         fixedMemberCardIds: z.array(CardIdSchema).length(0),
         oshi: z.null(),
         maximumFiveStarMembers: z.literal(5),
@@ -160,6 +160,9 @@ export function assertExactOptimizerScopeValid(
   }
 
   const publicCardIds = [...cards].map((card) => card.id).sort();
+  if (scope.roster.cardCount !== publicCardIds.length) {
+    throw new Error("Exact optimizer roster count does not match the pinned public roster");
+  }
   if (
     scope.eligibility.eligibleMemberCardIds.join("|") !== publicCardIds.join("|") ||
     scope.eligibility.eligibleLeaderOutfitCardIds.join("|") !== publicCardIds.join("|")

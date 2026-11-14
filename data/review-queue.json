@@ -33,5 +33,17 @@
     ],
     "reason": "All 908 latest MusicDifficultyChart rows omit chartHash and normalNoteCount; the public timing revision endpoint returned HTTP 403. The historical scoring pin remains explicit; no old hash is claimed as current.",
     "nextAction": "Recover public chart hashes and event timing, reconcile every chart key, then regenerate affected projections."
+  },
+  {
+    "id": "whistling-wind-walk-end-window-2026-11-14",
+    "status": "recorded-source-disagreement",
+    "scope": "Whistling Wind Walk event end time",
+    "sourceRefs": [
+      "source-official-whistling-wind-walk",
+      "source-official-whistling-wind-song-schedule",
+      "source-seesaawiki-whistling-wind-end"
+    ],
+    "reason": "The official English event and chapter announcements reviewed here do not state an end time. A fan-maintained schedule lists November 24 at 19:59 JST. The public banner keeps eventEndsAt null until an official notice corroborates that close time.",
+    "nextAction": "Check the official in-game Notice or publisher announcement before adding an event end time."
   }
 ]

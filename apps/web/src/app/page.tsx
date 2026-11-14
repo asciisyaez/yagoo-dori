@@ -32,13 +32,13 @@ const bannerStartLabel = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Tokyo",
   year: "numeric",
 }).format(new Date(currentBanner.startsAt));
-const bannerEndLabel = new Intl.DateTimeFormat("en-GB", {
+const bannerEndLabel = currentBanner.endsAt ? new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "short",
   hour: "2-digit",
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
-}).format(new Date(currentBanner.endsAt));
+}).format(new Date(currentBanner.endsAt)) : "Not announced";
 const eventStartLabel = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "short",
@@ -46,13 +46,13 @@ const eventStartLabel = new Intl.DateTimeFormat("en-GB", {
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
 }).format(new Date(currentBanner.eventStartsAt));
-const eventEndLabel = new Intl.DateTimeFormat("en-GB", {
+const eventEndLabel = currentBanner.eventEndsAt ? new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "short",
   hour: "2-digit",
   minute: "2-digit",
   timeZone: "Asia/Tokyo",
-}).format(new Date(currentBanner.eventEndsAt));
+}).format(new Date(currentBanner.eventEndsAt)) : null;
 const chapterDateFormatter = new Intl.DateTimeFormat("en-GB", {
   day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo",
 });
@@ -126,15 +126,16 @@ export default function HomePage() {
         <div className="current-banner-panel">
           <div className="current-banner-copy">
             <p className="current-banner-kicker">Featured banner · {bannerStartLabel} JST</p>
-            <h2 id="current-banner-heading">{currentBanner.eventName}</h2>
+            <h2 id="current-banner-heading">{currentBanner.gachaNameEn}</h2>
             <p>
-              {bannerCards.length + currentBanner.announcedMembers.length} new ★5 cards in <span lang="ja">{currentBanner.gachaNameJa}</span>.
+              {bannerCards.length + currentBanner.announcedMembers.length} new ★5 cards · {currentBanner.eventName}.
             </p>
+            <p lang="ja">{currentBanner.gachaNameJa}</p>
             {currentBanner.offerNote && <p>{currentBanner.offerNote}</p>}
             <dl className="current-banner-stats">
               <div><dt>Featured</dt><dd>{bannerCards.length + currentBanner.announcedMembers.length} × ★5</dd></div>
-              <div><dt>New event tracks</dt><dd>{currentBanner.eventTracks.length}</dd></div>
-              <div><dt>Ends (JST)</dt><dd>{bannerEndLabel}</dd></div>
+              <div><dt>Scheduled songs</dt><dd>{currentBanner.eventTracks.length}</dd></div>
+              <div><dt>Gacha ends (JST)</dt><dd>{bannerEndLabel}</dd></div>
             </dl>
             <Link className="secondary-action current-banner-action" href="/cards?rarity=5">
               Browse ★5 cards <ArrowRight aria-hidden="true" />
@@ -160,14 +161,14 @@ export default function HomePage() {
           </div>
         </div>
         <div className="announced-banner-schedule">
-          <h3>New event tracks</h3>
-          <p>{currentBanner.eventType === "spotlight" ? "Spotlight event" : currentBanner.eventType === "point-rally" ? "Point rally event" : "Score-challenge event"} · {eventStartLabel}–{eventEndLabel} JST.</p>
+          <h3>{currentBanner.eventName} · scheduled songs</h3>
+          <p>{currentBanner.eventType === "spotlight" ? "Spotlight event" : currentBanner.eventType === "point-rally" ? "Point rally event" : "Score-challenge event"} · starts {eventStartLabel} JST{eventEndLabel ? `–${eventEndLabel} JST.` : "; end time not announced."}</p>
           <ul>
             {currentBanner.eventTracks.map((track) => (
-              <li key={track.talent}>
+              <li key={track.songId ?? `${track.talent}:${track.title}`}>
                 <strong>{track.talent}</strong>
                 <span>{track.title}</span>
-                {currentBanner.eventType === "spotlight" && track.startsAt && track.endsAt && <time dateTime={track.startsAt}>{chapterDateFormatter.format(new Date(track.startsAt))}–{chapterDateFormatter.format(new Date(track.endsAt))} JST</time>}
+                {currentBanner.eventType === "spotlight" && track.startsAt && <time dateTime={track.startsAt}>Starts {chapterDateFormatter.format(new Date(track.startsAt))} JST{track.endsAt ? `–${chapterDateFormatter.format(new Date(track.endsAt))} JST` : ""}</time>}
               </li>
             ))}
           </ul>
