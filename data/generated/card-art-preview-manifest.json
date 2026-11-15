@@ -3,7 +3,7 @@
   "expectedCount": 155,
   "sourceManifest": {
     "path": "data/generated/card-art-manifest.json",
-    "sha256": "6ee26550133b32169db8ece8364717b6005c712d9d1dacc2dcbb1d79214fc8ef",
+    "sha256": "d9d412bfba4c305ed7e07d08a624c948da44f30b1cf64682892cebc5054a7021",
     "schemaVersion": 2,
     "retrievedAt": "2026-11-14"
   },

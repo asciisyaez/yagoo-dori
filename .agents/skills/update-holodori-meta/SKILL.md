@@ -31,6 +31,10 @@ Prepare one reproducible roster/mechanics/song change set, then recalculate Yago
    public square icon exists, use an explicit reviewed crop in
    `scripts/lib/card-icon-recipes.mjs`; retain the original, source hash, recipe,
    and pinned renderer. Never replace a conflicting badge with invented artwork.
+   A temporary illustration crop is not a finished card icon: recheck sources on
+   subsequent runs and replace it when the matching 300px game-style icon is
+   available. Verify that its badge and stars match the card. Inspect the tier
+   list and roll picker next to older cards before publishing.
    `pnpm data:sync:public --reuse-verified-art` verifies unchanged local assets and
    downloads only new or identity-changed cards, avoiding stale editorial mappings
    for old cards. It also applies reviewed icons and regenerates previews.

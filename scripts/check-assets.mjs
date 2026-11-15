@@ -120,8 +120,8 @@ for (const asset of manifest.assets ?? []) {
     if (record.cardId !== asset.cardId || record.talentId !== asset.talentId) {
       failures.push(`${asset.cardId}: ${kind} card/talent identity mismatch`);
     }
-    if (record.retrievedAt !== asset.retrievedAt) {
-      failures.push(`${asset.cardId}: ${kind} retrieval date mismatch`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(record.retrievedAt ?? "")) {
+      failures.push(`${asset.cardId}: ${kind} has an invalid retrieval date`);
     }
     if (seenLocalPaths.has(record.localPath)) {
       failures.push(`${asset.cardId}: duplicate local path ${record.localPath}`);

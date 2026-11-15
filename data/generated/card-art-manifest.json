@@ -5265,31 +5265,15 @@
         "assetClass": "card-icon",
         "cardId": "card-04007-5-uniq-0106-00",
         "talentId": "chr-04007",
-        "sourcePage": "https://game8.jp/hololive-dreams/842996",
-        "sourceUrl": "https://img.game8.jp/13213442/bfe70ca369f3deb6924b711110ff78ee.webp/original",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80561464",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/183649_z8h9f.webp",
         "localPath": "/game/cards/card-04007-5-uniq-0106-00.webp",
-        "retrievedAt": "2026-11-14",
-        "matchMethod": "reviewed-illustration-portrait-crop",
+        "retrievedAt": "2026-11-15",
+        "matchMethod": "explicit-media-override",
         "width": 300,
         "height": 300,
-        "bytes": 31902,
-        "sha256": "55f341d0ce8feede2689508e432263858575c6747f5fd17539889cd94454e5f0",
-        "transformation": {
-          "recipe": "card-04007-5-uniq-0106-00",
-          "sourceSha256": "09850886482de1d967cdeddbbd504fb26055880527fa28872126b8f0de8efd44",
-          "library": "sharp",
-          "version": "0.35.5",
-          "crop": {
-            "left": 175,
-            "top": 0,
-            "width": 1165,
-            "height": 1165
-          },
-          "width": 300,
-          "height": 300,
-          "quality": 90,
-          "effort": 6
-        }
+        "bytes": 97782,
+        "sha256": "a97d06598fcc15a94d84a5dcb6e1eb2278144770eb4013d73f8ede2ad154bd6c"
       },
       "illustration": {
         "assetClass": "card-illustration",
@@ -5316,31 +5300,15 @@
         "assetClass": "card-icon",
         "cardId": "card-00031-5-uniq-0105-00",
         "talentId": "chr-00031",
-        "sourcePage": "https://game8.jp/hololive-dreams/842993",
-        "sourceUrl": "https://img.game8.jp/13213443/7225830cb5785260abb2c89c41ddf01a.webp/original",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80561614",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/185229_qv5e6.webp",
         "localPath": "/game/cards/card-00031-5-uniq-0105-00.webp",
-        "retrievedAt": "2026-11-14",
-        "matchMethod": "reviewed-illustration-portrait-crop",
+        "retrievedAt": "2026-11-15",
+        "matchMethod": "explicit-media-override",
         "width": 300,
         "height": 300,
-        "bytes": 32254,
-        "sha256": "e7b978c74c0ca914475154da8389cff099c6438f279ac90b21ec70ea179771bb",
-        "transformation": {
-          "recipe": "card-00031-5-uniq-0105-00",
-          "sourceSha256": "4957a664c1bd9f83d6f58126637b6134b556c90f27c19267381cf82f13506f8b",
-          "library": "sharp",
-          "version": "0.35.5",
-          "crop": {
-            "left": 291,
-            "top": 0,
-            "width": 1165,
-            "height": 1165
-          },
-          "width": 300,
-          "height": 300,
-          "quality": 90,
-          "effort": 6
-        }
+        "bytes": 98518,
+        "sha256": "ebf956fe2e13456eb102abb48d1c85883e9bc8e76ee8ee5d1b1349ee6944b50e"
       },
       "illustration": {
         "assetClass": "card-illustration",
@@ -5402,31 +5370,15 @@
         "assetClass": "card-icon",
         "cardId": "card-03006-5-uniq-0107-00",
         "talentId": "chr-03006",
-        "sourcePage": "https://game8.jp/hololive-dreams/842992",
-        "sourceUrl": "https://img.game8.jp/13213444/e90b64e96942b374a385a8798b6b41e5.webp/original",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80561680",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/190501_cm0f8.webp",
         "localPath": "/game/cards/card-03006-5-uniq-0107-00.webp",
-        "retrievedAt": "2026-11-14",
-        "matchMethod": "reviewed-illustration-portrait-crop",
+        "retrievedAt": "2026-11-15",
+        "matchMethod": "explicit-media-override",
         "width": 300,
         "height": 300,
-        "bytes": 27780,
-        "sha256": "960b113fd25c0941befe428c312549b2447bdc9b629af5318a52c7452a1b722d",
-        "transformation": {
-          "recipe": "card-03006-5-uniq-0107-00",
-          "sourceSha256": "f9e9a5d94be47376476639ae5774075e1ce9716a8b06a099fcbeb642552bf64b",
-          "library": "sharp",
-          "version": "0.35.5",
-          "crop": {
-            "left": 641,
-            "top": 0,
-            "width": 1165,
-            "height": 1165
-          },
-          "width": 300,
-          "height": 300,
-          "quality": 90,
-          "effort": 6
-        }
+        "bytes": 90744,
+        "sha256": "d0cce03af3e7972ae56f29495945a7d3d4bd6055238d706c982e4bc186f96b9a"
       },
       "illustration": {
         "assetClass": "card-illustration",
@@ -5453,31 +5405,15 @@
         "assetClass": "card-icon",
         "cardId": "card-00002-5-uniq-0104-00",
         "talentId": "chr-00002",
-        "sourcePage": "https://game8.jp/hololive-dreams/842994",
-        "sourceUrl": "https://img.game8.jp/13213440/9f8040e0957786c6db90cdbbf1b64fa2.webp/original",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80561260",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/180622_njxuz.webp",
         "localPath": "/game/cards/card-00002-5-uniq-0104-00.webp",
-        "retrievedAt": "2026-11-14",
-        "matchMethod": "reviewed-illustration-portrait-crop",
+        "retrievedAt": "2026-11-15",
+        "matchMethod": "explicit-media-override",
         "width": 300,
         "height": 300,
-        "bytes": 28694,
-        "sha256": "9f83717efb93b223add8936d30615c0bb4c6ca2296711b77255c829cdea5757f",
-        "transformation": {
-          "recipe": "card-00002-5-uniq-0104-00",
-          "sourceSha256": "d70b446ced92e36776de03a986da3e4fbe37e343137496a7b932c0992e4a7273",
-          "library": "sharp",
-          "version": "0.35.5",
-          "crop": {
-            "left": 87,
-            "top": 0,
-            "width": 1165,
-            "height": 1165
-          },
-          "width": 300,
-          "height": 300,
-          "quality": 90,
-          "effort": 6
-        }
+        "bytes": 87988,
+        "sha256": "ffb5b4b361b1c37106ba84622fb4045164f094a563ac8448d5b3a9a93b98f77a"
       },
       "illustration": {
         "assetClass": "card-illustration",
@@ -5504,31 +5440,15 @@
         "assetClass": "card-icon",
         "cardId": "card-00019-5-uniq-0108-00",
         "talentId": "chr-00019",
-        "sourcePage": "https://game8.jp/hololive-dreams/842995",
-        "sourceUrl": "https://img.game8.jp/13213441/b855e57527bcc731bc0f1e25cf37be4b.webp/original",
+        "sourcePage": "https://appmedia.jp/hololive-dreams/80561410",
+        "sourceUrl": "https://appmedia.jp/wp-content/uploads/2026/11/182919_hsqb8.webp",
         "localPath": "/game/cards/card-00019-5-uniq-0108-00.webp",
-        "retrievedAt": "2026-11-14",
-        "matchMethod": "reviewed-illustration-portrait-crop",
+        "retrievedAt": "2026-11-15",
+        "matchMethod": "explicit-media-override",
         "width": 300,
         "height": 300,
-        "bytes": 28892,
-        "sha256": "fa459363e7853aab53c1813b0bcda939469ce91dffddddc5f774eadbadad4912",
-        "transformation": {
-          "recipe": "card-00019-5-uniq-0108-00",
-          "sourceSha256": "bfb2b391eb3f2ee248899f674ea143cfa0bb5e3b081ec5fb89107478187022e9",
-          "library": "sharp",
-          "version": "0.35.5",
-          "crop": {
-            "left": 320,
-            "top": 0,
-            "width": 1165,
-            "height": 1165
-          },
-          "width": 300,
-          "height": 300,
-          "quality": 90,
-          "effort": 6
-        }
+        "bytes": 89702,
+        "sha256": "5c303ab12cd639894acc550c901d8aefb97a4d990dc0eb42c686692111e84410"
       },
       "illustration": {
         "assetClass": "card-illustration",
