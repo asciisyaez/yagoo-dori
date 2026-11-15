@@ -367,7 +367,7 @@ const appMediaAssetOverrideByCardId = {
   },
   "card-04014-5-uniq-0094-00": {
     sourcePage: "https://appmedia.jp/hololive-dreams/80492338",
-    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/184917_5k4b2.webp",
+    iconSourceUrl: "https://appmedia.jp/wp-content/uploads/2026/10/100705_5slpv.webp",
     illustrationSourcePage: "https://game8.jp/hololive-dreams/833389",
     illustrationSourceUrl: "https://img.game8.jp/13109681/33128a53f59a18acb5b6372cf57687a3.webp/original",
     allowExternalIllustration: true,
