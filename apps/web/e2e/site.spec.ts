@@ -53,10 +53,12 @@ test("homepage shows the live Bright Autumn banner and spotlight song schedule",
   await expect(banner).toContainText("Featured banner");
   await expect(banner).toContainText("14 Nov 2026, 11:00 JST");
   await expect(banner.locator("li")).toHaveCount(5);
-  await expect(banner).toContainText("Spotlight event · starts 14 Nov, 20:00 JST; end time not announced.");
+  await expect(banner).toContainText("Spotlight event · starts 14 Nov, 20:00 JST–24 Nov, 19:59 JST.");
   await expect(page.getByText("うららかな秋にお出かけを♪", { exact: true })).toBeVisible();
   await expect(banner).toContainText("Gacha ends (JST)");
-  await expect(banner).toContainText("Not announced");
+  await expect(banner).toContainText("26 Nov, 10:59");
+  await expect(banner).toContainText("Chapter: 14 Nov, 20:00–16 Nov, 19:59 JST");
+  await expect(banner).toContainText("Chapter: 22 Nov, 20:00–24 Nov, 19:59 JST");
   await expect(banner).toContainText("A Select Gacha is also available.");
   await expect(banner.locator(".current-banner-card")).toHaveCount(5);
   for (const name of ["Robocosan", "Usada Pekora", "IRyS", "Momosuzu Nene", "Pavolia Reine"]) {

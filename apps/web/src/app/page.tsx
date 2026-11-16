@@ -168,7 +168,7 @@ export default function HomePage() {
               <li key={track.songId ?? `${track.talent}:${track.title}`}>
                 <strong>{track.talent}</strong>
                 <span>{track.title}</span>
-                {currentBanner.eventType === "spotlight" && track.startsAt && <time dateTime={track.startsAt}>Starts {chapterDateFormatter.format(new Date(track.startsAt))} JST{track.endsAt ? `–${chapterDateFormatter.format(new Date(track.endsAt))} JST` : ""}</time>}
+                {currentBanner.eventType === "spotlight" && track.startsAt && <time dateTime={track.startsAt}>Chapter: {chapterDateFormatter.format(new Date(track.startsAt))}–{track.endsAt ? chapterDateFormatter.format(new Date(track.endsAt)) : "ongoing"} JST</time>}
               </li>
             ))}
           </ul>

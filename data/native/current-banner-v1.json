@@ -7,9 +7,9 @@
   "gachaNameEn": "Bright Autumn Trip Gacha",
   "gachaNameJa": "うららかな秋にお出かけを♪",
   "startsAt": "2026-11-14T02:00:00.000Z",
-  "endsAt": null,
+  "endsAt": "2026-11-26T01:59:00.000Z",
   "eventStartsAt": "2026-11-14T11:00:00.000Z",
-  "eventEndsAt": null,
+  "eventEndsAt": "2026-11-24T10:59:00.000Z",
   "featuredCardIds": [
     "card-00002-5-uniq-0104-00",
     "card-00019-5-uniq-0108-00",
@@ -23,35 +23,35 @@
       "songId": "m0383",
       "title": "slight fever",
       "startsAt": "2026-11-14T11:00:00.000Z",
-      "endsAt": null
+      "endsAt": "2026-11-16T10:59:00.000Z"
     },
     {
       "talent": "Usada Pekora",
       "songId": "m0387",
       "title": "PEKORISER",
       "startsAt": "2026-11-16T11:00:00.000Z",
-      "endsAt": null
+      "endsAt": "2026-11-18T10:59:00.000Z"
     },
     {
       "talent": "IRyS",
       "songId": "m0385",
       "title": "Burning hope",
       "startsAt": "2026-11-18T11:00:00.000Z",
-      "endsAt": null
+      "endsAt": "2026-11-20T10:59:00.000Z"
     },
     {
       "talent": "Momosuzu Nene",
       "songId": "m0384",
       "title": "Dear You, A Love Song Just for You!",
       "startsAt": "2026-11-20T11:00:00.000Z",
-      "endsAt": null
+      "endsAt": "2026-11-22T10:59:00.000Z"
     },
     {
       "talent": "Pavolia Reine",
       "songId": "m0386",
       "title": "Halulu",
       "startsAt": "2026-11-22T11:00:00.000Z",
-      "endsAt": null
+      "endsAt": "2026-11-24T10:59:00.000Z"
     }
   ],
   "sourceRefs": [
@@ -60,9 +60,12 @@
     "source-official-whistling-wind-song-schedule",
     "source-holodori-nov14-eng",
     "source-holodori-nov14-jpn",
-    "source-holodori-lab-autumn-outing"
+    "source-holodori-lab-autumn-outing",
+    "source-gamer-bright-autumn-schedule",
+    "source-game8-bright-autumn-gacha",
+    "source-game8-whistling-wind-schedule"
   ],
-  "transformation": "Join five ★5 Member IDs to pinned ENG bd0d2f234590ed4bc325978057eef60224014465 and JPN f7e4961e2d9d5b1d1608b550345d78f9d1f6ce73 (master 9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875, retrieved 2026-11-14). Convert the gacha start and five official spotlight-song start times from JST to UTC. Official notices do not state gacha or event end times, so both remain null. Song IDs and English titles are joined to the pinned ENG Music.json/LangMusic_Eng.json rows; the current 240-song/960-chart aggregate omits chart hashes, and no chart timing or score claims are made.",
+  "transformation": "Join the five featured Member IDs and English song titles to the pinned ENG and JPN HolodoriDB revisions (master 9171c5282eaf618dab68c4ca2459cfd386c79aad7fb56db59496f2058f78d875). The publisher announcement reproduced by Gamer and independently corroborated by Game8 gives the gacha, event, and five spotlight chapter start and end times; convert JST to UTC. The song rows show their corresponding spotlight chapter windows, not song availability or chart timing. Schedule sources retrieved 2026-11-16.",
   "eventType": "spotlight",
   "announcedMembers": [],
   "offerNote": "A Select Gacha is also available. These five new Members will appear in future scheduled gachas, but not in the holodori Gacha."

@@ -466,5 +466,44 @@
     "verificationState": "research-only",
     "confidence": 0.5,
     "notes": "Fan-maintained event table lists an end of November 24 19:59 JST. No official announcement reviewed here confirms that end time, so it is not used in the public banner."
+  },
+  {
+    "id": "source-gamer-bright-autumn-schedule",
+    "title": "QualiArts announcement — Whistling Wind Walk and Bright Autumn Trip",
+    "publisher": "QualiArts / COVER Corp. via Gamer",
+    "url": "https://www.gamer.ne.jp/news/202611140003/",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "2026-11-14",
+    "retrievedAt": "2026-11-16",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Reproduces publisher announcement with gacha, event, and each spotlight chapter start and end in JST."
+  },
+  {
+    "id": "source-game8-bright-autumn-gacha",
+    "title": "Game8 — Bright Autumn Trip gacha schedule",
+    "publisher": "Game8",
+    "url": "https://game8.jp/hololive-dreams/842998",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "public-page",
+    "retrievedAt": "2026-11-16",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Independently corroborates gacha start and end in JST."
+  },
+  {
+    "id": "source-game8-whistling-wind-schedule",
+    "title": "Game8 — Whistling Wind Walk event and chapter schedule",
+    "publisher": "Game8",
+    "url": "https://game8.jp/hololive-dreams/842999",
+    "kind": "corroboration",
+    "reusePolicy": "facts-only",
+    "upstreamVersion": "public-page",
+    "retrievedAt": "2026-11-16",
+    "verificationState": "verified",
+    "confidence": 1,
+    "notes": "Independently corroborates event and spotlight chapter windows in JST."
   }
 ]

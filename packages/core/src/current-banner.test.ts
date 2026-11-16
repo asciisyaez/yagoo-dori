@@ -14,21 +14,21 @@ describe("current banner metadata", () => {
     })).toBe(true);
     expect(currentBanner.announcedMembers).toHaveLength(0);
   });
-  it("records the live gacha, announced spotlight schedule, and unknown end dates", () => {
+  it("records the live gacha, verified spotlight schedule and end dates", () => {
     expect(currentBanner.eventName).toBe("Whistling Wind Walk");
     expect(currentBanner.gachaNameEn).toBe("Bright Autumn Trip Gacha");
     expect(currentBanner.gachaNameJa).toBe("うららかな秋にお出かけを♪");
     expect(currentBanner.eventType).toBe("spotlight");
     expect(currentBanner.startsAt).toBe("2026-11-14T02:00:00.000Z");
-    expect(currentBanner.endsAt).toBeNull();
+    expect(currentBanner.endsAt).toBe("2026-11-26T01:59:00.000Z");
     expect(currentBanner.eventStartsAt).toBe("2026-11-14T11:00:00.000Z");
-    expect(currentBanner.eventEndsAt).toBeNull();
+    expect(currentBanner.eventEndsAt).toBe("2026-11-24T10:59:00.000Z");
     expect(currentBanner.eventTracks.map(({ talent, songId, title, startsAt, endsAt }) => ({ talent, songId, title, startsAt, endsAt }))).toEqual([
-      { talent: "Robocosan", songId: "m0383", title: "slight fever", startsAt: "2026-11-14T11:00:00.000Z", endsAt: null },
-      { talent: "Usada Pekora", songId: "m0387", title: "PEKORISER", startsAt: "2026-11-16T11:00:00.000Z", endsAt: null },
-      { talent: "IRyS", songId: "m0385", title: "Burning hope", startsAt: "2026-11-18T11:00:00.000Z", endsAt: null },
-      { talent: "Momosuzu Nene", songId: "m0384", title: "Dear You, A Love Song Just for You!", startsAt: "2026-11-20T11:00:00.000Z", endsAt: null },
-      { talent: "Pavolia Reine", songId: "m0386", title: "Halulu", startsAt: "2026-11-22T11:00:00.000Z", endsAt: null },
+      { talent: "Robocosan", songId: "m0383", title: "slight fever", startsAt: "2026-11-14T11:00:00.000Z", endsAt: "2026-11-16T10:59:00.000Z" },
+      { talent: "Usada Pekora", songId: "m0387", title: "PEKORISER", startsAt: "2026-11-16T11:00:00.000Z", endsAt: "2026-11-18T10:59:00.000Z" },
+      { talent: "IRyS", songId: "m0385", title: "Burning hope", startsAt: "2026-11-18T11:00:00.000Z", endsAt: "2026-11-20T10:59:00.000Z" },
+      { talent: "Momosuzu Nene", songId: "m0384", title: "Dear You, A Love Song Just for You!", startsAt: "2026-11-20T11:00:00.000Z", endsAt: "2026-11-22T10:59:00.000Z" },
+      { talent: "Pavolia Reine", songId: "m0386", title: "Halulu", startsAt: "2026-11-22T11:00:00.000Z", endsAt: "2026-11-24T10:59:00.000Z" },
     ]);
   });
 });
